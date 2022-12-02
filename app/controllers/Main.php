@@ -6,7 +6,12 @@ class Main extends MY_Shop_Controller
     function __construct() {
         parent::__construct();
 
-        if ($this->Settings->mmode && $this->v != 'login') { redirect('notify/offline'); }
+        if ($this->Settings->mmode && $this->v != 'login') {
+
+            //redirect('notify/offline');
+
+        }
+
         $this->load->library('ion_auth');
         $this->load->library('form_validation');
     }

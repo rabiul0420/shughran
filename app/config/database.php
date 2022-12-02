@@ -60,13 +60,15 @@
 
 $active_group = 'default';
 $query_builder = TRUE;
+
+
  
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'mysql',
-	'database' => 'shughran',
+	'hostname' => 'shughran.caevxegpugax.ap-southeast-1.rds.amazonaws.com',
+	'username' => 'reporting',
+	'password' => 'n##afxeo9Zfjh',
+	'database' => 'reporting_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'sma_',
 	'pconnect' => FALSE,
