@@ -142,7 +142,7 @@ else
           $where =" branch = $branch_id AND " ;
           
       } 
-
+ 
        
       $report_type = $this->report_type();
       
