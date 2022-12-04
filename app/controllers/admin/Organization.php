@@ -204,7 +204,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
     FROM `sma_institutionlist` WHERE   branch_id = ".$branch_id." AND is_active = 1 
     GROUP BY institution_type_child");
 
-exit();
+
 
     $this->data['organization_info'] = $this->site->query("SELECT     
     t2.institution_type_child ,     SUM(CASE WHEN org_change_type = 1 THEN 1 ELSE 0 END) increase_organization, SUM(CASE WHEN org_change_type = 2 THEN 1 ELSE 0 END) decrease_organization
@@ -235,6 +235,8 @@ exit();
    WHERE sma_institution_supporter_organization.change_type = 2 AND DATE(sma_institution_supporter_organization.`date`) BETWEEN '".$start."' AND '".$end."'  AND sma_institution_supporter_organization.branch_id = ".$branch_id."
     GROUP BY institution_type_child)a
    GROUP BY a.institution_type_child ");
+
+
 
       } else{
 
@@ -314,6 +316,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
       }
 
 
+exit();
 
 
       if($branch_id)
