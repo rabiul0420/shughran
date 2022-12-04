@@ -156,6 +156,8 @@ else
 
       if($branch_id)
       {
+
+        exit();
       $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  prev_institution(institution_type_child, ". $prev.", ". $branch_id.") prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
       institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution
      FROM `sma_institutionlist`
@@ -177,7 +179,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
      
      ) a GROUP BY institution_type_child ,prev_institution");
 
-        exit();
+        
 		 
 
      $this->data['institution_info'] = $this->site->query("SELECT     
