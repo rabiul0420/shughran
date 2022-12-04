@@ -177,7 +177,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
      
      ) a GROUP BY institution_type_child ,prev_institution");
 
-
+        exit();
 		 
 
      $this->data['institution_info'] = $this->site->query("SELECT     
