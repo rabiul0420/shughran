@@ -65,16 +65,16 @@ $query_builder = TRUE;
  
 $db['default'] = array(
 	'dsn'	=> '',
-	/*'hostname' => 'shughran.caevxegpugax.ap-southeast-1.rds.amazonaws.com',
+	'hostname' => 'shughran.caevxegpugax.ap-southeast-1.rds.amazonaws.com',
 	'username' => 'reporting',
 	'password' => 'n##afxeo9Zfjh',
 	'database' => 'reporting_db',
-	*/
-	
+	 
+	/*
 	'hostname' => 'localhost:3307',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'muazannual',
+	'database' => 'muazannual',*/
 	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'sma_',
