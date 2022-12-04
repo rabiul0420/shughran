@@ -316,7 +316,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
       }
 
 
-exit();
+
 
 
       if($branch_id)
@@ -342,6 +342,8 @@ exit();
 $this->data['org_summary'] = $this->getorg_summary($report_type['type'],$report_type['start'],$report_type['end'], $branch_id,$report_type);
         
       
+
+exit();
 
    /// $this->sma->print_arrays($this->data['org_summary']);
       $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Organization'));
