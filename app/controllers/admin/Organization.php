@@ -109,7 +109,7 @@ else
   function index($branch_id = NULL)
   {
 
-    exit();
+   
       $this->sma->checkPermissions();
       if($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id')!=$branch_id)){
           $this->session->set_flashdata('warning', lang('access_denied'));
@@ -136,7 +136,7 @@ else
        
        $where =" " ;
       
-
+       
       if($branch_id)
       {
           $where =" branch = $branch_id AND " ;
