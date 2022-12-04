@@ -331,11 +331,11 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
 
       $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
 
-exit();
+
 
       $this->data['institution_manpower_record'] = $this->site->query("SELECT   
       SUM(CASE WHEN orgstatus_id = 2 OR orgstatus_id = 12 THEN 1 ELSE 0 END) associate ,  
-      SUM(CASE WHEN orgstatus_id = 1 THEN 1 ELSE 0 END ) member ,  institution_type_child
+      SUM(CASE WHEN orgstatus_id = 1 THEN 1 ELSE 0 END ) `member` ,  institution_type_child
       FROM `sma_manpower`  WHERE $where  `orgstatus_id` IN (1,2,12) GROUP BY `institution_type_child`");
 
 
