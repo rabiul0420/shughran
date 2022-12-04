@@ -331,7 +331,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
 
       $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
 
-
+exit();
 
       $this->data['institution_manpower_record'] = $this->site->query("SELECT   
       SUM(CASE WHEN orgstatus_id = 2 OR orgstatus_id = 12 THEN 1 ELSE 0 END) associate ,  
@@ -343,7 +343,7 @@ $this->data['org_summary'] = $this->getorg_summary($report_type['type'],$report_
         
       
 
-exit();
+
 
    /// $this->sma->print_arrays($this->data['org_summary']);
       $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Organization'));
