@@ -8,6 +8,7 @@ class Main extends MY_Shop_Controller
 
         if ($this->Settings->mmode && $this->v != 'login') {
 
+            /*this comment by rabiul islam*/
             //redirect('notify/offline');
 
         }
