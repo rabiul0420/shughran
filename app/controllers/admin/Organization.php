@@ -157,7 +157,7 @@ else
 
 //$this->sma->print_arrays( $this->data['org_summary_sma']);
 
-
+      exit();
       if($branch_id)
       {
 
