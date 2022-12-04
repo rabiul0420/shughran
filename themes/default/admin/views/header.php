@@ -379,7 +379,7 @@
 					
 						 
 						 
-                         <li class=" <?php echo ($this->uri->segment(2)=='departmentsreport') && ($this->uri->segment(3)!='school-karjokrom-bivag')?'active':'' ?>"><a href="<?= admin_url('departmentsreport'); ?>">বিভাগীয় রিপোর্ট</a></li>
+                         <li class="hidden <?php echo ($this->uri->segment(2)=='departmentsreport') && ($this->uri->segment(3)!='school-karjokrom-bivag')?'active':'' ?>"><a href="<?= admin_url('departmentsreport'); ?>">বিভাগীয় রিপোর্ট</a></li>
                          
 						 
 						 
