@@ -157,7 +157,7 @@ else
 
 //$this->sma->print_arrays( $this->data['org_summary_sma']);
 
-      exit();
+      
       if($branch_id)
       {
 
@@ -204,7 +204,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
     FROM `sma_institutionlist` WHERE   branch_id = ".$branch_id." AND is_active = 1 
     GROUP BY institution_type_child");
 
-
+exit();
 
     $this->data['organization_info'] = $this->site->query("SELECT     
     t2.institution_type_child ,     SUM(CASE WHEN org_change_type = 1 THEN 1 ELSE 0 END) increase_organization, SUM(CASE WHEN org_change_type = 2 THEN 1 ELSE 0 END) decrease_organization
