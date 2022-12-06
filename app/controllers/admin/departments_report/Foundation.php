@@ -71,6 +71,11 @@ function foundation_bivag($branch_id = NULL)
         admin_redirect();
     $this->data['report_info'] = $report_type;
 
+    if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+        $report_type['start'] = $report_type['info']->startdate_annual;
+        $report_type['end'] = $report_type['info']->enddate_annual;
+    }
+
     if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
     $this->db->select_sum('number');

@@ -71,6 +71,11 @@ class Others extends MY_Controller
             admin_redirect();
         $this->data['report_info'] = $report_type;
 
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
+
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
 
@@ -483,6 +488,11 @@ class Others extends MY_Controller
             admin_redirect();
         $this->data['report_info'] = $report_type;
 
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
+
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
         $this->db->select('*');
@@ -796,6 +806,11 @@ class Others extends MY_Controller
             admin_redirect();
         $this->data['report_info'] = $report_type;
 
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
+
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
            
@@ -1042,6 +1057,11 @@ class Others extends MY_Controller
             admin_redirect();
         $this->data['report_info'] = $report_type;
 
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
+
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
        
@@ -1238,6 +1258,11 @@ class Others extends MY_Controller
         if ($report_type == false)
             admin_redirect();
         $this->data['report_info'] = $report_type;
+
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
@@ -1599,6 +1624,11 @@ function others_page_six($branch_id = NULL)
         admin_redirect();
     $this->data['report_info'] = $report_type;
 
+    if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+        $report_type['start'] = $report_type['info']->startdate_annual;
+        $report_type['end'] = $report_type['info']->enddate_annual;
+    }
+
     if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
             $this->db->select('*');
@@ -1786,6 +1816,11 @@ function others_page_seven($branch_id = NULL)
     if ($report_type == false)
         admin_redirect();
     $this->data['report_info'] = $report_type;
+
+    if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+        $report_type['start'] = $report_type['info']->startdate_annual;
+        $report_type['end'] = $report_type['info']->enddate_annual;
+    }
 
     if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 

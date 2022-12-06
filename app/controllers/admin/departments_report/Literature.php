@@ -70,9 +70,19 @@ class Literature extends MY_Controller
 
 
         $report_type = $this->report_type();
+
+        // print_r($report_type);
+
         if ($report_type == false)
             admin_redirect();
+
         $this->data['report_info'] = $report_type;
+
+
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
@@ -156,7 +166,7 @@ class Literature extends MY_Controller
             $this->data['potrikar_grahok_briddhi'] = $this->db->get('literature_potrikar_grahok_briddhi')->first_row('array');
 
 
-        //    $this->sma->print_arrays( $this->db->last_query());
+            //    $this->sma->print_arrays( $this->db->last_query());
 
 
             $this->db->select('*');
@@ -265,6 +275,11 @@ class Literature extends MY_Controller
         if ($report_type == false)
             admin_redirect();
         $this->data['report_info'] = $report_type;
+
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
@@ -380,7 +395,7 @@ class Literature extends MY_Controller
         } else {
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
-            
+
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
             $this->data['literature_songothon_one'] = $this->db->get('literature_songothon_one');
 
