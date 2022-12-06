@@ -18,5 +18,4 @@ app/ci_sessions/*
 application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
-/vendor/
 #uuuu
