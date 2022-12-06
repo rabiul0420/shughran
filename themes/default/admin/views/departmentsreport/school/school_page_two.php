@@ -524,7 +524,7 @@ $(document).ready(function(){
                                 </td>
 
                             </tr>
-                            <tr>
+                            <tr class="hidden">
 
                                 <td class="tg-y698 type_1"> JSC</td>
 
