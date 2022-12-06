@@ -2254,10 +2254,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
 				 
                 create_excel($this->excel, $filename);
 				
-				 echo '<pre>';
-				 print_r($data);
-				 echo '</pre>';
-				 exit();
+				
 
             }
             $this->session->set_flashdata('error', lang('nothing_found'));
