@@ -63,6 +63,11 @@ class Manpower extends MY_Controller
 		$cal_type = $report_type['type'];
         $report_info =  $report_type['info'];
 
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
+
         
         $this->data['memberlog'] = $this->memberlog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
         
@@ -137,6 +142,11 @@ class Manpower extends MY_Controller
 
 
         $report_info =  $report_type['info'];
+
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+            $report_type['start'] = $report_type['info']->startdate_annual;
+            $report_type['end'] = $report_type['info']->enddate_annual;
+        }
        
 
       //  $this->sma->print_arrays($report_type ); 
@@ -145,7 +155,7 @@ class Manpower extends MY_Controller
         // memberlog membercandidatelog   manpower_record assolog   workerlog
        
         
-         $this->data['prev_manpower'] = $this->getPrev('annual',$last_year,$branch_id);
+         $this->data['prev_manpower'] = $this->getPrev('annual',$last_year,$branch_id); 
     
 
 

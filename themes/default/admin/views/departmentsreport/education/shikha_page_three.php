@@ -159,9 +159,9 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan='2'>মান</td>
-                                <td class="tg-pwj7" colspan="5">৪০ তম জনসেবা তথ্য </td>
-                                <td class="tg-pwj7" colspan="5">৪১ তম জনসেবা তথ্য   </td>
-                                <td class="tg-pwj7" colspan="5"> ৪৩ তম জনসেবা তথ্য  </td>
+                                <td class="tg-pwj7" colspan="5">৪১ তম জনসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">৪৩ তম জনসেবা তথ্য   </td>
+                                <td class="tg-pwj7" colspan="5"> ৪৪ তম জনসেবা তথ্য  </td>
 
                             </tr>
 

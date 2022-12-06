@@ -262,7 +262,7 @@ $(document).ready(function(){
                                     <button class='btn btn-info'>
                                     <a class='action_class' href=<?php echo admin_url('departmentsreport/add-publication-bibidh/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
                                     </button>
-                                    <button  class='btn btn-danger' id='<?php echo "delete@publication_bibid@".$row['upokoron']."@".$row['id'] ?>'>Delete</button>
+                                    <button  class='btn btn-danger' id='<?php echo "delete@publication_bibidh@".$row['upokoron']."@".$row['id'] ?>'>Delete</button>
                                     </td>
                                 
                                 </tr>
