@@ -2249,13 +2249,15 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                 $this->load->helper('excel');
 				
 				 
+				
+				 
+				 
+                create_excel($this->excel, $filename);
+				
 				 echo '<pre>';
 				 print_r($data);
 				 echo '</pre>';
 				 exit();
-				 
-				 
-                create_excel($this->excel, $filename);
 
             }
             $this->session->set_flashdata('error', lang('nothing_found'));
