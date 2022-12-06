@@ -2194,15 +2194,17 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                 $data = NULL;
             }
 			
-         exit();
+         
+		  
 		 
-		 
-		 
-            if (  !empty($data)) {
+            if ( !empty($data)) {
 
                 $this->load->library('excel');
                 $this->excel->setActiveSheetIndex(0);
                 $this->excel->getActiveSheet()->setTitle('Member list');
+
+
+			exit();
 
                 //aaaa
                 $field_arr = array(
