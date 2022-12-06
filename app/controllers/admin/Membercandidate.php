@@ -2193,7 +2193,11 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
             } else {
                 $data = NULL;
             }
-
+			
+         exit();
+		 
+		 
+		 
             if (  !empty($data)) {
 
                 $this->load->library('excel');
