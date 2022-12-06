@@ -367,7 +367,7 @@
                          
                         
 						 
-						  <li class="hidden  <?php echo ($this->uri->segment(2)=='departmentsreport')?'active':'' ?>"><a href="<?= admin_url('departmentsreport'); ?>">বিভাগীয় রিপোর্ট</a></li>
+						  <li class=" <?php echo ($this->uri->segment(2)=='departmentsreport')?'active':'' ?>"><a href="<?= admin_url('departmentsreport'); ?>">বিভাগীয় রিপোর্ট</a></li>
 						 
                            
 						 
