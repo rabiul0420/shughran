@@ -2204,7 +2204,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                 $this->excel->getActiveSheet()->setTitle('Member list');
 
 
-			exit();
+			 
 
                 //aaaa
                 $field_arr = array(
@@ -2247,6 +2247,14 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
 
 				$filename = 'membercandidate_report'.($branch ? '_'.$branch: '');
                 $this->load->helper('excel');
+				
+				 
+				 echo '<pre>';
+				 print_r($data);
+				 echo '</pre>';
+				 exit();
+				 
+				 
                 create_excel($this->excel, $filename);
 
             }
