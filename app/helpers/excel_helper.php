@@ -6,7 +6,7 @@ if(! function_exists('create_excel')) {
         header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
         header('Cache-Control: max-age=0');
 
-        exit();
+         
         $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
         $objWriter->save('php://output');
         exit;
