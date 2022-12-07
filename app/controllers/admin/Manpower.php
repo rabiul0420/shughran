@@ -144,12 +144,12 @@ class Manpower extends MY_Controller
         $report_info =  $report_type['info'];
 
         if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
-            $report_type['start'] = $report_type['info']->startdate_annual;
-            $report_type['end'] = $report_type['info']->enddate_annual;
+          //  $report_type['start'] = $report_type['info']->startdate_annual;
+          //  $report_type['end'] = $report_type['info']->enddate_annual;
         }
        
 
-      //  $this->sma->print_arrays($report_type ); 
+         $this->sma->print_arrays($report_type ); 
 
 
         // memberlog membercandidatelog   manpower_record assolog   workerlog
