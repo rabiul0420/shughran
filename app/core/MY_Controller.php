@@ -251,13 +251,8 @@ function page_construct2($page, $meta = array(), $data = array(),$left_panel='le
         }
 
       else if($year && $type){
-       
+        
         $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' =>$year), 'id desc', 1, 0);
-
-        echo $entrytimeinfo->startdate_half;
-        
-        exit();
-        
         if($type=='half_yearly')
             return array('info'=>$entrytimeinfo, 'last_half'=>false, 'prev_record'=>true,  'last_year'=>$year-1, 'is_current'=>false,  'type' => 'half_yearly', 'start' => $entrytimeinfo->startdate_half, 'end' => $entrytimeinfo->enddate_half, 'year' => $year);
             
