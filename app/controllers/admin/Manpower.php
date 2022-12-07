@@ -149,7 +149,7 @@ class Manpower extends MY_Controller
         }
        
 
-         $this->sma->print_arrays($report_type ); 
+       //  $this->sma->print_arrays($report_type ); 
 
 
         // memberlog membercandidatelog   manpower_record assolog   workerlog
