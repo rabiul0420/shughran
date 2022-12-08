@@ -75,6 +75,71 @@ class Welcome extends MY_Controller
 
     }
 
+
+
+
+
+
+
+    public function dashboard($branch_id=NULL)
+    {
+		
+		 
+		
+        if ($this->Settings->version == '2.3') {
+            $this->session->set_flashdata('warning', 'Please complete your update by synchronizing your database.');
+            admin_redirect('sync');
+        }
+
+        $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+       // $this->data['sales'] = $this->db_model->getLatestSales();
+       // $this->data['quotes'] = $this->db_model->getLastestQuotes();
+       // $this->data['purchases'] = $this->db_model->getLatestPurchases();
+        //$this->data['transfers'] = $this->db_model->getLatestTransfers();
+        //$this->data['customers'] = $this->db_model->getLatestCustomers();
+       // $this->data['suppliers'] = $this->db_model->getLatestSuppliers();
+       // $this->data['chatData'] = $this->db_model->getChartData();
+        //$this->data['stock'] = $this->db_model->getStockValue();
+        //$this->data['bs'] = $this->db_model->getBestSeller();
+		
+		
+		if($this->session->userdata('group_id')== 6) {
+		 $report_type = $this->report_type();
+		 $this->data['submitinfo'] = $this->site->getOneRecord('reportsubmit', "*", array('branch_id'=>$this->session->userdata('branch_id'),'year'=>substr($report_type['start'],0,4),'report_type'=>$report_type['type']));
+    	 $this->data['departments'] = $this->site->getAllDepartments();
+		  
+		}
+		
+		
+		
+		 if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+		
+		
+		
+		
+		
+        $lmsdate = date('Y-m-d', strtotime('first day of last month')) . ' 00:00:00';
+        $lmedate = date('Y-m-d', strtotime('last day of last month')) . ' 23:59:59';
+        //$this->data['lmbs'] = $this->db_model->getBestSeller($lmsdate, $lmedate);
+        $bc = array(array('link' => '#', 'page' => lang('dashboard')));
+        $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);
+       //$this->sma->print_arrays($this->data);
+	   $this->page_construct('dashboard2', $meta, $this->data);
+
+    }
+
+ 
+
+
+
     function promotions()
     {
         $this->load->view($this->theme . 'promotions', $this->data);

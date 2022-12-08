@@ -144,8 +144,8 @@ else {
 <td  colspan="5">সরকারী বিশ্ববিদ্যালয়ে অধ্যয়নরত (বিভাগভিত্তিক)  </td>
 </tr>
 <tr>
-<td  colspan="2">JSC/JDC<br />GPA-5</td>
-<td  colspan="3">SSC/Dhakil<br />GPA-5</td>
+ 
+<td  colspan="5">SSC/Dhakil<br />GPA-5</td>
 <td colspan="2">HSC/Alim<br />GPA-5</td>
 
 <td  >সরকারি</td>
@@ -161,8 +161,7 @@ else {
 <td colspan="2">সদস্য হয়েছেন </td>
 
 <td colspan="5"><?php  echo $memberoutput[0]['single_digit']; ?></td>
-<td colspan="2"><?php  echo $memberoutput[0]['jsc_jdc']; ?></td>
-<td colspan="3"><?php  echo $memberoutput[0]['ssc_dhakil']; ?></td>
+ <td colspan="5"><?php  echo $memberoutput[0]['ssc_dhakil']; ?></td>
 <td colspan="2"><?php  echo $memberoutput[0]['hsc_alim']; ?></td>
  
 <td><?php  echo $memberoutput[0]['department_position']; ?></td>
@@ -182,8 +181,7 @@ else {
 <td colspan="2">সাথী হয়েছেন</td>
  
 <td colspan="5"><?php  echo $assooutput[0]['single_digit']; ?></td>
-<td colspan="2"><?php  echo $assooutput[0]['jsc_jdc']; ?></td>
-<td colspan="3"><?php  echo $assooutput[0]['ssc_dhakil']; ?></td>
+ <td colspan="5"><?php  echo $assooutput[0]['ssc_dhakil']; ?></td>
 <td colspan="2"><?php  echo $assooutput[0]['hsc_alim']; ?></td>
  
 <td><?php  echo $assooutput[0]['department_position']; ?></td>
@@ -202,8 +200,8 @@ else {
 <tr>
 <td colspan="2">কর্মী হয়েছেন <?php //echo $detailinfo[0]['worker_improvement']; ?></td>
 <td colspan="5"><?php echo $detailinfo[0]['worker_single_digit']; ?></td>
-<td  colspan="2"><?php echo $detailinfo[0]['worker_jsc_jdc']; ?></td>
-<td  colspan="3"><?php echo $detailinfo[0]['worker_ssc_dhakil']; ?></td>
+ 
+<td  colspan="5"><?php echo $detailinfo[0]['worker_ssc_dhakil']; ?></td>
 <td colspan="2"><?php echo $detailinfo[0]['worker_hsc_alim']; ?></td>
 <td ><?php echo $detailinfo[0]['worker_department_position']; ?></td>
 <td ><?php echo $detailinfo[0]['worker_department_position_private']; ?></td>
@@ -221,8 +219,8 @@ else {
 <tr>
 <td colspan="2">সমর্থক হয়েছেন <?php //echo $detailinfo[0]['supporter_improvement']; ?></td>
 <td colspan="5"><?php echo $detailinfo[0]['supporter_single_digit']; ?></td>
-<td  colspan="2"><?php echo $detailinfo[0]['supporter_jsc_jdc']; ?></td>
-<td  colspan="3"><?php echo $detailinfo[0]['supporter_ssc_dhakil']; ?></td>
+ 
+<td  colspan="5"><?php echo $detailinfo[0]['supporter_ssc_dhakil']; ?></td>
 <td colspan="2"><?php echo $detailinfo[0]['supporter_hsc_alim']; ?></td>
 <td ><?php echo $detailinfo[0]['supporter_department_position']; ?></td>
 <td ><?php echo $detailinfo[0]['supporter_department_position_private']; ?></td>

@@ -132,8 +132,7 @@
 <td  colspan="5">সরকারী বিশ্ববিদ্যালয়ে অধ্যয়নরত (বিভাগভিত্তিক)  </td>
 </tr>
 <tr>
-<td  colspan="2">JSC/JDC<br />GPA-5</td>
-<td  colspan="3">SSC/Dhakil<br />GPA-5</td>
+ <td  colspan="5">SSC/Dhakil<br />GPA-5</td>
 <td colspan="2">HSC/Alim<br />GPA-5</td>
 
 <td  >সরকারি</td>
@@ -149,8 +148,7 @@
 <td colspan="2">সদস্য হয়েছেন </td>
 
 <td colspan="5"><?php echo $output_record_sum_member[0]['single_digit'];?></td>
-<td colspan="2"><?php echo $output_record_sum_member[0]['jsc_jdc'];?></td>
-<td colspan="3"><?php echo $output_record_sum_member[0]['ssc_dhakil'];?></td>
+ <td colspan="5"><?php echo $output_record_sum_member[0]['ssc_dhakil'];?></td>
 <td colspan="2"><?php echo $output_record_sum_member[0]['hsc_alim'];?></td>
  
 <td><?php echo $output_record_sum_member[0]['department_position'];?></td>
@@ -170,8 +168,7 @@
 <td colspan="2">সাথী হয়েছেন</td>
  
 <td colspan="5"><?php echo $output_record_sum_asso[0]['single_digit'];?></td>
-<td colspan="2"><?php echo $output_record_sum_asso[0]['jsc_jdc'];?></td>
-<td colspan="3"><?php echo $output_record_sum_asso[0]['ssc_dhakil'];?></td>
+ <td colspan="5"><?php echo $output_record_sum_asso[0]['ssc_dhakil'];?></td>
 <td colspan="2"><?php echo $output_record_sum_asso[0]['hsc_alim'];?></td>
  
 <td><?php echo $output_record_sum_asso[0]['department_position'];?></td>
@@ -190,8 +187,7 @@
 <tr>
 <td colspan="2">কর্মী হয়েছেন <?php //echo $detailinfo[0]['worker_improvement']; ?></td>
 <td colspan="5"><?php echo $detailinfo['increase_outputinfo']['worker_single_digit']; ?></td>
-<td  colspan="2"><?php echo $detailinfo['increase_outputinfo']['worker_jsc_jdc']; ?></td>
-<td  colspan="3"><?php echo $detailinfo['increase_outputinfo']['worker_ssc_dhakil']; ?></td>
+ <td  colspan="5"><?php echo $detailinfo['increase_outputinfo']['worker_ssc_dhakil']; ?></td>
 <td colspan="2"><?php echo $detailinfo['increase_outputinfo']['worker_hsc_alim']; ?></td>
 <td ><?php echo $detailinfo['increase_outputinfo']['worker_department_position']; ?></td>
 <td ><?php echo $detailinfo['increase_outputinfo']['worker_department_position_private']; ?></td>
@@ -209,8 +205,7 @@
 <tr>
 <td colspan="2">সমর্থক হয়েছেন <?php //echo $detailinfo['supporter_improvement']']; ?></td>
 <td colspan="5"><?php echo $detailinfo['increase_outputinfo']['supporter_single_digit']; ?></td>
-<td  colspan="2"><?php echo $detailinfo['increase_outputinfo']['supporter_jsc_jdc']; ?></td>
-<td  colspan="3"><?php echo $detailinfo['increase_outputinfo']['supporter_ssc_dhakil']; ?></td>
+ <td  colspan="5"><?php echo $detailinfo['increase_outputinfo']['supporter_ssc_dhakil']; ?></td>
 <td colspan="2"><?php echo $detailinfo['increase_outputinfo']['supporter_hsc_alim']; ?></td>
 <td ><?php echo $detailinfo['increase_outputinfo']['supporter_department_position']; ?></td>
 <td ><?php echo $detailinfo['increase_outputinfo']['supporter_department_position_private']; ?></td>
@@ -267,8 +262,7 @@
 <td  colspan="5">সরকারী বিশ্ববিদ্যালয়ে অধ্যয়নরত (বিভাগভিত্তিক)  </td>
 </tr>
 <tr>
-<td  colspan="2">JSC/JDC<br />GPA-5</td>
-<td  colspan="3">SSC/Dhakil<br />GPA-5</td>
+ <td  colspan="5">SSC/Dhakil<br />GPA-5</td>
 <td colspan="2">HSC/Alim<br />GPA-5</td>
 
 <td  >সরকারি</td>
@@ -290,8 +284,7 @@
 <td colspan="2">সদস্য সাথী</td>
 
 <td colspan="5"><?php  echo $row ?  $row['single_digit']  : 0; ?></td>
-<td colspan="2"><?php echo $row ?  $row['jsc_jdc']  : 0;?></td>
-<td colspan="3"><?php echo $row ?  $row['ssc_dhakil']  : 0;?></td>
+ <td colspan="5"><?php echo $row ?  $row['ssc_dhakil']  : 0;?></td>
 <td colspan="2"><?php echo $row ?  $row['hsc_alim'] : 0;?></td>
  
 <td><?php echo $row ?  $row['department_position']  : 0;?></td>

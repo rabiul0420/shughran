@@ -9,7 +9,7 @@
 <tbody>
 <tr style="height: 27.6pt;">
 <td   rowspan="2">সিঙ্গেল ডিজিটধারী (১-৯)</td>
-<td  colspan="3">সর্বশেষ পরীক্ষায় GPA-5 প্রাপ্ত</td>
+<td  colspan="2">সর্বশেষ পরীক্ষায় GPA-5 প্রাপ্ত</td>
 <td   colspan="2">ডিপার্টমেন্টে প্লেসধারী (১-৫)</td>
 <td   rowspan="2">প্রভাবশালী পরিবারের সন্তান</td>
 <td   rowspan="2">মাধ্যমিক ও উচ্চ মাধ্যমিক বিজ্ঞানে অধ্যয়নরত</td>
@@ -19,8 +19,7 @@
 <td  colspan="5">সরকারী বিশ্ববিদ্যালয়ে অধ্যয়নরত (বিভাগভিত্তিক)</td>
 </tr>
 <tr style="height: 36.0pt;">
-<td  >JSC/JDC/সমমান<br />&nbsp;GPA-5</td>
-<td  >SSC/Dhakil/সমমান<br />&nbsp;GPA-5</td>
+ <td  >SSC/Dhakil/সমমান<br />&nbsp;GPA-5</td>
 <td  >HSC/Alim/সমমান<br />&nbsp;GPA-5</td>
 <td>সরকারি</td>
 <td>বেসরকারি</td>
@@ -32,7 +31,7 @@
 </tr>
 <tr style="height: 12.75pt;">
 <td ><input name="member_single_digit" value="1" type="checkbox"/></td>
-<td  ></td>
+ 
 <td  ></td>
 <td  ></td>
 <td  ></td>

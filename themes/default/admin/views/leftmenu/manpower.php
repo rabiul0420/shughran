@@ -20,7 +20,12 @@
                                 <span class="text"> সাথী প্রার্থী/কর্মী স্থানান্তর</span>
                             </a>
                         </li>
-				 
+                        <li class="mm_transfer">
+                            <a href="<?= admin_url('dashboard') ?>">
+                                <i class="fa fa-dashboard"></i>
+                                <span class="text">সাথী প্রার্থী/কর্মী স্থানান্তর/আগমন তালিকা</span>
+                            </a>
+                        </li>
 
                             
 

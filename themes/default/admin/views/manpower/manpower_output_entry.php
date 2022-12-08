@@ -135,8 +135,8 @@
 <td  colspan="5">সরকারী বিশ্ববিদ্যালয়ে অধ্যয়নরত (বিভাগভিত্তিক)  </td>
 </tr>
 <tr>
-<td  colspan="2">JSC/JDC<br />GPA-5</td>
-<td  colspan="3">SSC/Dhakil<br />GPA-5</td>
+ 
+<td  colspan="5">SSC/Dhakil<br />GPA-5</td>
 <td colspan="2">HSC/Alim<br />GPA-5</td>
 
 <td  >সরকারি</td>
@@ -152,8 +152,7 @@
 <td colspan="2">সদস্য হয়েছেন </td>
 
 <td colspan="5"><?php echo $output_record_sum_member[0]['single_digit'];?></td>
-<td colspan="2"><?php echo $output_record_sum_member[0]['jsc_jdc'];?></td>
-<td colspan="3"><?php echo $output_record_sum_member[0]['ssc_dhakil'];?></td>
+ <td colspan="5"><?php echo $output_record_sum_member[0]['ssc_dhakil'];?></td>
 <td colspan="2"><?php echo $output_record_sum_member[0]['hsc_alim'];?></td>
  
 <td><?php echo $output_record_sum_member[0]['department_position'];?></td>
@@ -173,8 +172,8 @@
 <td colspan="2">সাথী হয়েছেন</td>
  
 <td colspan="5"><?php echo $output_record_sum_asso[0]['single_digit'];?></td>
-<td colspan="2"><?php echo $output_record_sum_asso[0]['jsc_jdc'];?></td>
-<td colspan="3"><?php echo $output_record_sum_asso[0]['ssc_dhakil'];?></td>
+ 
+<td colspan="5"><?php echo $output_record_sum_asso[0]['ssc_dhakil'];?></td>
 <td colspan="2"><?php echo $output_record_sum_asso[0]['hsc_alim'];?></td>
  
 <td><?php echo $output_record_sum_asso[0]['department_position'];?></td>
@@ -198,10 +197,8 @@
 <td colspan="5"> 
 <a href="#"  class="editable editable-click"   data-type="number" data-table="manpower_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_single_digit" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_single_digit; ?></a>
 </td>
-<td  colspan="2"> 
-<a href="#"  class="editable editable-click"   data-type="number" data-table="manpower_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_jsc_jdc" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_jsc_jdc; ?></a>
-</td>
-<td  colspan="3">
+ 
+<td  colspan="5">
 <a href="#"  class="editable editable-click"   data-type="number" data-table="manpower_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_ssc_dhakil" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_ssc_dhakil; ?></a>
 </td>
 <td colspan="2">
@@ -256,10 +253,8 @@
 <td colspan="5"> 
 <a href="#"  class="editable editable-click"   data-type="number" data-table="manpower_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_single_digit" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_single_digit; ?></a>
 </td>
-<td  colspan="2"> 
-<a href="#"  class="editable editable-click"   data-type="number" data-table="manpower_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_jsc_jdc" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_jsc_jdc; ?></a>
-</td>
-<td  colspan="3">
+ 
+<td  colspan="5">
 <a href="#"  class="editable editable-click"   data-type="number" data-table="manpower_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_ssc_dhakil" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_ssc_dhakil; ?></a>
 </td>
 <td colspan="2">
@@ -348,8 +343,7 @@
 <td  colspan="5">সরকারী বিশ্ববিদ্যালয়ে অধ্যয়নরত (বিভাগভিত্তিক)  </td>
 </tr>
 <tr>
-<td  colspan="2">JSC/JDC<br />GPA-5</td>
-<td  colspan="3">SSC/Dhakil<br />GPA-5</td>
+ <td  colspan="5">SSC/Dhakil<br />GPA-5</td>
 <td colspan="2">HSC/Alim<br />GPA-5</td>
 
 <td  >সরকারি</td>
@@ -371,8 +365,7 @@
 <td colspan="2">#</td>
 
 <td colspan="5"><?php  echo $row ?  $row['single_digit']  : 0; ?></td>
-<td colspan="2"><?php echo $row ?  $row['jsc_jdc']  : 0;?></td>
-<td colspan="3"><?php echo $row ?  $row['ssc_dhakil']  : 0;?></td>
+<td colspan="5"><?php echo $row ?  $row['ssc_dhakil']  : 0;?></td>
 <td colspan="2"><?php echo $row ?  $row['hsc_alim'] : 0;?></td>
  
 <td><?php echo $row ?  $row['department_position']  : 0;?></td>
