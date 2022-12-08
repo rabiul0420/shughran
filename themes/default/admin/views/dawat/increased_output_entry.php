@@ -149,8 +149,8 @@ font: 18px SolaimanLipi, sans-serif;
 <td  colspan="5">সরকারী বিশ্ববিদ্যালয়ে অধ্যয়নরত (বিভাগভিত্তিক)  </td>
 </tr>
 <tr>
-<td  colspan="2">JSC/JDC<br />GPA-5</td>
-<td  colspan="3">SSC/Dhakil<br />GPA-5</td>
+ 
+<td  colspan="5">SSC/Dhakil<br />GPA-5</td>
 <td colspan="2">HSC/Alim<br />GPA-5</td>
 <td  >সরকারি</td>
 <td  >বেসরকারি</td>
@@ -166,8 +166,8 @@ font: 18px SolaimanLipi, sans-serif;
 <td colspan="2">সদস্য হয়েছেন </td>
 
 <td colspan="5"><?php  echo $memberoutput[0]['single_digit']; ?></td>
-<td colspan="2"><?php  echo $memberoutput[0]['jsc_jdc']; ?></td>
-<td colspan="3"><?php  echo $memberoutput[0]['ssc_dhakil']; ?></td>
+ 
+<td colspan="5"><?php  echo $memberoutput[0]['ssc_dhakil']; ?></td>
 <td colspan="2"><?php  echo $memberoutput[0]['hsc_alim']; ?></td>
  
 <td><?php  echo $memberoutput[0]['department_position']; ?></td>
@@ -187,8 +187,8 @@ font: 18px SolaimanLipi, sans-serif;
 <td colspan="2">সাথী হয়েছেন</td>
  
 <td colspan="5"><?php  echo $assooutput[0]['single_digit']; ?></td>
-<td colspan="2"><?php  echo $assooutput[0]['jsc_jdc']; ?></td>
-<td colspan="3"><?php  echo $assooutput[0]['ssc_dhakil']; ?></td>
+ 
+<td colspan="5"><?php  echo $assooutput[0]['ssc_dhakil']; ?></td>
 <td colspan="2"><?php  echo $assooutput[0]['hsc_alim']; ?></td>
  
 <td><?php  echo $assooutput[0]['department_position']; ?></td>
@@ -207,8 +207,7 @@ font: 18px SolaimanLipi, sans-serif;
 <tr>
 <td colspan="2">কর্মী হয়েছেন</td>
 <td colspan="5"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_single_digit" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_single_digit; ?></a></td>
-<td  colspan="2"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_jsc_jdc" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_jsc_jdc; ?></a></td>
-<td  colspan="3"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_ssc_dhakil" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_ssc_dhakil; ?></a></td>
+ <td  colspan="5"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_ssc_dhakil" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_ssc_dhakil; ?></a></td>
 <td colspan="2"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_hsc_alim" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_hsc_alim; ?></a></td>
 <td ><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="worker_department_position" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->worker_department_position; ?></a></td>
 
@@ -230,8 +229,7 @@ font: 18px SolaimanLipi, sans-serif;
 <tr>
 <td colspan="2">সমর্থক হয়েছেন</td>
 <td colspan="5"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_single_digit" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_single_digit; ?></a></td>
-<td  colspan="2"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_jsc_jdc" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_jsc_jdc; ?></a></td>
-<td  colspan="3"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_ssc_dhakil" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_ssc_dhakil; ?></a></td>
+ <td  colspan="5"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_ssc_dhakil" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_ssc_dhakil; ?></a></td>
 <td colspan="2"><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_hsc_alim" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_hsc_alim; ?></a></td>
 <td ><a href="#"  class="editable editable-click"   data-type="number" data-table="increase_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_department_position" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_department_position; ?></a></td>
 
