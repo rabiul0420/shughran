@@ -106,7 +106,7 @@
                                         
                          
                                         <label for="supporter">সমর্থক</label>
-                                        <?php echo form_input('supporter', $institution->supporter, 'class="form-control" required="required" id="supporter"'); ?>                  
+                                        <?php echo form_input('supporter', $institution->supporter, 'class="form-control" pattern="[0-9]+" required="required" id="supporter"'); ?>                  
                                 
                                                         
                                      </div>
@@ -116,7 +116,7 @@
                                         
                          
                                         <label for="other_org_worker">অন্যান্য ছাত্র সংগঠনের কর্মী</label>
-                                        <?php echo form_input('other_org_worker', $institution->other_org_worker, 'class="form-control" required="required" id="other_org_worker"'); ?>                  
+                                        <?php echo form_input('other_org_worker', $institution->other_org_worker, 'class="form-control" pattern="[0-9]+" required="required" id="other_org_worker"'); ?>                  
                                 
                                                         
                                      </div>  
@@ -126,7 +126,7 @@
                                         
                          
                                         <label for="total_female_student">মোট ছাত্রী সংখ্যা</label>
-                                        <?php echo form_input('total_female_student', $institution->total_female_student, 'class="form-control" required="required" id="total_female_student"'); ?>                  
+                                        <?php echo form_input('total_female_student', $institution->total_female_student, 'class="form-control" pattern="[0-9]+" required="required" id="total_female_student"'); ?>                  
                                 
                                                         
                                      </div>              
@@ -138,7 +138,7 @@
                                         
                          
                                         <label for="female_student_supporter">ছাত্রী সমর্থক</label>
-                                        <?php echo form_input('female_student_supporter', $institution->female_student_supporter, 'class="form-control" required="required" id="female_student_supporter"'); ?>                  
+                                        <?php echo form_input('female_student_supporter', $institution->female_student_supporter, 'class="form-control" pattern="[0-9]+" required="required" id="female_student_supporter"'); ?>                  
                                 
                                                         
                                      </div>              
@@ -150,7 +150,7 @@
                                         
                          
                                         <label for="non_muslim_student">অমুসলিম ছাত্রছাত্রী</label>
-                                        <?php echo form_input('non_muslim_student', $institution->non_muslim_student, 'class="form-control" required="required" id="non_muslim_student"'); ?>                  
+                                        <?php echo form_input('non_muslim_student', $institution->non_muslim_student, 'class="form-control" pattern="[0-9]+" required="required" id="non_muslim_student"'); ?>                  
                                 
                                                         
                                      </div>              
@@ -159,7 +159,7 @@
                                         
                          
                                         <label for="total_student_number">মোট ছাত্র-ছাত্রী সংখ্যা</label>
-                                        <?php echo form_input('total_student_number',  $institution->total_student_number, 'class="form-control" required="required" id="total_student_number"'); ?>                  
+                                        <?php echo form_input('total_student_number',  $institution->total_student_number, 'class="form-control" pattern="[0-9]+" required="required" id="total_student_number"'); ?>                  
                                 
                                                         
                                      </div>  
