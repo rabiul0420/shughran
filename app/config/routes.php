@@ -68,6 +68,8 @@ $route['admin/associate/(:num)'] = 'admin/associate/index/$1';
 $route['admin/membercandidate/(:num)'] = 'admin/membercandidate/index/$1'; 
 $route['admin/worker/(:num)'] = 'admin/worker/index/$1';
 
+ 
+
 $route['admin/departmentsreport'] =  'admin/departmentsreport/index';
 
 
