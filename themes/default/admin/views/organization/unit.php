@@ -38,14 +38,14 @@
                     <div class="form-group">
                         <?php echo lang('বৃদ্ধি', 'unit_increase'); ?>
                         <div class="controls">
-                            <?php echo form_input('unit_increase', $unit_increase, 'class="form-control" required="required"'); ?>
+                            <?php echo form_input('unit_increase', $unit_increase, 'class="form-control"  pattern="[0-9]+" required="required"'); ?>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <?php echo lang('ঘাটতি', 'unit_decrease'); ?>
                         <div class="controls">
-                            <?php echo form_input('unit_decrease', $unit_decrease, 'class="form-control" required="required"'); ?>
+                            <?php echo form_input('unit_decrease', $unit_decrease, 'class="form-control"  pattern="[0-9]+" required="required"'); ?>
                         </div>
                     </div>
 								
