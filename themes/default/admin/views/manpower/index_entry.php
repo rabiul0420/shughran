@@ -343,7 +343,14 @@ else {
 		$pk =  "";
 	}
   ?>
+
+<?php if($report_info['last_half'] == 1)
+echo $membercandidate_target;
+else { ?>
 <a href="#"  class="editable editable-click <?php if(!1) echo 'hidden' ?>"  data-id="" data-idname=""   data-type="number" data-table="manpower_record" data-pk="<?php echo $pk;?>" data-url="<?php echo admin_url('manpower/detailupdate');?>" data-name="member_candidate_candidate_target" data-title="Enter"><?php   echo $membercandidate_target;?></a> 
+<?php } ?>
+
+
 
 	</td>
     <td class="tg-0pky type_7"> 
@@ -591,8 +598,14 @@ else {
 	}
   ?>	
  
+ <?php 
+ 
+ if($report_info['last_half'] == 1) 
+ echo $associate_candidate_improvement_target;
+ 
+ else{ ?>
 <a href="#"  class="editable editable-click <?php echo 1 ? ''   : 'hidden'?>"  data-id="" data-idname=""   data-type="number" data-table="manpower_record" data-pk="<?php echo $pk;?>" data-url="<?php echo admin_url('manpower/detailupdate');?>" data-name="associate_candidate_improvement_target" data-title="Enter"><?php echo $associate_candidate_improvement_target;?></a> 
- 	
+<?php } ?>
 	
 	
 	 
