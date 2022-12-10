@@ -1162,6 +1162,10 @@ else{
         $this->db->select_sum('nurani_s_shang');
         $this->db->select_sum('nurani_s_birodhi');
 
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
         $this->data['madrasah_eknojore_shongothon_2'] = $this->db->get('madrasah_eknojore_shongothon_2')->first_row('array');
 
 
@@ -1190,6 +1194,10 @@ else{
         $this->db->select_sum('f_jj');
         $this->db->select_sum('f_mokbul');
         $this->db->select_sum('f_fail');
+
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
         $this->data['madrasah_kowmi_result'] = $this->db->get('madrasah_kowmi_result')->first_row('array');
 

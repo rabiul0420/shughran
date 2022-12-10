@@ -72,6 +72,9 @@ class Education extends MY_Controller
             $report_type['end'] = $report_type['info']->enddate_annual;
         }
 
+        // $this->sma->print_arrays($report_type);
+
+
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
             $this->db->select_sum('edu_committee');
             $this->db->select_sum('edu_committee_member');

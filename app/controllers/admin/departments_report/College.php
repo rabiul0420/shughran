@@ -679,7 +679,9 @@ class College extends MY_Controller
         $this->db->select_sum('nursing_ins_ss_num');
         $this->db->select_sum('nursing_ins_ss_bri');
         $this->db->select_sum('nursing_ins_ss_gha');
-
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
        
         $this->data['college_shongothon'] = $this->db->get('college_shongothon')->first_row('array');
         }

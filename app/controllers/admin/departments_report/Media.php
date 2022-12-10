@@ -78,8 +78,14 @@ class Media extends MY_Controller
 
 
             $this->db->order_by('branch_id');
+
+            if ($branch_id)
+            $this->data['media'] = $this->db->get('media')->first_row('array');
+            else
             $this->data['media'] = $this->db->get('media');
 
+
+           // $this->sma->print_arrays( $this->data['media']);
             // জনশক্তি
 
             $this->db->select_sum('admin_prev');
@@ -179,6 +185,13 @@ class Media extends MY_Controller
         $this->data['m'] = 'media';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
+
+
+
+         
+
+
+
 
         if ($branch_id) {
             $this->page_construct('departmentsreport/media/media_page_one_entry', $meta, $this->data, 'leftmenu/departmentsreport');
