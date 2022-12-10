@@ -328,19 +328,21 @@ echo '<td class="type_"'.$i.'>  </td>';
 $institution_row = institution_row($institution->id, $institution_number);
  
 //var_dump($institution_row );
+ if($report_info['last_half'] != 1)
 echo $institution_row==null ? 0 :  $institution_row['prev_institution'];
 ?> 
 
 </td>
-<td class="type_2"> <?php echo $institution_row==null ? 0 :  $institution_row['prev_institution']+$institution_row['increase']-$institution_row['decrease']; ?></td>
+<td class="type_2"> <?php if($report_info['last_half'] != 1) echo $institution_row==null ? 0 :  $institution_row['prev_institution']+$institution_row['increase']-$institution_row['decrease']; ?></td>
 <td class="type_3"><?php  echo $institution_row==null ? 0 : $institution_row['increase'];?></td>
 <td class="type_4"><?php  echo $institution_row==null ? 0 : $institution_row['decrease'];?></td>
 
 
 <td class="type_5">
 <?php 
- echo $organization_prev =  sum_org($org_summary_sma,'orgnization',$institution->id);
- 
+ $organization_prev =  sum_org($org_summary_sma,'orgnization',$institution->id);
+ if($report_info['last_half'] != 1)
+ echo $organization_prev;
 ?>
 </td>
 
@@ -353,7 +355,7 @@ $supporterorgbutorginfo = institution_row($institution->id, $supporter_org_but_o
 //var_dump($institution_row );
 
 ?> 
-<td class="type_6"><?php echo $organization_prev+ (isset($organizationinfo['increase_organization']) ? $organizationinfo['increase_organization'] : 0) - (isset($organizationinfo['decrease_organization']) ? $organizationinfo['decrease_organization']: 0 ) ?></td>
+<td class="type_6"><?php  if($report_info['last_half'] != 1) echo $organization_prev+ (isset($organizationinfo['increase_organization']) ? $organizationinfo['increase_organization'] : 0) - (isset($organizationinfo['decrease_organization']) ? $organizationinfo['decrease_organization']: 0 ) ?></td>
 <td class="type_7"><?php echo $institutioninfo==null ? 0 : $institutioninfo['no_organization']; ?></td>
 <td class="type_8"><?php echo $organizationinfo==null ? 0 : $organizationinfo['increase_organization']; ?></td>
 <td class="type_9"><?php echo $organizationinfo==null ? 0 : $organizationinfo['decrease_organization']; ?></td>
@@ -374,12 +376,12 @@ $supporterorgbutorginfo = institution_row($institution->id, $supporter_org_but_o
 
 <?php // echo $supporterorgbutorginfo_prev = $supporterorgbutorginfo ==null ? 0 : $supporterorgbutorginfo ['prev_']; ?>
 <?php 
- echo  $supporterorgbutorginfo_prev =  sum_org($org_summary_sma,'supporter_org',$institution->id);
-
+   $supporterorgbutorginfo_prev =  sum_org($org_summary_sma,'supporter_org',$institution->id);
+ if($report_info['last_half'] != 1)  echo  $supporterorgbutorginfo_prev;
  ?>
 
 </td>
-<td class="type_15"><?php echo $supporterorgbutorginfo_prev + ( isset($supporterorgbutorginfo['support_increase_but_org']) ? $supporterorgbutorginfo['support_increase_but_org'] : 0) - ( isset($supporterorgbutorginfo['support_decrease_but_org']) ? $supporterorgbutorginfo['support_decrease_but_org'] : 0) ; ?></td>
+<td class="type_15"><?php if($report_info['last_half'] != 1)  echo $supporterorgbutorginfo_prev + ( isset($supporterorgbutorginfo['support_increase_but_org']) ? $supporterorgbutorginfo['support_increase_but_org'] : 0) - ( isset($supporterorgbutorginfo['support_decrease_but_org']) ? $supporterorgbutorginfo['support_decrease_but_org'] : 0) ; ?></td>
 <td class="type_16"><?php echo $supporterorgbutorginfo==null ? 0 : $supporterorgbutorginfo['support_increase_but_org']; ?></td>
 <td class="type_17"><?php echo $supporterorgbutorginfo==null ? 0 : $supporterorgbutorginfo['support_decrease_but_org']; ?></td>
 
@@ -391,11 +393,11 @@ $supporterorgbutorginfo = institution_row($institution->id, $supporter_org_but_o
 <td class="type_18">
 <?php //echo $institutioninfo==null ? 0 : $institutioninfo['unit_prev']; ?>
 
-<?php 
+<?php  if($report_info['last_half'] != 1) 
  echo    sum_org($org_summary_sma,'unit',$institution->id);
  ?>
 </td>
-<td class="type_19"><?php echo $institutioninfo==null ? 0 : $institutioninfo['current_unit']; ?></td>
+<td class="type_19"><?php if($report_info['last_half'] != 1)  echo $institutioninfo==null ? 0 : $institutioninfo['current_unit']; ?></td>
 <td class="type_20"><?php echo $institutioninfo==null ? 0 : $institutioninfo['unit_increase']; ?></td>
 <td class="type_21"><?php echo $institutioninfo==null ? 0 : $institutioninfo['unit_decrease']; ?></td>
 
