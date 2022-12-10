@@ -71,73 +71,71 @@ class Dawah extends MY_Controller
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
-        $this->db->select_sum('prev');
-        $this->db->select_sum('present');
-        $this->db->select_sum('bri');
-        $this->db->select_sum('ghat');
-        $this->db->select_sum('student');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
-
-        $this->data['dawah_moktob'] = $this->db->get('dawah_moktob')->first_row('array');
-
-        $this->db->select_sum('member_for_own');
-        $this->db->select_sum('member_for_jonoshokti');
-        $this->db->select_sum('member_for_general');
-        $this->db->select_sum('asso_for_own');
-        $this->db->select_sum('asso_for_jonoshokti');
-        $this->db->select_sum('asso_for_general');
-        $this->db->select_sum('worker_for_own');
-        $this->db->select_sum('worker_for_jonoshokti');
-        $this->db->select_sum('worker_for_general');
-        if ($branch_id)
+            $this->db->select_sum('prev');
+            $this->db->select_sum('present');
+            $this->db->select_sum('bri');
+            $this->db->select_sum('ghat');
+            $this->db->select_sum('student');
+            if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['dawah_jonoshokti_byktigoto_procheshta'] = $this->db->get('dawah_jonoshokti_byktigoto_procheshta')->first_row('array');
+            $this->data['dawah_moktob'] = $this->db->get('dawah_moktob')->first_row('array');
 
-        $this->db->select_sum('upodeshta_number');
-        $this->db->select_sum('upodeshta_present');
-        $this->db->select_sum('karjonirbahi_number');
-        $this->db->select_sum('karjonirbahi_present');
-        $this->db->select_sum('kendrio_number');
-        $this->db->select_sum('kendrio_present');
-        $this->db->select_sum('iftar_number');
-        $this->db->select_sum('iftar_present');
-        $this->db->select_sum('dars_number');
-        $this->db->select_sum('dars_present');
-        $this->db->select_sum('dawat_number');
-        $this->db->select_sum('dawat_present');
-        if ($branch_id)
+            $this->db->select_sum('member_for_own');
+            $this->db->select_sum('member_for_jonoshokti');
+            $this->db->select_sum('member_for_general');
+            $this->db->select_sum('asso_for_own');
+            $this->db->select_sum('asso_for_jonoshokti');
+            $this->db->select_sum('asso_for_general');
+            $this->db->select_sum('worker_for_own');
+            $this->db->select_sum('worker_for_jonoshokti');
+            $this->db->select_sum('worker_for_general');
+            if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
- 
-        $this->data['dawah_shovashomuho'] = $this->db->get('dawah_shovashomuho')->first_row('array');
+
+            $this->data['dawah_jonoshokti_byktigoto_procheshta'] = $this->db->get('dawah_jonoshokti_byktigoto_procheshta')->first_row('array');
+
+            $this->db->select_sum('upodeshta_number');
+            $this->db->select_sum('upodeshta_present');
+            $this->db->select_sum('karjonirbahi_number');
+            $this->db->select_sum('karjonirbahi_present');
+            $this->db->select_sum('kendrio_number');
+            $this->db->select_sum('kendrio_present');
+            $this->db->select_sum('iftar_number');
+            $this->db->select_sum('iftar_present');
+            $this->db->select_sum('dars_number');
+            $this->db->select_sum('dars_present');
+            $this->db->select_sum('dawat_number');
+            $this->db->select_sum('dawat_present');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $this->data['dawah_shovashomuho'] = $this->db->get('dawah_shovashomuho')->first_row('array');
 
 
-        // shefat end
-        }
-        else{
-        $this->db->select('*');
-        $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            // shefat end
+        } else {
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $query = $this->db->get("dawah_moktob");
-        $this->data['dawah_moktob'] = $query->first_row('array');
-        $this->db->select('*');
-        $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get("dawah_moktob");
+            $this->data['dawah_moktob'] = $query->first_row('array');
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $query = $this->db->get("dawah_jonoshokti_byktigoto_procheshta");
-        $this->data['dawah_jonoshokti_byktigoto_procheshta'] = $query->first_row('array');
-        $this->db->select('*');
-        $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get("dawah_jonoshokti_byktigoto_procheshta");
+            $this->data['dawah_jonoshokti_byktigoto_procheshta'] = $query->first_row('array');
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $query = $this->db->get("dawah_shovashomuho");
-        $this->data['dawah_shovashomuho'] = $query->first_row('array');
-
+            $query = $this->db->get("dawah_shovashomuho");
+            $this->data['dawah_shovashomuho'] = $query->first_row('array');
         }
 
         $this->data['m'] = 'dawah';
@@ -186,7 +184,7 @@ class Dawah extends MY_Controller
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
-            
+
             $this->db->select_sum('dayi_workshop_num');
             $this->db->select_sum('dayi_workshop_pre');
             $this->db->select_sum('dayi_course_num');
@@ -202,7 +200,7 @@ class Dawah extends MY_Controller
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['dawah_dayi_training'] = $this->db->get('dawah_dayi_training')->first_row('array');
-            
+
             $this->db->select_sum('national_dayi_num');
             $this->db->select_sum('national_dayi_bar');
             $this->db->select_sum('international_dayi_num');
@@ -224,11 +222,11 @@ class Dawah extends MY_Controller
             $this->db->select_sum('torun_dayi_num');
             $this->db->select_sum('torun_dayi_bar');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['dawah_contact'] = $this->db->get('dawah_contact')->first_row('array');
-            
+
             $this->db->select_sum('shakha');
             $this->db->select_sum('thana');
             $this->db->select_sum('ward');
@@ -238,7 +236,7 @@ class Dawah extends MY_Controller
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['dawah_quran_bitoron'] = $this->db->get('dawah_quran_bitoron')->first_row('array');
-            
+
             $this->db->select_sum('fb_live');
             $this->db->select_sum('fb_post');
             $this->db->select_sum('fb_post_share');
@@ -265,11 +263,11 @@ class Dawah extends MY_Controller
             $this->db->select_sum('insta_video_share');
             $this->db->select_sum('insta_other');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['dawah_online'] = $this->db->get('dawah_online')->first_row('array');
-            
+
             $this->db->select_sum('group');
             $this->db->select_sum('ongshogrohonkari');
             $this->db->select_sum('somorthok_bri');
@@ -279,7 +277,7 @@ class Dawah extends MY_Controller
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['dawah_dawat_bar'] = $this->db->get('dawah_dawat_bar')->first_row('array');
-            
+
             $this->db->select_sum('group');
             $this->db->select_sum('ongshogrohokari');
             $this->db->select_sum('dawat_prapto');
@@ -287,32 +285,30 @@ class Dawah extends MY_Controller
             $this->db->select_sum('bondhu_bri');
             $this->db->select_sum('shuva_bri');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['dawah_vinnordhormo'] = $this->db->get('dawah_vinnordhormo')->first_row('array');
-            
+
             $this->db->select_sum('shikkha_central_s');
             $this->db->select_sum('shikkha_central_p');
             $this->db->select_sum('shikkha_shakha_s');
-            $this->db->select_sum('shikkha_shakha_p'); 
+            $this->db->select_sum('shikkha_shakha_p');
             $this->db->select_sum('kormoshala_central_s');
             $this->db->select_sum('kormoshala_central_p');
             $this->db->select_sum('kormoshala_shakha_s');
-            $this->db->select_sum('kormoshala_shakha_p'); 
+            $this->db->select_sum('kormoshala_shakha_p');
             if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['dawah_training_program'] = $this->db->get('dawah_training_program')->first_row('array');
-     
-        }
-        else{
+        } else {
 
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
- 
+
             $query = $this->db->get('dawah_dayi_training');
             $this->data['dawah_dayi_training'] = $query->first_row('array');
 
@@ -326,7 +322,7 @@ class Dawah extends MY_Controller
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
- 
+
             $query = $this->db->get('dawah_quran_bitoron');
             $this->data['dawah_quran_bitoron'] = $query->first_row('array');
 
@@ -347,17 +343,16 @@ class Dawah extends MY_Controller
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
- 
+
             $query = $this->db->get('dawah_vinnordhormo');
             $this->data['dawah_vinnordhormo'] = $query->first_row('array');
 
             $this->db->select('*');
-            $this->db->where('branch_id',$branch_id);
+            $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $query = $this->db->get('dawah_training_program');
             $this->data['dawah_training_program'] = $query->first_row('array');
-    
         }
 
         // shefat end
@@ -372,7 +367,7 @@ class Dawah extends MY_Controller
             $this->page_construct('departmentsreport/dawah/dawah_page_two', $meta, $this->data, 'leftmenu/departmentsreport');
     }
 
-   
+
     function report_type1()
     {
 

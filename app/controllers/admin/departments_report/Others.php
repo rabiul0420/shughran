@@ -818,6 +818,9 @@ class Others extends MY_Controller
         $this->db->select_sum('bortoman_shokriyo');
         $this->db->select_sum('durbol_shokriyou_hoyeche	');
         $this->db->select_sum('durbol_ache');
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
         $this->data['other_uposhakha_mojbuti'] = $this->db->get('other_uposhakha_mojbuti')->first_row('array');
         
         $this->db->select('*');
