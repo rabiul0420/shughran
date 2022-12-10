@@ -59,7 +59,7 @@
 
         </div>
         <div class="modal-footer">
-            <?php echo form_submit('edit_institution', 'Edit', 'class="btn btn-primary"'); ?>
+            <?php echo form_submit('edit_institution', 'Submit', 'class="btn btn-primary"'); ?>
         </div>
     </div>
     <?php echo form_close(); ?>

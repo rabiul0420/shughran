@@ -145,7 +145,7 @@
 <td >মানবিক		</td>
 </tr> 
 <tr>
-<td colspan="2">সদস্য হয়েছেন </td>
+<td colspan="2">সদস্য </td>
 
 <td colspan="5"><?php echo $output_record_sum_member[0]['single_digit'];?></td>
  <td colspan="5"><?php echo $output_record_sum_member[0]['ssc_dhakil'];?></td>
@@ -165,7 +165,7 @@
 <td><?php echo $output_record_sum_member[0]['arts'];?></td>
 </tr>
 <tr>
-<td colspan="2">সাথী হয়েছেন</td>
+<td colspan="2">সাথী</td>
  
 <td colspan="5"><?php echo $output_record_sum_asso[0]['single_digit'];?></td>
  <td colspan="5"><?php echo $output_record_sum_asso[0]['ssc_dhakil'];?></td>
@@ -185,7 +185,7 @@
 <td><?php echo $output_record_sum_asso[0]['arts'];?></td>
 </tr>
 <tr>
-<td colspan="2">কর্মী হয়েছেন <?php //echo $detailinfo[0]['worker_improvement']; ?></td>
+<td colspan="2">কর্মী <?php //echo $detailinfo[0]['worker_improvement']; ?></td>
 <td colspan="5"><?php echo $detailinfo['increase_outputinfo']['worker_single_digit']; ?></td>
  <td  colspan="5"><?php echo $detailinfo['increase_outputinfo']['worker_ssc_dhakil']; ?></td>
 <td colspan="2"><?php echo $detailinfo['increase_outputinfo']['worker_hsc_alim']; ?></td>
@@ -203,7 +203,7 @@
 <td ><?php echo $detailinfo['increase_outputinfo']['worker_arts']; ?></td>
 </tr>
 <tr>
-<td colspan="2">সমর্থক হয়েছেন <?php //echo $detailinfo['supporter_improvement']']; ?></td>
+<td colspan="2">সমর্থক <?php //echo $detailinfo['supporter_improvement']']; ?></td>
 <td colspan="5"><?php echo $detailinfo['increase_outputinfo']['supporter_single_digit']; ?></td>
  <td  colspan="5"><?php echo $detailinfo['increase_outputinfo']['supporter_ssc_dhakil']; ?></td>
 <td colspan="2"><?php echo $detailinfo['increase_outputinfo']['supporter_hsc_alim']; ?></td>
