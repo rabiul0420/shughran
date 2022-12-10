@@ -238,31 +238,7 @@
 	
 	
 	
-	
-	
-	<section class="main-header ">
-                <div class="container padding-y-md">
-                    <div class="row">
-
-                        <div class="col-sm-4 col-md-3 logo">
-                            <a href="##">
-                             
-							<?php if ($Settings->logo2) {
-                echo '<img src="' . base_url('assets/uploads/logos/' . $Settings->logo) . '" alt="' . $Settings->site_name . '" style="margin-bottom:10px;" />';
-            } ?> 
-							 </a>
-                        </div>
-
-                        <div class="col-sm-8 col-md-9 margin-top-lg">
-                            <div class="row">
-                                <div class="col-sm-8 col-md-6 col-md-offset-3 search-box">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-	
+	 
 	
 	
 	

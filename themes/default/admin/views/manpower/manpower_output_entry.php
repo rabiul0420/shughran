@@ -149,7 +149,7 @@
 <td >মানবিক		</td>
 </tr> 
 <tr>
-<td colspan="2">সদস্য হয়েছেন </td>
+<td colspan="2">সদস্য </td>
 
 <td colspan="5"><?php echo $output_record_sum_member[0]['single_digit'];?></td>
  <td colspan="5"><?php echo $output_record_sum_member[0]['ssc_dhakil'];?></td>
@@ -169,7 +169,7 @@
 <td><?php echo $output_record_sum_member[0]['arts'];?></td>
 </tr>
 <tr>
-<td colspan="2">সাথী হয়েছেন</td>
+<td colspan="2">সাথী</td>
  
 <td colspan="5"><?php echo $output_record_sum_asso[0]['single_digit'];?></td>
  
@@ -190,7 +190,7 @@
 <td><?php echo $output_record_sum_asso[0]['arts'];?></td>
 </tr>
 <tr>
-<td colspan="2">কর্মী হয়েছেন <?php //echo $detailinfo[0]['worker_improvement']; ?></td>
+<td colspan="2">কর্মী <?php //echo $detailinfo[0]['worker_improvement']; ?></td>
 
 
 
@@ -249,7 +249,7 @@
 
 
 <tr>
-<td colspan="2">সমর্থক হয়েছেন <?php //echo $detailinfo['supporter_improvement']; ?></td>
+<td colspan="2">সমর্থক <?php //echo $detailinfo['supporter_improvement']; ?></td>
 <td colspan="5"> 
 <a href="#"  class="editable editable-click"   data-type="number" data-table="manpower_output" data-pk="<?php echo $detailinfo['increase_outputinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_single_digit" data-title="Enter"><?php echo $detailinfo['increase_outputinfo']->supporter_single_digit; ?></a>
 </td>

@@ -24,6 +24,12 @@
 					 
 				 
 							
+							  
+                        <li id=""  class="<?php  echo ($this->uri->segment(2)=='others' &&  ($this->uri->segment(3) == 'centraltraining' ) )? 'active':'' ?>">
+                                            <a href="<?= admin_url('others/centraltraining') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "কেন্দ্রীয় প্রশিক্ষণ"; ?></span>
+                                            </a>
+                             </li>
 							 
 							
                              <li id="" class="<?php  echo ($this->uri->segment(2)=='training' &&  ($this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) ) )? 'active':'' ?>">
@@ -34,13 +40,7 @@
 							 
 							 
 							 
-							 
-							 <li id=""  class="<?php  echo ($this->uri->segment(2)=='others' &&  ($this->uri->segment(3) == 'centraltraining' ) )? 'active':'' ?>">
-                                            <a href="<?= admin_url('others/centraltraining') ?>">
-                                                <i class="fa fa-cogs"></i><span class="text"> <?= "কেন্দ্রীয় প্রশিক্ষণ"; ?></span>
-                                            </a>
-                             </li>
-							 
+							
 							 
 							 
 							 
