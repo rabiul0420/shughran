@@ -110,25 +110,25 @@ class Highersyllabus extends MY_Controller
 		$report_info =  $reportinfo['info'];
 
 		 
-
+//$this->sma->print_arrays($reportinfo['info']->startdate_annual);
 
 
 if($branch_id) {
 
-	if( ($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly') 
+	if( $reportinfo['last_half'] || $report_type == 'half_yearly')  //($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly'
 	$result =  $this->site->query_binding("SELECT * from sma_highersyllabus_record WHERE   branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id,$start_date,$end_date));
 
 	else if ($report_type == 'annual')
-	$result =  $this->site->query_binding("SELECT `highersyllabus_id`, SUM(`reader_number`) reader_number,SUM(`book_number`) book_number, SUM(id) id from sma_highersyllabus_record WHERE   branch_id = ? AND date BETWEEN ? AND ? GROUP BY highersyllabus_id ", array($branch_id,$start_date,$end_date));
+	$result =  $this->site->query_binding("SELECT `highersyllabus_id`, SUM(`reader_number`) reader_number,SUM(`book_number`) book_number, SUM(id) id from sma_highersyllabus_record WHERE   branch_id = ? AND date BETWEEN ? AND ? GROUP BY highersyllabus_id ", array($branch_id,$reportinfo['info']->startdate_annual,$reportinfo['info']->enddate_annual));
 
 	 
 	
 }
 else{ 	
-	if( ($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly') 
+	if( $reportinfo['last_half'] || $report_type == 'half_yearly') //($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly'
 	$result =  $this->site->query_binding("SELECT * from sma_highersyllabus_record WHERE   date BETWEEN ? AND ? ", array( $start_date,$end_date));
 	else if ($report_type == 'annual')
-	 $result =  $this->site->query_binding("SELECT `highersyllabus_id`, SUM(`reader_number`) reader_number,SUM(`book_number`) book_number, SUM(id) id from sma_highersyllabus_record WHERE   date BETWEEN ? AND ? GROUP BY highersyllabus_id ", array( $start_date,$end_date));
+	 $result =  $this->site->query_binding("SELECT `highersyllabus_id`, SUM(`reader_number`) reader_number,SUM(`book_number`) book_number, SUM(id) id from sma_highersyllabus_record WHERE   date BETWEEN ? AND ? GROUP BY highersyllabus_id ", array( $reportinfo['info']->startdate_annual,$reportinfo['info']->enddate_annual));
  
 	
 }	

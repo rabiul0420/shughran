@@ -150,7 +150,7 @@ class Manpower extends MY_Controller
        
 
        //  $this->sma->print_arrays($report_type ); 
-
+      // $this->sma->print_arrays($report_type['last_half']);
 
         // memberlog membercandidatelog   manpower_record assolog   workerlog
        
@@ -164,7 +164,7 @@ class Manpower extends MY_Controller
         $this->data['assolog'] = $this->manPowerLog('assolog', $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
         $this->data['workerlog'] = $this->manPowerLog('workerlog', $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
         
-        $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
+        $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info,$report_type['last_half']);
 
         $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
         $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
@@ -175,7 +175,7 @@ class Manpower extends MY_Controller
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
 
 
-       // $this->sma->print_arrays( $this->data['memberlog']); 
+       //  $this->sma->print_arrays( $this->data['report_info']); 
         
 
 
@@ -275,12 +275,16 @@ class Manpower extends MY_Controller
     }
      
      
-function getmanpower_summary($is_current, $start_date, $end_date, $branch_id = NULL,$cal_type=null,$report_date_info=null)
+function getmanpower_summary($is_current, $start_date, $end_date, $branch_id = NULL,$cal_type=null,$report_date_info=null, $last_half=null)
 {
     
+//$this->sma->print_arrays($report_date_info);
 
  
-    
+
+$half_start = $report_date_info->startdate_half;
+$half_end = $report_date_info->enddate_half;
+
     if($is_current==false){
         
         if ($branch_id)
@@ -341,11 +345,23 @@ function getmanpower_summary($is_current, $start_date, $end_date, $branch_id = N
     
     }
     
-    else if ($branch_id)
-        $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
+    else if ($branch_id) {
 
-    else
+        $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
+        $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $half_start, $half_end));
+        $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'];
+        $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'];
+    }
+
+    else {
         $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE date BETWEEN ? AND ? ", array(  $start_date, $end_date));
+        $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE date BETWEEN ? AND ? ", array(  $half_start, $half_end));
+        
+        
+       // $this->sma->print_arrays($result);
+    }
+
+  
 
     return $result;
 }
