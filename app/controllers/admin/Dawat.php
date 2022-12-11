@@ -1291,15 +1291,19 @@ FROM `sma_mosque_calculated` WHERE `report_type` = ? AND branch_id = ? AND calcu
         }
     }
 
+// echo $report_type.' >> '.$report_type_get['last_half'];
+// exit();
+
         if($report_type == 'annual' && $report_type_get['last_half']){
             $mosquebaseworkinfo = $this->site->getOneRecord('mosquebasework', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
          }
 
         else if ($report_type && $report_type == 'annual') {
+            //work_increase_mosque,work_decrease_mosque,dars_quran,dars_hadith,lecture,other
 
           
             $result1 =  $this->site->query_binding("SELECT  sum(id) id, SUM(`work_increase_mosque`) as work_increase_mosque , SUM(`work_decrease_mosque`) as work_decrease_mosque , SUM(`dars_quran`) as dars_quran , SUM(`dars_hadith`) as dars_hadith ,SUM(`lecture`) as lecture , SUM(`other`) as  other
-        FROM `sma_mosquebasework` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_type_get['info']->startdate_annual, $report_type_get['info']->enddate_annual));
+        FROM `sma_mosquebasework` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_type_get['info']->startdate_half, $report_type_get['info']->enddate_annual));
 
 
 //last half
@@ -1341,8 +1345,7 @@ FROM `sma_mosque_calculated` WHERE `report_type` = ? AND branch_id = ? AND calcu
 
 
  
-
-
+ 
 
 
 
@@ -1353,10 +1356,10 @@ FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $
         }
 
         if ($report_type && $this->input->get('type')=='annual') {
-
+//full
             $result1 =  $this->site->query_binding("SELECT  SUM(id) id,  SUM(`work_increase_mosque`) as work_increase_mosque ,SUM(`dars_quran`) as dars_quran , SUM(`dars_hadith`) as dars_hadith ,SUM(`lecture`) as lecture , SUM(`other`) as  other
 FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $report_end));
-
+//last half
             $result2 =  $this->site->query_binding("SELECT  SUM(id) id,  SUM(`mosque_number`) as mosque_number ,SUM(`mosque_active`) as mosque_active  
 FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_type_get['info']->startdate_annual,  $report_type_get['info']->enddate_annual));
  
