@@ -227,7 +227,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698 type_1" colspan="3"> পত্রিকার সম্পাদক</td>
                                 <td class="tg-0pky  type_1">
-                                <?php echo ($publicity_contact['potrikar_shompadok_shovapoti'] +$publicity_contact['potrikar_shompadok_prochar']) ?>
+                                <?php echo (isset($publicity_contact['potrikar_shompadok_shovapoti'])??'' +isset($publicity_contact['potrikar_shompadok_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -251,7 +251,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698" colspan="3">মিডিয়া ব্যক্তিত্ব </td>
                                 <td class="tg-0pky">
-                                <?php echo ($publicity_contact['midea_bekti_shovapoti'] +$publicity_contact['midea_bekti_prochar']) ?>
+                                <?php echo (isset($publicity_contact['midea_bekti_shovapoti'])??'' + isset($publicity_contact['midea_bekti_prochar']) ?? '') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -276,7 +276,7 @@ $(document).ready(function(){
                                 <td class="tg-y698" rowspan='3'>স্যাটেলাইট</td>
                                 <td class="tg-y698">জেলা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                <?php echo ($publicity_contact['tv_satelite_jela_shovapoti'] +$publicity_contact['tv_satelite_jela_prochar']) ?>
+                                <?php echo (isset($publicity_contact['tv_satelite_jela_shovapoti'])??'' + isset($publicity_contact['tv_satelite_jela_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -298,7 +298,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">স্টাফ রিপোর্টার</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['tv_satelite_stuff_shovapoti'] +$publicity_contact['tv_satelite_stuff_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['tv_satelite_stuff_shovapoti'])??'' +isset($publicity_contact['tv_satelite_stuff_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -320,7 +320,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">থানা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['tv_satelite_thana_shovapoti'] +$publicity_contact['tv_satelite_thana_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['tv_satelite_thana_shovapoti'])??'' + isset($publicity_contact['tv_satelite_thana_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -343,7 +343,7 @@ $(document).ready(function(){
                                 <td class="tg-y698" rowspan='3'>অনলাইন</td>
                                 <td class="tg-y698">জেলা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                <?php echo ($publicity_contact['tv_online_jela_shovapoti'] +$publicity_contact['tv_online_jela_prochar']) ?>
+                                <?php echo (isset($publicity_contact['tv_online_jela_shovapoti'])??'' + isset($publicity_contact['tv_online_jela_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -366,7 +366,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">স্টাফ রিপোর্টার</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['tv_online_stuff_shovapoti'] +$publicity_contact['tv_online_stuff_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['tv_online_stuff_shovapoti'])??'' + isset($publicity_contact['tv_online_stuff_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -388,7 +388,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">থানা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['tv_online_thana_shovapoti'] +$publicity_contact['tv_online_thana_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['tv_online_thana_shovapoti'])??'' + isset($publicity_contact['tv_online_thana_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -413,7 +413,7 @@ $(document).ready(function(){
                                 <td class="tg-y698" rowspan='3'>প্রিন্টিং</td>
                                 <td class="tg-y698">জেলা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                <?php echo ($publicity_contact['jatio_printing_jela_shovapoti'] +$publicity_contact['jatio_printing_jela_prochar']) ?>
+                                <?php echo (isset($publicity_contact['jatio_printing_jela_shovapoti'])??'' + isset($publicity_contact['jatio_printing_jela_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -436,7 +436,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">স্টাফ রিপোর্টার</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['jatio_printing_stuff_shovapoti'] +$publicity_contact['jatio_printing_stuff_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['jatio_printing_stuff_shovapoti'])??'' + isset($publicity_contact['jatio_printing_stuff_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -458,7 +458,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">থানা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['jatio_printing_thana_shovapoti'] +$publicity_contact['jatio_printing_thana_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['jatio_printing_thana_shovapoti'])??'' +isset($publicity_contact['jatio_printing_thana_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -481,7 +481,7 @@ $(document).ready(function(){
                                 <td class="tg-y698" rowspan='3'>অনলাইন</td>
                                 <td class="tg-y698">জেলা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                <?php echo ($publicity_contact['jatio_online_jela_shovapoti'] +$publicity_contact['jatio_online_jela_prochar']) ?>
+                                <?php echo (isset($publicity_contact['jatio_online_jela_shovapoti'])??'' +isset($publicity_contact['jatio_online_jela_prochar'])??'') ?>
                            
                                 </td>
                                 <td class="tg-0pky  type_1">
@@ -505,7 +505,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">স্টাফ রিপোর্টার</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['jatio_online_stuff_shovapoti'] +$publicity_contact['jatio_online_stuff_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['jatio_online_stuff_shovapoti'])??'' +isset($publicity_contact['jatio_online_stuff_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -527,7 +527,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">থানা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['jatio_online_thana_shovapoti'] +$publicity_contact['jatio_online_thana_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['jatio_online_thana_shovapoti'])??'' +isset($publicity_contact['jatio_online_thana_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -551,7 +551,7 @@ $(document).ready(function(){
                                 <td class="tg-y698" rowspan='3'>প্রিন্টিং</td>
                                 <td class="tg-y698">জেলা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                <?php echo ($publicity_contact['ancholik_printing_jela_shovapoti'] +$publicity_contact['ancholik_printing_jela_prochar']) ?>
+                                <?php echo (isset($publicity_contact['ancholik_printing_jela_shovapoti'])??'' +isset($publicity_contact['ancholik_printing_jela_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -573,7 +573,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">স্টাফ রিপোর্টার</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['ancholik_printing_stuff_shovapoti'] +$publicity_contact['ancholik_printing_stuff_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['ancholik_printing_stuff_shovapoti'])??'' +isset($publicity_contact['ancholik_printing_stuff_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -595,7 +595,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">থানা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['ancholik_printing_thana_shovapoti'] +$publicity_contact['ancholik_printing_thana_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['ancholik_printing_thana_shovapoti'])??'' + isset($publicity_contact['ancholik_printing_thana_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -618,7 +618,7 @@ $(document).ready(function(){
                                 <td class="tg-y698" rowspan='2'>অনলাইন</td>
                                 <td class="tg-y698">জেলা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                <?php echo ($publicity_contact['ancholik_online_jela_shovapoti'] +$publicity_contact['ancholik_online_jela_prochar']) ?>
+                                <?php echo (isset($publicity_contact['ancholik_online_jela_shovapoti'])??'' +isset($publicity_contact['ancholik_online_jela_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -642,7 +642,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">থানা প্রতিনিধি</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['ancholik_online_stuff_shovapoti'] +$publicity_contact['ancholik_online_stuff_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['ancholik_online_stuff_shovapoti'])??'' +isset($publicity_contact['ancholik_online_stuff_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -664,7 +664,7 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698" colspan='3'>কলামিস্ট</td>
                                 <td class="tg-0pky">
-                                 <?php echo ($publicity_contact['ancholik_online_thana_shovapoti'] +$publicity_contact['ancholik_online_thana_prochar']) ?>
+                                 <?php echo (isset($publicity_contact['ancholik_online_thana_shovapoti'])??'' +isset($publicity_contact['ancholik_online_thana_prochar'])??'') ?>
                                 </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
