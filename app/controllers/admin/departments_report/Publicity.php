@@ -313,46 +313,40 @@ class Publicity extends MY_Controller
             $this->data['publicity_contact'] = $this->db->get('publicity_contact')->first_row('array');
 
 
-            $this->db->select_sum('video_shakar_total');
-            $this->db->select_sum('video_kendrer_total');
-            $this->db->select_sum('photo_shakar_total');
-            $this->db->select_sum('photo_kendrer_total');
-            $this->db->select_sum('news_shakar_total');
-            $this->db->select_sum('news_kendrer_total');
-
-          
-            // $this->db->select_sum('video_shakhar_bishoy');
-            // $this->db->select_sum('video_kendrer_bishoy');
-            // $this->db->select_sum('photo_shakhar_bishoy');
-            // $this->db->select_sum('photo_kendrer_bishoy');
-            // $this->db->select_sum('news_shakhar_bishoy');
-            // $this->db->select_sum('news_kendrer_bishoy');
-
-
-
-
-
-
-            if ($branch_id)
+            if ($branch_id){
+                $this->db->select('*');
                 $this->db->where('branch_id', $branch_id);
+            }else{
+                $this->db->select_sum('video_shakar_total');
+                $this->db->select_sum('video_kendrer_total');
+                $this->db->select_sum('photo_shakar_total');
+                $this->db->select_sum('photo_kendrer_total');
+                $this->db->select_sum('news_shakar_total');
+                $this->db->select_sum('news_kendrer_total');
+            }
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
 
             $this->data['publicity_amader_collection'] = $this->db->get('publicity_amader_collection')->first_row('array');
 
-            $this->db->select_sum('shompadok_num');
 
-            $this->db->select_sum('shompadok_bar');
-            $this->db->select_sum('shangbadik_num');
+            // $this->sma->print_arrays($this->db->last_query());
 
-            $this->db->select_sum('shangbadik_bar');
-            $this->db->select_sum('collamist_num');
-
-            $this->db->select_sum('collamist_bar');
-            $this->db->select_sum('media_bektitto_num');
-
-            $this->db->select_sum('media_bektitto_bar');
-            if ($branch_id)
+           
+            if ($branch_id){
+                $this->db->select('*');
                 $this->db->where('branch_id', $branch_id);
+            }else{
+                $this->db->select_sum('shompadok_num');
+                $this->db->select_sum('shompadok_bar');
+                $this->db->select_sum('shangbadik_num');
+                $this->db->select_sum('shangbadik_bar');
+                $this->db->select_sum('collamist_num');
+                $this->db->select_sum('collamist_bar');
+                $this->db->select_sum('media_bektitto_num');
+                $this->db->select_sum('media_bektitto_bar');
+            }
+           
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['publicity_shoujonno'] = $this->db->get('publicity_shoujonno')->first_row('array');
@@ -370,16 +364,15 @@ class Publicity extends MY_Controller
 
             $query = $this->db->get('publicity_contact');
             $this->data['publicity_contact'] = $query->first_row('array');
+
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
-
             $query = $this->db->get('publicity_amader_collection');
             $this->data['publicity_amader_collection'] = $query->first_row('array');
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
-
             $query = $this->db->get('publicity_shoujonno');
             $this->data['publicity_shoujonno'] = $query->first_row('array');
         }

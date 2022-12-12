@@ -445,11 +445,11 @@ $(document).ready(function(){
                     <tr>
                         <td class="tg-pwj7 type_1"> সেক্রেটারিয়েট বৈঠকের  	</td>
                         <td class="tg-0pky  type_2">
-                            <?php echo $syb_s = $total_information_karjobiboroni_sonrokkhon['syb_s'] ?>
+                            <?php echo $syb_s = $information_karjobiboroni_sonrokkhon['syb_s'] ?>
                         </td>
                 
                         <td class="tg-0pky  type_2">
-                            <?php echo $syb_ss = $total_information_karjobiboroni_sonrokkhon['syb_ss'] ?>
+                            <?php echo $syb_ss = $information_karjobiboroni_sonrokkhon['syb_ss'] ?>
                         </td>
                 
                         
@@ -459,21 +459,21 @@ $(document).ready(function(){
                     <tr>
                         <td class="tg-pwj7">সদস্য বৈঠকের কার্যবিবরণী  </td>
                         <td class="tg-0pky  type_1">
-                        <?php echo $sbkb_s = $total_information_karjobiboroni_sonrokkhon['sbkb_s'] ?>
+                        <?php echo $sbkb_s = $information_karjobiboroni_sonrokkhon['sbkb_s'] ?>
                         </td>
                         <td class="tg-0pky  type_2">
-                            <?php echo $sbkb_ss = $total_information_karjobiboroni_sonrokkhon['sbkb_ss'] ?>
+                            <?php echo $sbkb_ss = $information_karjobiboroni_sonrokkhon['sbkb_ss'] ?>
                         </td>
                     
                     </tr>
                     <tr>
                         <td class="tg-pwj7">থানা/ওয়ার্ড শাখার তথ্য সংরক্ষণ </td>
                         <td class="tg-0pky  type_2">
-                            <?php echo $thoshts_s = $total_information_karjobiboroni_sonrokkhon['thoshts_s'] ?>
+                            <?php echo $thoshts_s = $information_karjobiboroni_sonrokkhon['thoshts_s'] ?>
                         </td>
                 
                         <td class="tg-0pky  type_2">
-                        <?php echo $thoshts_ss = $total_information_karjobiboroni_sonrokkhon['thoshts_ss'] ?>
+                        <?php echo $thoshts_ss = $information_karjobiboroni_sonrokkhon['thoshts_ss'] ?>
                         </td>
                 
                         
@@ -497,7 +497,7 @@ $(document).ready(function(){
                    <tr>
                        <td class="tg-y698 type_1">  ছবি	</td>
                        <td class="tg-0pky  type_1">
-                           <?php echo $ch_ss = $total_information_shohid_vaideri_songrihito['ch_ss'] ?>
+                           <?php echo $ch_ss = $information_shohid_vaideri_songrihito['ch_ss'] ?>
                        </td>
                       
                  
@@ -509,7 +509,7 @@ $(document).ready(function(){
                    <tr>
                        <td class="tg-y698"> ভিডিও </td>
                        <td class="tg-0pky  type_1">
-                       <?php echo $vdo_ss = $total_information_shohid_vaideri_songrihito['vdo_ss'] ?>
+                       <?php echo $vdo_ss = $information_shohid_vaideri_songrihito['vdo_ss'] ?>
                        </td>
                       
                      
@@ -520,7 +520,7 @@ $(document).ready(function(){
                    <tr>
                        <td class="tg-y698">শার্ট/ প্যান্ট   </td>
                        <td class="tg-0pky  type_1">
-                        <?php echo $shpnt_ss = $total_information_shohid_vaideri_songrihito['shpnt_ss'] ?>
+                        <?php echo $shpnt_ss = $information_shohid_vaideri_songrihito['shpnt_ss'] ?>
                        </td>
                       
                    
@@ -528,7 +528,7 @@ $(document).ready(function(){
                    <tr>
                        <td class="tg-y698">ডায়েরি  </td>
                        <td class="tg-0pky  type_1">
-                        <?php echo $dr_ss = $total_information_shohid_vaideri_songrihito['dr_ss'] ?>
+                        <?php echo $dr_ss = $information_shohid_vaideri_songrihito['dr_ss'] ?>
                        </td>
                      
                    
@@ -536,7 +536,7 @@ $(document).ready(function(){
                    <tr>
                        <td class="tg-y698">শহীদের জীবন বৃত্তান্ত</td>
                        <td class="tg-0pky  type_1">
-                        <?php echo $shjbr_ss = $total_information_shohid_vaideri_songrihito['shjbr_ss'] ?>
+                        <?php echo $shjbr_ss = $information_shohid_vaideri_songrihito['shjbr_ss'] ?>
                        </td>
                      
                    
@@ -600,13 +600,13 @@ $(document).ready(function(){
                         <td class="tg-pwj7" rowspan="2">আপনার শাখায় তথ্য সংগ্রহশালা আছে কি না?</td>
                         <td class="tg-pwj7">হ্যাঁ </td>
                         <td class="tg-0pky  type_3">
-                            <?php echo $info_house = $total_information_house['info_house'] ?>
+                            <?php echo $info_house = $information_house['info_house'] ?>
                         </td>
                    </tr>
                    <tr>
                        <td  class="tg-pwj7" colspan=""> না</td>
                        <td class="tg-0pky  type_3">
-                            <?php echo $total_information_house_row-$total_information_house['info_house'] ?>
+                            <?php echo $total_information_house_row-$information_house['info_house'] ?>
                         </td>
                    </tr>
 
@@ -628,10 +628,10 @@ $(document).ready(function(){
                         <tr>
                             <td class="tg-y698">শিক্ষাশিবির (কেন্দ্র)</td>
                             <td class="tg-0pky type_1">
-                            <?php echo $shikkha_central_s=$total_information_training_program['shikkha_central_s'] ?>
+                            <?php echo $shikkha_central_s=$information_training_program['shikkha_central_s'] ?>
                             </td>
                             <td class="tg-0pky  type_2">
-                            <?php echo $shikkha_central_p=$total_information_training_program['shikkha_central_p'] ?>
+                            <?php echo $shikkha_central_p=$information_training_program['shikkha_central_p'] ?>
                             </td>
                             <td class="tg-0pky  type_3">
                             <?php if($shikkha_central_s>0 && $shikkha_central_p>0)
@@ -641,10 +641,10 @@ $(document).ready(function(){
                         <tr>
                             <td class="tg-y698">শিক্ষাশিবির (শাখা)</td>
                             <td class="tg-0pky type_1">
-                            <?php echo $shikkha_shakha_s=$total_information_training_program['shikkha_shakha_s'] ?>
+                            <?php echo $shikkha_shakha_s=$information_training_program['shikkha_shakha_s'] ?>
                             </td>
                             <td class="tg-0pky  type_2">
-                            <?php echo $shikkha_shakha_p=$total_information_training_program['shikkha_shakha_p'] ?>
+                            <?php echo $shikkha_shakha_p=$information_training_program['shikkha_shakha_p'] ?>
                             </td>
                             <td class="tg-0pky  type_3">
                             <?php if($shikkha_shakha_s>0 && $shikkha_shakha_p>0)
@@ -654,10 +654,10 @@ $(document).ready(function(){
                         <tr>
                             <td class="tg-y698">কর্মশালা (কেন্দ্র)</td>
                             <td class="tg-0pky type_1">
-                            <?php echo $kormoshala_central_s=$total_information_training_program['kormoshala_central_s'] ?>
+                            <?php echo $kormoshala_central_s=$information_training_program['kormoshala_central_s'] ?>
                             </td>
                             <td class="tg-0pky  type_2">
-                            <?php echo $kormoshala_central_p=$total_information_training_program['kormoshala_central_p'] ?>
+                            <?php echo $kormoshala_central_p=$information_training_program['kormoshala_central_p'] ?>
                             </td>
                             <td class="tg-0pky  type_3">
                             <?php if($kormoshala_central_s>0 && $kormoshala_central_p>0)
@@ -667,10 +667,10 @@ $(document).ready(function(){
                         <tr>
                             <td class="tg-y698">কর্মশালা (শাখা)</td>
                             <td class="tg-0pky type_1">
-                            <?php echo $kormoshala_shakha_s=$total_information_training_program['kormoshala_shakha_s'] ?>
+                            <?php echo $kormoshala_shakha_s=$information_training_program['kormoshala_shakha_s'] ?>
                             </td>
                             <td class="tg-0pky  type_2">
-                            <?php echo $kormoshala_shakha_p=$total_information_training_program['kormoshala_shakha_p'] ?>
+                            <?php echo $kormoshala_shakha_p=$information_training_program['kormoshala_shakha_p'] ?>
                             </td>
                             <td class="tg-0pky  type_3">
                             <?php if($kormoshala_shakha_s>0 && $kormoshala_shakha_p>0)
