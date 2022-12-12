@@ -1804,12 +1804,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-
-
+         
         if ($branch_id) {
 
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, org_current_session( {$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date ", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, org_current_session( {$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date,current_unit,  
+                organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev_unit,
+                latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, 
+                latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease
+         ", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1819,7 +1822,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_active', 1);
         } else {
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, org_current_session({$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date ", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, org_current_session({$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date,current_unit,  
+                organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev_unit,
+                latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, 
+                latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease ", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1869,7 +1875,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('S1', 'Notes');
             $this->excel->getActiveSheet()->SetCellValue('T1', 'Added in current session?');
 
-           
+            $this->excel->getActiveSheet()->SetCellValue('U1', 'Unit Prev');
+            $this->excel->getActiveSheet()->SetCellValue('V1', 'Unit Increase');
+            $this->excel->getActiveSheet()->SetCellValue('W1', 'Unit Decrease');
+            $this->excel->getActiveSheet()->SetCellValue('X1', 'Unit Current');
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -1900,8 +1909,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('S' . $row, $data_row->notes);
                 $this->excel->getActiveSheet()->SetCellValue('T' . $row, strtotime($data_row->date) > strtotime( $start) &&  strtotime($data_row->date) < strtotime( $end) ? 'Current' : 'not in current' ); 
                 //$this->excel->getActiveSheet()->SetCellValue('T' . $row, $data_row->date); 
-               
-
+                $this->excel->getActiveSheet()->SetCellValue('U' . $row, $data_row->current_unit);
+                $this->excel->getActiveSheet()->SetCellValue('V' . $row, $data_row->prev_unit);
+                $this->excel->getActiveSheet()->SetCellValue('W' . $row, $data_row->increase);
+                $this->excel->getActiveSheet()->SetCellValue('X' . $row, $data_row->decrease);
                 $row++;
             }
             //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
