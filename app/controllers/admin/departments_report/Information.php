@@ -145,7 +145,7 @@ class Information extends MY_Controller
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
         
-        $this->data['total_information_karjobiboroni_sonrokkhon'] = $this->db->get('information_karjobiboroni_sonrokkhon')->first_row('array');
+        $this->data['information_karjobiboroni_sonrokkhon'] = $this->db->get('information_karjobiboroni_sonrokkhon')->first_row('array');
 
 
         $this->db->select_sum('ch_ss');
@@ -157,7 +157,7 @@ class Information extends MY_Controller
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
          
-        $this->data['total_information_shohid_vaideri_songrihito'] = $this->db->get('information_shohid_vaideri_songrihito')->first_row('array');
+        $this->data['information_shohid_vaideri_songrihito'] = $this->db->get('information_shohid_vaideri_songrihito')->first_row('array');
  
         $this->db->select('*');
         if ($branch_id)
@@ -172,7 +172,7 @@ class Information extends MY_Controller
         $this->db->where('branch_id', $branch_id);
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');  
         $query = $this->db->get('information_house');
-        $this->data['total_information_house'] = $query->first_row('array');
+        $this->data['information_house'] = $query->first_row('array');
 
         if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
@@ -191,7 +191,7 @@ class Information extends MY_Controller
         if ($branch_id)
         $this->db->where('branch_id', $branch_id);
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
-        $this->data['total_information_training_program'] = $this->db->get('information_training_program')->first_row('array');
+        $this->data['information_training_program'] = $this->db->get('information_training_program')->first_row('array');
     
     }
     else{
@@ -272,13 +272,19 @@ class Information extends MY_Controller
   
       
 
-
+// $this->sma->print_arrays($this->data);
 
       
 
 		$this->data['m'] = 'information';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
+
+
+        // $this->sma->print_arrays($this->data['information_karjobiboroni_sonrokkhon']);
+
+
+
         
 		if($branch_id)
 		$this->page_construct('departmentsreport/information/information_bivag_entry', $meta, $this->data,'leftmenu/departmentsreport');
