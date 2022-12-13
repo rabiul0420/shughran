@@ -121,9 +121,11 @@ class Others extends MY_Controller
 	function getprogram_summary($report_type,$start_date, $end_date,$branch_id = NULL, $reportinfo=null){
 		
 
+
+		
 		if($branch_id) {
 
-			if($reportinfo['is_current']!=false  && (  $reportinfo['last_half'] || $report_type == 'half_yearly' ) )
+			if( (  $reportinfo['last_half'] || $report_type == 'half_yearly' ) )
 			$result =  $this->site->query_binding("SELECT * from sma_program_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array( $branch_id,$start_date,$end_date));
 	
 			else if ($report_type == 'annual')
@@ -132,7 +134,7 @@ class Others extends MY_Controller
 			
 					}
 		else {	
-			if($reportinfo['is_current']!=false  && (  $reportinfo['last_half'] || $report_type == 'half_yearly' ) )
+			if( (  $reportinfo['last_half'] || $report_type == 'half_yearly' ) )
 			$result =  $this->site->query_binding("SELECT * from sma_program_record WHERE  date BETWEEN ? AND ? ", array($start_date,$end_date));
 
 			else if ($report_type== 'annual')
