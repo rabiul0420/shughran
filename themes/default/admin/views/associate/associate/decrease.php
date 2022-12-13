@@ -157,7 +157,7 @@ else {
                 </li> -->
 
                 <li class="dropdown">
-                    <a href="<?= admin_url('associate/associatedecreaseexport/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ?  '?type='.$this->input->get('type') : '')) ?>">
+                    <a href="<?= admin_url('associate/associatedecreaseexport/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ?  '?type='.$this->input->get('type') : '').( $this->input->get('year') ?  '&year='.$this->input->get('year') : '')) ?>">
                         <i class="icon fa fa-file-excel-o" data-placement="left" title="<?= lang("export_to_excel") ?>"><?= lang("export_to_excel")?></i>
                     </a>
                      
