@@ -110,6 +110,14 @@ $(document).ready(function(){
                             <?php 
                                 $i=0;
                             foreach($other_sofor_report->result_array() as $row) 
+
+
+
+                        
+
+
+
+
                                     {
                                     $i++;
                                 ?>
@@ -127,7 +135,8 @@ $(document).ready(function(){
                                     <button class='btn btn-info'>
                                     <a class='action_class' href=<?php echo admin_url('departmentsreport/add-other-sofor-report/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
                                     </button>
-                                    <button  class='btn btn-danger' id='<?php echo "delete@other_sofor_report@".$row['name']."@".$row['id'] ?>'>Delete</button>
+                                    <button  class='btn btn-danger' id='<?php echo "delete@other_sofor_report@".$row['person_name']."@".$row['id'] ?>'>Delete</button>
+
                                     </td>
                                 </tr>
 
@@ -174,7 +183,7 @@ $(document).ready(function(){
                                     <button class='btn btn-info'>
                                     <a class='action_class' href=<?php echo admin_url('departmentsreport/add-other-sofor-nayebe-amir/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
                                     </button>
-                                    <button  class='btn btn-danger' id='<?php echo "delete@other_sofor_nayebe_amir@".$row['name']."@".$row['id'] ?>'>Delete</button>
+                                    <button  class='btn btn-danger' id='<?php echo "delete@other_sofor_nayebe_amir@".$row['person_name']."@".$row['id'] ?>'>Delete</button>
                                     </td>
                                 </tr>
 

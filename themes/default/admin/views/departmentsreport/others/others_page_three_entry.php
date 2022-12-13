@@ -188,7 +188,7 @@ $(document).ready(function(){
                                     <button class='btn btn-info'>
                                     <a class='action_class' href=<?php echo admin_url('departmentsreport/add-other-e-uposhakha-briddhi/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
                                     </button>
-                                    <button  class='btn btn-danger' id='<?php echo "delete@other_e_sathi_shakha_briddhi@".$row['uposhakhar_nam']."@".$row['id'] ?>'>Delete</button>
+                                    <button  class='btn btn-danger' id='<?php echo "delete@other_e_uposhakha_briddhi@".$row['uposhakhar_nam']."@".$row['id'] ?>'>Delete</button>
                                     </td>
                                 </tr>
 
