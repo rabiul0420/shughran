@@ -576,6 +576,9 @@ class Literature extends MY_Controller
 
     function delete_row()
     {
+
+        // $this->sma->print_arrays($this->input->get());
+
         $this->db->where("id", $this->input->get('id'));
         $this->db->delete($this->input->get('table'));
         return true;

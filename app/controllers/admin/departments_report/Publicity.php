@@ -266,51 +266,61 @@ class Publicity extends MY_Controller
 
             $this->data['publicity_training_program'] = $this->db->get('publicity_training_program')->first_row('array');
 
-            $this->db->select_sum('potrikar_shompadok_shovapoti');
-            $this->db->select_sum('potrikar_shompadok_prochar');
-            $this->db->select_sum('midea_bekti_shovapoti');
-            $this->db->select_sum('midea_bekti_prochar');
-            $this->db->select_sum('tv_satelite_jela_shovapoti');
-            $this->db->select_sum('tv_satelite_jela_prochar');
-            $this->db->select_sum('tv_satelite_stuff_shovapoti');
-            $this->db->select_sum('tv_satelite_stuff_prochar');
-            $this->db->select_sum('tv_satelite_thana_shovapoti');
-            $this->db->select_sum('tv_satelite_thana_prochar');
-            $this->db->select_sum('tv_online_jela_shovapoti');
-            $this->db->select_sum('tv_online_jela_prochar');
-            $this->db->select_sum('tv_online_stuff_shovapoti');
-            $this->db->select_sum('tv_online_stuff_prochar');
-            $this->db->select_sum('tv_online_thana_shovapoti');
-            $this->db->select_sum('tv_online_thana_prochar');
-            $this->db->select_sum('jatio_printing_jela_shovapoti');
-            $this->db->select_sum('jatio_printing_jela_prochar');
-            $this->db->select_sum('jatio_printing_stuff_shovapoti');
-            $this->db->select_sum('jatio_printing_stuff_prochar');
-            $this->db->select_sum('jatio_printing_thana_shovapoti');
-            $this->db->select_sum('jatio_printing_thana_prochar');
-            $this->db->select_sum('jatio_online_jela_shovapoti');
-            $this->db->select_sum('jatio_online_jela_prochar');
-            $this->db->select_sum('jatio_online_stuff_shovapoti');
-            $this->db->select_sum('jatio_online_stuff_prochar');
-            $this->db->select_sum('jatio_online_thana_shovapoti');
-            $this->db->select_sum('jatio_online_thana_prochar');
-            $this->db->select_sum('ancholik_printing_jela_shovapoti');
-            $this->db->select_sum('ancholik_printing_jela_prochar');
-            $this->db->select_sum('ancholik_printing_stuff_shovapoti');
-            $this->db->select_sum('ancholik_printing_stuff_prochar');
-            $this->db->select_sum('ancholik_printing_thana_shovapoti');
-            $this->db->select_sum('ancholik_printing_thana_prochar');
-            $this->db->select_sum('ancholik_online_jela_shovapoti');
-            $this->db->select_sum('ancholik_online_jela_prochar');
-            $this->db->select_sum('ancholik_online_stuff_shovapoti');
-            $this->db->select_sum('ancholik_online_stuff_prochar');
-            $this->db->select_sum('ancholik_online_thana_shovapoti');
-            $this->db->select_sum('ancholik_online_thana_prochar');
-            if ($branch_id)
-                $this->db->where('branch_id', $branch_id);
-            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
+
+            if ($branch_id) {
+                $this->db->select('*');
+                $this->db->where('branch_id', $branch_id);
+                
+            } else {
+                $this->db->select_sum('potrikar_shompadok_shovapoti');
+                $this->db->select_sum('potrikar_shompadok_prochar');
+                $this->db->select_sum('midea_bekti_shovapoti');
+                $this->db->select_sum('midea_bekti_prochar');
+                $this->db->select_sum('tv_satelite_jela_shovapoti');
+                $this->db->select_sum('tv_satelite_jela_prochar');
+                $this->db->select_sum('tv_satelite_stuff_shovapoti');
+                $this->db->select_sum('tv_satelite_stuff_prochar');
+                $this->db->select_sum('tv_satelite_thana_shovapoti');
+                $this->db->select_sum('tv_satelite_thana_prochar');
+                $this->db->select_sum('tv_online_jela_shovapoti');
+                $this->db->select_sum('tv_online_jela_prochar');
+                $this->db->select_sum('tv_online_stuff_shovapoti');
+                $this->db->select_sum('tv_online_stuff_prochar');
+                $this->db->select_sum('tv_online_thana_shovapoti');
+                $this->db->select_sum('tv_online_thana_prochar');
+                $this->db->select_sum('jatio_printing_jela_shovapoti');
+                $this->db->select_sum('jatio_printing_jela_prochar');
+                $this->db->select_sum('jatio_printing_stuff_shovapoti');
+                $this->db->select_sum('jatio_printing_stuff_prochar');
+                $this->db->select_sum('jatio_printing_thana_shovapoti');
+                $this->db->select_sum('jatio_printing_thana_prochar');
+                $this->db->select_sum('jatio_online_jela_shovapoti');
+                $this->db->select_sum('jatio_online_jela_prochar');
+                $this->db->select_sum('jatio_online_stuff_shovapoti');
+                $this->db->select_sum('jatio_online_stuff_prochar');
+                $this->db->select_sum('jatio_online_thana_shovapoti');
+                $this->db->select_sum('jatio_online_thana_prochar');
+                $this->db->select_sum('ancholik_printing_jela_shovapoti');
+                $this->db->select_sum('ancholik_printing_jela_prochar');
+                $this->db->select_sum('ancholik_printing_stuff_shovapoti');
+                $this->db->select_sum('ancholik_printing_stuff_prochar');
+                $this->db->select_sum('ancholik_printing_thana_shovapoti');
+                $this->db->select_sum('ancholik_printing_thana_prochar');
+                $this->db->select_sum('ancholik_online_jela_shovapoti');
+                $this->db->select_sum('ancholik_online_jela_prochar');
+                $this->db->select_sum('ancholik_online_stuff_shovapoti');
+                $this->db->select_sum('ancholik_online_stuff_prochar');
+                $this->db->select_sum('ancholik_online_thana_shovapoti');
+                $this->db->select_sum('ancholik_online_thana_prochar');
+                
+               
+            }           
+
+
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');    
             $this->data['publicity_contact'] = $this->db->get('publicity_contact')->first_row('array');
+
 
 
             if ($branch_id){
@@ -361,7 +371,6 @@ class Publicity extends MY_Controller
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
-
             $query = $this->db->get('publicity_contact');
             $this->data['publicity_contact'] = $query->first_row('array');
 
@@ -384,7 +393,7 @@ class Publicity extends MY_Controller
 
 
 
-        //   $this->sma->print_arrays( $this->data['publicity_amader_collection']);
+        //   $this->sma->print_arrays( $this->data['publicity_contact']['tv_satelite_jela_shovapoti']);
 
 
 
