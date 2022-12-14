@@ -232,7 +232,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
    ON sma_institution_supporter_organization.institution_id = `sma_institutionlist`.id
    WHERE sma_institution_supporter_organization.change_type = 2 AND DATE(sma_institution_supporter_organization.`date`) BETWEEN '" . $start . "' AND '" . $end . "'  AND sma_institution_supporter_organization.branch_id = " . $branch_id . "
     GROUP BY institution_type_child)a
-   GROUP BY a.institution_type_child ");
+   GROUP BY a.institution_type_child1 ");
         } else {
 
             $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  prev_institution(institution_type_child, " . $prev . ", -1) prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
