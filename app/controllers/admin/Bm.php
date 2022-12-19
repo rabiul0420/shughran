@@ -74,7 +74,7 @@ class Bm extends MY_Controller
 		else
 			$this->data['detailinfo'] = '';
 		 
-		exit();
+		
 		
 		 
 		 
@@ -83,7 +83,7 @@ class Bm extends MY_Controller
 		
 		 
 	  
-		 
+		exit();
 		 
 		 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'বিএম'));
