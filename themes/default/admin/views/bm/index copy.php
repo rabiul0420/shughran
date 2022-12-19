@@ -13,7 +13,32 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                 <?php 
 
- 
+				 
+if($report_info['is_current'] || $report_info['year'] == date('Y')) {
+	if($report_info['type']=='annual'){
+		echo anchor('admin/bm'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষান্মাসিক '.$report_info['year']); 
+		echo  "&nbsp;|&nbsp;".anchor('admin/bm'.( $branch_id ? '/'.$branch_id : ''),'জুলাই-নভেম্বর\''.$report_info['year']); 
+		echo "&nbsp;|&nbsp;";   echo anchor('admin/bm'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
+	}
+	else{
+		 echo anchor('admin/bm'.( $branch_id ? '/'.$branch_id : ''),'ষান্মাসিক '.$report_info['year']); 
+		echo  "&nbsp;|&nbsp;".anchor('admin/bm'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['last_year'],'বার্ষিক '.$report_info['last_year']);
+		
+	}
+}
+
+else {
+
+	if($report_info['type']=='annual'){
+		 echo    anchor('admin/bm'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
+	}
+	else{
+	  
+		echo   anchor('admin/bm'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$report_info['year'],'ষান্মাসিক '.$report_info['year']);
+		
+	}
+
+}
 
 
 
@@ -165,7 +190,7 @@ $amount = sum_record($bm_summary,'amount',$source->id,'source_id');
 <td>পরিমাণ</td>
 </tr>
  
- <?php $icount=1; if(0) foreach($sources as $source) if($source->type==2 && ( $this->input->get('type') ||  $source->id != 73 )){?>
+ <?php $icount=1; foreach($sources as $source) if($source->type==2 && ( $this->input->get('type') ||  $source->id != 73 )){?>
   
 <tr>
 <td><?php echo $icount++;?></td>

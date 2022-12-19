@@ -98,8 +98,8 @@ class Bm extends MY_Controller
 		}
 		
 		
-		//else
-	     // $this->page_construct('bm/index', $meta, $this->data,'leftmenu/others');
+		else
+	      $this->page_construct('bm/index', $meta, $this->data,'leftmenu/others');
        
 	
 	}
