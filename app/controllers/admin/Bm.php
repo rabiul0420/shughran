@@ -74,7 +74,7 @@ class Bm extends MY_Controller
 		else
 			$this->data['detailinfo'] = '';
 		 
-		
+		exit();
 		
 		 
 		 
