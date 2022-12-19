@@ -83,7 +83,7 @@ class Bm extends MY_Controller
 		
 		 
 	  
-		exit();
+		
 		 
 		 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'বিএম'));
@@ -121,6 +121,7 @@ class Bm extends MY_Controller
 				
 			}
 			else {	
+				exit();
 				if( ($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly') 
 				$result =  $this->site->query_binding("SELECT * from sma_bm_record WHERE  date BETWEEN ? AND ? ", array($start_date,$end_date));
 			
