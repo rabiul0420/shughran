@@ -124,8 +124,7 @@ class Bm extends MY_Controller
 			else {	
 				
 				if( ($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly') {
-			echo 'DM';
-			exit();
+			
 					$result =  $this->site->query_binding("SELECT * from sma_bm_record WHERE  date BETWEEN ? AND ? ", array($start_date,$end_date));
 				}
 				else if ( $report_type == 'annual')
@@ -134,7 +133,8 @@ class Bm extends MY_Controller
 				
 			}	
 				
-				
+			echo 'DM';
+			exit();
 				return $result;
   		}
 	
