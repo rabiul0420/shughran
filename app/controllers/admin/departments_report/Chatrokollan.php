@@ -39,6 +39,10 @@ class Chatrokollan extends MY_Controller
 
     function chatrokollan_bivag($branch_id = NULL)
     {
+        
+       
+        
+        
         //$this->sma->checkPermissions();
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin || $this->departmentuser) && ($this->session->userdata('branch_id') != $branch_id)) {
@@ -59,13 +63,20 @@ class Chatrokollan extends MY_Controller
             $this->data['branch_id'] = $this->session->userdata('branch_id');
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
+        
+        
 
         $report_type = $this->report_type();
+        
+       
+        
         if ($report_type == false)
             admin_redirect();
         $this->data['report_info'] = $report_type;
+        
+         
 
-        // $this->sma->print_arrays($report_type);
+        //
 
         if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
             $report_type['start'] = $report_type['info']->startdate_annual;
@@ -256,6 +267,12 @@ class Chatrokollan extends MY_Controller
             $query = $this->db->get('stu_wellfare_shohojogita');
             $this->data['stu_wellfare_shohojogita'] = $query->first_row('array');
         }
+        
+        
+       
+        
+        
+        
 
 
         $this->data['m'] = 'chatrokollan';

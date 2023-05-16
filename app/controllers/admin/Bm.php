@@ -83,7 +83,7 @@ class Bm extends MY_Controller
 		
 		 
 	  
-		 
+		
 		 
 		 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'বিএম'));
@@ -96,6 +96,7 @@ class Bm extends MY_Controller
 		  $this->page_construct('bm/index_entry', $meta, $this->data,'leftmenu/others');
           
 		}
+		
 		
 		else
 	      $this->page_construct('bm/index', $meta, $this->data,'leftmenu/others');
@@ -110,6 +111,7 @@ class Bm extends MY_Controller
 		$report_info =  $reportinfo['info'];
 
 
+	 
 
 			if($branch_id) {
 
@@ -121,9 +123,12 @@ class Bm extends MY_Controller
 				
 			}
 			else {	
-				if( ($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly') 
-				$result =  $this->site->query_binding("SELECT * from sma_bm_record WHERE  date BETWEEN ? AND ? ", array($start_date,$end_date));
-			
+				
+				if( ($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly') {
+					$result =  $this->site->query_binding("SELECT `source_id`,SUM(`amount`) amount,SUM(id) id from sma_bm_record WHERE  date BETWEEN ? AND ? GROUP BY source_id", array($start_date,$end_date));
+				
+					//$result =  $this->site->query_binding("SELECT * from sma_bm_record WHERE  date BETWEEN ? AND ? ", array($start_date,$end_date));
+				}
 				else if ( $report_type == 'annual')
 				$result =  $this->site->query_binding("SELECT `source_id`,SUM(`amount`) amount,SUM(id) id from sma_bm_record WHERE  date BETWEEN ? AND ?  GROUP BY source_id ", array($start_date,$end_date));
 				

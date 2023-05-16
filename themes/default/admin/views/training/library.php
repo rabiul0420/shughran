@@ -131,7 +131,7 @@ else {
 <td colspan="2">বৃদ্ধি</td>
 <td colspan="2" >ঘাটতি</td>
 <td colspan="3">জনশক্তি</td>
-	<td colspan="2"><?php echo isset($totalreader[0]['reader']) ? $totalreader[0]['reader'] + $current_worker : $current_worker?></td>
+	<td colspan="2"><?php echo $totalreader?></td>
 
  
 <td colspan="3" style="background:#ccc">অনলাইন পাঠক</td>
