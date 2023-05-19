@@ -573,14 +573,19 @@ function getcolumn($table, $item="*", $where1=null, $order = null, $limit=null,$
         $this->db->select($item);
 		$this->db->from($table);
                 
-                if($where !=null && $where != '')
-                    $this->db->where($where);
-                if($limit !=null && $limit != '')
+        if($where !=null && $where != '')
+            $this->db->where($where);
+            if($limit !=null && $limit != '')
                     $this->db->limit($limit, $offset);
 		$query = $this->db->get();
 		
-		if($query->first_row())
+		
+	//	$this->sma->print_arrays($query->first_row());
+		
+		if($query->first_row()){
+		
 			return $query->first_row();	
+		}
 		
 		else 
 			return false;

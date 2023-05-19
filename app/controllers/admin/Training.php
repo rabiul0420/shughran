@@ -323,7 +323,10 @@ class Training extends MY_Controller
 			 $this->data['totalreader'] = isset($totalreader[0]['current_manpower']) ? $totalreader[0]['current_manpower'] : 0;
 		} else {
 			$this->data['detailinfo'] = $this->getEntryInfoLibrarySUM($report_type_get, $branch_id);
-			$totalreader = $this->gettotalreader($report_start, $report_end, $prev, $branch_id);
+			$totalreader = $this->gettotalreader($report_start, $report_end, $prev);
+
+			//echo $totalreader[0]['current_manpower'];
+			 
 			$this->data['totalreader'] = isset($totalreader[0]['current_manpower']) ? $totalreader[0]['current_manpower'] : 0;
 		}
 
@@ -344,7 +347,7 @@ class Training extends MY_Controller
 
 
 
-		$this->data['current_worker'] = $this->current_worker($report_type, $report_start, $report_end, $report_year, $branch_id);
+		//$this->data['current_worker'] = $this->current_worker($report_type, $report_start, $report_end, $report_year, $branch_id);
 
 
 
@@ -471,10 +474,10 @@ FROM `sma_library_calculated` WHERE `report_type` = ? AND calculated_year = ? ",
 	{
 
 		if ($branch_id)
-			return $this->site->query_binding("SELECT increase_decrease(?,?,?,?) + `worker_increase_decrease`(?,?,?) current_manpower  ", array($start, $end, $branch_id, $prev, $start, $end, $branch_id));
+			return $this->site->query_binding("SELECT  `worker_increase_decrease`(?,?,?,?) current_manpower  ", array($start, $end, $branch_id, $prev));
 
 		else
-			return $this->site->query_binding("SELECT increase_decrease(? ,?,?,?) + `worker_increase_decrease`(?,?,?) current_manpower  ", array($start, $end, $branch_id, $prev, $start, $end, $branch_id));
+			return $this->site->query_binding("SELECT  `worker_increase_decrease_all`(?,?,?) current_manpower  ", array($start, $end,  $prev));
 	}
 
 
