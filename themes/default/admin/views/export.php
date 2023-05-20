@@ -108,6 +108,7 @@
                     echo form_dropdown('branch', $cus, ($_POST['branch'] ?? ''), 'class="form-control select" required="required" placeholder="' . lang('select') . ' ' . lang('branch') . '" style="width:100%"')
                     ?>
                 </div>
+                
             </div>
 
             <div class="form-group">
