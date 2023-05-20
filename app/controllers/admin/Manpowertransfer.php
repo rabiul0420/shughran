@@ -423,7 +423,7 @@ class ManpowerTransfer extends MY_Controller
 		
 		
 		$this->session->set_flashdata('message', 'Received successfully.');
-		admin_redirect('');	
+        redirect($_SERVER["HTTP_REFERER"]);
  
     }
 	
@@ -780,7 +780,7 @@ class ManpowerTransfer extends MY_Controller
 		$this->site->delete('manpower_transfer', array( 'id'=>$transfer_id, 'manpower_id'=>$manpower_id) );
 		
         $this->session->set_flashdata('message', 'Cancelled successfully');
-         admin_redirect("dashboard");
+        redirect($_SERVER["HTTP_REFERER"]);
 		//$this->sma->send_json(array('msg' => 'success', 'result' => 'Cancelled successfully'));
     }
 
@@ -963,7 +963,7 @@ class ManpowerTransfer extends MY_Controller
 
 
         $this->session->set_flashdata('message', 'Cancelled successfully');
-         admin_redirect("dashboard");
+        redirect($_SERVER["HTTP_REFERER"]);
 		//$this->sma->send_json(array('msg' => 'success', 'result' => 'Cancelled successfully'));
     }
 

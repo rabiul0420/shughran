@@ -140,7 +140,7 @@ else {
         <div class="box-icon">
             <ul class="btn-tasks">
                  <li>
-                            <a href="<?= admin_url('membercandidate/membercandidatedecreaseexport/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ?  '?type='.$this->input->get('type') : '')) ?>" id="excel_export" data-action="export_excel">
+                            <a href="<?= admin_url('membercandidate/membercandidatedecreaseexport/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ?  '?type='.$this->input->get('type') : '').( $this->input->get('year') ?  '&year='.$this->input->get('year') : '')) ?>" id="excel_export" data-action="export_excel">
                                 <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>
                             </a> 
                         </li>

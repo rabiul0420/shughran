@@ -41,7 +41,10 @@ $route['reset_password/(:any)'] = 'main/reset_password/$1';
 
 // Admin area routes
 $route['admin'] = 'admin/welcome';
+$route['admin/mantransferlist'] = 'admin/welcome/mantransferlist';
+$route['admin/mancomminglist'] = 'admin/welcome/mancomminglist';
 $route['admin/dashboard'] = 'admin/welcome/dashboard';
+$route['admin/dashboardtransfer'] = 'admin/welcome/dashboardtransfer';
 $route['admin/users'] = 'admin/auth/users';
 $route['admin/users/create_user'] = 'admin/auth/create_user';
 $route['admin/users/profile/(:num)'] = 'admin/auth/profile/$1';
@@ -68,7 +71,8 @@ $route['admin/associate/(:num)'] = 'admin/associate/index/$1';
 $route['admin/membercandidate/(:num)'] = 'admin/membercandidate/index/$1'; 
 $route['admin/worker/(:num)'] = 'admin/worker/index/$1';
 
- 
+$route['admin/export/(:num)'] = 'admin/export/index/$1';
+
 
 $route['admin/departmentsreport'] =  'admin/departmentsreport/index';
 

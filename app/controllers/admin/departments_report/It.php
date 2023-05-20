@@ -37,6 +37,10 @@ class It extends MY_Controller
 
     function it_bivag($branch_id = NULL)
     {  
+        
+         $this->sma->print_arrays(1111);
+        
+        
         //$this->sma->checkPermissions();
 
         if($branch_id != NULL && !($this->Owner || $this->Admin || $this->departmentuser) && ($this->session->userdata('branch_id')!=$branch_id)){

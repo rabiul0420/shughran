@@ -221,6 +221,8 @@ function page_construct2($page, $meta = array(), $data = array(),$left_panel='le
     {
 
 
+
+
         $type = $this->input->get('type');  //half_yearly/annual
         $year = $this->input->get('year');
         $is_current = false;
@@ -229,13 +231,20 @@ function page_construct2($page, $meta = array(), $data = array(),$left_panel='le
 
         if(!$year && !$type) {
             
-            $year = date('Y');
+            $year = 2023;//date('Y');
             
-           
+          
 
             $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' =>$year), 'id desc', 1, 0);
-        
+            
+            
+           // $this->sma->print_arrays($entrytimeinfo);
+            
+            
+         
             if(strtotime($entrytimeinfo->startdate_half) < time() &&  strtotime($entrytimeinfo->enddate_half) > time() ){
+                 //$this->sma->print_arrays($entrytimeinfo);
+                
                 $is_current = 'half_yearly';
                
                 return array('info'=>$entrytimeinfo, 'last_half'=>false, 'prev_record'=>true, 'last_year'=>$year-1, 'is_current'=>$is_current, 'type' => 'half_yearly', 'start' => $entrytimeinfo->startdate_half, 'end' => $entrytimeinfo->enddate_half, 'year' => $year);
@@ -244,25 +253,25 @@ function page_construct2($page, $meta = array(), $data = array(),$left_panel='le
                 $is_current = 'annual'; //last_half
                 return array('info'=>$entrytimeinfo, 'last_half'=>true, 'prev_record'=>false, 'last_year'=>$year-1, 'is_current'=>$is_current,  'type' => 'annual', 'start' => $entrytimeinfo->startdate_annual, 'end' => $entrytimeinfo->enddate_annual, 'year' => $year);
             
-            }{
-
-            }
+            } 
 
         }
 
       else if($year && $type){
+          
+           //$this->sma->print_arrays(222222);
         
         $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' =>$year), 'id desc', 1, 0);
         if($type=='half_yearly')
             return array('info'=>$entrytimeinfo, 'last_half'=>false, 'prev_record'=>true,  'last_year'=>$year-1, 'is_current'=>false,  'type' => 'half_yearly', 'start' => $entrytimeinfo->startdate_half, 'end' => $entrytimeinfo->enddate_half, 'year' => $year);
             
            else if($type=='annual') //full_year
-            return array('info'=>$entrytimeinfo,  'last_half'=>false, 'prev_record'=>true,  'last_year'=>$year-1, 'is_current'=>false,  'type' => 'annual', 'start' => $entrytimeinfo->startdate_half, 'end' => $entrytimeinfo->enddate_annual, 'year' => $year);
+        return array('info'=>$entrytimeinfo,  'last_half'=>false, 'prev_record'=>true,  'last_year'=>$year-1, 'is_current'=>false,  'type' => 'annual', 'start' => $entrytimeinfo->startdate_half, 'end' => $entrytimeinfo->enddate_annual, 'year' => $year);
           
       }
         
-    else 
-        return false;
+    else
+      return false;
  
      }
 
