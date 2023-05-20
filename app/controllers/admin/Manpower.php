@@ -345,12 +345,18 @@ $half_end = $report_date_info->enddate_half;
     
     }
     
-    else if ($branch_id) {
+    else if ($branch_id) { 
 
         $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
+
+
         $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $half_start, $half_end));
-        $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'];
-        $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'];
+
+
+        $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'] ?? '';
+
+
+        $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'] ?? '';
     }
 
     else {
