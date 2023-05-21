@@ -25,7 +25,7 @@ class Manpower extends MY_Controller
 
     function indexold($branch_id = NULL)
     {
-       
+
         $this->sma->checkPermissions();
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
@@ -52,40 +52,39 @@ class Manpower extends MY_Controller
         else
             $currentmanpower = $this->getManpower();
 
-           
-
         $last_year =  date("Y", strtotime("-1 year"));
 
         $report_type = $this->report_type();
-		$start = $report_type['start'];
-		$end = $report_type['end'];
-		$year = $report_type['year'];
-		$cal_type = $report_type['type'];
+
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+        $year = $report_type['year'];
+        $cal_type = $report_type['type'];
         $report_info =  $report_type['info'];
 
-        if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
+        if ($report_type['type'] == 'annual' && $report_type['year'] == '2023') {
             $report_type['start'] = $report_type['info']->startdate_annual;
             $report_type['end'] = $report_type['info']->enddate_annual;
         }
 
-        
-        $this->data['memberlog'] = $this->memberlog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        
-        
-        $this->data['membercandidatelog'] = $this->membercandidatelog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->sma->print_arrays(  $this->data['memberlog']);
 
-        $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-
-        $this->data['manpower_record'] = $this->getmanpower_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
+        $this->data['memberlog'] = $this->memberlog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
 
 
-        $this->data['assolog'] = $this->assolog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postpone_asso'] = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postpone_ac'] = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
+        $this->data['membercandidatelog'] = $this->membercandidatelog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        // $this->sma->print_arrays($this->data['memberlog']);
 
-        $this->data['workerlog'] = $this->workerlog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
+        $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+
+        $this->data['manpower_record'] = $this->getmanpower_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+
+
+        $this->data['assolog'] = $this->assolog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postpone_asso'] = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postpone_ac'] = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+
+        $this->data['workerlog'] = $this->workerlog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
 
         // $this->sma->print_arrays($this->data['workerlog']);
 
@@ -102,10 +101,10 @@ class Manpower extends MY_Controller
         else
             $this->page_construct('manpower/index', $meta, $this->data, 'leftmenu/manpower');
     }
-    
+
     function index($branch_id = NULL)
     {
-       
+
         $this->sma->checkPermissions();
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
@@ -126,57 +125,57 @@ class Manpower extends MY_Controller
             $this->data['branch_id'] = $this->session->userdata('branch_id');
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
-        
+
         $report_type = $this->report_type();
-       
-		if( $report_type ==false) 
-        admin_redirect();
-        
+
+        if ($report_type == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type;
 
 
 
-		 
+
         $last_year = $report_type['last_year'];
-		$cal_type = $report_type['type'];
+        $cal_type = $report_type['type'];
 
 
         $report_info =  $report_type['info'];
 
         if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
-          //  $report_type['start'] = $report_type['info']->startdate_annual;
-          //  $report_type['end'] = $report_type['info']->enddate_annual;
+            //  $report_type['start'] = $report_type['info']->startdate_annual;
+            //  $report_type['end'] = $report_type['info']->enddate_annual;
         }
-       
 
-       //  $this->sma->print_arrays($report_type ); 
-      // $this->sma->print_arrays($report_type['last_half']);
+
+        //  $this->sma->print_arrays($report_type ); 
+        // $this->sma->print_arrays($report_type['last_half']);
 
         // memberlog membercandidatelog   manpower_record assolog   workerlog
-       
-        
-         $this->data['prev_manpower'] = $this->getPrev('annual',$last_year,$branch_id); 
-    
 
 
-        $this->data['memberlog'] = $this->manPowerLog('memberlog', $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['membercandidatelog'] = $this->manPowerLog('membercandidatelog', $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['assolog'] = $this->manPowerLog('assolog', $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['workerlog'] = $this->manPowerLog('workerlog', $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        
-        $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info,$report_type['last_half']);
+        $this->data['prev_manpower'] = $this->getPrev('annual', $last_year, $branch_id);
 
-        $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postpone_asso'] = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postpone_ac'] = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
+
+
+        $this->data['memberlog'] = $this->manPowerLog('memberlog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['membercandidatelog'] = $this->manPowerLog('membercandidatelog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['assolog'] = $this->manPowerLog('assolog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['workerlog'] = $this->manPowerLog('workerlog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+
+        $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
+
+        $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postpone_asso'] = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postpone_ac'] = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
         $this->data['m'] = 'manpowersummary';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('manpower')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
 
 
-       //  $this->sma->print_arrays( $this->data['report_info']); 
-        
+        //  $this->sma->print_arrays( $this->data['report_info']); 
+
 
 
         if ($branch_id)
@@ -186,12 +185,13 @@ class Manpower extends MY_Controller
     }
 
 
-    function manPowerLog($orgstatus, $start, $end, $branch_id,$cal_type=null,$report_type=null){
+    function manPowerLog($orgstatus, $start, $end, $branch_id, $cal_type = null, $report_type = null)
+    {
 
         // memberlog membercandidatelog   manpower_record assolog   workerlog
 
-       
-        
+
+
         switch ($orgstatus) {
             case 'memberlog':
                 $this->db
@@ -201,17 +201,17 @@ class Manpower extends MY_Controller
                 $this->db->group_by('in_out, process_id');
                 if ($branch_id)
                     $this->db->where('branch', $branch_id);
-                $q = $this->db->get();	
+                $q = $this->db->get();
                 break;
             case 'membercandidatelog':
                 $this->db
-                        ->select("COUNT(id) as member_candidate_number,process_id,in_out ", FALSE)
-                        ->from('member_candidatelog');
+                    ->select("COUNT(id) as member_candidate_number,process_id,in_out ", FALSE)
+                    ->from('member_candidatelog');
                 $this->db->where('process_date BETWEEN "' . $start . '" and "' . $end . '"');
                 $this->db->group_by('in_out, process_id');
                 if ($branch_id)
-                $this->db->where('branch', $branch_id);
-            $q = $this->db->get();	
+                    $this->db->where('branch', $branch_id);
+                $q = $this->db->get();
                 break;
             case 'assolog':
                 $this->db
@@ -220,22 +220,21 @@ class Manpower extends MY_Controller
                 $this->db->where('process_date BETWEEN "' . $start . '" and "' . $end . '"');
                 $this->db->group_by('in_out, process_id');
                 if ($branch_id)
-                $this->db->where('branch', $branch_id);
-            $q = $this->db->get();	
+                    $this->db->where('branch', $branch_id);
+                $q = $this->db->get();
                 break;
             case 'workerlog':
                 $this->db
-                ->select("COUNT(id) as worker_number,process_id,in_out  ", FALSE)
-                ->from('worker_decrease');
-            $this->db->where('date BETWEEN "' . $start . '" and "' . $end . '"');
-            $this->db->group_by('in_out, process_id');
-            if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-            $q = $this->db->get();	
-                    break;
-           
+                    ->select("COUNT(id) as worker_number,process_id,in_out  ", FALSE)
+                    ->from('worker_decrease');
+                $this->db->where('date BETWEEN "' . $start . '" and "' . $end . '"');
+                $this->db->group_by('in_out, process_id');
+                if ($branch_id)
+                    $this->db->where('branch_id', $branch_id);
+                $q = $this->db->get();
+                break;
         }
-        
+
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -243,15 +242,14 @@ class Manpower extends MY_Controller
             return $data;
         }
         return FALSE;
-
     }
 
     function postlog($orgstatus, $start, $end, $branch_id)
     {
-         $this->db
+        $this->db
             ->select("count(sma_postpone.id) as number", FALSE)
             ->from('postpone')
-			->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
+            ->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
             ->where('end_date', '2050-12-31')
             ->where('is_postpone', 1)
             ->where('sma_manpower.orgstatus_id', $orgstatus);
@@ -261,9 +259,9 @@ class Manpower extends MY_Controller
         $q = $this->db->get();
 
 
-        if($orgstatus==12) {
+        if ($orgstatus == 12) {
 
-           // echo $this->db->last_query();
+            // echo $this->db->last_query();
         }
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
@@ -273,22 +271,24 @@ class Manpower extends MY_Controller
         }
         return FALSE;
     }
-     
-     
-function getmanpower_summary($is_current, $start_date, $end_date, $branch_id = NULL,$cal_type=null,$report_date_info=null, $last_half=null)
-{
-    
-//$this->sma->print_arrays($report_date_info);
 
- 
 
-$half_start = $report_date_info->startdate_half;
-$half_end = $report_date_info->enddate_half;
+    function getmanpower_summary($is_current, $start_date, $end_date, $branch_id = NULL, $cal_type = null, $report_date_info = null, $last_half = null)
+    {
+        // $this->sma->print_arrays($report_date_info);
 
-    if($is_current==false){
-        
-        if ($branch_id)
-        $result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
+
+        $half_start = $report_date_info->startdate_half;
+        $half_end = $report_date_info->enddate_half;
+
+
+
+        if ($is_current == false) {
+
+            // $this->sma->print_arrays(99999);
+
+            if ($branch_id)
+                $result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
                                                         SUM(`associate_candidate_arrival`) associate_candidate_arrival, 
                                                         SUM(`associate_candidate_improvement_target`) associate_candidate_improvement_target, 
                                                         SUM(associate_candidate_endstd) associate_candidate_endstd, 
@@ -312,12 +312,12 @@ $half_end = $report_date_info->enddate_half;
                                                         SUM(`worker_demotion`) worker_demotion ,
                                                         SUM(`member_candidate_candidate_target`) member_candidate_candidate_target ,
                                                         SUM(id) id
-         from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
-                    
-                
-        else
-        
-        $result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
+         from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+
+
+            else
+
+                $result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
                                                     SUM(`associate_candidate_arrival`) associate_candidate_arrival, 
                                                     SUM(`associate_candidate_improvement_target`) associate_candidate_improvement_target, 
                                                     SUM(associate_candidate_endstd) associate_candidate_endstd, 
@@ -341,36 +341,28 @@ $half_end = $report_date_info->enddate_half;
                                                     SUM(`worker_demotion`) worker_demotion ,
                                                     SUM(`member_candidate_candidate_target`) member_candidate_candidate_target ,
                                                     SUM(id) id
-            from sma_manpower_record WHERE date BETWEEN ? AND ? ", array(  $start_date, $end_date));
-    
+            from sma_manpower_record WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
+        } else if ($branch_id) {
+
+            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+
+
+            $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $half_start, $half_end));
+
+
+            $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'] ?? '';
+
+
+            $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'] ?? '';
+        } else {
+            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
+            $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE date BETWEEN ? AND ? ", array($half_start, $half_end));
+        }
+
+        // $this->sma->print_arrays($result);
+
+        return $result;
     }
-    
-    else if ($branch_id) { 
-
-        $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
-
-
-        $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $half_start, $half_end));
-
-
-        $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'] ?? '';
-
-
-        $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'] ?? '';
-    }
-
-    else {
-        $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE date BETWEEN ? AND ? ", array(  $start_date, $end_date));
-        $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE date BETWEEN ? AND ? ", array(  $half_start, $half_end));
-        
-        
-       // $this->sma->print_arrays($result);
-    }
-
-  
-
-    return $result;
-}
 
 
 
@@ -378,46 +370,107 @@ $half_end = $report_date_info->enddate_half;
     {
         switch ($field) {
 
-            case 'membercode': $field = 'আইডি'; break;
-            case 'name': $field = 'নাম'; break;
-            case 'branch_name': $field = 'শাখা কোড'; break;
-            case 'mobile': $field = 'মোবাইল নং'; break;
-            case 'responsibility': $field = 'সর্বশেষ দায়িত্ব'; break;
-            case 'orgstatus_at_forum': $field = 'বৃহত্তর আন্দোলনের মান'; break;
-            case 'education_qualification': $field = 'শিক্ষাগত যোগ্যতা'; break;
-            case 'current_profession': $field = 'বর্তমান পেশা'; break;
-            case 'institution_type': $field = 'শিক্ষাপ্রতিষ্ঠানের ধরন'; break;
-            case 'institution_type_child': $field = 'শিক্ষাপ্রতিষ্ঠানের সাব ধরন'; break;
-            case 'sessionyear': $field = 'শ্রেণি/বর্ষ'; break;
-            case 'subject': $field = 'বিভাগ/বিষয়'; break;
-            case 'foreign_country': $field = 'দেশের নাম'; break;
-            case 'foreign_address': $field = 'শহরের নাম'; break;
-            case 'higher_education_institution': $field = 'শিক্ষা প্রতিষ্ঠানের নাম'; break;
-            case 'type_higher_education': $field = 'উচ্চশিক্ষার ধরন'; break;
-            case 'type_of_profession': $field = 'পেশার ধরন'; break;
-            case 'email': $field = 'ইমেইল'; break;
-            case 'is_forum': $field = 'ফোরামে যুক্ত হয়েছেন কিনা?'; break;
-            case 'date_death': $field = 'ইন্তেকালের তারিখ'; break;
-            case 'how_death': $field = 'কীভাবে'; break;
-            case 'opposition': $field = 'প্রতিপক্ষ'; break;
-            case 'myr_serial': $field = 'কততম শহিদ'; break;
-            case 'member_oath_date': $field = 'সদস্য হওয়ার তারিখ'; break;
-            case 'prossion_target': $field = 'পেশাগত টার্গেট-সেক্টর'; break;
-            case 'prossion_target_sub': $field = 'পেশাগত টার্গেট-সাব-সেক্টর'; break;
-            case 'studentlife': $field = 'ছাত্রত্ব'; break;
-            case 'district': $field = 'নিজ জেলা'; break;      
-            case 'thana_code': $field = 'থানা কোড'; break;  
-            case 'blood_group': $field = 'ব্লাড গ্রুপ'; break; 
-            
+            case 'membercode':
+                $field = 'আইডি';
+                break;
+            case 'name':
+                $field = 'নাম';
+                break;
+            case 'branch_name':
+                $field = 'শাখা কোড';
+                break;
+            case 'mobile':
+                $field = 'মোবাইল নং';
+                break;
+            case 'responsibility':
+                $field = 'সর্বশেষ দায়িত্ব';
+                break;
+            case 'orgstatus_at_forum':
+                $field = 'বৃহত্তর আন্দোলনের মান';
+                break;
+            case 'education_qualification':
+                $field = 'শিক্ষাগত যোগ্যতা';
+                break;
+            case 'current_profession':
+                $field = 'বর্তমান পেশা';
+                break;
+            case 'institution_type':
+                $field = 'শিক্ষাপ্রতিষ্ঠানের ধরন';
+                break;
+            case 'institution_type_child':
+                $field = 'শিক্ষাপ্রতিষ্ঠানের সাব ধরন';
+                break;
+            case 'sessionyear':
+                $field = 'শ্রেণি/বর্ষ';
+                break;
+            case 'subject':
+                $field = 'বিভাগ/বিষয়';
+                break;
+            case 'foreign_country':
+                $field = 'দেশের নাম';
+                break;
+            case 'foreign_address':
+                $field = 'শহরের নাম';
+                break;
+            case 'higher_education_institution':
+                $field = 'শিক্ষা প্রতিষ্ঠানের নাম';
+                break;
+            case 'type_higher_education':
+                $field = 'উচ্চশিক্ষার ধরন';
+                break;
+            case 'type_of_profession':
+                $field = 'পেশার ধরন';
+                break;
+            case 'email':
+                $field = 'ইমেইল';
+                break;
+            case 'is_forum':
+                $field = 'ফোরামে যুক্ত হয়েছেন কিনা?';
+                break;
+            case 'date_death':
+                $field = 'ইন্তেকালের তারিখ';
+                break;
+            case 'how_death':
+                $field = 'কীভাবে';
+                break;
+            case 'opposition':
+                $field = 'প্রতিপক্ষ';
+                break;
+            case 'myr_serial':
+                $field = 'কততম শহিদ';
+                break;
+            case 'member_oath_date':
+                $field = 'সদস্য হওয়ার তারিখ';
+                break;
+            case 'prossion_target':
+                $field = 'পেশাগত টার্গেট-সেক্টর';
+                break;
+            case 'prossion_target_sub':
+                $field = 'পেশাগত টার্গেট-সাব-সেক্টর';
+                break;
+            case 'studentlife':
+                $field = 'ছাত্রত্ব';
+                break;
+            case 'district':
+                $field = 'নিজ জেলা';
+                break;
+            case 'thana_code':
+                $field = 'থানা কোড';
+                break;
+            case 'blood_group':
+                $field = 'ব্লাড গ্রুপ';
+                break;
 
-            default: $field = $field; break;
 
+            default:
+                $field = $field;
+                break;
         }
         return $field;
     }
 
 
-    public function sheetcellValue($branch=null,$field_arr=null,$data=null,$process_Title=null )
+    public function sheetcellValue($branch = null, $field_arr = null, $data = null, $process_Title = null)
     {
         $style = array(
             'alignment' => array(
@@ -429,74 +482,87 @@ $half_end = $report_date_info->enddate_half;
 
         //for cell value
         $exColh = 'B';
-        foreach ($field_arr as $field) { 
+        foreach ($field_arr as $field) {
             $newName = $this->newName($field);
             $this->excel->getActiveSheet()->SetCellValue($exColh . '6', $newName);
             $this->excel->getActiveSheet()->getColumnDimension($exColh)->setWidth(20);
             $exColh++;
         }
 
-        $row = 7; $sQty = 0; $pQty = 0; $sAmt = 0; $pAmt = 0; $bQty = 0; $bAmt = 0; $pl = 0;
-        foreach ($data as $key=> $data_row) {
+        $row = 7;
+        $sQty = 0;
+        $pQty = 0;
+        $sAmt = 0;
+        $pAmt = 0;
+        $bQty = 0;
+        $bAmt = 0;
+        $pl = 0;
+        foreach ($data as $key => $data_row) {
 
-            $this->excel->getActiveSheet()->SetCellValue('A' . $row, $key+1);
+            $this->excel->getActiveSheet()->SetCellValue('A' . $row, $key + 1);
             $this->excel->getActiveSheet()->getStyle('A' . $row)->applyFromArray($style);
 
             $exCol = 'B';
             foreach ($field_arr as $field) {
 
-                if($field=='institution_type_child') // getvalue($value,$array, $field)
-                $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $this->getvalue($data_row->institution_type_child, $institution_type,'institution_type'));
-                else 
-                $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $data_row->{$field});
+                if ($field == 'institution_type_child') // getvalue($value,$array, $field)
+                    $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $this->getvalue($data_row->institution_type_child, $institution_type, 'institution_type'));
+                else
+                    $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $data_row->{$field});
 
                 $this->excel->getActiveSheet()->getStyle($exCol . $row)->applyFromArray($style);
 
                 $exCol++;
             }
             $row++;
-        } 
- 
-        //>>>>>>>>>>>for Title >>>>>>>>>>>>>>>>            
-        $lastmarg1= $exColh.'1'; $lastmarg2= $exColh.'2';  $lastmarg3= $exColh.'3';  $lastmarg4= $exColh.'4';  $lastmarg5= $exColh.'5';
-        $this->excel->getActiveSheet()->mergeCells("A1:$lastmarg1");$this->excel->getActiveSheet()->mergeCells("A2:$lastmarg2");$this->excel->getActiveSheet()->mergeCells("A3:$lastmarg3");$this->excel->getActiveSheet()->mergeCells("A4:$lastmarg4");$this->excel->getActiveSheet()->mergeCells("A5:$lastmarg5");
-        $this->excel->getActiveSheet()->getStyle("A1:$lastmarg5")->applyFromArray($style)->getFont()->setBold(true)->setSize(16); 
-        $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim'); 
-        $this->excel->getActiveSheet()->SetCellValue('A3', $process_Title);        
-        $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' .($branch ? $branch : lang('all_branches')));
+        }
 
-       // >>>>>>>>>>>>>>>>>> for table heading
+        //>>>>>>>>>>>for Title >>>>>>>>>>>>>>>>            
+        $lastmarg1 = $exColh . '1';
+        $lastmarg2 = $exColh . '2';
+        $lastmarg3 = $exColh . '3';
+        $lastmarg4 = $exColh . '4';
+        $lastmarg5 = $exColh . '5';
+        $this->excel->getActiveSheet()->mergeCells("A1:$lastmarg1");
+        $this->excel->getActiveSheet()->mergeCells("A2:$lastmarg2");
+        $this->excel->getActiveSheet()->mergeCells("A3:$lastmarg3");
+        $this->excel->getActiveSheet()->mergeCells("A4:$lastmarg4");
+        $this->excel->getActiveSheet()->mergeCells("A5:$lastmarg5");
+        $this->excel->getActiveSheet()->getStyle("A1:$lastmarg5")->applyFromArray($style)->getFont()->setBold(true)->setSize(16);
+        $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+        $this->excel->getActiveSheet()->SetCellValue('A3', $process_Title);
+        $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch ? $branch : lang('all_branches')));
+
+        // >>>>>>>>>>>>>>>>>> for table heading
         $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
         $this->excel->getActiveSheet()->SetCellValue('A6', lang('ক্রম'));
-        $lastmarg6= $exColh.'6';
+        $lastmarg6 = $exColh . '6';
         $this->excel->getActiveSheet()->getStyle("A6:$lastmarg6")->applyFromArray($style)->getFont()->setBold(true)->setSize(12);
 
-       $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
-       $this->excel->getActiveSheet()->getStyle('C2:AE' . $row)->getAlignment()->setWrapText(true);
-
+        $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+        $this->excel->getActiveSheet()->getStyle('C2:AE' . $row)->getAlignment()->setWrapText(true);
     }
-	
 
- 
-function getmanpower_summary3($report_type, $start_date, $end_date, $branch_id = NULL,$cal_type=null,$report_date_info=null)
+
+
+    function getmanpower_summary3($report_type, $start_date, $end_date, $branch_id = NULL, $cal_type = null, $report_date_info = null)
     {
-        if($this->input->get('type')){
-            if($cal_type == 'annual') {
+        if ($this->input->get('type')) {
+            if ($cal_type == 'annual') {
                 $start_date = $report_date_info->startdate_half;
                 $end_date = $report_date_info->enddate_annual;
-            }
-            else if($cal_type == 'half_yearly') {
-            $start_date = $report_date_info->startdate_half;
-            $end_date = $report_date_info->enddate_half;
+            } else if ($cal_type == 'half_yearly') {
+                $start_date = $report_date_info->startdate_half;
+                $end_date = $report_date_info->enddate_half;
             }
         }
-	
-	 
-		
-		if($this->input->get('type')){
-			
-			if ($branch_id)
-			$result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
+
+
+
+        if ($this->input->get('type')) {
+
+            if ($branch_id)
+                $result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
                                                             SUM(`associate_candidate_arrival`) associate_candidate_arrival, 
                                                             SUM(`associate_candidate_improvement_target`) associate_candidate_improvement_target, 
                                                             SUM(associate_candidate_endstd) associate_candidate_endstd, 
@@ -520,12 +586,12 @@ function getmanpower_summary3($report_type, $start_date, $end_date, $branch_id =
                                                             SUM(`worker_demotion`) worker_demotion ,
                                                             SUM(`member_candidate_candidate_target`) member_candidate_candidate_target ,
                                                             SUM(id) id
-             from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
-                        
-                    
-		    else
-			
-		    $result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
+             from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+
+
+            else
+
+                $result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
                                                         SUM(`associate_candidate_arrival`) associate_candidate_arrival, 
                                                         SUM(`associate_candidate_improvement_target`) associate_candidate_improvement_target, 
                                                         SUM(associate_candidate_endstd) associate_candidate_endstd, 
@@ -549,43 +615,39 @@ function getmanpower_summary3($report_type, $start_date, $end_date, $branch_id =
                                                         SUM(`worker_demotion`) worker_demotion ,
                                                         SUM(`member_candidate_candidate_target`) member_candidate_candidate_target ,
                                                         SUM(id) id
-                from sma_manpower_record WHERE date BETWEEN ? AND ? ", array(  $start_date, $end_date));
-		
-		}
-		
-        else if ($branch_id)
-            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
+                from sma_manpower_record WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
+        } else if ($branch_id)
+            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 
         else
-            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE date BETWEEN ? AND ? ", array(  $start_date, $end_date));
+            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
 
         return $result;
-}
+    }
 
 
 
 
 
 
-    function getmanpower_summary2($report_type, $start_date, $end_date, $branch_id = NULL,$cal_type=null,$report_date_info=null)
+    function getmanpower_summary2($report_type, $start_date, $end_date, $branch_id = NULL, $cal_type = null, $report_date_info = null)
     {
 
 
-	if($this->input->get('type')){
-        if($cal_type == 'annual') {
-            $start_date = $report_date_info->startdate_half;
-            $end_date = $report_date_info->enddate_annual;
-          }
-		else if($cal_type == 'half_yearly') {
-          $start_date = $report_date_info->startdate_half;
-          $end_date = $report_date_info->enddate_half;
+        if ($this->input->get('type')) {
+            if ($cal_type == 'annual') {
+                $start_date = $report_date_info->startdate_half;
+                $end_date = $report_date_info->enddate_annual;
+            } else if ($cal_type == 'half_yearly') {
+                $start_date = $report_date_info->startdate_half;
+                $end_date = $report_date_info->enddate_half;
+            }
         }
-	}
-	
-	 
-		
-		if($this->input->get('type')){
-			$result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
+
+
+
+        if ($this->input->get('type')) {
+            $result =  $this->site->query_binding("SELECT SUM(`associate_candidate_improvement`) associate_candidate_improvement, 
 SUM(`associate_candidate_arrival`) associate_candidate_arrival, 
 SUM(`associate_candidate_improvement_target`) associate_candidate_improvement_target, 
 SUM(associate_candidate_endstd) associate_candidate_endstd, 
@@ -609,15 +671,12 @@ SUM(`worker_death`) worker_death,
 SUM(`worker_demotion`) worker_demotion ,
 SUM(`member_candidate_candidate_target`) member_candidate_candidate_target ,
 SUM(id) id
-from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
-			
-		}
-		
-        else if ($branch_id)
-            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $start_date, $end_date));
+from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+        } else if ($branch_id)
+            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 
         else
-            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE date BETWEEN ? AND ? ", array(  $start_date, $end_date));
+            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
 
 
 
@@ -645,17 +704,17 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-    
 
 
 
 
-   
 
-    function memberlog($type, $start, $end, $branch_id,$cal_type=null,$report_type=null)
+
+
+    function memberlog($type, $start, $end, $branch_id, $cal_type = null, $report_type = null)
     {
-        
- 
+
+
         $this->db
             ->select("COUNT(id) as member_number,process_id,in_out ", FALSE)
             ->from('memberlog');
@@ -668,7 +727,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         $q = $this->db->get();
 
-	
+
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -676,8 +735,6 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             return $data;
         }
         return FALSE;
-
-
     }
 
 
@@ -685,13 +742,13 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-    function assolog($type, $start, $end, $branch_id,$cal_type=null,$report_type=null)
+    function assolog($type, $start, $end, $branch_id, $cal_type = null, $report_type = null)
     {
 
-	  
-		
-	
-		
+
+
+
+
         $this->db
             ->select("COUNT(id) as associate_number,process_id,in_out ", FALSE)
             ->from('associatelog');
@@ -717,8 +774,8 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-    function workerlog($type, $start, $end, $branch_id,$cal_type=null,$report_type=null)
-    { 
+    function workerlog($type, $start, $end, $branch_id, $cal_type = null, $report_type = null)
+    {
         $this->db
             ->select("COUNT(id) as worker_number,process_id,in_out  ", FALSE)
             ->from('worker_decrease');
@@ -745,9 +802,9 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-    function membercandidatelog($type, $start, $end, $branch_id,$cal_type=null,$report_type=null)
+    function membercandidatelog($type, $start, $end, $branch_id, $cal_type = null, $report_type = null)
     {
- 
+
         $this->db
             ->select("COUNT(id) as member_candidate_number,process_id,in_out ", FALSE)
             ->from('member_candidatelog');
@@ -830,10 +887,10 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
         $report_type = $this->report_type();
-       
-		if( $report_type ==false) 
-        admin_redirect();
-        
+
+        if ($report_type == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type;
 
 
@@ -863,8 +920,8 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
     function getIncreaseMember($process_id, $branch_id = NULL)
     {
-		//$type =  $this->input->get('type');
-		//$year =  $this->input->get('year');
+        //$type =  $this->input->get('type');
+        //$year =  $this->input->get('year');
         $this->sma->checkPermissions('index', TRUE);
 
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {
@@ -872,7 +929,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $branch_id = $user->branch_id;
         }
 
-		$report_type = $this->report_type();
+        $report_type = $this->report_type();
         //$this->sma->print_arrays($report_type);
 
         $this->load->library('datatables');
@@ -909,36 +966,34 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->datatables->join('branches', 'branches.id=memberlog.branch', 'left');
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         }
- 
-
-
-$start = $report_type['start'];
-$end = $report_type['end'];
 
 
 
-$this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-
-if($process_id==2)
-$this->datatables->add_column("Edit Output", "<a class=\"tip\" title='" . 'Edit Output' . "' href='" . admin_url('manpower/memberoutput/$1') . "'>Output <i class=\"fa fa-pencil\"></i></a>", "id");
-
-else 
-$this->datatables->add_column("", "");
+        $start = $report_type['start'];
+        $end = $report_type['end'];
 
 
-$this->datatables->unset_column("id");
+
+        $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+
+        if ($process_id == 2)
+            $this->datatables->add_column("Edit Output", "<a class=\"tip\" title='" . 'Edit Output' . "' href='" . admin_url('manpower/memberoutput/$1') . "'>Output <i class=\"fa fa-pencil\"></i></a>", "id");
+
+        else
+            $this->datatables->add_column("", "");
+
+
+        $this->datatables->unset_column("id");
 
 
         echo $this->datatables->generate();
-   
-   
     }
 
 
 
-    
+
     function memberoutput($id = NULL)
-    {  
+    {
 
         $this->sma->checkPermissions('index', TRUE);
         $this->load->helper('security');
@@ -950,8 +1005,8 @@ $this->datatables->unset_column("id");
         $manpower_id = $memberlog->manpower_id;
         $manpower = $this->site->getByID('manpower', 'id', $manpower_id);
 
-        
-       // $this->sma->print_arrays($manpower);
+
+        // $this->sma->print_arrays($manpower);
 
 
         $this->form_validation->set_rules('logid', 'ID', 'required');
@@ -982,7 +1037,7 @@ $this->datatables->unset_column("id");
                 'member_arts' => $this->input->post('member_arts') ? $this->input->post('member_arts') : 0
             );
 
-            	 
+
             $manpowerinfolog = array(
                 'institution_type' => $this->input->post('institution_type_id') ? $this->input->post('institution_type_id') : 0,
                 'single_digit' => $this->input->post('member_single_digit') ? $this->input->post('member_single_digit') : 0,
@@ -1007,11 +1062,11 @@ $this->datatables->unset_column("id");
         }
 
         if ($this->form_validation->run() == true) {
-  
 
-           // $this->sma->print_arrays($memberlog, $manpower_id,$manpower);
 
-            $this->site->updateData('memberlog', $datalog , array('id'=>$id));
+            // $this->sma->print_arrays($memberlog, $manpower_id,$manpower);
+
+            $this->site->updateData('memberlog', $datalog, array('id' => $id));
 
 
 
@@ -1020,37 +1075,30 @@ $this->datatables->unset_column("id");
             //      'institution_type' => $datalog['institution_id'],
             // );
 
-            
 
 
-            $this->site->updateData('manpower', $manpowerinfolog, array('id' => $manpower_id, 'branch'=>$memberlog->branch));
- 
-          $this->session->set_flashdata('message', 'Updated');
+
+            $this->site->updateData('manpower', $manpowerinfolog, array('id' => $manpower_id, 'branch' => $memberlog->branch));
+
+            $this->session->set_flashdata('message', 'Updated');
             admin_redirect('manpower/memberincreaselist/2');
         } else {
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
 
             //  $this->data['branches'] = $branches;
- 
-            
+
+
             $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
 
             $this->data['memberlog'] = $memberlog;
             $this->data['manpower'] = $manpower;
 
-           // $this->sma->print_arrays($this->data['manpower']);
+            // $this->sma->print_arrays($this->data['manpower']);
 
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('manpower/memberincreaselist/2'), 'page' => 'Member Improve'), array('link' => '#', 'page' => 'বৃদ্ধিকৃতদের আউটপুট'));
             $meta = array('page_title' => 'বৃদ্ধিকৃতদের আউটপুট', 'bc' => $bc);
             $this->page_construct('manpower/member/output', $meta, $this->data, 'leftmenu/manpower');
         }
-
-
-
-
-
-
-
     }
 
 
@@ -1064,12 +1112,12 @@ $this->datatables->unset_column("id");
 
 
         $report_type = $this->report_type();
-       
-		if( $report_type ==false) 
-        admin_redirect();
-        
+
+        if ($report_type == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type;
-        
+
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
@@ -1102,8 +1150,8 @@ $this->datatables->unset_column("id");
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-   $type =  $this->input->get('type');     
-$report_type = $this->report_type();
+        $type =  $this->input->get('type');
+        $report_type = $this->report_type();
 
 
         $this->load->library('datatables');
@@ -1131,10 +1179,10 @@ $report_type = $this->report_type();
 
         $start = $report_type['start'];
         $end = $report_type['end'];
- 
 
-$this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-//echo $start.' >> '. $end;
+
+        $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+        //echo $start.' >> '. $end;
 
         echo $this->datatables->generate();
     }
@@ -1292,13 +1340,13 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
         $action .= '</ul>
         </div></div>';
 
-        
-       if($branch_id)
-             $is_changeable = $this->site->check_confirm($branch_id, date('Y-m-d')); 
 
-        else 
-             $is_changeable  = true;
-       
+        if ($branch_id)
+            $is_changeable = $this->site->check_confirm($branch_id, date('Y-m-d'));
+
+        else
+            $is_changeable  = true;
+
 
         $process_list = array(
             8 => 'ছাত্রত্ব শেষ',
@@ -1328,8 +1376,8 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
         $decrease_button .= $li . ' </ul>
         </div></div>';
 
-      
-   
+
+
 
         $this->load->library('datatables');
 
@@ -1352,15 +1400,15 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         }
 
-        
-       
-       
+
+
+
 
         $postpone = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Postpone' . "' href='" . admin_url('manpower/memberpostpone/$1') . "' data-toggle='modal' data-target='#myModal'>মূলতবী <i class=\"fa fa-minus\"></i></a>";
         if (!$is_changeable) {
-            $decrease_button='';
+            $decrease_button = '';
             $postpone = '';
-          }
+        }
 
 
         $this->datatables->add_column("Decrease", $decrease_button, "manpowerid");
@@ -1400,18 +1448,14 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
         $process = $this->site->getByID('process', 'id', $process_id);
 
 
-        $is_changeable = $this->site->check_confirm($manpower->branch, date('Y-m-d')); 
-       
-        
-        if($is_changeable==false)
-		{	
-			$this->data['modal_js'] = $this->site->modal_js();
-			$this->data['msg'] = 'Report has been confirmed!!! You can\'t update/change info.';
-			$this->load->view($this->theme . 'manpower/decrease/pending', $this->data);
-			 
-		}
-		
-        else if ($manpower->is_pending == 1) {
+        $is_changeable = $this->site->check_confirm($manpower->branch, date('Y-m-d'));
+
+
+        if ($is_changeable == false) {
+            $this->data['modal_js'] = $this->site->modal_js();
+            $this->data['msg'] = 'Report has been confirmed!!! You can\'t update/change info.';
+            $this->load->view($this->theme . 'manpower/decrease/pending', $this->data);
+        } else if ($manpower->is_pending == 1) {
             $this->data['modal_js'] = $this->site->modal_js();
             $this->data['msg'] = 'His transfer status is still pending.';
             $this->load->view($this->theme . 'manpower/decrease/pending', $this->data);
@@ -1461,13 +1505,13 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
 
                 if ($process_id == 15) {
 
-                    $is_changeable_2 = $this->site->check_confirm($newbranchid, date('Y-m-d')); 
-            
-                    if( $is_changeable_2 ==false){
-                      $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
-                      redirect($_SERVER["HTTP_REFERER"]);
+                    $is_changeable_2 = $this->site->check_confirm($newbranchid, date('Y-m-d'));
+
+                    if ($is_changeable_2 == false) {
+                        $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
+                        redirect($_SERVER["HTTP_REFERER"]);
                     }
-                
+
 
                     $update_15 = array();
                     if ($this->input->post('sessionyear')) {
@@ -1613,7 +1657,7 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
                 }
 
 
-                if(in_array($processid, array( 8,9,10,11,12,14 ) )){
+                if (in_array($processid, array(8, 9, 10, 11, 12, 14))) {
                     $manpower_update_arr['studentlife'] = 2;
                 }
 
@@ -1705,16 +1749,14 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
 
         if ($this->form_validation->run() == true) {
 
-            $is_changeable = $this->site->check_confirm($manpower->branch, date('Y-m-d')); 
-       
-        
-            if($is_changeable==false)
-            {	
+            $is_changeable = $this->site->check_confirm($manpower->branch, date('Y-m-d'));
+
+
+            if ($is_changeable == false) {
                 $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
                 redirect($_SERVER["HTTP_REFERER"]);
-                 
             }
-            
+
             $manpowerid = $this->input->post('manpower_id');
             $branchid = $this->input->post('branch_id');
             $note = $this->input->post('note');
@@ -1742,8 +1784,8 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
 
             $manpower_update_arr = array();
 
-            
-             $manpower_update_arr['is_postpone'] = 1;
+
+            $manpower_update_arr['is_postpone'] = 1;
             if ($this->input->post('sessionyear')) {
                 $manpower_update_arr['sessionyear'] = $this->input->post('sessionyear');
             }
@@ -1859,12 +1901,12 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
 
             $manpower_update_arr = array();
 
-            
+
             $manpower_update_arr['is_postpone'] = 0;
 
-            $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' =>$manpower->id));
-     
- 
+            $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpower->id));
+
+
 
             $this->session->set_flashdata('message', 'Postpone withdrawn successfully');
             admin_redirect("manpower/postponelist");
@@ -1917,7 +1959,7 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
 
 
 
-        
+
 
         if ($this->form_validation->run() == true) {
 
@@ -1927,11 +1969,11 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
 
 
 
-            $is_changeable = $this->site->check_confirm($manpower->branch, date('Y-m-d')); 
+            $is_changeable = $this->site->check_confirm($manpower->branch, date('Y-m-d'));
 
-            if($is_changeable==false){
-              $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
-              redirect($_SERVER["HTTP_REFERER"]);
+            if ($is_changeable == false) {
+                $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
+                redirect($_SERVER["HTTP_REFERER"]);
             }
 
 
@@ -1973,23 +2015,23 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
                 'member_arts' => $this->input->post('member_arts') ? $this->input->post('member_arts') : 0
             );
 
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             // $this->sma->print_arrays($data, $warehouse_qty, $product_attributes);
         }
@@ -1997,7 +2039,7 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
         if ($this->form_validation->run() == true) {
 
 
- 
+
 
             //new member
             $return_id = $this->site->insertData('member', $data, 'id');
@@ -2032,7 +2074,7 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
                 'science' => $this->input->post('member_science') ? $this->input->post('member_science') : 0,
                 'business' => $this->input->post('member_business') ? $this->input->post('member_business') : 0,
                 'arts' => $this->input->post('member_arts') ? $this->input->post('member_arts') : 0
-             );
+            );
 
             //sessionyear
             //studentlife
@@ -2159,7 +2201,7 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
 
         if ($rows) {
             foreach ($rows as $row) {
-                $pr[] = array('id' => $row->id, 'institution_type'=> $row->institution_type, 'text' => $row->name . '(' . $row->associatecode . ')');
+                $pr[] = array('id' => $row->id, 'institution_type' => $row->institution_type, 'text' => $row->name . '(' . $row->associatecode . ')');
             }
             $this->sma->send_json($pr);
         } else {
@@ -2608,8 +2650,8 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
         $report_type = $this->report_type();
 
 
-        $type =  $this->input->get('type'); 
-		
+        $type =  $this->input->get('type');
+
         $start = $report_type['start'];
         $end = $report_type['end'];
 
@@ -2659,55 +2701,55 @@ $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $
             $this->excel->getActiveSheet()->setTitle('Member Increase list');
 
 
-//eeee
+            //eeee
 
-switch ($process_id) {
-    case 2:
-        $field_arr = array(
-            'membercode',
-            'name',
-            'branch_name',
-            'institution_type',
-            'sessionyear',
-            'subject',
-            'responsibility',
-            'member_oath_date',
-            'prossion_target',
-            'prossion_target_sub',
-            'studentlife',
-            'district',
-        );
-       
-        break;
-    case 15:
-        $field_arr = array(
-            'membercode',
-            'name',
-            'branch_name',
-            'institution_type',
-            'sessionyear',
+            switch ($process_id) {
+                case 2:
+                    $field_arr = array(
+                        'membercode',
+                        'name',
+                        'branch_name',
+                        'institution_type',
+                        'sessionyear',
+                        'subject',
+                        'responsibility',
+                        'member_oath_date',
+                        'prossion_target',
+                        'prossion_target_sub',
+                        'studentlife',
+                        'district',
+                    );
+
+                    break;
+                case 15:
+                    $field_arr = array(
+                        'membercode',
+                        'name',
+                        'branch_name',
+                        'institution_type',
+                        'sessionyear',
 
 
-        );
-       
-        break;
-    
-    default:
-        # code...
-        break;
-}
+                    );
 
-//  for cellValue 
-$branch_id=$branch ? $branch->id : lang('all_branches');
-$process_name=$process ? $process->process : '';
-$process_Title = 'সদস্য বৃদ্ধি : '.$process_name;
+                    break;
 
-$this->sheetcellValue($branch_id,$field_arr,$data,$process_Title); 
+                default:
+                    # code...
+                    break;
+            }
 
-         
-            $filename = (isset($branch->code) ? $branch->code : '' ).'member_increase_report' . str_replace(" ", "", $process->process);
-          
-           
+            //  for cellValue 
+            $branch_id = $branch ? $branch->id : lang('all_branches');
+            $process_name = $process ? $process->process : '';
+            $process_Title = 'সদস্য বৃদ্ধি : ' . $process_name;
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
+
+
+            $filename = (isset($branch->code) ? $branch->code : '') . 'member_increase_report' . str_replace(" ", "", $process->process);
+
+
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
@@ -2738,17 +2780,17 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
         }
 
         $report_type = $this->report_type();
-        
-        
-         $type =  $this->input->get('type'); 
-		
-         $start = $report_type['start'];
-         $end = $report_type['end'];
-        
-        
+
+
+        $type =  $this->input->get('type');
+
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+
+
         $process = $this->site->getByID('process', 'id', $process_id);
 
-      
+
 
         $this->db
             ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   
@@ -2795,94 +2837,93 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
             $this->excel->setActiveSheetIndex(0);
             $this->excel->getActiveSheet()->setTitle('Member Decrease list');
 
-            	//cccc
+            //cccc
 
-                 // aaaa
+            // aaaa
 
-        $field_arr = array(
-            'membercode',
-            'name',
-            'branch_name',
-            'mobile',
-            'responsibility'
-        );
+            $field_arr = array(
+                'membercode',
+                'name',
+                'branch_name',
+                'mobile',
+                'responsibility'
+            );
 
-        // $this->sma->print_arrays($process_id);
+            // $this->sma->print_arrays($process_id);
 
-        switch ($process_id) {
+            switch ($process_id) {
 
-            case 8:
-                $field_arr_add = array(
-                    'orgstatus_at_forum',
-                    'education_qualification',
-                    'current_profession',
-                    'district'
-                );
-                $field_arr = array_merge($field_arr,$field_arr_add );
-                break;
+                case 8:
+                    $field_arr_add = array(
+                        'orgstatus_at_forum',
+                        'education_qualification',
+                        'current_profession',
+                        'district'
+                    );
+                    $field_arr = array_merge($field_arr, $field_arr_add);
+                    break;
 
-            case 15:
-                $field_arr_add = array(
-                    'institution_type',
-                    'sessionyear'
-                );
-                $field_arr = array_merge($field_arr,$field_arr_add );
-                break;
+                case 15:
+                    $field_arr_add = array(
+                        'institution_type',
+                        'sessionyear'
+                    );
+                    $field_arr = array_merge($field_arr, $field_arr_add);
+                    break;
 
-            case 12:
-                $field_arr_add = array(
-                    'institution_type',
-                    'sessionyear',
-                    'subject'
-                );
-                $field_arr = array_merge($field_arr,$field_arr_add );
-                break;
+                case 12:
+                    $field_arr_add = array(
+                        'institution_type',
+                        'sessionyear',
+                        'subject'
+                    );
+                    $field_arr = array_merge($field_arr, $field_arr_add);
+                    break;
 
-            case 11:
-                $field_arr_add = array(
-                    'foreign_country',
-                    'higher_education_institution',
-                    'type_higher_education',
-                    'email',
-                    'is_forum'
-                );
-            case 14:
-                $field_arr_add = array(
-                    'foreign_country',
-                    'foreign_address',
-                    'type_of_profession',
-                    'email',
-                    'is_forum'
-                );
-            case 9:
-                $field_arr_add = array(
-                    'date_death',
-                    'how_death'
-                );
-            case 10:
-                $field_arr_add = array(
-                    'opposition',
-                    'myr_serial',
-                    'date_death'
-                );
+                case 11:
+                    $field_arr_add = array(
+                        'foreign_country',
+                        'higher_education_institution',
+                        'type_higher_education',
+                        'email',
+                        'is_forum'
+                    );
+                case 14:
+                    $field_arr_add = array(
+                        'foreign_country',
+                        'foreign_address',
+                        'type_of_profession',
+                        'email',
+                        'is_forum'
+                    );
+                case 9:
+                    $field_arr_add = array(
+                        'date_death',
+                        'how_death'
+                    );
+                case 10:
+                    $field_arr_add = array(
+                        'opposition',
+                        'myr_serial',
+                        'date_death'
+                    );
 
 
-                $field_arr = array_merge($field_arr,$field_arr_add );
-                break;
-            
-        }
+                    $field_arr = array_merge($field_arr, $field_arr_add);
+                    break;
+            }
 
-                //  for cellValue 
-                $branch_id=$branch ? $branch->id : lang('all_branches');
-                $process_name=$process ? $process->process : '';
-                $process_Title = 'সদস্য ঘাটতি : '.$process_name;
-              
-                $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title); 
-                
-           
-            $filename = (isset($branch->code) ? $branch->code : '' ).'member_decrease_report' . str_replace(" ", "", $process->process);
-           
-           
+            //  for cellValue 
+            $branch_id = $branch ? $branch->id : lang('all_branches');
+            $process_name = $process ? $process->process : '';
+            $process_Title = 'সদস্য ঘাটতি : ' . $process_name;
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
+
+
+            $filename = (isset($branch->code) ? $branch->code : '') . 'member_decrease_report' . str_replace(" ", "", $process->process);
+
+
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
@@ -2892,8 +2933,8 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
 
 
 
-    
- 
+
+
 
 
 
@@ -2905,10 +2946,10 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
             $result =  $this->site->query_binding("SELECT SUM(`member`) as  member, SUM(`member_candidate`) as member_candidate , SUM(`associate`) as associate , SUM(`associate_candidate`) as associate_candidate , SUM(`worker`) as worker , SUM(`supporter`) as supporter , SUM(`friend`) as friend , SUM(`non_muslim_supporter`) as  non_muslim_supporter, SUM(`non_muslim_friend`) as non_muslim_friend , SUM(`wellwisher`) as  wellwisher           
             FROM `sma_calculated_mapower` WHERE `report_type` = ? AND branch_id = ? AND calculated_year = ? ", array($report_type, $branch_id, $last_year));
         } else {
-            
+
             $result =  $this->site->query_binding("SELECT SUM(`member`) as  member, SUM(`member_candidate`) as member_candidate , SUM(`associate`) as associate , SUM(`associate_candidate`) as associate_candidate , SUM(`worker`) as worker , SUM(`supporter`) as supporter , SUM(`friend`) as friend , SUM(`non_muslim_supporter`) as  non_muslim_supporter, SUM(`non_muslim_friend`) as non_muslim_friend , SUM(`wellwisher`) as  wellwisher           
             FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $last_year));
-         }
+        }
 
 
         //  print_r($this->db->last_query());   
@@ -2934,6 +2975,12 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
     function exportsummary_not_in_use($branch_id = NULL)
     {
 
+        if ($this->input->get('branch')) {
+            $branch_id = $this->input->get('branch');
+        }
+
+        //  $this->sma->print_arrays($branch_id);
+
         $this->sma->checkPermissions('index', TRUE);
 
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
@@ -2946,28 +2993,14 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
         }
 
 
-
-
-
         $last_year =  date("Y", strtotime("-1 year"));
 
-        
-		$report_type = $this->report_type();
-		 
-			
-		$start = $report_type['start'];
-		$end = $report_type['end'];
-		$year = $report_type['year'];
-		$cal_type = $report_type['type'];
+        $report_type = $this->report_type();
 
-
-
-
-
-
-
-
-
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+        $year = $report_type['year'];
+        $cal_type = $report_type['type'];
 
         $this->db
             ->select("COUNT(id) as member_number,process_id,in_out ", FALSE)
@@ -2988,29 +3021,34 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
         }
 
 
-        $postpone = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_type);
-        $datamc = $this->membercandidatelog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_type);
-        $manpower_record = $this->getmanpower_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_type);
-        $postponemc = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_type);
+        $postpone = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_type);
+        $datamc = $this->membercandidatelog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_type);
 
-        $dataasso = $this->assolog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_type);
-        $postponeasso = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_type);
-        $postponeac = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_type);
+        // $manpower_record = $this->getmanpower_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_type);
 
-        $dataworker = $this->workerlog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_type);
+        $report_info =  $report_type['info'];
+
+        //  $this->sma->print_arrays($report_type);
+
+        $manpower_record = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
+
+        $postponemc = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_type);
+
+        $dataasso = $this->assolog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_type);
+        $postponeasso = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_type);
+        $postponeac = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_type);
+
+        $dataworker = $this->workerlog($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_type);
 
 
-
+        // $this->sma->print_arrays($branch_id);
 
         if (1 || !empty($data)) {
 
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
             $this->excel->getActiveSheet()->setTitle('Manpower Summary');
-
-
-
-
+            
             $this->excel->getActiveSheet()->mergeCells('A1:T1');
             $this->excel->getActiveSheet()->mergeCells('A2:T2');
             $this->excel->getActiveSheet()->mergeCells('A3:T3');
@@ -3135,7 +3173,7 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
                 ->setRGB('03bb85');
 
             $total_pre = 0;
-            $prev_manpower = $this->getPrev($report_type['type'],$last_year,$branch_id);
+            $prev_manpower = $this->getPrev($report_type['type'], $last_year, $branch_id);
 
             ////member
             $row = 14;
@@ -3474,8 +3512,8 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
         }
         if ($branch)
             $this->db->where($this->db->dbprefix('branches') . ".id", $branch);
-            
-          //  $this->db->where($this->db->dbprefix('manpower') . ".id", 7146);
+
+        //  $this->db->where($this->db->dbprefix('manpower') . ".id", 7146);
 
         $q = $this->db->get();
 
@@ -3493,23 +3531,23 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
             $this->excel->setActiveSheetIndex(0);
             $this->excel->getActiveSheet()->setTitle('Member list');
 
-           
+
             $field_arr = array(
                 'membercode',
                 'name',
                 'branch_name',
                 'institution_type',
-                'institution_type_child' ,
+                'institution_type_child',
                 'sessionyear',
                 'subject',
                 'responsibility',
-                'member_oath_date',				
-                'prossion_target',				
-                'prossion_target_sub',				
-                'studentlife',				
-                'district',	
-                'thana_code',	
-                
+                'member_oath_date',
+                'prossion_target',
+                'prossion_target_sub',
+                'studentlife',
+                'district',
+                'thana_code',
+
                 'blood_group',
                 'single_digit',
                 'jsc_jdc',
@@ -3530,16 +3568,16 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
 
             );
 
-         //   prossion_target,prossion_target_sub,thana_code,institution_type_child
+            //   prossion_target,prossion_target_sub,thana_code,institution_type_child
 
             //  for cellValue 
-            $process_Title = 'সদস্য তালিকা';                            
-            $this->sheetcellValue($branch,$field_arr,$data,$process_Title); 
-            
-        //    $filename = 'associate_list'.($branch ? '_'.$branch: '');
+            $process_Title = 'সদস্য তালিকা';
+            $this->sheetcellValue($branch, $field_arr, $data, $process_Title);
+
+            //    $filename = 'associate_list'.($branch ? '_'.$branch: '');
 
 
-            
+
             $filename = 'member_list' . ($branch ? '_' . $branch : '');
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
@@ -3614,12 +3652,12 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
                 'responsibility',
             );
 
-                //  for cellValue 
-                $process_Title = 'সদস্য মুলতবি';                            
-                $this->sheetcellValue($branch,$field_arr,$data,$process_Title);                 
-				
+            //  for cellValue 
+            $process_Title = 'সদস্য মুলতবি';
+            $this->sheetcellValue($branch, $field_arr, $data, $process_Title);
 
-            $filename = (isset($branch->code) ? $branch->code : '' ).'postpone_report';
+
+            $filename = (isset($branch->code) ? $branch->code : '') . 'postpone_report';
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
@@ -3651,33 +3689,33 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
         $this->sma->checkPermissions('index', TRUE);
         $report_type = $this->report_type();
 
-        
-        
-       
-        
+
+
+
+
         $is_changeable = $this->site->check_confirm($this->input->get_post('branch_id'), date('Y-m-d'));
         $flag = 1;
         $msg = 'done';
 
         if ($is_changeable) {
 
-            if($this->input->get_post('name')=='member_candidate_candidate_target'){
+            if ($this->input->get_post('name') == 'member_candidate_candidate_target') {
 
-                $prev_manpower = $this->getPrev('annual',$report_type['prev_record'],$this->input->get_post('branch_id'));	
+                $prev_manpower = $this->getPrev('annual', $report_type['prev_record'], $this->input->get_post('branch_id'));
 
-                 
-                if($prev_manpower[0]['member'] > $this->input->get_post('value')) {
-                    echo json_encode(array('flag' => $flag, 'msg' => 'Enter larger number than member('.$prev_manpower[0]['member'].').'));
+
+                if ($prev_manpower[0]['member'] > $this->input->get_post('value')) {
+                    echo json_encode(array('flag' => $flag, 'msg' => 'Enter larger number than member(' . $prev_manpower[0]['member'] . ').'));
                     exit;
                 }
-            } else   if($this->input->get_post('name')=='associate_candidate_improvement_target'){
+            } else   if ($this->input->get_post('name') == 'associate_candidate_improvement_target') {
 
-                $prev_manpower = $this->getPrev('annual',$report_type['prev_record'],$this->input->get_post('branch_id'));	
+                $prev_manpower = $this->getPrev('annual', $report_type['prev_record'], $this->input->get_post('branch_id'));
 
-                 
-                if($prev_manpower[0]['associate'] > $this->input->get_post('value')) {
-                echo json_encode(array('flag' => $flag, 'msg' => 'Enter larger number than associate('.$prev_manpower[0]['associate'].').'));
-                exit;
+
+                if ($prev_manpower[0]['associate'] > $this->input->get_post('value')) {
+                    echo json_encode(array('flag' => $flag, 'msg' => 'Enter larger number than associate(' . $prev_manpower[0]['associate'] . ').'));
+                    exit;
                 }
             }
 
@@ -3707,14 +3745,11 @@ $this->sheetcellValue($branch_id,$field_arr,$data,$process_Title);
 
 
 
-function manpower_institution($id = NULL)
+    function manpower_institution($id = NULL)
     {
 
-        $html =  $this->load->view($this->theme . 'ajax/'.$id, array( 'institution_type_id' =>$id) , true);
-        $this->sma->send_json(array( 'html' => $html));
-
-
-
+        $html =  $this->load->view($this->theme . 'ajax/' . $id, array('institution_type_id' => $id), true);
+        $this->sma->send_json(array('html' => $html));
     }
 
 
@@ -3724,7 +3759,7 @@ function manpower_institution($id = NULL)
 
     function manpower_output($branch_id = NULL)
     {
-       
+
         $this->sma->checkPermissions('index', TRUE);
 
 
@@ -3746,28 +3781,28 @@ function manpower_institution($id = NULL)
             $this->data['branch_id'] = $this->session->userdata('branch_id');
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
-        
 
-                
+
+
         $report_type = $this->report_type();
-            
-        if( $report_type ==false) 
-        admin_redirect();
+
+        if ($report_type == false)
+            admin_redirect();
 
         $this->data['report_info'] = $report_type;
-          
+
 
         $this->load->admin_model('organization_model');
-         
-    
+
+
         $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
 
 
         $where = "";
 
-       if($branch_id) 
-       $where = " branch = $branch_id AND "; 
-        
+        if ($branch_id)
+            $where = " branch = $branch_id AND ";
+
         $this->data['output_record'] = $this->site->query("SELECT  
         SUM(`single_digit`) single_digit,
         SUM(`jsc_jdc`) jsc_jdc,
@@ -3790,7 +3825,7 @@ function manpower_institution($id = NULL)
 
 
 
-$this->data['output_record_sum_member'] = $this->site->query("SELECT  
+        $this->data['output_record_sum_member'] = $this->site->query("SELECT  
 SUM(`single_digit`) single_digit,
 SUM(`jsc_jdc`) jsc_jdc,
 SUM(`ssc_dhakil`) ssc_dhakil,
@@ -3811,7 +3846,7 @@ FROM `sma_manpower`  WHERE $where institution_type IS NOT NULL AND `orgstatus_id
 
 
 
-$this->data['output_record_sum_asso'] = $this->site->query("SELECT  
+        $this->data['output_record_sum_asso'] = $this->site->query("SELECT  
 SUM(`single_digit`) single_digit,
 SUM(`jsc_jdc`) jsc_jdc,
 SUM(`ssc_dhakil`) ssc_dhakil,
@@ -3833,15 +3868,13 @@ FROM `sma_manpower`  WHERE $where institution_type IS NOT NULL AND `orgstatus_id
 
 
 
-if ($branch_id)   //&& (  !$this->Owner && !$this->Admin  )
-{
-    $this->data['detailinfo'] = $this->getEntryInfoOutput($report_type , $branch_id);
-   
-} else {
-    $this->data['detailinfo'] = $this->getEntryInfoOutputSUM($report_type , $branch_id);
-    
-} 
-  // $this->data['manpoweroutput'] = $this->getManpowerOutput($branch_id); 
+        if ($branch_id)   //&& (  !$this->Owner && !$this->Admin  )
+        {
+            $this->data['detailinfo'] = $this->getEntryInfoOutput($report_type, $branch_id);
+        } else {
+            $this->data['detailinfo'] = $this->getEntryInfoOutputSUM($report_type, $branch_id);
+        }
+        // $this->data['manpoweroutput'] = $this->getManpowerOutput($branch_id); 
 
 
 
@@ -3851,14 +3884,13 @@ if ($branch_id)   //&& (  !$this->Owner && !$this->Admin  )
         $meta = array('page_title' => lang('সকল জনশক্তির আউটপুট'), 'bc' => $bc);
 
 
-      //  $this->sma->print_arrays( $this->data['detailinfo']['increase_outputinfo']);
+        //  $this->sma->print_arrays( $this->data['detailinfo']['increase_outputinfo']);
 
 
-      if ($branch_id)  
-       $this->page_construct('manpower/manpower_output_entry', $meta, $this->data, 'leftmenu/manpower');
-      else 
-       $this->page_construct('manpower/manpower_output', $meta, $this->data, 'leftmenu/manpower');
-        
+        if ($branch_id)
+            $this->page_construct('manpower/manpower_output_entry', $meta, $this->data, 'leftmenu/manpower');
+        else
+            $this->page_construct('manpower/manpower_output', $meta, $this->data, 'leftmenu/manpower');
     }
 
 
@@ -3866,11 +3898,11 @@ if ($branch_id)   //&& (  !$this->Owner && !$this->Admin  )
 
 
 
-    function getEntryInfoOutput( $report_type_get, $branch_id = NULL)
+    function getEntryInfoOutput($report_type_get, $branch_id = NULL)
     {
 
-       
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
@@ -3881,50 +3913,48 @@ if ($branch_id)   //&& (  !$this->Owner && !$this->Admin  )
         //$report_type_get['is_current']
 
 
-        if($report_type_get['is_current']!=false){
-                    if ($report_type == 'half_yearly') {
+        if ($report_type_get['is_current'] != false) {
+            if ($report_type == 'half_yearly') {
 
 
-                        ///half_yearly starts
-                        $increase_outputinfo = $this->site->getOneRecord('manpower_output', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+                ///half_yearly starts
+                $increase_outputinfo = $this->site->getOneRecord('manpower_output', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
-                        if (!$increase_outputinfo) {
-                            $this->site->insertData('manpower_output', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
-                        }
-
-
-
-                        ///half_yearly ends
-
-
-                    } else {
-
-
-                        ///annual starts
-                        $increase_outputinfo = $this->site->getOneRecord('manpower_output', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
-
-                        if (!$increase_outputinfo) {
-                            $this->site->insertData('manpower_output', array('branch_id' => $branch_id, 'report_type' => 'annual', 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
-                        }
+                if (!$increase_outputinfo) {
+                    $this->site->insertData('manpower_output', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
 
 
 
-                        ///annual ends
-
-                    }
-             }
+                ///half_yearly ends
 
 
+            } else {
+
+
+                ///annual starts
+                $increase_outputinfo = $this->site->getOneRecord('manpower_output', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                if (!$increase_outputinfo) {
+                    $this->site->insertData('manpower_output', array('branch_id' => $branch_id, 'report_type' => 'annual', 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
 
 
 
-             if($report_type == 'annual' && $report_type_get['last_half']){
-                
+                ///annual ends
 
-                    $increase_outputinfo = $this->site->getOneRecord('sma_manpower_output', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-                
-             }
-            else if (  $report_type && $report_type == 'annual') {
+            }
+        }
+
+
+
+
+
+        if ($report_type == 'annual' && $report_type_get['last_half']) {
+
+
+            $increase_outputinfo = $this->site->getOneRecord('sma_manpower_output', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
+        } else if ($report_type && $report_type == 'annual') {
 
 
             $increaseoutputinfo =  $this->site->query_binding("SELECT  SUM(`worker_single_digit`) as worker_single_digit ,SUM(`worker_jsc_jdc`) as worker_jsc_jdc,SUM(`worker_ssc_dhakil`) as worker_ssc_dhakil,SUM(`worker_hsc_alim`) as worker_hsc_alim,SUM(`worker_science`) as worker_science,SUM(`worker_arts`) as worker_arts, SUM(`worker_business`) as worker_business, SUM(`worker_madrasha`) as worker_madrasha,SUM(`worker_department_position`) as worker_department_position, SUM(`worker_medical_college`) as worker_medical_college, SUM(`worker_engineeering`) as worker_engineeering, SUM(`worker_public_university`) as worker_public_university,
@@ -3941,7 +3971,7 @@ if ($branch_id)   //&& (  !$this->Owner && !$this->Admin  )
         } else if ($report_type  && $report_type  == 'half_yearly') {
 
             $increase_outputinfo = $this->site->getOneRecord('sma_manpower_output', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-        }  
+        }
 
 
 
@@ -3951,71 +3981,69 @@ if ($branch_id)   //&& (  !$this->Owner && !$this->Admin  )
     }
 
 
-    
+
     function getEntryInfoOutputSUM($report_type_get, $branch_id = NULL) //branch_id can deleted
     {
 
-        
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
 
-        
-        
+
+
         $result =  $this->site->query_binding("SELECT 
   SUM(`worker_single_digit`) as worker_single_digit ,SUM(`worker_jsc_jdc`) as worker_jsc_jdc,SUM(`worker_ssc_dhakil`) as worker_ssc_dhakil,SUM(`worker_hsc_alim`) as worker_hsc_alim,SUM(`worker_science`) as worker_science,SUM(`worker_arts`) as worker_arts, SUM(`worker_business`) as worker_business, SUM(`worker_madrasha`) as worker_madrasha,SUM(`worker_department_position`) as worker_department_position, SUM(`worker_medical_college`) as worker_medical_college, SUM(`worker_engineeering`) as worker_engineeering, SUM(`worker_public_university`) as worker_public_university,
         SUM(`supporter_single_digit`) as supporter_single_digit ,SUM(`supporter_jsc_jdc`) as supporter_jsc_jdc,SUM(`supporter_ssc_dhakil`) as supporter_ssc_dhakil,SUM(`supporter_hsc_alim`) as supporter_hsc_alim,SUM(`supporter_science`) as supporter_science,SUM(`supporter_arts`) as supporter_arts, SUM(`supporter_business`) as supporter_business, SUM(`supporter_madrasha`) as supporter_madrasha,SUM(`supporter_department_position`) as supporter_department_position, SUM(`supporter_medical_college`) as supporter_medical_college, SUM(`supporter_engineeering`) as supporter_engineeering, SUM(`supporter_public_university`) as supporter_public_university,  SUM(`worker_influential`) as worker_influential,SUM(`supporter_influential`) as supporter_influential,   SUM(`worker_hc_science`) as worker_hc_science,SUM(`supporter_hc_science`) as supporter_hc_science, SUM(`worker_agri`) as worker_agri,SUM(`supporter_agri`) as supporter_agri,  SUM(`worker_improvement`) as worker_improvement,SUM(`supporter_improvement`) as supporter_improvement,   SUM(`worker_department_position_private`) as worker_department_position_private, SUM(`supporter_department_position_private`) as supporter_department_position_private,SUM(`worker_ideal_college`) as worker_ideal_college, SUM(`supporter_ideal_college`) as supporter_ideal_college
         
 FROM `sma_manpower_output` where   date BETWEEN ? AND ? ", array($report_start, $report_end));
 
-return array(
-    'increase_outputinfo' => isset($result[0]) ? $result[0] : ''
-);
-       
+        return array(
+            'increase_outputinfo' => isset($result[0]) ? $result[0] : ''
+        );
     }
 
 
 
-function find_id($value,$array, $field){
-     
-    foreach($array as $row){
-        
-      
-            if($value==$row->{$field})
-            return $row->id;
-    }
-    return '';
-
-}
- 
-function getvalue($value,$array, $field){
-     
-    
-    foreach($array as $row){
-
-       if( $row->id == $value)
-       return $row->{$field};
-          
-    }
-
-   
-    return '';
-
-}
-
- 
-    function update_info($branch,$org)
+    function find_id($value, $array, $field)
     {
-        
-      //  exit();
+
+        foreach ($array as $row) {
+
+
+            if ($value == $row->{$field})
+                return $row->id;
+        }
+        return '';
+    }
+
+    function getvalue($value, $array, $field)
+    {
+
+
+        foreach ($array as $row) {
+
+            if ($row->id == $value)
+                return $row->{$field};
+        }
+
+
+        return '';
+    }
+
+
+    function update_info($branch, $org)
+    {
+
+        //  exit();
         $this->sma->checkPermissions('index', TRUE);
 
-        
+
         $this->form_validation->set_rules('userfile', lang("upload_file"), 'xss_clean');
 
 
-       // $this->sma->print_arrays(  $csv);
+        // $this->sma->print_arrays(  $csv);
 
 
         if ($this->form_validation->run() == true) {
@@ -4043,82 +4071,81 @@ function getvalue($value,$array, $field){
                 }
 
                 $csv = $this->upload->file_name;
-               
+
                 $arrResult = array();
-                
-               
+
+
 
                 $inputFileName = $this->digital_upload_path . $csv;
 
-               
 
-                
+
+
                 $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
                 $objReader = PHPExcel_IOFactory::createReader($inputFileType);
                 $objPHPExcel = $objReader->load($inputFileName);
                 // $sheet=$excel->setActiveSheetIndex(0)
- 
+
                 $manpowers = $objPHPExcel->getActiveSheet()->toArray();
-               // $this->sma->print_arrays(  $schdeules);
+                // $this->sma->print_arrays(  $schdeules);
 
 
-               // $sheet = $excel->getActiveSheet()->toArray(null,true,true,true);
+                // $sheet = $excel->getActiveSheet()->toArray(null,true,true,true);
 
 
-            $districts = $this->site->getAll('district');
-		    $responsibilities = $this->site->getAll('responsibilities');
-			$countries = $this->site->getAll('countries');
-			$targets = $this->site->getAll('profession_target');
-            $institution_type = $this->site->getAll('institution');
-        
+                $districts = $this->site->getAll('district');
+                $responsibilities = $this->site->getAll('responsibilities');
+                $countries = $this->site->getAll('countries');
+                $targets = $this->site->getAll('profession_target');
+                $institution_type = $this->site->getAll('institution');
 
-           // $this->sma->print_arrays(  $manpowers[0][0]);
-             if(   !(isset($manpowers[0][0]) && $manpowers[0][0] == 'import_update')){
- 
-            $this->session->set_flashdata('error', 'Your are uploading wrong file.');
-            //admin_redirect("system_settings/group_product_prices/".$group_id);
-            redirect($_SERVER["HTTP_REFERER"]);
-            }
+
+                // $this->sma->print_arrays(  $manpowers[0][0]);
+                if (!(isset($manpowers[0][0]) && $manpowers[0][0] == 'import_update')) {
+
+                    $this->session->set_flashdata('error', 'Your are uploading wrong file.');
+                    //admin_redirect("system_settings/group_product_prices/".$group_id);
+                    redirect($_SERVER["HTTP_REFERER"]);
+                }
 
 
                 $final = array();
-                 
-                foreach ($manpowers as $key => $value) if($key > 4 && !empty($value[0])){
-                    $final[] = array(
-                        'id'=>$value[1],
-                        'name'=>$value[4],
-                        'thana_code' =>$value[5],
-                        'institution_type'=>$this->find_id($value[6],$institution_type, 'institution_type'),  //list
-                        'institution_type_child'=>$this->find_id($value[7],$institution_type, 'institution_type'), //list
-                        'sessionyear'=>$value[8],
-                        'subject'=>$value[9],
-                        'responsibility_id'=>$this->find_id($value[10],$responsibilities, 'responsibility'),  //list
-                        'prossion_target_id'=>$this->find_id($value[11],$targets, 'name'),  //list
-                        'prossion_target_sub_it' =>$this->find_id($value[12],$targets, 'name'),  //list
-                        'blood_group' =>$value[13],
-                        'district' =>$this->find_id($value[14],$districts, 'name'),   //list
-                        'single_digit' =>  $value[15] == 1 ? 1 : 0,
-                        'jsc_jdc' =>$value[16] == 1 ? 1 : 0,
-                        'ssc_dhakil' =>$value[17] == 1 ? 1 : 0,
-                        'hsc_alim' =>$value[18] == 1 ? 1 : 0,
-                        'department_position' =>$value[19] == 1 ? 1 : 0,
-                        'department_position_private' =>$value[20] == 1 ? 1 : 0,
-                        'influential' =>$value[21] == 1 ? 1 : 0,
-                        'hc_science' =>$value[22] == 1 ? 1 : 0,
-                        'madrasha' =>$value[23] == 1 ? 1 : 0,
-                        'medical_college' =>$value[24] == 1 ? 1 : 0,
-                        'ideal_college' =>$value[25] == 1 ? 1 : 0,
-                        'engineeering' =>$value[26] == 1 ? 1 : 0,
-                        'agri' =>$value[27] == 1 ? 1 : 0,
-                        'science' =>$value[28] == 1 ? 1 : 0,
-                        'business' =>$value[29] == 1 ? 1 : 0,
-                        'arts' =>$value[30] == 1 ? 1 : 0
-                 );
-                }
-            //  $this->sma->print_arrays(  $final);
-               
-            }
 
+                foreach ($manpowers as $key => $value) if ($key > 4 && !empty($value[0])) {
+                    $final[] = array(
+                        'id' => $value[1],
+                        'name' => $value[4],
+                        'thana_code' => $value[5],
+                        'institution_type' => $this->find_id($value[6], $institution_type, 'institution_type'),  //list
+                        'institution_type_child' => $this->find_id($value[7], $institution_type, 'institution_type'), //list
+                        'sessionyear' => $value[8],
+                        'subject' => $value[9],
+                        'responsibility_id' => $this->find_id($value[10], $responsibilities, 'responsibility'),  //list
+                        'prossion_target_id' => $this->find_id($value[11], $targets, 'name'),  //list
+                        'prossion_target_sub_it' => $this->find_id($value[12], $targets, 'name'),  //list
+                        'blood_group' => $value[13],
+                        'district' => $this->find_id($value[14], $districts, 'name'),   //list
+                        'single_digit' =>  $value[15] == 1 ? 1 : 0,
+                        'jsc_jdc' => $value[16] == 1 ? 1 : 0,
+                        'ssc_dhakil' => $value[17] == 1 ? 1 : 0,
+                        'hsc_alim' => $value[18] == 1 ? 1 : 0,
+                        'department_position' => $value[19] == 1 ? 1 : 0,
+                        'department_position_private' => $value[20] == 1 ? 1 : 0,
+                        'influential' => $value[21] == 1 ? 1 : 0,
+                        'hc_science' => $value[22] == 1 ? 1 : 0,
+                        'madrasha' => $value[23] == 1 ? 1 : 0,
+                        'medical_college' => $value[24] == 1 ? 1 : 0,
+                        'ideal_college' => $value[25] == 1 ? 1 : 0,
+                        'engineeering' => $value[26] == 1 ? 1 : 0,
+                        'agri' => $value[27] == 1 ? 1 : 0,
+                        'science' => $value[28] == 1 ? 1 : 0,
+                        'business' => $value[29] == 1 ? 1 : 0,
+                        'arts' => $value[30] == 1 ? 1 : 0
+                    );
+                }
+                //  $this->sma->print_arrays(  $final);
+
+            }
         } elseif ($this->input->post('update_info')) {
             $this->session->set_flashdata('error', validation_errors());
             //admin_redirect("system_settings/group_product_prices/".$group_id);
@@ -4126,24 +4153,25 @@ function getvalue($value,$array, $field){
         }
 
         if ($this->form_validation->run() == true && !empty($final)) {
-           
+
             $where = array();
 
-            if($this->session->userdata('branch_id'))
-            $where['branch'] = $this->session->userdata('branch_id');
+            if ($this->session->userdata('branch_id'))
+                $where['branch'] = $this->session->userdata('branch_id');
             //else if($this->Owner || $this->Admin) 
 
-            foreach($final as $manpower_row){
+            foreach ($final as $manpower_row) {
                 $where['id'] = $manpower_row['id'];
                 unset($manpower_row['id']);
-            $this->manpower_model->manpowerUpdate('manpower', $manpower_row , $where );
+                $this->manpower_model->manpowerUpdate('manpower', $manpower_row, $where);
             }
 
             $this->session->set_flashdata('message', lang("info_updated"));
             redirect($_SERVER["HTTP_REFERER"]);
         } else {
 
-            $this->data['userfile'] = array('name' => 'userfile',
+            $this->data['userfile'] = array(
+                'name' => 'userfile',
                 'id' => 'userfile',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('userfile')
@@ -4152,10 +4180,7 @@ function getvalue($value,$array, $field){
 
             $this->data['org'] = $org;
             $this->data['branch'] = $branch;
-            $this->load->view($this->theme.'manpower/update_info', $this->data);
-
+            $this->load->view($this->theme . 'manpower/update_info', $this->data);
         }
     }
-
-    
 }

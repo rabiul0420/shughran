@@ -94,7 +94,7 @@
         <div class="row">
 
             <div class="form-group">
-                <label class="control-label col-sm-3" for="username"><?= lang('branch', 'branch') ?></label>
+                <label class="control-label col-sm-3" for="username"><?= lang(' Branch', ' Branch') ?></label>
                 <div class="col-sm-9">
                     <?php
                     $cus[''] = lang('select') . ' ' . lang('branch');
@@ -105,7 +105,7 @@
                     else if ($this->session->userdata('branch_id') == $branch->id)
                         $cus[$branch->id] = $branch->name;
 
-                    echo form_dropdown('branch', $cus, ($_POST['branch'] ?? ''), 'class="form-control select" required="required" placeholder="' . lang('select') . ' ' . lang('branch') . '" style="width:100%"')
+                    echo form_dropdown('branch', $cus, ($_GET['branch'] ?? ''), 'class="form-control select" required="required" placeholder="' . lang('select') . ' ' . lang('branch') . '" style="width:100%"')
                     ?>
                 </div>
                 
@@ -116,10 +116,10 @@
                 <div class="col-sm-9">
                     <?php
                     $cus2[''] = lang('select') . ' ' . lang('type');
-                    foreach (['half_yearly' => 'half_yearly', 'yearly' => 'yearly'] as $key => $row) {
+                    foreach (['half_yearly' => 'half_yearly', 'annual' => 'annual'] as $key => $row) {
                         $cus2[$key] = $row;
                     }
-                    echo form_dropdown('type', $cus2, ($_POST['type'] ?? ''), 'class="form-control select"  placeholder="' . lang('select') . ' ' . lang('type') . '" style="width:100%"')
+                    echo form_dropdown('type', $cus2, ($_GET['type'] ?? ''), 'class="form-control select"  placeholder="' . lang('select') . ' ' . lang('type') . '" style="width:100%"')
                     ?>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     for ($i = date('Y'); $i >= 2019; $i--) {
                         $cus3[$i] = $i;
                     }
-                    echo form_dropdown('year', $cus3, ($_POST['year'] ?? ''), 'class="form-control select"  placeholder="' . lang('select') . ' ' . lang('year') . '" style="width:100%"')
+                    echo form_dropdown('year', $cus3, ($_GET['year'] ?? ''), 'class="form-control select"  placeholder="' . lang('select') . ' ' . lang('year') . '" style="width:100%"')
                     ?>
                 </div>
             </div>
@@ -155,22 +155,29 @@
     </div>
 
 
-
-
+    <!-- branch=5&type=yearly&year=2020 -->
+    <?php if (isset($_GET['year'])) {   ?>
 
     <h2 class="text-bold">জনশক্তি :</h2>
-    <div class="box-content" style="padding: 0px 0px 0px 20px; ">
-        <div class="row">
-            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-                Report
+
+   
+
+        <div class="box-content" style="padding: 0px 0px 0px 20px; ">
+        <div class="row"> 
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('manpower/exportsummary_not_in_use?branch='. $_GET['branch'] .'&type='.$_GET['type'].'&year='.$_GET['year'] )  ?>">
+            একনজরে
             </a>
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-                Report
+            Report
             </a>
         </div>
 
         <div class="clearfix"></div>
     </div>
+
+  
+
+    
 
     <h2 class="text-bold">দাওয়াত :</h2>
     <div class="box-content" style="padding: 0px 0px 0px 20px; ">
@@ -189,7 +196,7 @@
         <div class="clearfix"></div>
     </div>
 
-
+    <?php  }?>
 
 
 </div>
