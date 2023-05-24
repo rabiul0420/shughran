@@ -2972,6 +2972,290 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
+    function exportsummary()
+    {
+        $branch_id = $this->input->get('branch');
+        $this->sma->checkPermissions();
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('manpower/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('manpower/' . $this->session->userdata('branch_id'));
+        }
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+
+            $branch_id = $branch_id;
+            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+        $report_type = $this->report_type();
+
+        if ($report_type == false)
+            admin_redirect();
+
+        $report_info = $report_type;
+
+
+
+
+        $last_year = $report_type['last_year'];
+        $cal_type = $report_type['type'];
+
+
+        $report_info =  $report_type['info'];
+
+
+        $prev_manpower = $this->getPrev('annual', $last_year, $branch_id);
+
+
+
+        $memberlog = $this->manPowerLog('memberlog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $membercandidatelog = $this->manPowerLog('membercandidatelog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $assolog = $this->manPowerLog('assolog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $workerlog = $this->manPowerLog('workerlog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+
+        $manpower_record = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
+
+        $postpone = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $postponemc = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $postpone_asso = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $postpone_ac = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+
+
+
+        $this->load->library('excel');
+        $this->excel->setActiveSheetIndex(0);
+        $this->excel->getActiveSheet()->setTitle('Manpower Summary');
+
+        $this->excel->getActiveSheet()->mergeCells('A1:T1');
+        $this->excel->getActiveSheet()->mergeCells('A2:T2');
+        $this->excel->getActiveSheet()->mergeCells('A3:T3');
+        $this->excel->getActiveSheet()->mergeCells('A4:T4');
+        $this->excel->getActiveSheet()->mergeCells('A5:T5');
+
+        $style = array(
+            'alignment' => array(
+                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+            )
+        );
+
+        $this->excel->getActiveSheet()->getStyle("A1:T4")->applyFromArray($style);
+        $this->excel->getActiveSheet()->getStyle('A1:T4')->getFont()->setBold(true);
+
+
+        $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+        $this->excel->getActiveSheet()->SetCellValue('A3', strtoupper($report_type['type']) . ' Manpower Report: from ' . $report_type['start'] . ' to ' . $report_type['end']);
+        $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+
+
+
+        $this->excel->getActiveSheet()->mergeCells('B11:B13');
+        $this->excel->getActiveSheet()->SetCellValue('B11', 'জনশক্তি');
+
+        $this->excel->getActiveSheet()->mergeCells('C11:C13');
+        $this->excel->getActiveSheet()->SetCellValue('C11', 'পূর্বের সংখ্যা ');
+
+        $this->excel->getActiveSheet()->mergeCells('D11:D13');
+        $this->excel->getActiveSheet()->SetCellValue('D11', 'বর্তমান সংখ্যা');
+
+
+        $this->excel->getActiveSheet()->mergeCells('E11:G11');
+        $this->excel->getActiveSheet()->SetCellValue('E11', 'বৃদ্ধি');
+
+        $this->excel->getActiveSheet()->mergeCells('E12:E13');
+        $this->excel->getActiveSheet()->SetCellValue('E12', 'সংখ্যা');
+
+        $this->excel->getActiveSheet()->mergeCells('F12:F13');
+        $this->excel->getActiveSheet()->SetCellValue('F12', 'মানোন্নয়ন');
+
+
+        $this->excel->getActiveSheet()->mergeCells('G12:G13');
+        $this->excel->getActiveSheet()->SetCellValue('G12', 'আগমন');
+
+
+
+        $this->excel->getActiveSheet()->mergeCells('H11:H13');
+        $this->excel->getActiveSheet()->SetCellValue('H11', 'টার্গেট');
+
+
+        $this->excel->getActiveSheet()->mergeCells('I11:I13');
+        $this->excel->getActiveSheet()->SetCellValue('I11', 'বাস্তবায়ন হার');
+
+
+
+
+        $this->excel->getActiveSheet()->mergeCells('J11:T11');
+        $this->excel->getActiveSheet()->SetCellValue('J11', 'ঘাটতি');
+
+
+
+        $this->excel->getActiveSheet()->mergeCells('J12:J13');
+        $this->excel->getActiveSheet()->SetCellValue('J12', 'সংখ্যা');
+
+        $this->excel->getActiveSheet()->mergeCells('K12:K13');
+        $this->excel->getActiveSheet()->SetCellValue('K12', 'মানোন্নয়ন');
+
+        $this->excel->getActiveSheet()->mergeCells('L12:L13');
+        $this->excel->getActiveSheet()->SetCellValue('L12', 'ছাত্রত্ব শেষ ');
+
+
+        $this->excel->getActiveSheet()->mergeCells('M12:M13');
+        $this->excel->getActiveSheet()->SetCellValue('M12', 'স্থানান্তর');
+
+        $this->excel->getActiveSheet()->mergeCells('N12:N13');
+        $this->excel->getActiveSheet()->SetCellValue('N12', 'বাতিল');
+
+
+
+
+        $this->excel->getActiveSheet()->mergeCells('O12:P12');
+        $this->excel->getActiveSheet()->SetCellValue('O12', 'বিদেশ');
+
+
+        $this->excel->getActiveSheet()->SetCellValue('O13', 'উচ্চ শিক্ষা');
+        $this->excel->getActiveSheet()->SetCellValue('P13', 'বাতিল');
+
+
+
+
+        $this->excel->getActiveSheet()->mergeCells('Q12:Q13');
+        $this->excel->getActiveSheet()->SetCellValue('Q12', 'ইন্তেকাল ');
+
+        $this->excel->getActiveSheet()->mergeCells('R12:R13');
+        $this->excel->getActiveSheet()->SetCellValue('R12', 'শাহাদাত');
+
+
+        $this->excel->getActiveSheet()->mergeCells('S12:S13');
+        $this->excel->getActiveSheet()->SetCellValue('S12', 'কর্মী মান অবনতি');
+
+        $this->excel->getActiveSheet()->mergeCells('T12:T13');
+        $this->excel->getActiveSheet()->SetCellValue('T12', 'postpone');
+
+
+        $this->excel->getActiveSheet()->SetCellValue('B14', 'সদস্য');
+        $this->excel->getActiveSheet()->SetCellValue('B15', 'সদস্য প্রার্থী');
+        $this->excel->getActiveSheet()->SetCellValue('B16', 'সাথী');
+        $this->excel->getActiveSheet()->SetCellValue('B17', 'সাথী প্রার্থী');
+        $this->excel->getActiveSheet()->SetCellValue('B18', 'কর্মী');
+        $this->excel->getActiveSheet()->SetCellValue('B19', 'মোট');
+
+
+        $this->excel->getActiveSheet()->getStyle("B11:T13")->getFont()->setBold(true);
+
+        $this->excel->getActiveSheet()->getStyle("B11:T13")
+            ->getFill()
+            ->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+            ->getStartColor()
+            ->setRGB('03bb85');
+
+        $member_prev =  $prev_manpower[0]['member'];
+        $member_improvement = (!$memberlog) ? 0 :  calculate($memberlog, 2, 1, 'member_number');
+        $member_arrival = (!$memberlog) ? 0 :  calculate($memberlog, 15, 1, 'member_number');
+
+        $member_endstd = (!$memberlog) ? 0 :  calculate($memberlog, 8, 2, 'member_number');
+        $member_transfer = (!$memberlog) ? 0 :  calculate($memberlog, 15, 2, 'member_number');
+        $member_cancel = (!$memberlog) ? 0 :  calculate($memberlog, 12, 2, 'member_number');
+        $member_study_abroad = (!$memberlog) ? 0 :  calculate($memberlog, 11, 2, 'member_number');
+        $member_job_abroad = (!$memberlog) ? 0 :  calculate($memberlog, 14, 2, 'member_number');
+        $member_death = (!$memberlog) ? 0 :  calculate($memberlog, 9, 2, 'member_number');
+        $member_martyr = (!$memberlog) ? 0 :  calculate($memberlog, 10, 2, 'member_number');
+        $member_demotion = (!$memberlog) ? 0 :  calculate($memberlog, 13, 2, 'member_number');
+        $total_member_decrease = $member_endstd  + $member_transfer  + $member_cancel  + $member_study_abroad + $member_job_abroad + $member_death + $member_martyr + $member_demotion;
+
+        ///member starts
+        $this->excel->getActiveSheet()->SetCellValue('C14', $prev_manpower[0]['member']);
+        $this->excel->getActiveSheet()->SetCellValue('D14', $member_prev + $member_improvement + $member_arrival - $total_member_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('E14', $member_improvement + $member_arrival);
+        $this->excel->getActiveSheet()->SetCellValue('F14', $member_improvement);
+        $this->excel->getActiveSheet()->SetCellValue('G14', $member_arrival);
+        $this->excel->getActiveSheet()->SetCellValue('H14', $member_prev);
+        $this->excel->getActiveSheet()->SetCellValue('I14', ($member_prev > 0) ? round(100 * $member_improvement / $member_prev, 2) : 0);
+        $this->excel->getActiveSheet()->SetCellValue('J14', $total_member_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('K14', '');
+        $this->excel->getActiveSheet()->SetCellValue('L14', $member_endstd);
+        $this->excel->getActiveSheet()->SetCellValue('M14',  $member_transfer);
+        $this->excel->getActiveSheet()->SetCellValue('N14', $member_cancel);
+        $this->excel->getActiveSheet()->SetCellValue('O14', $member_study_abroad);
+        $this->excel->getActiveSheet()->SetCellValue('P14', $member_job_abroad);
+        $this->excel->getActiveSheet()->SetCellValue('Q14', $member_death);
+        $this->excel->getActiveSheet()->SetCellValue('R14', $member_martyr);
+        $this->excel->getActiveSheet()->SetCellValue('S14', $member_demotion);
+        $this->excel->getActiveSheet()->SetCellValue('T14', $postpone[0]->number);
+
+        ///member ends
+
+
+
+
+        ///membercandidate starts
+
+
+        $membercandidate_improvement = (!$membercandidatelog) ? 0 :  calculate($membercandidatelog, 2, 1, 'member_candidate_number');
+        $membercandidate_arrival = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 15, 1, 'member_candidate_number');
+
+        $membercandidate_endstd = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 8, 2, 'member_candidate_number');
+        $membercandidate_transfer = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 15, 2, 'member_candidate_number');
+        $membercandidate_cancel = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 12, 2, 'member_candidate_number');
+        $membercandidate_study_abroad = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 11, 2, 'member_candidate_number');
+        $membercandidate_job_abroad = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 14, 2, 'member_candidate_number');
+        $membercandidate_death = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 9, 2, 'member_candidate_number');
+        $membercandidate_martyr = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 10, 2, 'member_candidate_number');
+        $membercandidate_demotion = (!$membercandidatelog) ? 0 : calculate($membercandidatelog, 13, 2, 'member_candidate_number');
+        $membercandidate_improvement_d = $member_improvement;
+
+        $total_membercandidate_decrease = $membercandidate_improvement_d + $membercandidate_endstd  + $membercandidate_transfer  + $membercandidate_cancel  + $membercandidate_study_abroad + $membercandidate_job_abroad + $membercandidate_death + $membercandidate_martyr + $membercandidate_demotion;
+
+        $membercandidate_prev = $prev_manpower[0]['member_candidate'];
+
+        $this->excel->getActiveSheet()->SetCellValue('C15', $membercandidate_prev);
+        $this->excel->getActiveSheet()->SetCellValue('D15', $membercandidate_prev + $membercandidate_improvement + $membercandidate_arrival - $total_membercandidate_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('E15', $membercandidate_improvement + $membercandidate_arrival);
+        $this->excel->getActiveSheet()->SetCellValue('F15', $membercandidate_improvement);
+        $this->excel->getActiveSheet()->SetCellValue('G15', $membercandidate_arrival);
+        if (isset($manpower_record[0])) {
+            $arr = $manpower_record[0];
+            $membercandidate_target = $arr['member_candidate_candidate_target'];
+        } else {
+            $membercandidate_target = 0;
+        }
+        $this->excel->getActiveSheet()->SetCellValue('H15', $membercandidate_target);
+        $this->excel->getActiveSheet()->SetCellValue('I15', ($membercandidate_target>0) ? round(100*$membercandidate_improvement/$membercandidate_target,2) : 0);
+        $this->excel->getActiveSheet()->SetCellValue('J15', $total_membercandidate_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('K15', $membercandidate_improvement_d);
+        $this->excel->getActiveSheet()->SetCellValue('L15', $membercandidate_endstd);
+        $this->excel->getActiveSheet()->SetCellValue('M15',  $membercandidate_transfer);
+        $this->excel->getActiveSheet()->SetCellValue('N15', $membercandidate_cancel);
+        $this->excel->getActiveSheet()->SetCellValue('O15', $membercandidate_study_abroad);
+        $this->excel->getActiveSheet()->SetCellValue('P15', $membercandidate_job_abroad);
+        $this->excel->getActiveSheet()->SetCellValue('Q15', $membercandidate_death);
+        $this->excel->getActiveSheet()->SetCellValue('R15', $membercandidate_martyr);
+        $this->excel->getActiveSheet()->SetCellValue('S15', $membercandidate_demotion);
+        $this->excel->getActiveSheet()->SetCellValue('T15', $postponemc[0]->number);
+
+        ///membercandidate ends
+
+
+        $this->excel->getActiveSheet()->getStyle("B15:T15")->getBorders()
+            ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+
+
+        $filename = 'manpower_report_' . $this->input->get('year');
+        $this->load->helper('excel');
+        create_excel($this->excel, $filename);
+    }
+
+
+
     function exportsummary_not_in_use($branch_id = NULL)
     {
 
@@ -3048,7 +3332,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
             $this->excel->getActiveSheet()->setTitle('Manpower Summary');
-            
+
             $this->excel->getActiveSheet()->mergeCells('A1:T1');
             $this->excel->getActiveSheet()->mergeCells('A2:T2');
             $this->excel->getActiveSheet()->mergeCells('A3:T3');

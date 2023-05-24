@@ -241,7 +241,7 @@ else {
 	</td>
     <td class="tg-0pky  type_7">
 	<?php   
-	 if($report_info['prev_record']) echo  ($member_prev>0) ? round(100*$member_improvement/$member_prev,2) : 0;;
+	 if($report_info['prev_record']) echo  ($member_prev>0) ? round(100*$member_improvement/$member_prev,2) : 0;
 	?>
 	
 	</td>
@@ -355,7 +355,7 @@ else { ?>
 	</td>
     <td class="tg-0pky type_7"> 
 	<?php   
-	 if($report_info['prev_record']) echo  ($membercandidate_target>0) ? round(100*$membercandidate_improvement/$membercandidate_target,2) : 0;;
+	 if($report_info['prev_record']) echo  ($membercandidate_target>0) ? round(100*$membercandidate_improvement/$membercandidate_target,2) : 0;
 	?>
 	
 	</td>
