@@ -94,8 +94,8 @@
         <div class="row">
 
             <div class="form-group">
-                <label class="control-label col-sm-3" for="username"><?= lang(' Branch', ' Branch') ?></label>
-                <div class="col-sm-9">
+                <label class="control-label col-sm-4" for="username"><?= lang(' Branch', ' Branch') ?></label>
+                <div class="col-sm-8">
                     <?php
                     $cus[''] = lang('select') . ' ' . lang('branch');
                     if ($this->Owner || $this->Admin)
@@ -116,10 +116,10 @@
                 <div class="col-sm-9">
                     <?php
                     $cus2[''] = lang('select') . ' ' . lang('type');
-                    foreach (['half_yearly' => 'half_yearly', 'annual' => 'annual'] as $key => $row) {
+                    foreach (['half_yearly' => 'Half yearly', 'annual' => 'Annual'] as $key => $row) {
                         $cus2[$key] = $row;
                     }
-                    echo form_dropdown('type', $cus2, ($_GET['type'] ?? ''), 'class="form-control select"  placeholder="' . lang('select') . ' ' . lang('type') . '" style="width:100%"')
+                    echo form_dropdown('type', $cus2, ($_GET['type'] ?? ''), 'class="form-control select"  required="required" placeholder="' . lang('select') . ' ' . lang('type') . '" style="width:100%"')
                     ?>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     for ($i = date('Y'); $i >= 2019; $i--) {
                         $cus3[$i] = $i;
                     }
-                    echo form_dropdown('year', $cus3, ($_GET['year'] ?? ''), 'class="form-control select"  placeholder="' . lang('select') . ' ' . lang('year') . '" style="width:100%"')
+                    echo form_dropdown('year', $cus3, ($_GET['year'] ?? ''), 'class="form-control select" required="required" placeholder="' . lang('select') . ' ' . lang('year') . '" style="width:100%"')
                     ?>
                 </div>
             </div>
@@ -168,7 +168,7 @@
             একনজরে
             </a>
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-            Report
+            Coming
             </a>
         </div>
 
@@ -183,27 +183,34 @@
     <div class="box-content" style="padding: 0px 0px 0px 20px; ">
         <div class="row">
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-                Report
+                Coming
             </a>
-            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-                Report
-            </a>
-            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-                Report
-            </a>
+            
         </div>
 
         <div class="clearfix"></div>
     </div>
 
 
-    <h2 class="text-bold">বিএম:</h2>
+    <h2 class="text-bold">অন্যান্য:</h2>
     <div class="box-content" style="padding: 0px 0px 0px 20px; ">
         <div class="row">
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('bm/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
-                Report
+            বিএম
             </a>
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('guest/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+            সফর 
+            </a>
+
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('training/communication_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>"> 
+            যোগাযোগ 
+            </a>
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('training/trainingelement_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>"> 
+            উপকরণ  
+            </a>
+
             
+             
         </div>
 
         <div class="clearfix"></div>

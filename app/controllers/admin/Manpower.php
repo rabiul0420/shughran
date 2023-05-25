@@ -165,10 +165,10 @@ class Manpower extends MY_Controller
 
         $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
 
-        $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postpone_asso'] = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
-        $this->data['postpone_ac'] = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
+        $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postpone_asso'] = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['postpone_ac'] = $this->postlog(13, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
         $this->data['m'] = 'manpowersummary';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('manpower')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
@@ -350,14 +350,14 @@ class Manpower extends MY_Controller
             $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $half_start, $half_end));
 
 
-        $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $half_start, $half_end));
+            $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $half_start, $half_end));
 
 
-        $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'] ?? '';
+            $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'] ?? '';
 
 
-        $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'] ?? '';
-    }
+            $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'] ?? '';
+        }
 
         // $this->sma->print_arrays($result);
 
@@ -3229,7 +3229,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $membercandidate_target = 0;
         }
         $this->excel->getActiveSheet()->SetCellValue('H15', $membercandidate_target);
-        $this->excel->getActiveSheet()->SetCellValue('I15', ($membercandidate_target>0) ? round(100*$membercandidate_improvement/$membercandidate_target,2) : 0);
+        $this->excel->getActiveSheet()->SetCellValue('I15', ($membercandidate_target > 0) ? round(100 * $membercandidate_improvement / $membercandidate_target, 2) : 0);
         $this->excel->getActiveSheet()->SetCellValue('J15', $total_membercandidate_decrease);
         $this->excel->getActiveSheet()->SetCellValue('K15', $membercandidate_improvement_d);
         $this->excel->getActiveSheet()->SetCellValue('L15', $membercandidate_endstd);
@@ -3245,7 +3245,217 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         ///membercandidate ends
 
 
-        $this->excel->getActiveSheet()->getStyle("B15:T15")->getBorders()
+
+
+
+
+        ///associate starts
+        $associate_prev =  $prev_manpower[0]['associate'];
+
+        $associate_improvement = (!$assolog) ? 0 : calculate($assolog, 2, 1, 'associate_number');
+        $associate_arrival = (!$assolog) ? 0 : calculate($assolog, 15, 1, 'associate_number');
+
+        $associate_endstd = (!$assolog) ? 0 : calculate($assolog, 8, 2, 'associate_number');
+        $associate_transfer = (!$assolog) ? 0 : calculate($assolog, 15, 2, 'associate_number');
+        $associate_cancel = (!$assolog) ? 0 : calculate($assolog, 12, 2, 'associate_number');
+        $associate_study_abroad =  (!$assolog) ? 0 : calculate($assolog, 11, 2, 'associate_number');
+        $associate_job_abroad = (!$assolog) ? 0 :  calculate($assolog, 14, 2, 'associate_number');
+        $associate_death = (!$assolog) ? 0 : calculate($assolog, 9, 2, 'associate_number');
+        $associate_martyr = (!$assolog) ? 0 : calculate($assolog, 10, 2, 'associate_number');
+        //$associate_demotion = (!$assolog) ? 0 : calculate($assolog, 13,2, 'associate_number');
+        $associate_demotion = (!$assolog) ? 0 : calculate($assolog, 18, 2, 'associate_number');
+        $associate_improvement_d = $member_improvement;
+
+        $total_associate_decrease = $associate_improvement_d +  $associate_endstd  + $associate_transfer  + $associate_cancel  + $associate_study_abroad + $associate_job_abroad + $associate_death + $associate_martyr + $associate_demotion;
+
+
+        $this->excel->getActiveSheet()->SetCellValue('C16', $associate_prev);
+        $this->excel->getActiveSheet()->SetCellValue('D16', $associate_prev + $associate_improvement + $associate_arrival - $total_associate_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('E16', $associate_improvement + $associate_arrival);
+        $this->excel->getActiveSheet()->SetCellValue('F16', $associate_improvement);
+        $this->excel->getActiveSheet()->SetCellValue('G16', $associate_arrival);
+        $this->excel->getActiveSheet()->SetCellValue('H16', $associate_prev + $member_prev);
+        $this->excel->getActiveSheet()->SetCellValue('I16', ($associate_prev + $member_prev > 0) ? round(100 * $associate_improvement / ($associate_prev + $member_prev), 2) : 0);
+        $this->excel->getActiveSheet()->SetCellValue('J16', $total_associate_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('K16', $associate_improvement_d);
+        $this->excel->getActiveSheet()->SetCellValue('L16', $associate_endstd);
+        $this->excel->getActiveSheet()->SetCellValue('M16', $associate_transfer);
+        $this->excel->getActiveSheet()->SetCellValue('N16', $associate_cancel);
+        $this->excel->getActiveSheet()->SetCellValue('O16', $associate_study_abroad);
+        $this->excel->getActiveSheet()->SetCellValue('P16', $associate_job_abroad);
+        $this->excel->getActiveSheet()->SetCellValue('Q16', $associate_death);
+        $this->excel->getActiveSheet()->SetCellValue('R16', $associate_martyr);
+        $this->excel->getActiveSheet()->SetCellValue('S16', $associate_demotion);
+        $this->excel->getActiveSheet()->SetCellValue('T16', $postpone_asso[0]->number + $postponemc[0]->number);
+
+        ///associate ends
+
+
+
+
+
+
+
+
+        ///associate candidate starts
+        $associate_candidate_prev =  $prev_manpower[0]['associate_candidate'];
+        $associate_candidate_improvement = sum_manpower($manpower_record, 'associate_candidate_improvement');
+        $associate_candidate_arrival = sum_manpower($manpower_record,   'associate_candidate_arrival');
+        $associate_candidate_endstd = sum_manpower($manpower_record,   'associate_candidate_endstd');
+        $associate_candidate_transfer = sum_manpower($manpower_record,   'associate_candidate_transfer');
+        $associate_candidate_cancel = sum_manpower($manpower_record,   'associate_candidate_cancel');
+        $associate_candidate_abroad_study = sum_manpower($manpower_record,  'associate_candidate_abroad_study');
+        $associate_candidate_abroad_job = sum_manpower($manpower_record,   'associate_candidate_abroad_job');
+        $associate_candidate_death = sum_manpower($manpower_record,  'associate_candidate_death');
+        $associate_candidate_martyr = sum_manpower($manpower_record,   'associate_candidate_martyr');
+        $associate_candidate_demotion = sum_manpower($manpower_record,   'associate_candidate_demotion');
+        $associate_candidate_improvement_d = $associate_improvement;
+        $total_associate_candidate_decrease = $associate_candidate_improvement_d + $associate_candidate_endstd  + $associate_candidate_transfer  + $associate_candidate_cancel  + $associate_candidate_abroad_study + $associate_candidate_abroad_job + $associate_candidate_death + $associate_candidate_martyr + $associate_candidate_demotion;
+        $associate_candidate_improvement_target = sum_manpower($manpower_record, 'associate_candidate_improvement_target');
+
+
+
+
+
+        $this->excel->getActiveSheet()->SetCellValue('C17', $associate_candidate_prev);
+        $this->excel->getActiveSheet()->SetCellValue('D17', $associate_candidate_prev + $associate_candidate_improvement + $associate_candidate_arrival - $total_associate_candidate_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('E17', $associate_candidate_improvement + $associate_candidate_arrival);
+
+        if (isset($manpower_record[0])) {
+            $associate_candidate_improvement = $arr['associate_candidate_improvement'];
+            $associate_candidate_arrival = $arr['associate_candidate_arrival'];
+            $associate_candidate_improvement_target = $arr['associate_candidate_improvement_target'];
+            $associate_candidate_transfer = $arr['associate_candidate_transfer'];
+            $associate_candidate_cancel = $arr['associate_candidate_cancel'];
+            $associate_candidate_endstd = $arr['associate_candidate_endstd'];
+            $associate_candidate_abroad_study = $arr['associate_candidate_abroad_study'];
+            $associate_candidate_abroad_job = $arr['associate_candidate_abroad_job'];
+            $associate_candidate_death = $arr['associate_candidate_death'];
+            $associate_candidate_martyr = $arr['associate_candidate_martyr'];
+            $associate_candidate_postpone = $arr['associate_candidate_postpone'];
+        } else {
+            $associate_candidate_improvement = 0;
+            $associate_candidate_arrival = 0;
+            $associate_candidate_improvement_target = 0;
+            $associate_candidate_transfer = 0;
+            $associate_candidate_cancel = 0;
+            $associate_candidate_endstd = 0;
+            $associate_candidate_abroad_study = 0;
+            $associate_candidate_abroad_job = 0;
+            $associate_candidate_death = 0;
+            $associate_candidate_martyr = 0;
+            $associate_candidate_postpone = 0;
+        }
+
+
+        $this->excel->getActiveSheet()->SetCellValue('F17', $associate_candidate_improvement);
+        $this->excel->getActiveSheet()->SetCellValue('G17', $associate_candidate_arrival);
+        $this->excel->getActiveSheet()->SetCellValue('H17', $associate_candidate_improvement_target);
+        $this->excel->getActiveSheet()->SetCellValue('I17', ($associate_candidate_improvement_target > 0) ? round(100 * $associate_candidate_improvement / $associate_candidate_improvement_target, 2) : 0);
+        $this->excel->getActiveSheet()->SetCellValue('J17', $total_associate_candidate_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('K17', $associate_candidate_improvement_d);
+        $this->excel->getActiveSheet()->SetCellValue('L17', $associate_candidate_endstd);
+        $this->excel->getActiveSheet()->SetCellValue('M17', $associate_candidate_transfer);
+        $this->excel->getActiveSheet()->SetCellValue('N17', $associate_candidate_cancel);
+        $this->excel->getActiveSheet()->SetCellValue('O17', $associate_candidate_abroad_study);
+        $this->excel->getActiveSheet()->SetCellValue('P17', $associate_candidate_abroad_job);
+        $this->excel->getActiveSheet()->SetCellValue('Q17', $associate_candidate_death);
+        $this->excel->getActiveSheet()->SetCellValue('R17', $associate_candidate_martyr);
+        $this->excel->getActiveSheet()->SetCellValue('S17', $associate_candidate_demotion);
+        $this->excel->getActiveSheet()->SetCellValue('T17', $associate_candidate_postpone);
+
+        ///associate candidate ends
+
+
+
+
+
+
+
+
+
+
+
+        ///worker ends
+        $worker_prev =  $prev_manpower[0]['worker'];
+        $worker_improvement = sum_manpower($manpower_record, 'worker_improvement');
+        $worker_arrival = sum_manpower($manpower_record,   'worker_arrival');
+        $worker_endstd = sum_manpower($manpower_record,   'worker_endstd');
+        $worker_transfer = sum_manpower($manpower_record,   'worker_transfer');
+        $worker_cancel = sum_manpower($manpower_record,   'worker_cancel');
+        $worker_study_abroad = (!$workerlog) ? 0 : calculate($workerlog, 11, 2, 'worker_number');
+        $worker_job_abroad = (!$workerlog) ? 0 : calculate($workerlog, 14, 2, 'worker_number');
+        $worker_death = (!$workerlog) ? 0 : calculate($workerlog, 9, 2, 'worker_number');
+        $worker_martyr = (!$workerlog) ? 0 : calculate($workerlog, 10, 2, 'worker_number');
+        $worker_demotion = sum_manpower($manpower_record,   'worker_demotion');
+        $worker_improvement_d = $associate_improvement;
+        $total_worker_decrease = $worker_improvement_d + $worker_endstd  + $worker_transfer  + $worker_cancel  + $worker_study_abroad + $worker_job_abroad + $worker_death + $worker_martyr + $worker_demotion;
+        $worker_improvement_target = $worker_prev  + $member_prev  + $associate_prev;
+
+        $this->excel->getActiveSheet()->SetCellValue('C18', $worker_prev);
+        $this->excel->getActiveSheet()->SetCellValue('D18', $worker_prev + $worker_improvement + $worker_arrival - $total_worker_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('E18', $worker_improvement + $worker_arrival);
+        if(isset($manpower_record[0])) {
+            $worker_improvement = $arr['worker_improvement'];
+            $worker_arrival = $arr['worker_arrival'];
+            $worker_endstd = $arr['worker_endstd'];
+            $worker_transfer = $arr['worker_transfer'];
+            $worker_cancel = $arr['worker_cancel'];
+            $worker_demotion = $arr['worker_demotion'];
+            }
+             else {
+                $worker_improvement = 0;
+                $worker_arrival = 0;
+                $worker_endstd = 0;
+                $worker_transfer = 0;
+                $worker_cancel = 0;
+                $worker_demotion = 0;
+            }
+        $this->excel->getActiveSheet()->SetCellValue('F18', $worker_improvement);
+        $this->excel->getActiveSheet()->SetCellValue('G18', $worker_arrival);
+        $this->excel->getActiveSheet()->SetCellValue('H18', $worker_improvement_target);
+        $this->excel->getActiveSheet()->SetCellValue('I18', ($worker_prev>0) ? round(100*$worker_improvement/$worker_prev,2) : 0);
+        $this->excel->getActiveSheet()->SetCellValue('J18', $total_worker_decrease);
+        $this->excel->getActiveSheet()->SetCellValue('K18', $worker_improvement_d);
+        $this->excel->getActiveSheet()->SetCellValue('L18', $worker_endstd);
+        $this->excel->getActiveSheet()->SetCellValue('M18', $worker_transfer);
+        $this->excel->getActiveSheet()->SetCellValue('N18', $worker_cancel);
+        $this->excel->getActiveSheet()->SetCellValue('O18', $worker_study_abroad);
+        $this->excel->getActiveSheet()->SetCellValue('P18', $worker_job_abroad);
+        $this->excel->getActiveSheet()->SetCellValue('Q18', $worker_death);
+        $this->excel->getActiveSheet()->SetCellValue('R18', $worker_martyr);
+        $this->excel->getActiveSheet()->SetCellValue('S18', $worker_demotion);
+        $this->excel->getActiveSheet()->SetCellValue('T18', '');
+
+        ///worker ends
+
+
+
+
+
+
+
+
+        $this->excel->getActiveSheet()->SetCellValue('C19', "=SUM(C14,C16,C18)");
+        $this->excel->getActiveSheet()->SetCellValue('D19', "=SUM(D14,D16,D18)");
+        $this->excel->getActiveSheet()->SetCellValue('E19', "=SUM(E14,E16,E18)");
+        $this->excel->getActiveSheet()->SetCellValue('F19', "=SUM(F14,F15,F16,F17,F18)");
+        $this->excel->getActiveSheet()->SetCellValue('G19', "=SUM(G14,G16,G18)");
+        $this->excel->getActiveSheet()->SetCellValue('H19', "=SUM(H14,H15,H16,H17,H18)");
+        $this->excel->getActiveSheet()->SetCellValue('I19', '');
+        $this->excel->getActiveSheet()->SetCellValue('J19', "=SUM(J14,J16,J18)");
+        $this->excel->getActiveSheet()->SetCellValue('K19', "=SUM(K14,K16,K18)");
+        $this->excel->getActiveSheet()->SetCellValue('L19', "=SUM(L14,L16,L18)");
+        $this->excel->getActiveSheet()->SetCellValue('M19', "=SUM(M14,M16,M18)");
+        $this->excel->getActiveSheet()->SetCellValue('N19', "=SUM(N14,N16,N18)");
+        $this->excel->getActiveSheet()->SetCellValue('O19', "=SUM(O14,O16,O18)");
+        $this->excel->getActiveSheet()->SetCellValue('P19', "=SUM(P14,P16,P18)");
+        $this->excel->getActiveSheet()->SetCellValue('Q19', "=SUM(Q14,Q16,Q18)");
+        $this->excel->getActiveSheet()->SetCellValue('R19', "=SUM(R14,R16,R18)");
+        $this->excel->getActiveSheet()->SetCellValue('S19', "=SUM(S14,S16,S18)");
+        $this->excel->getActiveSheet()->SetCellValue('T19', "=SUM(T14,T16,T18)");
+
+        $this->excel->getActiveSheet()->getStyle("B19:T19")->getBorders()
             ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
 
 

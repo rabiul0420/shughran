@@ -507,7 +507,7 @@ else { ?>
   
   <?php  $associate_candidate_prev =  $prev_manpower[0]['associate_candidate'];
 	
-	  
+	//  echo 'DM'.$associate_candidate_prev.'DM';
 	$associate_candidate_improvement = sum_manpower($manpower_record,'associate_candidate_improvement');
 	$associate_candidate_arrival = sum_manpower($manpower_record,   'associate_candidate_arrival');
 	

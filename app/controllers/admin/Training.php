@@ -632,8 +632,154 @@ FROM `sma_library_calculated` WHERE `report_type` = ? AND calculated_year = ? ",
 			$this->page_construct('training/communication', $meta, $this->data, 'leftmenu/others');
 	}
 
+	function communication_export($branch_id)
+	{
+		$this->sma->checkPermissions('index', TRUE);
 
 
+		if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+			$this->session->set_flashdata('warning', lang('access_denied'));
+			admin_redirect('training/communication/' . $this->session->userdata('branch_id'));
+		} else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+			admin_redirect('training/communication/' . $this->session->userdata('branch_id'));
+		}
+
+
+
+
+
+
+		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+			 
+			$branch_id = $branch_id;
+			$branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+		} else {
+			 
+			$branch_id = $this->session->userdata('branch_id');
+			$branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+		}
+
+		$report_type = $this->report_type();
+
+		if ($report_type == false)
+			admin_redirect();
+
+		$report_info = $report_type;
+
+
+		if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
+		{
+			$detailinfo = $this->getEntryInfoCommunication($report_type, $branch_id);
+		} else {
+			$detailinfo = $this->getEntryInfoCommunicationSUM($report_type, $branch_id);
+		}
+
+
+
+		if (!empty($detailinfo)) {
+
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+            $this->excel->getActiveSheet()->setTitle('Communication');
+
+
+
+
+            $this->excel->getActiveSheet()->mergeCells('A1:F1');
+            $this->excel->getActiveSheet()->mergeCells('A2:F2');
+            $this->excel->getActiveSheet()->mergeCells('A3:F3');
+            $this->excel->getActiveSheet()->mergeCells('A4:F4');
+            $this->excel->getActiveSheet()->mergeCells('A5:F5');
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A1:F4")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle('A1:F4')->getFont()->setBold(true);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+            $this->excel->getActiveSheet()->SetCellValue('A3', strtoupper($report_type['type']) . ' যোগাযোগ  রিপোর্ট: from ' . $report_type['start'] . ' to ' . $report_type['end']);
+            $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+
+
+
+
+
+
+
+
+
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A6")->applyFromArray($style);
+
+
+
+
+            $this->excel->getActiveSheet()->getStyle('A6:G6')->getFont()->setBold(true);
+            $this->excel->getActiveSheet()->SetCellValue('A6', 'যোগাযোগ');
+            $this->excel->getActiveSheet()->SetCellValue('B6', 'কেন্দ্র থেকে প্রাপ্ত');
+            $this->excel->getActiveSheet()->SetCellValue('C6', 'শাখা থেকে প্রকাশিত');
+            $this->excel->getActiveSheet()->SetCellValue('D6', 'অধঃস্থন সংগঠনে প্রেরিত');
+            $this->excel->getActiveSheet()->SetCellValue('E6', 'কেন্দ্রে প্রেরিত');
+            $this->excel->getActiveSheet()->SetCellValue('F6', 'সংগঠনের বাইরে থেকে প্রাপ্ত');
+
+            $row = 7;
+            $total = 0;
+                
+			
+				$this->excel->getActiveSheet()->SetCellValue('A7', 'চিঠি/সার্কুলার');
+                $this->excel->getActiveSheet()->SetCellValue('B7' , $detailinfo['communicationinfo']->letter_from_center);
+                $this->excel->getActiveSheet()->SetCellValue('C7' , $detailinfo['communicationinfo']->letter_from_branch);
+                $this->excel->getActiveSheet()->SetCellValue('D7' , $detailinfo['communicationinfo']->letter_to_subordinate);
+                $this->excel->getActiveSheet()->SetCellValue('E7' ,$detailinfo['communicationinfo']->letter_to_center);
+                $this->excel->getActiveSheet()->SetCellValue('F7' ,$detailinfo['communicationinfo']->letter_from_outside);
+
+
+
+            
+
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(25);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(25);
+			$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(25);
+			$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
+
+
+
+
+
+
+            $filename = 'Communication_'.$branch->name;
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+
+
+
+
+		$this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+
+
+	 	}
+	
 
 	function getEntryInfoCommunication($report_type_get, $branch_id = NULL)
 	{
@@ -756,6 +902,176 @@ FROM `sma_library_calculated` WHERE `report_type` = ? AND calculated_year = ? ",
 	}
 
 
+	function trainingelement_export($branch_id)
+	{
+		$this->sma->checkPermissions('index', TRUE);
+
+
+		if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+			$this->session->set_flashdata('warning', lang('access_denied'));
+			admin_redirect('training/trainingelement/' . $this->session->userdata('branch_id'));
+		} else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+			admin_redirect('training/trainingelement/' . $this->session->userdata('branch_id'));
+		}
+
+
+		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+			 $branch_id = $branch_id;
+			$branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+		} else {
+			 $branch_id = $this->session->userdata('branch_id');
+			$branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+		}
+
+		$report_type = $this->report_type();
+
+		if ($report_type == false)
+			admin_redirect();
+
+		$report_info = $report_type;
+
+
+		if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
+		{
+			$detailinfo = $this->getEntryInfoTrainingElement($report_type, $branch_id);
+		} else {
+			$detailinfo = $this->getEntryInfoTrainingElementSUM($report_type, $branch_id);
+		}
+
+
+
+		if (!empty($detailinfo)) {
+
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+            $this->excel->getActiveSheet()->setTitle('Element');
+
+
+
+
+            $this->excel->getActiveSheet()->mergeCells('A1:D1');
+            $this->excel->getActiveSheet()->mergeCells('A2:D2');
+            $this->excel->getActiveSheet()->mergeCells('A3:D3');
+            $this->excel->getActiveSheet()->mergeCells('A4:D4');
+            $this->excel->getActiveSheet()->mergeCells('A5:D5');
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A1:D4")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle('A1:D4')->getFont()->setBold(true);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+            $this->excel->getActiveSheet()->SetCellValue('A3', strtoupper($report_type['type']) . 'উপকরণ  রিপোর্ট: from ' . $report_type['start'] . ' to ' . $report_type['end']);
+            $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+
+
+
+
+
+
+
+
+
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A6")->applyFromArray($style);
+
+
+
+
+            $this->excel->getActiveSheet()->getStyle('A6:G6')->getFont()->setBold(true);
+            $this->excel->getActiveSheet()->SetCellValue('A6', 'উপকরণ');
+            $this->excel->getActiveSheet()->SetCellValue('B6', 'উৎস');
+            $this->excel->getActiveSheet()->SetCellValue('C6', 'সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('D6', 'বিষয়');
+            
+
+            
+                
+
+			     $this->excel->getActiveSheet()->mergeCells('A7:A8');
+			
+				$this->excel->getActiveSheet()->SetCellValue('A7', 'পোষ্টার');
+
+				$this->excel->getActiveSheet()->mergeCells('A9:A10');
+				$this->excel->getActiveSheet()->SetCellValue('A9', 'লিফলেট');
+
+			 
+				$this->excel->getActiveSheet()->SetCellValue('A11', 'দাওয়াতী ব্যানার');
+				$this->excel->getActiveSheet()->SetCellValue('A12', 'দেয়ালিকা/বুলেটিন');
+
+
+				$this->excel->getActiveSheet()->SetCellValue('B7', 'কেন্দ্র');
+				$this->excel->getActiveSheet()->SetCellValue('B8', 'শাখা');
+				$this->excel->getActiveSheet()->SetCellValue('B9', 'কেন্দ্র');
+				$this->excel->getActiveSheet()->SetCellValue('B10', 'শাখা');
+
+				
+
+                $this->excel->getActiveSheet()->SetCellValue('C7' , $detailinfo['trainingelementinfo']->poster_from_center);
+                $this->excel->getActiveSheet()->SetCellValue('D7' , $detailinfo['trainingelementinfo']->poster_from_center_topic);
+                
+				$this->excel->getActiveSheet()->SetCellValue('C8' ,$detailinfo['trainingelementinfo']->poster_from_branch);
+                $this->excel->getActiveSheet()->SetCellValue('D8' ,$detailinfo['trainingelementinfo']->poster_from_branch_topic);
+                
+				$this->excel->getActiveSheet()->SetCellValue('C9' ,$detailinfo['trainingelementinfo']->leaflet_from_center);
+                $this->excel->getActiveSheet()->SetCellValue('D9' ,$detailinfo['trainingelementinfo']->leaflet_from_center_topic);
+                
+				$this->excel->getActiveSheet()->SetCellValue('C10' ,$detailinfo['trainingelementinfo']->leaflet_from_branch);
+                $this->excel->getActiveSheet()->SetCellValue('D10' ,$detailinfo['trainingelementinfo']->leaflet_from_branch_topic);
+				
+				$this->excel->getActiveSheet()->SetCellValue('C11' ,$detailinfo['trainingelementinfo']->dawat_banner);
+                $this->excel->getActiveSheet()->SetCellValue('D11' ,$detailinfo['trainingelementinfo']->dawat_banner_topic);
+				
+				$this->excel->getActiveSheet()->SetCellValue('C12' ,$detailinfo['trainingelementinfo']->bulletin);
+                $this->excel->getActiveSheet()->SetCellValue('D12' ,$detailinfo['trainingelementinfo']->bulletin_topic);
+
+
+
+            
+
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(25);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(100);
+		 
+
+
+
+
+
+
+            $filename = 'Element_'.$branch->name;
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+
+
+
+
+		$this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+
+
+
+		 
+	}
 
 
 	function getEntryInfoTrainingElement($report_type_get, $branch_id = NULL)
