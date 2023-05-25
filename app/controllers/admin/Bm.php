@@ -461,9 +461,9 @@ function getEntryInfo($report_type,$sources, $branch_id = NULL)
 				$this->excel->getActiveSheet()->getStyle('E' . $row.':G'. $row)->getFont()->setBold( true );
                 
 				$row = $row+1;
-				$this->excel->getActiveSheet()->SetCellValue('G' . $row, $income-$total);
+				$this->excel->getActiveSheet()->SetCellValue('G' . $row, abs($income-$total));
 				$this->excel->getActiveSheet()->mergeCells('E' . $row.':F'. $row);
-				$this->excel->getActiveSheet()->SetCellValue('E' . $row, "Surplus/Deficit");
+				$this->excel->getActiveSheet()->SetCellValue('E' . $row,  $income-$total >=0 ? "Surplus" :"Deficit");
 				$this->excel->getActiveSheet()->getStyle('E' . $row.':G'. $row)->getFont()->setBold( true );
                 
 				

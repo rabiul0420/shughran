@@ -164,7 +164,7 @@
 
         <div class="box-content" style="padding: 0px 0px 0px 20px; ">
         <div class="row"> 
-            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('manpower/exportsummary_not_in_use?branch='. $_GET['branch'] .'&type='.$_GET['type'].'&year='.$_GET['year'] )  ?>">
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('manpower/exportsummary?branch='. $_GET['branch'] .'&type='.$_GET['type'].'&year='.$_GET['year'] )  ?>">
             একনজরে
             </a>
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
@@ -191,6 +191,19 @@
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
                 Report
             </a>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+
+    <h2 class="text-bold">বিএম:</h2>
+    <div class="box-content" style="padding: 0px 0px 0px 20px; ">
+        <div class="row">
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('bm/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+                Report
+            </a>
+            
         </div>
 
         <div class="clearfix"></div>
