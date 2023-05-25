@@ -139,7 +139,7 @@ else {
 </tr>
 <tr>
 <td >সংখ্যা</td>
-<td><?php   $prev_library =  isset($prev[0]['library_number'])? $prev[0]['library_number'] : ''; 
+<td><?php   $prev_library =  isset($prev[0]['library_number'])? $prev[0]['library_number'] : 0; 
   echo $prev_library;?></td>
 <td><?php    echo $prev_library +$detailinfo[0]['library_increase'] - $detailinfo[0]['library_decrease'];?></td>
 <td colspan="2"><?php echo $detailinfo[0]['library_increase']; ?></td>
@@ -151,7 +151,7 @@ else {
 </tr>
 <tr>
 <td >বই সংখ্যা</td>
-<td><?php   $prev_book =  isset($prev[0]['book_number'])? $prev[0]['book_number'] : ''; 
+<td><?php   $prev_book =  isset($prev[0]['book_number'])? $prev[0]['book_number'] : 0; 
  echo $prev_book;?></td>
 <td><?php   echo $prev_book +$detailinfo[0]['book_increase'] - $detailinfo[0]['book_decrease'];?></td>
 <td colspan="2"><?php echo $detailinfo[0]['book_increase']; ?></td>
@@ -163,7 +163,7 @@ else {
 </tr>
 <tr>
 <td >ব্যক্তিগত</td>
-<td><?php   $prev_personal =  isset($prev[0]['personal'])? $prev[0]['personal'] : '';
+<td><?php   $prev_personal =  isset($prev[0]['personal'])? $prev[0]['personal'] : 0;
    echo $prev_personal;?></td>
 <td><?php   echo $prev_personal +$detailinfo[0]['personal_increase'] - $detailinfo[0]['personal_decrease'];?></td>
 <td colspan="2"><?php echo $detailinfo[0]['personal_increase']; ?></td>

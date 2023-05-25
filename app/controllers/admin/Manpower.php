@@ -164,8 +164,13 @@ class Manpower extends MY_Controller
         $this->data['assolog'] = $this->manPowerLog('assolog', $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
         $this->data['workerlog'] = $this->manPowerLog('workerlog', $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
         
+
+       // $this->sma->print_arrays($report_type);
+
         $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info,$report_type['last_half']);
 
+
+       // $this->sma->print_arrays($this->data['manpower_record']);
         $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
         $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
         $this->data['postpone_asso'] = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id,$cal_type,$report_info);
@@ -353,10 +358,10 @@ $half_end = $report_date_info->enddate_half;
         $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(  $branch_id, $half_start, $half_end));
 
 
-        $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'] ?? '';
+        $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'] ?? 0;
 
 
-        $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'] ?? '';
+        $result[0]['member_candidate_candidate_target'] = $result2[0]['member_candidate_candidate_target'] ?? 0;
     }
 
     else {
