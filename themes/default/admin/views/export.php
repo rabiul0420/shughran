@@ -182,6 +182,29 @@
     <h2 class="text-bold">দাওয়াত :</h2>
     <div class="box-content" style="padding: 0px 0px 0px 20px; ">
         <div class="row">
+        <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('dawat/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+        দাওয়াত 
+            </a>
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('dawat/element_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+            দাওয়াতী উপকরণ 
+            </a> 
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('dawat/mosque_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+            মসজিদ ভিত্তিক কাজ 
+            </a> 
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('dawat/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+        Coming 
+            </a> 
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('dawat/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+        Coming 
+            </a> 
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <h2 class="text-bold">সংগঠন:</h2>
+    <div class="box-content" style="padding: 0px 0px 0px 20px; ">
+        <div class="row">
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
                 Coming
             </a>
@@ -192,13 +215,11 @@
     </div>
 
 
-
-
     <h2 class="text-bold">সভাসমূহ :</h2>
     <div class="box-content" style="padding: 0px 0px 0px 20px; ">
         <div class="row">
-            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-                Coming
+        <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('others/program_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+        সভাসমূহ 
             </a>
             
         </div>
