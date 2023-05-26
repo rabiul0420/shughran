@@ -192,6 +192,55 @@
     </div>
 
 
+
+
+    <h2 class="text-bold">সভাসমূহ :</h2>
+    <div class="box-content" style="padding: 0px 0px 0px 20px; ">
+        <div class="row">
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
+                Coming
+            </a>
+            
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+     
+
+    <h2 class="text-bold">প্রশিক্ষণ:</h2>
+    <div class="box-content" style="padding: 0px 0px 0px 20px; ">
+        <div class="row">
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('others/centraltraining_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+            কেন্দ্রীয় প্রশিক্ষণ
+            </a>
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('training/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+            শাখা প্রশিক্ষণ 
+            </a>
+
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('training/library_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>"> 
+            পাঠাগার  
+            </a>
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('highersyllabus/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>"> 
+            উচ্চতর সিলেবাস  
+            </a>
+
+            
+             
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
     <h2 class="text-bold">অন্যান্য:</h2>
     <div class="box-content" style="padding: 0px 0px 0px 20px; ">
         <div class="row">
