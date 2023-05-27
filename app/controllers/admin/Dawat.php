@@ -1541,7 +1541,7 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
             $this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
             $this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
             $this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(40);
+            $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(45);
             $this->excel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
             $this->excel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
 
