@@ -657,6 +657,179 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->page_construct('dawat/detail', $meta, $this->data, 'leftmenu/dawat');
     }
 
+    function dawat_detail_export($branch_id)
+    {
+        $this->sma->checkPermissions('index', TRUE);
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('dawat/detail/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('dawat/detail/' . $this->session->userdata('branch_id'));
+        }
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $branch_id = $branch_id;
+            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $branch_id = $this->session->userdata('branch_id');
+            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+        $report_type = $this->report_type();
+
+        if ($report_type == false)
+            admin_redirect();
+
+        $report_info = $report_type;
+
+
+        if ($branch_id) {
+            $detailinfo = $this->getEntryInfo($report_type, $branch_id);
+        } else
+            $detailinfo = $this->getEntryInfoSUM($report_type, $branch_id);
+
+
+        if ($detailinfo) {
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+            $this->excel->getActiveSheet()->setTitle('Dawat Detail');
+
+
+
+
+            $this->excel->getActiveSheet()->mergeCells('A1:J1');
+            $this->excel->getActiveSheet()->mergeCells('A2:J2');
+            $this->excel->getActiveSheet()->mergeCells('A3:J3');
+            $this->excel->getActiveSheet()->mergeCells('A4:J4');
+            $this->excel->getActiveSheet()->mergeCells('A5:J5');
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A1:J4")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle('A1:J4')->getFont()->setBold(true);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+
+
+
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A3', 'বিস্তারিত দাওয়াত' . strtoupper($report_type['type']) . ' Report: from ' . $report_type['start'] . ' to ' . $report_type['end']);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_TOP
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A7:R7")->applyFromArray($style);
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('K')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('L')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('M')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('N')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('O')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('P')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('Q')->setWidth(15);
+
+
+            $this->excel->getActiveSheet()->mergeCells('A7:L7');
+            $this->excel->getActiveSheet()->SetCellValue('A7', '১। দাওয়াতী গ্রুপ প্রেরণ');
+            $this->excel->getActiveSheet()->mergeCells('M7:R7');
+            $this->excel->getActiveSheet()->SetCellValue('M7', '২। চলো গ্রামে যাই');
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A8', 'গ্রুপ সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('B8', 'সদস্য সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('C8', 'দাওয়াত প্রাপ্ত');
+            $this->excel->getActiveSheet()->mergeCells('C8:D8');
+
+            $this->excel->getActiveSheet()->SetCellValue('E8', 'সমাবেশ');
+            $this->excel->getActiveSheet()->mergeCells('E8:F8');
+
+            $this->excel->getActiveSheet()->SetCellValue('G8', 'সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('H8', 'বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('I8', 'সংগঠন বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('J8', 'অমুসলিম সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('K8', 'অমুসলিম বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('L8', 'শুভাকাংখী বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('M8', 'কতজন গিয়েছেন');
+            $this->excel->getActiveSheet()->SetCellValue('N8', 'কর্মী যোগাযোগ');
+            $this->excel->getActiveSheet()->SetCellValue('O8', 'সুধী যোগাযোগ');
+            $this->excel->getActiveSheet()->SetCellValue('P8', 'শুভাকাঙ্খী বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('Q8', 'বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('R8', 'সমর্থক বৃদ্ধি');
+
+
+            $this->excel->getActiveSheet()->mergeCells('A8:A9');
+            $this->excel->getActiveSheet()->mergeCells('B8:B9');
+            $this->excel->getActiveSheet()->SetCellValue('C9', 'ছাত্র সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('D9', 'জনসংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('E9', 'সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('F9', 'গড় উপঃ');
+            $this->excel->getActiveSheet()->SetCellValue('G9', '18');  // HARDCODE FOR DESIGN READY
+            $this->excel->getActiveSheet()->SetCellValue('H9', '13');
+            $this->excel->getActiveSheet()->SetCellValue('I9', '0');
+            $this->excel->getActiveSheet()->SetCellValue('J9', '0');
+            $this->excel->getActiveSheet()->SetCellValue('K9', '3');
+            $this->excel->getActiveSheet()->SetCellValue('L9', '2');
+            $this->excel->getActiveSheet()->SetCellValue('M9', '2855');
+            $this->excel->getActiveSheet()->SetCellValue('N9', '24');
+            $this->excel->getActiveSheet()->SetCellValue('O9', '965');
+            $this->excel->getActiveSheet()->SetCellValue('P9', '4');
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A10', '565');
+            $this->excel->getActiveSheet()->SetCellValue('B10', '1965');
+            $this->excel->getActiveSheet()->SetCellValue('C10', '35');
+            $this->excel->getActiveSheet()->SetCellValue('D10', '17');
+            $this->excel->getActiveSheet()->SetCellValue('E10', '14');
+            $this->excel->getActiveSheet()->SetCellValue('F10', '5');
+
+            // $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+
+
+
+            $filename = 'বিস্তারিত_দাওয়াত_' . ($branch->name);
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+
+
+
+        $this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+
+
+
+
 
 
 
@@ -1264,6 +1437,196 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
         else
             $this->page_construct('dawat/extra', $meta, $this->data, 'leftmenu/dawat');
     }
+
+
+
+    function dawat_extra_export($branch_id)
+    {
+        $this->sma->checkPermissions('index', TRUE);
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('dawat/extra/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('dawat/extra/' . $this->session->userdata('branch_id'));
+        }
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $branch_id = $branch_id;
+            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $branch_id = $this->session->userdata('branch_id');
+            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+        $report_type = $this->report_type();
+
+        if ($report_type == false)
+            admin_redirect();
+
+        $report_info = $report_type;
+
+
+        if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
+        {
+            $detailinfo = $this->getEntryInfoExtra($report_type, $branch_id);
+        } else {
+            $detailinfo = $this->getEntryInfoExtraSUM($report_type, $branch_id);
+        }
+
+
+        if ($detailinfo) {
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+            $this->excel->getActiveSheet()->setTitle('Dawat Extra');
+
+
+
+
+            $this->excel->getActiveSheet()->mergeCells('A1:J1');
+            $this->excel->getActiveSheet()->mergeCells('A2:J2');
+            $this->excel->getActiveSheet()->mergeCells('A3:J3');
+            $this->excel->getActiveSheet()->mergeCells('A4:J4');
+            $this->excel->getActiveSheet()->mergeCells('A5:J5');
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A1:J4")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle('A1:J4')->getFont()->setBold(true);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+
+
+
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A3', 'অতিরিক্ত দাওয়াত ' . strtoupper($report_type['type']) . ' Report: from ' . $report_type['start'] . ' to ' . $report_type['end']);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+            $this->excel->getActiveSheet()->mergeCells('A7:A8');
+            $this->excel->getActiveSheet()->mergeCells('B7:D7');
+            $this->excel->getActiveSheet()->mergeCells('E7:E8');
+            $this->excel->getActiveSheet()->mergeCells('F7:F8');
+            $this->excel->getActiveSheet()->mergeCells('G7:G8');
+            $this->excel->getActiveSheet()->mergeCells('H7:H9');
+            $this->excel->getActiveSheet()->mergeCells('I7:I9');
+            $this->excel->getActiveSheet()->mergeCells('J7:J9');
+
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_TOP
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A7:J7")->applyFromArray($style);
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(40);
+            $this->excel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
+
+            $this->excel->getActiveSheet()->SetCellValue('A7', 'অতিরিক্ত দাওয়াত');
+            $this->excel->getActiveSheet()->SetCellValue('B7', 'অংশগ্রহনকারী');
+            $this->excel->getActiveSheet()->SetCellValue('E7', 'দাওয়াত প্রাপ্ত');
+            $this->excel->getActiveSheet()->SetCellValue('F7', 'বন্ধু বৃদ্ধি');
+
+
+            $this->excel->getActiveSheet()->SetCellValue('G7', 'সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('H7', 'অতিরিক্ত দাওয়াত');
+            $this->excel->getActiveSheet()->SetCellValue('I7', 'সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('J7', 'বৃদ্ধি');
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('B8', 'পূর্বের সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('C8', 'বর্তমান সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('D8', 'বৃদ্ধি');
+
+
+
+
+            //  $this->sma->print_arrays($detailinfo['extra_dawatinfo']);
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A9', 'ব্যক্তিগত দাওয়াতী কাজ');
+            $this->excel->getActiveSheet()->SetCellValue('B9', $detailinfo['extra_dawatinfo']->personal_dawat_prev);
+            $this->excel->getActiveSheet()->SetCellValue('C9', $detailinfo['extra_dawatinfo']->personal_dawat_current);
+            $this->excel->getActiveSheet()->SetCellValue('D9', $detailinfo['extra_dawatinfo']->personal_dawat_increase);
+            $this->excel->getActiveSheet()->SetCellValue('E9', $detailinfo['extra_dawatinfo']->personal_dawat_person);
+            $this->excel->getActiveSheet()->SetCellValue('F9', $detailinfo['extra_dawatinfo']->personal_dawat_friend);
+            $this->excel->getActiveSheet()->SetCellValue('G9', $detailinfo['extra_dawatinfo']->personal_dawat_supporter);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A10', 'গ্রুপ দাওয়াতী কাজ');
+            $this->excel->getActiveSheet()->SetCellValue('B10', $detailinfo['extra_dawatinfo']->group_dawat_prev);
+            $this->excel->getActiveSheet()->SetCellValue('C10', $detailinfo['extra_dawatinfo']->group_dawat_current);
+            $this->excel->getActiveSheet()->SetCellValue('D10', $detailinfo['extra_dawatinfo']->group_dawat_increase);
+            $this->excel->getActiveSheet()->SetCellValue('E10', $detailinfo['extra_dawatinfo']->group_dawat_person);
+            $this->excel->getActiveSheet()->SetCellValue('F10', $detailinfo['extra_dawatinfo']->group_dawat_friend);
+            $this->excel->getActiveSheet()->SetCellValue('G10', $detailinfo['extra_dawatinfo']->group_dawat_supporter);
+            $this->excel->getActiveSheet()->SetCellValue('H10', 'দাওয়াতী গ্রুপ');
+            $this->excel->getActiveSheet()->SetCellValue('I10', $detailinfo['extra_dawatinfo']->dawat_group);
+            $this->excel->getActiveSheet()->SetCellValue('J10', $detailinfo['extra_dawatinfo']->dawat_group_increase);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A11', 'মুহরামাদের মাঝে কাজ');
+            $this->excel->getActiveSheet()->SetCellValue('B11', $detailinfo['extra_dawatinfo']->muharrama_dawat_prev);
+            $this->excel->getActiveSheet()->SetCellValue('C11', $detailinfo['extra_dawatinfo']->muharrama_dawat_current);
+            $this->excel->getActiveSheet()->SetCellValue('D11', $detailinfo['extra_dawatinfo']->muharrama_dawat_increase);
+            $this->excel->getActiveSheet()->SetCellValue('E11', $detailinfo['extra_dawatinfo']->muharrama_dawat_person);
+            $this->excel->getActiveSheet()->SetCellValue('F11', $detailinfo['extra_dawatinfo']->muharrama_dawat_friend);
+            $this->excel->getActiveSheet()->SetCellValue('G11', $detailinfo['extra_dawatinfo']->muharrama_dawat_supporter);
+            $this->excel->getActiveSheet()->SetCellValue('H11', 'জনশক্তিদের মোট মুহাররমা কতজন');
+            $this->excel->getActiveSheet()->SetCellValue('I11', $detailinfo['extra_dawatinfo']->muharram_number);
+            $this->excel->getActiveSheet()->SetCellValue('J11', $detailinfo['extra_dawatinfo']->muharram_number_increase);
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A12', 'আত্মীয় ও প্রতিবেশী');
+            $this->excel->getActiveSheet()->SetCellValue('B12', $detailinfo['extra_dawatinfo']->relative_dawat_prev);
+            $this->excel->getActiveSheet()->SetCellValue('C12', $detailinfo['extra_dawatinfo']->relative_dawat_current);
+            $this->excel->getActiveSheet()->SetCellValue('D12', $detailinfo['extra_dawatinfo']->relative_dawat_increase);
+            $this->excel->getActiveSheet()->SetCellValue('E12', $detailinfo['extra_dawatinfo']->relative_dawat_person);
+            $this->excel->getActiveSheet()->SetCellValue('F12', $detailinfo['extra_dawatinfo']->relative_dawat_friend);
+            $this->excel->getActiveSheet()->SetCellValue('G12', $detailinfo['extra_dawatinfo']->relative_dawat_supporter);
+            $this->excel->getActiveSheet()->SetCellValue('H12', 'জনশক্তিদের মোট আত্মীয় ও প্রতিবেশী কতজন');
+            $this->excel->getActiveSheet()->SetCellValue('I12', $detailinfo['extra_dawatinfo']->relative_number);
+            $this->excel->getActiveSheet()->SetCellValue('J12', $detailinfo['extra_dawatinfo']->relative_number_increase);
+
+
+
+            $filename = 'অতিরিক্ত দাওয়াত_' . ($branch->name);
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+
+
+
+        $this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
 
 
 
