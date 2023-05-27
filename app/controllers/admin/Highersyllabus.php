@@ -93,6 +93,173 @@ class Highersyllabus extends MY_Controller
 
 
 
+	function export($branch_id)
+	{
+		$this->sma->checkPermissions();
+
+		if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+			$this->session->set_flashdata('warning', lang('access_denied'));
+			admin_redirect('highersyllabus/' . $this->session->userdata('branch_id'));
+		} else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+			admin_redirect('highersyllabus/' . $this->session->userdata('branch_id'));
+		}
+
+		$report_type = $this->report_type();
+
+		if ($report_type == false)
+			admin_redirect();
+
+		$report_info = $report_type;
+
+		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+			$branch_id = $branch_id;
+			$branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+		} else {
+			$branch_id = $this->session->userdata('branch_id');
+			$branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+		}
+
+		$highersyllabuss = $this->highersyllabus_model->getAllHigherSyllabus();
+
+
+		if ($branch_id) {
+			$detailinfo = '';
+		} else
+			$detailinfo = '';
+
+
+
+
+
+
+		$highersyllabus_summary = $this->gethighersyllabus_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $report_type);
+		$highersyllabusinfo_summary = $this->gethighersyllabusinfo_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $report_type);
+
+
+
+		//$this->data['member_summary'] = $this->getmember_summary($report_type['type'],$last_year,$branch_id);	 
+
+
+		$current_member = $this->site->allmembernumber($branch_id);
+
+		if (!empty($highersyllabuss)) {
+
+			$this->load->library('excel');
+			$this->excel->setActiveSheetIndex(0);
+			$this->excel->getActiveSheet()->setTitle('Libraby');
+
+
+
+
+			$this->excel->getActiveSheet()->mergeCells('A1:D1');
+			$this->excel->getActiveSheet()->mergeCells('A2:D2');
+			$this->excel->getActiveSheet()->mergeCells('A3:D3');
+			$this->excel->getActiveSheet()->mergeCells('A4:D4');
+			$this->excel->getActiveSheet()->mergeCells('A5:D5');
+
+			$style = array(
+				'alignment' => array(
+					'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+				)
+			);
+
+			$this->excel->getActiveSheet()->getStyle("A1:D4")->applyFromArray($style);
+			$this->excel->getActiveSheet()->getStyle('A1:D4')->getFont()->setBold(true);
+
+
+			$this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+			$this->excel->getActiveSheet()->SetCellValue('A3', strtoupper($report_type['type']) . ' উচ্চতর সিলেবাস  রিপোর্ট: from ' . $report_type['start'] . ' to ' . $report_type['end']);
+			$this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+
+
+
+
+
+			$style = array(
+				'alignment' => array(
+					'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+				)
+			);
+
+			$this->excel->getActiveSheet()->getStyle("A6")->applyFromArray($style);
+
+
+
+
+			$this->excel->getActiveSheet()->getStyle('A6:I6')->getFont()->setBold(true);
+			$this->excel->getActiveSheet()->SetCellValue('A6', 'নং');
+			$this->excel->getActiveSheet()->SetCellValue('B6', 'বিষয়ের নাম');
+			$this->excel->getActiveSheet()->SetCellValue('C6', 'কতজন অধ্যয়ন করেছেন');
+			$this->excel->getActiveSheet()->SetCellValue('D6', 'কতটি বই অধ্যয়ন করেছেন');
+
+
+			$row = 8;
+			$total_book = 0;
+
+			foreach ($highersyllabuss as $key => $highersyllabus) {
+				$this->excel->getActiveSheet()->SetCellValue('A' . $row, $key + 1);
+				$this->excel->getActiveSheet()->SetCellValue('B' . $row, $highersyllabus->highersyllabus_name);
+				$row_info = record_row($highersyllabus_summary, 'highersyllabus_id', $highersyllabus->id);
+				$reader_number = $row_info['reader_number'];
+				$total_book += $row_info['book_number'];
+
+				$this->excel->getActiveSheet()->SetCellValue('C' . $row, $row_info['reader_number']=='' ? 0 : $row_info['reader_number']);
+				$this->excel->getActiveSheet()->SetCellValue('D' . $row, $row_info['book_number']=='' ? 0 : $row_info['book_number']);
+
+
+
+				$row++;
+			}
+
+			$this->excel->getActiveSheet()->mergeCells('A'.$row.':C'.$row);
+			$this->excel->getActiveSheet()->SetCellValue('A'.$row, 'মোট বই অধ্যয়ন');
+			$this->excel->getActiveSheet()->SetCellValue('D'.$row, $total_book);
+			 
+			$row++;
+			$row++;
+
+
+			//
+
+			
+
+
+
+			$this->excel->getActiveSheet()->getStyle('A'.$row.':I'.$row)->getFont()->setBold(true);
+			$this->excel->getActiveSheet()->SetCellValue('A'.$row, 'মোট সদস্য');
+			$this->excel->getActiveSheet()->SetCellValue('B'.$row, 'কতজন অধ্যয়ন করেছেন');
+			$this->excel->getActiveSheet()->SetCellValue('C'.$row, 'কতটি বই');
+			$this->excel->getActiveSheet()->SetCellValue('D'.$row, 'গড় বই');
+			$row++;
+
+			$this->excel->getActiveSheet()->SetCellValue('A'.$row, $current_member->member);
+			$total_reader = isset($highersyllabusinfo_summary[0]['total_reader']) ? $highersyllabusinfo_summary[0]['total_reader'] : 0;
+ 
+			$this->excel->getActiveSheet()->SetCellValue('B'.$row, $total_reader);
+			$this->excel->getActiveSheet()->SetCellValue('C'.$row, $total_book);
+			$this->excel->getActiveSheet()->SetCellValue('D'.$row, ($total_reader!=0) ? round($total_book/$total_reader,2) : 0);
+
+
+			$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(30);
+			$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+			$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+
+			$filename = 'উচ্চতর_সিলেবাস_' . $branch->name;
+			$this->load->helper('excel');
+			create_excel($this->excel, $filename);
+		}
+
+
+
+
+		$this->session->set_flashdata('error', lang('nothing_found'));
+		redirect($_SERVER["HTTP_REFERER"]);
+	}
+
 	function gethighersyllabus_summary($report_type, $start_date, $end_date, $branch_id = NULL, $reportinfo = null)
 	{
 
@@ -457,7 +624,7 @@ class Highersyllabus extends MY_Controller
 	}
 
 
-	function export($branch_id = NULL)
+	function export_old($branch_id = NULL)
 	{
 
 		$this->sma->checkPermissions('index', TRUE);

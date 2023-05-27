@@ -21,14 +21,11 @@ class Dawat extends MY_Controller
         $this->digital_file_types = 'zip|psd|ai|rar|pdf|doc|docx|xls|xlsx|ppt|pptx|gif|jpg|jpeg|png|tif|txt';
         $this->allowed_file_size = '1024';
         $this->popup_attributes = array('width' => '900', 'height' => '600', 'window_name' => 'sma_popup', 'menubar' => 'yes', 'scrollbars' => 'yes', 'status' => 'no', 'resizable' => 'yes', 'screenx' => '0', 'screeny' => '0');
-    
-
-    
     }
 
     function index($branch_id = NULL)
     {
-       
+
         $this->sma->checkPermissions();
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
@@ -53,30 +50,30 @@ class Dawat extends MY_Controller
 
 
         $report_type_get = $this->report_type();
-       
-		if( $report_type_get ==false) 
-        admin_redirect();
-        
+
+        if ($report_type_get == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type_get;
 
-        
-         
-
-     
-            $report_start =$report_type_get['start'];
-            $report_end = $report_type_get['end'];
-            $report_type = $report_type_get['type'];
-            $report_year = $report_type_get['year'];
-        
 
 
 
 
-       // $this->sma->print_arrays( $report_start, $report_end ,$report_type);
-       
-       $this->data['lastyeardawat'] = $this->getLastDawat('annual', $report_type_get['last_year'], $branch_id);
-           
-       //$this->sma->print_arrays($this->data['lastyeardawat']);
+        $report_start = $report_type_get['start'];
+        $report_end = $report_type_get['end'];
+        $report_type = $report_type_get['type'];
+        $report_year = $report_type_get['year'];
+
+
+
+
+
+        // $this->sma->print_arrays( $report_start, $report_end ,$report_type);
+
+        $this->data['lastyeardawat'] = $this->getLastDawat('annual', $report_type_get['last_year'], $branch_id);
+
+        //$this->sma->print_arrays($this->data['lastyeardawat']);
 
 
 
@@ -90,14 +87,14 @@ class Dawat extends MY_Controller
         $this->data['dawat_summary'] = $this->getdawat_summarySum($report_type, $report_start, $report_end, $branch_id);
 
         if ($branch_id) {
-            $dawat_personal_n_group = $this->getEntryInfoExtra($report_type_get,$branch_id);
+            $dawat_personal_n_group = $this->getEntryInfoExtra($report_type_get, $branch_id);
             // $this->sma->print_arrays($dawat_personal_n_group['extra_dawatinfo'] );
             $this->data['dawat_personal_n_group'] =  array(0 => (array) $dawat_personal_n_group['extra_dawatinfo']);
         } else
             $this->data['dawat_personal_n_group'] = $this->getEntryInfoExtraSUM($report_type_get);
 
 
-          //$this->data['m'] = 'manpowersummary';
+        //$this->data['m'] = 'manpowersummary';
 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Dawat'));
         $meta = array('page_title' => lang('dawat'), 'bc' => $bc);
@@ -117,18 +114,272 @@ class Dawat extends MY_Controller
 
 
 
-    function getEntryInfodawat_summary($branch_id = NULL)
+
+
+
+    function export($branch_id = NULL)
     {
 
-        
+        $this->sma->checkPermissions();
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('dawat/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('dawat/' . $this->session->userdata('branch_id'));
+        }
+
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $branch_id = $branch_id;
+            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
         $report_type_get = $this->report_type();
-        $report_start =$report_type_get['start'];
+
+        if ($report_type_get == false)
+            admin_redirect();
+
+        $report_info = $report_type_get;
+
+
+
+
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
-    
 
-       
+
+
+
+
+        $lastyeardawat = $this->getLastDawat('annual', $report_type_get['last_year'], $branch_id);
+
+
+
+        $dawatgroupsend = $this->getdawatgroupsendSum($report_type, $report_start, $report_end, $branch_id);
+        $school_dawat_report = $this->getschool_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        $madrasha_dawat_report = $this->getmadrasha_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        $college_dawat_report = $this->getcollege_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        $university_dawat_report = $this->getuniversity_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        $fortnight_dawat_report = $this->getfortnight_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        $letgotovillage = $this->getletgotovillageSum($report_type, $report_start, $report_end, $branch_id);
+        $dawat_summary = $this->getdawat_summarySum($report_type, $report_start, $report_end, $branch_id);
+
+        if ($branch_id) {
+            $dawat_personal_n_group = $this->getEntryInfoExtra($report_type_get, $branch_id);
+
+            $dawat_personal_n_group =  array(0 => (array) $dawat_personal_n_group['extra_dawatinfo']);
+        } else
+            $dawat_personal_n_group = $this->getEntryInfoExtraSUM($report_type_get);
+
+
+
+        if ($branch_id)
+            $detailinfo = $this->getEntryInfodawat_summary($branch_id);
+        else
+            $detailinfo = '';
+
+
+        if (1) {
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+            $this->excel->getActiveSheet()->setTitle('দাওয়াত');
+
+            $this->excel->getActiveSheet()->mergeCells('A1:P1');
+            $this->excel->getActiveSheet()->mergeCells('A2:P2');
+            $this->excel->getActiveSheet()->mergeCells('A3:P3');
+            $this->excel->getActiveSheet()->mergeCells('A4:P4');
+            $this->excel->getActiveSheet()->mergeCells('A5:P5');
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A1:P4")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle('A1:P4')->getFont()->setBold(true);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+            $this->excel->getActiveSheet()->SetCellValue('A3', strtoupper($report_type_get['type']) . ' দাওয়াত Report: from ' . $report_type_get['start'] . ' to ' . $report_type_get['end']);
+            $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A8', 'দাওয়াত');
+            $this->excel->getActiveSheet()->SetCellValue('B8', 'পূর্বের সংখ্যা ');
+            $this->excel->getActiveSheet()->SetCellValue('C8', 'বর্তমান সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('D8', 'মোট বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('E8', 'ব্যক্তিগত দাওয়াত');
+            $this->excel->getActiveSheet()->SetCellValue('F8', 'গ্রুপ দাওয়াত');
+            $this->excel->getActiveSheet()->SetCellValue('G8', 'দাওয়াতী গ্রুপ প্রেরন');
+            $this->excel->getActiveSheet()->SetCellValue('H8', 'স্কুল দাওয়াতী দশক');
+            $this->excel->getActiveSheet()->SetCellValue('I8', 'মাদ্রাসা দাওয়াতী দশক');
+            $this->excel->getActiveSheet()->SetCellValue('J8', 'কলেজ দাওয়াতী দশক');
+            $this->excel->getActiveSheet()->SetCellValue('K8', 'বিশ্ববিদ্যালয় দাওয়াতী দশক');
+            $this->excel->getActiveSheet()->SetCellValue('L8', 'দাওয়াতী পক্ষ/দশক');
+            $this->excel->getActiveSheet()->SetCellValue('M8', 'চলো গ্রামে যাই');
+            $this->excel->getActiveSheet()->SetCellValue('N8', 'টার্গেট');
+            $this->excel->getActiveSheet()->SetCellValue('O8', 'বাস্তবায়ন হার %');
+            $this->excel->getActiveSheet()->SetCellValue('P8', 'ঘাটতি');
+
+
+
+            $this->excel->getActiveSheet()->getStyle("A8:P8")->getFont()->setBold(true);
+
+            $this->excel->getActiveSheet()->getStyle("A8:P8")
+                ->getFill()
+                ->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+                ->getStartColor()
+                ->setRGB('03bb85');
+
+            $this->excel->getActiveSheet()->SetCellValue('A9', 'সমর্থক');
+            $this->excel->getActiveSheet()->SetCellValue('A10', 'বন্ধু');
+            $this->excel->getActiveSheet()->SetCellValue('A11', 'অমুসলিম সমর্থক');
+            $this->excel->getActiveSheet()->SetCellValue('A12', 'অমুসলিম বন্ধু');
+            $this->excel->getActiveSheet()->SetCellValue('A13', 'শুভাকাঙ্খী');
+            $this->excel->getActiveSheet()->getStyle("A9:A13")->getFont()->setBold(true);
+
+            $total_sup = $dawat_personal_n_group[0]['personal_dawat_supporter'] + $dawat_personal_n_group[0]['group_dawat_supporter'] + $dawatgroupsend[0]['supporter_increase'] + $school_dawat_report[0]['supporter_increase'] + $madrasha_dawat_report[0]['supporter_increase'] + $college_dawat_report[0]['supporter_increase'] + $university_dawat_report[0]['supporter_increase'] + $fortnight_dawat_report[0]['supporter_increase'] + $letgotovillage[0]['supporter_increase'];
+
+            $this->excel->getActiveSheet()->SetCellValue('B9', $lastyeardawat[0]['supporter']);
+            $this->excel->getActiveSheet()->SetCellValue('C9', $lastyeardawat[0]['supporter'] + $total_sup - $dawat_summary[0]['supporter_decrease']);
+            $this->excel->getActiveSheet()->SetCellValue('D9', $total_sup);
+            $this->excel->getActiveSheet()->SetCellValue('E9', $dawat_personal_n_group[0]['personal_dawat_supporter']);
+            $this->excel->getActiveSheet()->SetCellValue('F9', $dawat_personal_n_group[0]['group_dawat_supporter']);
+            $this->excel->getActiveSheet()->SetCellValue('G9', $dawatgroupsend[0]['supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('H9', $school_dawat_report[0]['supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('I9', $madrasha_dawat_report[0]['supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('J9', $college_dawat_report[0]['supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('K9', $university_dawat_report[0]['supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('L9', $fortnight_dawat_report[0]['supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('M9', $letgotovillage[0]['supporter_increase']);
+            $target = $lastyeardawat[0]['member'] * 12 +  $lastyeardawat[0]['associate'] * 10 +   $lastyeardawat[0]['worker'] * 5;
+            $this->excel->getActiveSheet()->SetCellValue('N9', $target);
+            $this->excel->getActiveSheet()->SetCellValue('O9', ($target > 0) ? round(100 * $total_sup / $target, 2) : 0);
+            $this->excel->getActiveSheet()->SetCellValue('P9', $dawat_summary[0]['supporter_decrease']);
+
+
+            $total_friend = $dawat_personal_n_group[0]['personal_dawat_friend'] + $dawat_personal_n_group[0]['group_dawat_friend'] + $dawatgroupsend[0]['friend_increase'] + $school_dawat_report[0]['friend_increase'] + $madrasha_dawat_report[0]['friend_increase'] + $college_dawat_report[0]['friend_increase'] + $university_dawat_report[0]['friend_increase'] + $fortnight_dawat_report[0]['friend_increase'] + $letgotovillage[0]['friend_increase'];
+            $this->excel->getActiveSheet()->SetCellValue('B10', $lastyeardawat[0]['friend']);
+            $this->excel->getActiveSheet()->SetCellValue('C10', $lastyeardawat[0]['friend'] + $total_friend - $dawat_summary[0]['friend_decrease']);
+            $this->excel->getActiveSheet()->SetCellValue('D10', $total_friend);
+            $this->excel->getActiveSheet()->SetCellValue('E10', $dawat_personal_n_group[0]['personal_dawat_friend']);
+            $this->excel->getActiveSheet()->SetCellValue('F10', $dawat_personal_n_group[0]['group_dawat_friend']);
+            $this->excel->getActiveSheet()->SetCellValue('G10', $dawatgroupsend[0]['friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('H10', $school_dawat_report[0]['friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('I10', $madrasha_dawat_report[0]['friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('J10', $college_dawat_report[0]['friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('K10', $university_dawat_report[0]['friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('L10', $fortnight_dawat_report[0]['friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('M10', $letgotovillage[0]['friend_increase']);
+            $target = $lastyeardawat[0]['member'] * 20 +  $lastyeardawat[0]['associate'] * 15 +   $lastyeardawat[0]['worker'] * 10;
+            $this->excel->getActiveSheet()->SetCellValue('N10', $target);
+            $this->excel->getActiveSheet()->SetCellValue('O10', ($target > 0) ? round(100 * $total_friend / $target, 2) : 0);
+            $this->excel->getActiveSheet()->SetCellValue('P10', $dawat_summary[0]['friend_decrease']);
+
+
+            $total_non_sup = $dawat_summary[0]['personal_dawat_non_sup'] + $dawat_summary[0]['group_dawat_non_sup'] + $dawatgroupsend[0]['nonmuslim_supporter_increase'] + $school_dawat_report[0]['nonmuslim_supporter_increase'] + $madrasha_dawat_report[0]['nonmuslim_supporter_increase'] + $college_dawat_report[0]['nonmuslim_supporter_increase'] + $university_dawat_report[0]['nonmuslim_supporter_increase'] + $fortnight_dawat_report[0]['nonmuslim_supporter_increase'] + $dawat_summary[0]['letvillage_non_sup'];
+            $this->excel->getActiveSheet()->SetCellValue('B11', $lastyeardawat[0]['non_muslim_supporter']);
+            $this->excel->getActiveSheet()->SetCellValue('C11', $lastyeardawat[0]['non_muslim_supporter'] + $total_non_sup - $dawat_summary[0]['non_sup_decrease']);
+            $this->excel->getActiveSheet()->SetCellValue('D11', $total_non_sup);
+            $this->excel->getActiveSheet()->SetCellValue('E11', $dawat_summary[0]['personal_dawat_non_sup']);
+            $this->excel->getActiveSheet()->SetCellValue('F11', $dawat_summary[0]['group_dawat_non_sup']);
+            $this->excel->getActiveSheet()->SetCellValue('G11', $dawatgroupsend[0]['nonmuslim_supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('H11', $school_dawat_report[0]['nonmuslim_supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('I11', $madrasha_dawat_report[0]['nonmuslim_supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('J11', $college_dawat_report[0]['nonmuslim_supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('K11', $university_dawat_report[0]['nonmuslim_supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('L11', $fortnight_dawat_report[0]['nonmuslim_supporter_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('M11', $dawat_summary[0]['letvillage_non_sup']);
+            $this->excel->getActiveSheet()->SetCellValue('N11', $dawat_summary[0]['non_supporter_target']);
+            $this->excel->getActiveSheet()->SetCellValue('O11', ($dawat_summary[0]['non_supporter_target'] > 0) ? round(100 * $total_non_sup / $dawat_summary[0]['non_supporter_target'], 2) : 0);
+            $this->excel->getActiveSheet()->SetCellValue('P11', $dawat_summary[0]['non_sup_decrease']);
+
+
+
+            $total_non_friend = $dawat_summary[0]['personal_dawat_non_friend'] + $dawat_summary[0]['group_dawat_non_friend'] + $dawatgroupsend[0]['nonmuslim_friend_increase'] + $school_dawat_report[0]['nonmuslim_friend_increase'] + $madrasha_dawat_report[0]['nonmuslim_friend_increase'] + $college_dawat_report[0]['nonmuslim_friend_increase'] + $university_dawat_report[0]['nonmuslim_friend_increase'] + $fortnight_dawat_report[0]['nonmuslim_friend_increase'] + $dawat_summary[0]['letvillage_non_friend'];
+            $this->excel->getActiveSheet()->SetCellValue('B12', $lastyeardawat[0]['non_muslim_friend']);
+            $this->excel->getActiveSheet()->SetCellValue('C12', $lastyeardawat[0]['non_muslim_friend'] + $total_non_friend - $dawat_summary[0]['non_friend_decrease']);
+            $this->excel->getActiveSheet()->SetCellValue('D12', $total_non_friend);
+            $this->excel->getActiveSheet()->SetCellValue('E12', $dawat_summary[0]['personal_dawat_non_friend']);
+            $this->excel->getActiveSheet()->SetCellValue('F12', $dawat_summary[0]['group_dawat_non_friend']);
+            $this->excel->getActiveSheet()->SetCellValue('G12', $dawatgroupsend[0]['nonmuslim_friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('H12', $school_dawat_report[0]['nonmuslim_friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('I12', $madrasha_dawat_report[0]['nonmuslim_friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('J12', $college_dawat_report[0]['nonmuslim_friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('K12', $university_dawat_report[0]['nonmuslim_friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('L12', $fortnight_dawat_report[0]['nonmuslim_friend_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('M12', $dawat_summary[0]['letvillage_non_friend']);
+            $this->excel->getActiveSheet()->SetCellValue('N12', $dawat_summary[0]['non_friend_target']);
+            $this->excel->getActiveSheet()->SetCellValue('O12', ($dawat_summary[0]['non_friend_target'] > 0) ? round(100 * $total_non_friend / $dawat_summary[0]['non_friend_target'], 2) : 0);
+            $this->excel->getActiveSheet()->SetCellValue('P12', $dawat_summary[0]['non_friend_decrease']);
+
+
+            $total_ww = $dawat_summary[0]['personal_dawat_ww'] + $dawat_summary[0]['group_dawat_ww'] + $dawatgroupsend[0]['ww_increase'] + $school_dawat_report[0]['ww_increase'] + $madrasha_dawat_report[0]['ww_increase'] + $college_dawat_report[0]['ww_increase'] + $university_dawat_report[0]['ww_increase'] + $fortnight_dawat_report[0]['ww_increase'] + $letgotovillage[0]['ww_increase'];
+            $this->excel->getActiveSheet()->SetCellValue('B13', $lastyeardawat[0]['wellwisher']);
+            $this->excel->getActiveSheet()->SetCellValue('C13', $lastyeardawat[0]['wellwisher'] + $total_ww - $dawat_summary[0]['ww_decrease']);
+            $this->excel->getActiveSheet()->SetCellValue('D13', $total_ww);
+            $this->excel->getActiveSheet()->SetCellValue('E13', $dawat_summary[0]['personal_dawat_ww']);
+            $this->excel->getActiveSheet()->SetCellValue('F13', $dawat_summary[0]['group_dawat_ww']);
+            $this->excel->getActiveSheet()->SetCellValue('G13', $dawatgroupsend[0]['ww_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('H13', $school_dawat_report[0]['ww_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('I13', $madrasha_dawat_report[0]['ww_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('J13', $college_dawat_report[0]['ww_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('K13', $university_dawat_report[0]['ww_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('L13', $fortnight_dawat_report[0]['ww_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('M13', $letgotovillage[0]['ww_increase']);
+            $this->excel->getActiveSheet()->SetCellValue('N13', $dawat_summary[0]['ww_target']);
+            $this->excel->getActiveSheet()->SetCellValue('O13', ($dawat_summary[0]['ww_target'] > 0) ? round(100 * $total_ww / $dawat_summary[0]['ww_target'], 2) : 0);
+            $this->excel->getActiveSheet()->SetCellValue('P13', $dawat_summary[0]['ww_decrease']);
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+
+            $filename = 'দাওয়াত_report_' . $branch->name . '_' . $this->input->get('year');
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+
+
+        $this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+
+    function getEntryInfodawat_summary($branch_id = NULL)
+    {
+
+
+        $report_type_get = $this->report_type();
+        $report_start = $report_type_get['start'];
+        $report_end = $report_type_get['end'];
+        $report_type = $report_type_get['type'];
+        $report_year = $report_type_get['year'];
+
+
+
         if ($report_type == 'half_yearly') {
 
 
@@ -138,52 +389,43 @@ class Dawat extends MY_Controller
             if (!$dawat_summaryinfo) {
                 $this->site->insertData('dawat_summary', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
                 $dawat_summaryinfo = $this->site->getOneRecord('dawat_summary', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id), 'id desc', 1, 0);
-     
-           
             }
 
 
-           
+
             ///half_yearly ends
 
 
         } else if ($report_type == 'annual') {
 
- 
-
-             ///annual starts
-            $dawat_summaryinfo = $this->site->getOneRecord('dawat_summary', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
-           
-            if (!$dawat_summaryinfo) {
-                $this->site->insertData('dawat_summary', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
-                $dawat_summaryinfo = $this->site->getOneRecord('dawat_summary', '*', array('report_type' => 'annual', 'branch_id' => $branch_id), 'id desc', 1, 0);
-            }
-           
-
-        } 
-        
-        
-        else {
 
 
             ///annual starts
             $dawat_summaryinfo = $this->site->getOneRecord('dawat_summary', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
-           
+
             if (!$dawat_summaryinfo) {
                 $this->site->insertData('dawat_summary', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
                 $dawat_summaryinfo = $this->site->getOneRecord('dawat_summary', '*', array('report_type' => 'annual', 'branch_id' => $branch_id), 'id desc', 1, 0);
-     
-           
+            }
+        } else {
+
+
+            ///annual starts
+            $dawat_summaryinfo = $this->site->getOneRecord('dawat_summary', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+            if (!$dawat_summaryinfo) {
+                $this->site->insertData('dawat_summary', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                $dawat_summaryinfo = $this->site->getOneRecord('dawat_summary', '*', array('report_type' => 'annual', 'branch_id' => $branch_id), 'id desc', 1, 0);
             }
 
 
-           
+
             ///annual ends
 
         }
 
 
-       // $this->sma->print_arrays($dawat_summaryinfo);
+        // $this->sma->print_arrays($dawat_summaryinfo);
         return array(
             'dawat_summaryinfo' => $dawat_summaryinfo
         );
@@ -207,7 +449,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND branch_id = ? AND calc
             $result =  $this->site->query_binding("SELECT SUM(`member`) as  member, SUM(`member_candidate`) as member_candidate , SUM(`associate`) as associate , SUM(`associate_candidate`) as associate_candidate , SUM(`worker`) as worker , SUM(`supporter`) as supporter , SUM(`friend`) as friend , SUM(`non_muslim_supporter`) as  non_muslim_supporter, SUM(`non_muslim_friend`) as non_muslim_friend , SUM(`wellwisher`) as  wellwisher           
 FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $last_year));
 
-// $this->sma->print_arrays($this->db->last_query());
+        // $this->sma->print_arrays($this->db->last_query());
 
         return $result;
     }
@@ -380,10 +622,10 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
 
         $report_type = $this->report_type();
-       
-		if($report_type ==false) 
-        admin_redirect();
-        
+
+        if ($report_type == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type;
 
 
@@ -400,9 +642,9 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         }
 
         if ($branch_id) {
-            $this->data['detailinfo'] = $this->getEntryInfo($report_type,$branch_id);
+            $this->data['detailinfo'] = $this->getEntryInfo($report_type, $branch_id);
         } else
-            $this->data['detailinfo'] = $this->getEntryInfoSUM($report_type,$branch_id);
+            $this->data['detailinfo'] = $this->getEntryInfoSUM($report_type, $branch_id);
 
 
 
@@ -419,7 +661,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
 
 
-    function getEntryInfoSUM($report_type_get,$branch_id = NULL)
+    function getEntryInfoSUM($report_type_get, $branch_id = NULL)
     {
 
 
@@ -433,9 +675,9 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         }
 
 
-        
-        
-        $report_start =$report_type_get['start'];
+
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
@@ -470,20 +712,20 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
 
 
-    function getEntryInfo($report_type_get,$branch_id = NULL)
+    function getEntryInfo($report_type_get, $branch_id = NULL)
     {
-        
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
 
 
-        if($report_type_get['is_current']!=false  && (  $report_type_get['last_half'] || $report_type == 'half_yearly' ) ){
+        if ($report_type_get['is_current'] != false  && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
 
 
             $type =   ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
-            
+
             $madrashainfo = $this->site->getOneRecord('madrasha_dawat_report', '*', array('report_type' =>  $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
             if (!$madrashainfo) {
@@ -510,7 +752,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $school_dawat_reportinfo = $this->site->getOneRecord('school_dawat_report', '*', array('report_type' =>  $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
 
-             
+
             if (!$school_dawat_reportinfo) {
                 $this->site->insertData('school_dawat_report', array('branch_id' => $branch_id, 'report_type' =>  $type, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
             }
@@ -533,14 +775,12 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             if (!$university_dawat_reportinfo) {
                 $this->site->insertData('university_dawat_report', array('branch_id' => $branch_id, 'report_type' =>  $type, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
             }
-
-
         }
 
 
-       
 
-        if($report_type == 'annual' && $report_type_get['last_half']) {
+
+        if ($report_type == 'annual' && $report_type_get['last_half']) {
             $start = $report_start;
             $end = $report_end;
 
@@ -551,8 +791,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $college_dawat_reportinfo = $this->site->getOneRecord('college_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $fortnight_dawat_reportinfo = $this->site->getOneRecord('fortnight_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $university_dawat_reportinfo = $this->site->getOneRecord('university_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
-        }
-        else if ($report_type && $report_type  == 'annual') {
+        } else if ($report_type && $report_type  == 'annual') {
 
             $param = array($branch_id, $report_start, $report_end);
             $result = $this->site->query_binding("SELECT * FROM sma_madrasha_dawat_report WHERE  branch_id = ? AND date BETWEEN ? AND ? ", $param);
@@ -621,8 +860,6 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
             $university_dawat_reportinfo = (object)$final;
             $university_dawat_reportinfo->id = 999999999999;
-
-            
         } else if ($report_type  && $report_type   == 'half_yearly') {
 
             $start = $report_start;
@@ -635,7 +872,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $college_dawat_reportinfo = $this->site->getOneRecord('college_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $fortnight_dawat_reportinfo = $this->site->getOneRecord('fortnight_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $university_dawat_reportinfo = $this->site->getOneRecord('university_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
-        } 
+        }
 
 
 
@@ -680,29 +917,26 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         }
 
 
-        
+
         $report_type = $this->report_type();
-       
-		if($report_type ==false) 
-        admin_redirect();
-        
+
+        if ($report_type == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type;
 
         if ($branch_id)   //&& (  !$this->Owner && !$this->Admin  )
         {
-            $this->data['detailinfo'] = $this->getEntryInfoOutput($report_type,$branch_id);
-           
-
+            $this->data['detailinfo'] = $this->getEntryInfoOutput($report_type, $branch_id);
         } else {
-            $this->data['detailinfo'] = $this->getEntryInfoOutputSUM($report_type,$branch_id);
-            
+            $this->data['detailinfo'] = $this->getEntryInfoOutputSUM($report_type, $branch_id);
         }
 
 
 
 
-        $this->data['assooutput'] = $this->getAssoOutput($report_type,$branch_id);
-        $this->data['memberoutput'] = $this->getMemberOutput($report_type,$branch_id);
+        $this->data['assooutput'] = $this->getAssoOutput($report_type, $branch_id);
+        $this->data['memberoutput'] = $this->getMemberOutput($report_type, $branch_id);
 
 
 
@@ -715,60 +949,58 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->page_construct('dawat/increased_output', $meta, $this->data, 'leftmenu/manpower');
     }
 
-     
 
 
 
 
 
-    function getEntryInfoOutput($report_type_get,$branch_id = NULL)
+
+    function getEntryInfoOutput($report_type_get, $branch_id = NULL)
     {
 
-        
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
 
-        if($report_type_get['is_current']!=false){
-        if ($report_type == 'half_yearly') {
+        if ($report_type_get['is_current'] != false) {
+            if ($report_type == 'half_yearly') {
 
 
-            ///half_yearly starts
-            $increase_outputinfo = $this->site->getOneRecord('increase_output', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+                ///half_yearly starts
+                $increase_outputinfo = $this->site->getOneRecord('increase_output', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
-            if (!$increase_outputinfo) {
-                $this->site->insertData('increase_output', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                if (!$increase_outputinfo) {
+                    $this->site->insertData('increase_output', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
+
+
+
+                ///half_yearly ends
+
+
+            } else {
+
+
+                ///annual starts
+                $increase_outputinfo = $this->site->getOneRecord('increase_output', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                if (!$increase_outputinfo) {
+                    $this->site->insertData('increase_output', array('branch_id' => $branch_id, 'report_type' => 'annual', 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
+
+
+
+                ///annual ends
+
             }
-
-
-
-            ///half_yearly ends
-
-
-        } else {
-
-
-            ///annual starts
-            $increase_outputinfo = $this->site->getOneRecord('increase_output', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
-
-            if (!$increase_outputinfo) {
-                $this->site->insertData('increase_output', array('branch_id' => $branch_id, 'report_type' => 'annual', 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
-            }
-
-
-
-            ///annual ends
-
         }
-    }
 
 
-    if($report_type == 'annual' && $report_type_get['last_half']){ 
-        $increase_outputinfo = $this->site->getOneRecord('increase_output', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-    
-    }
-    else if (  $report_type && $report_type == 'annual') {
+        if ($report_type == 'annual' && $report_type_get['last_half']) {
+            $increase_outputinfo = $this->site->getOneRecord('increase_output', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
+        } else if ($report_type && $report_type == 'annual') {
 
 
 
@@ -786,7 +1018,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
             //    $increase_outputinfo = $this->site->getOneRecord('increase_output','*',array('branch_id'=>$branch_id,'date <= '=>$entrytimeinfo->enddate_annual,'date >= '=>$entrytimeinfo->startdate_half),'id desc',1,0);	
 
-        }  else if ($report_type  && $report_type  == 'half_yearly') {
+        } else if ($report_type  && $report_type  == 'half_yearly') {
 
             $increase_outputinfo = $this->site->getOneRecord('increase_output', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
         }
@@ -834,7 +1066,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
 
 
-    
+
 
 
     function getManpower($branch_id = NULL)
@@ -852,12 +1084,12 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
     }
 
 
-    
 
-    function getAssoOutput($report_type_get,$branch_id = NULL)
+
+    function getAssoOutput($report_type_get, $branch_id = NULL)
     {
 
-        $report_start =$report_type_get['start'];
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
@@ -881,7 +1113,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             SUM(`asso_business`)  AS `business`,
             SUM(`asso_arts`)  AS `arts` FROM `sma_associatelog` where  branch  = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
         else
-        $result =  $this->site->query_binding("SELECT SUM(`asso_single_digit`) AS single_digit , 
+            $result =  $this->site->query_binding("SELECT SUM(`asso_single_digit`) AS single_digit , 
         SUM(`asso_jsc_jdc`) AS `jsc_jdc` ,
         SUM(`asso_ssc_dhakil`) AS  `ssc_dhakil`,
         SUM(`asso_hsc_alim`)  AS `hsc_alim`,
@@ -896,19 +1128,19 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         SUM(`asso_agri`)  AS `agri`,
         SUM(`asso_science`)  AS `science`,
         SUM(`asso_business`)  AS `business`,
-        SUM(`asso_arts`)  AS `arts` FROM `sma_associatelog` where    process_date BETWEEN ? AND ? ", array( $report_start, $report_end));
-  
+        SUM(`asso_arts`)  AS `arts` FROM `sma_associatelog` where    process_date BETWEEN ? AND ? ", array($report_start, $report_end));
+
 
 
 
         return $result;
     }
 
-    function getMemberOutput($report_type_get,$branch_id = NULL)
+    function getMemberOutput($report_type_get, $branch_id = NULL)
     {
 
-       
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
@@ -932,7 +1164,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             SUM(`member_business`)  AS `business`,
             SUM(`member_arts`)  AS `arts` FROM `sma_memberlog` where  branch  = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
         else
-        $result =  $this->site->query_binding("SELECT SUM(`member_single_digit`) AS single_digit , 
+            $result =  $this->site->query_binding("SELECT SUM(`member_single_digit`) AS single_digit , 
         SUM(`member_jsc_jdc`) AS `jsc_jdc` ,
         SUM(`member_ssc_dhakil`) AS  `ssc_dhakil`,
         SUM(`member_hsc_alim`)  AS `hsc_alim`,
@@ -947,8 +1179,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         SUM(`member_agri`)  AS `agri`,
         SUM(`member_science`)  AS `science`,
         SUM(`member_business`)  AS `business`,
-        SUM(`member_arts`)  AS `arts` FROM `sma_memberlog` where    process_date BETWEEN ? AND ? ", array( $report_start, $report_end));
-  
+        SUM(`member_arts`)  AS `arts` FROM `sma_memberlog` where    process_date BETWEEN ? AND ? ", array($report_start, $report_end));
+
 
 
 
@@ -956,17 +1188,17 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
     }
 
 
-    function getEntryInfoOutputSUM($report_type_get,$branch_id = NULL)
+    function getEntryInfoOutputSUM($report_type_get, $branch_id = NULL)
     {
 
-        
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
 
- 
-            $result =  $this->site->query_binding("SELECT 
+
+        $result =  $this->site->query_binding("SELECT 
 SUM(`member_single_digit`) as member_single_digit ,SUM(`member_jsc_jdc`) as member_jsc_jdc,SUM(`member_ssc_dhakil`) as member_ssc_dhakil,SUM(`member_hsc_alim`) as member_hsc_alim,SUM(`member_science`) as member_science,SUM(`member_arts`) as member_arts, SUM(`member_business`) as member_business, SUM(`member_madrasha`) as member_madrasha,SUM(`member_department_position`) as member_department_position,SUM(`member_department_position_private`) as member_department_position_private, SUM(`member_medical_college`) as member_medical_college, SUM(`member_ideal_college`) as member_ideal_college, SUM(`asso_ideal_college`) as asso_ideal_college, SUM(`worker_ideal_college`) as worker_ideal_college, SUM(`supporter_ideal_college`) as supporter_ideal_college,  SUM(`member_engineeering`) as member_engineeering, SUM(`member_public_university`) as member_public_university,
 SUM(`asso_single_digit`) as asso_single_digit ,SUM(`asso_jsc_jdc`) as asso_jsc_jdc,SUM(`asso_ssc_dhakil`) as asso_ssc_dhakil,SUM(`asso_hsc_alim`) as asso_hsc_alim,SUM(`asso_science`) as asso_science,SUM(`asso_arts`) as asso_arts, SUM(`asso_business`) as asso_business, SUM(`asso_madrasha`) as asso_madrasha,SUM(`asso_department_position`) as asso_department_position, SUM(`asso_department_position_private`) as asso_department_position_private, SUM(`asso_medical_college`) as asso_medical_college, SUM(`asso_engineeering`) as asso_engineeering, SUM(`asso_public_university`) as asso_public_university,
 SUM(`worker_single_digit`) as worker_single_digit ,SUM(`worker_jsc_jdc`) as worker_jsc_jdc,SUM(`worker_ssc_dhakil`) as worker_ssc_dhakil,SUM(`worker_hsc_alim`) as worker_hsc_alim,SUM(`worker_science`) as worker_science,SUM(`worker_arts`) as worker_arts, SUM(`worker_business`) as worker_business, SUM(`worker_madrasha`) as worker_madrasha,SUM(`worker_department_position`) as worker_department_position, SUM(`worker_department_position_private`) as worker_department_position_private,  SUM(`worker_medical_college`) as worker_medical_college, SUM(`worker_engineeering`) as worker_engineeering, SUM(`worker_public_university`) as worker_public_university,
@@ -1009,18 +1241,18 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
         $report_type = $this->report_type();
-       
-		if($report_type ==false) 
-        admin_redirect();
-        
+
+        if ($report_type == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type;
 
 
         if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
         {
-            $this->data['detailinfo'] = $this->getEntryInfoExtra($report_type,$branch_id);
+            $this->data['detailinfo'] = $this->getEntryInfoExtra($report_type, $branch_id);
         } else {
-            $this->data['detailinfo'] = $this->getEntryInfoExtraSUM($report_type,$branch_id);
+            $this->data['detailinfo'] = $this->getEntryInfoExtraSUM($report_type, $branch_id);
         }
 
 
@@ -1031,71 +1263,62 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
             $this->page_construct('dawat/extra_entry', $meta, $this->data, 'leftmenu/dawat');
         else
             $this->page_construct('dawat/extra', $meta, $this->data, 'leftmenu/dawat');
-            
     }
 
 
 
 
-    function getEntryInfoExtra($report_type_get,$branch_id = NULL)
+    function getEntryInfoExtra($report_type_get, $branch_id = NULL)
     {
-       
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
 
 
-        if($report_type_get['is_current']!=false){
-        if ($report_type == 'half_yearly') {
-
-           
-            ///half_yearly starts
-            $extra_dawatinfo = $this->site->getOneRecord('extra_dawat', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+        if ($report_type_get['is_current'] != false) {
+            if ($report_type == 'half_yearly') {
 
 
-            
-            if (!$extra_dawatinfo) {
-                $this->site->insertData('extra_dawat', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                ///half_yearly starts
+                $extra_dawatinfo = $this->site->getOneRecord('extra_dawat', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+
+
+                if (!$extra_dawatinfo) {
+                    $this->site->insertData('extra_dawat', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
+
+
+
+                ///half_yearly ends
+
+
+            } else {
+
+
+                ///annual starts
+                $extra_dawatinfo = $this->site->getOneRecord('extra_dawat', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                if (!$extra_dawatinfo) {
+                    $this->site->insertData('extra_dawat', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
+
+
+
+                ///annual ends
+
             }
-
-
-
-            ///half_yearly ends
-
-
-        } else {
-
-
-            ///annual starts
-            $extra_dawatinfo = $this->site->getOneRecord('extra_dawat', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
-            
-            if (!$extra_dawatinfo) {
-                $this->site->insertData('extra_dawat', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
-            }
-
-
-
-            ///annual ends
-
         }
 
-
-
-    }
-
-      if($report_type == 'annual' && $report_type_get['last_half']){
+        if ($report_type == 'annual' && $report_type_get['last_half']) {
             $extra_dawatinfo = $this->site->getOneRecord('extra_dawat', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-       
-       
-       
-        }
-
-        else if ($report_type && $report_type == 'annual') {
+        } else if ($report_type && $report_type == 'annual') {
             $result1 =  $this->site->query_binding("SELECT  SUM(id) id,  SUM(`personal_dawat_increase`) as  personal_dawat_increase, SUM(`personal_dawat_person`) as personal_dawat_person , SUM(`personal_dawat_friend`) as personal_dawat_friend , SUM(`personal_dawat_supporter`) as personal_dawat_supporter ,    SUM(`group_dawat_increase`) as group_dawat_increase , SUM(`group_dawat_person`) as group_dawat_person , SUM(`group_dawat_friend`) as  group_dawat_friend, SUM(`group_dawat_supporter`) as group_dawat_supporter ,  SUM(`muharrama_dawat_increase`) as muharrama_dawat_increase , SUM(`muharrama_dawat_person`) as muharrama_dawat_person , SUM(`muharrama_dawat_friend`) as  muharrama_dawat_friend, SUM(`muharrama_dawat_supporter`) as muharrama_dawat_supporter ,   SUM(`relative_dawat_increase`) as relative_dawat_increase , SUM(`relative_dawat_person`) as  relative_dawat_person, SUM(`relative_dawat_friend`) as  relative_dawat_friend,SUM(`relative_dawat_supporter`) as relative_dawat_supporter , SUM(`dawat_group_increase`) as dawat_group_increase , SUM(`muharram_number_increase`) as muharram_number_increase , SUM(`relative_number_increase`) as relative_number_increase FROM `sma_extra_dawat` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
 
 
-        //last half
+            //last half
             $result2 =  $this->site->query_binding("SELECT SUM(id) id,  SUM(`personal_dawat_prev`) as personal_dawat_prev ,SUM(`group_dawat_prev`) as group_dawat_prev,
 		 SUM(`muharrama_dawat_prev`) as  muharrama_dawat_prev,
 		 SUM(`relative_dawat_prev`) as relative_dawat_prev , SUM(`personal_dawat_current`) as personal_dawat_current , SUM(`group_dawat_current`) as group_dawat_current,		 
@@ -1108,12 +1331,12 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
         } else if ($report_type  && $report_type  == 'half_yearly') {
 
             $extra_dawatinfo = $this->site->getOneRecord('extra_dawat', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-        } 
-       
+        }
+
 
         //$extra_dawatinfo = $this->site->getOneRecord('extra_dawat','*',array('report_type'=>$report_type,'branch_id'=>$branch_id),'id desc',1,0);	
 
-     //   $this->sma->print_arrays($extra_dawatinfo);
+        //   $this->sma->print_arrays($extra_dawatinfo);
         return array(
             'extra_dawatinfo' => $extra_dawatinfo
         );
@@ -1125,8 +1348,8 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
     function getEntryInfoExtraSUM($report_type_get, $branch_id = NULL)
     {
 
-       
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
@@ -1162,10 +1385,10 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
         $report_type = $this->report_type();
-       
-		if( $report_type ==false) 
-        admin_redirect();
-        
+
+        if ($report_type == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type;
 
 
@@ -1190,29 +1413,29 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
         if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
         {
-            $this->data['detailinfo'] = $this->getEntryInfoMosque($report_type,$branch_id);
+            $this->data['detailinfo'] = $this->getEntryInfoMosque($report_type, $branch_id);
         } else {
-            $this->data['detailinfo'] = $this->getEntryInfoMosqueSUM($report_type,$branch_id);
+            $this->data['detailinfo'] = $this->getEntryInfoMosqueSUM($report_type, $branch_id);
         }
 
-   //    $this->sma->print_arrays($this->data['detailinfo']);
+        //    $this->sma->print_arrays($this->data['detailinfo']);
 
 
-        $report_type_get = $this->report_type(); 
-        
+        $report_type_get = $this->report_type();
+
         $report_type = $report_type_get['type'];
-        
- 
 
 
-      
-         
-            $this->data['lastyearmosque'] = $this->prevmosque('annual',  $report_type_get['last_year'], $branch_id);
-            $cal_type = 'annual';
-				 
-        
 
-    //  $this->sma->print_arrays($this->data['lastyearmosque']);
+
+
+
+        $this->data['lastyearmosque'] = $this->prevmosque('annual',  $report_type_get['last_year'], $branch_id);
+        $cal_type = 'annual';
+
+
+
+        //  $this->sma->print_arrays($this->data['lastyearmosque']);
 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'মসজিদ ভিত্তিক কাজ'));
         $meta = array('page_title' => 'Dawat', 'bc' => $bc);
@@ -1225,7 +1448,145 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
 
-    
+    function mosque_export($branch_id)
+    {
+        $this->sma->checkPermissions('index', TRUE);
+
+
+        $report_type = $this->report_type();
+
+        if ($report_type == false)
+            admin_redirect();
+
+        $report_info = $report_type;
+
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('dawat/mosque/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('dawat/mosque/' . $this->session->userdata('branch_id'));
+        }
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+
+            $branch_id = $branch_id;
+            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+        if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
+        {
+            $detailinfo = $this->getEntryInfoMosque($report_type, $branch_id);
+        } else {
+            $detailinfo = $this->getEntryInfoMosqueSUM($report_type, $branch_id);
+        }
+
+        //    $this->sma->print_arrays($this->data['detailinfo']);
+
+
+        $report_type_get = $this->report_type();
+
+        $report_type = $report_type_get['type'];
+
+
+
+
+
+
+        $lastyearmosque = $this->prevmosque('annual',  $report_type_get['last_year'], $branch_id);
+        $cal_type = 'annual';
+
+        if (!empty($detailinfo)) {
+
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+            $this->excel->getActiveSheet()->setTitle('mosque');
+
+
+
+
+            $this->excel->getActiveSheet()->mergeCells('A1:J1');
+            $this->excel->getActiveSheet()->mergeCells('A2:J2');
+            $this->excel->getActiveSheet()->mergeCells('A3:J3');
+            $this->excel->getActiveSheet()->mergeCells('A4:J4');
+            $this->excel->getActiveSheet()->mergeCells('A5:J5');
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A1:J4")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle('A1:J4')->getFont()->setBold(true);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+            $this->excel->getActiveSheet()->SetCellValue('A3', strtoupper($report_type_get['type']) . 'মসজিদ ভিত্তিক কাজ  রিপোর্ট: from ' . $report_type_get['start'] . ' to ' . $report_type_get['end']);
+            $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+
+
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A6")->applyFromArray($style);
+
+
+            $this->excel->getActiveSheet()->mergeCells('A6:A7');
+            $this->excel->getActiveSheet()->getStyle('A6:J6')->getFont()->setBold(true);
+            $this->excel->getActiveSheet()->SetCellValue('A6', 'মসজিদ ভিত্তিক কাজ');
+            $this->excel->getActiveSheet()->SetCellValue('B6', 'মোট মসজিদ সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('C6', 'পূর্বে কাজ হতো কতটিতে');
+            $this->excel->getActiveSheet()->SetCellValue('D6', 'কাজ হয় কতটি মসজিদে');
+            $this->excel->getActiveSheet()->SetCellValue('E6', 'কাজ বৃদ্ধি কতটিতে');
+            $this->excel->getActiveSheet()->SetCellValue('F6', 'কাজ ঘাটতি কতটিতে');
+            $this->excel->getActiveSheet()->SetCellValue('G6', 'দারসে কুরআন');
+            $this->excel->getActiveSheet()->SetCellValue('H6', 'হাদীস পাঠ');
+            $this->excel->getActiveSheet()->SetCellValue('I6', 'বক্তব্য');
+            $this->excel->getActiveSheet()->SetCellValue('J6', 'অন্যান্য');
+
+            $prev =  $lastyearmosque[0]['mosque_number'];
+            $this->excel->getActiveSheet()->SetCellValue('B7', $detailinfo['mosquebaseworkinfo']->mosque_number);
+            $this->excel->getActiveSheet()->SetCellValue('C7', $prev);
+            $this->excel->getActiveSheet()->SetCellValue('D7', $prev + $detailinfo['mosquebaseworkinfo']->work_increase_mosque - $detailinfo['mosquebaseworkinfo']->work_decrease_mosque);
+            $this->excel->getActiveSheet()->SetCellValue('E7', $detailinfo['mosquebaseworkinfo']->work_increase_mosque);
+            $this->excel->getActiveSheet()->SetCellValue('F7', $detailinfo['mosquebaseworkinfo']->work_decrease_mosque);
+            $this->excel->getActiveSheet()->SetCellValue('G7', $detailinfo['mosquebaseworkinfo']->dars_quran);
+            $this->excel->getActiveSheet()->SetCellValue('H7', $detailinfo['mosquebaseworkinfo']->dars_hadith);
+            $this->excel->getActiveSheet()->SetCellValue('I7', $detailinfo['mosquebaseworkinfo']->lecture);
+            $this->excel->getActiveSheet()->SetCellValue('J7', $detailinfo['mosquebaseworkinfo']->other);
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
+            $filename = 'mosque_' . $branch->name;
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+
+
+
+
+        $this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+
+
+
+
     function prevmosque($report_type, $last_year, $branch_id = NULL)
     {
 
@@ -1240,73 +1601,71 @@ FROM `sma_mosque_calculated` WHERE `report_type` = ? AND branch_id = ? AND calcu
         else
             $result =  $this->site->query_binding("SELECT SUM(`mosque_number`) as  mosque_number FROM `sma_mosque_calculated` WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $last_year));
 
-// $this->sma->print_arrays($this->db->last_query());
+        // $this->sma->print_arrays($this->db->last_query());
 
         return $result;
     }
-    
 
-    function getEntryInfoMosque($report_type_get,$branch_id = NULL)
-    {     
-       
+
+    function getEntryInfoMosque($report_type_get, $branch_id = NULL)
+    {
+
         $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
-        $report_year = $report_type_get['year'];   
-         
-        if($report_type_get['is_current']!=false){
-        if ($report_type && $report_type == 'half_yearly') {
-            
-            ///half_yearly starts
-            $mosquebaseworkinfo = $this->site->getOneRecord('mosquebasework', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+        $report_year = $report_type_get['year'];
 
-          //  $this->sma->print_arrays($mosquebaseworkinfo);
-            
-            if (!$mosquebaseworkinfo  ) {
-                $this->site->insertData('mosquebasework', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
-              //  $this->sma->print_arrays($mosquebaseworkinfo);
-           
+        if ($report_type_get['is_current'] != false) {
+            if ($report_type && $report_type == 'half_yearly') {
+
+                ///half_yearly starts
+                $mosquebaseworkinfo = $this->site->getOneRecord('mosquebasework', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                //  $this->sma->print_arrays($mosquebaseworkinfo);
+
+                if (!$mosquebaseworkinfo) {
+                    $this->site->insertData('mosquebasework', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                    //  $this->sma->print_arrays($mosquebaseworkinfo);
+
+                }
+
+
+
+                ///half_yearly ends
+
+
+            } else {
+
+
+                ///annual starts
+                $mosquebaseworkinfo = $this->site->getOneRecord('mosquebasework', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                if (!$mosquebaseworkinfo) {
+
+                    $this->site->insertData('mosquebasework', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
+
+
+
+                ///annual ends
+
             }
-
-
-
-            ///half_yearly ends
-
-
-        } else {
-
-         
-            ///annual starts
-            $mosquebaseworkinfo = $this->site->getOneRecord('mosquebasework', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
-
-            if (!$mosquebaseworkinfo) {
-               
-                $this->site->insertData('mosquebasework', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
-            }
-
-
-
-            ///annual ends
-
         }
-    }
 
-// echo $report_type.' >> '.$report_type_get['last_half'];
-// exit();
+        // echo $report_type.' >> '.$report_type_get['last_half'];
+        // exit();
 
-        if($report_type == 'annual' && $report_type_get['last_half']){
+        if ($report_type == 'annual' && $report_type_get['last_half']) {
             $mosquebaseworkinfo = $this->site->getOneRecord('mosquebasework', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-         }
-
-        else if ($report_type && $report_type == 'annual') {
+        } else if ($report_type && $report_type == 'annual') {
             //work_increase_mosque,work_decrease_mosque,dars_quran,dars_hadith,lecture,other
 
-          
+
             $result1 =  $this->site->query_binding("SELECT  sum(id) id, SUM(`work_increase_mosque`) as work_increase_mosque , SUM(`work_decrease_mosque`) as work_decrease_mosque , SUM(`dars_quran`) as dars_quran , SUM(`dars_hadith`) as dars_hadith ,SUM(`lecture`) as lecture , SUM(`other`) as  other
         FROM `sma_mosquebasework` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_type_get['info']->startdate_half, $report_type_get['info']->enddate_annual));
 
 
-//last half
+            //last half
             $result2 =  $this->site->query_binding("SELECT sum(id) id, SUM(`mosque_number`) as mosque_number ,SUM(`mosque_active`) as mosque_active  
         FROM `sma_mosquebasework` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_type_get['info']->startdate_annual, $report_type_get['info']->enddate_annual));
 
@@ -1316,14 +1675,14 @@ FROM `sma_mosque_calculated` WHERE `report_type` = ? AND branch_id = ? AND calcu
 
             $mosquebaseworkinfo = (object)$result[0];
             $mosquebaseworkinfo->id = 999999999999;
-        } else  if ($report_type  && $report_type == 'half_yearly' ) {
+        } else  if ($report_type  && $report_type == 'half_yearly') {
 
-            
+
             $mosquebaseworkinfo = $this->site->getOneRecord('mosquebasework', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-        }  
+        }
 
-      //  $this->sma->print_arrays($mosquebaseworkinfo);
-       
+        //  $this->sma->print_arrays($mosquebaseworkinfo);
+
         return array(
             'mosquebaseworkinfo' => $mosquebaseworkinfo
         );
@@ -1331,11 +1690,11 @@ FROM `sma_mosque_calculated` WHERE `report_type` = ? AND branch_id = ? AND calcu
 
 
 
-    function getEntryInfoMosqueSUM($report_type_get,$branch_id = NULL)
+    function getEntryInfoMosqueSUM($report_type_get, $branch_id = NULL)
     {
 
-      
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
@@ -1344,36 +1703,34 @@ FROM `sma_mosque_calculated` WHERE `report_type` = ? AND branch_id = ? AND calcu
 
 
 
- 
- 
 
 
 
-        if($report_type == 'annual' && $report_type_get['last_half']){
+
+
+        if ($report_type == 'annual' && $report_type_get['last_half']) {
 
             $result =  $this->site->query_binding("SELECT SUM(`mosque_number`) as mosque_number ,SUM(`mosque_active`) as mosque_active , SUM(`work_increase_mosque`) as work_increase_mosque ,SUM(`dars_quran`) as dars_quran , SUM(`dars_hadith`) as dars_hadith ,SUM(`lecture`) as lecture , SUM(`other`) as  other
 FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $report_end));
         }
 
-        if ($report_type && $this->input->get('type')=='annual') {
-//full
+        if ($report_type && $this->input->get('type') == 'annual') {
+            //full
             $result1 =  $this->site->query_binding("SELECT  SUM(id) id,  SUM(`work_increase_mosque`) as work_increase_mosque ,SUM(`dars_quran`) as dars_quran , SUM(`dars_hadith`) as dars_hadith ,SUM(`lecture`) as lecture , SUM(`other`) as  other
 FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $report_end));
-//last half
+            //last half
             $result2 =  $this->site->query_binding("SELECT  SUM(id) id,  SUM(`mosque_number`) as mosque_number ,SUM(`mosque_active`) as mosque_active  
 FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_type_get['info']->startdate_annual,  $report_type_get['info']->enddate_annual));
- 
+
 
 
             $result = array_replace_recursive($result1, $result2);
         } else if ($report_type  && $report_type  == 'half_yearly') {
             $result =  $this->site->query_binding("SELECT SUM(`mosque_number`) as mosque_number ,SUM(`mosque_active`) as mosque_active , SUM(`work_increase_mosque`) as work_increase_mosque ,SUM(`dars_quran`) as dars_quran , SUM(`dars_hadith`) as dars_hadith ,SUM(`lecture`) as lecture , SUM(`other`) as  other
 FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $report_end));
-      
-    
-    }  
+        }
 
- //$this->sma->print_arrays($this->db->last_query());
+        //$this->sma->print_arrays($this->db->last_query());
 
 
         return $result;
@@ -1382,7 +1739,7 @@ FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $
 
     function element($branch_id = NULL)
     {
-        
+
         $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
@@ -1393,10 +1750,10 @@ FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $
         }
 
         $report_type = $this->report_type();
-       
-		if( $report_type ==false) 
-        admin_redirect();
-        
+
+        if ($report_type == false)
+            admin_redirect();
+
         $this->data['report_info'] = $report_type;
 
 
@@ -1412,11 +1769,11 @@ FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $
         }
 
         if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
-        
+
         {
-            $this->data['detailinfo'] = $this->getEntryInfoElement($report_type,$branch_id);
+            $this->data['detailinfo'] = $this->getEntryInfoElement($report_type, $branch_id);
         } else {
-            $this->data['detailinfo'] = $this->getEntryInfoElementSUM($report_type,$branch_id);
+            $this->data['detailinfo'] = $this->getEntryInfoElementSUM($report_type, $branch_id);
         }
 
 
@@ -1431,58 +1788,263 @@ FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $
 
 
 
-
-    function getEntryInfoElement($report_type_get,$branch_id = NULL)
+    function element_export($branch_id = NULL)
     {
-        
-        $report_start =$report_type_get['start'];
+
+        $this->sma->checkPermissions('index', TRUE);
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('dawat/element/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('dawat/element/' . $this->session->userdata('branch_id'));
+        }
+
+        $report_type = $this->report_type();
+
+        if ($report_type == false)
+            admin_redirect();
+
+        $report_info = $report_type;
+
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $branch_id = $branch_id;
+            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $branch_id = $this->session->userdata('branch_id');
+            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+        if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
+
+        {
+            $detailinfo = $this->getEntryInfoElement($report_type, $branch_id);
+        } else {
+            $detailinfo = $this->getEntryInfoElementSUM($report_type, $branch_id);
+        }
+
+
+
+
+        if (!empty($detailinfo)) {
+
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+            $this->excel->getActiveSheet()->setTitle('Element');
+
+
+
+
+            $this->excel->getActiveSheet()->mergeCells('A1:H1');
+            $this->excel->getActiveSheet()->mergeCells('A2:H2');
+            $this->excel->getActiveSheet()->mergeCells('A3:H3');
+            $this->excel->getActiveSheet()->mergeCells('A4:H4');
+            $this->excel->getActiveSheet()->mergeCells('A5:H5');
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A1:H4")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle('A1:H4')->getFont()->setBold(true);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+            $this->excel->getActiveSheet()->SetCellValue('A3', strtoupper($report_type['type']) . 'দাওয়াতী উপকরণ  রিপোর্ট: from ' . $report_type['start'] . ' to ' . $report_type['end']);
+            $this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+
+
+            $style = array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+
+            $this->excel->getActiveSheet()->getStyle("A6")->applyFromArray($style);
+
+
+
+
+            $this->excel->getActiveSheet()->getStyle('A6:H6')->getFont()->setBold(true);
+            $this->excel->getActiveSheet()->SetCellValue('A6', 'দাওয়াতী উপকরণ');
+            $this->excel->getActiveSheet()->SetCellValue('B6', 'বিক্রয়');
+            $this->excel->getActiveSheet()->SetCellValue('C6', 'বিতরণ');
+            $this->excel->getActiveSheet()->SetCellValue('D6', 'দাওয়াতী উপকরণ');
+            $this->excel->getActiveSheet()->SetCellValue('E6', 'সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('F6', 'বিক্রয়');
+            $this->excel->getActiveSheet()->SetCellValue('G6', 'বিতরণ');
+            $this->excel->getActiveSheet()->SetCellValue('H6', 'গ্রাহক বৃদ্ধি');
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A7', 'কুরআন');
+            $this->excel->getActiveSheet()->SetCellValue('A8', 'হাদীস');
+            $this->excel->getActiveSheet()->SetCellValue('A9', 'পরিচিতি');
+            $this->excel->getActiveSheet()->SetCellValue('A10', 'সাহিত্য');
+            $this->excel->getActiveSheet()->SetCellValue('A11', 'স্টীকার/কার্ড');
+            $this->excel->getActiveSheet()->SetCellValue('A12', 'রুটিন');
+            $this->excel->getActiveSheet()->SetCellValue('A13', 'ক্যালেন্ডার');
+            $this->excel->getActiveSheet()->SetCellValue('A14', 'ডায়েরী/নোটবুক');
+            $this->excel->getActiveSheet()->SetCellValue('A15', 'অন্যান্য');
+
+
+            $this->excel->getActiveSheet()->SetCellValue('D7', 'কিশোর পত্রিকা বাংলা');
+            $this->excel->getActiveSheet()->SetCellValue('D8', 'কিশোর পত্রিকা ইংরেজী');
+            $this->excel->getActiveSheet()->SetCellValue('D9', 'ছাত্রসংবাদ');
+            $this->excel->getActiveSheet()->SetCellValue('D10', 'ইংরেজী ম্যাগাজিন');
+            $this->excel->getActiveSheet()->SetCellValue('D11', 'সসাস পত্রিকা');
+            $this->excel->getActiveSheet()->SetCellValue('D12', 'মাদ্রাসা পত্রিকা');
+            $this->excel->getActiveSheet()->SetCellValue('D13', 'স্টুডেন্ট ভিউজ');
+            $this->excel->getActiveSheet()->SetCellValue('D14', 'বিজ্ঞান ম্যাগাজিন');
+            $this->excel->getActiveSheet()->SetCellValue('D15', 'শাখা থেকে প্রকাশিত পত্রিকা');
+
+
+
+            $this->excel->getActiveSheet()->SetCellValue('B7', $detailinfo['dawatelementinfo']->quran_sale);
+            $this->excel->getActiveSheet()->SetCellValue('C7', $detailinfo['dawatelementinfo']->quran_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E7', $detailinfo['dawatelementinfo']->kishore_bn_number);
+            $this->excel->getActiveSheet()->SetCellValue('F7', $detailinfo['dawatelementinfo']->kishore_bn_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G7', $detailinfo['dawatelementinfo']->kishore_bn_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H7', $detailinfo['dawatelementinfo']->kishore_bn_client);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('B8', $detailinfo['dawatelementinfo']->hadith_sale);
+            $this->excel->getActiveSheet()->SetCellValue('C8', $detailinfo['dawatelementinfo']->hadith_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E8', $detailinfo['dawatelementinfo']->kishore_en_number);
+            $this->excel->getActiveSheet()->SetCellValue('F8', $detailinfo['dawatelementinfo']->kishore_en_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G8', $detailinfo['dawatelementinfo']->kishore_en_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H8', $detailinfo['dawatelementinfo']->kishore_en_client);
+
+            $this->excel->getActiveSheet()->SetCellValue('B9', '');
+            $this->excel->getActiveSheet()->SetCellValue('C9', $detailinfo['dawatelementinfo']->porichiti_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E9', $detailinfo['dawatelementinfo']->chhatrasangbad_number);
+            $this->excel->getActiveSheet()->SetCellValue('F9', $detailinfo['dawatelementinfo']->chhatrasangbad_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G9', $detailinfo['dawatelementinfo']->chhatrasangbad_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H9', $detailinfo['dawatelementinfo']->chhatrasangbad_client);
+
+            $this->excel->getActiveSheet()->SetCellValue('B10', $detailinfo['dawatelementinfo']->literature_sale);
+            $this->excel->getActiveSheet()->SetCellValue('C10', $detailinfo['dawatelementinfo']->literature_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E10', $detailinfo['dawatelementinfo']->eng_mag_number);
+            $this->excel->getActiveSheet()->SetCellValue('F10', $detailinfo['dawatelementinfo']->eng_mag_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G10', $detailinfo['dawatelementinfo']->eng_mag_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H10', $detailinfo['dawatelementinfo']->eng_mag_client);
+
+            $this->excel->getActiveSheet()->SetCellValue('B11', $detailinfo['dawatelementinfo']->sticker_sale);
+            $this->excel->getActiveSheet()->SetCellValue('C11', $detailinfo['dawatelementinfo']->sticker_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E11', $detailinfo['dawatelementinfo']->sosas_number);
+            $this->excel->getActiveSheet()->SetCellValue('F11', $detailinfo['dawatelementinfo']->sosas_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G11', $detailinfo['dawatelementinfo']->sosas_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H11', $detailinfo['dawatelementinfo']->sosas_client);
+
+            $this->excel->getActiveSheet()->SetCellValue('B12', $detailinfo['dawatelementinfo']->routine_sale);
+            $this->excel->getActiveSheet()->SetCellValue('C12', $detailinfo['dawatelementinfo']->routine_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E12', $detailinfo['dawatelementinfo']->madrasha_number);
+            $this->excel->getActiveSheet()->SetCellValue('F12', $detailinfo['dawatelementinfo']->madrasha_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G12', $detailinfo['dawatelementinfo']->madrasha_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H12', $detailinfo['dawatelementinfo']->madrasha_client);
+
+            $this->excel->getActiveSheet()->SetCellValue('B13', $detailinfo['dawatelementinfo']->calendar_sale);
+            $this->excel->getActiveSheet()->SetCellValue('C13', $detailinfo['dawatelementinfo']->calendar_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E13', $detailinfo['dawatelementinfo']->std_view_number);
+            $this->excel->getActiveSheet()->SetCellValue('F13', $detailinfo['dawatelementinfo']->std_view_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G13', $detailinfo['dawatelementinfo']->std_view_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H13', $detailinfo['dawatelementinfo']->std_view_client);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('B14', $detailinfo['dawatelementinfo']->diary_sale);
+            $this->excel->getActiveSheet()->SetCellValue('C14', $detailinfo['dawatelementinfo']->diary_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E14', $detailinfo['dawatelementinfo']->sci_mag_number);
+            $this->excel->getActiveSheet()->SetCellValue('F14', $detailinfo['dawatelementinfo']->sci_mag_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G14', $detailinfo['dawatelementinfo']->sci_mag_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H14', $detailinfo['dawatelementinfo']->sci_mag_client);
+
+
+            $this->excel->getActiveSheet()->SetCellValue('B15', $detailinfo['dawatelementinfo']->cd_sale);
+            $this->excel->getActiveSheet()->SetCellValue('C15', $detailinfo['dawatelementinfo']->cd_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('E15', $detailinfo['dawatelementinfo']->branch_paper_number);
+            $this->excel->getActiveSheet()->SetCellValue('F15', $detailinfo['dawatelementinfo']->branch_paper_sale);
+            $this->excel->getActiveSheet()->SetCellValue('G15', $detailinfo['dawatelementinfo']->branch_paper_distribution);
+            $this->excel->getActiveSheet()->SetCellValue('H15', $detailinfo['dawatelementinfo']->branch_paper_client);
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
+
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+
+
+
+
+
+
+
+            $filename = 'Element_' . $branch->name;
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+
+
+
+
+        $this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+
+    function getEntryInfoElement($report_type_get, $branch_id = NULL)
+    {
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
 
 
-        if($report_type_get['is_current']!=false){
-        if ($report_type == 'half_yearly') {
+        if ($report_type_get['is_current'] != false) {
+            if ($report_type == 'half_yearly') {
 
 
-            ///half_yearly starts
-            $dawatelementinfo = $this->site->getOneRecord('dawatelement', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+                ///half_yearly starts
+                $dawatelementinfo = $this->site->getOneRecord('dawatelement', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
-            if (!$dawatelementinfo) {
-                $this->site->insertData('dawatelement', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                if (!$dawatelementinfo) {
+                    $this->site->insertData('dawatelement', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
+
+
+
+                ///half_yearly ends
+
+
+            } else {
+
+
+                ///annual starts
+                $dawatelementinfo = $this->site->getOneRecord('dawatelement', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                if (!$dawatelementinfo) {
+                    $this->site->insertData('dawatelement', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                }
+
+
+
+                ///annual ends
+
             }
-
-
-
-            ///half_yearly ends
-
-
-        } else {
-
-
-            ///annual starts
-            $dawatelementinfo = $this->site->getOneRecord('dawatelement', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
-
-            if (!$dawatelementinfo) {
-                $this->site->insertData('dawatelement', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
-            }
-
-
-
-            ///annual ends
-
         }
-    }
 
 
-    if($report_type == 'annual' && $report_type_get['last_half']){
+        if ($report_type == 'annual' && $report_type_get['last_half']) {
             $dawatelementinfo = $this->site->getOneRecord('dawatelement', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-        
-        }
-        
-        else if  ($report_type == 'annual'){
+        } else if ($report_type == 'annual') {
 
- 
+
             $result =  $this->site->query_binding("SELECT 
         SUM(`quran_sale`)  as quran_sale, SUM(`quran_distribution`)  as quran_distribution, SUM(`hadith_sale`)  as hadith_sale, SUM(`hadith_distribution`)  as hadith_distribution, SUM(`porichiti_sale`)  as porichiti_sale, SUM(`porichiti_distribution`)  as porichiti_distribution, SUM(`literature_sale`)  as literature_sale, SUM(`literature_distribution`)  as literature_distribution , SUM(`sticker_sale`)  as sticker_sale, SUM(`sticker_distribution`)  as sticker_distribution, SUM(`routine_sale`)  as routine_sale, SUM(`routine_distribution`)  as routine_distribution, SUM(`calendar_sale`)  as calendar_sale, SUM(`calendar_distribution`)  as calendar_distribution, SUM(`diary_sale`)  as diary_sale, SUM(`diary_distribution`)  as diary_distribution, SUM(`cd_sale`)  as cd_sale, SUM(`cd_distribution`)  as cd_distribution, SUM(`kishore_bn_number`)  as kishore_bn_number, SUM(`kishore_bn_sale`)  as kishore_bn_sale, SUM(`kishore_bn_distribution`)  as kishore_bn_distribution, SUM(`kishore_bn_client`)  as kishore_bn_client, SUM(`kishore_en_number`)  as kishore_en_number, SUM(`kishore_en_sale`)  as kishore_en_sale, SUM(`kishore_en_distribution`)  as kishore_en_distribution, SUM(`kishore_en_client`)  as kishore_en_client , SUM(`chhatrasangbad_number`)  as chhatrasangbad_number, SUM(`chhatrasangbad_sale`)  as chhatrasangbad_sale, SUM(`chhatrasangbad_distribution`)  as chhatrasangbad_distribution, SUM(`chhatrasangbad_client`)  as chhatrasangbad_client, SUM(`eng_mag_number`)  as eng_mag_number, SUM(`eng_mag_sale`)  as eng_mag_sale, SUM(`eng_mag_distribution`)  as eng_mag_distribution , SUM(`eng_mag_client`)  as eng_mag_client, SUM(`sosas_number`)  as sosas_number, SUM(`sosas_sale`)  as sosas_sale, SUM(`sosas_distribution`)  as sosas_distribution, SUM(`sosas_client`)  as sosas_client, SUM(`madrasha_number`)  as madrasha_number, SUM(`madrasha_sale`)  as madrasha_sale, SUM(`madrasha_distribution`)  as madrasha_distribution, SUM(`madrasha_client`)  as madrasha_client, SUM(`std_view_number`)  as std_view_number, SUM(`std_view_sale`)  as std_view_sale, SUM(`std_view_distribution`)  as std_view_distribution, SUM(`std_view_client`)  as std_view_client, SUM(`sci_mag_number`)  as sci_mag_number, SUM(`sci_mag_sale`)  as sci_mag_sale, SUM(`sci_mag_distribution`)  as sci_mag_distribution, SUM(`sci_mag_client`)  as sci_mag_client, SUM(`branch_paper_number`)  as branch_paper_number, SUM(`branch_paper_sale`)  as branch_paper_sale, SUM(`branch_paper_distribution`)  as branch_paper_distribution, SUM(`branch_paper_client`)  as branch_paper_client
         FROM `sma_dawatelement` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
@@ -1491,7 +2053,7 @@ FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $
         } else if ($report_type  == 'half_yearly') {
 
             $dawatelementinfo = $this->site->getOneRecord('dawatelement', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
-        }  
+        }
 
 
         //$dawatelementinfo = $this->site->getOneRecord('dawatelement','*',array('report_type'=>$report_type,'branch_id'=>$branch_id),'id desc',1,0);	
@@ -1504,16 +2066,16 @@ FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $
 
 
 
-    function getEntryInfoElementSUM($report_type_get,$branch_id = NULL)
+    function getEntryInfoElementSUM($report_type_get, $branch_id = NULL)
     {
-         
-        $report_start =$report_type_get['start'];
+
+        $report_start = $report_type_get['start'];
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
 
- 
-            $result =  $this->site->query_binding("SELECT 
+
+        $result =  $this->site->query_binding("SELECT 
 SUM(`quran_sale`)  as quran_sale, SUM(`quran_distribution`)  as quran_distribution, SUM(`hadith_sale`)  as hadith_sale, SUM(`hadith_distribution`)  as hadith_distribution, SUM(`porichiti_sale`)  as porichiti_sale, SUM(`porichiti_distribution`)  as porichiti_distribution, SUM(`literature_sale`)  as literature_sale, SUM(`literature_distribution`)  as literature_distribution , SUM(`sticker_sale`)  as sticker_sale, SUM(`sticker_distribution`)  as sticker_distribution, SUM(`routine_sale`)  as routine_sale, SUM(`routine_distribution`)  as routine_distribution, SUM(`calendar_sale`)  as calendar_sale, SUM(`calendar_distribution`)  as calendar_distribution, SUM(`diary_sale`)  as diary_sale, SUM(`diary_distribution`)  as diary_distribution, SUM(`cd_sale`)  as cd_sale, SUM(`cd_distribution`)  as cd_distribution, SUM(`kishore_bn_number`)  as kishore_bn_number, SUM(`kishore_bn_sale`)  as kishore_bn_sale, SUM(`kishore_bn_distribution`)  as kishore_bn_distribution, SUM(`kishore_bn_client`)  as kishore_bn_client, SUM(`kishore_en_number`)  as kishore_en_number, SUM(`kishore_en_sale`)  as kishore_en_sale, SUM(`kishore_en_distribution`)  as kishore_en_distribution, SUM(`kishore_en_client`)  as kishore_en_client , SUM(`chhatrasangbad_number`)  as chhatrasangbad_number, SUM(`chhatrasangbad_sale`)  as chhatrasangbad_sale, SUM(`chhatrasangbad_distribution`)  as chhatrasangbad_distribution, SUM(`chhatrasangbad_client`)  as chhatrasangbad_client, SUM(`eng_mag_number`)  as eng_mag_number, SUM(`eng_mag_sale`)  as eng_mag_sale, SUM(`eng_mag_distribution`)  as eng_mag_distribution , SUM(`eng_mag_client`)  as eng_mag_client, SUM(`sosas_number`)  as sosas_number, SUM(`sosas_sale`)  as sosas_sale, SUM(`sosas_distribution`)  as sosas_distribution, SUM(`sosas_client`)  as sosas_client, SUM(`madrasha_number`)  as madrasha_number, SUM(`madrasha_sale`)  as madrasha_sale, SUM(`madrasha_distribution`)  as madrasha_distribution, SUM(`madrasha_client`)  as madrasha_client, SUM(`std_view_number`)  as std_view_number, SUM(`std_view_sale`)  as std_view_sale, SUM(`std_view_distribution`)  as std_view_distribution, SUM(`std_view_client`)  as std_view_client, SUM(`sci_mag_number`)  as sci_mag_number, SUM(`sci_mag_sale`)  as sci_mag_sale, SUM(`sci_mag_distribution`)  as sci_mag_distribution, SUM(`sci_mag_client`)  as sci_mag_client, SUM(`branch_paper_number`)  as branch_paper_number, SUM(`branch_paper_sale`)  as branch_paper_sale, SUM(`branch_paper_distribution`)  as branch_paper_distribution, SUM(`branch_paper_client`)  as branch_paper_client
 FROM `sma_dawatelement` WHERE date BETWEEN ? AND ? ", array($report_start, $report_end));
 
@@ -1962,7 +2524,7 @@ FROM `sma_dawatelement` WHERE date BETWEEN ? AND ? ", array($report_start, $repo
 
 
 
-    function export($branch = NULL)
+    function export_OLD($branch = NULL)
     {
         if (!$this->Owner) {
             $this->session->set_flashdata('warning', lang('access_denied'));
