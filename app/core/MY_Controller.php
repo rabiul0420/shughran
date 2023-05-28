@@ -155,6 +155,15 @@ class MY_Controller extends CI_Controller
         // $meta['shop_payment_alerts'] = SHOP ? $this->site->get_shop_payment_alerts() : 0;
 
 
+        if($left_panel == 'leftmenu/left_panel'){
+        $meta['pending_list'] = $this->getlist();
+        $meta['manpowertransferout'] = $this->manpowertransferout();
+        $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
+        $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
+        }
+
+
+
         $this->load->view($this->theme . 'header', $meta);
         $this->load->view($this->theme . $left_panel, $meta);
         $this->load->view($this->theme . $page, $data);
@@ -315,4 +324,171 @@ class MY_Controller extends CI_Controller
         } else
             return false;
     }
+
+
+
+
+    function manpowertransferout()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
+
+        if ($branch_id) {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower_transfer')}.id) as  manpower_transfer", FALSE)
+                ->join('manpower', 'manpower.id=manpower_transfer.manpower_id', 'left')
+                ->join('branches as t1', 't1.id=manpower_transfer.from_branch_id', 'left')
+                ->join('branches as t2', 't2.id=manpower_transfer.to_branch_id', 'left')
+                ->join('orgstatus', 'orgstatus.id=manpower_transfer.orgstatus_id', 'left')
+                ->from('manpower_transfer')->where('manpower_transfer.from_branch_id', $branch_id);
+            $q = $this->db->get();
+
+            if ($q->num_rows() > 0) {
+                $result =  $q->result();
+
+                //  $this->sma->print_arrays($result);
+                return $result[0]->manpower_transfer;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+
+
+    function assocandidateworkerout()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
+
+
+        if ($branch_id) {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower_transfer_assoworker')}.id) as assocandidateworker", FALSE)
+
+                ->join('branches as t1', 't1.id=manpower_transfer_assoworker.from_branch_id', 'left')
+                ->join('branches as t2', 't2.id=manpower_transfer_assoworker.to_branch_id', 'left')
+                ->join('orgstatus', 'orgstatus.id=manpower_transfer_assoworker.orgstatus_id', 'left')
+                ->from('manpower_transfer_assoworker')->where('manpower_transfer_assoworker.from_branch_id', $branch_id)->where('status', 2);
+            $q = $this->db->get();
+
+            if ($q->num_rows() > 0) {
+                $result =  $q->result();
+
+                //  $this->sma->print_arrays($result);
+                return $result[0]->assocandidateworker;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+
+    function assocandidateworkerin()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
+
+        if ($branch_id) {
+            $this->db
+
+                ->select("COUNT({$this->db->dbprefix('manpower_transfer_assoworker')} .id) as assocandidateworker", FALSE)
+                ->join('branches as t1', 't1.id=manpower_transfer_assoworker.from_branch_id', 'left')
+                ->join('branches as t2', 't2.id=manpower_transfer_assoworker.to_branch_id', 'left')
+                ->join('orgstatus', 'orgstatus.id=manpower_transfer_assoworker.orgstatus_id', 'left')
+                ->from('manpower_transfer_assoworker')->where('manpower_transfer_assoworker.to_branch_id', $branch_id)->where('status', 2);
+            $q = $this->db->get();
+        } else {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower_transfer_assoworker')} .id) as assocandidateworker", FALSE)
+                ->join('branches as t1', 't1.id=manpower_transfer_assoworker.from_branch_id', 'left')
+                ->join('branches as t2', 't2.id=manpower_transfer_assoworker.to_branch_id', 'left')
+                ->join('orgstatus', 'orgstatus.id=manpower_transfer_assoworker.orgstatus_id', 'left')
+                ->from('manpower_transfer_assoworker')->where('status', 2);
+            $q = $this->db->get();
+        }
+
+        if ($q->num_rows() > 0) {
+            $result =  $q->result();
+
+            //  $this->sma->print_arrays($result);
+            return $result[0]->assocandidateworker;
+        } else {
+            return 0;
+        }
+    }
+
+
+
+    function getlist()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
+
+
+        if ($branch_id) {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower_transfer')}.id) as total_transfer", FALSE)
+                ->join('manpower', 'manpower.id=manpower_transfer.manpower_id', 'left')
+                ->join('branches as t1', 't1.id=manpower_transfer.from_branch_id', 'left')
+                ->join('branches as t2', 't2.id=manpower_transfer.to_branch_id', 'left')
+                ->join('orgstatus', 'orgstatus.id=manpower_transfer.orgstatus_id', 'left')
+                ->from('manpower_transfer')->where('manpower_transfer.to_branch_id', $branch_id);
+            $q = $this->db->get();
+        } else {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower_transfer')}.id) as total_transfer", FALSE)
+                ->join('manpower', 'manpower.id=manpower_transfer.manpower_id', 'left')
+                ->join('branches as t1', 't1.id=manpower_transfer.from_branch_id', 'left')
+                ->join('branches as t2', 't2.id=manpower_transfer.to_branch_id', 'left')
+                ->join('orgstatus', 'orgstatus.id=manpower_transfer.orgstatus_id', 'left')
+                ->from('manpower_transfer');
+            $q = $this->db->get();
+        }
+
+        if ($q->num_rows() > 0) {
+            $result =  $q->result();
+            return $result[0]->total_transfer;
+        } else {
+            return 0;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 }

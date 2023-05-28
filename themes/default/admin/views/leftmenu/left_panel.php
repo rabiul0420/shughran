@@ -19,14 +19,14 @@
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('mancomminglist') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">জনশক্তি আগমন পেন্ডিং লিস্ট</span>
+                                        <span class="text">জনশক্তি আগমন পেন্ডিং লিস্ট <?=isset($pending_list) ? '('.$pending_list.')': ''?></span>
                                     </a>
                                 </li>
 
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('mantransferlist') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">জনশক্তি স্থানান্তর পেন্ডিং লিস্ট</span>
+                                        <span class="text">জনশক্তি স্থানান্তর পেন্ডিং লিস্ট <?=isset($manpowertransferout) ? '('.$manpowertransferout.')': ''?></span>
                                     </a>
                                 </li>
 
@@ -41,13 +41,13 @@
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('dashboard') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">সাথীপ্রার্থী/কর্মী আগমন তালিকা</span>
+                                        <span class="text">সাথীপ্রার্থী/কর্মী আগমন তালিকা  <?=isset($assocandidateworkerin) ? '('.$assocandidateworkerin.')': ''?></span>
                                     </a>
                                 </li>
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('dashboardtransfer') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">সাথীপ্রার্থী/কর্মী স্থানান্তর তালিকা</span>
+                                        <span class="text">সাথীপ্রার্থী/কর্মী স্থানান্তর তালিকা <?=isset($assocandidateworkerout) ? '('.$assocandidateworkerout.')': ''?></span>
                                     </a>
                                 </li>
 
