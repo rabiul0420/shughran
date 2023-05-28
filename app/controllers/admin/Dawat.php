@@ -657,8 +657,9 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->page_construct('dawat/detail', $meta, $this->data, 'leftmenu/dawat');
     }
 
-    function dawat_detail_export($branch_id)
+    function detail_export($branch_id)
     {
+        
         $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
@@ -666,15 +667,6 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             admin_redirect('dawat/detail/' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
             admin_redirect('dawat/detail/' . $this->session->userdata('branch_id'));
-        }
-
-        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
-        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
-            $branch_id = $branch_id;
-            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
-        } else {
-            $branch_id = $this->session->userdata('branch_id');
-            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
 
@@ -686,10 +678,27 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         $report_info = $report_type;
 
 
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+           
+            $branch_id = $branch_id;
+            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            
+            $branch_id = $this->session->userdata('branch_id');
+            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+        
         if ($branch_id) {
             $detailinfo = $this->getEntryInfo($report_type, $branch_id);
         } else
             $detailinfo = $this->getEntryInfoSUM($report_type, $branch_id);
+
+
+
 
 
         if ($detailinfo) {
@@ -738,23 +747,23 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
             $this->excel->getActiveSheet()->getStyle("A7:R7")->applyFromArray($style);
 
-            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('K')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('L')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('M')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('N')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('O')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('P')->setWidth(15);
-            $this->excel->getActiveSheet()->getColumnDimension('Q')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('I')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('J')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('K')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('L')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('M')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('N')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('O')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('P')->setWidth(10);
+            $this->excel->getActiveSheet()->getColumnDimension('Q')->setWidth(10);
 
 
             $this->excel->getActiveSheet()->mergeCells('A7:L7');
@@ -772,17 +781,29 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->excel->getActiveSheet()->SetCellValue('E8', 'সমাবেশ');
             $this->excel->getActiveSheet()->mergeCells('E8:F8');
 
+            $this->excel->getActiveSheet()->mergeCells('G8:F9');
             $this->excel->getActiveSheet()->SetCellValue('G8', 'সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('H8:H9');
             $this->excel->getActiveSheet()->SetCellValue('H8', 'বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('I8:I9');
             $this->excel->getActiveSheet()->SetCellValue('I8', 'সংগঠন বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('J8:J9');
             $this->excel->getActiveSheet()->SetCellValue('J8', 'অমুসলিম সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('K8:K9');
             $this->excel->getActiveSheet()->SetCellValue('K8', 'অমুসলিম বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('L8:L9');
             $this->excel->getActiveSheet()->SetCellValue('L8', 'শুভাকাংখী বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('M8:M9');
             $this->excel->getActiveSheet()->SetCellValue('M8', 'কতজন গিয়েছেন');
+            $this->excel->getActiveSheet()->mergeCells('N8:N9');
             $this->excel->getActiveSheet()->SetCellValue('N8', 'কর্মী যোগাযোগ');
+            $this->excel->getActiveSheet()->mergeCells('O8:O9');
             $this->excel->getActiveSheet()->SetCellValue('O8', 'সুধী যোগাযোগ');
+            $this->excel->getActiveSheet()->mergeCells('P8:P9');
             $this->excel->getActiveSheet()->SetCellValue('P8', 'শুভাকাঙ্খী বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('Q8:Q9');
             $this->excel->getActiveSheet()->SetCellValue('Q8', 'বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('R8:R9');
             $this->excel->getActiveSheet()->SetCellValue('R8', 'সমর্থক বৃদ্ধি');
 
 
@@ -792,24 +813,28 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->excel->getActiveSheet()->SetCellValue('D9', 'জনসংখ্যা');
             $this->excel->getActiveSheet()->SetCellValue('E9', 'সংখ্যা');
             $this->excel->getActiveSheet()->SetCellValue('F9', 'গড় উপঃ');
-            $this->excel->getActiveSheet()->SetCellValue('G9', '18');  // HARDCODE FOR DESIGN READY
-            $this->excel->getActiveSheet()->SetCellValue('H9', '13');
-            $this->excel->getActiveSheet()->SetCellValue('I9', '0');
-            $this->excel->getActiveSheet()->SetCellValue('J9', '0');
-            $this->excel->getActiveSheet()->SetCellValue('K9', '3');
-            $this->excel->getActiveSheet()->SetCellValue('L9', '2');
-            $this->excel->getActiveSheet()->SetCellValue('M9', '2855');
-            $this->excel->getActiveSheet()->SetCellValue('N9', '24');
-            $this->excel->getActiveSheet()->SetCellValue('O9', '965');
-            $this->excel->getActiveSheet()->SetCellValue('P9', '4');
+
+            $this->excel->getActiveSheet()->SetCellValue('A10', $detailinfo['dawatgroupsendinfo']->group_number);
+            $this->excel->getActiveSheet()->SetCellValue('B10', $detailinfo['dawatgroupsendinfo']->member_number);
+            $this->excel->getActiveSheet()->SetCellValue('C10', $detailinfo['dawatgroupsendinfo']->dawat_received_std);
+            $this->excel->getActiveSheet()->SetCellValue('D10', $detailinfo['dawatgroupsendinfo']->dawat_received_people);
+            $this->excel->getActiveSheet()->SetCellValue('E10', $detailinfo['dawatgroupsendinfo']->gather_number);
+            $this->excel->getActiveSheet()->SetCellValue('F10', $detailinfo['dawatgroupsendinfo']->gather_avg);
+            $this->excel->getActiveSheet()->SetCellValue('G10', $detailinfo['dawatgroupsendinfo']->supporter_increase);   
+            $this->excel->getActiveSheet()->SetCellValue('H10', $detailinfo['dawatgroupsendinfo']->friend_increase);
+            $this->excel->getActiveSheet()->SetCellValue('I10', $detailinfo['dawatgroupsendinfo']->organization_increase);
+            $this->excel->getActiveSheet()->SetCellValue('J10', $detailinfo['dawatgroupsendinfo']->nonmuslim_supporter_increase);
+            $this->excel->getActiveSheet()->SetCellValue('K10', $detailinfo['dawatgroupsendinfo']->nonmuslim_friend_increase);
+            $this->excel->getActiveSheet()->SetCellValue('L10', $detailinfo['dawatgroupsendinfo']->ww_increase);
+            $this->excel->getActiveSheet()->SetCellValue('M10', $detailinfo['letgotovillageinfo']->number_went);
+            $this->excel->getActiveSheet()->SetCellValue('N10', $detailinfo['letgotovillageinfo']->worker_communication);
+            $this->excel->getActiveSheet()->SetCellValue('O10', $detailinfo['letgotovillageinfo']->ww_communication);
+            $this->excel->getActiveSheet()->SetCellValue('P10', $detailinfo['letgotovillageinfo']->ww_increase);
+            $this->excel->getActiveSheet()->SetCellValue('Q10', $detailinfo['letgotovillageinfo']->friend_increase);
+            $this->excel->getActiveSheet()->SetCellValue('R10', $detailinfo['letgotovillageinfo']->supporter_increase);
 
 
-            $this->excel->getActiveSheet()->SetCellValue('A10', '565');
-            $this->excel->getActiveSheet()->SetCellValue('B10', '1965');
-            $this->excel->getActiveSheet()->SetCellValue('C10', '35');
-            $this->excel->getActiveSheet()->SetCellValue('D10', '17');
-            $this->excel->getActiveSheet()->SetCellValue('E10', '14');
-            $this->excel->getActiveSheet()->SetCellValue('F10', '5');
+            
 
             // $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
 
@@ -968,6 +993,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
             $param = array($branch_id, $report_start, $report_end);
             $result = $this->site->query_binding("SELECT * FROM sma_madrasha_dawat_report WHERE  branch_id = ? AND date BETWEEN ? AND ? ", $param);
+            
+            
             $final = array();
             array_walk_recursive($result, function ($item, $key) use (&$final) {
                 $final[$key] = isset($final[$key]) ?  $item + $final[$key] : $item;

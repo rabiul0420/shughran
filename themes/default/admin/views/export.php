@@ -194,7 +194,7 @@
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('dawat/dawat_extra_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
             অতিরিক্ত দাওয়াত 
             </a> 
-            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('dawat/dawat_detail_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('dawat/detail_export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year']) ?>">
             বিস্তারিত দাওয়াত 
             </a> 
         </div>
