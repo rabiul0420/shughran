@@ -868,7 +868,7 @@ class Training extends MY_Controller
 
 
 
-
+ 
 
 	function getPrev($report_type, $last_year, $branch_id = NULL)
 	{
