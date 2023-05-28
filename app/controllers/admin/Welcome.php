@@ -31,6 +31,49 @@ class Welcome extends MY_Controller
         $this->page_construct('dashboard', $meta, $this->data);
     }
 
+
+
+    function getlist()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
+
+
+        if ($branch_id) {
+            $this->datatables
+                ->select($this->db->dbprefix('manpower_transfer') . ".id as id, {$this->db->dbprefix('manpower')}.name,{$this->db->dbprefix('manpower')}.id as manpower_id,t1.name as from_branch, t2.name as to_branch,orgstatus.status_name,{$this->db->dbprefix('manpower_transfer')}.note", FALSE)
+                ->join('manpower', 'manpower.id=manpower_transfer.manpower_id', 'left')
+                ->join('branches as t1', 't1.id=manpower_transfer.from_branch_id', 'left')
+                ->join('branches as t2', 't2.id=manpower_transfer.to_branch_id', 'left')
+                ->join('orgstatus', 'orgstatus.id=manpower_transfer.orgstatus_id', 'left')
+                ->from('manpower_transfer')->where('manpower_transfer.to_branch_id', $branch_id);
+        } else {
+            $this->datatables
+                ->select("manpower_transfer.id as id, manpower.name, {$this->db->dbprefix('manpower')}.id as manpower_id,t1.name as from_branch, t2.name as to_branch,orgstatus.status_name,manpower_transfer.note", FALSE)
+                ->join('manpower', 'manpower.id=manpower_transfer.manpower_id', 'left')
+                ->join('branches as t1', 't1.id=manpower_transfer.from_branch_id', 'left')
+                ->join('branches as t2', 't2.id=manpower_transfer.to_branch_id', 'left')
+                ->join('orgstatus', 'orgstatus.id=manpower_transfer.orgstatus_id', 'left')
+                ->from('manpower_transfer');
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function index1($branch_id = NULL)
     {
 

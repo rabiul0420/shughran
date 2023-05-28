@@ -33,7 +33,7 @@
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('manpowertransfer/add') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text"> সাথী প্রার্থী/কর্মী স্থানান্তর</span>
+                                        <span class="text">সাথীপ্রার্থী/কর্মী স্থানান্তর করুন</span>
                                     </a>
                                 </li>
 
@@ -41,13 +41,13 @@
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('dashboard') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">সাথী প্রার্থী/কর্মী আগমন তালিকা</span>
+                                        <span class="text">সাথীপ্রার্থী/কর্মী আগমন তালিকা</span>
                                     </a>
                                 </li>
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('dashboardtransfer') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">সাথী প্রার্থী/কর্মী স্থানান্তর তালিকা</span>
+                                        <span class="text">সাথীপ্রার্থী/কর্মী স্থানান্তর তালিকা</span>
                                     </a>
                                 </li>
 
