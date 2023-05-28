@@ -16,7 +16,9 @@ class Export extends MY_Controller
 
   function index($branch_id = NULL)
   {
-    // $this->sma->print_arrays($this->session->userdata('branch_id'));
+    if ($this->session->userdata('branch_id')) {
+      $branch_id = $this->session->userdata('branch_id');
+    }
 
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
       $this->session->set_flashdata('warning', lang('access_denied'));
