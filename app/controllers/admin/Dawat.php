@@ -833,10 +833,11 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->excel->getActiveSheet()->SetCellValue('J10', $dawatgroupsend->nonmuslim_supporter_increase);
             $this->excel->getActiveSheet()->SetCellValue('K10', $dawatgroupsend->nonmuslim_friend_increase);
             $this->excel->getActiveSheet()->SetCellValue('L10', $dawatgroupsend->ww_increase);
+            
 
 
             $letgotovillage = isset($detailinfo['letgotovillageinfo']) ? $detailinfo['letgotovillageinfo'] : NULL ;
-            
+
 
             // $this->sma->print_arrays($letgotovillage);
 
