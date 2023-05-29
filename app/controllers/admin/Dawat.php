@@ -744,6 +744,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             );
             
             $this->excel->getActiveSheet()->getStyle("A7:R7")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle("A12:R12")->applyFromArray($style);
             
             $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
             $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(10);
@@ -833,7 +834,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->excel->getActiveSheet()->SetCellValue('J10', $dawatgroupsend->nonmuslim_supporter_increase);
             $this->excel->getActiveSheet()->SetCellValue('K10', $dawatgroupsend->nonmuslim_friend_increase);
             $this->excel->getActiveSheet()->SetCellValue('L10', $dawatgroupsend->ww_increase);
-            
+
 
 
             $letgotovillage = isset($detailinfo['letgotovillageinfo']) ? $detailinfo['letgotovillageinfo'] : NULL ;
@@ -849,7 +850,73 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->excel->getActiveSheet()->SetCellValue('R10', $letgotovillage->supporter_increase);
 
 
-      
+            // স্কুল দাওয়াতী দশক রিপোর্ট
+
+
+            // $this->sma->print_arrays(1111);
+
+            $this->excel->getActiveSheet()->mergeCells('A12:R12');
+            $this->excel->getActiveSheet()->SetCellValue('A12', '৩। স্কুল দাওয়াতী দশক রিপোর্ট');
+
+
+            $this->excel->getActiveSheet()->SetCellValue('A13', 'সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('B13', 'বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('C13', 'সাধারণ সভা');
+            $this->excel->getActiveSheet()->mergeCells('C13:D13');
+            
+            $this->excel->getActiveSheet()->SetCellValue('E13', 'অন্যান্য বৈঠক');
+            $this->excel->getActiveSheet()->mergeCells('E13:F13');            
+            $this->excel->getActiveSheet()->mergeCells('G13:G14');
+
+            $this->excel->getActiveSheet()->SetCellValue('G13', 'দাওয়াতী কার্ড, বুকলেট');
+            $this->excel->getActiveSheet()->mergeCells('H13:H14');
+            $this->excel->getActiveSheet()->SetCellValue('H13', 'পরিচিতি বিতরণ');
+            $this->excel->getActiveSheet()->mergeCells('I13:I14');
+            $this->excel->getActiveSheet()->SetCellValue('I13', 'সংগঠন বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('J13:J14');
+            $this->excel->getActiveSheet()->SetCellValue('J13', 'অমুসলিম সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('K13:K14');
+            $this->excel->getActiveSheet()->SetCellValue('K13', 'অমুসলিম বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('L13:L14');
+            $this->excel->getActiveSheet()->SetCellValue('L13', 'শুভাকাংখী বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('M13:M14');
+            $this->excel->getActiveSheet()->SetCellValue('M13', 'কতজন গিয়েছেন');
+            $this->excel->getActiveSheet()->mergeCells('N13:N14');
+            $this->excel->getActiveSheet()->SetCellValue('N13', 'কর্মী যোগাযোগ');
+            $this->excel->getActiveSheet()->mergeCells('O13:O14');
+            $this->excel->getActiveSheet()->SetCellValue('O13', 'সুধী যোগাযোগ');
+            $this->excel->getActiveSheet()->mergeCells('P13:P14');
+            $this->excel->getActiveSheet()->SetCellValue('P13', 'শুভাকাঙ্খী বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('Q13:Q14');
+            $this->excel->getActiveSheet()->SetCellValue('Q13', 'বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('R13:R14');
+            $this->excel->getActiveSheet()->SetCellValue('R13', 'সমর্থক বৃদ্ধি');
+            
+
+            $this->excel->getActiveSheet()->mergeCells('A13:A14');
+            $this->excel->getActiveSheet()->mergeCells('B13:B14');
+            $this->excel->getActiveSheet()->SetCellValue('C14', 'ছাত্র সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('D14', 'জনসংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('E14', 'সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('F14', 'গড় উপঃ');
+
+/*
+
+<td style="height: 72px; " rowspan="2" width="45">গ্রাহক বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="52">প্রেরিত গ্রুপ</td>
+<td style="height: 72px; " rowspan="2" width="47">সমর্থক সংগঠন বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="36">অমুসলিম সমর্থক বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="42">অমুসলিম বন্ধু বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="44">শুভাকাংখী বৃদ্ধি</td>
+</tr>
+<tr style="height: 36px;">
+<td style="height: 36px; " width="53">সংখ্যা</td>
+<td style="height: 36px; " width="48">গড় উপঃ</td>
+<td style="height: 36px; " width="38">সংখ্যা</td>
+<td style="height: 36px; " width="47">গড় উপঃ</td>
+*/
+
+
 
             //  $this->sma->print_arrays(56666);
 
