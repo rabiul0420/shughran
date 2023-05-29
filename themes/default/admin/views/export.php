@@ -167,8 +167,14 @@
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('manpower/exportsummary/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year'] )  ?>">
             একনজরে
             </a>
-            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-            Coming
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('manpower/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year'] ) ?>">
+            সদস্য তালিকা 
+            </a>
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('membercandidate/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year'] ) ?>">
+            সদস্য প্রার্থী তালিকা 
+            </a>
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('associate/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year'] ) ?>">
+            সাথী তালিকা 
             </a>
         </div>
 

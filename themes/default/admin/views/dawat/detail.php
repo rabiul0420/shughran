@@ -10,7 +10,7 @@
        url('<?php echo site_url('assets/solaimanlipi/');?>SolaimanLipi.svg#SolaimanLipiNormal') format('svg'),
        url('<?php echo site_url('assets/solaimanlipi/');?>SolaimanLipi.eot?#iefix') format('embedded-opentype');
   font-weight: normal;
-  font-style: normal;
+  font-style: normal; 
 }
 
 </style> 

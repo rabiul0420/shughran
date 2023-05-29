@@ -2972,10 +2972,14 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-    function exportsummary()
+    function exportsummary($branch_id)
     {
-        $branch_id = $this->input->get('branch');
-        $this->sma->checkPermissions();
+        // $branch_id = $this->input->get('branch');
+        // $this->sma->checkPermissions();
+        // $this->sma->print_arrays($branch_id);
+
+        $this->sma->checkPermissions('index', TRUE);
+
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
             $this->session->set_flashdata('warning', lang('access_denied'));
@@ -3002,7 +3006,6 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             admin_redirect();
 
         $report_info = $report_type;
-
 
 
 
