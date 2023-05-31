@@ -152,7 +152,7 @@ font: 18px SolaimanLipi, sans-serif;
 <td style="height: 10px; " width="50">সমর্থক বৃদ্ধি</td>
 <td style="height: 10px; " width="48">বন্ধু বৃদ্ধি</td>
 <td style="height: 10px; " width="46">সংগঠন বৃদ্ধি</td>
-<td style="height: 10px; " width="54">বন্ধু বৃদ্ধি</td>
+<td style="height: 10px; " width="54"></td>
 <td style="height: 10px; " width="51">অমুসলিম সমর্থক বৃদ্ধি</td>
 <td style="height: 10px; " width="52">অমুসলিম বন্ধু বৃদ্ধি</td>
 <td style="height: 10px; " width="40">শুভাকাংখী বৃদ্ধি</td>
@@ -178,9 +178,13 @@ font: 18px SolaimanLipi, sans-serif;
 <td style="height: 54px; " rowspan="2" width="46">
 <?php  echo sum_detail($dawatgroupsend,'organization_increase'); ?>
 </td>
+
+
 <td style="height: 54px; " rowspan="2" width="54">
 
 </td>
+
+
 <td style="height: 54px; " rowspan="2" width="51">
 <?php  echo sum_detail($dawatgroupsend,'nonmuslim_supporter_increase'); ?>
 </td>
