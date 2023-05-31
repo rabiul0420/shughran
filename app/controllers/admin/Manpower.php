@@ -3462,7 +3462,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
 
 
-        $filename = 'manpower_report_' . $this->input->get('year');
+        $filename = 'manpower_report_' .$this->input->get('year').'_'.$this->input->get('branch');
         $this->load->helper('excel');
         create_excel($this->excel, $filename);
     }
@@ -4075,7 +4075,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-            $filename = 'member_list' . ($branch ? '_' . $branch : '');
+            $filename = 'member_list'.'_'.$this->input->get('year'). ($branch ? '_' . $branch : '');
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }

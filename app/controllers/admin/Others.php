@@ -252,6 +252,150 @@ class Others extends MY_Controller
 		$this->session->set_flashdata('error', lang('nothing_found'));
 		redirect($_SERVER["HTTP_REFERER"]);
 	}
+	function program_export1($branch_id)
+	{
+
+		$this->sma->checkPermissions('index', TRUE);
+
+
+
+		if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+			$this->session->set_flashdata('warning', lang('access_denied'));
+			admin_redirect('others/program/' . $this->session->userdata('branch_id'));
+		} else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+			admin_redirect('others/program/' . $this->session->userdata('branch_id'));
+		}
+
+
+		$report_type_get = $this->report_type();
+
+		if ($report_type_get == false)
+			admin_redirect();
+
+		$report_info = $report_type_get;
+
+
+		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+			$branch_id = $branch_id;
+			$branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+		} else {
+			$branch_id = $this->session->userdata('branch_id');
+			$branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+		}
+
+		$programs = $this->others_model->getAllProgram();
+
+
+		if ($branch_id) {
+			$detailinfo = $this->getEntryInfo($report_type_get, $this->data['programs'], $branch_id);
+		} else
+			$detailinfo = '';
+
+
+		$report_start = $report_type_get['start'];
+		$report_end = $report_type_get['end'];
+		$report_type = $report_type_get['type'];
+		$report_year = $report_type_get['year'];
+
+
+		$program_summary = $this->getprogram_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+
+
+		if ($programs) {
+			$this->load->library('excel');
+			$this->excel->setActiveSheetIndex(0);
+			$this->excel->getActiveSheet()->setTitle('BM');
+
+
+
+
+			$this->excel->getActiveSheet()->mergeCells('A1:I1');
+			$this->excel->getActiveSheet()->mergeCells('A2:I2');
+			$this->excel->getActiveSheet()->mergeCells('A3:I3');
+			$this->excel->getActiveSheet()->mergeCells('A4:I4');
+			$this->excel->getActiveSheet()->mergeCells('A5:I5');
+
+			$style = array(
+				'alignment' => array(
+					'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+				)
+			);
+
+			$this->excel->getActiveSheet()->getStyle("A1:I4")->applyFromArray($style);
+			$this->excel->getActiveSheet()->getStyle('A1:I4')->getFont()->setBold(true);
+
+
+			$this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
+			$this->excel->getActiveSheet()->SetCellValue('A3', 'সভাসমূহ  ' . strtoupper($report_type_get['type']) . ' Report: from ' . $report_type_get['start'] . ' to ' . $report_type_get['end']);
+			$this->excel->getActiveSheet()->SetCellValue('A4', 'Branch: ' . ($branch_id ? $branch->name : lang('all_branches')));
+
+
+
+
+			$this->excel->getActiveSheet()->getStyle('A7:I7')->getFont()->setBold(true);
+			$this->excel->getActiveSheet()->SetCellValue('A7', 'সভাসমূহ');
+			$this->excel->getActiveSheet()->SetCellValue('B7', 'সংখ্যা');
+			$this->excel->getActiveSheet()->SetCellValue('C7', 'মোট উপস্থিতি');
+			$this->excel->getActiveSheet()->SetCellValue('D7', 'গড়');
+
+			$this->excel->getActiveSheet()->SetCellValue('F7', 'সভাসমূহ');
+			$this->excel->getActiveSheet()->SetCellValue('G7', 'সংখ্যা');
+
+			$this->excel->getActiveSheet()->SetCellValue('H7', 'মোট উপস্থিতি');
+			$this->excel->getActiveSheet()->SetCellValue('I7', 'গড়');
+
+
+
+
+			$row = 8;
+
+			foreach($programs as $key=>$program) if($key < floor(count($programs)/2)) {
+
+				$row_info = record_row($program_summary, 'program_id', $program->id);
+				$number = $row_info['number'];
+				$total_presence = $row_info['total_presence'];
+				$this->excel->getActiveSheet()->SetCellValue('A' . $row, $program->program_type);
+				$this->excel->getActiveSheet()->SetCellValue('B' . $row, $row_info['number']);
+				$this->excel->getActiveSheet()->SetCellValue('C' . $row, $row_info['total_presence']);
+				$this->excel->getActiveSheet()->SetCellValue('D' . $row, ($number >0) ? round($total_presence/$number,2) : 0);
+
+				$row++;
+			}
+
+
+			$row = 8;
+			foreach($programs as $key=>$program) if($key >= floor(count($programs)/2)) {
+				$row_info = record_row($program_summary, 'program_id', $program->id);
+				$number = $row_info['number'];
+				$total_presence = $row_info['total_presence'];
+				$this->excel->getActiveSheet()->SetCellValue('F' . $row, $program->program_type);
+				$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
+				$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
+				$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number >0) ? round($total_presence/$number,2) : 0);
+
+				$row++;
+			}
+
+
+			$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
+			$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+			$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+			$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+			$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+			$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(30);
+
+
+
+			$filename = 'সভাসমূহ_' . ($branch->name);
+			$this->load->helper('excel');
+			create_excel($this->excel, $filename);
+		}
+
+		$this->session->set_flashdata('error', lang('nothing_found'));
+		redirect($_SERVER["HTTP_REFERER"]);
+	}
 
 
 	function getprogram_summary($report_type, $start_date, $end_date, $branch_id = NULL, $reportinfo = null)
