@@ -218,6 +218,8 @@
 	
 	$total_member_decrease = $member_endstd  + $member_transfer  + $member_cancel  + $member_study_abroad + $member_job_abroad + $member_death + $member_martyr + $member_demotion;
 	
+	//temporary
+	$member_improvement_target =  sum_manpower($manpower_record, 'member_improvement_target');
 	?>
 	
     <td class="tg-0pky  type_2">
@@ -244,13 +246,23 @@
 	</td>
     <td class="tg-0pky  type_6">
 	<?php   
-	
-	echo $member_prev;
+	//3:2:1
+	//echo $member_prev;
+
+	//temporary
+	echo $member_improvement_target;
+
 	?>
 	</td>
     <td class="tg-0pky  type_7">
 	<?php   
-	if($report_info['prev_record'])  echo  ($member_prev>0) ? round(100*$member_improvement/$member_prev,2) : 0;
+	//3:2:1
+	// if($report_info['prev_record'])  echo  ($member_prev>0) ? round(100*$member_improvement/$member_prev,2) : 0;
+
+	//temporary
+	if($report_info['prev_record'])  echo  ($member_improvement_target>0) ? round(100*$member_improvement/$member_improvement_target,2) : 0;
+
+
 	?>
 	
 	</td>
@@ -418,6 +430,10 @@ if($report_info['prev_record'])  echo $membercandidate_target;
 	
 	$total_associate_decrease = $associate_improvement_d +  $associate_endstd  + $associate_transfer  + $associate_cancel  + $associate_study_abroad + $associate_job_abroad + $associate_death + $associate_martyr + $associate_demotion;
 	
+
+	//temporary
+	$associate_improvement_target = sum_manpower($manpower_record, 'associate_improvement_target');
+
 	?>
 	
     <td class="tg-0pky  type_2">
@@ -444,12 +460,22 @@ if($report_info['prev_record'])  echo $membercandidate_target;
 	</td>
     <td class="tg-0pky type_6">
 	<?php   
-	 if($report_info['prev_record']) echo $associate_prev + $member_prev;
+	//3:2:1
+	// if($report_info['prev_record']) echo $associate_prev + $member_prev;
+
+	//temporary 
+	if($report_info['prev_record']) echo $associate_improvement_target;
+	
 	?>
 	</td>
     <td class="tg-0pky  type_7">
 	<?php   
-	 if($report_info['prev_record']) echo  ($associate_prev + $member_prev>0) ? round(100*$associate_improvement/($associate_prev + $member_prev),2) : 0;;
+	////3:2:1
+	// if($report_info['prev_record']) echo  ($associate_prev + $member_prev>0) ? round(100*$associate_improvement/($associate_prev + $member_prev),2) : 0;;
+	
+	//temporary 
+	if($report_info['prev_record']) echo  ($associate_improvement_target>0) ? round(100*$associate_improvement/($associate_improvement_target),2) : 0;;
+	
 	?>
 	
 	</td>
@@ -626,8 +652,13 @@ if($report_info['prev_record'])  echo $membercandidate_target;
 	$worker_improvement_d = $associate_improvement;
 	$total_worker_decrease = $worker_improvement_d + $worker_endstd  + $worker_transfer  + $worker_cancel  + $worker_study_abroad + $worker_job_abroad + $worker_death + $worker_martyr + $worker_demotion;
 	
-	$worker_improvement_target = $worker_prev  + $member_prev  + $associate_prev ;
+	//3:2:1
+	//$worker_improvement_target = $worker_prev  + $member_prev  + $associate_prev ;
 	
+
+	//temporary
+	$worker_improvement_target = sum_manpower($manpower_record, 'worker_improvement_target');
+
 	?>
   
   
