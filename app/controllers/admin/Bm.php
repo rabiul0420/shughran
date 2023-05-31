@@ -469,14 +469,7 @@ function getEntryInfo($report_type,$sources, $branch_id = NULL)
 				
 				
 				
-				
-				
-				
-				
-				
-				
-				
-                $filename = 'BM'.( $branch_id ? '_'.$branch_id : '_central') ;
+				$filename = 'BM_' .( $branch_id ? '_'.$branch_id : '_central'). '_' . $this->input->get('year');
                 $this->load->helper('excel');
                create_excel($this->excel, $filename);
 

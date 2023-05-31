@@ -243,8 +243,8 @@ class Others extends MY_Controller
 			$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(30);
 
 
+			$filename = 'programs_' . $branch->name . '_' . $this->input->get('year');
 
-			$filename = 'সভাসমূহ_' . ($branch->name);
 			$this->load->helper('excel');
 			create_excel($this->excel, $filename);
 		}
@@ -781,7 +781,8 @@ class Others extends MY_Controller
 			$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(30);
 
 
-			$filename = 'centraltraining_' . ($branch->name);
+			$filename = 'centraltraining_' . $branch->name . '_' . $this->input->get('year');
+
 			$this->load->helper('excel');
 			create_excel($this->excel, $filename);
 		}

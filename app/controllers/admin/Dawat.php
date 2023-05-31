@@ -357,7 +357,7 @@ class Dawat extends MY_Controller
             $this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
             $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
 
-            $filename = 'দাওয়াত_report_' . $branch->name . '_' . $this->input->get('year');
+            $filename = 'Dawat_report_' . $branch->name . '_' . $this->input->get('year');
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
@@ -1204,8 +1204,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             // $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
 
 
+            $filename = 'Dawat_detail_' . $branch->name . '_' . $this->input->get('year');
 
-            $filename = 'dawat_detail_'.$report_type['year'] .'_' . ($branch->name);
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
@@ -2008,7 +2008,8 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
 
-            $filename = 'অতিরিক্ত দাওয়াত_' . ($branch->name);
+            $filename = 'dawat_extra_' . $branch->name . '_' . $this->input->get('year');
+
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
@@ -2326,7 +2327,8 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
             $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
             $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
-            $filename = 'mosque_' . $branch->name;
+            $filename = 'mosque_' . $branch->name . '_' . $this->input->get('year');
+
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
@@ -2735,11 +2737,8 @@ FROM `sma_mosquebasework` WHERE   date BETWEEN ? AND ? ", array($report_start, $
 
 
 
+            $filename = 'Element_' . $branch->name . '_' . $this->input->get('year');
 
-
-
-
-            $filename = 'Element_' . $branch->name;
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }

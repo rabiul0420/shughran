@@ -248,7 +248,8 @@ class Highersyllabus extends MY_Controller
 			$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
 			$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
 
-			$filename = 'উচ্চতর_সিলেবাস_' . $branch->name;
+			$filename = 'highersyllabus_' . $branch->name . '_' . $this->input->get('year');
+
 			$this->load->helper('excel');
 			create_excel($this->excel, $filename);
 		}

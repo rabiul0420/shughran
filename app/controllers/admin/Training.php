@@ -326,7 +326,8 @@ class Training extends MY_Controller
 
 
 
-			$filename = 'branch_training_' . ($branch->name);
+			$filename = 'branch_training_' . $branch->name . '_' . $this->input->get('year');
+
 			$this->load->helper('excel');
 			create_excel($this->excel, $filename);
 		}
@@ -759,9 +760,8 @@ class Training extends MY_Controller
 
 
 
+			$filename = 'library_' . $branch->name . '_' . $this->input->get('year');
 
-
-			$filename = 'library_' . $branch->name;
 			$this->load->helper('excel');
 			create_excel($this->excel, $filename);
 		}
@@ -1180,9 +1180,7 @@ FROM `sma_library_calculated` WHERE `report_type` = ? AND calculated_year = ? ",
 
 
 
-
-
-			$filename = 'Communication_' . $branch->name;
+			$filename = 'Communication_' .( $branch_id ? '_'.$branch_id : '_central'). '_' . $this->input->get('year');
 			$this->load->helper('excel');
 			create_excel($this->excel, $filename);
 		}
@@ -1456,10 +1454,6 @@ FROM `sma_library_calculated` WHERE `report_type` = ? AND calculated_year = ? ",
 
 
 
-
-
-
-
 			$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
 			$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
 			$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(25);
@@ -1469,9 +1463,9 @@ FROM `sma_library_calculated` WHERE `report_type` = ? AND calculated_year = ? ",
 
 
 
+			$filename = 'Element_' .( $branch_id ? '_'.$branch_id : '_central'). '_' . $this->input->get('year');
 
 
-			$filename = 'Element_' . $branch->name;
 			$this->load->helper('excel');
 			create_excel($this->excel, $filename);
 		}

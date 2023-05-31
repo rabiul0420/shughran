@@ -781,9 +781,7 @@ class Guest extends MY_Controller
 
 
 
-
-
-            $filename = 'Guest_'.$branch->name;
+            $filename = 'Guest_' .( $branch_id ? '_'.$branch_id : '_central'). '_' . $this->input->get('year');
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }

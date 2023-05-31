@@ -2487,7 +2487,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                 $process_Title = 'সাথী তালিকা';                            
                 $this->sheetcellValue($branch,$field_arr,$data,$process_Title); 
                 
-				$filename = 'associate_list'.($branch ? '_'.$branch: '');
+				$filename = 'associate_list'.'_'.$this->input->get('year').($branch ? '_'.$branch: '');
   
                 $this->load->helper('excel');
                 create_excel($this->excel, $filename);
