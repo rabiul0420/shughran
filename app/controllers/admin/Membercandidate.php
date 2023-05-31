@@ -2245,7 +2245,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                 $process_Title = 'সদস্যপ্রার্থী';                            
                 $this->sheetcellValue($branch,$field_arr,$data,$process_Title); 
 
-				$filename = 'membercandidate_report'.($branch ? '_'.$branch: '');
+				$filename = 'membercandidate_report'.$this->input->get('year').($branch ? '_'.$branch: '');
                 $this->load->helper('excel');
 				
 				 

@@ -659,7 +659,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
     function detail_export($branch_id)
     {
-
+        
+        
         $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
@@ -668,61 +669,63 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
             admin_redirect('dawat/detail/' . $this->session->userdata('branch_id'));
         }
-
-
+        
+        
         $report_type = $this->report_type();
-
+        
         if ($report_type == false)
-            admin_redirect();
-
+        admin_redirect();
+        
         $report_info = $report_type;
-
-
-
+        
+        
+        
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
             $branch_id = $branch_id;
             $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
         } else {
-
+            
             $branch_id = $this->session->userdata('branch_id');
             $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
-
-
+        
+        
         // $detailinfo = $this->getEntryInfoSUM($report_type, $branch_id);
-
+        
+        // $this->sma->print_arrays($report_type['year']);
 
         $detailinfo = $this->getEntryInfo($report_type, $branch_id);
-
-
-
-
+        
+        // $this->sma->print_arrays(1111);
+        
+        
+        
         if ($detailinfo) {
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
             $this->excel->getActiveSheet()->setTitle('Dawat Detail');
-
-
-
-
+            
+            
+            
+            
             $this->excel->getActiveSheet()->mergeCells('A1:S1');
             $this->excel->getActiveSheet()->mergeCells('A2:S2');
             $this->excel->getActiveSheet()->mergeCells('A3:S3');
             $this->excel->getActiveSheet()->mergeCells('A4:S4');
             $this->excel->getActiveSheet()->mergeCells('A5:S5');
-
+            
             $style = array(
                 'alignment' => array(
                     'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                )
-            );
+                    )
+                );
 
             $this->excel->getActiveSheet()->getStyle("A1:S4")->applyFromArray($style);
             $this->excel->getActiveSheet()->getStyle('A1:S4')->getFont()->setBold(true);
 
-
+            
             $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
 
 
@@ -852,7 +855,6 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
 
             // স্কুল দাওয়াতী দশক রিপোর্ট
-            // $this->sma->print_arrays(1111);
             $this->excel->getActiveSheet()->mergeCells('A12:R12');            
 
             $this->excel->getActiveSheet()->SetCellValue('A12', '৩। স্কুল দাওয়াতী দশক রিপোর্ট');
@@ -1203,7 +1205,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
 
 
-            $filename = 'বিস্তারিত_দাওয়াত_' . ($branch->name);
+            $filename = 'dawat_detail_'.$report_type['year'] .'_' . ($branch->name);
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
