@@ -10,7 +10,7 @@
        url('<?php echo site_url('assets/solaimanlipi/');?>SolaimanLipi.svg#SolaimanLipiNormal') format('svg'),
        url('<?php echo site_url('assets/solaimanlipi/');?>SolaimanLipi.eot?#iefix') format('embedded-opentype');
   font-weight: normal;
-  font-style: normal;
+  font-style: normal; 
 }
 
 </style> 
@@ -152,7 +152,7 @@ font: 18px SolaimanLipi, sans-serif;
 <td style="height: 10px; " width="50">সমর্থক বৃদ্ধি</td>
 <td style="height: 10px; " width="48">বন্ধু বৃদ্ধি</td>
 <td style="height: 10px; " width="46">সংগঠন বৃদ্ধি</td>
-<td style="height: 10px; " width="54">বন্ধু বৃদ্ধি</td>
+<td style="height: 10px; " width="54"></td>
 <td style="height: 10px; " width="51">অমুসলিম সমর্থক বৃদ্ধি</td>
 <td style="height: 10px; " width="52">অমুসলিম বন্ধু বৃদ্ধি</td>
 <td style="height: 10px; " width="40">শুভাকাংখী বৃদ্ধি</td>
@@ -178,9 +178,13 @@ font: 18px SolaimanLipi, sans-serif;
 <td style="height: 54px; " rowspan="2" width="46">
 <?php  echo sum_detail($dawatgroupsend,'organization_increase'); ?>
 </td>
+
+
 <td style="height: 54px; " rowspan="2" width="54">
 
 </td>
+
+
 <td style="height: 54px; " rowspan="2" width="51">
 <?php  echo sum_detail($dawatgroupsend,'nonmuslim_supporter_increase'); ?>
 </td>
@@ -234,6 +238,8 @@ font: 18px SolaimanLipi, sans-serif;
 </td>
 </tr>
 <tr style="height: 18px;">
+
+
 
 <td style="height: 18px; " colspan="19">৩। স্কুল দাওয়াতী দশক রিপোর্ট</td>
 
