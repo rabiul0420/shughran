@@ -440,7 +440,7 @@ class Datatables
             }
             else if (is_array($this->columns) && in_array( "id",$this->columns)) {
                 
-                if(in_array($this->table , array('institution_organization','institutionlist','confirmreport','users','manpower_transfer_assoworker','manpower_transfer','administration_without_org','associate',  'postpone' ,'associatelog','memberlog','membercandidatelog','institution_without_org')))
+                if(in_array($this->table , array('thana','institution_organization','institutionlist','confirmreport','users','manpower_transfer_assoworker','manpower_transfer','administration_without_org','associate',  'postpone' ,'associatelog','memberlog','membercandidatelog','institution_without_org')))
                     $this->ci->db->select($this->table.'.id');
                 else 
                     $this->ci->db->select('id');

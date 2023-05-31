@@ -915,7 +915,7 @@
 
 
 							//3 : 2: 1 
-							$worker_improvement_target = $worker_prev  + $member_prev  + $associate_prev;
+							//$worker_improvement_target = $worker_prev  + $member_prev  + $associate_prev;
 
 							//temporary
 							$worker_improvement_target = sum_manpower($manpower_record, 'worker_improvement_target');

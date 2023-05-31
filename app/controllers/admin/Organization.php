@@ -1804,7 +1804,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
         if ($branch_id) {
 
             $this->db
@@ -1904,10 +1904,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('P' . $row, $data_row->is_organization);
 
                 $this->excel->getActiveSheet()->SetCellValue('Q' . $row, $data_row->org_type);
-                $this->excel->getActiveSheet()->SetCellValue('R' . $row, $data_row->in_current_session==1 ? 'Increase' : ( $data_row->in_current_session==2 ? 'Decrease':''));
+                $this->excel->getActiveSheet()->SetCellValue('R' . $row, $data_row->in_current_session == 1 ? 'Increase' : ($data_row->in_current_session == 2 ? 'Decrease' : ''));
                 //$this->excel->getActiveSheet()->SetCellValue('R' . $row, $data_row->in_current_session);
                 $this->excel->getActiveSheet()->SetCellValue('S' . $row, $data_row->notes);
-                $this->excel->getActiveSheet()->SetCellValue('T' . $row, strtotime($data_row->date) > strtotime( $start) &&  strtotime($data_row->date) < strtotime( $end) ? 'Current' : 'not in current' ); 
+                $this->excel->getActiveSheet()->SetCellValue('T' . $row, strtotime($data_row->date) > strtotime($start) &&  strtotime($data_row->date) < strtotime($end) ? 'Current' : 'not in current');
                 //$this->excel->getActiveSheet()->SetCellValue('T' . $row, $data_row->date); 
                 $this->excel->getActiveSheet()->SetCellValue('U' . $row, $data_row->current_unit);
                 $this->excel->getActiveSheet()->SetCellValue('V' . $row, $data_row->prev_unit);
@@ -2990,5 +2990,174 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $this->load->view($this->theme . 'organization/increaseorganization', $this->data);
         }
+    }
+
+
+
+
+
+    function thanalist($branch_id = NULL)
+    {
+
+
+
+
+        $this->sma->checkPermissions('index', TRUE);
+
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/thanalist/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/thanalist/' . $this->session->userdata('branch_id'));
+        }
+
+
+        $report_type = $this->report_type();
+
+        if ($report_type == false)
+            admin_redirect();
+
+        $this->data['report_info'] = $report_type;
+
+
+
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+       // $this->sma->print_arrays($this->data['branch']);
+
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'থানা তালিকা'));
+        $meta = array('page_title' => 'থানা তালিকা', 'bc' => $bc);
+        $this->page_construct('organization/thanalist', $meta, $this->data, 'leftmenu/organization');
+    }
+
+
+
+
+    function addthana($id = NULL)
+    {
+
+        $this->load->admin_model('organization_model');
+        //   $this->sma->print_arrays($_POST, $_GET);
+
+        $this->sma->checkPermissions('index', TRUE);
+        $this->load->helper('security');
+        // $this->load->admin_model('organization_model');
+
+        $branches = $this->site->getAllBranches();
+
+        $this->form_validation->set_rules('thana_name', 'name', 'required');
+        $this->form_validation->set_rules('thana_code', 'code', 'required');
+
+
+        if ($this->form_validation->run() == true) {
+
+
+            // $this->sma->print_arrays($branchinfo->last_assocode);
+
+            //new manpower
+            $data = array(
+                'date' =>  date('Y-m-d'),
+                'branch_id' => $this->input->post('branch_id'),
+                'thana_name' => $this->input->post('thana_name'),
+                'thana_code' => $this->input->post('thana_code'),
+                'org_type' => $this->input->post('org_type'),
+
+                'member_number' => $this->input->post('member_number'),
+                'associate_number' => $this->input->post('associate_number'),
+                'worker_number' => $this->input->post('worker_number'),
+                'supporter_number' => $this->input->post('supporter_number'),
+                'ward_number' => $this->input->post('ward_number'),
+                'unit_number' => $this->input->post('unit_number'),
+                'increase_in_current_session' => $this->input->post('increase_in_current_session'),
+                'note' => $this->input->post('note'),
+
+
+                'user_id' => $this->session->userdata('user_id'),
+
+            );
+
+
+
+
+
+            $thana_id = $this->site->insertData('thana', $data, 'id');
+
+            $this->session->set_flashdata('message', 'Added');
+
+
+            admin_redirect('organization/addthana');
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+
+
+            $this->data['branches'] = $this->site->getAllBranches();
+
+            if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+
+                $this->data['branch_id'] = NULL;
+                $this->data['branch'] =   NULL;
+            } else {
+
+                $this->data['branch_id'] = $this->session->userdata('branch_id');
+                $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+            }
+
+
+
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('থানা')));
+            $meta = array('page_title' => lang('থানা '), 'bc' => $bc);
+            $this->page_construct('organization/addthana', $meta, $this->data, 'leftmenu/organization');
+        }
+    }
+
+
+
+    function getListthana($branch_id = NULL)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            // $user = $this->site->getUser();
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
+
+
+
+        $report_type = $this->report_type();
+
+        $this->load->library('datatables');
+
+        if ($branch_id) {
+            $this->datatables
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,member_number,associate_number,worker_number,supporter_number,ward_number,unit_number,increase_in_current_session,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana')->where('thana.branch_id', $branch_id);
+        } else {
+            $this->datatables
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,member_number,associate_number,worker_number,supporter_number,ward_number,unit_number,increase_in_current_session,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana');
+        }
+
+      //  $start = $report_type['start'];
+      //  $end = $report_type['end'];
+
+       // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+
+        //$this->datatables->unset_column("manpower_id");
+        echo $this->datatables->generate();
     }
 }

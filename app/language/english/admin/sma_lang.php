@@ -628,3 +628,7 @@ $lang['private_shop']                       = "Private shop (for members only)";
 $lang['hide_price']                         = "Disable cart & price";
 $lang['login_to_your_account']              = "Please login to your account.";
 $lang['forgot_password_successful']         = "Email has been sent with reset password instructions";
+$lang['organization_type']                  = "সংগঠনের ধরন";
+
+
+

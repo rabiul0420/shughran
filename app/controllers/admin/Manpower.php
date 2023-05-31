@@ -165,7 +165,7 @@ class Manpower extends MY_Controller
 
         $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
 
-        
+
         $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
         $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
         $this->data['postpone_asso'] = $this->postlog(2, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
@@ -282,12 +282,12 @@ class Manpower extends MY_Controller
         $half_start = $report_date_info->startdate_half;
         $half_end = $report_date_info->enddate_half;
 
-         // $this->sma->print_arrays( $report_date_info->startdate_half, $report_date_info->enddate_half); 
+        // $this->sma->print_arrays( $report_date_info->startdate_half, $report_date_info->enddate_half); 
 
         if ($is_current == false) {
 
 
-           
+
 
             // $this->sma->print_arrays(99999);
 
@@ -368,7 +368,7 @@ class Manpower extends MY_Controller
             //3:2:1
             // $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $half_start, $half_end));
 
-            
+
             //temporary 
             $result2 =  $this->site->query_binding("SELECT member_improvement_target, worker_improvement_target, associate_improvement_target, associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $half_start, $half_end));
 
@@ -382,17 +382,15 @@ class Manpower extends MY_Controller
             $result[0]['associate_improvement_target'] = $result2[0]['associate_improvement_target'] ?? 0;
             $result[0]['member_improvement_target'] = $result2[0]['member_improvement_target'] ?? 0;
             $result[0]['worker_improvement_target'] = $result2[0]['worker_improvement_target'] ?? 0;
-
-
-        }else {
-            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE    date BETWEEN ? AND ? ", array( $start_date, $end_date));
+        } else {
+            $result =  $this->site->query_binding("SELECT * from sma_manpower_record WHERE    date BETWEEN ? AND ? ", array($start_date, $end_date));
 
             //3:2:1
             // $result2 =  $this->site->query_binding("SELECT associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $half_start, $half_end));
 
-            
+
             //temporary 
-            $result2 =  $this->site->query_binding("SELECT member_improvement_target, worker_improvement_target, associate_improvement_target, associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  date BETWEEN ? AND ? ", array( $half_start, $half_end));
+            $result2 =  $this->site->query_binding("SELECT member_improvement_target, worker_improvement_target, associate_improvement_target, associate_candidate_improvement_target, member_candidate_candidate_target from sma_manpower_record WHERE  date BETWEEN ? AND ? ", array($half_start, $half_end));
 
 
             $result[0]['associate_candidate_improvement_target'] = $result2[0]['associate_candidate_improvement_target'] ?? '';
@@ -404,10 +402,9 @@ class Manpower extends MY_Controller
             $result[0]['associate_improvement_target'] = $result2[0]['associate_improvement_target'] ?? 0;
             $result[0]['member_improvement_target'] = $result2[0]['member_improvement_target'] ?? 0;
             $result[0]['worker_improvement_target'] = $result2[0]['worker_improvement_target'] ?? 0;
-
         }
 
-        
+
         // $this->sma->print_arrays($result);
 
         return $result;
@@ -3226,9 +3223,9 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         //temporary
         $member_improvement_target =  sum_manpower($manpower_record, 'member_improvement_target');
-								
 
-        
+
+
         ///member starts
         $this->excel->getActiveSheet()->SetCellValue('C14', $prev_manpower[0]['member']);
         $this->excel->getActiveSheet()->SetCellValue('D14', $member_prev + $member_improvement + $member_arrival - $total_member_decrease);
@@ -3238,16 +3235,16 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
         //3:2:1
-       // $this->excel->getActiveSheet()->SetCellValue('H14', $member_prev);
-       // $this->excel->getActiveSheet()->SetCellValue('I14', ($member_prev > 0) ? round(100 * $member_improvement / $member_prev, 2) : 0);
-       
+        // $this->excel->getActiveSheet()->SetCellValue('H14', $member_prev);
+        // $this->excel->getActiveSheet()->SetCellValue('I14', ($member_prev > 0) ? round(100 * $member_improvement / $member_prev, 2) : 0);
+
         //temporary
-        $this->excel->getActiveSheet()->SetCellValue('H14', $member_prev);
-        $this->excel->getActiveSheet()->SetCellValue('I14', ($member_prev > 0) ? round(100 * $member_improvement / $member_prev, 2) : 0);
-       
+        $this->excel->getActiveSheet()->SetCellValue('H14', $member_improvement_target);
+        $this->excel->getActiveSheet()->SetCellValue('I14', ($member_improvement_target > 0) ? round(100 * $member_improvement / $member_improvement_target, 2) : 0);
 
 
-       
+
+
         $this->excel->getActiveSheet()->SetCellValue('J14', $total_member_decrease);
         $this->excel->getActiveSheet()->SetCellValue('K14', '');
         $this->excel->getActiveSheet()->SetCellValue('L14', $member_endstd);
@@ -3334,6 +3331,10 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         $associate_demotion = (!$assolog) ? 0 : calculate($assolog, 18, 2, 'associate_number');
         $associate_improvement_d = $member_improvement;
 
+        //temporary
+        $associate_improvement_target = sum_manpower($manpower_record, 'associate_improvement_target');
+
+
         $total_associate_decrease = $associate_improvement_d +  $associate_endstd  + $associate_transfer  + $associate_cancel  + $associate_study_abroad + $associate_job_abroad + $associate_death + $associate_martyr + $associate_demotion;
 
 
@@ -3342,8 +3343,18 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         $this->excel->getActiveSheet()->SetCellValue('E16', $associate_improvement + $associate_arrival);
         $this->excel->getActiveSheet()->SetCellValue('F16', $associate_improvement);
         $this->excel->getActiveSheet()->SetCellValue('G16', $associate_arrival);
-        $this->excel->getActiveSheet()->SetCellValue('H16', $associate_prev + $member_prev);
-        $this->excel->getActiveSheet()->SetCellValue('I16', ($associate_prev + $member_prev > 0) ? round(100 * $associate_improvement / ($associate_prev + $member_prev), 2) : 0);
+
+        //3:2:1
+        // $this->excel->getActiveSheet()->SetCellValue('H16', $associate_prev + $member_prev);
+        //$this->excel->getActiveSheet()->SetCellValue('I16', ($associate_prev + $member_prev > 0) ? round(100 * $associate_improvement / ($associate_prev + $member_prev), 2) : 0);
+
+        //temporary
+        $this->excel->getActiveSheet()->SetCellValue('H16', $associate_improvement_target);
+        $this->excel->getActiveSheet()->SetCellValue('I16', ($associate_improvement_target > 0) ? round(100 * $associate_improvement / ($associate_improvement_target), 2) : 0);
+
+
+
+
         $this->excel->getActiveSheet()->SetCellValue('J16', $total_associate_decrease);
         $this->excel->getActiveSheet()->SetCellValue('K16', $associate_improvement_d);
         $this->excel->getActiveSheet()->SetCellValue('L16', $associate_endstd);
@@ -3458,7 +3469,14 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         $worker_demotion = sum_manpower($manpower_record,   'worker_demotion');
         $worker_improvement_d = $associate_improvement;
         $total_worker_decrease = $worker_improvement_d + $worker_endstd  + $worker_transfer  + $worker_cancel  + $worker_study_abroad + $worker_job_abroad + $worker_death + $worker_martyr + $worker_demotion;
-        $worker_improvement_target = $worker_prev  + $member_prev  + $associate_prev;
+
+        //3 : 2: 1 
+        //$worker_improvement_target = $worker_prev  + $member_prev  + $associate_prev;
+
+        //temporary
+        $worker_improvement_target = sum_manpower($manpower_record, 'worker_improvement_target');
+
+
 
         $this->excel->getActiveSheet()->SetCellValue('C18', $worker_prev);
         $this->excel->getActiveSheet()->SetCellValue('D18', $worker_prev + $worker_improvement + $worker_arrival - $total_worker_decrease);
@@ -3481,7 +3499,11 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         $this->excel->getActiveSheet()->SetCellValue('F18', $worker_improvement);
         $this->excel->getActiveSheet()->SetCellValue('G18', $worker_arrival);
         $this->excel->getActiveSheet()->SetCellValue('H18', $worker_improvement_target);
-        $this->excel->getActiveSheet()->SetCellValue('I18', ($worker_prev > 0) ? round(100 * $worker_improvement / $worker_prev, 2) : 0);
+        
+         
+        $this->excel->getActiveSheet()->SetCellValue('I18', ($worker_improvement_target > 0) ? round(100 * $worker_improvement / $worker_improvement_target, 2) : 0);
+        
+        
         $this->excel->getActiveSheet()->SetCellValue('J18', $total_worker_decrease);
         $this->excel->getActiveSheet()->SetCellValue('K18', $worker_improvement_d);
         $this->excel->getActiveSheet()->SetCellValue('L18', $worker_endstd);
