@@ -268,7 +268,14 @@ class Dawat extends MY_Controller
             $this->excel->getActiveSheet()->SetCellValue('K9', $university_dawat_report[0]['supporter_increase']);
             $this->excel->getActiveSheet()->SetCellValue('L9', $fortnight_dawat_report[0]['supporter_increase']);
             $this->excel->getActiveSheet()->SetCellValue('M9', $letgotovillage[0]['supporter_increase']);
-            $target = $lastyeardawat[0]['member'] * 12 +  $lastyeardawat[0]['associate'] * 10 +   $lastyeardawat[0]['worker'] * 5;
+
+            //3:2:1
+            // $target = $lastyeardawat[0]['member'] * 12 +  $lastyeardawat[0]['associate'] * 10 +   $lastyeardawat[0]['worker'] * 5;
+
+
+            //temporary
+            $target = $dawat_summary[0]['supporter_target'];
+
             $this->excel->getActiveSheet()->SetCellValue('N9', $target);
             $this->excel->getActiveSheet()->SetCellValue('O9', ($target > 0) ? round(100 * $total_sup / $target, 2) : 0);
             $this->excel->getActiveSheet()->SetCellValue('P9', $dawat_summary[0]['supporter_decrease']);
@@ -287,7 +294,13 @@ class Dawat extends MY_Controller
             $this->excel->getActiveSheet()->SetCellValue('K10', $university_dawat_report[0]['friend_increase']);
             $this->excel->getActiveSheet()->SetCellValue('L10', $fortnight_dawat_report[0]['friend_increase']);
             $this->excel->getActiveSheet()->SetCellValue('M10', $letgotovillage[0]['friend_increase']);
-            $target = $lastyeardawat[0]['member'] * 20 +  $lastyeardawat[0]['associate'] * 15 +   $lastyeardawat[0]['worker'] * 10;
+
+            //3:2:1
+            //$target = $lastyeardawat[0]['member'] * 20 +  $lastyeardawat[0]['associate'] * 15 +   $lastyeardawat[0]['worker'] * 10;
+
+            //temporary
+            $target = $dawat_summary[0]['friend_target'];
+
             $this->excel->getActiveSheet()->SetCellValue('N10', $target);
             $this->excel->getActiveSheet()->SetCellValue('O10', ($target > 0) ? round(100 * $total_friend / $target, 2) : 0);
             $this->excel->getActiveSheet()->SetCellValue('P10', $dawat_summary[0]['friend_decrease']);
@@ -597,10 +610,10 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
     {
 
         if ($branch_id)
-            $result =  $this->site->query_binding("SELECT SUM(`personal_dawat_supporter`) as personal_dawat_supporter, SUM(`personal_dawat_supporter`) as personal_dawat_supporter, SUM(`group_dawat_supporter`) as group_dawat_supporter, SUM(`personal_dawat_friend`) as personal_dawat_friend, SUM(`group_dawat_friend`) as group_dawat_friend , SUM(`personal_dawat_non_sup`) as personal_dawat_non_sup, SUM(`group_dawat_non_sup`) as group_dawat_non_sup, SUM(`personal_dawat_non_friend`) as personal_dawat_non_friend, SUM(`group_dawat_non_friend`) as group_dawat_non_friend, SUM(`personal_dawat_ww`) as personal_dawat_ww, SUM(`group_dawat_ww`) as group_dawat_ww, SUM(`letvillage_non_sup`) as letvillage_non_sup, SUM(`letvillage_non_friend`) as letvillage_non_friend, SUM(`supporter_decrease`) as supporter_decrease, SUM(`friend_decrease`) as friend_decrease, SUM(`non_sup_decrease`) as non_sup_decrease, SUM(`non_friend_decrease`) as non_friend_decrease, SUM(`ww_decrease`) as ww_decrease, SUM(`non_supporter_target`) as non_supporter_target, SUM(`non_friend_target`) as non_friend_target, SUM(`ww_target`) as ww_target from sma_dawat_summary WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+            $result =  $this->site->query_binding("SELECT SUM(`personal_dawat_supporter`) as personal_dawat_supporter, SUM(`personal_dawat_supporter`) as personal_dawat_supporter, SUM(`group_dawat_supporter`) as group_dawat_supporter, SUM(`personal_dawat_friend`) as personal_dawat_friend, SUM(`group_dawat_friend`) as group_dawat_friend , SUM(`personal_dawat_non_sup`) as personal_dawat_non_sup, SUM(`group_dawat_non_sup`) as group_dawat_non_sup, SUM(`personal_dawat_non_friend`) as personal_dawat_non_friend, SUM(`group_dawat_non_friend`) as group_dawat_non_friend, SUM(`personal_dawat_ww`) as personal_dawat_ww, SUM(`group_dawat_ww`) as group_dawat_ww, SUM(`letvillage_non_sup`) as letvillage_non_sup, SUM(`letvillage_non_friend`) as letvillage_non_friend, SUM(`supporter_decrease`) as supporter_decrease, SUM(`friend_decrease`) as friend_decrease, SUM(`non_sup_decrease`) as non_sup_decrease, SUM(`non_friend_decrease`) as non_friend_decrease, SUM(`ww_decrease`) as ww_decrease, SUM(`non_supporter_target`) as non_supporter_target, SUM(`non_friend_target`) as non_friend_target, SUM(`ww_target`) as ww_target, SUM(`friend_target`) as friend_target, SUM(`supporter_target`) as supporter_target from sma_dawat_summary WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 
         else
-            $result =  $this->site->query_binding("SELECT SUM(`personal_dawat_supporter`) as personal_dawat_supporter, SUM(`personal_dawat_supporter`) as personal_dawat_supporter, SUM(`group_dawat_supporter`) as group_dawat_supporter, SUM(`personal_dawat_friend`) as personal_dawat_friend, SUM(`group_dawat_friend`) as group_dawat_friend , SUM(`personal_dawat_non_sup`) as personal_dawat_non_sup, SUM(`group_dawat_non_sup`) as group_dawat_non_sup, SUM(`personal_dawat_non_friend`) as personal_dawat_non_friend, SUM(`group_dawat_non_friend`) as group_dawat_non_friend, SUM(`personal_dawat_ww`) as personal_dawat_ww, SUM(`group_dawat_ww`) as group_dawat_ww, SUM(`letvillage_non_sup`) as letvillage_non_sup, SUM(`letvillage_non_friend`) as letvillage_non_friend, SUM(`supporter_decrease`) as supporter_decrease, SUM(`friend_decrease`) as friend_decrease, SUM(`non_sup_decrease`) as non_sup_decrease, SUM(`non_friend_decrease`) as non_friend_decrease, SUM(`ww_decrease`) as ww_decrease, SUM(`non_supporter_target`) as non_supporter_target, SUM(`non_friend_target`) as non_friend_target, SUM(`ww_target`) as ww_target from sma_dawat_summary  WHERE  date BETWEEN ? AND ? ", array($start_date, $end_date));
+            $result =  $this->site->query_binding("SELECT SUM(`personal_dawat_supporter`) as personal_dawat_supporter, SUM(`personal_dawat_supporter`) as personal_dawat_supporter, SUM(`group_dawat_supporter`) as group_dawat_supporter, SUM(`personal_dawat_friend`) as personal_dawat_friend, SUM(`group_dawat_friend`) as group_dawat_friend , SUM(`personal_dawat_non_sup`) as personal_dawat_non_sup, SUM(`group_dawat_non_sup`) as group_dawat_non_sup, SUM(`personal_dawat_non_friend`) as personal_dawat_non_friend, SUM(`group_dawat_non_friend`) as group_dawat_non_friend, SUM(`personal_dawat_ww`) as personal_dawat_ww, SUM(`group_dawat_ww`) as group_dawat_ww, SUM(`letvillage_non_sup`) as letvillage_non_sup, SUM(`letvillage_non_friend`) as letvillage_non_friend, SUM(`supporter_decrease`) as supporter_decrease, SUM(`friend_decrease`) as friend_decrease, SUM(`non_sup_decrease`) as non_sup_decrease, SUM(`non_friend_decrease`) as non_friend_decrease, SUM(`ww_decrease`) as ww_decrease, SUM(`non_supporter_target`) as non_supporter_target, SUM(`non_friend_target`) as non_friend_target, SUM(`ww_target`) as ww_target, SUM(`friend_target`) as friend_target, SUM(`supporter_target`) as supporter_target from sma_dawat_summary  WHERE  date BETWEEN ? AND ? ", array($start_date, $end_date));
 
 
 
@@ -646,6 +659,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         } else
             $this->data['detailinfo'] = $this->getEntryInfoSUM($report_type, $branch_id);
 
+          //  $this->sma->print_arrays($this->data['detailinfo']);
 
 
         //$this->data['m'] = 'manpowersummary';
@@ -659,8 +673,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
     function detail_export($branch_id)
     {
-        
-        
+
+
         $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
@@ -669,63 +683,63 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
             admin_redirect('dawat/detail/' . $this->session->userdata('branch_id'));
         }
-        
-        
+
+
         $report_type = $this->report_type();
-        
+
         if ($report_type == false)
-        admin_redirect();
-        
+            admin_redirect();
+
         $report_info = $report_type;
-        
-        
-        
+
+
+
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
             $branch_id = $branch_id;
             $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
         } else {
-            
+
             $branch_id = $this->session->userdata('branch_id');
             $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
-        
-        
+
+
         // $detailinfo = $this->getEntryInfoSUM($report_type, $branch_id);
-        
+
         // $this->sma->print_arrays($report_type['year']);
 
         $detailinfo = $this->getEntryInfo($report_type, $branch_id);
-        
+
         // $this->sma->print_arrays(1111);
-        
-        
-        
+
+
+
         if ($detailinfo) {
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
             $this->excel->getActiveSheet()->setTitle('Dawat Detail');
-            
-            
-            
-            
+
+
+
+
             $this->excel->getActiveSheet()->mergeCells('A1:S1');
             $this->excel->getActiveSheet()->mergeCells('A2:S2');
             $this->excel->getActiveSheet()->mergeCells('A3:S3');
             $this->excel->getActiveSheet()->mergeCells('A4:S4');
             $this->excel->getActiveSheet()->mergeCells('A5:S5');
-            
+
             $style = array(
                 'alignment' => array(
                     'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    )
-                );
+                )
+            );
 
             $this->excel->getActiveSheet()->getStyle("A1:S4")->applyFromArray($style);
             $this->excel->getActiveSheet()->getStyle('A1:S4')->getFont()->setBold(true);
 
-            
+
             $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
 
 
@@ -855,7 +869,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
 
             // স্কুল দাওয়াতী দশক রিপোর্ট
-            $this->excel->getActiveSheet()->mergeCells('A12:R12');            
+            $this->excel->getActiveSheet()->mergeCells('A12:R12');
 
             $this->excel->getActiveSheet()->SetCellValue('A12', '৩। স্কুল দাওয়াতী দশক রিপোর্ট');
 
@@ -1173,7 +1187,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->excel->getActiveSheet()->SetCellValue('F34', 'গড় উপঃ');
 
             $university_dawat_reportinfo = isset($detailinfo['university_dawat_reportinfo']) ? $detailinfo['university_dawat_reportinfo'] : NULL;
-
+            
             $this->excel->getActiveSheet()->SetCellValue('A35', $university_dawat_reportinfo->supporter_increase);
             $this->excel->getActiveSheet()->SetCellValue('B35', $university_dawat_reportinfo->friend_increase);
             $this->excel->getActiveSheet()->SetCellValue('C35', $university_dawat_reportinfo->number_general_gather);
@@ -1194,6 +1208,78 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->excel->getActiveSheet()->SetCellValue('R35', $university_dawat_reportinfo->nonmuslim_friend_increase);
             $this->excel->getActiveSheet()->SetCellValue('S35', $university_dawat_reportinfo->ww_increase);
 
+
+
+
+
+ 
+            // মাধ্যমিক (স্কুল ও মাদ্রাসা) দাওয়াতী দশক রিপোর্ট
+            $this->excel->getActiveSheet()->mergeCells('A37:R37');
+            $this->excel->getActiveSheet()->getStyle("A37:R37")->applyFromArray($style);
+            $this->excel->getActiveSheet()->SetCellValue('A37', '৮। মাধ্যমিক (স্কুল ও মাদ্রাসা) দাওয়াতী দশক রিপোর্ট');
+            $this->excel->getActiveSheet()->getStyle('A37')->getFont()->setBold(true);
+            $this->excel->getActiveSheet()->SetCellValue('A38', 'সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('B38', 'বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('C38', 'সাধারণ সভা');
+            $this->excel->getActiveSheet()->mergeCells('C38:D38');
+            $this->excel->getActiveSheet()->SetCellValue('E38', 'অন্যান্য বৈঠক');
+            $this->excel->getActiveSheet()->mergeCells('E38:F38');
+            $this->excel->getActiveSheet()->mergeCells('G38:G39');
+            $this->excel->getActiveSheet()->SetCellValue('G38', 'দাওয়াতী কার্ড, বুকলেট');
+            $this->excel->getActiveSheet()->mergeCells('H38:H39');
+            $this->excel->getActiveSheet()->SetCellValue('H38', 'পরিচিতি বিতরণ');
+            $this->excel->getActiveSheet()->mergeCells('I38:I39');
+            $this->excel->getActiveSheet()->SetCellValue('I38', 'কিশোর পত্রিকা বাংলা');
+            $this->excel->getActiveSheet()->mergeCells('J38:J39');
+            $this->excel->getActiveSheet()->SetCellValue('J38', 'গ্রাহক বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('K38:K39');
+            $this->excel->getActiveSheet()->SetCellValue('K38', 'কিশোর পত্রিকা ইংরেজী');
+            $this->excel->getActiveSheet()->mergeCells('L38:L39');
+            $this->excel->getActiveSheet()->SetCellValue('L38', 'গ্রাহক বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('M38:M39');
+            $this->excel->getActiveSheet()->SetCellValue('M38', 'ছাত্র সংবাদ বিতরণ');
+            $this->excel->getActiveSheet()->mergeCells('N38:N39');
+            $this->excel->getActiveSheet()->SetCellValue('N38', 'গ্রাহক বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('O38:O39');
+            $this->excel->getActiveSheet()->SetCellValue('O38', 'প্রেরিত গ্রুপ');
+            $this->excel->getActiveSheet()->mergeCells('P38:P39');
+            $this->excel->getActiveSheet()->SetCellValue('P38', 'সমর্থক সংগঠন বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('Q38:Q39');
+            $this->excel->getActiveSheet()->SetCellValue('Q38', 'অমুসলিম সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('R38:R39');
+            $this->excel->getActiveSheet()->SetCellValue('R38', 'অমুসলিম বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('S38:S39');
+            $this->excel->getActiveSheet()->SetCellValue('S38', 'শুভাকাংখী বৃদ্ধি');
+            $this->excel->getActiveSheet()->mergeCells('A38:A39');
+            $this->excel->getActiveSheet()->mergeCells('B38:B39');
+            $this->excel->getActiveSheet()->SetCellValue('C39', 'সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('D39', 'গড় উপঃ');
+            $this->excel->getActiveSheet()->SetCellValue('E39', 'সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('F39', 'গড় উপঃ');
+
+            $secondary_dawat_reportinfo = isset($detailinfo['secondary_dawat_reportinfo']) ? $detailinfo['secondary_dawat_reportinfo'] : NULL;
+
+           // $this->sma->print_arrays($detailinfo);
+            
+            $this->excel->getActiveSheet()->SetCellValue('A40', $secondary_dawat_reportinfo->supporter_increase);
+            $this->excel->getActiveSheet()->SetCellValue('B40', $secondary_dawat_reportinfo->friend_increase);
+            $this->excel->getActiveSheet()->SetCellValue('C40', $secondary_dawat_reportinfo->number_general_gather);
+            $this->excel->getActiveSheet()->SetCellValue('D40', $secondary_dawat_reportinfo->avg_presence);
+            $this->excel->getActiveSheet()->SetCellValue('E40', $secondary_dawat_reportinfo->number_other_meeting);
+            $this->excel->getActiveSheet()->SetCellValue('F40', $secondary_dawat_reportinfo->other_avg);
+            $this->excel->getActiveSheet()->SetCellValue('G40', $secondary_dawat_reportinfo->card_booklet);
+            $this->excel->getActiveSheet()->SetCellValue('H40', $secondary_dawat_reportinfo->porichiti);
+            $this->excel->getActiveSheet()->SetCellValue('I40', $secondary_dawat_reportinfo->kishore);
+            $this->excel->getActiveSheet()->SetCellValue('J40', $secondary_dawat_reportinfo->kishore_client_increase);
+            $this->excel->getActiveSheet()->SetCellValue('K40', $secondary_dawat_reportinfo->kishore_eng);
+            $this->excel->getActiveSheet()->SetCellValue('L40', $secondary_dawat_reportinfo->kishore_eng_increase);
+            $this->excel->getActiveSheet()->SetCellValue('M40', $secondary_dawat_reportinfo->chhatrasongbad);
+            $this->excel->getActiveSheet()->SetCellValue('N40', $secondary_dawat_reportinfo->chhatrasongbad_increase);
+            $this->excel->getActiveSheet()->SetCellValue('O40', $secondary_dawat_reportinfo->group_sent);
+            $this->excel->getActiveSheet()->SetCellValue('P40', $secondary_dawat_reportinfo->supporter_org_increase);
+            $this->excel->getActiveSheet()->SetCellValue('Q40', $secondary_dawat_reportinfo->nonmuslim_supporter_increase);
+            $this->excel->getActiveSheet()->SetCellValue('R40', $secondary_dawat_reportinfo->nonmuslim_friend_increase);
+            $this->excel->getActiveSheet()->SetCellValue('S40', $secondary_dawat_reportinfo->ww_increase);
 
             //32 33 34 35
 
@@ -1255,7 +1341,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         $college_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_college_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
         $fortnight_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_fortnight_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
         $university_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_university_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
-
+        $secondary_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_secondary_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
+        
 
 
 
@@ -1267,7 +1354,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             "school_dawat_reportinfo" => $school_dawat_reportinfo,
             "college_dawat_reportinfo" => $college_dawat_reportinfo,
             "fortnight_dawat_reportinfo" => $fortnight_dawat_reportinfo,
-            "university_dawat_reportinfo" => $university_dawat_reportinfo
+            "university_dawat_reportinfo" => $university_dawat_reportinfo,
+            "secondary_dawat_reportinfo" => $secondary_dawat_reportinfo,
         );
     }
 
@@ -1282,7 +1370,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         $report_end = $report_type_get['end'];
         $report_type = $report_type_get['type'];
         $report_year = $report_type_get['year'];
-
+        
 
         if ($report_type_get['is_current'] != false  && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
 
@@ -1338,6 +1426,14 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             if (!$university_dawat_reportinfo) {
                 $this->site->insertData('university_dawat_report', array('branch_id' => $branch_id, 'report_type' =>  $type, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
             }
+
+
+            $secondary_dawat_reportinfo = $this->site->getOneRecord('secondary_dawat_report', '*', array('report_type' =>  $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+
+            if (!$secondary_dawat_reportinfo) {
+                $this->site->insertData('secondary_dawat_report', array('branch_id' => $branch_id, 'report_type' =>  $type, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+            }
         }
 
 
@@ -1354,6 +1450,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $college_dawat_reportinfo = $this->site->getOneRecord('college_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $fortnight_dawat_reportinfo = $this->site->getOneRecord('fortnight_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $university_dawat_reportinfo = $this->site->getOneRecord('university_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
+            $secondary_dawat_reportinfo = $this->site->getOneRecord('secondary_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
         } else if ($report_type && $report_type  == 'annual') {
 
             $param = array($branch_id, $report_start, $report_end);
@@ -1425,6 +1522,20 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
             $university_dawat_reportinfo = (object)$final;
             $university_dawat_reportinfo->id = 999999999999;
+
+
+
+ 
+
+            $result = $this->site->query_binding("SELECT * FROM sma_secondary_dawat_report WHERE  branch_id = ? AND date BETWEEN ? AND ? ", $param);
+            $final = array();
+            array_walk_recursive($result, function ($item, $key) use (&$final) {
+                $final[$key] = isset($final[$key]) ?  $item + $final[$key] : $item;
+            });
+            $secondary_dawat_reportinfo = (object)$final;
+            $secondary_dawat_reportinfo->id = 999999999999;
+
+            
         } else if ($report_type  && $report_type   == 'half_yearly') {
 
             $start = $report_start;
@@ -1437,14 +1548,16 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $college_dawat_reportinfo = $this->site->getOneRecord('college_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $fortnight_dawat_reportinfo = $this->site->getOneRecord('fortnight_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $university_dawat_reportinfo = $this->site->getOneRecord('university_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
+            $secondary_dawat_reportinfo = $this->site->getOneRecord('secondary_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
+      
+    
         }
 
 
 
 
-
-
-
+ 
+ 
 
         return array(
             'madrashainfo' => $madrashainfo,
@@ -1453,7 +1566,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             'school_dawat_reportinfo' => $school_dawat_reportinfo,
             'college_dawat_reportinfo' => $college_dawat_reportinfo,
             'fortnight_dawat_reportinfo' => $fortnight_dawat_reportinfo,
-            'university_dawat_reportinfo' => $university_dawat_reportinfo
+            'university_dawat_reportinfo' => $university_dawat_reportinfo,
+            'secondary_dawat_reportinfo' => $secondary_dawat_reportinfo,
         );
     }
 
