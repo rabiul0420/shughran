@@ -279,7 +279,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7" colspan="">সংখ্যা</td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="3">কতটি স্কুলে ফোরাম গঠিত হয়েছে?</td>
+                                <td class="tg-pwj7" colspan="3">কতটি শিক্ষা প্রতিষ্ঠানে ফোরাম গঠিত হয়েছে?</td>
                                 <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['school_forum_gothito'] ?></td>
                             </tr>
                             <tr>
@@ -287,7 +287,7 @@ $(document).ready(function(){
                                 <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['forum_purnago_comittee'] ?></td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="3">কমিটির সদস্য সংখ্যা কত?</td>
+                                <td class="tg-pwj7" colspan="3">শাখার ফোরামসমূহে মোট সদস্য সংখ্যা কত?</td>
                                 <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['committee_mem_num'] ?></td>
                             </tr>
                             <tr>

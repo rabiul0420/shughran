@@ -91,22 +91,22 @@ class Science extends MY_Controller
             $this->db->select_sum('worker_shakha_sec');
             $this->db->select_sum('worker_thana_shova');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['science_only_science_manpower'] = $this->db->get('science_only_science_manpower')->first_row('array');
 
             $this->db->select_sum('shaka_shompadok');
             $this->db->select_sum('biggan_shompadok');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['science_biggan_shompadok'] = $this->db->get('science_biggan_shompadok')->first_row('array');
 
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['row_total_science_biggan_shompadok'] = $this->db->get('science_biggan_shompadok')->num_rows();
 
@@ -132,57 +132,55 @@ class Science extends MY_Controller
             $this->db->select_sum('puroshkar_prapto_manpower_talika');
             $this->db->select_sum('puroshkar_prapto_manpower_jogajog');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['science_manpower_protibedon'] = $this->db->get('science_manpower_protibedon')->first_row('array');
 
             $this->db->select_sum('hs_prostuti_nicche');
             $this->db->select_sum('hs_gomonkari');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['science_high_study_protibedon'] = $this->db->get('science_high_study_protibedon')->first_row('array');
 
             $this->db->select_sum('biggan_comittee_gothon');
             $this->db->select_sum('comittee_member');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['science_biggan_magazine_circulation'] = $this->db->get('science_biggan_magazine_circulation')->first_row('array');
 
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['row_total_science_biggan_magazine_circulation'] = $this->db->get('science_biggan_magazine_circulation')->num_rows();
-         
+
             $this->db->select_sum('shikkha_central_s');
             $this->db->select_sum('shikkha_central_p');
             $this->db->select_sum('shikkha_shakha_s');
-            $this->db->select_sum('shikkha_shakha_p'); 
+            $this->db->select_sum('shikkha_shakha_p');
             $this->db->select_sum('kormoshala_central_s');
             $this->db->select_sum('kormoshala_central_p');
             $this->db->select_sum('kormoshala_shakha_s');
-            $this->db->select_sum('kormoshala_shakha_p'); 
+            $this->db->select_sum('kormoshala_shakha_p');
             if ($branch_id)
-            $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['science_training_program'] = $this->db->get('science_training_program')->first_row('array');
-        
-        }
-        else{
+        } else {
             $this->db->select('*');
-            $this->db->where('branch_id',$branch_id);
+            $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $query = $this->db->get('science_training_program');
-            $this->data['science_training_program'] = $query->first_row('array');	
-        
-    
+            $this->data['science_training_program'] = $query->first_row('array');
+
+
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
@@ -261,91 +259,89 @@ class Science extends MY_Controller
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
-      
-        
-        $this->db->select("*");
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->db->order_by('branch_id');
-        $this->data['science_biggan_school_magazine_circulation'] = $this->db->get('science_biggan_school_magazine_circulation');
-        
-        $this->db->select_sum('school_forum_gothito');
-        $this->db->select_sum('forum_purnago_comittee');
-        $this->db->select_sum('committee_mem_num');
-        $this->db->select_sum('registration_num');
-        $this->db->select_sum('teacher_num');
-        $this->db->select_sum('sthanio_protinidhi');
-        $this->db->select_sum('mot_protinidhi');
-        $this->db->select_sum('program');
-        $this->db->select_sum('t-shirt');
-        $this->db->select_sum('magazine');
-        $this->db->select_sum('pathon_shommelon_num');
-        $this->db->select_sum('pathon_shommelon_pre');
-        $this->db->select_sum('science_workshop_num');
-        $this->db->select_sum('science_workshop_pre');
-        $this->db->select_sum('mothly_meeting_num');
-        $this->db->select_sum('mothly_meeting_pre');
-        $this->db->select_sum('magazine_num');
-        $this->db->select_sum('magazine_pre');
-        $this->db->select_sum('other_num');
-        $this->db->select_sum('other_pre');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['science_pathok_forum_report'] = $this->db->get('science_pathok_forum_report')->first_row('array'); 
+            $this->db->select("*");
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->db->select_sum('our_control_club');
-        $this->db->select_sum('our_scienece_club');
-        $this->db->select_sum('registration_scienece_club');
-        $this->db->select_sum('manpower_of_club');
-        $this->db->select_sum('general_member');
-        $this->db->select_sum('career_guideline_num');
-        $this->db->select_sum('career_guideline_pre');
-        $this->db->select_sum('meritorious_num');
-        $this->db->select_sum('meritorious_pre');
-        $this->db->select_sum('hate_kolome_num');
-        $this->db->select_sum('hate_kolome_pre');
-        $this->db->select_sum('workshop_num');
-        $this->db->select_sum('workshop_pre');
-        $this->db->select_sum('lab_num');
-        $this->db->select_sum('lab_pre');
-        $this->db->select_sum('seminer_num');
-        $this->db->select_sum('seminer_pre');
-        $this->db->select_sum('olympiad_num');
-        $this->db->select_sum('olympiad_pre');
-        $this->db->select_sum('other_num');
-        $this->db->select_sum('other_pre');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->order_by('branch_id');
+            $this->data['science_biggan_school_magazine_circulation'] = $this->db->get('science_biggan_school_magazine_circulation');
 
-        $this->data['science_club_protibedon'] = $this->db->get('science_club_protibedon')->first_row('array');
-        
-}
-else{
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select_sum('school_forum_gothito');
+            $this->db->select_sum('forum_purnago_comittee');
+            $this->db->select_sum('committee_mem_num');
+            $this->db->select_sum('registration_num');
+            $this->db->select_sum('teacher_num');
+            $this->db->select_sum('sthanio_protinidhi');
+            $this->db->select_sum('mot_protinidhi');
+            $this->db->select_sum('program');
+            $this->db->select_sum('t-shirt');
+            $this->db->select_sum('magazine');
+            $this->db->select_sum('pathon_shommelon_num');
+            $this->db->select_sum('pathon_shommelon_pre');
+            $this->db->select_sum('science_workshop_num');
+            $this->db->select_sum('science_workshop_pre');
+            $this->db->select_sum('mothly_meeting_num');
+            $this->db->select_sum('mothly_meeting_pre');
+            $this->db->select_sum('magazine_num');
+            $this->db->select_sum('magazine_pre');
+            $this->db->select_sum('other_num');
+            $this->db->select_sum('other_pre');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $query = $this->db->get('science_biggan_school_magazine_circulation');
-    $this->data['science_biggan_school_magazine_circulation'] = $query;
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['science_pathok_forum_report'] = $this->db->get('science_pathok_forum_report')->first_row('array');
 
-    $query = $this->db->get('science_club_protibedon');
-    $this->data['science_club_protibedon'] = $query->first_row('array');
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select_sum('our_control_club');
+            $this->db->select_sum('our_scienece_club');
+            $this->db->select_sum('registration_scienece_club');
+            $this->db->select_sum('manpower_of_club');
+            $this->db->select_sum('general_member');
+            $this->db->select_sum('career_guideline_num');
+            $this->db->select_sum('career_guideline_pre');
+            $this->db->select_sum('meritorious_num');
+            $this->db->select_sum('meritorious_pre');
+            $this->db->select_sum('hate_kolome_num');
+            $this->db->select_sum('hate_kolome_pre');
+            $this->db->select_sum('workshop_num');
+            $this->db->select_sum('workshop_pre');
+            $this->db->select_sum('lab_num');
+            $this->db->select_sum('lab_pre');
+            $this->db->select_sum('seminer_num');
+            $this->db->select_sum('seminer_pre');
+            $this->db->select_sum('olympiad_num');
+            $this->db->select_sum('olympiad_pre');
+            $this->db->select_sum('other_num');
+            $this->db->select_sum('other_pre');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $query = $this->db->get('science_pathok_forum_report');
-    $this->data['science_pathok_forum_report'] = $query->first_row('array');
-}
-     
+            $this->data['science_club_protibedon'] = $this->db->get('science_club_protibedon')->first_row('array');
+        } else {
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $query = $this->db->get('science_biggan_school_magazine_circulation');
+            $this->data['science_biggan_school_magazine_circulation'] = $query;
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $query = $this->db->get('science_club_protibedon');
+            $this->data['science_club_protibedon'] = $query->first_row('array');
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $query = $this->db->get('science_pathok_forum_report');
+            $this->data['science_pathok_forum_report'] = $query->first_row('array');
+        }
+
         $this->data['m'] = 'science';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
@@ -356,19 +352,19 @@ else{
             $this->page_construct('departmentsreport/science/science_page_two', $meta, $this->data, 'leftmenu/departmentsreport');
     }
     function add_science_biggan_school_magazine_circulation($branch_id = NULL)
-    { 
+    {
         //$this->sma->checkPermissions();
 
-        if($branch_id != NULL && !($this->Owner || $this->Admin || $this->departmentuser) && ($this->session->userdata('branch_id')!=$branch_id)){
+        if ($branch_id != NULL && !($this->Owner || $this->Admin || $this->departmentuser) && ($this->session->userdata('branch_id') != $branch_id)) {
             $this->session->set_flashdata('warning', lang('access_denied'));
 
-           // admin_redirect('departmentsreport/potrikar-grahok-briddi/'.$this->session->userdata('branch_id'));
-		    admin_redirect('departmentsreport/add-science-biggan-school-magazine-circulation/'.$this->session->userdata('branch_id'));
-        }else if ($branch_id == NULL && !($this->Owner || $this->Admin || $this->departmentuser) ) {
-           // admin_redirect('departmentsreport/potrikar-grahok-briddi/'.$this->session->userdata('branch_id'));
+            // admin_redirect('departmentsreport/potrikar-grahok-briddi/'.$this->session->userdata('branch_id'));
+            admin_redirect('departmentsreport/add-science-biggan-school-magazine-circulation/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin || $this->departmentuser)) {
+            // admin_redirect('departmentsreport/potrikar-grahok-briddi/'.$this->session->userdata('branch_id'));
 
-            admin_redirect('departmentsreport/add-science-biggan-school-magazine-circulation/'.$this->session->userdata('branch_id'));
-        } 
+            admin_redirect('departmentsreport/add-science-biggan-school-magazine-circulation/' . $this->session->userdata('branch_id'));
+        }
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
 
@@ -382,48 +378,44 @@ else{
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
-        $last_year =  date("Y",strtotime("-1 year"));
+        $last_year =  date("Y", strtotime("-1 year"));
         $report_type = $this->report_type();
-        
-		if($this->input->post('science_biggan_school_magazine_circulation'))
-		{
-            $data['report_type']=$report_type['type'];
-            $data['report_year']=date("Y");
-            $data['date']=date("Y-m-d"); 				
-            $data['branch_id']=$branch_id;
-            $data['user_id']=$this->session->userdata('user_id');
 
-            $data['protishan_name']=$this->input->post('protishan_name');
-			$data['pathokforum']=$this->input->post('pathokforum');
-            $data['class_protinidhi']=$this->input->post('class_protinidhi');
-			$data['mg_circulation_num']=$this->input->post('mg_circulation_num');
-			$this->site->insertData('science_biggan_school_magazine_circulation',$data);
-           
-            header("Location: ".admin_url('departmentsreport/science-page-two/'.$this->data['branch_id']));
+        if ($this->input->post('science_biggan_school_magazine_circulation')) {
+            $data['report_type'] = $report_type['type'];
+            $data['report_year'] = date("Y");
+            $data['date'] = date("Y-m-d");
+            $data['branch_id'] = $branch_id;
+            $data['user_id'] = $this->session->userdata('user_id');
+
+            $data['protishan_name'] = $this->input->post('protishan_name');
+            $data['pathokforum'] = $this->input->post('pathokforum');
+            $data['class_protinidhi'] = $this->input->post('class_protinidhi');
+            $data['mg_circulation_num'] = $this->input->post('mg_circulation_num');
+            $this->site->insertData('science_biggan_school_magazine_circulation', $data);
+
+            header("Location: " . admin_url('departmentsreport/science-page-two/' . $this->data['branch_id']));
         }
-        if($this->input->post('science_biggan_school_magazine_circulation_update'))
-		{ 
-            $data['protishan_name']=$this->input->post('protishan_name');
-			$data['pathokforum']=$this->input->post('pathokforum');
-            $data['class_protinidhi']=$this->input->post('class_protinidhi');
-			$data['mg_circulation_num']=$this->input->post('mg_circulation_num');
-			$this->site->updateData('science_biggan_school_magazine_circulation',$data,array('id'=>$this->input->get('id')));
-            header("Location: ".admin_url('departmentsreport/science-page-two/'.$this->data['branch_id']));
+        if ($this->input->post('science_biggan_school_magazine_circulation_update')) {
+            $data['protishan_name'] = $this->input->post('protishan_name');
+            $data['pathokforum'] = $this->input->post('pathokforum');
+            $data['class_protinidhi'] = $this->input->post('class_protinidhi');
+            $data['mg_circulation_num'] = $this->input->post('mg_circulation_num');
+            $this->site->updateData('science_biggan_school_magazine_circulation', $data, array('id' => $this->input->get('id')));
+            header("Location: " . admin_url('departmentsreport/science-page-two/' . $this->data['branch_id']));
         }
-        if($this->input->get('type')=='edit')
-        {
+        if ($this->input->get('type') == 'edit') {
             $this->db->select('*');
-            $this->db->where('id',$this->input->get('id'));
+            $this->db->where('id', $this->input->get('id'));
             $this->data['science_biggan_school_magazine_circulation'] = $this->db->get('science_biggan_school_magazine_circulation')->first_row('array');
-           
         }
 
         $this->data['m'] = 'science';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
 
-        if($branch_id)
-            $this->page_construct('departmentsreport/science/add_science_biggan_school_magazine_circulation', $meta, $this->data,'leftmenu/departmentsreport');
+        if ($branch_id)
+            $this->page_construct('departmentsreport/science/add_science_biggan_school_magazine_circulation', $meta, $this->data, 'leftmenu/departmentsreport');
     }
 
     function science_page_three($branch_id = NULL)
@@ -462,89 +454,88 @@ else{
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
-        $this->db->select_sum('career_guideline_num');
-        $this->db->select_sum('career_guideline_pre');
-        $this->db->select_sum('career_adda_num');
-        $this->db->select_sum('career_adda_pre');
-        $this->db->select_sum('career_summit_num');
-        $this->db->select_sum('career_summit_pre');
-        $this->db->select_sum('quiz_num');
-        $this->db->select_sum('quiz_pre');
-        $this->db->select_sum('olympiad_num');
-        $this->db->select_sum('olympiad_pre');
-        $this->db->select_sum('biggan_mela_num');
-        $this->db->select_sum('biggan_mela_pre');
-        $this->db->select_sum('day_udjapon_num');
-        $this->db->select_sum('day_udjapon_pre');
-        $this->db->select_sum('document_num');
-        $this->db->select_sum('document_pre');
-        $this->db->select_sum('other_num');
-        $this->db->select_sum('other_pre');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select_sum('career_guideline_num');
+            $this->db->select_sum('career_guideline_pre');
+            $this->db->select_sum('career_adda_num');
+            $this->db->select_sum('career_adda_pre');
+            $this->db->select_sum('career_summit_num');
+            $this->db->select_sum('career_summit_pre');
+            $this->db->select_sum('quiz_num');
+            $this->db->select_sum('quiz_pre');
+            $this->db->select_sum('olympiad_num');
+            $this->db->select_sum('olympiad_pre');
+            $this->db->select_sum('biggan_mela_num');
+            $this->db->select_sum('biggan_mela_pre');
+            $this->db->select_sum('day_udjapon_num');
+            $this->db->select_sum('day_udjapon_pre');
+            $this->db->select_sum('document_num');
+            $this->db->select_sum('document_pre');
+            $this->db->select_sum('other_num');
+            $this->db->select_sum('other_pre');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['science_program_protibedon'] = $this->db->get('science_program_protibedon')->first_row('array');
+            $this->data['science_program_protibedon'] = $this->db->get('science_program_protibedon')->first_row('array');
 
-        $this->db->select_sum('aca_coaching_ache');
-        $this->db->select_sum('aca_coaching_num');
-        $this->db->select_sum('aca_coaching_stu_num');
-        $this->db->select_sum('ict_coaching_ache');
-        $this->db->select_sum('ict_coaching_num');
-        $this->db->select_sum('ict_coaching_stu_num');
-        $this->db->select_sum('ideal_home_ache');
-        $this->db->select_sum('ideal_home_num');
-        $this->db->select_sum('ideal_home_stu_num');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select_sum('aca_coaching_ache');
+            $this->db->select_sum('aca_coaching_num');
+            $this->db->select_sum('aca_coaching_stu_num');
+            $this->db->select_sum('ict_coaching_ache');
+            $this->db->select_sum('ict_coaching_num');
+            $this->db->select_sum('ict_coaching_stu_num');
+            $this->db->select_sum('ideal_home_ache');
+            $this->db->select_sum('ideal_home_num');
+            $this->db->select_sum('ideal_home_stu_num');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['science_aca_help_protibedon'] = $this->db->get('science_aca_help_protibedon')->first_row('array');
+            $this->data['science_aca_help_protibedon'] = $this->db->get('science_aca_help_protibedon')->first_row('array');
 
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['row_total_science_aca_help_protibedon'] = $this->db->get('science_aca_help_protibedon')->num_rows();
+            $this->data['row_total_science_aca_help_protibedon'] = $this->db->get('science_aca_help_protibedon')->num_rows();
 
-        $this->db->select_sum('shompadok_off');
-        $this->db->select_sum('shompadok_on');
-        $this->db->select_sum('bivag_off');
-        $this->db->select_sum('bivag_on');
-        $this->db->select_sum('contact_off');
-        $this->db->select_sum('contact_on');
-        $this->db->select_sum('secretary_off');
-        $this->db->select_sum('secretary_on');
-        $this->db->select_sum('thana_off');
-        $this->db->select_sum('thana_on');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select_sum('shompadok_off');
+            $this->db->select_sum('shompadok_on');
+            $this->db->select_sum('bivag_off');
+            $this->db->select_sum('bivag_on');
+            $this->db->select_sum('contact_off');
+            $this->db->select_sum('contact_on');
+            $this->db->select_sum('secretary_off');
+            $this->db->select_sum('secretary_on');
+            $this->db->select_sum('thana_off');
+            $this->db->select_sum('thana_on');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['science_sofor_protibedon'] = $this->db->get('science_sofor_protibedon')->first_row('array');
-}
-else{
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['science_sofor_protibedon'] = $this->db->get('science_sofor_protibedon')->first_row('array');
+        } else {
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $query = $this->db->get('science_program_protibedon');
-    $this->data['science_program_protibedon'] = $query->first_row('array');
+            $query = $this->db->get('science_program_protibedon');
+            $this->data['science_program_protibedon'] = $query->first_row('array');
 
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $query = $this->db->get('science_aca_help_protibedon');
-    $this->data['science_aca_help_protibedon'] = $query->first_row('array');
+            $query = $this->db->get('science_aca_help_protibedon');
+            $this->data['science_aca_help_protibedon'] = $query->first_row('array');
 
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $query = $this->db->get('science_sofor_protibedon');
-    $this->data['science_sofor_protibedon'] = $query->first_row('array');
-}
+            $query = $this->db->get('science_sofor_protibedon');
+            $this->data['science_sofor_protibedon'] = $query->first_row('array');
+        }
 
 
         $this->data['m'] = 'science';
@@ -604,185 +595,183 @@ else{
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
-        $this->db->select_sum('series_jon');
-        $this->db->select_sum('series_ti');
-        $this->db->select_sum('paper_jon');
-        $this->db->select_sum('paper_ti');
-        $this->db->select_sum('book_jon');
-        $this->db->select_sum('book_ti');
-        $this->db->select_sum('documentory_jon');
-        $this->db->select_sum('documentory_ti');
-        $this->db->select_sum('other_jon');
-        $this->db->select_sum('other_ti');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select_sum('series_jon');
+            $this->db->select_sum('series_ti');
+            $this->db->select_sum('paper_jon');
+            $this->db->select_sum('paper_ti');
+            $this->db->select_sum('book_jon');
+            $this->db->select_sum('book_ti');
+            $this->db->select_sum('documentory_jon');
+            $this->db->select_sum('documentory_ti');
+            $this->db->select_sum('other_jon');
+            $this->db->select_sum('other_ti');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['science_bitoron'] = $this->db->get('science_bitoron')->first_row('array');
+            $this->data['science_bitoron'] = $this->db->get('science_bitoron')->first_row('array');
 
-        $this->db->select_sum('khude_biggani_jon');
-        $this->db->select_sum('khude_biggani_bar');
-        $this->db->select_sum('biggan_bekti_jon');
-        $this->db->select_sum('biggan_bekti_bar');
-        $this->db->select_sum('biggan_lekhok_jon');
-        $this->db->select_sum('biggan_lekhok_bar');
-        $this->db->select_sum('uddokta_jon');
-        $this->db->select_sum('uddokta_bar');
-        $this->db->select_sum('udiyouman_lekhok_jon');
-        $this->db->select_sum('udiyouman_lekhok_bar');
-        $this->db->select_sum('interested_manpower_jon');
-        $this->db->select_sum('interested_manpower_bar');
-        $this->db->select_sum('medical_stu_jon');
-        $this->db->select_sum('medical_stu_bar');
-        $this->db->select_sum('sci_stu_jon');
-        $this->db->select_sum('sci_stu_bar');
-        $this->db->select_sum('other_jon');
-        $this->db->select_sum('other_bar');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select_sum('khude_biggani_jon');
+            $this->db->select_sum('khude_biggani_bar');
+            $this->db->select_sum('biggan_bekti_jon');
+            $this->db->select_sum('biggan_bekti_bar');
+            $this->db->select_sum('biggan_lekhok_jon');
+            $this->db->select_sum('biggan_lekhok_bar');
+            $this->db->select_sum('uddokta_jon');
+            $this->db->select_sum('uddokta_bar');
+            $this->db->select_sum('udiyouman_lekhok_jon');
+            $this->db->select_sum('udiyouman_lekhok_bar');
+            $this->db->select_sum('interested_manpower_jon');
+            $this->db->select_sum('interested_manpower_bar');
+            $this->db->select_sum('medical_stu_jon');
+            $this->db->select_sum('medical_stu_bar');
+            $this->db->select_sum('sci_stu_jon');
+            $this->db->select_sum('sci_stu_bar');
+            $this->db->select_sum('other_jon');
+            $this->db->select_sum('other_bar');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['science_output_contact'] = $this->db->get('science_output_contact')->first_row('array');
+            $this->data['science_output_contact'] = $this->db->get('science_output_contact')->first_row('array');
 
-        $this->db->select_sum('lekhok_ter');
-        $this->db->select_sum('lekhok_bachai');
-        $this->db->select_sum('lekhok_number');
-        $this->db->select_sum('lekhok_present');
-        $this->db->select_sum('lekhok_shang');
-        $this->db->select_sum('lekhok_shadharon');
-        $this->db->select_sum('lekhok_attend');
-        $this->db->select_sum('lekhok_pass');
-        $this->db->select_sum('uddokta_ter');
-        $this->db->select_sum('uddokta_bachai');
-        $this->db->select_sum('uddokta_number');
-        $this->db->select_sum('uddokta_present');
-        $this->db->select_sum('uddokta_shang');
-        $this->db->select_sum('uddokta_shadharon');
-        $this->db->select_sum('uddokta_attend');
-        $this->db->select_sum('uddokta_pass');
-        $this->db->select_sum('shongothok_ter');
-        $this->db->select_sum('shongothok_bachai');
-        $this->db->select_sum('shongothok_number');
-        $this->db->select_sum('shongothok_present');
-        $this->db->select_sum('shongothok_shang');
-        $this->db->select_sum('shongothok_shadharon');
-        $this->db->select_sum('shongothok_attend');
-        $this->db->select_sum('shongothok_pass');
-        $this->db->select_sum('prokousholi_ter');
-        $this->db->select_sum('prokousholi_bachai');
-        $this->db->select_sum('prokousholi_number');
-        $this->db->select_sum('prokousholi_present');
-        $this->db->select_sum('prokousholi_shang');
-        $this->db->select_sum('prokousholi_shadharon');
-        $this->db->select_sum('prokousholi_attend');
-        $this->db->select_sum('prokousholi_pass');
-        $this->db->select_sum('it_ter');
-        $this->db->select_sum('it_bachai');
-        $this->db->select_sum('it_number');
-        $this->db->select_sum('it_present');
-        $this->db->select_sum('it_shang');
-        $this->db->select_sum('it_shadharon');
-        $this->db->select_sum('it_attend');
-        $this->db->select_sum('it_pass');
-        $this->db->select_sum('biggani_ter');
-        $this->db->select_sum('biggani_bachai');
-        $this->db->select_sum('biggani_number');
-        $this->db->select_sum('biggani_present');
-        $this->db->select_sum('biggani_shang');
-        $this->db->select_sum('biggani_shadharon');
-        $this->db->select_sum('biggani_attend');
-        $this->db->select_sum('biggani_pass');
-        $this->db->select_sum('it_bisheshoggo_ter');
-        $this->db->select_sum('it_bisheshoggo_bachai');
-        $this->db->select_sum('it_bisheshoggo_number');
-        $this->db->select_sum('it_bisheshoggo_present');
-        $this->db->select_sum('it_bisheshoggo_shang');
-        $this->db->select_sum('it_bisheshoggo_shadharon');
-        $this->db->select_sum('it_bisheshoggo_attend');
-        $this->db->select_sum('it_bisheshoggo_pass');
-        $this->db->select_sum('other_ter');
-        $this->db->select_sum('other_bachai');
-        $this->db->select_sum('other_number');
-        $this->db->select_sum('other_present');
-        $this->db->select_sum('other_shang');
-        $this->db->select_sum('other_shadharon');
-        $this->db->select_sum('other_attend');
-        $this->db->select_sum('other_pass');
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->select_sum('lekhok_ter');
+            $this->db->select_sum('lekhok_bachai');
+            $this->db->select_sum('lekhok_number');
+            $this->db->select_sum('lekhok_present');
+            $this->db->select_sum('lekhok_shang');
+            $this->db->select_sum('lekhok_shadharon');
+            $this->db->select_sum('lekhok_attend');
+            $this->db->select_sum('lekhok_pass');
+            $this->db->select_sum('uddokta_ter');
+            $this->db->select_sum('uddokta_bachai');
+            $this->db->select_sum('uddokta_number');
+            $this->db->select_sum('uddokta_present');
+            $this->db->select_sum('uddokta_shang');
+            $this->db->select_sum('uddokta_shadharon');
+            $this->db->select_sum('uddokta_attend');
+            $this->db->select_sum('uddokta_pass');
+            $this->db->select_sum('shongothok_ter');
+            $this->db->select_sum('shongothok_bachai');
+            $this->db->select_sum('shongothok_number');
+            $this->db->select_sum('shongothok_present');
+            $this->db->select_sum('shongothok_shang');
+            $this->db->select_sum('shongothok_shadharon');
+            $this->db->select_sum('shongothok_attend');
+            $this->db->select_sum('shongothok_pass');
+            $this->db->select_sum('prokousholi_ter');
+            $this->db->select_sum('prokousholi_bachai');
+            $this->db->select_sum('prokousholi_number');
+            $this->db->select_sum('prokousholi_present');
+            $this->db->select_sum('prokousholi_shang');
+            $this->db->select_sum('prokousholi_shadharon');
+            $this->db->select_sum('prokousholi_attend');
+            $this->db->select_sum('prokousholi_pass');
+            $this->db->select_sum('it_ter');
+            $this->db->select_sum('it_bachai');
+            $this->db->select_sum('it_number');
+            $this->db->select_sum('it_present');
+            $this->db->select_sum('it_shang');
+            $this->db->select_sum('it_shadharon');
+            $this->db->select_sum('it_attend');
+            $this->db->select_sum('it_pass');
+            $this->db->select_sum('biggani_ter');
+            $this->db->select_sum('biggani_bachai');
+            $this->db->select_sum('biggani_number');
+            $this->db->select_sum('biggani_present');
+            $this->db->select_sum('biggani_shang');
+            $this->db->select_sum('biggani_shadharon');
+            $this->db->select_sum('biggani_attend');
+            $this->db->select_sum('biggani_pass');
+            $this->db->select_sum('it_bisheshoggo_ter');
+            $this->db->select_sum('it_bisheshoggo_bachai');
+            $this->db->select_sum('it_bisheshoggo_number');
+            $this->db->select_sum('it_bisheshoggo_present');
+            $this->db->select_sum('it_bisheshoggo_shang');
+            $this->db->select_sum('it_bisheshoggo_shadharon');
+            $this->db->select_sum('it_bisheshoggo_attend');
+            $this->db->select_sum('it_bisheshoggo_pass');
+            $this->db->select_sum('other_ter');
+            $this->db->select_sum('other_bachai');
+            $this->db->select_sum('other_number');
+            $this->db->select_sum('other_present');
+            $this->db->select_sum('other_shang');
+            $this->db->select_sum('other_shadharon');
+            $this->db->select_sum('other_attend');
+            $this->db->select_sum('other_pass');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['science_output_report'] = $this->db->get('science_output_report')->first_row('array');
+            $this->data['science_output_report'] = $this->db->get('science_output_report')->first_row('array');
 
-             
-        $this->db->select_sum('hons_central_manpower_s');
-        $this->db->select_sum('hons_central_manpower_p');
-        $this->db->select_sum('hons_central_general_s');
-        $this->db->select_sum('hons_central_general_p');  
-        $this->db->select_sum('hons_shakha_manpower_s');
-        $this->db->select_sum('hons_shakha_manpower_p');
-        $this->db->select_sum('hons_shakha_general_s');
-        $this->db->select_sum('hons_shakha_general_p');  
-        $this->db->select_sum('eng_central_manpower_s');
-        $this->db->select_sum('eng_central_manpower_p');
-        $this->db->select_sum('eng_central_general_s');
-        $this->db->select_sum('eng_central_general_p');  
-        $this->db->select_sum('eng_shakha_manpower_s');
-        $this->db->select_sum('eng_shakha_manpower_p');
-        $this->db->select_sum('eng_shakha_general_s');
-        $this->db->select_sum('eng_shakha_general_p');  
-        if ($branch_id)
-        $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-        $this->data['science_summit'] = $this->db->get('science_summit')->first_row('array');
-    }
+            $this->db->select_sum('hons_central_manpower_s');
+            $this->db->select_sum('hons_central_manpower_p');
+            $this->db->select_sum('hons_central_general_s');
+            $this->db->select_sum('hons_central_general_p');
+            $this->db->select_sum('hons_shakha_manpower_s');
+            $this->db->select_sum('hons_shakha_manpower_p');
+            $this->db->select_sum('hons_shakha_general_s');
+            $this->db->select_sum('hons_shakha_general_p');
+            $this->db->select_sum('eng_central_manpower_s');
+            $this->db->select_sum('eng_central_manpower_p');
+            $this->db->select_sum('eng_central_general_s');
+            $this->db->select_sum('eng_central_general_p');
+            $this->db->select_sum('eng_shakha_manpower_s');
+            $this->db->select_sum('eng_shakha_manpower_p');
+            $this->db->select_sum('eng_shakha_general_s');
+            $this->db->select_sum('eng_shakha_general_p');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-else{
+            $this->data['science_summit'] = $this->db->get('science_summit')->first_row('array');
+        } else {
 
-    
-    $this->db->select('*');
-    $this->db->where('branch_id',$branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $query = $this->db->get('science_summit');
-    $this->data['science_summit'] = $query->first_row('array');
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get('science_summit');
+            $this->data['science_summit'] = $query->first_row('array');
 
-    $query = $this->db->get('science_bitoron');
-    $this->data['science_bitoron'] = $query->first_row('array');
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get('science_bitoron');
+            $this->data['science_bitoron'] = $query->first_row('array');
 
-    $query = $this->db->get('science_output_contact');
-    $this->data['science_output_contact'] = $query->first_row('array');
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $this->db->select('*');
-    $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get('science_output_contact');
+            $this->data['science_output_contact'] = $query->first_row('array');
 
-    $query = $this->db->get('science_output_report');
-    $this->data['science_output_report'] = $query->first_row('array');
-}
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $query = $this->db->get('science_output_report');
+            $this->data['science_output_report'] = $query->first_row('array');
+        }
 
 
         $this->data['m'] = 'science';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
         if ($branch_id)
-        $this->page_construct('departmentsreport/science/science_page_four_entry', $meta, $this->data, 'leftmenu/departmentsreport');
-    else
-        $this->page_construct('departmentsreport/science/science_page_four', $meta, $this->data, 'leftmenu/departmentsreport');
+            $this->page_construct('departmentsreport/science/science_page_four_entry', $meta, $this->data, 'leftmenu/departmentsreport');
+        else
+            $this->page_construct('departmentsreport/science/science_page_four', $meta, $this->data, 'leftmenu/departmentsreport');
     }
 
 
 
-  
+
 
 
     function report_type1()

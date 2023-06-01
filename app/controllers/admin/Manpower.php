@@ -3545,7 +3545,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         $this->excel->getActiveSheet()->SetCellValue('T19', "=SUM(T14,T16,T18)");
 
         $this->excel->getActiveSheet()->getStyle("B19:T19")->getBorders()
-            ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+            ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM); 
 
 
         $filename = 'manpower_report_' . $this->input->get('year') . '_' . $this->input->get('branch');

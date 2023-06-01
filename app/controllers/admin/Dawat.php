@@ -370,7 +370,10 @@ class Dawat extends MY_Controller
             $this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
             $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
 
-            $filename = 'Dawat_report_' . $branch->name . '_' . $this->input->get('year');
+            // $filename = 'Dawat_report_' . $branch->name . '_' . $this->input->get('year');
+
+            $filename = 'Dawat_report_' .( $branch_id ? '_'.$branch_id : '_central'). '_' . $this->input->get('year');
+            
             $this->load->helper('excel');
             create_excel($this->excel, $filename);
         }
