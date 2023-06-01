@@ -391,24 +391,32 @@ $(document).ready(function(){
 
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="3"><b>শাখা বিজ্ঞান সম্পাদক </b></td>
+                                <td class="tg-pwj7" colspan="5"><b>শাখা বিজ্ঞান সম্পাদক </b></td>
                                 <td class="tg-pwj7" colspan="">
                                     <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Science_শাখা বিজ্ঞান সম্পাদক.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
+                                
                             </tr>
-                            <tr>
+                            <tr> 
                                 <td class="tg-pwj7" colspan="2">শাখা বিজ্ঞান সম্পাদক আছেন কিনা? </td>
                                 <td class="tg-pwj7" colspan="2">বিজ্ঞান সম্পাদক বিজ্ঞানে অধ্যয়নরত কিনা? </td>
+                                <td class="tg-pwj7" colspan="2">বিজ্ঞান বিভাগের মাসিক বৈঠক </td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" colspan="">হ্যাঁ </td>
                                 <td class="tg-pwj7" colspan="">না</td>
                                 <td class="tg-pwj7" colspan="">হ্যাঁ </td>
                                 <td class="tg-pwj7" colspan="">না</td>
+                                <td class="tg-pwj7" colspan="">সংখ্যা </td>
+                                <td class="tg-pwj7" colspan="">উপস্থিতি	</td>
                             </tr>
                             <tr>
                                 <td class="tg-0pky" colspan=""> <?php echo $science_biggan_shompadok['shaka_shompadok']; ?>  </td>
                                 <td class="tg-0pky" colspan=""> <?php echo $row_total_science_biggan_shompadok -$science_biggan_shompadok['shaka_shompadok']; ?> </td>
+                                <td class="tg-0pky" colspan=""> <?php echo $science_biggan_shompadok['biggan_shompadok']; ?> </td>
+                                <td class="tg-0pky" colspan=""> <?php echo $row_total_science_biggan_shompadok-$science_biggan_shompadok['biggan_shompadok'] ; ?> </td>
+
+
                                 <td class="tg-0pky" colspan=""> <?php echo $science_biggan_shompadok['biggan_shompadok']; ?> </td>
                                 <td class="tg-0pky" colspan=""> <?php echo $row_total_science_biggan_shompadok-$science_biggan_shompadok['biggan_shompadok'] ; ?> </td>
                             </tr>
