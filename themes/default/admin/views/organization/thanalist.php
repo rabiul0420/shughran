@@ -2,12 +2,23 @@
 <style>
 #PRData th:nth-child(2),#PRData2 th:nth-child(2),#PRData5 th:nth-child(2),#PRData4 th:nth-child(2) { width: 5% !important; }
 #PRData th:nth-child(1),#PRData2 th:nth-child(1),#PRData5 th:nth-child(1),#PRData4 th:nth-child(1) { width: 5% !important; }
- 
+#PRData5 th:nth-child(12) { width: 5% !important; }
+#PRData5 th:nth-child(13) { width: 15% !important; }
 </style>
 
 
 
 <script>
+
+    function thana_type(type){
+
+        return type=='Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠানিক';
+    }
+
+    function yes_no(in_session){
+
+return in_session==1 ? 'Yes' : 'No';
+}
     
     var oTable3;
 
@@ -39,7 +50,7 @@ oTable3 = $('#PRData5').dataTable({
         return nRow;
     },
     "aoColumns": [
-        {"bSortable": false, "mRender": checkbox},   null, null,null, null, null, null, null, null, null, null, null, null 
+        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, null, null, {  "mRender": yes_no}, null ,{"bSortable": false}
     ]
 }).fnSetFilteringDelay().dtFilter([
     {column_number: 1, filter_default_label: "[<?='শাখা';?>]", filter_type: "text", data: []},
@@ -128,12 +139,12 @@ oTable3 = $('#PRData5').dataTable({
                             <th>চলতি সেশনে </th>
                             
                             <th><?= 'নোট'  ?></th>
-                            
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td colspan="13" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                            <td colspan="14" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                         </tr>
                         </tbody>
 
@@ -142,6 +153,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th style="min-width:30px; width: 30px; text-align: center;">
                                 <input class="checkbox checkft" type="checkbox" name="check"/>
                             </th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

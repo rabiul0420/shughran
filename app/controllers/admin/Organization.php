@@ -105,6 +105,49 @@ class Organization extends MY_Controller
 
 
 
+    function current_calculation()
+    {
+
+
+
+        $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+
+
+            $this->excel->getActiveSheet()->setTitle('institution list calculation');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'Branch ID');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'type_id');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'Number'); 
+
+
+           
+        $branches = $this->site->getAllBranches();
+        
+        $row = 2;
+
+        foreach($branches as $branch) {
+        $record = $this->site->query("SELECT id,organization_institution_current(id, '2021-12-23' , '2022-12-17',".$branch->id.",2021) current_number from `sma_institution`");
+        
+       
+
+        foreach ($record as $data_row) {
+            $this->excel->getActiveSheet()->SetCellValue('A' . $row, $branch->id);
+            $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row['id']);
+            $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row['current_number']); 
+
+            $row++;
+        }
+    
+    }
+    $filename = 'institutionlist_calculation_2021';
+    $this->load->helper('excel');
+    create_excel($this->excel, $filename);
+
+       // $this->sma->print_arrays( $record);
+   
+    }
+
+
 
 
     function index($branch_id = NULL)
@@ -3138,6 +3181,11 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
+
+        $edit_link = anchor('admin/organization/editthana/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+       
+       
+
         $this->load->library('datatables');
 
         if ($branch_id) {
@@ -3156,8 +3204,90 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
       //  $end = $report_type['end'];
 
        // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-
+       $this->datatables->add_column("Actions", $edit_link, "id");
+       
         //$this->datatables->unset_column("manpower_id");
         echo $this->datatables->generate();
     }
+
+
+    function editthana($id = NULL)
+    {
+
+
+        $this->sma->checkPermissions('index', TRUE);
+
+
+
+        if ($this->input->get('id')) {
+            $id = $this->input->get('id');
+        }
+
+        $thana_details = $this->site->getByID('sma_thana', 'id', $id);
+
+
+        $this->form_validation->set_rules('thana_name', 'name', 'required');
+
+
+
+        if ($this->form_validation->run() == true) {
+            $data = array(
+                'branch_id' => $this->input->post('branch_id'),
+                'thana_name' => $this->input->post('thana_name'),
+                'thana_code' => $this->input->post('thana_code'),
+                'org_type' => $this->input->post('org_type'),
+
+                'member_number' => $this->input->post('member_number'),
+                'associate_number' => $this->input->post('associate_number'),
+                'worker_number' => $this->input->post('worker_number'),
+                'supporter_number' => $this->input->post('supporter_number'),
+                'ward_number' => $this->input->post('ward_number'),
+                'unit_number' => $this->input->post('unit_number'),
+                'increase_in_current_session' => $this->input->post('increase_in_current_session'),
+                'note' => $this->input->post('note'),
+
+                'update_by' => $this->session->userdata('user_id'),
+                'update_at' => date("Y-m-d H:i:s"),
+                'note' => $this->input->post('note')
+            );
+
+
+         
+        } elseif ($this->input->post('edit_thana')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect('organization/thanalist');
+        }
+
+        if ($this->form_validation->run() == true && $this->site->updateData('thana', $data, array('id' => $id))) {
+
+            $this->session->set_flashdata('message', 'Updated successfully');
+            admin_redirect("organization/thanalist");
+        } else {
+
+
+
+
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $this->data['modal_js'] = $this->site->modal_js();
+
+            $this->data['thana'] = $thana_details;
+
+
+            $this->data['branches'] = $this->site->getAllBranches();
+
+            if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+
+                $this->data['branch_id'] = NULL;
+                $this->data['branch'] =   NULL;
+            } else {
+
+                $this->data['branch_id'] = $this->session->userdata('branch_id');
+                $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+            }
+
+
+            $this->load->view($this->theme . 'organization/thanaedit', $this->data);
+        }
+    }
+
 }

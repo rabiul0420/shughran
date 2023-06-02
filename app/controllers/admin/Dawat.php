@@ -85,7 +85,8 @@ class Dawat extends MY_Controller
         $this->data['fortnight_dawat_report'] = $this->getfortnight_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $this->data['letgotovillage'] = $this->getletgotovillageSum($report_type, $report_start, $report_end, $branch_id);
         $this->data['dawat_summary'] = $this->getdawat_summarySum($report_type, $report_start, $report_end, $branch_id);
-
+        $this->data['secondary_dawat_report'] = $this->getsecondary_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        
         if ($branch_id) {
             $dawat_personal_n_group = $this->getEntryInfoExtra($report_type_get, $branch_id);
             // $this->sma->print_arrays($dawat_personal_n_group['extra_dawatinfo'] );
@@ -174,7 +175,8 @@ class Dawat extends MY_Controller
         $fortnight_dawat_report = $this->getfortnight_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $letgotovillage = $this->getletgotovillageSum($report_type, $report_start, $report_end, $branch_id);
         $dawat_summary = $this->getdawat_summarySum($report_type, $report_start, $report_end, $branch_id);
-
+        $secondary_dawat_report = $this->getsecondary_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        
         if ($branch_id) {
             $dawat_personal_n_group = $this->getEntryInfoExtra($report_type_get, $branch_id);
 
@@ -509,7 +511,21 @@ SUM(`supporter_increase`) as supporter_increase, SUM(`friend_increase`) as frien
         return $result;
     }
 
+    function getsecondary_dawat_reportSum($report_type, $start_date, $end_date, $branch_id = NULL)
+    {
 
+        if ($branch_id)
+            $result =  $this->site->query_binding("SELECT 
+SUM(`supporter_increase`) as supporter_increase, SUM(`friend_increase`) as friend_increase , SUM(`number_general_gather`) as number_general_gather, SUM(`avg_presence`) as avg_presence, SUM(`number_other_meeting`) as number_other_meeting, SUM(`other_avg`) as other_avg, SUM(`card_booklet`) as card_booklet, SUM(`porichiti`) as porichiti, SUM(`kishore`) as kishore, SUM(`kishore_client_increase`) as kishore_client_increase, SUM(`kishore_eng`) as kishore_eng, SUM(`kishore_eng_increase`) as kishore_eng_increase, SUM(`chhatrasongbad`) as chhatrasongbad, SUM(`chhatrasongbad_increase`) as chhatrasongbad_increase, SUM(`group_sent`) as group_sent, SUM(`supporter_org_increase`) as supporter_org_increase, SUM(`nonmuslim_supporter_increase`) as nonmuslim_supporter_increase, SUM(`nonmuslim_friend_increase`) as nonmuslim_friend_increase, SUM(`ww_increase`) as  ww_increase from sma_secondary_dawat_report where  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+
+        else
+            $result =  $this->site->query_binding("SELECT  
+SUM(`supporter_increase`) as supporter_increase, SUM(`friend_increase`) as friend_increase , SUM(`number_general_gather`) as number_general_gather, SUM(`avg_presence`) as avg_presence, SUM(`number_other_meeting`) as number_other_meeting, SUM(`other_avg`) as other_avg, SUM(`card_booklet`) as card_booklet, SUM(`porichiti`) as porichiti, SUM(`kishore`) as kishore, SUM(`kishore_client_increase`) as kishore_client_increase, SUM(`kishore_eng`) as kishore_eng, SUM(`kishore_eng_increase`) as kishore_eng_increase, SUM(`chhatrasongbad`) as chhatrasongbad, SUM(`chhatrasongbad_increase`) as chhatrasongbad_increase, SUM(`group_sent`) as group_sent, SUM(`supporter_org_increase`) as supporter_org_increase, SUM(`nonmuslim_supporter_increase`) as nonmuslim_supporter_increase, SUM(`nonmuslim_friend_increase`) as nonmuslim_friend_increase, SUM(`ww_increase`) as  ww_increase from sma_secondary_dawat_report where  date BETWEEN ? AND ? ", array($start_date, $end_date));
+
+        return $result;
+    }
+
+    
 
     function getmadrasha_dawat_reportSum($report_type, $start_date, $end_date, $branch_id = NULL)
     {

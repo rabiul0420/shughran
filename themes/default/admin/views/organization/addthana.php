@@ -68,12 +68,24 @@ if (!empty($variants)) {
 
 
 
-
-
-                    <div class="form-group">
+                    <div class="form-group all">
                         <?= lang('থানা কোড', 'thana_code'); ?>
-                        <?= form_input('thana_code', set_value('thana_code', ''), 'class="form-control tip" id="thana_code" required="required" '); ?>
+                        
+
+                      <?php  $tc = array();
+                      $tc[''] =  'থানা কোড';
+                        for($i=1; $i<=60; $i++){
+                            $tc[$i] =  $i;
+
+                        }
+
+                        $tc[100] =  100;
+
+                    echo form_dropdown('thana_code', $tc, '', 'id="thana_code"  class="form-control select" required="required" style="width:100%;" ');
+                     ?>              
                     </div>
+
+                   
 
 
 
@@ -82,8 +94,8 @@ if (!empty($variants)) {
 
                         <?php
                         $wrt[''] = lang('select') . ' ' . lang('organization_type');
-                        foreach (['Institutional' => 'Institutional', 'Residential' => 'Residential'] as $type)
-                            $wrt[$type] = $type;
+                        foreach (['Institutional' => 'প্রাতিষ্ঠানিক', 'Residential' => 'আবাসিক'] as $key=>$type)
+                            $wrt[$key] = $type;
 
 
 
@@ -116,7 +128,7 @@ if (!empty($variants)) {
                         <?= form_input('worker_number', set_value('worker_number', '0'), 'class="form-control tip" id="worker_number" required="required" '); ?>
                     </div>
                     <div class="form-group">
-                        <?= lang('সমর্থক সংখ্যা', 'unit_number'); ?>
+                        <?= lang('সমর্থক সংখ্যা', 'supporter_number'); ?>
                         <?= form_input('supporter_number', set_value('supporter_number', '0'), 'class="form-control tip" id="supporter_number" required="required" '); ?>
                     </div>
 
