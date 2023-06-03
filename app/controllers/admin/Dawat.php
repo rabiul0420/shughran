@@ -2010,11 +2010,11 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
 
-            $this->excel->getActiveSheet()->mergeCells('A1:J1');
-            $this->excel->getActiveSheet()->mergeCells('A2:J2');
-            $this->excel->getActiveSheet()->mergeCells('A3:J3');
-            $this->excel->getActiveSheet()->mergeCells('A4:J4');
-            $this->excel->getActiveSheet()->mergeCells('A5:J5');
+            $this->excel->getActiveSheet()->mergeCells('A1:K1');
+            $this->excel->getActiveSheet()->mergeCells('A2:K2');
+            $this->excel->getActiveSheet()->mergeCells('A3:K3');
+            $this->excel->getActiveSheet()->mergeCells('A4:K4');
+            $this->excel->getActiveSheet()->mergeCells('A5:K5');
 
             $style = array(
                 'alignment' => array(
@@ -2022,8 +2022,8 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
                 )
             );
 
-            $this->excel->getActiveSheet()->getStyle("A1:J4")->applyFromArray($style);
-            $this->excel->getActiveSheet()->getStyle('A1:J4')->getFont()->setBold(true);
+            $this->excel->getActiveSheet()->getStyle("A1:K4")->applyFromArray($style);
+            $this->excel->getActiveSheet()->getStyle('A1:K4')->getFont()->setBold(true);
 
 
             $this->excel->getActiveSheet()->SetCellValue('A2', 'Bismillahir Rahmanir Rahim');
@@ -2040,13 +2040,14 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
             $this->excel->getActiveSheet()->mergeCells('A7:A8');
-            $this->excel->getActiveSheet()->mergeCells('B7:D7');
-            $this->excel->getActiveSheet()->mergeCells('E7:E8');
+            $this->excel->getActiveSheet()->mergeCells('B7:E7');
+            //$this->excel->getActiveSheet()->mergeCells('E7:E8');
             $this->excel->getActiveSheet()->mergeCells('F7:F8');
             $this->excel->getActiveSheet()->mergeCells('G7:G8');
-            $this->excel->getActiveSheet()->mergeCells('H7:H9');
+            $this->excel->getActiveSheet()->mergeCells('H7:H8');
             $this->excel->getActiveSheet()->mergeCells('I7:I9');
             $this->excel->getActiveSheet()->mergeCells('J7:J9');
+            $this->excel->getActiveSheet()->mergeCells('K7:K9');
 
 
             $style = array(
@@ -2069,23 +2070,25 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
             $this->excel->getActiveSheet()->getColumnDimension('H')->setWidth(45);
             $this->excel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
             $this->excel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('K')->setWidth(15);
 
             $this->excel->getActiveSheet()->SetCellValue('A7', 'অতিরিক্ত দাওয়াত');
             $this->excel->getActiveSheet()->SetCellValue('B7', 'অংশগ্রহনকারী');
-            $this->excel->getActiveSheet()->SetCellValue('E7', 'দাওয়াত প্রাপ্ত');
-            $this->excel->getActiveSheet()->SetCellValue('F7', 'বন্ধু বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('F7', 'দাওয়াত প্রাপ্ত');
+            $this->excel->getActiveSheet()->SetCellValue('G7', 'বন্ধু বৃদ্ধি');
 
 
-            $this->excel->getActiveSheet()->SetCellValue('G7', 'সমর্থক বৃদ্ধি');
-            $this->excel->getActiveSheet()->SetCellValue('H7', 'অতিরিক্ত দাওয়াত');
-            $this->excel->getActiveSheet()->SetCellValue('I7', 'সংখ্যা');
-            $this->excel->getActiveSheet()->SetCellValue('J7', 'বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('H7', 'সমর্থক বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('I7', 'অতিরিক্ত দাওয়াত');
+            $this->excel->getActiveSheet()->SetCellValue('J7', 'সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('K7', 'বৃদ্ধি');
 
 
 
             $this->excel->getActiveSheet()->SetCellValue('B8', 'পূর্বের সংখ্যা');
             $this->excel->getActiveSheet()->SetCellValue('C8', 'বর্তমান সংখ্যা');
             $this->excel->getActiveSheet()->SetCellValue('D8', 'বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('E8', 'ঘাটতি');
 
 
 
@@ -2098,46 +2101,53 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
             $this->excel->getActiveSheet()->SetCellValue('B9', $detailinfo['extra_dawatinfo']->personal_dawat_prev);
             $this->excel->getActiveSheet()->SetCellValue('C9', $detailinfo['extra_dawatinfo']->personal_dawat_current);
             $this->excel->getActiveSheet()->SetCellValue('D9', $detailinfo['extra_dawatinfo']->personal_dawat_increase);
-            $this->excel->getActiveSheet()->SetCellValue('E9', $detailinfo['extra_dawatinfo']->personal_dawat_person);
-            $this->excel->getActiveSheet()->SetCellValue('F9', $detailinfo['extra_dawatinfo']->personal_dawat_friend);
-            $this->excel->getActiveSheet()->SetCellValue('G9', $detailinfo['extra_dawatinfo']->personal_dawat_supporter);
+            $this->excel->getActiveSheet()->SetCellValue('E9', $detailinfo['extra_dawatinfo']->personal_dawat_decrease);
+            
+            $this->excel->getActiveSheet()->SetCellValue('F9', $detailinfo['extra_dawatinfo']->personal_dawat_person);
+            
+            $this->excel->getActiveSheet()->SetCellValue('G9', $detailinfo['extra_dawatinfo']->personal_dawat_friend);
+            $this->excel->getActiveSheet()->SetCellValue('H9', $detailinfo['extra_dawatinfo']->personal_dawat_supporter);
 
 
             $this->excel->getActiveSheet()->SetCellValue('A10', 'গ্রুপ দাওয়াতী কাজ');
             $this->excel->getActiveSheet()->SetCellValue('B10', $detailinfo['extra_dawatinfo']->group_dawat_prev);
             $this->excel->getActiveSheet()->SetCellValue('C10', $detailinfo['extra_dawatinfo']->group_dawat_current);
             $this->excel->getActiveSheet()->SetCellValue('D10', $detailinfo['extra_dawatinfo']->group_dawat_increase);
-            $this->excel->getActiveSheet()->SetCellValue('E10', $detailinfo['extra_dawatinfo']->group_dawat_person);
-            $this->excel->getActiveSheet()->SetCellValue('F10', $detailinfo['extra_dawatinfo']->group_dawat_friend);
-            $this->excel->getActiveSheet()->SetCellValue('G10', $detailinfo['extra_dawatinfo']->group_dawat_supporter);
-            $this->excel->getActiveSheet()->SetCellValue('H10', 'দাওয়াতী গ্রুপ');
-            $this->excel->getActiveSheet()->SetCellValue('I10', $detailinfo['extra_dawatinfo']->dawat_group);
-            $this->excel->getActiveSheet()->SetCellValue('J10', $detailinfo['extra_dawatinfo']->dawat_group_increase);
+            $this->excel->getActiveSheet()->SetCellValue('E10', $detailinfo['extra_dawatinfo']->group_dawat_decrease);
+            
+            $this->excel->getActiveSheet()->SetCellValue('F10', $detailinfo['extra_dawatinfo']->group_dawat_person);
+            $this->excel->getActiveSheet()->SetCellValue('G10', $detailinfo['extra_dawatinfo']->group_dawat_friend);
+            $this->excel->getActiveSheet()->SetCellValue('H10', $detailinfo['extra_dawatinfo']->group_dawat_supporter);
+            $this->excel->getActiveSheet()->SetCellValue('I10', 'দাওয়াতী গ্রুপ');
+            $this->excel->getActiveSheet()->SetCellValue('J10', $detailinfo['extra_dawatinfo']->dawat_group);
+            $this->excel->getActiveSheet()->SetCellValue('K10', $detailinfo['extra_dawatinfo']->dawat_group_increase);
 
 
             $this->excel->getActiveSheet()->SetCellValue('A11', 'মুহরামাদের মাঝে কাজ');
             $this->excel->getActiveSheet()->SetCellValue('B11', $detailinfo['extra_dawatinfo']->muharrama_dawat_prev);
             $this->excel->getActiveSheet()->SetCellValue('C11', $detailinfo['extra_dawatinfo']->muharrama_dawat_current);
             $this->excel->getActiveSheet()->SetCellValue('D11', $detailinfo['extra_dawatinfo']->muharrama_dawat_increase);
-            $this->excel->getActiveSheet()->SetCellValue('E11', $detailinfo['extra_dawatinfo']->muharrama_dawat_person);
-            $this->excel->getActiveSheet()->SetCellValue('F11', $detailinfo['extra_dawatinfo']->muharrama_dawat_friend);
-            $this->excel->getActiveSheet()->SetCellValue('G11', $detailinfo['extra_dawatinfo']->muharrama_dawat_supporter);
-            $this->excel->getActiveSheet()->SetCellValue('H11', 'জনশক্তিদের মোট মুহাররমা কতজন');
-            $this->excel->getActiveSheet()->SetCellValue('I11', $detailinfo['extra_dawatinfo']->muharram_number);
-            $this->excel->getActiveSheet()->SetCellValue('J11', $detailinfo['extra_dawatinfo']->muharram_number_increase);
-
-
+            $this->excel->getActiveSheet()->SetCellValue('E11', $detailinfo['extra_dawatinfo']->muharrama_dawat_decrease);
+            
+            $this->excel->getActiveSheet()->SetCellValue('F11', $detailinfo['extra_dawatinfo']->muharrama_dawat_person);
+            $this->excel->getActiveSheet()->SetCellValue('G11', $detailinfo['extra_dawatinfo']->muharrama_dawat_friend);
+            $this->excel->getActiveSheet()->SetCellValue('H11', $detailinfo['extra_dawatinfo']->muharrama_dawat_supporter);
+            $this->excel->getActiveSheet()->SetCellValue('I11', 'জনশক্তিদের মোট মুহাররমা কতজন');
+            $this->excel->getActiveSheet()->SetCellValue('J11', $detailinfo['extra_dawatinfo']->muharram_number);
+            $this->excel->getActiveSheet()->SetCellValue('K11', $detailinfo['extra_dawatinfo']->muharram_number_increase);
 
             $this->excel->getActiveSheet()->SetCellValue('A12', 'আত্মীয় ও প্রতিবেশী');
             $this->excel->getActiveSheet()->SetCellValue('B12', $detailinfo['extra_dawatinfo']->relative_dawat_prev);
             $this->excel->getActiveSheet()->SetCellValue('C12', $detailinfo['extra_dawatinfo']->relative_dawat_current);
             $this->excel->getActiveSheet()->SetCellValue('D12', $detailinfo['extra_dawatinfo']->relative_dawat_increase);
-            $this->excel->getActiveSheet()->SetCellValue('E12', $detailinfo['extra_dawatinfo']->relative_dawat_person);
-            $this->excel->getActiveSheet()->SetCellValue('F12', $detailinfo['extra_dawatinfo']->relative_dawat_friend);
-            $this->excel->getActiveSheet()->SetCellValue('G12', $detailinfo['extra_dawatinfo']->relative_dawat_supporter);
-            $this->excel->getActiveSheet()->SetCellValue('H12', 'জনশক্তিদের মোট আত্মীয় ও প্রতিবেশী কতজন');
-            $this->excel->getActiveSheet()->SetCellValue('I12', $detailinfo['extra_dawatinfo']->relative_number);
-            $this->excel->getActiveSheet()->SetCellValue('J12', $detailinfo['extra_dawatinfo']->relative_number_increase);
+            $this->excel->getActiveSheet()->SetCellValue('E12', $detailinfo['extra_dawatinfo']->relative_dawat_decrease);
+            
+            $this->excel->getActiveSheet()->SetCellValue('F12', $detailinfo['extra_dawatinfo']->relative_dawat_person);
+            $this->excel->getActiveSheet()->SetCellValue('G12', $detailinfo['extra_dawatinfo']->relative_dawat_friend);
+            $this->excel->getActiveSheet()->SetCellValue('H12', $detailinfo['extra_dawatinfo']->relative_dawat_supporter);
+            $this->excel->getActiveSheet()->SetCellValue('I12', 'জনশক্তিদের মোট আত্মীয় ও প্রতিবেশী কতজন');
+            $this->excel->getActiveSheet()->SetCellValue('J12', $detailinfo['extra_dawatinfo']->relative_number);
+            $this->excel->getActiveSheet()->SetCellValue('K12', $detailinfo['extra_dawatinfo']->relative_number_increase);
 
 
 
@@ -2204,7 +2214,7 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
         if ($report_type == 'annual' && $report_type_get['last_half']) {
             $extra_dawatinfo = $this->site->getOneRecord('extra_dawat', '*', array('branch_id' => $branch_id, 'date <= ' => $report_end, 'date >= ' => $report_start), 'id desc', 1, 0);
         } else if ($report_type && $report_type == 'annual') {
-            $result1 =  $this->site->query_binding("SELECT  SUM(id) id,  SUM(`personal_dawat_increase`) as  personal_dawat_increase, SUM(`personal_dawat_person`) as personal_dawat_person , SUM(`personal_dawat_friend`) as personal_dawat_friend , SUM(`personal_dawat_supporter`) as personal_dawat_supporter ,    SUM(`group_dawat_increase`) as group_dawat_increase , SUM(`group_dawat_person`) as group_dawat_person , SUM(`group_dawat_friend`) as  group_dawat_friend, SUM(`group_dawat_supporter`) as group_dawat_supporter ,  SUM(`muharrama_dawat_increase`) as muharrama_dawat_increase , SUM(`muharrama_dawat_person`) as muharrama_dawat_person , SUM(`muharrama_dawat_friend`) as  muharrama_dawat_friend, SUM(`muharrama_dawat_supporter`) as muharrama_dawat_supporter ,   SUM(`relative_dawat_increase`) as relative_dawat_increase , SUM(`relative_dawat_person`) as  relative_dawat_person, SUM(`relative_dawat_friend`) as  relative_dawat_friend,SUM(`relative_dawat_supporter`) as relative_dawat_supporter , SUM(`dawat_group_increase`) as dawat_group_increase , SUM(`muharram_number_increase`) as muharram_number_increase , SUM(`relative_number_increase`) as relative_number_increase FROM `sma_extra_dawat` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
+            $result1 =  $this->site->query_binding("SELECT  SUM(id) id,  SUM(`personal_dawat_increase`) as  personal_dawat_increase, SUM(`personal_dawat_person`) as personal_dawat_person , SUM(`personal_dawat_friend`) as personal_dawat_friend , SUM(`personal_dawat_supporter`) as personal_dawat_supporter ,    SUM(`group_dawat_increase`) as group_dawat_increase , SUM(`group_dawat_person`) as group_dawat_person , SUM(`group_dawat_friend`) as  group_dawat_friend, SUM(`group_dawat_supporter`) as group_dawat_supporter ,  SUM(`muharrama_dawat_increase`) as muharrama_dawat_increase , SUM(`muharrama_dawat_person`) as muharrama_dawat_person , SUM(`muharrama_dawat_friend`) as  muharrama_dawat_friend, SUM(`muharrama_dawat_supporter`) as muharrama_dawat_supporter ,   SUM(`relative_dawat_increase`) as relative_dawat_increase , SUM(`relative_dawat_person`) as  relative_dawat_person, SUM(`relative_dawat_friend`) as  relative_dawat_friend,SUM(`relative_dawat_supporter`) as relative_dawat_supporter , SUM(`dawat_group_increase`) as dawat_group_increase , SUM(`muharram_number_increase`) as muharram_number_increase , SUM(`relative_number_increase`) as relative_number_increase , SUM(`personal_dawat_decrease`) as personal_dawat_decrease , SUM(`group_dawat_decrease`) as group_dawat_decrease , SUM(`muharrama_dawat_decrease`) as muharrama_dawat_decrease , SUM(`relative_dawat_decrease`) as relative_dawat_decrease FROM `sma_extra_dawat` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
 
 
             //last half
@@ -2249,7 +2259,7 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
  SUM(`muharrama_dawat_prev`) as muharrama_dawat_prev , SUM(`muharrama_dawat_current`) as muharrama_dawat_current , SUM(`muharrama_dawat_increase`) as muharrama_dawat_increase , SUM(`muharrama_dawat_person`) as muharrama_dawat_person , SUM(`muharrama_dawat_friend`) as  muharrama_dawat_friend, SUM(`muharrama_dawat_supporter`) as muharrama_dawat_supporter , SUM(`relative_dawat_prev`) as  relative_dawat_prev, SUM(`relative_dawat_current`) as  relative_dawat_current, SUM(`relative_dawat_increase`) as relative_dawat_increase , SUM(`relative_dawat_person`) as  relative_dawat_person, SUM(`relative_dawat_friend`) as  relative_dawat_friend,SUM(`relative_dawat_supporter`) as relative_dawat_supporter ,SUM(`dawat_group`) as dawat_group ,SUM(`dawat_group_increase`) as dawat_group_increase ,SUM(`muharram_number`) as muharram_number ,SUM(`muharram_number_increase`) as muharram_number_increase ,SUM(`relative_number`) as relative_number ,SUM(`relative_number_increase`) as relative_number_increase FROM `sma_extra_dawat` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
         else
             $result =  $this->site->query_binding("SELECT SUM(`personal_dawat_prev`) as personal_dawat_prev ,SUM(`personal_dawat_current`) as personal_dawat_current , SUM(`personal_dawat_increase`) as  personal_dawat_increase, SUM(`personal_dawat_person`) as personal_dawat_person , SUM(`personal_dawat_friend`) as personal_dawat_friend , SUM(`personal_dawat_supporter`) as personal_dawat_supporter , SUM(`group_dawat_prev`) as group_dawat_prev , SUM(`group_dawat_current`) as group_dawat_current , SUM(`group_dawat_increase`) as group_dawat_increase , SUM(`group_dawat_person`) as group_dawat_person , SUM(`group_dawat_friend`) as  group_dawat_friend, SUM(`group_dawat_supporter`) as group_dawat_supporter ,
- SUM(`muharrama_dawat_prev`) as muharrama_dawat_prev , SUM(`muharrama_dawat_current`) as muharrama_dawat_current , SUM(`muharrama_dawat_increase`) as muharrama_dawat_increase , SUM(`muharrama_dawat_person`) as muharrama_dawat_person , SUM(`muharrama_dawat_friend`) as  muharrama_dawat_friend, SUM(`muharrama_dawat_supporter`) as muharrama_dawat_supporter , SUM(`relative_dawat_prev`) as  relative_dawat_prev, SUM(`relative_dawat_current`) as  relative_dawat_current, SUM(`relative_dawat_increase`) as relative_dawat_increase , SUM(`relative_dawat_person`) as  relative_dawat_person, SUM(`relative_dawat_friend`) as  relative_dawat_friend,SUM(`relative_dawat_supporter`) as relative_dawat_supporter ,SUM(`dawat_group`) as dawat_group ,SUM(`dawat_group_increase`) as dawat_group_increase ,SUM(`muharram_number`) as muharram_number ,SUM(`muharram_number_increase`) as muharram_number_increase ,SUM(`relative_number`) as relative_number ,SUM(`relative_number_increase`) as relative_number_increase FROM `sma_extra_dawat` WHERE   date BETWEEN ? AND ? ", array($report_start, $report_end));
+ SUM(`muharrama_dawat_prev`) as muharrama_dawat_prev , SUM(`muharrama_dawat_current`) as muharrama_dawat_current , SUM(`muharrama_dawat_increase`) as muharrama_dawat_increase , SUM(`muharrama_dawat_person`) as muharrama_dawat_person , SUM(`muharrama_dawat_friend`) as  muharrama_dawat_friend, SUM(`muharrama_dawat_supporter`) as muharrama_dawat_supporter , SUM(`relative_dawat_prev`) as  relative_dawat_prev, SUM(`relative_dawat_current`) as  relative_dawat_current, SUM(`relative_dawat_increase`) as relative_dawat_increase , SUM(`relative_dawat_person`) as  relative_dawat_person, SUM(`relative_dawat_friend`) as  relative_dawat_friend,SUM(`relative_dawat_supporter`) as relative_dawat_supporter ,SUM(`dawat_group`) as dawat_group ,SUM(`dawat_group_increase`) as dawat_group_increase ,SUM(`muharram_number`) as muharram_number ,SUM(`muharram_number_increase`) as muharram_number_increase ,SUM(`relative_number`) as relative_number ,SUM(`relative_number_increase`) as relative_number_increase, SUM(`personal_dawat_decrease`) as personal_dawat_decrease , SUM(`group_dawat_decrease`) as group_dawat_decrease , SUM(`muharrama_dawat_decrease`) as muharrama_dawat_decrease , SUM(`relative_dawat_decrease`) as relative_dawat_decrease  FROM `sma_extra_dawat` WHERE   date BETWEEN ? AND ? ", array($report_start, $report_end));
 
 
 

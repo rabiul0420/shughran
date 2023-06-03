@@ -640,8 +640,8 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">মান</td>
-                                <td class="tg-pwj7" colspan="5">১৪ তম মানবসেবা তথ্য </td>
-                                <td class="tg-pwj7" colspan="5">১৫ তম মানবসেবা তথ্য  </td>
+                                <td class="tg-pwj7" colspan="5">১৫ তম মানবসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">১৬ তম মানবসেবা তথ্য  </td>
 
                             </tr>
 

@@ -130,7 +130,7 @@ else {
 <tbody>
 <tr>
 <td colspan="2" rowspan="2">অতিরিক্ত দাওয়াত </td>
-<td  colspan="7" width="155">অংশগ্রহনকারী</td>
+<td  colspan="8" width="155">অংশগ্রহনকারী</td>
 <td colspan="3" rowspan="2" width="73">দাওয়াত প্রাপ্ত</td>
 <td  colspan="2" rowspan="2" width="23">বন্ধু বৃদ্ধি</td>
 <td colspan="2" rowspan="2" width="59">সমর্থক বৃদ্ধি</td>
@@ -142,12 +142,14 @@ else {
 <td  colspan="3" style="background:#ccc">পূর্বের সংখ্যা</td>
 <td  colspan="3" style="background:#ccc">বর্তমান সংখ্যা</td>
 <td >বৃদ্ধি</td>
+<td >ঘাটতি</td>
 </tr>
 <tr >
 <td colspan="2" >ব্যক্তিগত দাওয়াতী কাজ</td>
 <td  colspan="3"><?php echo $detailinfo[0]['personal_dawat_prev']; ?></td>
 <td  colspan="3"><?php echo $detailinfo[0]['personal_dawat_current']; ?></td>
 <td><?php echo $detailinfo[0]['personal_dawat_increase']; ?></td>
+<td><?php echo $detailinfo[0]['personal_dawat_decrease']; ?></td>
 <td  colspan="3"><?php echo $detailinfo[0]['personal_dawat_person']; ?></td>
 <td colspan="2"><?php echo $detailinfo[0]['personal_dawat_friend']; ?></td>
 <td colspan="2"><?php echo $detailinfo[0]['personal_dawat_supporter']; ?></td>
@@ -157,6 +159,7 @@ else {
 <td  colspan="3"><?php echo $detailinfo[0]['group_dawat_prev']; ?></td>
 <td  colspan="3"><?php echo $detailinfo[0]['group_dawat_current']; ?></td>
 <td><?php echo $detailinfo[0]['group_dawat_increase']; ?></td>
+<td><?php echo $detailinfo[0]['group_dawat_decrease']; ?></td>
 <td  colspan="3"><?php echo $detailinfo[0]['group_dawat_person']; ?></td>
 <td colspan="2"><?php echo $detailinfo[0]['group_dawat_friend']; ?></td>
 <td colspan="2"><?php echo $detailinfo[0]['group_dawat_supporter']; ?></td>
@@ -169,6 +172,7 @@ else {
 <td  colspan="3"><?php echo $detailinfo[0]['muharrama_dawat_prev']; ?></td>
 <td  colspan="3"><?php echo $detailinfo[0]['muharrama_dawat_current']; ?></td>
 <td><?php echo $detailinfo[0]['muharrama_dawat_increase']; ?></td>
+<td><?php echo $detailinfo[0]['muharrama_dawat_decrease']; ?></td>
 <td  colspan="3"><?php echo $detailinfo[0]['muharrama_dawat_person']; ?></td>
 <td colspan="2"><?php //echo $detailinfo[0]['muharrama_dawat_friend']; ?></td>
 <td colspan="2"><?php //echo $detailinfo[0]['muharrama_dawat_supporter']; ?></td>
@@ -182,6 +186,7 @@ else {
 <td  colspan="3"><?php echo $detailinfo[0]['relative_dawat_prev']; ?></td>
 <td  colspan="3"><?php echo $detailinfo[0]['relative_dawat_current']; ?></td>
 <td><?php echo $detailinfo[0]['relative_dawat_increase']; ?></td>
+<td><?php echo $detailinfo[0]['relative_dawat_decrease']; ?></td>
 <td  colspan="3"><?php echo $detailinfo[0]['relative_dawat_person']; ?></td>
 <td colspan="2"><?php echo $detailinfo[0]['relative_dawat_friend']; ?></td>
 <td colspan="2"><?php echo $detailinfo[0]['relative_dawat_supporter']; ?></td>
