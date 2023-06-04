@@ -333,7 +333,18 @@
 									//if ($report_info['prev_record']) echo $member_prev;
 									?>
 									<?php
+
+
+
 									//temporay
+									if (isset($manpower_record[0])) {
+										$arr = $manpower_record[0];
+										$member_improvement_target = $arr['member_improvement_target'];
+										$pk =  $arr['id'];
+									} else {
+										$member_improvement_target = 0;
+										$pk =  "";
+									}
 									if ($report_info['prev_record']) {
 									?>
 

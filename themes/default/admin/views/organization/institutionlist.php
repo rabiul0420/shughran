@@ -48,7 +48,7 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},  null,  null, {"bSortable": false ,"bSearchable": false}, {"bSortable": false ,"bSearchable": false},  {"bSortable": false ,"bSearchable": false},{"bSearchable": false ,"bSearchable": false},  {"bSearchable": false ,"bSearchable": false},  {"bSearchable": false}, {"bSearchable": false},  {"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},  {  "mRender": organization_info}, {"bSortable": false}
+                {"bSortable": false, "mRender": checkbox},  null,  null, {"bSortable": false ,"bSearchable": false}, {"bSortable": false ,"bSearchable": false},  {"bSortable": false ,"bSearchable": false}, null,{"bSearchable": false ,"bSearchable": false},  {"bSearchable": false ,"bSearchable": false},  {"bSearchable": false}, {"bSearchable": false},  {"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},  {  "mRender": organization_info}, {"bSortable": false}
             ]
         }).fnSetFilteringDelay().dtFilter([
 
@@ -134,12 +134,14 @@
 							
 							
 							<th><?= 'শাখা কোড ' ?></th>
+                            <th><?= 'থানা কোড ' ?></th>
+                            
                             <th><?= 'সমর্থক সংগঠন পূর্ব' ?></th>
                             <th><?= 'সমর্থক সংগঠন বর্তমান' ?></th>
                             <th><?= 'সমর্থক সংগঠন বৃদ্ধি' ?></th>
                             <th><?= 'সমর্থক সংগঠন ঘাটতি' ?></th>
 
-                            <th><?= 'সমর্ধক' ?></th>
+                            <th><?= 'সমর্থক' ?></th>
                             <th><?= 'অন্যান্য ছাত্র সংগঠনের কর্মী ' ?></th>
                             <th><?= 'মোট ছাত্রী সংখ্যা' ?></th>
                             <th><?= 'ছাত্রী সমর্থক' ?></th>
@@ -152,7 +154,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td colspan="17" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                            <td colspan="18" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                         </tr>
                         </tbody>
 
@@ -166,6 +168,7 @@
                             <th></th>
                             <th></th>
 							 <th></th>
+                             <th></th>
                              <th></th>
                              <th></th>
                              <th></th>

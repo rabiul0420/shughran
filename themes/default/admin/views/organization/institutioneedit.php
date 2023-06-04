@@ -92,7 +92,21 @@
                     
 
 
-				 
+                    <div class="form-group all">
+                        <?= lang('থানা কোড', 'thana_code'); ?>
+
+
+                        <?php $tc = array();
+                        $tc[''] =  'থানা কোড';
+                        for ($i = 1; $i <= 60; $i++) {
+                            $tc[$i] =  $i;
+                        }
+
+                        $tc[100] =  100;
+
+                        echo form_dropdown('thana_code', $tc, $institution->thana_code, 'id="thana_code"  class="form-control select"   style="width:100%;" ');
+                        ?>
+                    </div>
 
 
 								

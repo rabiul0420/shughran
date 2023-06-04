@@ -105,7 +105,7 @@ class Organization extends MY_Controller
 
 
 
-    function current_calculation()
+    function current_calculation_institution()
     {
 
 
@@ -146,6 +146,57 @@ class Organization extends MY_Controller
        // $this->sma->print_arrays( $record);
    
     }
+
+
+
+
+    function current_calculation_organization()
+    {
+
+
+
+        $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+
+
+            $this->excel->getActiveSheet()->setTitle('organization list calculation');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'Branch ID');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'type_id');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'Number'); 
+
+
+           
+        $branches = $this->site->getAllBranches();
+        
+        $row = 2;
+
+        foreach($branches as $branch) {
+        $record = $this->site->query("SELECT id,organization_minimum_one_unit_current(id, '2021-12-23' , '2022-12-17',".$branch->id.",2021) current_number from `sma_institution`");
+        
+       
+
+        foreach ($record as $data_row) {
+            $this->excel->getActiveSheet()->SetCellValue('A' . $row, $branch->id);
+            $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row['id']);
+            $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row['current_number']); 
+
+            $row++;
+        }
+    
+    }
+    $filename = 'institutionlist_calculation_2021';
+    $this->load->helper('excel');
+    create_excel($this->excel, $filename);
+
+       // $this->sma->print_arrays( $record);
+   
+    }
+
+    
+
+
+
+
 
 
 
@@ -1191,7 +1242,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,  thana_code, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization", FALSE)
                 ->from('institutionlist');
             $this->datatables->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->datatables->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1201,7 +1252,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_active', 1);
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code, institution_name,  t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,  organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1,-1) prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1) increase, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease ,`supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,is_organization", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code, institution_name,  t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, thana_code,  organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1,-1) prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1) increase, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease ,`supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,is_organization", FALSE)
                 ->from('institutionlist');
             $this->datatables->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->datatables->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1331,6 +1382,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'date' => $this->sma->fsd($this->input->post('date')),
                 'code' => $institution_code,
                 'branch_id' => $this->input->post('branch_id'),
+                'thana_code' => $this->input->post('thana_code'),
                 'notes' => $this->input->post('notes'),
                 'supporter' => $this->input->post('supporter'),
                 'other_org_worker' => $this->input->post('other_org_worker'),
@@ -1420,6 +1472,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'institution_type' => $this->input->post('institution_parent_id'),
                 'institution_type_child' => $this->input->post('institution_type_id'),
                 'supporter' => $this->input->post('supporter'),
+                'thana_code' => $this->input->post('thana_code'),
                 'other_org_worker' => $this->input->post('other_org_worker'),
                 'total_female_student' => $this->input->post('total_female_student'),
                 'female_student_supporter' => $this->input->post('female_student_supporter'),

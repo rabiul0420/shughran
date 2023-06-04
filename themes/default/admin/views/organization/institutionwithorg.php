@@ -17,6 +17,17 @@
 }
 </style>
 <script>
+    function institution_type(int_type){
+ 
+
+ 
+
+
+ return int_type == 'branch' ? 'শাখা' : (   int_type == 'thana' ? 'থানা' : (   int_type == 'ward' ? 'ওয়ার্ড' : (  int_type == 'unit' ? 'উপশাখা' :  '' ) )    )   ;
+
+    }
+
+
     var oTable;
     $(document).ready(function () {
         oTable = $('#PRData').dataTable({
@@ -42,7 +53,7 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},   null, null, null,   null,null, null,null, null, null,null,  {"bSortable": false} 
+                {"bSortable": false, "mRender": checkbox},   null, null,  {"mRender":institution_type},   null,null, null,null, null, null,null,  {"bSortable": false} 
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
@@ -90,11 +101,11 @@
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("warehouses") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('organization/institutionbutorg') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
+                            <li><a href="<?= admin_url('organization/institutionwithorg') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('organization/institutionbutorg/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('organization/institutionwithorg/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
