@@ -35,10 +35,7 @@ table.dataTable, table.dataTable th, table.dataTable td {
         /*padding-left: 40px !important;
         padding-right: 40px !important;*/
     }
-    div.dataTables_wrapper {
-         width: 1000px;
-        margin: 0 auto;
-    }
+    
 	
 
 .type_1 .editable-click,
@@ -224,8 +221,8 @@ table.dataTable, table.dataTable th, table.dataTable td {
         
     }
     div.dataTables_wrapper {
-        width: 1000px;
-        margin: 0 auto;
+        width: 1050px;
+        /* margin: 0 auto; */
     }
 			
 				 </style>
@@ -391,6 +388,7 @@ $supporterorgbutorginfo = institution_row($institution->id, $supporter_org_but_o
 
 
 <td class="type_18">
+     
 <?php //echo $institutioninfo==null ? 0 : $institutioninfo['unit_prev']; ?>
 
 <?php  if($report_info['last_half'] != 1) 

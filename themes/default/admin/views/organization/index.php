@@ -147,8 +147,8 @@ table.dataTable, table.dataTable th, table.dataTable td {
         
     }
     div.dataTables_wrapper {
-        width: 1000px;
-        margin: 0 auto;
+        width: 1050px;
+        /* margin: 0 auto; */
     }
 			
 				 </style>

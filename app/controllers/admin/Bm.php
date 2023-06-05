@@ -78,7 +78,7 @@ class Bm extends MY_Controller
 		
 		 
 		 
-		// $this->sma->print_arrays($report_type);
+		//  $this->sma->print_arrays($this->data['detailinfo']);
 		$this->data['bm_summary'] = $this->getbm_summary($report_type['type'],$report_type['start'],$report_type['end'], $branch_id,$report_type);	 
 		
 		 
@@ -176,7 +176,7 @@ function getEntryInfo($report_type,$sources, $branch_id = NULL)
 		
 		$type =   ($cal_type == 'half_yearly') ? 'half_yearly' : 'annual';
 		 
-		$bm_recordinfo = $this->site->getOneRecord('bm_record','*',array('report_type'=>'half_yearly','branch_id'=>$branch_id,'date < '=>$end,'date > '=>$start, 'tmp'=>1),'id desc',1,0);	
+		$bm_recordinfo = $this->site->getOneRecord('bm_record','*',array('report_type'=>'half_yearly','branch_id'=>$branch_id,'date < '=>$end,'date > '=>$start, 'calculated_flag'=>2),'id desc',1,0);	
 		
 		 
 

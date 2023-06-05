@@ -196,6 +196,50 @@ class Organization extends MY_Controller
 
 
 
+    function current_calculation_unit()
+    {
+
+
+
+        $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+
+
+            $this->excel->getActiveSheet()->setTitle('Unit calculation');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'Branch ID');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'type_id');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'Number'); 
+
+
+           
+        $branches = $this->site->getAllBranches();
+        
+        $row = 2;
+
+        foreach($branches as $branch) {
+        
+        $record = $this->site->query("SELECT    institution_type_child ,   SUM(current_unit) current_unit 
+        FROM `sma_institutionlist` WHERE   branch_id = ".$branch->id." AND is_active = 1 
+        GROUP BY institution_type_child");
+        
+       
+
+        foreach ($record as $data_row) {
+            $this->excel->getActiveSheet()->SetCellValue('A' . $row, $branch->id);
+            $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row['institution_type_child']);
+            $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row['current_unit']); 
+
+            $row++;
+        }
+    
+    }
+    $filename = 'institutionlist_unit_calculation_2021';
+    $this->load->helper('excel');
+    create_excel($this->excel, $filename);
+
+       // $this->sma->print_arrays( $record);
+   
+    }
 
 
 

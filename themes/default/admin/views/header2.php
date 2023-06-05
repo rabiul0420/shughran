@@ -45,7 +45,10 @@
 	html, body{ font-family: SolaimanLipi !important;}
 	td, th{ font-family: SolaimanLipi !important;}
 	
-	.editableform .form-control{max-width:100px} #app_wrapper{width: 1340px; overflow-x:hidden}
+	.editableform .form-control{max-width:100px}
+    
+    
+    #app_wrapper2{width: 1340px; overflow-x:hidden}
     
     <?php if (  0 && ($Owner || $Admin) ) { ?>
 .tmp_hidden {display: none !important;} 
