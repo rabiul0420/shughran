@@ -416,7 +416,9 @@ $session_number = $row_info['session_number'];
 <a href="#"  class="editable editable-click"   data-type="number" data-table="training_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('training/detailupdate');?>" data-name="total_presence" data-title="Enter"><?php echo $row_info['total_presence'];?></a> 
  
 </td>
-<td ><?php echo ($session_number >0) ? $total_presence/$session_number : 0;?></td>
+<td>
+<?php echo ($session_number >0) ? number_format((float)($total_presence/$session_number), 2, '.', '') : 0;?>	
+</td>
  
  
 

@@ -182,7 +182,13 @@ echo $total_sup;
 
 <td><?php echo $secondary_dawat_report[0]['supporter_increase'];?></td>
 
-<td><?php $target = $lastyeardawat[0]['member'] * 12 +  $lastyeardawat[0]['associate'] *10+   $lastyeardawat[0]['worker'] *5 ;
+<td><?php
+//3:2:1
+//$target = $lastyeardawat[0]['member'] * 12 +  $lastyeardawat[0]['associate'] *10+   $lastyeardawat[0]['worker'] *5 ;
+
+ //temporary
+ $target = $dawat_summary[0]['supporter_target'];
+
 echo $target;
 ?></td>
 <td>
@@ -228,7 +234,12 @@ echo $total_friend;
 <td colspan="2"><?php echo $letgotovillage[0]['friend_increase'];?></td>
 <td><?php echo $secondary_dawat_report[0]['friend_increase'];?></td>
 <td>
-<?php $target = $lastyeardawat[0]['member'] * 20 +  $lastyeardawat[0]['associate'] *15+   $lastyeardawat[0]['worker'] *10 ;
+<?php 
+//3:2:1
+//$target = $lastyeardawat[0]['member'] * 20 +  $lastyeardawat[0]['associate'] *15+   $lastyeardawat[0]['worker'] *10 ;
+
+//temporary
+$target = $dawat_summary[0]['friend_target'];
 echo $target;
 ?></td>
 

@@ -1159,13 +1159,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->setActiveSheetIndex(0);
 
 
-            $this->excel->getActiveSheet()->setTitle('Institution with org');
-            $this->excel->getActiveSheet()->SetCellValue('A1', 'Code');
-            $this->excel->getActiveSheet()->SetCellValue('B1', 'Name');
-            $this->excel->getActiveSheet()->SetCellValue('C1', 'Type');
-            $this->excel->getActiveSheet()->SetCellValue('D1', 'Sub Type');
-            $this->excel->getActiveSheet()->SetCellValue('E1', 'Branch');
-            $this->excel->getActiveSheet()->SetCellValue('F1', 'Notes');
+            $this->excel->getActiveSheet()->setTitle('যে সব প্রতিষ্ঠানে সংগঠন আছে');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'প্রতিষ্ঠানের কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম ');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'মন্তব্য');
 
 
             $row = 2;
@@ -1867,13 +1867,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->setActiveSheetIndex(0);
 
 
-            $this->excel->getActiveSheet()->setTitle('Institution without org');
-            $this->excel->getActiveSheet()->SetCellValue('A1', 'Code');
-            $this->excel->getActiveSheet()->SetCellValue('B1', 'Name');
-            $this->excel->getActiveSheet()->SetCellValue('C1', 'Type');
-            $this->excel->getActiveSheet()->SetCellValue('D1', 'Sub Type');
-            $this->excel->getActiveSheet()->SetCellValue('E1', 'Branch');
-            $this->excel->getActiveSheet()->SetCellValue('F1', 'Notes');
+            $this->excel->getActiveSheet()->setTitle('যে সব প্রতিষ্ঠানে সংগঠন নেই');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'প্রতিষ্ঠানের কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম ');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'মন্তব্য ');
 
 
             $row = 2;
@@ -1991,34 +1991,34 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
-            $this->excel->getActiveSheet()->setTitle('Institution list');
-            $this->excel->getActiveSheet()->SetCellValue('A1', 'Code');
-            $this->excel->getActiveSheet()->SetCellValue('B1', 'Name');
-            $this->excel->getActiveSheet()->SetCellValue('C1', 'Type');
-            $this->excel->getActiveSheet()->SetCellValue('D1', 'Child');
-            $this->excel->getActiveSheet()->SetCellValue('E1', 'Branch');
+            $this->excel->getActiveSheet()->setTitle('প্রতিষ্ঠান তালিকা');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'প্রতিষ্ঠানের কোড');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড ');
 
-            $this->excel->getActiveSheet()->SetCellValue('F1', 'Supporter Org Prev');
-            $this->excel->getActiveSheet()->SetCellValue('G1', 'Supporter Org Current');
-            $this->excel->getActiveSheet()->SetCellValue('H1', 'Supporter Org Increase');
-            $this->excel->getActiveSheet()->SetCellValue('I1', 'Supporter Org Decrease');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'সমর্থক সংগঠন পূর্ব');
+            $this->excel->getActiveSheet()->SetCellValue('G1', 'সমর্থক সংগঠন বর্তমান');
+            $this->excel->getActiveSheet()->SetCellValue('H1', 'সমর্থক সংগঠন বৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('I1', 'সমর্থক সংগঠন ঘাটতি');
 
-            $this->excel->getActiveSheet()->SetCellValue('J1', 'Supporter');
-            $this->excel->getActiveSheet()->SetCellValue('K1', 'Other org worker');
-            $this->excel->getActiveSheet()->SetCellValue('L1', 'Total female student');
-            $this->excel->getActiveSheet()->SetCellValue('M1', 'Female student supporter');
-            $this->excel->getActiveSheet()->SetCellValue('N1', 'Non muslim student');
-            $this->excel->getActiveSheet()->SetCellValue('O1', 'Total student');
-            $this->excel->getActiveSheet()->SetCellValue('P1', 'Organization');
-            $this->excel->getActiveSheet()->SetCellValue('Q1', 'Org type');
-            $this->excel->getActiveSheet()->SetCellValue('R1', 'Org in Current Session');
-            $this->excel->getActiveSheet()->SetCellValue('S1', 'Notes');
-            $this->excel->getActiveSheet()->SetCellValue('T1', 'Added in current session?');
+            $this->excel->getActiveSheet()->SetCellValue('J1', 'সমর্থক');
+            $this->excel->getActiveSheet()->SetCellValue('K1', 'অন্যান্য ছাত্র সংগঠনের কর্মী');
+            $this->excel->getActiveSheet()->SetCellValue('L1', 'মোট ছাত্রী সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('M1', 'ছাত্রী সমর্থক');
+            $this->excel->getActiveSheet()->SetCellValue('N1', 'অমুসলিম ছাত্রছাত্রী');
+            $this->excel->getActiveSheet()->SetCellValue('O1', 'মোট ছাত্রছাত্রী সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('P1', 'সংগঠন');
+            $this->excel->getActiveSheet()->SetCellValue('Q1', 'সংগঠনের ধরণ ');
+            $this->excel->getActiveSheet()->SetCellValue('R1', 'বর্তমান সেশনে সংগঠন সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('S1', 'মন্তব্য');
+            $this->excel->getActiveSheet()->SetCellValue('T1', 'বর্তমান সেশনে যুক্ত কিনা ?');
 
-            $this->excel->getActiveSheet()->SetCellValue('U1', 'Unit Prev');
-            $this->excel->getActiveSheet()->SetCellValue('V1', 'Unit Increase');
-            $this->excel->getActiveSheet()->SetCellValue('W1', 'Unit Decrease');
-            $this->excel->getActiveSheet()->SetCellValue('X1', 'Unit Current');
+            $this->excel->getActiveSheet()->SetCellValue('U1', 'উপশাখা পূর্ব সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('V1', 'উপশাখা বৃৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('W1', 'উপশাখা ঘাটতি');
+            $this->excel->getActiveSheet()->SetCellValue('X1', 'উপশাখা সংখ্যা');
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -2617,13 +2617,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->setActiveSheetIndex(0);
 
 
-            $this->excel->getActiveSheet()->setTitle('Increase list of institution');
-            $this->excel->getActiveSheet()->SetCellValue('A1', 'Institution Code');
-            $this->excel->getActiveSheet()->SetCellValue('B1', 'Name');
-            $this->excel->getActiveSheet()->SetCellValue('C1', 'Type');
-            $this->excel->getActiveSheet()->SetCellValue('D1', 'Sub Type');
-            $this->excel->getActiveSheet()->SetCellValue('E1', 'Branch');
-            $this->excel->getActiveSheet()->SetCellValue('F1', 'Notes');
+            $this->excel->getActiveSheet()->setTitle('শিক্ষাপ্রতিষ্ঠান বৃদ্ধি তালিকা');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'প্রতিষ্ঠানের কোড');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম ');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'মন্তব্য ');
 
 
             $row = 2;
@@ -2918,13 +2918,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->setActiveSheetIndex(0);
 
 
-            $this->excel->getActiveSheet()->setTitle('Decrease list of institution');
-            $this->excel->getActiveSheet()->SetCellValue('A1', 'Institution Code');
-            $this->excel->getActiveSheet()->SetCellValue('B1', 'Name');
-            $this->excel->getActiveSheet()->SetCellValue('C1', 'Type');
-            $this->excel->getActiveSheet()->SetCellValue('D1', 'Sub Type');
-            $this->excel->getActiveSheet()->SetCellValue('E1', 'Branch');
-            $this->excel->getActiveSheet()->SetCellValue('F1', 'Notes');
+            $this->excel->getActiveSheet()->setTitle('শিক্ষাপ্রতিষ্ঠান ঘাটতি তালিকা');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'প্রতিষ্ঠানের কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম ');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'মন্তব্য ');
 
 
             $row = 2;

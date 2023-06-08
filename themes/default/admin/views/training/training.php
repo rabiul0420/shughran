@@ -262,7 +262,9 @@ $total_presence = sum_record($training_summary,'total_presence',$training->id,'t
  echo $total_presence;
 ?>
 </td>
-<td ><?php echo ($number >0) ? $total_presence/$number : 0;?></td>
+<td >
+<?php echo ($number >0) ? number_format((float)($total_presence/$number), 2, '.', '') : 0;?>
+ </td>
  
  
 
@@ -312,7 +314,9 @@ $total_presence = sum_record($training_summary,'total_presence',$training->id,'t
  echo $total_presence;
 ?>
 </td>
-<td ><?php echo ($delegate_number >0) ? $total_presence/$delegate_number : 0;?></td>
+<td >
+<?php echo ($delegate_number >0) ? number_format((float)($total_presence/$delegate_number), 2, '.', '') : 0;?>	
+</td>
  
  
 
@@ -401,7 +405,10 @@ $total_presence = sum_record($training_summary,'total_presence',$training->id,'t
  echo $total_presence;
 ?>
 </td>
-<td ><?php echo ($session_number >0) ? $total_presence/$session_number : 0;?></td>
+<td >
+<?php echo ($session_number >0) ? number_format((float)($total_presence/$session_number), 2, '.', '') : 0;?>	
+
+ </td>
  
  
 
@@ -460,7 +467,10 @@ $total_presence = sum_record($training_summary,'total_presence',$training->id,'t
  echo $total_presence;
 ?>
 </td>
-<td ><?php echo ($number >0) ? $total_presence/$number : 0;?></td>
+<td > 
+<?php echo ($number >0) ? number_format((float)($total_presence/$number), 2, '.', '') : 0;?>	
+
+</td>
  
  
 
