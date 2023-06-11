@@ -311,11 +311,15 @@
                             <tr>
                                 <td class="tg-pwj7" colspan="2" rowspan="2">বিজ্ঞান বিভাগের মাসিক বৈঠক</td>
                                 <td class="tg-pwj7">সংখ্যা</td>
-                                <td class="tg-0lax">C</td>
+                                <td class="tg-0lax"><a href="#" class="editable editable-click"   data-idname="" data-type="number" data-table="science_biggan_shompadok" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate2/' . $branch_id); ?>" data-name="meeting_number@science_biggan_shompadok" data-title="বৈঠক সংখ্যা">
+                                <?php echo   (isset($science_biggan_shompadok['meeting_number'])) ? $science_biggan_shompadok['meeting_number'] : 0; ?>
+                                        </a></td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7">উপস্থিতি</td>
-                                <td class="tg-0pky">E</td>
+                                <td class="tg-0pky"><a href="#" class="editable editable-click"   data-idname="" data-type="number" data-table="science_biggan_shompadok" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate2/' . $branch_id); ?>" data-name="meeting_presence@science_biggan_shompadok" data-title="বৈঠকে উপস্থিতি">
+                                <?php echo   (isset($science_biggan_shompadok['meeting_presence'])) ? $science_biggan_shompadok['meeting_presence'] : 0; ?>
+                                    </a></td>
                             </tr>
                         </table>
                         <table class="tg table table-header-rotated" id="testTable10">

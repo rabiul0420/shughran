@@ -2925,7 +2925,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
  
 	$flag = 1;
 	$msg = 'done';
-	if($is_changeable && (int)$this->input->get('value')<2) {
+	if($is_changeable ) {  //&& (int)$this->input->get('value')<2
        
 	 if($this->input->get('pk') && $this->input->get('pk')>0){ 
         $data=explode("@",$this->input->get('name'));

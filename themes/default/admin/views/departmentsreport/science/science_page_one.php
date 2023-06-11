@@ -417,8 +417,8 @@ $(document).ready(function(){
                                 <td class="tg-0pky" colspan=""> <?php echo $row_total_science_biggan_shompadok-$science_biggan_shompadok['biggan_shompadok'] ; ?> </td>
 
 
-                                <td class="tg-0pky" colspan=""> <?php echo $science_biggan_shompadok['biggan_shompadok']; ?> </td>
-                                <td class="tg-0pky" colspan=""> <?php echo $row_total_science_biggan_shompadok-$science_biggan_shompadok['biggan_shompadok'] ; ?> </td>
+                                <td class="tg-0pky" colspan=""> <?php echo $science_biggan_shompadok['meeting_number']; ?> </td>
+                                <td class="tg-0pky" colspan=""> <?php echo  $science_biggan_shompadok['meeting_presence'] ; ?> </td>
                             </tr>
                         </table>
                         <table class="tg table table-header-rotated" id="testTable10">

@@ -126,9 +126,11 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                      return params;
                  },
                  success: function (response , config) {
+                   
                      
                      console.log(config);
                       var data = $.parseJSON(response);
+                      
                       if(data.flag==3)
                           location.reload();
                       else if(data.flag==1) {

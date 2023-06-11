@@ -98,6 +98,8 @@ class Science extends MY_Controller
 
             $this->db->select_sum('shaka_shompadok');
             $this->db->select_sum('biggan_shompadok');
+            $this->db->select_sum('meeting_number');
+            $this->db->select_sum('meeting_presence');
             if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
