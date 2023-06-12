@@ -117,7 +117,7 @@ $(document).ready(function(){
                                 </a>
                             </td>
                             <td class="tg-0pky  type_1">
-                                <?php echo (isset($publicity_manpower['shodossho'])??''+isset($publicity_manpower['sathi'])??''+isset($publicity_manpower['kormi'])??'') ?>
+                                <?php echo  ( isset($publicity_manpower['shodossho']) ? $publicity_manpower['shodossho']:0 ) + (isset($publicity_manpower['sathi']) ? $publicity_manpower['sathi'] :0 ) + ( isset($publicity_manpower['kormi'])? $publicity_manpower['kormi'] :0)    ?>
                             </td>
                             <td class="tg-0pky  type_1">
                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 

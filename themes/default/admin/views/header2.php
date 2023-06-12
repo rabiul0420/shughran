@@ -305,7 +305,9 @@
                                 
                                  <li class="tmp_hidden"><a href="<?= admin_url('others/administrationbutorg'); ?>" class="line-height-lg">যে সব এলাকায় সংগঠন নেই</a></li>
 								  <li class="tmp_hidden"><a href="<?= admin_url('others/organizationinfo'); ?>" class="line-height-lg">সাংগঠনিক বিবরণ</a></li>
-                             </ul>
+                                  <li class="tmp_hidden"><a href="<?= admin_url('organization/thanalist'); ?>" class="line-height-lg">থানা তালিকা</a></li>
+                           
+                                </ul>
                          </li>
                          <li class="tmp_hidden"><a href="<?= admin_url('others/program'); ?>">সভাসমূহ</a></li>
                          <li class="dropdown tmp_hidden">

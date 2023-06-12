@@ -166,7 +166,7 @@ class Manpower extends MY_Controller
         $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
 
         if ($branch_id)
-            $this->data['associatecandidate_worker_transfer_in_out'] = $this->getassocandidate_worker_transferinfo($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
+        $this->data['associatecandidate_worker_transfer_in_out'] = $this->getassocandidate_worker_transferinfo($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
 
 
         $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
@@ -416,17 +416,17 @@ class Manpower extends MY_Controller
     function getassocandidate_worker_transferinfo($is_current, $start_date, $end_date, $branch_id = NULL, $cal_type = null, $report_date_info = null, $last_half = null)
     {
         $arrival_worker =  $this->site->query_binding("SELECT  COUNT(id)  transfer_in_worker
-                  from sma_manpower_transfer_assoworker WHERE orgstatus_id IN(3,13) AND to_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+                  from sma_manpower_transfer_assoworker WHERE orgstatus_id IN(3,13) AND `status` = 1  AND to_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 
         $transfer_worker =  $this->site->query_binding("SELECT  COUNT(id)  transfer_out_worker
- from sma_manpower_transfer_assoworker WHERE orgstatus_id IN(3,13) AND from_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+ from sma_manpower_transfer_assoworker WHERE orgstatus_id IN(3,13) AND from_branch_id = ? AND `status` = 1 AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 
 
         $arrival_associatecandidate =  $this->site->query_binding("SELECT  COUNT(id)  transfer_in_aasocuatecandidate
-                  from sma_manpower_transfer_assoworker WHERE orgstatus_id =13 AND to_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+                  from sma_manpower_transfer_assoworker WHERE orgstatus_id =13 AND `status` = 1 AND to_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 
         $transfer_associatecandidate =  $this->site->query_binding("SELECT  COUNT(id)  transfer_out_aasocuatecandidate
- from sma_manpower_transfer_assoworker WHERE orgstatus_id = 13 AND from_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+ from sma_manpower_transfer_assoworker WHERE orgstatus_id = 13 AND from_branch_id = ? AND `status` = 1 AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 
 
         // $this->sma->print_arrays($result);

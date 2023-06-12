@@ -172,6 +172,7 @@ class Publicity extends MY_Controller
             $this->data['publicity_shova_shomuho'] = $this->db->get('publicity_shova_shomuho')->first_row('array');
         } else {
 
+            
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');

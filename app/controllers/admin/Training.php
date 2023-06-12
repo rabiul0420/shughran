@@ -889,6 +889,8 @@ FROM `sma_library_calculated` WHERE `report_type` = ? AND calculated_year = ? ",
 	function gettotalreader($start, $end, $prev, $branch_id = NULL)
 	{
 
+
+		 
 		if ($branch_id)
 			return $this->site->query_binding("SELECT  `worker_increase_decrease`(?,?,?,?) current_manpower  ", array($start, $end, $branch_id, $prev));
 
