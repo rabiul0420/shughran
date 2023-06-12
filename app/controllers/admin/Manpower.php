@@ -165,6 +165,9 @@ class Manpower extends MY_Controller
 
         $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
 
+        if ($branch_id)
+            $this->data['associatecandidate_worker_transfer_in_out'] = $this->getassocandidate_worker_transferinfo($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
+
 
         $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
         $this->data['postponemc'] = $this->postlog(12, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
@@ -175,7 +178,7 @@ class Manpower extends MY_Controller
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
 
 
-        //  $this->sma->print_arrays( $this->data['report_info']); 
+       //  $this->sma->print_arrays( $this->data['manpower_record']); 
 
 
 
@@ -410,7 +413,32 @@ class Manpower extends MY_Controller
         return $result;
     }
 
+    function getassocandidate_worker_transferinfo($is_current, $start_date, $end_date, $branch_id = NULL, $cal_type = null, $report_date_info = null, $last_half = null)
+    {
+        $arrival_worker =  $this->site->query_binding("SELECT  COUNT(id)  transfer_in_worker
+                  from sma_manpower_transfer_assoworker WHERE orgstatus_id IN(3,13) AND to_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 
+        $transfer_worker =  $this->site->query_binding("SELECT  COUNT(id)  transfer_out_worker
+ from sma_manpower_transfer_assoworker WHERE orgstatus_id IN(3,13) AND from_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+
+
+        $arrival_associatecandidate =  $this->site->query_binding("SELECT  COUNT(id)  transfer_in_aasocuatecandidate
+                  from sma_manpower_transfer_assoworker WHERE orgstatus_id =13 AND to_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+
+        $transfer_associatecandidate =  $this->site->query_binding("SELECT  COUNT(id)  transfer_out_aasocuatecandidate
+ from sma_manpower_transfer_assoworker WHERE orgstatus_id = 13 AND from_branch_id = ? AND process_date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+
+
+        // $this->sma->print_arrays($result);
+
+        return array(
+            'arrival_worker' => $arrival_worker[0]['transfer_in_worker'],
+      
+        'transfer_worker' => $transfer_worker[0]['transfer_out_worker'],
+            'arrival_associatecandidate' => $arrival_associatecandidate[0]['transfer_in_aasocuatecandidate'],
+            'transfer_associatecandidate' => $transfer_associatecandidate[0]['transfer_out_aasocuatecandidate'],
+  );
+    }
 
     public function newName($field)
     {
@@ -3499,11 +3527,11 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         $this->excel->getActiveSheet()->SetCellValue('F18', $worker_improvement);
         $this->excel->getActiveSheet()->SetCellValue('G18', $worker_arrival);
         $this->excel->getActiveSheet()->SetCellValue('H18', $worker_improvement_target);
-        
-         
+
+
         $this->excel->getActiveSheet()->SetCellValue('I18', ($worker_improvement_target > 0) ? round(100 * $worker_improvement / $worker_improvement_target, 2) : 0);
-        
-        
+
+
         $this->excel->getActiveSheet()->SetCellValue('J18', $total_worker_decrease);
         $this->excel->getActiveSheet()->SetCellValue('K18', $worker_improvement_d);
         $this->excel->getActiveSheet()->SetCellValue('L18', $worker_endstd);
@@ -3545,7 +3573,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         $this->excel->getActiveSheet()->SetCellValue('T19', "=SUM(T14,T16,T18)");
 
         $this->excel->getActiveSheet()->getStyle("B19:T19")->getBorders()
-            ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM); 
+            ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
 
 
         $filename = 'manpower_report_' . $this->input->get('year') . '_' . $this->input->get('branch');

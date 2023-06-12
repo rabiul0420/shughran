@@ -298,7 +298,7 @@ class Organization extends MY_Controller
         if ($branch_id) {
 
 
-            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  0 prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
+            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  prev_institution(institution_type_child, " . $prev . ", " . $branch_id . ") prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
       institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution
      FROM `sma_institutionlist`
      WHERE `date` BETWEEN '" . $start . "' AND '" . $end . "' AND branch_id = " . $branch_id . "
@@ -373,7 +373,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
    GROUP BY a.institution_type_child ");
         } else {
 
-            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  '0' prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
+            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  prev_institution(institution_type_child, " . $prev . ", -1) prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
         institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution
        FROM `sma_institutionlist`
        WHERE `date` BETWEEN '" . $start . "' AND '" . $end . "' 
