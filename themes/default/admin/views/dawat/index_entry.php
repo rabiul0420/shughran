@@ -334,7 +334,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">শুভাকাঙ্খী
-                                    <?php $total_ww = $dawat_summary[0]['personal_dawat_ww'] + $dawat_summary[0]['group_dawat_ww'] + $dawatgroupsend[0]['ww_increase'] + $school_dawat_report[0]['ww_increase'] + $madrasha_dawat_report[0]['ww_increase'] + $college_dawat_report[0]['ww_increase'] + $university_dawat_report[0]['ww_increase'] + $fortnight_dawat_report[0]['ww_increase'] + $letgotovillage[0]['ww_increase'];
+                                    <?php $total_ww = $dawat_summary[0]['personal_dawat_ww'] + $dawat_summary[0]['group_dawat_ww'] + $dawatgroupsend[0]['ww_increase'] + $school_dawat_report[0]['ww_increase'] + $madrasha_dawat_report[0]['ww_increase'] + $college_dawat_report[0]['ww_increase'] + $university_dawat_report[0]['ww_increase'] + $fortnight_dawat_report[0]['ww_increase'] + $letgotovillage[0]['ww_increase']+$secondary_dawat_report[0]['ww_increase'];
                                     ?>
                                 </td>
                                 <td colspan="3"><?php if ($report_info['prev_record'])  echo $lastyeardawat[0]['wellwisher']; ?></td>

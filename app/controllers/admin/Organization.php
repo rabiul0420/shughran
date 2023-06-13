@@ -2016,9 +2016,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('T1', 'বর্তমান সেশনে যুক্ত কিনা ?');
 
             $this->excel->getActiveSheet()->SetCellValue('U1', 'উপশাখা পূর্ব সংখ্যা');
-            $this->excel->getActiveSheet()->SetCellValue('V1', 'উপশাখা বৃৃদ্ধি');
-            $this->excel->getActiveSheet()->SetCellValue('W1', 'উপশাখা ঘাটতি');
-            $this->excel->getActiveSheet()->SetCellValue('X1', 'উপশাখা সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('V1', 'উপশাখা সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('W1', 'উপশাখা বৃৃদ্ধি');
+            $this->excel->getActiveSheet()->SetCellValue('X1', 'উপশাখা ঘাটতি');
+            
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -2049,8 +2050,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('S' . $row, $data_row->notes);
                 $this->excel->getActiveSheet()->SetCellValue('T' . $row, strtotime($data_row->date) > strtotime($start) &&  strtotime($data_row->date) < strtotime($end) ? 'Current' : 'not in current');
                 //$this->excel->getActiveSheet()->SetCellValue('T' . $row, $data_row->date); 
-                $this->excel->getActiveSheet()->SetCellValue('U' . $row, $data_row->current_unit);
+                
                 $this->excel->getActiveSheet()->SetCellValue('V' . $row, $data_row->prev_unit);
+                $this->excel->getActiveSheet()->SetCellValue('U' . $row, $data_row->current_unit);
                 $this->excel->getActiveSheet()->SetCellValue('W' . $row, $data_row->increase);
                 $this->excel->getActiveSheet()->SetCellValue('X' . $row, $data_row->decrease);
                 $row++;
@@ -2063,6 +2065,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(50);
             $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
             $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('U')->setWidth(30);
+            $this->excel->getActiveSheet()->getColumnDimension('V')->setWidth(30);
+            $this->excel->getActiveSheet()->getColumnDimension('W')->setWidth(30);
+            $this->excel->getActiveSheet()->getColumnDimension('X')->setWidth(30);
             $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
             $this->excel->getActiveSheet()->getStyle('C2:P' . $row)->getAlignment()->setWrapText(true);
 
