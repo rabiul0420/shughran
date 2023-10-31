@@ -20,3 +20,6 @@ files/
 !application/logs/index.html
 !application/logs/.htaccess
 #uuuu
+
+app2/*
+themes2/*
