@@ -44,7 +44,7 @@
             {column_number: 4, filter_default_label: "[<?='Oath';?>]", filter_type: "text", data: []},
             {column_number: 5, filter_default_label: "[<?='Session';?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?='Responsibility';?>]", filter_type: "text", data: []},
-            {column_number: 7, filter_default_label: "[<?='Std Life';?>]", filter_type: "text", data: []},
+            {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
             
              
             
@@ -135,7 +135,7 @@
 							<th><?= 'শপথ' ?></th>
 							<th><?= 'শ্রেণি/বর্ষ ' ?></th>
 							 <th><?= 'দায়িত্ব' ?></th>
-							  <th><?= 'ছাত্র জীবন' ?></th>
+							  <th><?= 'থানা কোড' ?></th>
                              <th style="min-width:65px; text-align:center;"><?= 'ঘাটতি' ?></th>
 							 <th style="min-width:65px; text-align:center;"><?= 'মুলতুবি ' ?></th>
 							 

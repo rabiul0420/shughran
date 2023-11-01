@@ -29,7 +29,7 @@ class Associate extends MY_Controller
        
 	   
 	   
-	   $this->sma->checkPermissions();
+	$this->sma->checkPermissions();
 	if($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id')!=$branch_id)){
 		 
 		$this->session->set_flashdata('warning', lang('access_denied'));
@@ -307,7 +307,7 @@ function getIncreaseAssociate($process_id,$branch_id = NULL)
         if ($branch_id) {
          
         $this->datatables
-                ->select($this->db->dbprefix('associatelog') . ".id as id,  {$this->db->dbprefix('manpower')}.id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife, t2.name as from_branch", FALSE)
+                ->select($this->db->dbprefix('associatelog') . ".id as id,  {$this->db->dbprefix('manpower')}.id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, t2.name as from_branch", FALSE)
 				->from('associatelog');
 		$this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
 				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1);		
@@ -319,7 +319,7 @@ function getIncreaseAssociate($process_id,$branch_id = NULL)
 		
 		} else {
            $this->datatables
-                ->select($this->db->dbprefix('associatelog') . ".id as id,  {$this->db->dbprefix('manpower')}.id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife, t2.name as from_branch", FALSE)
+                ->select($this->db->dbprefix('associatelog') . ".id as id,  {$this->db->dbprefix('manpower')}.id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, t2.name as from_branch", FALSE)
 				->from('associatelog');
 		$this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
 				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1);		
@@ -537,7 +537,7 @@ function getDecreaseAssociate($process_id,$branch_id = NULL)
         if ($branch_id) {
          
         $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('associatelog');
 		$this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
 				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2);		
@@ -548,7 +548,7 @@ function getDecreaseAssociate($process_id,$branch_id = NULL)
 		
 		} else {
            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('associatelog');
 		$this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
 				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2);		
@@ -760,7 +760,7 @@ foreach($process_list as $key=>$process){
         if ($branch_id) {
          
         $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('associate');
 		$this->datatables->join('manpower', 'manpower.id=associate.manpower_id', 'left')
 				->where('associate.is_associate_now', 1);		
@@ -771,7 +771,7 @@ foreach($process_list as $key=>$process){
 		
 		} else {
            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('associate');
 		$this->datatables->join('manpower', 'manpower.id=associate.manpower_id', 'left')
 				->where('associate.is_associate_now', 1);		
@@ -1418,6 +1418,7 @@ function associatepostpone($manpower_id = NULL)
 				'name' => $this->input->post('name'),
 				'orgstatus_id' => 2,
 				'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
 				'user_id' => $this->session->userdata('user_id'),
                // 'notes' => $this->input->post('notes'),
 				'associatecode' => sprintf('%03d',$branchinfo->code).sprintf('%04d',$branchinfo->last_assocode+1),

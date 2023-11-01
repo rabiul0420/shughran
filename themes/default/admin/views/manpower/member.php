@@ -42,7 +42,7 @@
             {column_number: 4, filter_default_label: "[<?='শপথ';?>]", filter_type: "text", data: []},
             {column_number: 5, filter_default_label: "[<?='সেশন';?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?='দায়িত্ব';?>]", filter_type: "text", data: []},
-            {column_number: 7, filter_default_label: "[<?='ছাত্র জীবন';?>]", filter_type: "text", data: []},
+            {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
         ], "footer");
 
     });
@@ -121,7 +121,7 @@
                             <th><?= 'শপথ' ?></th>
 							<th><?= 'শ্রেণি/বর্ষ' ?></th>
                             <th><?= 'দায়িত্ব' ?></th>
-                            <th><?= 'ছাত্র জীবন' ?></th>
+                            <th><?= 'থানা কোড' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'ঘাটতি' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'মুলতবি' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'Action' ?></th>

@@ -48,7 +48,7 @@
             {column_number: 4, filter_default_label: "[<?='Oath';?>]", filter_type: "text", data: []},
             {column_number: 5, filter_default_label: "[<?='Session';?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?='Responsibility';?>]", filter_type: "text", data: []},
-            {column_number: 7, filter_default_label: "[<?='Std Life';?>]", filter_type: "text", data: []},
+            {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
             
              
             
@@ -201,7 +201,7 @@ else {
 							<th><?= 'শ্রেণি/বর্ষ ' ?></th>
 							 
 							  <th><?php echo  in_array($process->id,array(9,10,11,8,14)) ? "সর্বশেষ দায়িত্ব" : "দায়িত্ব"; ?></th>
-							  <th><?= 'ছাত্র জীবন' ?></th>
+							  <th><?= 'থানা কোড' ?></th>
                                   </tr>
                         </thead>
                         <tbody>

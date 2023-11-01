@@ -303,7 +303,7 @@ function getIncreaseMembercandidate($process_id,$branch_id = NULL)
         if ($branch_id) {
          
         $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('member_candidatelog');
 		$this->datatables->join('manpower', 'manpower.id=member_candidatelog.manpower_id', 'left')
 				->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 1);		
@@ -314,7 +314,7 @@ function getIncreaseMembercandidate($process_id,$branch_id = NULL)
 		
 		} else {
            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('member_candidatelog');
 		$this->datatables->join('manpower', 'manpower.id=member_candidatelog.manpower_id', 'left')
 				->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 1);		
@@ -398,7 +398,7 @@ function getDecreaseMembercandidate($process_id,$branch_id = NULL)
         if ($branch_id) {
          
         $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('member_candidatelog');
 		$this->datatables->join('manpower', 'manpower.id=member_candidatelog.manpower_id', 'left')
 				->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 2);		
@@ -409,7 +409,7 @@ function getDecreaseMembercandidate($process_id,$branch_id = NULL)
 		
 		} else {
            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('member_candidatelog');
 		$this->datatables->join('manpower', 'manpower.id=member_candidatelog.manpower_id', 'left')
 				->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 2);		
@@ -624,7 +624,7 @@ foreach($process_list as $key=>$process){
         if ($branch_id) {
          
         $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('member_candidate');
 		$this->datatables->join('manpower', 'manpower.id=member_candidate.manpower_id', 'left')
 				->where('member_candidate.is_member_candidate_now', 1);		
@@ -635,7 +635,7 @@ foreach($process_list as $key=>$process){
 		
 		} else {
            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('member_candidate');
 		$this->datatables->join('manpower', 'manpower.id=member_candidate.manpower_id', 'left')
 				->where('member_candidate.is_member_candidate_now', 1);		
