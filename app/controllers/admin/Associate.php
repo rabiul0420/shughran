@@ -115,6 +115,7 @@ class Associate extends MY_Controller
                     case 'prossion_target_sub': $field = 'পেশাগত টার্গেট-সাব-সেক্টর'; break;
                     case 'studentlife': $field = 'ছাত্রত্ব'; break;
                     case 'district': $field = 'নিজ জেলা'; break;
+                    case 'upazilla_name': $field = 'উপজেলা/থানা '; break;
                     case 'associate_oath_date': $field = 'সাথী হওয়ার তারিখ'; break;
                     case 'thana_code': $field = 'থানা কোড'; break;
                     case 'blood_group': $field = 'ব্লাড গ্রুপ'; break; 
@@ -657,7 +658,7 @@ function getPostpone($branch_id = NULL)
         if ($branch_id) {
          
         $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('postpone');
 		$this->datatables->join('manpower', 'manpower.id=postpone.manpower_id', 'left')  
 				->where('postpone.end_date', '2050-12-31')->where('(manpower.orgstatus_id = 2 OR manpower.orgstatus_id = 12)');		
@@ -671,7 +672,7 @@ function getPostpone($branch_id = NULL)
 		
 		} else {
            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
 				->from('postpone');
 		$this->datatables->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
 				->where('postpone.end_date', '2050-12-31')->where('(manpower.orgstatus_id = 2 OR manpower.orgstatus_id = 12)')->where('is_postpone', 1);		
@@ -2018,7 +2019,7 @@ function associatepostpone($manpower_id = NULL)
 		// $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
 		
 		$this->db
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,{$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
 				->from('associatelog')
 				->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
 				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1)
@@ -2027,6 +2028,7 @@ function associatepostpone($manpower_id = NULL)
 				->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
 				->join('countries', 'manpower.foreign_country=countries.id', 'left')
                 ->join('district', 'manpower.district=district.id', 'left')
+                ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
 				->order_by('manpower.associate_oath_date ASC');
 		  
 				$this->db->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
@@ -2078,7 +2080,8 @@ function associatepostpone($manpower_id = NULL)
                             'prossion_target',				
                             'prossion_target_sub',				
                             'studentlife',				
-                            'district',		
+                            'district',	
+                            'upazilla_name',		
                         );
                         break;
                     case 15:
@@ -2174,7 +2177,7 @@ function associatepostpone($manpower_id = NULL)
 		// $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
 		
 		$this->db
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,{$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district, upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
 				->from('associatelog')
 				->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
 				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2)
@@ -2183,6 +2186,7 @@ function associatepostpone($manpower_id = NULL)
 				->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
 				->join('countries', 'manpower.foreign_country=countries.id', 'left')
                 ->join('district', 'manpower.district=district.id', 'left')
+                ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
 				->order_by('manpower.associate_oath_date ASC');
 		  
 				$this->db->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
@@ -2221,7 +2225,8 @@ function associatepostpone($manpower_id = NULL)
                             'education_qualification',
                             'mobile',
                             'current_profession',
-                            'district'	
+                            'district',
+                            'upazilla_name'	
                         );
                         break;
                     case 15:
@@ -2394,7 +2399,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
 		// $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
 		
 		$this->db
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('associate')}.oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,{$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death,institution_type_child,
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('associate')}.oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name,   {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death,institution_type_child,
                 thana_code,	
                 blood_group,
                 single_digit,
@@ -2420,6 +2425,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
 				->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
 				->join('countries', 'manpower.foreign_country=countries.id', 'left')
 				->join('district', 'manpower.district=district.id', 'left')
+                ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
 				->order_by('manpower.associate_oath_date ASC');
 		  
 		  
@@ -2461,6 +2467,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                     'prossion_target_sub',
                     'studentlife',
                     'district',
+                    'upazilla_name',
                     'thana_code',	
                     'blood_group',
                     'single_digit',

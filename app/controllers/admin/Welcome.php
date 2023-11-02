@@ -27,10 +27,20 @@ class Welcome extends MY_Controller
     {
 
 
+       // $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+      $report_type = $this->report_type();
+      $this->data['confirmreport'] = $this->site->getOneRecord('confirmreport', "*", array('branch_id' => $this->session->userdata('branch_id'), 'year' => substr($report_type['start'], 0, 4), 'report_type' => $report_type['type']));
+       
+      //$this->data['confirmreport'] = $this->site->getOneRecord('confirmreport', "*", array('branch_id' => 13, 'year' => substr($report_type['start'], 0, 4), 'report_type' => $report_type['type']));
+       
+
+
+
+
 
         $bc = array(array('link' => '#', 'page' => lang('dashboard')));
         $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);
-        //$this->sma->print_arrays($this->data);
+      // $this->sma->print_arrays($this->data['confirmreport']);
        
         $this->page_construct('dashboard', $meta, $this->data);
     }
@@ -416,7 +426,7 @@ class Welcome extends MY_Controller
 
 
 
-    function report_type()
+    function report_typeOLD()
     {
 
         $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => date('Y')), 'id desc', 1, 0);

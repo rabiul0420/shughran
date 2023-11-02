@@ -37,10 +37,10 @@ function row_status($x)
 
 
 
-
                     <div class="col-lg-1 col-md-2 col-xs-6">
                         <a class="blightBlue white quick-button small" href="<?= admin_url('notifications') ?>">
                             <i class="fa fa-comments"></i>
+                             
 
                             <p><?= lang('notifications') ?></p>
                             <!--<span class="notification green">4</span>-->
@@ -68,10 +68,38 @@ function row_status($x)
         </div>
     </div>
 <?php } else { ?>
+     
+
+  
+
+
+
+
+<?php if($confirmreport !==false) {?>
+<div class="alert alert-success alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Congratulations!</strong> You branch report has been confirmed!
+</div>
+<?php } else {?>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Not Completed!</strong> You branch report is yet to be confirmed!
+</div>
+<?php } ?>
+
+
+
+
+
+
+
+
+
 
 <?php } ?>
 
 
+ 
 
 
 
