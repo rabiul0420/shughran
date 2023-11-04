@@ -26,7 +26,7 @@ class Welcome extends MY_Controller
     public function index($branch_id = NULL)
     {
 
-
+//  sssss
 
         $bc = array(array('link' => '#', 'page' => lang('dashboard')));
         $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);

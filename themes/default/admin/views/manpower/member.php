@@ -121,7 +121,7 @@
                             <th><?= 'শপথ' ?></th>
 							<th><?= 'শ্রেণি/বর্ষ' ?></th>
                             <th><?= 'দায়িত্ব' ?></th>
-                            <th><?= 'ছাত্র জীবন' ?></th>
+                            <th><?= 'থানা' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'ঘাটতি' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'মুলতবি' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'Action' ?></th>

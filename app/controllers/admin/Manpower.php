@@ -933,6 +933,11 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
+
+        // $this->sma->print_arrays($this->data);
+
+
+
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('manpower')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
         $this->page_construct('manpower/member', $meta, $this->data, 'leftmenu/manpower');
