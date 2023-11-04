@@ -50,61 +50,6 @@
                 //if(aData[7] > aData[9]){ nRow.className = "product_link warning"; } else { nRow.className = "product_link"; }
                 return nRow;
             },
-<<<<<<< HEAD
-            "aoColumns": [{
-                "bVisible": false
-            }, null, null, <?php if ($branch_id) {
-                                echo '{"bVisible": false},';
-                            } else {
-                                echo '{"bSortable": true},';
-                            } ?> null, null, null, null, null]
-        }).fnSetFilteringDelay().dtFilter([{
-                column_number: 1,
-                filter_default_label: "[<?= lang('code'); ?>]",
-                filter_type: "text",
-                data: []
-            },
-            {
-                column_number: 2,
-                filter_default_label: "[<?= lang('name'); ?>]",
-                filter_type: "text",
-                data: []
-            },
-            {
-                column_number: 3,
-                filter_default_label: "[<?= 'branch'; ?>]",
-                filter_type: "text",
-                data: []
-            },
-            {
-                column_number: 4,
-                filter_default_label: "[<?= 'Oath'; ?>]",
-                filter_type: "text",
-                data: []
-            },
-            {
-                column_number: 5,
-                filter_default_label: "[<?= 'Session'; ?>]",
-                filter_type: "text",
-                data: []
-            },
-            {
-                column_number: 6,
-                filter_default_label: "[<?= 'Responsibility'; ?>]",
-                filter_type: "text",
-                data: []
-            },
-            {
-                column_number: 7,
-                filter_default_label: "[<?= 'Std Life'; ?>]",
-                filter_type: "text",
-                data: []
-            },
-
-
-
-
-=======
             "aoColumns": [
                 {"bVisible": false},   null, null, <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,null,null,null,null
             ]
@@ -120,7 +65,6 @@
              
             
             
->>>>>>> b298cb713f720527e88cfd503236821f0211889e
         ], "footer");
 
     });
@@ -256,23 +200,6 @@
                 <div class="table-responsive">
                     <table id="PRData" class="table table-bordered table-condensed table-hover table-striped">
                         <thead>
-<<<<<<< HEAD
-                            <tr class="primary">
-                                <th><?= lang("code") ?></th>
-                                <th><?= 'কোড' ?></th>
-                                <th><?= 'নাম' ?></th>
-
-                                <th><?= "শাখা" ?></th>
-
-
-
-                                <th><?= 'শপথ' ?></th>
-                                <th><?= 'শ্রেণি/বর্ষ ' ?></th>
-                                <th><?= 'দায়িত্ব' ?></th>
-                                <th><?= 'ছাত্র জীবন' ?></th>
-                                <th> <?php echo $process->id == 15 ? 'শাখা থেকে' : ''; ?></th>
-                            </tr>
-=======
                         <tr class="primary">
                              <th><?= lang("code") ?></th>
                             <th><?= 'কোড' ?></th>
@@ -288,7 +215,6 @@
 							  <th><?= 'থানা কোড' ?></th>
                               <th> <?php echo $process->id==15 ? 'শাখা থেকে' : '';?></th>
                                   </tr>
->>>>>>> b298cb713f720527e88cfd503236821f0211889e
                         </thead>
                         <tbody>
                             <tr>

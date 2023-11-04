@@ -192,19 +192,6 @@
                 <div class="table-responsive">
                     <table id="PRData" class="table table-bordered table-condensed table-hover table-striped">
                         <thead>
-<<<<<<< HEAD
-                            <tr class="primary">
-                                <th><?= lang("code") ?></th>
-                                <th><?= 'কোড' ?></th>
-                                <th><?= 'নাম' ?></th>
-                                <th><?= "শাখা" ?></th>
-                                <th><?= 'শপথ' ?></th>
-                                <th><?= 'শ্রেণি/বর্ষ ' ?></th>
-                                <th><?php echo  in_array($process->id, array(9, 10, 11, 8, 14)) ? "সর্বশেষ দায়িত্ব" : "দায়িত্ব"; ?></th>
-                                <th><?= 'ছাত্র জীবন' ?></th>
-                                <th> <?php echo $process->id == 15 ? 'স্থানান্তরিত শাখা' : ''; ?></th>
-                            </tr>
-=======
                         <tr class="primary">
                              <th><?= lang("code") ?></th>
                               <th><?= 'কোড' ?></th>
@@ -219,7 +206,6 @@
 							  <th><?php echo  in_array($process->id,array(9,10,11,8,14)) ? "সর্বশেষ দায়িত্ব" : "দায়িত্ব"; ?></th>
 							  <th><?= 'থানা কোড' ?></th>
                                   </tr>
->>>>>>> b298cb713f720527e88cfd503236821f0211889e
                         </thead>
                         <tbody>
                             <tr>

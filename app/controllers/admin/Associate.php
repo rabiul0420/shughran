@@ -26,6 +26,8 @@ class Associate extends MY_Controller
     function index($branch_id = NULL)
     {
 
+        echo 111;
+        exit;
 
 
 
@@ -38,15 +40,10 @@ class Associate extends MY_Controller
             admin_redirect('associate/' . $this->session->userdata('branch_id'));
         }
 
-
-
-        //$this->manpower_model->manpowerUpdate('manpower',array('orgstatus_id'=>NULL),array('id'=>1)); 
-
-
-       
+        //$this->manpower_model->manpowerUpdate('manpower',array('orgstatus_id'=>NULL),array('id'=>1));
 	   
 	   
-	$this->sma->checkPermissions();
+	    $this->sma->checkPermissions();
 	if($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id')!=$branch_id)){
 		 
 		$this->session->set_flashdata('warning', lang('access_denied'));
@@ -73,6 +70,11 @@ class Associate extends MY_Controller
 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Associate'));
         $meta = array('page_title' => 'Associate', 'bc' => $bc);
+
+
+       
+
+
         $this->page_construct('associate/associate', $meta, $this->data, 'leftmenu/manpower');
     }
     function getvalue($value, $array, $field)

@@ -121,11 +121,7 @@
                             <th><?= 'শপথ' ?></th>
 							<th><?= 'শ্রেণি/বর্ষ' ?></th>
                             <th><?= 'দায়িত্ব' ?></th>
-<<<<<<< HEAD
-                            <th><?= 'থানা' ?></th>
-=======
                             <th><?= 'থানা কোড' ?></th>
->>>>>>> b298cb713f720527e88cfd503236821f0211889e
                             <th style="min-width:65px; text-align:center;"><?= 'ঘাটতি' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'মুলতবি' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'Action' ?></th>
