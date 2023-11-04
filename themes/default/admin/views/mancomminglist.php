@@ -151,7 +151,7 @@ function row_status($x)
                     "aoColumns": [{
                         "bSortable": false,
                         "mRender": checkbox
-                    }, null, null, null, null, null, {
+                    }, null, null, null,null, null, null, null, {
                         "bSortable": false
                     }]
                 }).fnSetFilteringDelay().dtFilter([{
@@ -162,24 +162,36 @@ function row_status($x)
                     },
                     {
                         column_number: 2,
-                        filter_default_label: "[<?= 'শাখা'; ?>]",
+                        filter_default_label: "[<?= 'সদস্য কোড'; ?>]",
                         filter_type: "text",
                         data: []
                     },
                     {
-                        column_number: 3,
-                        filter_default_label: "[<?= "শাখা"; ?>]",
+                        column_number:3,
+                        filter_default_label: "[<?= 'সাথী কোড'; ?>]",
                         filter_type: "text",
                         data: []
                     },
                     {
                         column_number: 4,
-                        filter_default_label: "[<?= 'সাংগঠনিক অবস্থা'; ?>]",
+                        filter_default_label: "[<?= 'শাখা'; ?>]",
                         filter_type: "text",
                         data: []
                     },
                     {
                         column_number: 5,
+                        filter_default_label: "[<?= "শাখা"; ?>]",
+                        filter_type: "text",
+                        data: []
+                    },
+                    {
+                        column_number: 6,
+                        filter_default_label: "[<?= 'সাংগঠনিক অবস্থা'; ?>]",
+                        filter_type: "text",
+                        data: []
+                    },
+                    {
+                        column_number: 7,
                         filter_default_label: "[<?= 'নোট'; ?>]",
                         filter_type: "text",
                         data: []
@@ -238,7 +250,10 @@ function row_status($x)
                                         <th style="min-width:30px; width: 30px; text-align: center;">
                                             <input class="checkbox checkth" type="checkbox" name="check" />
                                         </th>
+                                        
                                         <th><?= 'নাম' ?></th>
+                                        <th><?= 'সদস্য কোড' ?></th>
+                                        <th><?= 'সাথী কোড' ?></th>
                                         <th><?= 'পুরাতন শাখা'  ?></th>
                                         <th><?= 'নতুন শাখা'  ?></th>
                                         <th><?= 'সাংগঠনিক অবস্থা' ?></th>
@@ -248,7 +263,7 @@ function row_status($x)
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="11" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                        <td colspan="13" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                                     </tr>
                                 </tbody>
 
@@ -257,6 +272,8 @@ function row_status($x)
                                         <th style="min-width:30px; width: 30px; text-align: center;">
                                             <input class="checkbox checkft" type="checkbox" name="check" />
                                         </th>
+                                        <th></th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>

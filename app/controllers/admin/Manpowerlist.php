@@ -530,6 +530,7 @@ function getManpowerList($branch_id = NULL)
 				'name' => $this->input->post('name'),
 				 
 				'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
 				
 				'institution_type' => $this->input->post('institution_type'),		
 				'subject' => $this->input->post('subject'),

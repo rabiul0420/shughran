@@ -186,7 +186,7 @@ class ManpowerTransfer extends MY_Controller
 		
 	   if ($branch_id) {
 		   $this->datatables
-               ->select($this->db->dbprefix('manpower_transfer') .".id as id, {$this->db->dbprefix('manpower')}.name,{$this->db->dbprefix('manpower')}.id as manpower_id,t1.name as from_branch, t2.name as to_branch,orgstatus.status_name,{$this->db->dbprefix('manpower_transfer')}.note", FALSE)
+               ->select($this->db->dbprefix('manpower_transfer') .".id as id, {$this->db->dbprefix('manpower')}.name,{$this->db->dbprefix('manpower')}.id as manpower_id,{$this->db->dbprefix('manpower')}.membercode as membercode, {$this->db->dbprefix('manpower')}.associatecode as associatecode, t1.name as from_branch, t2.name as to_branch,orgstatus.status_name,{$this->db->dbprefix('manpower_transfer')}.note", FALSE)
                ->join('manpower', 'manpower.id=manpower_transfer.manpower_id', 'left')
                ->join('branches as t1', 't1.id=manpower_transfer.from_branch_id', 'left')
                ->join('branches as t2', 't2.id=manpower_transfer.to_branch_id', 'left')
@@ -196,7 +196,7 @@ class ManpowerTransfer extends MY_Controller
 	       
 	   } else {
            $this->datatables
-               ->select("manpower_transfer.id as id, manpower.name, {$this->db->dbprefix('manpower')}.id as manpower_id,t1.name as from_branch, t2.name as to_branch,orgstatus.status_name,manpower_transfer.note", FALSE)
+               ->select("manpower_transfer.id as id, manpower.name, {$this->db->dbprefix('manpower')}.id as manpower_id,{$this->db->dbprefix('manpower')}.membercode as membercode, {$this->db->dbprefix('manpower')}.associatecode as associatecode,t1.name as from_branch, t2.name as to_branch,orgstatus.status_name,manpower_transfer.note", FALSE)
                ->join('manpower', 'manpower.id=manpower_transfer.manpower_id', 'left')
                ->join('branches as t1', 't1.id=manpower_transfer.from_branch_id', 'left')
                ->join('branches as t2', 't2.id=manpower_transfer.to_branch_id', 'left')
@@ -245,7 +245,7 @@ class ManpowerTransfer extends MY_Controller
       // $branch_id = 1;
 	   if ($branch_id) {
 		   $this->datatables
-               ->select($this->db->dbprefix('manpower_transfer') .".id as id, {$this->db->dbprefix('manpower')}.name,{$this->db->dbprefix('manpower')}.id as manpower_id,t1.name as from_branch, t2.name as to_branch,orgstatus.status_name,{$this->db->dbprefix('manpower_transfer')}.note", FALSE)
+               ->select($this->db->dbprefix('manpower_transfer') .".id as id,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('manpower')}.membercode as membercode, {$this->db->dbprefix('manpower')}.associatecode as associatecode,{$this->db->dbprefix('manpower')}.id as manpower_id,t1.name as from_branch, t2.name as to_branch,orgstatus.status_name,{$this->db->dbprefix('manpower_transfer')}.note", FALSE)
                ->join('manpower', 'manpower.id=manpower_transfer.manpower_id', 'left')
                ->join('branches as t1', 't1.id=manpower_transfer.from_branch_id', 'left')
                ->join('branches as t2', 't2.id=manpower_transfer.to_branch_id', 'left')

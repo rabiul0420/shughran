@@ -43,6 +43,21 @@ class Associate extends MY_Controller
         //$this->manpower_model->manpowerUpdate('manpower',array('orgstatus_id'=>NULL),array('id'=>1)); 
 
 
+       
+	   
+	   
+	$this->sma->checkPermissions();
+	if($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id')!=$branch_id)){
+		 
+		$this->session->set_flashdata('warning', lang('access_denied'));
+		admin_redirect('associate/'.$this->session->userdata('branch_id'));	  
+		  
+		 } 
+		  
+		  else if ($branch_id == NULL && !($this->Owner || $this->Admin) ) {
+		 admin_redirect('associate/'.$this->session->userdata('branch_id'));	  
+		  }
+	   
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
@@ -79,103 +94,42 @@ class Associate extends MY_Controller
     {
         switch ($field) {
 
-            case 'associatecode':
-                $field = 'আইডি';
-                break;
-            case 'name':
-                $field = 'নাম';
-                break;
-            case 'branch_name':
-                $field = 'শাখা কোড';
-                break;
-            case 'thana_code':
-                $field = 'থানা কোড';
-                break;
-            case 'mobile':
-                $field = 'মোবাইল নং';
-                break;
-            case 'responsibility':
-                $field = 'সর্বশেষ দায়িত্ব';
-                break;
-            case 'orgstatus_at_forum':
-                $field = 'বৃহত্তর আন্দোলনের মান';
-                break;
-            case 'education_qualification':
-                $field = 'শিক্ষাগত যোগ্যতা';
-                break;
-            case 'current_profession':
-                $field = 'বর্তমান পেশা';
-                break;
-            case 'institution_type':
-                $field = 'শিক্ষাপ্রতিষ্ঠানের ধরন';
-                break;
-            case 'institution_type_child':
-                $field = 'শিক্ষাপ্রতিষ্ঠানের সাব ধরন';
-                break;
-                //case 'thana_code': $field = 'থানা কোড'; break;       
-            case 'sessionyear':
-                $field = 'শ্রেণি/বর্ষ';
-                break;
-            case 'subject':
-                $field = 'বিভাগ/বিষয়';
-                break;
-            case 'foreign_country':
-                $field = 'দেশের নাম';
-                break;
-            case 'foreign_address':
-                $field = 'শহরের নাম';
-                break;
-            case 'higher_education_institution':
-                $field = 'শিক্ষা প্রতিষ্ঠানের নাম';
-                break;
-            case 'type_higher_education':
-                $field = 'উচ্চশিক্ষার ধরন';
-                break;
-            case 'type_of_profession':
-                $field = 'পেশার ধরন';
-                break;
-            case 'email':
-                $field = 'ইমেইল';
-                break;
-            case 'is_forum':
-                $field = 'ফোরামে যুক্ত হয়েছেন কিনা?';
-                break;
-            case 'date_death':
-                $field = 'ইন্তেকালের তারিখ';
-                break;
-            case 'how_death':
-                $field = 'কীভাবে';
-                break;
-            case 'opposition':
-                $field = 'প্রতিপক্ষ';
-                break;
-            case 'myr_serial':
-                $field = 'কততম শহিদ';
-                break;
-            case 'member_oath_date':
-                $field = 'সদস্য হওয়ার তারিখ';
-                break;
-            case 'prossion_target':
-                $field = 'পেশাগত টার্গেট-সেক্টর';
-                break;
-            case 'prossion_target_sub':
-                $field = 'পেশাগত টার্গেট-সাব-সেক্টর';
-                break;
-            case 'studentlife':
-                $field = 'ছাত্রত্ব';
-                break;
-            case 'district':
-                $field = 'নিজ জেলা';
-                break;
-            case 'associate_oath_date':
-                $field = 'সাথী হওয়ার তারিখ';
-                break;
-            case 'thana_code':
-                $field = 'থানা কোড';
-                break;
-            case 'blood_group':
-                $field = 'ব্লাড গ্রুপ';
-                break;
+                    case 'associatecode': $field = 'আইডি'; break;
+                    case 'name': $field = 'নাম'; break;
+                    case 'branch_name': $field = 'শাখা কোড'; break;
+					case 'thana_code': $field = 'থানা কোড'; break;
+                    case 'mobile': $field = 'মোবাইল নং'; break;
+                    case 'responsibility': $field = 'সর্বশেষ দায়িত্ব'; break;
+                    case 'orgstatus_at_forum': $field = 'বৃহত্তর আন্দোলনের মান'; break;
+                    case 'education_qualification': $field = 'শিক্ষাগত যোগ্যতা'; break;
+                    case 'current_profession': $field = 'বর্তমান পেশা'; break;
+                    case 'institution_type': $field = 'শিক্ষাপ্রতিষ্ঠানের ধরন'; break;
+                    case 'institution_type_child': $field = 'শিক্ষাপ্রতিষ্ঠানের সাব ধরন'; break;
+                    //case 'thana_code': $field = 'থানা কোড'; break;       
+                    case 'sessionyear': $field = 'শ্রেণি/বর্ষ'; break;
+                    case 'subject': $field = 'বিভাগ/বিষয়'; break;
+                    case 'foreign_country': $field = 'দেশের নাম'; break;
+                    case 'foreign_address': $field = 'শহরের নাম'; break;
+                    case 'higher_education_institution': $field = 'শিক্ষা প্রতিষ্ঠানের নাম'; break;
+                    case 'type_higher_education': $field = 'উচ্চশিক্ষার ধরন'; break;
+                    case 'type_of_profession': $field = 'পেশার ধরন'; break;
+                    case 'email': $field = 'ইমেইল'; break;
+                    case 'is_forum': $field = 'ফোরামে যুক্ত হয়েছেন কিনা?'; break;
+                    case 'date_death': $field = 'ইন্তেকালের তারিখ'; break;
+                    case 'how_death': $field = 'কীভাবে'; break;
+                    case 'opposition': $field = 'প্রতিপক্ষ'; break;
+                    case 'myr_serial': $field = 'কততম শহিদ'; break;
+                    case 'member_oath_date': $field = 'সদস্য হওয়ার তারিখ'; break;
+                    case 'prossion_target': $field = 'পেশাগত টার্গেট-সেক্টর'; break;
+                    case 'prossion_target_sub': $field = 'পেশাগত টার্গেট-সাব-সেক্টর'; break;
+                    case 'studentlife': $field = 'ছাত্রত্ব'; break;
+                    case 'district': $field = 'নিজ জেলা'; break;
+                    case 'upazilla_name': $field = 'উপজেলা/থানা '; break;
+                    case 'associate_oath_date': $field = 'সাথী হওয়ার তারিখ'; break;
+                    case 'thana_code': $field = 'থানা কোড'; break;
+                    case 'blood_group': $field = 'ব্লাড গ্রুপ'; break; 
+            
+            default: $field = $field; break;
 
             default:
                 $field = $field;
@@ -378,25 +332,28 @@ class Associate extends MY_Controller
         $this->load->library('datatables');
 
         if ($branch_id) {
-
-            $this->datatables
-                ->select($this->db->dbprefix('associatelog') . ".id as id,  {$this->db->dbprefix('manpower')}.id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife, t2.name as from_branch", FALSE)
-                ->from('associatelog');
-            $this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
-                ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1);
-            $this->datatables->join('branches', 'branches.id=associatelog.branch', 'left');
-            $this->datatables->join('branches t2', 't2.id=associatelog.barnch_id_to_from', 'left')
+         
+        $this->datatables
+                ->select($this->db->dbprefix('associatelog') . ".id as id,  {$this->db->dbprefix('manpower')}.id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, t2.name as from_branch", FALSE)
+				->from('associatelog');
+		$this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
+				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1);		
+        $this->datatables->join('branches', 'branches.id=associatelog.branch', 'left');
+        $this->datatables->join('branches t2', 't2.id=associatelog.barnch_id_to_from', 'left')
                 ->where('branches.id', $branch_id);
-            $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
-        } else {
-            $this->datatables
-                ->select($this->db->dbprefix('associatelog') . ".id as id,  {$this->db->dbprefix('manpower')}.id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife, t2.name as from_branch", FALSE)
-                ->from('associatelog');
-            $this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
-                ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1);
-            $this->datatables->join('branches', 'branches.id=associatelog.branch', 'left');
-            $this->datatables->join('branches t2', 't2.id=associatelog.barnch_id_to_from', 'left');
-            $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		$this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		 
+		
+		} else {
+           $this->datatables
+                ->select($this->db->dbprefix('associatelog') . ".id as id,  {$this->db->dbprefix('manpower')}.id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, t2.name as from_branch", FALSE)
+				->from('associatelog');
+		$this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
+				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1);		
+        $this->datatables->join('branches', 'branches.id=associatelog.branch', 'left');
+        $this->datatables->join('branches t2', 't2.id=associatelog.barnch_id_to_from', 'left');
+		$this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		 
         }
 
 
@@ -590,6 +547,40 @@ class Associate extends MY_Controller
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
+         
+		  $type =  $this->input->get('type'); 
+		  $report_type = $this->report_type();
+        $this->load->library('datatables');
+		
+        if ($branch_id) {
+         
+        $this->datatables
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+				->from('associatelog');
+		$this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
+				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2);		
+        $this->datatables->join('branches', 'branches.id=associatelog.branch', 'left')
+                ->where('branches.id', $branch_id);
+		$this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		 
+		
+		} else {
+           $this->datatables
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+				->from('associatelog');
+		$this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
+				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2);		
+        $this->datatables->join('branches', 'branches.id=associatelog.branch', 'left');
+		$this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		 
+        }
+		
+		
+ 
+	
+	$start = $report_type['start'];
+	$end = $report_type['end'];
+ 
 
         $type =  $this->input->get('type');
         $report_type = $this->report_type();
@@ -707,24 +698,30 @@ class Associate extends MY_Controller
         $this->load->library('datatables');
 
         if ($branch_id) {
-
-            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
-                ->from('postpone');
-            $this->datatables->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
-                ->where('postpone.end_date', '2050-12-31')->where('(manpower.orgstatus_id = 2 OR manpower.orgstatus_id = 12)');
-            $this->datatables->join('branches', 'branches.id=postpone.branch', 'left')
+         
+        $this->datatables
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+				->from('postpone');
+		$this->datatables->join('manpower', 'manpower.id=postpone.manpower_id', 'left')  
+				->where('postpone.end_date', '2050-12-31')->where('(manpower.orgstatus_id = 2 OR manpower.orgstatus_id = 12)');		
+        $this->datatables->join('branches', 'branches.id=postpone.branch', 'left')
                 ->where('branches.id', $branch_id)->where('is_postpone', 1);
-
-            $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
-        } else {
-            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
-                ->from('postpone');
-            $this->datatables->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
-                ->where('postpone.end_date', '2050-12-31')->where('(manpower.orgstatus_id = 2 OR manpower.orgstatus_id = 12)')->where('is_postpone', 1);
-            $this->datatables->join('branches', 'branches.id=postpone.branch', 'left');
-            $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+                
+		$this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		 
+		
+		
+		
+		} else {
+           $this->datatables
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+				->from('postpone');
+		$this->datatables->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
+				->where('postpone.end_date', '2050-12-31')->where('(manpower.orgstatus_id = 2 OR manpower.orgstatus_id = 12)')->where('is_postpone', 1);		
+        $this->datatables->join('branches', 'branches.id=postpone.branch', 'left');
+		$this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		 
+		 
         }
 
 
@@ -803,23 +800,26 @@ class Associate extends MY_Controller
         $this->load->library('datatables');
 
         if ($branch_id) {
-
-            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
-                ->from('associate');
-            $this->datatables->join('manpower', 'manpower.id=associate.manpower_id', 'left')
-                ->where('associate.is_associate_now', 1);
-            $this->datatables->join('branches', 'branches.id=associate.branch', 'left')
+         
+        $this->datatables
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+				->from('associate');
+		$this->datatables->join('manpower', 'manpower.id=associate.manpower_id', 'left')
+				->where('associate.is_associate_now', 1);		
+        $this->datatables->join('branches', 'branches.id=associate.branch', 'left')
                 ->where('branches.id', $branch_id);
-            $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
-        } else {
-            $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
-                ->from('associate');
-            $this->datatables->join('manpower', 'manpower.id=associate.manpower_id', 'left')
-                ->where('associate.is_associate_now', 1);
-            $this->datatables->join('branches', 'branches.id=associate.branch', 'left');
-            $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		$this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		 
+		
+		} else {
+           $this->datatables
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+				->from('associate');
+		$this->datatables->join('manpower', 'manpower.id=associate.manpower_id', 'left')
+				->where('associate.is_associate_now', 1);		
+        $this->datatables->join('branches', 'branches.id=associate.branch', 'left');
+		$this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
+		 
         }
 
 
@@ -1400,13 +1400,14 @@ class Associate extends MY_Controller
                 'sessionyear' => $this->input->post('sessionyear'),
                 'responsibility_id' => $this->input->post('responsibility_id'),
                 'studentlife' => $this->input->post('studentlife'),
-                //'education' => $this->input->post('education'),
-                'name' => $this->input->post('name'),
-                'orgstatus_id' => 2,
-                'district' => $this->input->post('district'),
-                'user_id' => $this->session->userdata('user_id'),
-                // 'notes' => $this->input->post('notes'),
-                'associatecode' => sprintf('%03d', $branchinfo->code) . sprintf('%04d', $branchinfo->last_assocode + 1),
+				//'education' => $this->input->post('education'),
+				'name' => $this->input->post('name'),
+				'orgstatus_id' => 2,
+				'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
+				'user_id' => $this->session->userdata('user_id'),
+               // 'notes' => $this->input->post('notes'),
+				'associatecode' => sprintf('%03d',$branchinfo->code).sprintf('%04d',$branchinfo->last_assocode+1),
                 'blood_group' => $this->input->post('blood_group'),
                 'thana_code' => $this->input->post('thana_code'),
                 'institution_type_child' => $this->input->post('institution_type_child'),
@@ -1981,54 +1982,43 @@ class Associate extends MY_Controller
             $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
-        $report_type = $this->report_type();
-
-        $type =  $this->input->get('type');
-
-
-
-        $start = $report_type['start'];
-        $end = $report_type['end'];
-
-
-
-
-
-        $process = $this->site->getByID('process', 'id', $process_id);
-
-        // $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
-
-        $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,{$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
-            ->from('associatelog')
-            ->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
-            ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1)
-            ->join('branches', 'branches.id=associatelog.branch', 'left')
-            ->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left')
-            ->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
-            ->join('countries', 'manpower.foreign_country=countries.id', 'left')
-            ->join('district', 'manpower.district=district.id', 'left')
-            ->order_by('manpower.associate_oath_date ASC');
-
-        $this->db->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-
-
-
-
-
-        if ($branch_id)
-            $this->db->where($this->db->dbprefix('branches') . ".id", $branch_id);
-
-
-        $q = $this->db->get();
-
-
-        //echo $q->num_rows();
-        //echo 'AAAA';
-        //exit();
-        if ($q->num_rows() > 0) {
-            foreach (($q->result()) as $row) {
-                $data[] = $row;
+		// $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
+		
+		$this->db
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+				->from('associatelog')
+				->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
+				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1)
+				->join('branches', 'branches.id=associatelog.branch', 'left')
+				->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left')
+				->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
+				->join('countries', 'manpower.foreign_country=countries.id', 'left')
+                ->join('district', 'manpower.district=district.id', 'left')
+                ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
+				->order_by('manpower.associate_oath_date ASC');
+		  
+				$this->db->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+				
+				
+				
+				
+		    
+			if ($branch_id)
+			    $this->db->where($this->db->dbprefix('branches') . ".id", $branch_id);
+            
+            
+            $q = $this->db->get();
+			
+			
+			//echo $q->num_rows();
+			//echo 'AAAA';
+			//exit();
+            if ($q->num_rows() > 0) {
+                foreach (($q->result()) as $row) {
+                    $data[] = $row;
+                }
+            } else {
+                $data = NULL;
             }
         } else {
             $data = NULL;
@@ -2042,7 +2032,40 @@ class Associate extends MY_Controller
 
             // bbbbbb
 
-            // $this->sma->print_arrays($process); 
+                switch ($process_id) {
+                    case 2:
+                        $field_arr = array(
+                            'associatecode',
+                            'name',
+                            'branch_name',
+							'thana_code',
+                            'institution_type',
+                            'sessionyear',
+                            'subject',
+                            'responsibility',
+                            'associate_oath_date',				
+                            'prossion_target',				
+                            'prossion_target_sub',				
+                            'studentlife',				
+                            'district',	
+                            'upazilla_name',		
+                        );
+                        break;
+                    case 15:
+                        $field_arr = array(
+                            'associatecode',
+                            'name',
+                            'branch_name',
+							'thana_code',
+                            'institution_type',
+                            'sessionyear'	
+                        );
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                }
 
             switch ($process_id) {
                 case 2:
@@ -2132,44 +2155,48 @@ class Associate extends MY_Controller
             $this->data['branch_id'] = $this->session->userdata('branch_id');
             $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
-
-        $report_type = $this->report_type();
-
-
-
-
-        $start = $report_type['start'];
-        $end = $report_type['end'];
-
-
-
-
-        $process = $this->site->getByID('process', 'id', $process_id);
-
-        // $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
-
-        $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,{$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
-            ->from('associatelog')
-            ->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
-            ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2)
-            ->join('branches', 'branches.id=associatelog.branch', 'left')
-            ->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left')
-            ->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
-            ->join('countries', 'manpower.foreign_country=countries.id', 'left')
-            ->join('district', 'manpower.district=district.id', 'left')
-            ->order_by('manpower.associate_oath_date ASC');
-
-        $this->db->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-
-        if ($branch_id)
-            $this->db->where($this->db->dbprefix('branches') . ".id", $branch_id);
-
-
-        $q = $this->db->get();
-        if ($q->num_rows() > 0) {
-            foreach (($q->result()) as $row) {
-                $data[] = $row;
+     
+		$report_type = $this->report_type();
+		
+		 
+		 
+			
+			$start = $report_type['start'];
+			$end = $report_type['end'];
+		 
+		
+		
+		
+		$process = $this->site->getByID('process','id', $process_id);
+ 
+		// $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
+		
+		$this->db
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district, upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+				->from('associatelog')
+				->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
+				->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2)
+				->join('branches', 'branches.id=associatelog.branch', 'left')
+				->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left')
+				->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
+				->join('countries', 'manpower.foreign_country=countries.id', 'left')
+                ->join('district', 'manpower.district=district.id', 'left')
+                ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
+				->order_by('manpower.associate_oath_date ASC');
+		  
+				$this->db->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+				
+			if ($branch_id)
+			    $this->db->where($this->db->dbprefix('branches') . ".id", $branch_id);
+            
+            
+            $q = $this->db->get();
+            if ($q->num_rows() > 0) {
+                foreach (($q->result()) as $row) {
+                    $data[] = $row;
+                }
+            } else {
+                $data = NULL;
             }
         } else {
             $data = NULL;
@@ -2181,11 +2208,35 @@ class Associate extends MY_Controller
             $this->excel->setActiveSheetIndex(0);
             $this->excel->getActiveSheet()->setTitle('Associate Decrease list');
 
-            //cccc
-
-            switch ($process_id) {
-                case 8:
-                    $field_arr = array(
+                switch ($process_id) {
+                    case 8:
+                        $field_arr = array(
+                            'associatecode',
+                            'name',
+                            'branch_name',
+							'thana_code',
+							
+                            'responsibility',
+                            'orgstatus_at_forum',
+                            'education_qualification',
+                            'mobile',
+                            'current_profession',
+                            'district',
+                            'upazilla_name'	
+                        );
+                        break;
+                    case 15:
+                        $field_arr = array(
+                            'associatecode',
+                            'name',
+                            'branch_name',
+							'thana_code',
+                            'institution_type',
+                            'sessionyear',	
+                        );
+                        break;
+                    case 12:
+                        $field_arr = array(
                         'associatecode',
                         'name',
                         'branch_name',
@@ -2361,11 +2412,10 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
         }
         $this->sma->checkPermissions('index', TRUE);
 
-
-        // $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
-
-        $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('associate')}.oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,{$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death,institution_type_child,
+		// $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
+		
+		$this->db
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('associate')}.oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name,   {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death,institution_type_child,
                 thana_code,	
                 blood_group,
                 single_digit,
@@ -2384,14 +2434,22 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                 science,
                 business,
                 arts", FALSE)
-            ->from('associate')
-            ->join('manpower', 'manpower.id=associate.manpower_id', 'left')
-            ->join('branches', 'branches.id=associate.branch', 'left')
-            ->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left')
-            ->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
-            ->join('countries', 'manpower.foreign_country=countries.id', 'left')
-            ->join('district', 'manpower.district=district.id', 'left')
-            ->order_by('manpower.associate_oath_date ASC');
+				->from('associate')
+				->join('manpower', 'manpower.id=associate.manpower_id', 'left')
+				->join('branches', 'branches.id=associate.branch', 'left')
+				->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left')
+				->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
+				->join('countries', 'manpower.foreign_country=countries.id', 'left')
+				->join('district', 'manpower.district=district.id', 'left')
+                ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
+				->order_by('manpower.associate_oath_date ASC');
+		  
+		  
+		        $this->db->where($this->db->dbprefix('associate') . ".is_associate_now", 1);
+		    
+			if ($branch)
+			    $this->db->where($this->db->dbprefix('branches') . ".id", $branch);
+            
 
 
         $this->db->where($this->db->dbprefix('associate') . ".is_associate_now", 1);
@@ -2405,8 +2463,83 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
             foreach (($q->result()) as $row) {
                 $data[] = $row;
             }
-        } else {
-            $data = NULL;
+
+            if (  !empty($data)) {
+
+                $this->load->library('excel');
+                $this->excel->setActiveSheetIndex(0);
+                $this->excel->getActiveSheet()->setTitle('Associate list');
+
+                // $this->sma->print_arrays($data);
+
+                //aaaa
+                $field_arr = array(
+                    'associatecode',
+                    'name',
+                    'branch_name',
+                    'institution_type',
+                    'institution_type_child',
+                    'sessionyear',
+                    'subject',
+                    'responsibility',
+                    'associate_oath_date',
+                    'prossion_target',
+                    'prossion_target_sub',
+                    'studentlife',
+                    'district',
+                    'upazilla_name',
+                    'thana_code',	
+                    'blood_group',
+                    'single_digit',
+                    'jsc_jdc',
+                    'ssc_dhakil',
+                    'hsc_alim',
+                    'department_position',
+                    'department_position_private',
+                    'influential',
+                    'hc_science',
+                    'madrasha',
+                    'medical_college',
+                    'ideal_college',
+                    'engineeering',
+                    'agri',
+                    'science',
+                    'business',
+                    'arts'
+                );
+
+                //  for cellValue 
+
+                // $this->sma->print_arrays($data);
+
+                $process_Title = 'সাথী তালিকা';                            
+                $this->sheetcellValue($branch,$field_arr,$data,$process_Title); 
+                
+				$filename = 'associate_list'.'_'.$this->input->get('year').($branch ? '_'.$branch: '');
+  
+                $this->load->helper('excel');
+                create_excel($this->excel, $filename);
+
+            }
+            $this->session->set_flashdata('error', lang('nothing_found'));
+            redirect($_SERVER["HTTP_REFERER"]);
+
+       
+
+
+
+	}
+
+    
+	
+	
+	 function exportpostpone($branch = NULL)
+    {
+       
+ $this->sma->checkPermissions('index', TRUE);
+	   if (!$this->Owner) {
+           // $this->session->set_flashdata('warning', lang('access_denied'));
+           // redirect($_SERVER["HTTP_REFERER"]);
         }
 
         if (!empty($data)) {

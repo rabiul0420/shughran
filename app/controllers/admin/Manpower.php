@@ -534,7 +534,9 @@ class Manpower extends MY_Controller
             case 'blood_group':
                 $field = 'ব্লাড গ্রুপ';
                 break;
-
+            case 'upazila':
+                    $field = 'উপজেলা/থানা';
+                    break;
 
             default:
                 $field = $field;
@@ -1017,11 +1019,11 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
             if ($process_id == 15)
                 $this->datatables
-                    ->select($this->db->dbprefix('memberlog') . ".id as id, {$this->db->dbprefix('manpower')}.id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name,barnch_id_to_from, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                    ->select($this->db->dbprefix('memberlog') . ".id as id, {$this->db->dbprefix('manpower')}.id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name,barnch_id_to_from, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                     ->from('memberlog');
             else
                 $this->datatables
-                    ->select($this->db->dbprefix('memberlog') . ".id as id, {$this->db->dbprefix('manpower')}.id as manpowerid, membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                    ->select($this->db->dbprefix('memberlog') . ".id as id, {$this->db->dbprefix('manpower')}.id as manpowerid, membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                     ->from('memberlog');
 
             $this->datatables->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
@@ -1033,11 +1035,11 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
             if ($process_id == 15)
                 $this->datatables
-                    ->select($this->db->dbprefix('memberlog') . ".id as id, {$this->db->dbprefix('manpower')}.id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                    ->select($this->db->dbprefix('memberlog') . ".id as id, {$this->db->dbprefix('manpower')}.id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                     ->from('memberlog');
             else
                 $this->datatables
-                    ->select($this->db->dbprefix('memberlog') . ".id as id, {$this->db->dbprefix('manpower')}.id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                    ->select($this->db->dbprefix('memberlog') . ".id as id, {$this->db->dbprefix('manpower')}.id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility, thana_code", FALSE)
                     ->from('memberlog');
 
             $this->datatables->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
@@ -1238,7 +1240,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                 ->from('memberlog');
             $this->datatables->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
                 ->where('memberlog.process_id', $process_id)->where('memberlog.in_out', 2);
@@ -1247,7 +1249,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                 ->from('memberlog');
             $this->datatables->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
                 ->where('memberlog.process_id', $process_id)->where('memberlog.in_out', 2);
@@ -1349,7 +1351,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                 ->from('postpone');
             $this->datatables->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
                 ->where('postpone.end_date', '2050-12-31')->where('manpower.orgstatus_id', 1);
@@ -1358,7 +1360,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                 ->from('postpone');
             $this->datatables->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
                 ->where('postpone.end_date', '2050-12-31')->where('manpower.orgstatus_id', 1);
@@ -1462,7 +1464,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         if ($branch_id) {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,{$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,{$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                 ->from('member');
             $this->datatables->join('manpower', 'manpower.id=member.manpower_id', 'left')
                 ->where('member.is_member_now', 1);
@@ -1471,7 +1473,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,{$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,{$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
                 ->from('member');
             $this->datatables->join('manpower', 'manpower.id=member.manpower_id', 'left')
                 ->where('member.is_member_now', 1);
@@ -2742,7 +2744,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
         $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from,  {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,{$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from,  {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
             ->from('memberlog')
             ->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
             ->where('memberlog.process_id', $process_id)->where('memberlog.in_out', 1)
@@ -2751,6 +2753,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             ->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
             ->join('countries', 'manpower.foreign_country=countries.id', 'left')
             ->join('district', 'manpower.district=district.id', 'left')
+            ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
             ->order_by('manpower.member_oath_date ASC');
 
 
@@ -2797,6 +2800,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'prossion_target_sub',
                         'studentlife',
                         'district',
+                        'upazilla_name',
                     );
 
                     break;
@@ -2876,7 +2880,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                     {$this->db->dbprefix('manpower')}.name, 
                     {$this->db->dbprefix('branches')}.name as branch_name, 
                     {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  
-                    {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,
+                    {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name,
                     {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,
                     {$this->db->dbprefix('manpower')}.email,
                     {$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
@@ -2889,6 +2893,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             ->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
             ->join('countries', 'manpower.foreign_country=countries.id', 'left')
             ->join('district', 'manpower.district=district.id', 'left')
+            ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
             ->order_by('manpower.member_oath_date ASC');
 
         $this->db->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
@@ -2937,7 +2942,8 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'orgstatus_at_forum',
                         'education_qualification',
                         'current_profession',
-                        'district'
+                        'district',
+                        'upazila'
                     );
                     $field_arr = array_merge($field_arr, $field_arr_add);
                     break;
@@ -4096,7 +4102,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         if ($type == 'member') {
 
             $this->db
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('member')}.oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,{$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death,prossion_target,prossion_target_sub,thana_code,institution_type_child,institution_type_child,
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('member')}.oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death,prossion_target,prossion_target_sub,thana_code,institution_type_child,institution_type_child,
                 thana_code,	blood_group,
                 single_digit,
                 jsc_jdc,
@@ -4121,6 +4127,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                 ->join('institution', 'manpower.institution_type=institution.id AND institution.type = 2', 'left')
                 ->join('countries', 'manpower.foreign_country=countries.id', 'left')
                 ->join('district', 'manpower.district=district.id', 'left')
+                ->join('district upazilla', 'manpower.upazila=upazilla.id', 'left')
                 ->order_by('manpower.member_oath_date ASC');
 
             // $this->db->where($this->db->dbprefix('institution') . ".type", 2);
@@ -4162,6 +4169,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                 'prossion_target_sub',
                 'studentlife',
                 'district',
+                'upazilla_name',
                 'thana_code',
 
                 'blood_group',
