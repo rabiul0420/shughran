@@ -34,21 +34,42 @@ class Reportsubmit extends MY_Controller
         $meta = array('page_title' => 'Report Submit', 'bc' => $bc);
 		$this->data['branches'] = $this->site->getAllBranches();
 		
-		 $branch = $this->input->get('branch');
-		 $report_type = $this->input->get('type');
-         $year = $this->input->get('year');
-		
+		 
+          
+
+
+         if($this->input->get('type') !=null || !empty($this->input->get('type'))){
+            //$branch = $this->input->get('branch');
+            $report_type = $this->input->get('type');
+            $year = $this->input->get('year');
+           }else {
+            $report_type_info = $this->report_type();  
+            $report_type =  $report_type_info['type']; 
+            $year =  $report_type_info['year']; 
+   
+            $check = $this->site->getOneRecord('reportsubmit', "*", array( 'year'=>$year,'report_type'=>$report_type));
+             $this->sma->print_arrays($check);
+            if ($check == false) {
+               //insert
+               $branches = $this->site->getAllBranches();
+               foreach($branches as $row) {
+                   $this->sma->print_arrays($row);
+                   $this->site->insertData('reportsubmit', array('user_id'=>$this->session->userdata('user_id'),'branch_id'=>$branch, 'report_type'=>$report_type, 'year'=>$year));
+               }
+               }
+   
+   
+   
+           }
+   
+
+
+
+
+         
 		
 		if( $branch){
-		 $check = $this->site->getOneRecord('reportsubmit', "*", array('branch_id'=>$branch,'year'=>$year,'report_type'=>$report_type));
-    
-	     
-		if ($check == false) {
-            //insert
-		 $this->site->insertData('reportsubmit', array('user_id'=>$this->session->userdata('user_id'),'branch_id'=>$branch, 'report_type'=>$report_type, 'year'=>$year));
-		        
-			}
-			
+		 	
 		 $this->data['submitinfo'] = $this->site->getOneRecord('reportsubmit', "*", array('branch_id'=>$branch,'year'=>$year,'report_type'=>$report_type));
     
 		}
@@ -157,7 +178,7 @@ class Reportsubmit extends MY_Controller
 		 
 	
 		
-function report_type()
+function report_type_old()
 {
 
     $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => date('Y')), 'id desc', 1, 0);

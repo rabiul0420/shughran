@@ -75,7 +75,7 @@ function row_status($x)
 
 
 
-<?php if($confirmreport !==false) {?>
+<?php if($this->session->userdata('branch_id')){ if($confirmreport !==false) {?>
 <div class="alert alert-success alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <strong>Congratulations!</strong> You branch report has been confirmed!
@@ -85,7 +85,7 @@ function row_status($x)
 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <strong>Not Completed!</strong> You branch report is yet to be confirmed!
 </div>
-<?php } ?>
+<?php } } ?>
 
 
 

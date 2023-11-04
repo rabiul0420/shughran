@@ -31,10 +31,9 @@ class Welcome extends MY_Controller
       $report_type = $this->report_type();
       $this->data['confirmreport'] = $this->site->getOneRecord('confirmreport', "*", array('branch_id' => $this->session->userdata('branch_id'), 'year' => substr($report_type['start'], 0, 4), 'report_type' => $report_type['type']));
        
-      //$this->data['confirmreport'] = $this->site->getOneRecord('confirmreport', "*", array('branch_id' => 13, 'year' => substr($report_type['start'], 0, 4), 'report_type' => $report_type['type']));
+       //$this->data['confirmreport'] = $this->site->getOneRecord('confirmreport', "*", array('branch_id' => 13, 'year' => substr($report_type['start'], 0, 4), 'report_type' => $report_type['type']));
        
-
-
+ 
 
 
 
