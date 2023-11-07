@@ -51,7 +51,7 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bVisible": false},   null, null, <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,null,null,null
+                {"bVisible": false},   null, null, null, <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,null,null,null
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
@@ -61,6 +61,7 @@
             {column_number: 5, filter_default_label: "[<?='Session';?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?='Responsibility';?>]", filter_type: "text", data: []},
             {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
+            {column_number: 8, filter_default_label: "[<?='স্থানান্তরিত শাখা';?>]", filter_type: "text", data: []},
             
              
             
@@ -205,11 +206,12 @@
 							 
 							  <th><?php echo  in_array($process->id,array(9,10,11,8,14)) ? "সর্বশেষ দায়িত্ব" : "দায়িত্ব"; ?></th>
 							  <th><?= 'থানা কোড' ?></th>
+                              <th><?= 'স্থানান্তরিত শাখা ' ?></th>
                                   </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="11" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                <td colspan="8" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                             </tr>
                         </tbody>
 
@@ -224,6 +226,7 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
+                                 
                             </tr>
                         </tfoot>
                     </table>
