@@ -950,12 +950,8 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
     function memberincreaselist($process_id = NULL)
     {
 
-
-
         $branch_id = $this->input->get('branch_id');
         $process = $this->site->getByID('process', 'id', $process_id);
-
-
 
         $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
@@ -1239,8 +1235,10 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         if ($branch_id) {
 
+        
+
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
                 ->from('memberlog');
             $this->datatables->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
                 ->where('memberlog.process_id', $process_id)->where('memberlog.in_out', 2);
@@ -1249,7 +1247,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
                 ->from('memberlog');
             $this->datatables->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
                 ->where('memberlog.process_id', $process_id)->where('memberlog.in_out', 2);

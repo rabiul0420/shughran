@@ -173,9 +173,21 @@
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('membercandidate/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year'] ) ?>">
             সদস্য প্রার্থী তালিকা 
             </a>
+
+
             <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('associate/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year'] ) ?>">
             সাথী তালিকা 
             </a>
+
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('associate/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year'] ) ?>">
+            সদস্য  ঘাটতি  
+            </a>
+
+            <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('associate/export/'.$_GET['branch'].'?type='.$_GET['type'].'&year='.$_GET['year'] ) ?>">
+            সাথী ঘাটতি 
+            </a>
+
+
         </div>
 
         <div class="clearfix"></div>

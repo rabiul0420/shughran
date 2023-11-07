@@ -1116,11 +1116,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
 
 
+        
 
         if ($branch_id) {
 
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,{$this->db->dbprefix('institutionlist')}.org_status as org_status,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1131,7 +1132,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_organization', 1);
         } else {
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,{$this->db->dbprefix('institutionlist')}.org_status as org_status,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1164,19 +1165,23 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম ');
             $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
             $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
-            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড ');
-            $this->excel->getActiveSheet()->SetCellValue('F1', 'মন্তব্য');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'সংগঠনের মান');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'শাখা কোড ');            
+            $this->excel->getActiveSheet()->SetCellValue('G1', 'মন্তব্য');
 
 
             $row = 2;
+
+            // $this->sma->print_arrays($data);
 
             foreach ($data as $data_row) {
                 $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->code);
                 $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->institution_name);
                 $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row->plname);
                 $this->excel->getActiveSheet()->SetCellValue('D' . $row, $data_row->rcname);
-                $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->branch_name);
-                $this->excel->getActiveSheet()->SetCellValue('F' . $row, strip_tags($data_row->notes));
+                $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->org_status);
+                $this->excel->getActiveSheet()->SetCellValue('F' . $row, $data_row->branch_name);
+                $this->excel->getActiveSheet()->SetCellValue('G' . $row, strip_tags($data_row->notes));
 
                 $row++;
             }
@@ -1824,11 +1829,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
 
 
+        
 
         if ($branch_id) {
 
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,{$this->db->dbprefix('institutionlist')}.current_supporter_organization as current_supporter_organization,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1839,7 +1845,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_organization', 2);
         } else {
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,{$this->db->dbprefix('institutionlist')}.current_supporter_organization as current_supporter_organization,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1872,19 +1878,23 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম ');
             $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
             $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
-            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড ');
-            $this->excel->getActiveSheet()->SetCellValue('F1', 'মন্তব্য ');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'সর্ম্থক সংগঠন ');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'শাখা কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('G1', 'মন্তব্য ');
 
 
             $row = 2;
+
+            // $this->sma->print_arrays($data);
 
             foreach ($data as $data_row) {
                 $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->code);
                 $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->institution_name);
                 $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row->plname);
                 $this->excel->getActiveSheet()->SetCellValue('D' . $row, $data_row->rcname);
-                $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->branch_name);
-                $this->excel->getActiveSheet()->SetCellValue('F' . $row, strip_tags($data_row->notes));
+                $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->current_supporter_organization == 0 ? 'নেই' : $data_row->current_supporter_organization);
+                $this->excel->getActiveSheet()->SetCellValue('F' . $row, $data_row->branch_name);
+                $this->excel->getActiveSheet()->SetCellValue('G' . $row, strip_tags($data_row->notes));
 
                 $row++;
             }
@@ -2009,7 +2019,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('M1', 'ছাত্রী সমর্থক');
             $this->excel->getActiveSheet()->SetCellValue('N1', 'অমুসলিম ছাত্রছাত্রী');
             $this->excel->getActiveSheet()->SetCellValue('O1', 'মোট ছাত্রছাত্রী সংখ্যা');
-            $this->excel->getActiveSheet()->SetCellValue('P1', 'সংগঠন');
+            $this->excel->getActiveSheet()->SetCellValue('P1', 'সংগঠন (আছে/নেই)');
             $this->excel->getActiveSheet()->SetCellValue('Q1', 'সংগঠনের ধরণ ');
             $this->excel->getActiveSheet()->SetCellValue('R1', 'বর্তমান সেশনে সংগঠন সংখ্যা');
             $this->excel->getActiveSheet()->SetCellValue('S1', 'মন্তব্য');
@@ -2033,7 +2043,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('D' . $row, $data_row->rcname);
                 $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->branch_name);
                 $this->excel->getActiveSheet()->SetCellValue('F' . $row, $data_row->prev);
-                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->current_supporter_organization);
+                $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->current_supporter_organization);
                 $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->increase);
                 $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->decrease);
                 $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->supporter);
@@ -2042,7 +2052,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('M' . $row, $data_row->female_student_supporter);
                 $this->excel->getActiveSheet()->SetCellValue('N' . $row, $data_row->non_muslim_student);
                 $this->excel->getActiveSheet()->SetCellValue('O' . $row, $data_row->total_student_number);
-                $this->excel->getActiveSheet()->SetCellValue('P' . $row, $data_row->is_organization);
+                $this->excel->getActiveSheet()->SetCellValue('P' . $row, $data_row->is_organization == 1 ? "আছে" : 'নেই');
 
                 $this->excel->getActiveSheet()->SetCellValue('Q' . $row, $data_row->org_type);
                 $this->excel->getActiveSheet()->SetCellValue('R' . $row, $data_row->in_current_session == 1 ? 'Increase' : ($data_row->in_current_session == 2 ? 'Decrease' : ''));
