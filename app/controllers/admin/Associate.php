@@ -586,6 +586,8 @@ class Associate extends MY_Controller
     function getDecreaseAssociate($process_id, $branch_id = NULL)
     {
 
+
+        
         $this->sma->checkPermissions('index', TRUE);
 
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {
@@ -600,7 +602,7 @@ class Associate extends MY_Controller
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
                 ->from('associatelog');
             $this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
                 ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2);
@@ -609,7 +611,7 @@ class Associate extends MY_Controller
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
                 ->from('associatelog');
             $this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
                 ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2);
@@ -617,8 +619,13 @@ class Associate extends MY_Controller
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         }
 
+
+
+
         $start = $report_type['start'];
         $end = $report_type['end'];
+
+  
 
 
         $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end  . '"');
