@@ -87,6 +87,9 @@ class Associate extends MY_Controller
     {
         switch ($field) {
 
+            case 'barnch_id_to_from':
+                $field = 'শাখা থেকে ';
+                break;
             case 'associatecode':
                 $field = 'আইডি';
                 break;
@@ -223,6 +226,9 @@ class Associate extends MY_Controller
             $exColh++;
         }
 
+        
+
+
         $row = 7;
         $sQty = 0;
         $pQty = 0;
@@ -236,6 +242,8 @@ class Associate extends MY_Controller
             $this->excel->getActiveSheet()->SetCellValue('A' . $row, $key + 1);
             $this->excel->getActiveSheet()->getStyle('A' . $row)->applyFromArray($style);
 
+            
+
             $exCol = 'B';
             foreach ($field_arr as $field) {
 
@@ -248,8 +256,12 @@ class Associate extends MY_Controller
                 $this->excel->getActiveSheet()->getStyle($exCol . $row)->applyFromArray($style);
 
                 $exCol++;
+
+                
             }
             $row++;
+
+            // $this->sma->print_arrays($field_arr);
         }
 
         //>>>>>>>>>>>for Title >>>>>>>>>>>>>>>>            
@@ -587,7 +599,7 @@ class Associate extends MY_Controller
     {
 
 
-        
+
         $this->sma->checkPermissions('index', TRUE);
 
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {
@@ -625,7 +637,7 @@ class Associate extends MY_Controller
         $start = $report_type['start'];
         $end = $report_type['end'];
 
-  
+
 
 
         $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end  . '"');
@@ -1529,6 +1541,10 @@ class Associate extends MY_Controller
 
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('associate'), 'page' => 'Associate'), array('link' => '#', 'page' => 'Associate Improve'));
             $meta = array('page_title' => 'Associate Improve', 'bc' => $bc);
+
+            // $this->sma->print_arrays(1111);
+
+
             $this->page_construct('associate/associate/improve', $meta, $this->data, 'leftmenu/manpower');
         }
     }
@@ -1973,6 +1989,11 @@ class Associate extends MY_Controller
             // redirect($_SERVER["HTTP_REFERER"]);
         }
 
+
+       
+
+
+
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
             $branch_id = $branch;
             $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
@@ -1982,10 +2003,17 @@ class Associate extends MY_Controller
             $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
+        $process = $this->site->getByID('process', 'id', $process_id);
+
+        $type =  $this->input->get('type');
+        $report_type = $this->report_type();
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+
         // $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
 
         $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,barnch_id_to_from, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
             ->from('associatelog')
             ->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
             ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 1)
@@ -1998,9 +2026,6 @@ class Associate extends MY_Controller
             ->order_by('manpower.associate_oath_date ASC');
 
         $this->db->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-
-
-
 
 
         if ($branch_id)
@@ -2021,7 +2046,8 @@ class Associate extends MY_Controller
             $data = NULL;
         }
 
-        //$this->sma->print_arrays($data);
+    //    $this->sma->print_arrays($data);
+
         if (!empty($data)) {
 
             $this->load->library('excel');
@@ -2056,41 +2082,8 @@ class Associate extends MY_Controller
                         'branch_name',
                         'thana_code',
                         'institution_type',
-                        'sessionyear'
-                    );
-                    break;
-
-                default:
-                    # code...
-                    break;
-            }
-
-            switch ($process_id) {
-                case 2:
-                    $field_arr = array(
-                        'associatecode',
-                        'name',
-                        'branch_name',
-                        'thana_code',
-                        'institution_type',
                         'sessionyear',
-                        'subject',
-                        'responsibility',
-                        'associate_oath_date',
-                        'prossion_target',
-                        'prossion_target_sub',
-                        'studentlife',
-                        'district',
-                    );
-                    break;
-                case 15:
-                    $field_arr = array(
-                        'associatecode',
-                        'name',
-                        'branch_name',
-                        'thana_code',
-                        'institution_type',
-                        'sessionyear'
+                        'barnch_id_to_from',
                     );
                     break;
 
@@ -2100,14 +2093,22 @@ class Associate extends MY_Controller
             }
 
             //  for cellValue 
+
+
             $branch_id = $branch ? $branch->id : lang('all_branches');
             $process_name = $process ? $process->process : '';
             $process_Title = 'সাথী বৃদ্ধি : ' . $process_name;
 
             $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
 
-            $filename = (isset($branch->code) ? $branch->code : '') . 'associate_increase_report' . str_replace(" ", "", $process->process);
+            $filename = (isset($branch->code) ? $branch->code : '') . 'associate_increase_report_' . str_replace(" ", "", $process->process);
             $this->load->helper('excel');
+
+
+
+            //   $this->sma->print_arrays($process);
+
+
             create_excel($this->excel, $filename);
         }
         $this->session->set_flashdata('error', lang('nothing_found'));

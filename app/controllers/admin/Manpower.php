@@ -444,6 +444,9 @@ class Manpower extends MY_Controller
     {
         switch ($field) {
 
+            case 'barnch_id_to_from':
+                $field = 'শাখা থেকে ';
+                break;
             case 'membercode':
                 $field = 'আইডি';
                 break;
@@ -537,6 +540,9 @@ class Manpower extends MY_Controller
             case 'upazila':
                     $field = 'উপজেলা/থানা';
                     break;
+            case 'upazilla_name':
+                    $field = 'উপজেলা/থানা';
+                    break;
 
             default:
                 $field = $field;
@@ -558,12 +564,14 @@ class Manpower extends MY_Controller
 
         //for cell value
         $exColh = 'B';
+        
         foreach ($field_arr as $field) {
             $newName = $this->newName($field);
             $this->excel->getActiveSheet()->SetCellValue($exColh . '6', $newName);
             $this->excel->getActiveSheet()->getColumnDimension($exColh)->setWidth(20);
             $exColh++;
         }
+
 
         $row = 7;
         $sQty = 0;
@@ -573,7 +581,14 @@ class Manpower extends MY_Controller
         $bQty = 0;
         $bAmt = 0;
         $pl = 0;
+
+        //  $this->sma->print_arrays($data); 
+
+
         foreach ($data as $key => $data_row) {
+
+            
+
 
             $this->excel->getActiveSheet()->SetCellValue('A' . $row, $key + 1);
             $this->excel->getActiveSheet()->getStyle('A' . $row)->applyFromArray($style);
@@ -592,6 +607,14 @@ class Manpower extends MY_Controller
             }
             $row++;
         }
+
+
+    //   $this->sma->print_arrays($field_arr);
+    //   $this->sma->print_arrays($data_row);
+
+
+
+
 
         //>>>>>>>>>>>for Title >>>>>>>>>>>>>>>>            
         $lastmarg1 = $exColh . '1';
@@ -2743,6 +2766,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         $this->db
             ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from,  {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+            
             ->from('memberlog')
             ->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
             ->where('memberlog.process_id', $process_id)->where('memberlog.in_out', 1)
@@ -2772,7 +2796,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $data = NULL;
         }
 
-        // $this->sma->print_arrays($data);
+        $this->sma->print_arrays($data);
 
         if (!empty($data)) {
 
@@ -2809,8 +2833,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'branch_name',
                         'institution_type',
                         'sessionyear',
-
-
+                        'barnch_id_to_from',
                     );
 
                     break;
@@ -2825,10 +2848,17 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $process_name = $process ? $process->process : '';
             $process_Title = 'সদস্য বৃদ্ধি : ' . $process_name;
 
+
+
+
+
+            // $this->sma->print_arrays($field_arr);
+
+
             $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
 
 
-            $filename = (isset($branch->code) ? $branch->code : '') . 'member_increase_report' . str_replace(" ", "", $process->process);
+            $filename = (isset($branch->code) ? $branch->code : '') . 'member_increase_report_' . str_replace(" ", "", $process->process);
 
 
             $this->load->helper('excel');
@@ -2874,7 +2904,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
         $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   
+            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,thana_code ,  
                     {$this->db->dbprefix('manpower')}.name, 
                     {$this->db->dbprefix('branches')}.name as branch_name, 
                     {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  
@@ -2911,7 +2941,6 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $data = NULL;
         }
 
-        // $this->sma->print_arrays($data);
 
         if (!empty($data)) {
 
@@ -2931,7 +2960,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                 'responsibility'
             );
 
-            // $this->sma->print_arrays($process_id);
+            //    $this->sma->print_arrays($data);
 
             switch ($process_id) {
 
@@ -2940,8 +2969,9 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'orgstatus_at_forum',
                         'education_qualification',
                         'current_profession',
+                        'thana_code',
                         'district',
-                        'upazila'
+                        'upazilla_name'
                     );
                     $field_arr = array_merge($field_arr, $field_arr_add);
                     break;
@@ -3008,6 +3038,12 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
             $this->load->helper('excel');
+
+
+            // $this->sma->print_arrays($process_id); 
+
+
+
             create_excel($this->excel, $filename);
         }
         $this->session->set_flashdata('error', lang('nothing_found'));
