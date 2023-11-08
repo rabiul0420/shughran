@@ -259,9 +259,16 @@ class Site extends CI_Model
 
 
 
-    public function getAllDepartments()
+    public function getAllDepartments($id = null, $report_submit = null)
     {
-        $this->db->where('parent_id', NULL)->or_where('parent_id', 0)->order_by('name');
+        if ($id != null)
+            $this->db->where('id', $id);
+        else if ($report_submit)
+            $this->db->where('is_submit', 1);
+        else
+            $this->db->where('parent_id', NULL)->or_where('parent_id', 0)->order_by('name');
+
+
         $q = $this->db->get("departments");
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {

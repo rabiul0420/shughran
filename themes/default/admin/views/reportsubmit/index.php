@@ -24,52 +24,27 @@
 
 
 
+                        
+
+
+
+
+
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="control-label" for="type"><?= 'type'; ?></label>
+                                <label class="control-label" for="branch"><?= lang("Department"); ?></label>
                                 <?php
-                                $bl[""] = lang('select') . ' ' . 'Type';
-                                $types = array(array('id' => 'half_yearly', 'name' => 'half_yearly'), array('id' => 'annual', 'name' => 'annual'));
-                                foreach ($types as $type) {
-                                    $bl[$type['id']] =  $type['name'];
+                                $dpt[""] = lang('select') . ' ' . lang('branch');
+                                foreach ($departments as $department) {
+                                    $dpt[$department->id] = $department->name;
                                 }
-                                echo form_dropdown('type', $bl, (isset($_GET['type']) ? $_GET['type'] : ""), 'class="form-control" required id="type" data-placeholder="' . $this->lang->line("select") . " " . 'Type' . '"');
-                                ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label" for="year"><?= lang("year"); ?></label>
-                                <?php
-                                $wh[""] = lang('select') . ' ' . lang('year');
-                                $years = array();
-                                for ($i = date('Y'); $i >= 2020; $i--) {
-                                    $years[] = array('id' => $i, 'name' => $i);
-                                }
-
-                                foreach ($years as $year) {
-                                    $wh[$year['id']] = $year['name'];
-                                }
-                                echo form_dropdown('year', $wh, (isset($_GET['year']) ? $_GET['year'] : ""), 'class="form-control" id="year" required data-placeholder="' . $this->lang->line("select") . " " . 'year' . '"');
+                                echo form_dropdown('department_id', $dpt, (isset($_GET['department_id']) ? $_GET['department_id'] : ""), 'class="form-control" required id="department_id" data-placeholder="' . $this->lang->line("select") . " " . $this->lang->line("department") . '"');
                                 ?>
                             </div>
                         </div>
 
 
 
-
-                        <div class="col-sm-4 hidden">
-                            <div class="form-group">
-                                <label class="control-label" for="branch"><?= lang("branch"); ?></label>
-                                <?php
-                                $wh[""] = lang('select') . ' ' . lang('branch');
-                                foreach ($branches as $branch) {
-                                    $wh[$branch->id] = $branch->name;
-                                }
-                                echo form_dropdown('branch', $wh, (isset($_GET['branch']) ? $_GET['branch'] : ""), 'class="form-control" required id="branch" data-placeholder="' . $this->lang->line("select") . " " . $this->lang->line("branch") . '"');
-                                ?>
-                            </div>
-                        </div>
 
 
 
@@ -89,7 +64,7 @@
                     <table class="table table-bordered table-hover table-striped table-condensed reports-table">
                         <thead>
                             <tr>
-                                <th width="20%"><?= lang("branch_id"); ?></th>
+                                <th width="20%"><?= lang("branch_name"); ?></th>
                                 <th width="20%"><?= lang("branch_code"); ?></th>
                                 <th width="10%"><?= lang("status"); ?></th>
                                 <th><?= lang("branch_comment"); ?></th>
@@ -106,30 +81,33 @@
                                 foreach ($branches as $key => $row) {
 
 
-                                    if ($this->session->userdata('branch_id') == $row->id) {
+                                    if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8) {
                                         $value = report_submit($row->id, $submitinfo);
+
+                                        // var_dump($value);
+
                                         //$comment = report_submit_comment($row->id,$submitinfo); 
                             ?>
                                         <tr>
-                                            <td><?= $row->id ?></td>
+                                            <td><?= $row->name ?></td>
                                             <td><?= $row->code ?></td>
                                             <td><a href="#" class="yes_no editable-click" data-id="" data-idname="" data-type="select" data-table="reportsubmit" data-pk="<?php echo $value->id ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="department_<?php echo $department_id ?>" data-title="Enter"><?php echo $value->department == 2 ? 'No' : 'Yes' ?></a></td>
-                                            <td><a href="#" class="editable editable-click" data-id="" data-idname="" data-type="textarea" data-table="reportsubmit" data-pk="<?php echo $value->id ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="comment_<?php echo $department_id ?>" data-title="Enter"><?php echo empty($value->department_comment) ? 'Write your comment..' : nl2br($value->department_comment) ?></a></td>
+                                            <td><?php echo empty($value->branch_comment) ? '..' : nl2br($value->branch_comment) ?></td>
                                             <td><a href="#" class="editable editable-click" data-id="" data-idname="" data-type="textarea" data-table="reportsubmit" data-pk="<?php echo $value->id ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="comment_<?php echo $department_id ?>" data-title="Enter"><?php echo empty($value->department_comment) ? 'Write your comment..' : nl2br($value->department_comment) ?></a></td>
 
                                         </tr>
-                                    <?php } else if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8) {
-                                        $value = report_submit($row->id, $submitinfo);
+                                    <?php } else if ( $this->session->userdata('branch_id') ) {
+                                        $value = report_submit($branch_id, $submitinfo);
 
                                         //var_dump($value);
-                                       // $comment = report_submit_comment($row->id, $submitinfo);
+                                        // $comment = report_submit_comment($row->id, $submitinfo);
                                     ?>
 
                                         <tr>
-                                            <td><?= $row->id ?></td>
+                                            <td><?= $row->name ?></td>
                                             <td><?= $row->code ?></td>
                                             <td><a href="#" class="yes_no editable-click" data-id="" data-idname="" data-type="select" data-table="reportsubmit" data-pk="<?php echo $value->id ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="department_<?php echo $department_id ?>" data-title="Enter"><?php echo $value->department == 2 ? 'No' : 'Yes' ?></a></td>
-                                            <td><a href="#" class="editable editable-click" data-id="" data-idname="" data-type="textarea" data-table="reportsubmit" data-pk="<?php echo $value->id ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="comment_<?php echo $department_id ?>" data-title="Enter"><?php echo empty($value->department_comment) ? 'Write your comment..' : nl2br($value->department_comment) ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-id="" data-idname="" data-type="textarea" data-table="reportsubmit" data-pk="<?php echo $value->id ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="comment" data-title="Enter"><?php echo empty($value->comment) ? 'Write your comment..' : nl2br($value->comment) ?></a></td>
                                             <td><a href="#" class="editable editable-click" data-id="" data-idname="" data-type="textarea" data-table="reportsubmit" data-pk="<?php echo $value->id ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="comment_<?php echo $department_id ?>" data-title="Enter"><?php echo empty($value->department_comment) ? 'Write your comment..' : nl2br($value->department_comment) ?></a></td>
 
                                         </tr>

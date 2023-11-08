@@ -228,6 +228,49 @@ class MY_Controller extends CI_Controller
     }
 
 
+
+
+    function page_construct4($page, $meta = array(), $data = array(), $left_panel = 'leftmenu/left_panel')
+    {
+        $meta['message'] = isset($data['message']) ? $data['message'] : $this->session->flashdata('message');
+        $meta['error'] = isset($data['error']) ? $data['error'] : $this->session->flashdata('error');
+        $meta['warning'] = isset($data['warning']) ? $data['warning'] : $this->session->flashdata('warning');
+        $meta['info'] = $this->site->getNotifications();
+        $meta['events'] = $this->site->getUpcomingEvents();
+        $meta['ip_address'] = $this->input->ip_address();
+        $meta['Owner'] = $data['Owner'];
+        $meta['Admin'] = $data['Admin'];
+        $meta['Supplier'] = $data['Supplier'];
+        $meta['Customer'] = $data['Customer'];
+        $meta['Settings'] = $data['Settings'];
+        $meta['dateFormats'] = $data['dateFormats'];
+        $meta['assets'] = $data['assets'];
+        $meta['GP'] = $data['GP'];
+        $meta['reportdate'] = $data['reportdate'];
+        //$meta['qty_alert_num'] = $this->site->get_total_qty_alerts();
+        //$meta['exp_alert_num'] = $this->site->get_expiring_qty_alerts();
+        //$meta['shop_sale_alerts'] = SHOP ? $this->site->get_shop_sale_alerts() : 0;
+        // $meta['shop_payment_alerts'] = SHOP ? $this->site->get_shop_payment_alerts() : 0;
+
+
+        if($left_panel == 'leftmenu/left_panel'){
+        $meta['pending_list'] = $this->getlist();
+        $meta['manpowertransferout'] = $this->manpowertransferout();
+        $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
+        $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
+        }
+
+
+
+        $this->load->view($this->theme . 'header', $meta);
+        $this->load->view($this->theme . $left_panel, $meta);
+        $this->load->view($this->theme . $page, $data);
+        $this->load->view($this->theme . 'footer4');
+    }
+
+
+
+
     function report_typeold()
     {
 

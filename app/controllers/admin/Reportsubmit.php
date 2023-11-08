@@ -14,7 +14,7 @@ class Reportsubmit extends MY_Controller
 		 
 		
 		 
-		if(  !($this->session->userdata('group_id')== 8 || $this->Owner || $this->Admin)) {   
+		if(  !($this->session->userdata('group_id')== 8 || $this->session->userdata('branch_id')  ||  $this->Owner || $this->Admin)) {   
 			admin_redirect('welcome');
 		}
 		
@@ -32,7 +32,6 @@ class Reportsubmit extends MY_Controller
         $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Report Submit'));
         $meta = array('page_title' => 'Report Submit', 'bc' => $bc);
-		$this->data['branches'] = $this->site->getAllBranches();
 		
 		 
           
@@ -71,25 +70,56 @@ class Reportsubmit extends MY_Controller
 		//$this->data['submitinfo'] = $this->site->query_binding('reportsubmit', "*", array( 'year'=>$year,'report_type'=>$report_type), 'id asc');
     
     if($this->session->userdata('group_id')==8) {
+        $this->data['branches'] = $this->site->getAllBranches();
+		
         $department= 'department_'.$this->session->userdata('department_id');
         $comment = 'comment_'.$this->session->userdata('department_id');
+        $branch_comment = 'branch_comment_'.$this->session->userdata('department_id');
         $this->data['department_id'] = $this->session->userdata('department_id');
-        $this->data['submitinfo'] = $this->site->query_binding('SELECT  '.$department.' as department, id,branch_id ,'.$comment.' as department_comment FROM `sma_reportsubmit`   where report_type = ? AND `year` = ?  ', array($report_type,$year));
-      //  $this->sma->print_arrays($this->data['submitinfo']);
-    
-    }
-        else if ($this->Owner || $this->Admin)
-        $this->data['submitinfo'] = $this->site->query_binding('SELECT  sma_reportsubmit.*  sma_branches.code FROM `sma_reportsubmit`  where report_type = ? AND `year` = ? ', array($report_type,$year,$this->session->userdata('department_id')));
-    else  
-        $this->data['submitinfo'] = $this->site->query_binding('SELECT  sma_reportsubmit.*  sma_branches.code FROM `sma_reportsubmit`  where report_type = ? AND `year` = ? AND  branch_id ', array($report_type,$year,$this->session->userdata('branch_id')));
 
+        $department_id =  $this->data['department_id'];
+        $this->data['branch_id'] = $this->input->get('branch_id');
+        if($department_id) 
+        $this->data['submitinfo'] = $this->site->query_binding('SELECT  '.$department.' as department, '.$branch_comment.' as branch_comment, sma_reportsubmit.id,branch_id ,'.$comment.' as department_comment FROM `sma_reportsubmit`   where report_type = ? AND `year` = ?  ', array($report_type,$year));
+        //  $this->sma->print_arrays($this->data['submitinfo']);
+        $this->data['departments'] = $this->site->getAllDepartments($this->session->userdata('department_id'));
+        $this->page_construct4('reportsubmit/index', $meta, $this->data);
+    }
+        else if ($this->Owner || $this->Admin){
+            $this->data['branches'] = $this->site->getAllBranches();
 		
-		$this->data['departments'] = $this->site->getAllDepartments();
              
+            $this->data['submitinfo'] = $this->site->query_binding('SELECT * FROM `sma_reportsubmit`   where report_type = ? AND `year` = ?  ', array($report_type,$year));
+        
+        //$this->data['submitinfo'] = $this->site->query_binding('SELECT  sma_reportsubmit.* , sma_branches.code FROM `sma_reportsubmit` LEFT JOIN sma_branches ON sma_branches.id = sma_reportsubmit.branch_id   where report_type = ? AND `year` = ? ', array($report_type,$year));
+        
+        $this->data['departments'] = $this->site->getAllDepartments(null, 1);
+        $this->page_construct4('reportsubmit/index_admin', $meta, $this->data);
+        }
+    
+        else { 
+
+           // $this->data['branches'] = (object) array(array('id'=>, 'code'=>, 'name')) ;
+		
+           
+         $this->data['branch_id'] = $this->session->userdata('branch_id');
+         $this->data['branch'] =   $this->site->getBranchByID($this->session->userdata('branch_id'));
+          
+        $this->data['submitinfo'] = $this->site->query_binding('SELECT  *  FROM `sma_reportsubmit`  where report_type = ? AND `year` = ? AND   branch_id = ? ', array($report_type,$year,$this->session->userdata('branch_id')));
+        $this->data['departments'] = $this->site->getAllDepartments(null, 1);
+        $this->page_construct4('reportsubmit/index_branch', $meta, $this->data);
+        }
+		
+		 
+             
+       // $this->sma->print_arrays($this->data['submitinfo']);
+
+        
        
 
 
-        $this->page_construct('reportsubmit/index', $meta, $this->data);
+
+
     }
 
      
