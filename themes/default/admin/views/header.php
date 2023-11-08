@@ -397,7 +397,7 @@
 						<?php
                         if ($Owner || $Admin || $this->session->userdata('group_id')== 8   || $this->session->userdata('branch_id')) {
                             ?>
-						 <li class="tmp_hidden"><a href="<?= admin_url('reportsubmit'); ?>">রিপোর্ট জমা</a></li>
+						 <li class="tmp_hidden"><a href="<?= admin_url('reportsubmit'); ?>">বকেয়া</a></li>
 						  <?php
 						}
                             ?>
