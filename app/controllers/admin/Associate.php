@@ -88,7 +88,7 @@ class Associate extends MY_Controller
         switch ($field) {
 
             case 'barnch_id_to_from':
-                $field = 'শাখা থেকে ';
+                $field = 'স্থানান্তরিত শাখা';
                 break;
             case 'associatecode':
                 $field = 'আইডি';
@@ -583,8 +583,6 @@ class Associate extends MY_Controller
             $this->data['branch_id'] = $this->session->userdata('branch_id');
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
-
-
         // $this->sma->print_arrays($this->data);
 
         $this->data['process'] = $process;
@@ -2136,21 +2134,15 @@ class Associate extends MY_Controller
 
         $report_type = $this->report_type();
 
-
-
-
         $start = $report_type['start'];
         $end = $report_type['end'];
-
-
-
 
         $process = $this->site->getByID('process', 'id', $process_id);
 
         // $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
 
         $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district, upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,barnch_id_to_from, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district, upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
             ->from('associatelog')
             ->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
             ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2)
@@ -2177,7 +2169,8 @@ class Associate extends MY_Controller
             $data = NULL;
         }
 
-        //$this->sma->print_arrays($data);
+        // $this->sma->print_arrays($data);
+
         if (!empty($data)) {
 
             $this->load->library('excel');
@@ -2209,6 +2202,7 @@ class Associate extends MY_Controller
                         'thana_code',
                         'institution_type',
                         'sessionyear',
+                        'barnch_id_to_from',
                     );
                     break;
                 case 12:
@@ -2226,28 +2220,8 @@ class Associate extends MY_Controller
                         'district'
                     );
                     break;
-                case 15:
-                    $field_arr = array(
-                        'associatecode',
-                        'name',
-                        'branch_name',
-                        'thana_code',
-                        'institution_type',
-                        'sessionyear',
-                    );
-                    break;
-                case 12:
-                    $field_arr = array(
-                        'associatecode',
-                        'name',
-                        'branch_name',
-                        'thana_code',
-                        'institution_type',
-                        'sessionyear',
-                        'subject',
-                        'responsibility',
-                    );
-                    break;
+                
+               
                 case 11:
                     $field_arr = array(
                         'associatecode',

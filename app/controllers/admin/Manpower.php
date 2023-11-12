@@ -445,7 +445,7 @@ class Manpower extends MY_Controller
         switch ($field) {
 
             case 'barnch_id_to_from':
-                $field = 'শাখা থেকে ';
+                $field = 'স্থানান্তরিত শাখা';
                 break;
             case 'membercode':
                 $field = 'আইডি';
@@ -1526,7 +1526,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
     {
 
         //admin_redirect('manpower/member');
-        // $this->sma->print_arrays($_POST);
+        //  $this->sma->print_arrays($_POST);
 
 
         $this->sma->checkPermissions('index', TRUE);
@@ -1538,11 +1538,6 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         else
             $where = array('branch_id' => $this->session->userdata('branch_id'));
-
-
-
-
-
 
         $this->load->helper('security');
 
@@ -2643,6 +2638,8 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
     /* --------------------------------------------------------------------------------------------- */
 
+
+
     function modal_view($id = NULL, $status = NULL)
     {
         $this->sma->checkPermissions('index', TRUE);
@@ -2904,7 +2901,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
         $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,thana_code ,  
+            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,thana_code , barnch_id_to_from, 
                     {$this->db->dbprefix('manpower')}.name, 
                     {$this->db->dbprefix('branches')}.name as branch_name, 
                     {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  
@@ -2979,7 +2976,9 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                 case 15:
                     $field_arr_add = array(
                         'institution_type',
-                        'sessionyear'
+                        'sessionyear',
+                        'barnch_id_to_from',
+                        
                     );
                     $field_arr = array_merge($field_arr, $field_arr_add);
                     break;
