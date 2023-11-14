@@ -50,22 +50,84 @@
                 //if(aData[7] > aData[9]){ nRow.className = "product_link warning"; } else { nRow.className = "product_link"; }
                 return nRow;
             },
-            "aoColumns": [
-                {"bVisible": false},   null, null, null, <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,null,null,null
+            "aoColumns": [{
+                    "bVisible": false
+                }, null, null, null, <?php if ($branch_id) {
+                                            echo '{"bVisible": false},';
+                                        } else {
+                                            echo '{"bSortable": true},';
+                                        } ?> null, null, null
+                <?php if ($process->id == 15) { ?>, null
+                <?php } ?>
+                <?php if ($process->id == 10) { ?>, null
+                <?php } ?>
             ]
-        }).fnSetFilteringDelay().dtFilter([
-            {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
-            {column_number: 2, filter_default_label: "[<?=lang('name');?>]", filter_type: "text", data: []},
-            {column_number: 3, filter_default_label: "[<?='branch';?>]", filter_type: "text", data: []},
-            {column_number: 4, filter_default_label: "[<?='Oath';?>]", filter_type: "text", data: []},
-            {column_number: 5, filter_default_label: "[<?='Session';?>]", filter_type: "text", data: []},
-            {column_number: 6, filter_default_label: "[<?='Responsibility';?>]", filter_type: "text", data: []},
-            {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
-            {column_number: 8, filter_default_label: "[<?='স্থানান্তরিত শাখা';?>]", filter_type: "text", data: []},
-            
-             
-            
-            
+        }).fnSetFilteringDelay().dtFilter([{
+                column_number: 1,
+                filter_default_label: "[<?= lang('code'); ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 2,
+                filter_default_label: "[<?= lang('name'); ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 3,
+                filter_default_label: "[<?= 'branch'; ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 4,
+                filter_default_label: "[<?= 'Oath'; ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 5,
+                filter_default_label: "[<?= 'Session'; ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 6,
+                filter_default_label: "[<?= 'Responsibility'; ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 7,
+                filter_default_label: "[<?= 'থানা কোড'; ?>]",
+                filter_type: "text",
+                data: []
+            },
+
+
+            <?php if ($process->id == 15) { ?> {
+                    column_number: 8,
+                    filter_default_label: "[<?= 'স্থানান্তরিত শাখা'; ?>]",
+                    filter_type: "text",
+                    data: []
+                },
+            <?php } ?>
+
+            <?php if ($process->id == 10) { ?> {
+                    column_number: 8,
+                    filter_default_label: "[<?= 'প্রতিপক্ষ'; ?>]",
+                    filter_type: "text",
+                    data: []
+                },
+                
+
+            <?php } ?>
+
+
+
+
+
         ], "footer");
 
     });
@@ -193,21 +255,30 @@
                 <div class="table-responsive">
                     <table id="PRData" class="table table-bordered table-condensed table-hover table-striped">
                         <thead>
-                        <tr class="primary">
-                             <th><?= lang("code") ?></th>
-                              <th><?= 'কোড' ?></th>
-                            <th><?= 'নাম' ?></th>
-                            
-							<th><?= "শাখা" ?></th>
-							
-							
-							<th><?= 'শপথ' ?></th>
-							<th><?= 'শ্রেণি/বর্ষ ' ?></th>
-							 
-							  <th><?php echo  in_array($process->id,array(9,10,11,8,14)) ? "সর্বশেষ দায়িত্ব" : "দায়িত্ব"; ?></th>
-							  <th><?= 'থানা কোড' ?></th>
-                              <th><?= 'স্থানান্তরিত শাখা ' ?></th>
-                                  </tr>
+                            <tr class="primary">
+                                <th><?= lang("code") ?></th>
+                                <th><?= 'কোড' ?></th>
+                                <th><?= 'নাম' ?></th>
+
+                                <th><?= "শাখা" ?></th>
+
+                                <th><?= 'শপথ' ?></th>
+                                <th><?= 'শ্রেণি/বর্ষ ' ?></th>
+
+                                <th><?php echo  in_array($process->id, array(9, 10, 11, 8, 14)) ? "সর্বশেষ দায়িত্ব" : "দায়িত্ব"; ?></th>
+                                <th><?= 'থানা কোড' ?></th>
+
+                                <?php if ($process->id == 15) { ?>
+                                    <th><?= 'স্থানান্তরিত শাখা' ?></th>
+                                <?php } ?>
+
+                                <?php if ($process->id == 10) { ?>
+                                    <th><?= 'প্রতিপক্ষ' ?></th>
+                                <?php } ?>
+
+
+
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
@@ -225,8 +296,14 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th></th>
-                                 
+                                <?php if ($process->id == 15) { ?>
+                                    <th></th>
+                                <?php } ?>
+
+                                <?php if ($process->id == 10) { ?>
+                                    <th></th>
+                                <?php } ?>
+
                             </tr>
                         </tfoot>
                     </table>

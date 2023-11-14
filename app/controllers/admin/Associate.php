@@ -612,7 +612,7 @@ class Associate extends MY_Controller
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from, `opposition`", FALSE)
                 ->from('associatelog');
             $this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
                 ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2);
@@ -621,7 +621,7 @@ class Associate extends MY_Controller
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from, `opposition`", FALSE)
                 ->from('associatelog');
             $this->datatables->join('manpower', 'manpower.id=associatelog.manpower_id', 'left')
                 ->where('associatelog.process_id', $process_id)->where('associatelog.in_out', 2);
@@ -631,14 +631,18 @@ class Associate extends MY_Controller
 
 
 
-
         $start = $report_type['start'];
         $end = $report_type['end'];
 
 
-
-
         $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end  . '"');
+
+        if ($process_id != 15)             
+        $this->datatables->unset_column("barnch_id_to_from");
+
+        
+        
+
         echo $this->datatables->generate();
     }
 
@@ -2192,7 +2196,6 @@ class Associate extends MY_Controller
                         'name',
                         'branch_name',
                         'thana_code',
-
                         'responsibility',
                         'orgstatus_at_forum',
                         'education_qualification',

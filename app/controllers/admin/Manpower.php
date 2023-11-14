@@ -3025,21 +3025,29 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                     break;
             }
 
+
+
             //  for cellValue 
             $branch_id = $branch ? $branch->id : lang('all_branches');
             $process_name = $process ? $process->process : '';
+
+            if ($process_id == 15 ) {
+                $process_name =  '_স্থানান্তর ';
+            }
+
+
             $process_Title = 'সদস্য ঘাটতি : ' . $process_name;
 
             $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
 
 
-            $filename = (isset($branch->code) ? $branch->code : '') . 'member_decrease_report' . str_replace(" ", "", $process->process);
+            $filename = (isset($branch->code) ? $branch->code : '') . 'member_decrease_report' . str_replace(" ", "", $process_name);
 
 
             $this->load->helper('excel');
 
 
-            // $this->sma->print_arrays($process_id); 
+            //  $this->sma->print_arrays($process_name); 
 
 
 
