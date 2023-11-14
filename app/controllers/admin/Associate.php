@@ -2074,14 +2074,22 @@ class Associate extends MY_Controller
                     );
                     break;
                 case 15:
+
+                               
+
                     $field_arr = array(
                         'associatecode',
                         'name',
+                        'associate_oath_date',
                         'branch_name',
                         'thana_code',
                         'institution_type',
                         'sessionyear',
+                        'responsibility',
+                        'prossion_target',
+                        'prossion_target_sub',
                         'barnch_id_to_from',
+                        'district',
                     );
                     break;
 

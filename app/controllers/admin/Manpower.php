@@ -2954,6 +2954,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                 'name',
                 'branch_name',
                 'mobile',
+                'thana_code',
                 'responsibility'
             );
 
@@ -2965,8 +2966,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                     $field_arr_add = array(
                         'orgstatus_at_forum',
                         'education_qualification',
-                        'current_profession',
-                        'thana_code',
+                        'current_profession',                        
                         'district',
                         'upazilla_name'
                     );
