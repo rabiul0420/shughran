@@ -115,14 +115,8 @@ if (!empty($variants)) {
 
 
 
-                    <div class="form-group">
-                        <?= lang('সদস্য', 'member_number'); ?>
-                        <?= form_input('member_number', set_value('member_number', '0'), 'class="form-control tip" id="member_number" required="required" '); ?>
-                    </div>
-                    <div class="form-group">
-                        <?= lang('সাথী', 'associate_number'); ?>
-                        <?= form_input('associate_number', set_value('associate_number', '0'), 'class="form-control tip" id="associate_number" required="required" '); ?>
-                    </div>
+                     
+                     
                     <div class="form-group">
                         <?= lang('কর্মী', 'worker_number'); ?>
                         <?= form_input('worker_number', set_value('worker_number', '0'), 'class="form-control tip" id="worker_number" required="required" '); ?>
@@ -157,15 +151,15 @@ if (!empty($variants)) {
 
 
                     <div class="form-group">
-                        <?= lang('চলতি সেশনে বৃদ্ধি কিনা?', 'increase_in_current_session'); ?>
+                        <?= lang('আদর্শ থানা?', 'is_ideal_thana'); ?>
 
                         <div class="radio">
-                            <input type="radio" class="checkbox" name="increase_in_current_session" value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
+                            <input type="radio" class="checkbox" name="is_ideal_thana" value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
                             <label   class="padding05"><?= 'হ্যাঁ' ?></label>
                         </div>
 
                         <div class="radio">
-                            <input type="radio" class="checkbox" name="increase_in_current_session" value="2" <?= 2 ? 'checked="checked"' : ''; ?>>
+                            <input type="radio" class="checkbox" name="is_ideal_thana" value="2" <?= 2 ? 'checked="checked"' : ''; ?>>
                             <label   class="padding05"><?= 'না ' ?></label>
 
                         </div>

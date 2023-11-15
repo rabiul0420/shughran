@@ -15,9 +15,9 @@
         return type=='Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠানিক';
     }
 
-    function yes_no(in_session){
+    function yes_no(is_ideal_thana){
 
-return in_session==1 ? 'Yes' : 'No';
+return is_ideal_thana == 1 ? 'Yes' : 'No';
 }
     
     var oTable3;
@@ -136,7 +136,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th>সমর্থক </th>
                             <th>ওয়ার্ড  </th>
                             <th>উপশাখা  </th>
-                            <th>চলতি সেশনে </th>
+                            <th>আদর্শ থানা </th>
                             
                             <th><?= 'নোট'  ?></th>
                             <th></th>
