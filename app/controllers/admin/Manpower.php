@@ -440,18 +440,21 @@ class Manpower extends MY_Controller
   );
     }
 
-    public function newName($field)
+    public function newName($field,$in_out = null)
     {
+
+
+
         switch ($field) {
 
             case 'barnch_id_to_from':
-                $field = 'স্থানান্তরিত শাখা';
+                $field = ($in_out == 1) ? 'শাখা হতে' :'স্থানান্তরিত শাখা' ;
                 break;
             case 'membercode':
                 $field = 'আইডি';
                 break;
             case 'name':
-                $field = 'নাম';
+                $field = 'নাম'; 
                 break;
             case 'branch_name':
                 $field = 'শাখা কোড';
@@ -543,6 +546,12 @@ class Manpower extends MY_Controller
             case 'upazilla_name':
                     $field = 'উপজেলা/থানা';
                     break;
+            case 'start_date':
+                    $field = 'তারিখ';
+                    break;
+            case 'note':
+                    $field = 'নোট';
+                    break;
 
             default:
                 $field = $field;
@@ -552,7 +561,7 @@ class Manpower extends MY_Controller
     }
 
 
-    public function sheetcellValue($branch = null, $field_arr = null, $data = null, $process_Title = null)
+    public function sheetcellValue($branch = null, $field_arr = null, $data = null, $process_Title = null,$in_out = null)
     {
         $style = array(
             'alignment' => array(
@@ -560,13 +569,23 @@ class Manpower extends MY_Controller
             )
         );
 
+
+
+        // $this->sma->print_arrays($process_Title); 
+
+
+
+
+
+
+
         $institution_type = $this->site->getAll('institution');
 
         //for cell value
         $exColh = 'B';
         
         foreach ($field_arr as $field) {
-            $newName = $this->newName($field);
+            $newName = $this->newName($field,$in_out);
             $this->excel->getActiveSheet()->SetCellValue($exColh . '6', $newName);
             $this->excel->getActiveSheet()->getColumnDimension($exColh)->setWidth(20);
             $exColh++;
@@ -584,10 +603,7 @@ class Manpower extends MY_Controller
 
         //  $this->sma->print_arrays($data); 
 
-
-        foreach ($data as $key => $data_row) {
-
-            
+        foreach ($data as $key => $data_row) {           
 
 
             $this->excel->getActiveSheet()->SetCellValue('A' . $row, $key + 1);
@@ -599,7 +615,7 @@ class Manpower extends MY_Controller
                 if ($field == 'institution_type_child') // getvalue($value,$array, $field)
                     $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $this->getvalue($data_row->institution_type_child, $institution_type, 'institution_type'));
                 else
-                    $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $data_row->{$field});
+                    $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $field == 'note' ? strip_tags( $data_row->{$field}) :  $data_row->{$field}   );
 
                 $this->excel->getActiveSheet()->getStyle($exCol . $row)->applyFromArray($style);
 
@@ -2732,6 +2748,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
     {
 
         $this->sma->checkPermissions('index', TRUE);
+
         if (!$this->Owner) {
             // $this->session->set_flashdata('warning', lang('access_denied'));
             // redirect($_SERVER["HTTP_REFERER"]);
@@ -2748,7 +2765,6 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         $report_type = $this->report_type();
 
-
         $type =  $this->input->get('type');
 
         $start = $report_type['start'];
@@ -2762,7 +2778,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
         $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from,  {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
+            ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,thana_code,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from,  {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
             
             ->from('memberlog')
             ->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
@@ -2793,7 +2809,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $data = NULL;
         }
 
-        $this->sma->print_arrays($data);
+        //  $this->sma->print_arrays($data);
 
         if (!empty($data)) {
 
@@ -2801,7 +2817,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->excel->setActiveSheetIndex(0);
             $this->excel->getActiveSheet()->setTitle('Member Increase list');
 
-
+            $in_out = null;
             //eeee
 
             switch ($process_id) {
@@ -2820,10 +2836,12 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'studentlife',
                         'district',
                         'upazilla_name',
+                        'thana_code',
                     );
 
                     break;
                 case 15:
+                    $in_out = 1;
                     $field_arr = array(
                         'membercode',
                         'name',
@@ -2831,6 +2849,13 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'institution_type',
                         'sessionyear',
                         'barnch_id_to_from',
+                        'responsibility',
+                        'member_oath_date',
+                        'prossion_target',
+                        'prossion_target_sub',
+                        'district',
+                        
+                       
                     );
 
                     break;
@@ -2849,11 +2874,11 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
+            
+            
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title,$in_out);
+            
             // $this->sma->print_arrays($field_arr);
-
-
-            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
-
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'member_increase_report_' . str_replace(" ", "", $process->process);
 
@@ -3000,6 +3025,8 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'email',
                         'is_forum'
                     );
+                    $field_arr = array_merge($field_arr, $field_arr_add);
+                    break;
                 case 14:
                     $field_arr_add = array(
                         'foreign_country',
@@ -3008,11 +3035,15 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'email',
                         'is_forum'
                     );
+                    $field_arr = array_merge($field_arr, $field_arr_add);
+                    break;
                 case 9:
                     $field_arr_add = array(
                         'date_death',
                         'how_death'
                     );
+                    $field_arr = array_merge($field_arr, $field_arr_add);
+                    break;
                 case 10:
                     $field_arr_add = array(
                         'opposition',
@@ -3038,7 +3069,9 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
             $process_Title = 'সদস্য ঘাটতি : ' . $process_name;
 
-            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
+            $in_out = null;
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title,$in_out);
 
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'member_decrease_report' . str_replace(" ", "", $process_name);
@@ -4237,7 +4270,10 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
             //  for cellValue 
             $process_Title = 'সদস্য তালিকা';
-            $this->sheetcellValue($branch, $field_arr, $data, $process_Title);
+
+            $in_out = null;
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title,$in_out);
 
             //    $filename = 'associate_list'.($branch ? '_'.$branch: '');
 
@@ -4275,7 +4311,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
         $this->db
-            ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,
+            ->select($this->db->dbprefix('manpower') . ".id as manpowerid, {$this->db->dbprefix('postpone')} .id as id,  membercode, thana_code,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('postpone')}.start_date as start_date,
 				{$this->db->dbprefix('institution')}.institution_type, sessionyear, subject,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,{$this->db->dbprefix('manpower')}.note", FALSE)
             ->from('postpone')
             ->join('manpower', 'manpower.id=postpone.manpower_id', 'left')
@@ -4299,7 +4335,11 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         } else {
             $data = NULL;
         }
-        //$this->sma->print_arrays($data);
+
+        
+        // $this->sma->print_arrays($data);
+
+
         if (!empty($data)) {
 
             $this->load->library('excel');
@@ -4311,19 +4351,31 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                 'membercode',
                 'name',
                 'branch_name',
+                'thana_code',
                 'institution_type',
                 'sessionyear',
                 'subject',
                 'responsibility',
+                'start_date',
+                'note',
+
             );
 
             //  for cellValue 
             $process_Title = 'সদস্য মুলতবি';
-            $this->sheetcellValue($branch, $field_arr, $data, $process_Title);
+
+            $in_out = null;
+
+          
+
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title,$in_out);
 
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'postpone_report';
             $this->load->helper('excel');
+
+
             create_excel($this->excel, $filename);
         }
         $this->session->set_flashdata('error', lang('nothing_found'));
