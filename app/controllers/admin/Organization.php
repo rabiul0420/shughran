@@ -3248,7 +3248,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         // $this->sma->print_arrays($this->data['branch']);
 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'থানা তালিকা'));
-        $meta = array('page_title' => 'থানা অনিষ্পাদিত তালিকা', 'bc' => $bc);
+        $meta = array('page_title' => 'থানা পেন্ডিং তালিকা', 'bc' => $bc);
         $this->page_construct('organization/thana_pending', $meta, $this->data, 'leftmenu/organization');
     }
 
@@ -3493,7 +3493,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-        if ($transfer_info->is_pending == 1) {
+        if ($thana_info->is_pending == 1) {
+            $this->site->updateData('thana', array('is_pending'=>2, 'date'=>date('Y-m-d')), array('id' => $thana_id));
+            $this->site->updateData('thana', array('is_pending'=>2, 'date'=>date('Y-m-d')), array('id' => $thana_id));
+
             //  is_pending => 2
             //  ideal table is_pending => 2 if ideal_status = 1
             //  thana_log insert 
@@ -3536,7 +3539,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         if ($transfer_info->is_pending == 1) {
             //  is_pending => 3
             //  ideal table is_pending => 3 if ideal_status = 1
-            
+
 
         } else {
             $this->session->set_flashdata('warning', 'Already decision has been made.');

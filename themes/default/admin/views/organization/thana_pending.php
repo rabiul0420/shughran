@@ -72,7 +72,7 @@ oTable3 = $('#PRData5').dataTable({
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'থানা অনিষ্পাদিত তালিকা   ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'থানা পেন্ডিং তালিকা   ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
        
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         

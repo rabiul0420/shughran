@@ -135,7 +135,7 @@
 
                                         <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thana_pending')) ? 'active' : '' ?>">
                                             <a href="<?= admin_url('organization/thana_pending') ?>">
-                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা অনিষ্পাদিত তালিকা"; ?></span>
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা পেন্ডিং তালিকা"; ?></span>
                                             </a>
                                         </li>
   
