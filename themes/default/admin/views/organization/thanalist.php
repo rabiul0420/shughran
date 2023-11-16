@@ -2,8 +2,8 @@
 <style>
 #PRData th:nth-child(2),#PRData2 th:nth-child(2),#PRData5 th:nth-child(2),#PRData4 th:nth-child(2) { width: 5% !important; }
 #PRData th:nth-child(1),#PRData2 th:nth-child(1),#PRData5 th:nth-child(1),#PRData4 th:nth-child(1) { width: 5% !important; }
-#PRData5 th:nth-child(12) { width: 5% !important; }
-#PRData5 th:nth-child(13) { width: 15% !important; }
+#PRData5 th:nth-child(13) { width: 10% !important; }
+#PRData5 th:nth-child(15) { width: 7% !important; }
 </style>
 
 
@@ -50,7 +50,7 @@ oTable3 = $('#PRData5').dataTable({
         return nRow;
     },
     "aoColumns": [
-        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, null, null, {  "mRender": yes_no}, null ,{"bSortable": false}
+        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, null, null, {  "mRender": yes_no}, null ,{"bSortable": false},{"bSortable": false}
     ]
 }).fnSetFilteringDelay().dtFilter([
     {column_number: 1, filter_default_label: "[<?='শাখা';?>]", filter_type: "text", data: []},
@@ -140,6 +140,7 @@ oTable3 = $('#PRData5').dataTable({
                             
                             <th><?= 'নোট'  ?></th>
                             <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -166,7 +167,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th></th>
                             <th></th>
                             <th></th>
-                        
+                            <th></th>
                     </table>
                 </div>
             </div>

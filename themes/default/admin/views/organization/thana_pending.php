@@ -20,6 +20,11 @@
 return is_ideal_thana == 1 ? 'Yes' : 'No';
 }
     
+function increase_decrease(is_ideal_thana){
+   
+return is_ideal_thana == 1 ? 'বৃদ্ধি' : 'ঘাটতি';
+}
+
     var oTable3;
 
     $(document).ready(function () {
@@ -50,7 +55,7 @@ oTable3 = $('#PRData5').dataTable({
         return nRow;
     },
     "aoColumns": [
-        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, {  "mRender": yes_no}, null ,{"bSortable": false}
+        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, {  "mRender": yes_no}, null , {  "mRender": increase_decrease} ,{"bSortable": false}
     ]
 }).fnSetFilteringDelay().dtFilter([
     {column_number: 1, filter_default_label: "[<?='শাখা';?>]", filter_type: "text", data: []},
@@ -131,6 +136,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th>আদর্শ থানা </th>
                             
                             <th><?= 'নোট'  ?></th>
+                            <th>বৃদ্ধি/ঘাটতি</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -150,7 +156,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th></th>
                             <th></th>
                             <th></th>
-                            
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

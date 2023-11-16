@@ -3390,11 +3390,106 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         //  $end = $report_type['end'];
 
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/thanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+        $this->datatables->add_column("Decrease", $decrease, "id");
         $this->datatables->add_column("Actions", $edit_link, "id");
 
         //$this->datatables->unset_column("manpower_id");
         echo $this->datatables->generate();
     }
+
+
+    
+
+    function thanadecrease($thana_id = NULL)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+
+        $this->load->helper('security');
+       // $this->load->admin_model('organization_model');
+
+
+        
+        $thana_info = $this->site->getByID('thana', 'id', $thana_id);
+
+
+
+        $this->form_validation->set_rules('date', lang("date"), 'required');
+        $this->form_validation->set_rules('manpower_id', 'Member', 'required|callback_check_member[' . $this->input->post('branch_id') . ']');
+
+
+        if ($this->form_validation->run() == true) {
+
+            $is_changeable = $this->site->check_confirm($thana_info->branch_id, date('Y-m-d'));
+
+
+            if ($is_changeable == false) {
+                $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
+                redirect($_SERVER["HTTP_REFERER"]);
+            }
+
+            $manpowerid = $this->input->post('manpower_id');
+            $branchid = $this->input->post('branch_id');
+            $note = $this->input->post('note');
+
+            $date = $this->sma->fld($this->input->post('date') . ' 00:00:00');
+
+            $postpone_member = array(
+                'start_date' => $date,
+                'branch' => $branchid,
+                'manpower_id' => $manpowerid,
+                'user_id' => $this->session->userdata('user_id'),
+                'orgstatus_id' => 1
+            );
+
+
+            $postpone_member_log = array(
+                'postpone_date' => $date,
+                'branch' => $branchid,
+                'in_out' => 1,
+                'user_id' => $this->session->userdata('user_id'),
+                'manpower_id' => $manpowerid,
+                'note' => $note,
+                'orgstatus_id' => 1
+            );
+
+            $manpower_update_arr = array();
+
+
+            $manpower_update_arr['is_postpone'] = 1;
+            if ($this->input->post('sessionyear')) {
+                $manpower_update_arr['sessionyear'] = $this->input->post('sessionyear');
+            }
+ 
+
+
+
+
+            $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpowerid));
+        } elseif ($this->input->post('memberpostpone')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect('manpower/member');
+        }
+
+        if ($this->form_validation->run() == true && $this->manpower_model->insertData('postpone', $postpone_member) && $this->manpower_model->insertData('postponelog', $postpone_member_log)) {
+
+
+
+            $this->session->set_flashdata('message', 'Postponed successfully');
+            admin_redirect("manpower/postponelist");
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $this->data['modal_js'] = $this->site->modal_js();
+            $this->data['thana'] = $thana_info;
+
+ 
+
+            $this->load->view($this->theme . 'organization/thanadecrease', $this->data);
+        }
+    }
+
+
 
 
     function getListPendingthana($branch_id = NULL)
@@ -3412,12 +3507,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-        $accept = "<a href='#' class='tip po' title='<b>Accept Transfer</b>' data-content=\"<p>"
+        $accept = "<a href='#' class='tip po' title='<b>Accept Thana</b>' data-content=\"<p>"
             . lang('r_u_sure') . "</p><a class='btn btn-danger' id='a__$1' href='" . admin_url('organization/thanaaccept/$1') . "'>"
             . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-check\"></i> "
             . 'Accept' . "</a>";
 
-        $cancel = "<a href='#' class='tip po' title='<b>Cancel Transfer</b>' data-content=\"<p>"
+        $cancel = "<a href='#' class='tip po' title='<b>Cancel Thana</b>' data-content=\"<p>"
             . lang('r_u_sure') . "</p><a class='btn btn-danger' id='a__$1' href='" . admin_url('organization/thanacancel/$1') . "'>"
             . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i> "
             . 'Cancel' . "</a>";
@@ -3438,12 +3533,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($branch_id) {
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note, in_out", FALSE)
                 ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana')->where('thana.branch_id', $branch_id);
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note, in_out", FALSE)
                 ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana');
         }
@@ -3453,6 +3548,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         //  $end = $report_type['end'];
 
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+        
         $this->datatables->add_column("Actions", $action, "id");
 
         //$this->datatables->unset_column("manpower_id");
@@ -3494,8 +3590,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         if ($thana_info->is_pending == 1) {
-            $this->site->updateData('thana', array('is_pending'=>2, 'date'=>date('Y-m-d')), array('id' => $thana_id));
-            $this->site->updateData('thana', array('is_pending'=>2, 'date'=>date('Y-m-d')), array('id' => $thana_id));
+
+            $thana_log = array(
+                'branch_id' => $thana_info->branch_id,
+                'date' => date('Y-m-d'),
+                'user_id' => $this->session->userdata('user_id'),
+                'thana_id' => $thana_id,
+                'in_out' => 1
+            );
+            $this->site->updateData('thana', array('is_pending' => 2, 'date' => date('Y-m-d')), array('id' => $thana_id));
+            $this->site->updateData('thana_ideal_log', array('is_pending' => 2, 'date' => date('Y-m-d')), array('thana_id' => $thana_id));
+            $this->site->insertData('thana_log', $thana_log);
 
             //  is_pending => 2
             //  ideal table is_pending => 2 if ideal_status = 1
@@ -3524,7 +3629,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
 
 
-        $thana_info = $this->site->getByID('thana', 'id', $transfer_id);
+        $thana_info = $this->site->getByID('thana', 'id', $thana_id);
 
         $is_changeable = $this->site->check_confirm($thana_info->thana_id, date('Y-m-d'));
 
@@ -3536,7 +3641,20 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
 
 
-        if ($transfer_info->is_pending == 1) {
+        if ($thana_info->is_pending == 1) {
+
+
+            $thana_log = array(
+                'branch_id' => $thana_info->branch_id,
+                'date' => date('Y-m-d'),
+                'user_id' => $this->session->userdata('user_id'),
+                'thana_id' => $thana_id,
+                'in_out' => 1
+            );
+            $this->site->updateData('thana', array('is_pending' => 3, 'date' => date('Y-m-d')), array('id' => $thana_id));
+            $this->site->updateData('thana_ideal_log', array('is_pending' => 3, 'date' => date('Y-m-d')), array('thana_id' => $thana_id,'is_ideal_thana'=>1));
+            
+
             //  is_pending => 3
             //  ideal table is_pending => 3 if ideal_status = 1
 
