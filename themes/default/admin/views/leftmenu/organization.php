@@ -138,6 +138,25 @@
                                                 <i class="fa fa-cogs"></i><span class="text"> <?= "থানা পেন্ডিং তালিকা"; ?></span>
                                             </a>
                                         </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'ideal_thana')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/ideal_thana') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'increaselist_ideal_thana')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/increaselist_ideal_thana') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা বৃদ্ধি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'decreaselist_ideal_thana')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/decreaselist_ideal_thana') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা ঘাটতি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
   
                                     </ul>
                                 </li>

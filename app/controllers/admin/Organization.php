@@ -3201,6 +3201,52 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
+    function ideal_thana($branch_id = NULL)
+    {
+
+
+
+
+        $this->sma->checkPermissions('index', TRUE);
+
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/thanalist/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/thanalist/' . $this->session->userdata('branch_id'));
+        }
+
+
+        $report_type = $this->report_type();
+
+        if ($report_type == false)
+            admin_redirect();
+
+        $this->data['report_info'] = $report_type;
+
+
+
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+        // $this->sma->print_arrays($this->data['branch']);
+
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'থানা তালিকা'));
+        $meta = array('page_title' => 'থানা তালিকা', 'bc' => $bc);
+        $this->page_construct('organization/ideal_thana', $meta, $this->data, 'leftmenu/organization');
+    }
 
 
 
@@ -3353,6 +3399,87 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
+
+    function increaseidealthana($id)
+    {
+
+        // $this->load->admin_model('organization_model');
+        //   $this->sma->print_arrays($_POST, $_GET);
+
+        $this->sma->checkPermissions('index', TRUE);
+        $this->load->helper('security');
+        // $this->load->admin_model('organization_model');
+
+        $branches = $this->site->getAllBranches();
+
+        $this->form_validation->set_rules('thana_id', 'thana', 'required');
+
+        $this->form_validation->set_rules('date', 'date', 'required');
+
+
+        if ($this->form_validation->run() == true) {
+
+
+            // $this->sma->print_arrays($branchinfo->last_assocode);
+
+            //new manpower
+            $data = array(
+                'date' =>  $this->sma->fsd($this->input->post('date')),
+                'branch_id' => ($this->Owner || $this->Admin) ? $this->input->post('branch_id') : $this->session->userdata('branch_id'),
+                'thana_id' => $this->input->post('thana_id'),
+                'is_pending' => 2,
+                'is_ideal_thana' => 1,
+                'user_id' => $this->session->userdata('user_id'),
+
+            );
+
+
+
+            $this->site->insertData('thana_ideal_log', $data);
+
+            $this->site->updateData('thana', array('is_ideal_thana' => 1), array('id' => $this->input->post('thana_id')));
+
+            $this->session->set_flashdata('message', 'Added');
+
+
+            admin_redirect('organization/ideal_thana/' . $id);
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+
+
+
+
+            if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+                $this->data['branch_id'] = $id;
+                $this->data['branch'] =   $this->site->getBranchByID($id);
+            } else {
+
+                $this->data['branch_id'] = $this->session->userdata('branch_id');
+                $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+            }
+
+
+            // getList($table, $item = "*", $where = null, $order = null, $limit = null, $offset = null)
+
+            $this->data['branches'] = $this->site->getList('branches', '*', array('id' => $id));  //apatoto
+            // $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['thanalist'] = $this->site->query("SELECT * from `sma_thana` where branch_id = $id AND is_ideal_thana != 1  AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
+
+
+
+
+
+            //  $this->datatables->where('((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ');
+
+
+
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('থানা')));
+            $meta = array('page_title' => lang('থানা '), 'bc' => $bc);
+            $this->page_construct('organization/increaseidealthana', $meta, $this->data, 'leftmenu/organization');
+        }
+    }
+
+
     function getListthana($branch_id = NULL)
     {
 
@@ -3366,26 +3493,32 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
+        // $this->sma->print_arrays($report_type);
+        // exit();
+
+
 
         $edit_link = anchor('admin/organization/editthana/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
 
-
+        //
 
         $this->load->library('datatables');
 
         if ($branch_id) {
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,'' as member_number,'' as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
                 ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana')->where('thana.branch_id', $branch_id);
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,'' as member_number,'' as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code) as member_number, associate_thana_count(  {$this->db->dbprefix('thana')}.branch_id, thana_code )  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
                 ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana');
         }
 
-        $this->datatables->where('is_pending', 2);
+        $this->datatables->where('((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ');
+
+        // is_pending => 2
         //  $start = $report_type['start'];
         //  $end = $report_type['end'];
 
@@ -3398,28 +3531,103 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         echo $this->datatables->generate();
     }
 
+    function getListthanaideal($branch_id = NULL)
+    {
 
-    
+        $this->sma->checkPermissions('index', TRUE);
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            // $user = $this->site->getUser();
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
 
-    function thanadecrease($thana_id = NULL)
+
+
+        $report_type = $this->report_type();
+
+        // $this->sma->print_arrays($report_type);
+        // exit();
+
+
+
+        $edit_link = anchor('admin/organization/editthana/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+
+        //
+
+        $this->load->library('datatables');
+
+        if ($branch_id) {
+            $this->datatables
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana')->where('thana.branch_id', $branch_id);
+        } else {
+            $this->datatables
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code) as member_number, associate_thana_count(  {$this->db->dbprefix('thana')}.branch_id, thana_code )  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana');
+        }
+
+        $this->datatables->where('is_ideal_thana', 1);
+
+
+        $this->datatables->where(' ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ');
+
+        // is_pending => 2
+        //  $start = $report_type['start'];
+        //  $end = $report_type['end'];
+
+        // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/idealthanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+        $this->datatables->add_column("Decrease", $decrease, "id");
+        $this->datatables->add_column("Actions", $edit_link, "id");
+
+        //$this->datatables->unset_column("manpower_id");
+        echo $this->datatables->generate();
+    }
+
+
+
+    function check_thana($thana_id)
+    {
+
+
+        $info = $this->site->getcolumn('thana', 'id', array('id' => $thana_id, 'is_pending' => 1), 'id DESC', 1, 0);
+
+
+        if ($info != NULL) {
+            $this->form_validation->set_message('check_thana', 'Already in pending status');
+            return false;
+        } else {
+
+            return true;
+        }
+    }
+
+
+
+
+    function thanadecrease($thana_id)
     {
 
         $this->sma->checkPermissions('index', TRUE);
 
         $this->load->helper('security');
-       // $this->load->admin_model('organization_model');
 
 
-        
+
+
+
         $thana_info = $this->site->getByID('thana', 'id', $thana_id);
 
 
-
         $this->form_validation->set_rules('date', lang("date"), 'required');
-        $this->form_validation->set_rules('manpower_id', 'Member', 'required|callback_check_member[' . $this->input->post('branch_id') . ']');
+        // $this->form_validation->set_rules('branch_id', 'Member', 'required|callback_check_branch[' . $this->input->post('branch_id') . ']');
+        $this->form_validation->set_rules('thana_id', 'Thana', 'required|callback_check_thana[' . $thana_id . ']');
+        $this->form_validation->set_rules('branch_id', 'Branch', 'required');
 
 
         if ($this->form_validation->run() == true) {
+
 
             $is_changeable = $this->site->check_confirm($thana_info->branch_id, date('Y-m-d'));
 
@@ -3429,67 +3637,130 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 redirect($_SERVER["HTTP_REFERER"]);
             }
 
-            $manpowerid = $this->input->post('manpower_id');
-            $branchid = $this->input->post('branch_id');
+
+            $branch_id = $this->input->post('branch_id');
             $note = $this->input->post('note');
 
             $date = $this->sma->fld($this->input->post('date') . ' 00:00:00');
 
-            $postpone_member = array(
-                'start_date' => $date,
-                'branch' => $branchid,
-                'manpower_id' => $manpowerid,
-                'user_id' => $this->session->userdata('user_id'),
-                'orgstatus_id' => 1
-            );
-
-
-            $postpone_member_log = array(
-                'postpone_date' => $date,
-                'branch' => $branchid,
-                'in_out' => 1,
-                'user_id' => $this->session->userdata('user_id'),
-                'manpower_id' => $manpowerid,
+            $thana_data  = array(
+                'is_pending' => 1,
+                'in_out' => 2,
                 'note' => $note,
-                'orgstatus_id' => 1
+                'update_at' => date('Y-m-d H:i:s')
             );
 
-            $manpower_update_arr = array();
+            $thana_log  = array(
+                'branch_id' => $branch_id,
+                'date' => $date,
+                'thana_id' => $thana_id,
+                'note' => $note,
+                'in_out' => 2,
+                'user_id' => $this->session->userdata('user_id')
+            );
+        } elseif ($this->input->post('thanadecrease')) {
 
 
-            $manpower_update_arr['is_postpone'] = 1;
-            if ($this->input->post('sessionyear')) {
-                $manpower_update_arr['sessionyear'] = $this->input->post('sessionyear');
-            }
- 
-
-
-
-
-            $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpowerid));
-        } elseif ($this->input->post('memberpostpone')) {
             $this->session->set_flashdata('error', validation_errors());
-            admin_redirect('manpower/member');
+            admin_redirect('organization/thanalist');
         }
 
-        if ($this->form_validation->run() == true && $this->manpower_model->insertData('postpone', $postpone_member) && $this->manpower_model->insertData('postponelog', $postpone_member_log)) {
+        if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) &&  $this->site->insertData('thana_log', $thana_log)) {
 
-
-
-            $this->session->set_flashdata('message', 'Postponed successfully');
-            admin_redirect("manpower/postponelist");
+            $this->session->set_flashdata('message', 'Saved successfully. Please wait for CP\'s approval.');
+            admin_redirect("organization/thanalist");
         } else {
+
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
             $this->data['modal_js'] = $this->site->modal_js();
             $this->data['thana'] = $thana_info;
 
- 
+
 
             $this->load->view($this->theme . 'organization/thanadecrease', $this->data);
         }
     }
 
 
+    function idealthanadecrease($thana_id)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+
+        $this->load->helper('security');
+
+
+
+
+
+        $thana_info = $this->site->getByID('thana', 'id', $thana_id);
+
+        if (!($this->Owner || $this->Admin) && ($thana_info->branch_id != $this->session->userdata('user_id'))) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('');
+        }
+
+        $this->form_validation->set_rules('date', lang("date"), 'required');
+        // $this->form_validation->set_rules('branch_id', 'Member', 'required|callback_check_branch[' . $this->input->post('branch_id') . ']');
+        $this->form_validation->set_rules('thana_id', 'Thana', 'required');
+        $this->form_validation->set_rules('branch_id', 'Branch', 'required');
+
+
+        if ($this->form_validation->run() == true) {
+
+
+            $is_changeable = $this->site->check_confirm($thana_info->branch_id, date('Y-m-d'));
+
+
+            if ($is_changeable == false) {
+                $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
+                redirect($_SERVER["HTTP_REFERER"]);
+            }
+
+
+            $branch_id = $this->input->post('branch_id');
+            $note = $this->input->post('note');
+
+            $date = $this->sma->fld($this->input->post('date') . ' 00:00:00');
+
+            $thana_data  = array(
+                'note' => $note,
+                'update_at' => date('Y-m-d H:i:s'),
+                'is_ideal_thana'=>2
+            );
+
+            $ideal_log  = array(
+                'branch_id' => $branch_id,
+                'date' => $date,
+                'thana_id' => $thana_id,
+                'note' => $note,
+                'in_out' => 2,
+                'is_pending' => 2,
+                'is_ideal_thana'=>2,
+                'user_id' => $this->session->userdata('user_id')
+            );
+        } elseif ($this->input->post('idealthanadecrease')) {
+
+
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect('organization/ideal_thana/'.$thana_info->branch_id);
+        }
+
+        if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) &&  $this->site->insertData('thana_ideal_log', $ideal_log)) {
+
+            $this->session->set_flashdata('message', 'Saved successfully.');
+            admin_redirect("organization/ideal_thana/".$thana_info->branch_id);
+        } else {
+
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $this->data['modal_js'] = $this->site->modal_js();
+            $this->data['thana'] = $thana_info;
+
+
+
+            $this->load->view($this->theme . 'organization/idealthanadecrease', $this->data);
+        }
+    }
 
 
     function getListPendingthana($branch_id = NULL)
@@ -3505,6 +3776,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
+        //$this->sma->print_arrays($report_type);
+
+        if ($report_type['is_current'] == 'annual')
+            $from = $report_type['info']->startdate_half;
+        else
+            $from = $report_type['start'];
+
+        $to = $report_type['end'];
+        $prev = $report_type['last_year'];
 
 
         $accept = "<a href='#' class='tip po' title='<b>Accept Thana</b>' data-content=\"<p>"
@@ -3533,12 +3813,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($branch_id) {
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note, in_out", FALSE)
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number, worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note, in_out", FALSE)
                 ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana')->where('thana.branch_id', $branch_id);
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note, in_out", FALSE)
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code )  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note, in_out", FALSE)
                 ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana');
         }
@@ -3548,7 +3828,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         //  $end = $report_type['end'];
 
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-        
+
         $this->datatables->add_column("Actions", $action, "id");
 
         //$this->datatables->unset_column("manpower_id");
@@ -3598,9 +3878,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'thana_id' => $thana_id,
                 'in_out' => 1
             );
-            $this->site->updateData('thana', array('is_pending' => 2, 'date' => date('Y-m-d')), array('id' => $thana_id));
-            $this->site->updateData('thana_ideal_log', array('is_pending' => 2, 'date' => date('Y-m-d')), array('thana_id' => $thana_id));
-            $this->site->insertData('thana_log', $thana_log);
+
+
+
+            $this->site->updateData('thana', array('is_pending' => 2), array('id' => $thana_id));
+
+            if ($thana_info->in_out == 1)
+                $this->site->updateData('thana_ideal_log', array('is_pending' => 2, 'date' => date('Y-m-d')), array('thana_id' => $thana_id));
+            if ($thana_info->in_out == 1)
+                $this->site->insertData('thana_log', $thana_log);
+
+
 
             //  is_pending => 2
             //  ideal table is_pending => 2 if ideal_status = 1
@@ -3651,9 +3939,19 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'thana_id' => $thana_id,
                 'in_out' => 1
             );
-            $this->site->updateData('thana', array('is_pending' => 3, 'date' => date('Y-m-d')), array('id' => $thana_id));
-            $this->site->updateData('thana_ideal_log', array('is_pending' => 3, 'date' => date('Y-m-d')), array('thana_id' => $thana_id,'is_ideal_thana'=>1));
-            
+
+            if ($thana_info->in_out == 1)
+                $this->site->updateData('thana', array('is_pending' => 3), array('id' => $thana_id));
+            elseif ($thana_info->in_out == 2)
+                $this->site->updateData('thana', array('is_pending' => 2, 'in_out' => 1), array('id' => $thana_id));
+
+
+            if ($thana_info->in_out == 1)
+                $this->site->delete('thana_ideal_log', array('thana_id' => $thana_id));
+            //$this->site->updateData('thana_ideal_log', array('is_pending' => 3, 'date' => date('Y-m-d')), array('thana_id' => $thana_id, 'is_ideal_thana' => 1));
+
+            if ($thana_info->in_out == 2)
+                $this->site->delete('thana_log', array('thana_id' => $thana_id));
 
             //  is_pending => 3
             //  ideal table is_pending => 3 if ideal_status = 1
@@ -3747,4 +4045,110 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->view($this->theme . 'organization/thanaedit', $this->data);
         }
     }
+
+
+
+    
+    function increaselist_ideal_thana()
+    {
+
+
+        $branch_id = $this->input->get('branch_id');
+
+        $this->sma->checkPermissions('index', TRUE);
+
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/increaselist_ideal_thana?branch_id=' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/increaselist_ideal_thana?branch_id=' . $this->session->userdata('branch_id'));
+        }
+
+
+        $report_type = $this->report_type();
+
+        if ($report_type == false)
+            admin_redirect();
+
+        $this->data['report_info'] = $report_type;
+
+
+
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+        // $this->sma->print_arrays($this->data['branch']);
+
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'থানা তালিকা'));
+        $meta = array('page_title' => 'আদর্শ থানা বৃদ্ধি তালিকা', 'bc' => $bc);
+        $this->page_construct('organization/increaselist_ideal_thana', $meta, $this->data, 'leftmenu/organization');
+    }
+
+
+
+    function getListIdealIncrease($branch_id = NULL)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            $user = $this->site->getUser();
+            $branch_id = $user->branch_id;
+        }
+        $type =  $this->input->get('type');
+        $report_type = $this->report_type();
+
+        $this->load->library('datatables');
+
+        if ($branch_id) {
+
+            $this->datatables
+                ->select($this->db->dbprefix('thana_ideal_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_ideal_log')}.date,  member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_ideal_log');
+            $this->datatables->join('thana', 'thana.id=thana_ideal_log.thana_id', 'left');
+                
+            $this->datatables->join('branches', 'branches.id=thana_ideal_log.branch_id', 'left')
+                ->where('branches.id', $branch_id);
+
+            $this->datatables->where('thana_ideal_log.in_out', 1); 
+            
+        } else {
+            $this->datatables
+            ->select($this->db->dbprefix('thana_ideal_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_ideal_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+            ->from('thana_ideal_log');
+        $this->datatables->join('thana', 'thana.id=thana_ideal_log.thana_id', 'left');
+            
+        $this->datatables->join('branches', 'branches.id=thana_ideal_log.branch_id', 'left');
+        $this->datatables->where('thana_ideal_log.in_out', 1);    
+        }
+
+
+
+
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+
+
+
+
+        $this->datatables->where("DATE({$this->db->dbprefix('thana_ideal_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
+ 
+
+        $this->datatables->unset_column("id");
+
+        echo $this->datatables->generate();
+    }
+    
 }
