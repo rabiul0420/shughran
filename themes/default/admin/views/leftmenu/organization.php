@@ -122,13 +122,13 @@
                                         </li>
 
                                         <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thana_increase')) ? 'active' : '' ?>">
-                                            <a href="<?= admin_url('organization/thana_increase') ?>">
+                                            <a href="<?= admin_url('organization/increaselist_thana') ?>">
                                                 <i class="fa fa-cogs"></i><span class="text"> <?= "থানা বৃদ্ধি তালিকা"; ?></span>
                                             </a>
                                         </li>
 
                                         <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thana_decrease')) ? 'active' : '' ?>">
-                                            <a href="<?= admin_url('organization/thana_decrease') ?>">
+                                            <a href="<?= admin_url('organization/decreaselist_thana') ?>">
                                                 <i class="fa fa-cogs"></i><span class="text"> <?= "থানা ঘাটতি তালিকা"; ?></span>
                                             </a>
                                         </li>
