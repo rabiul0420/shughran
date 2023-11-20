@@ -306,6 +306,348 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                         </table>
+                        <table class="tg table table-header-rotated" id="honers_masters">
+                            <tr>
+                            <td class="tg-pwj7" colspan='2'><b>আকর্ষণীয় প্রোগ্রাম : (অনার্স ও মাস্টার্সে অধ্যয়নরত)</b></td>
+                                <td class="tg-pwj7" colspan="">
+                                <a href="#" id='honers_masters'  onclick="doit('xlsx','honers_masters','<?php echo 'আকর্ষণীয় প্রোগ্রাম : (অনার্স ও মাস্টার্সে অধ্যয়নরত)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7">প্রোগ্রামের ধরন</td>
+                                <td class="tg-pwj7" >সংখ্যা </td>
+                                <td class="tg-pwj7" >উপস্থিতি  </td>
+
+                            </tr>
+                           
+                           <tr>
+                                <td class="tg-y698">শিক্ষা বৃত্তি প্রদান </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $sik_bri_s = (isset($education_honers_masters_program['sik_bri_s'])) ? $education_honers_masters_program['sik_bri_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sik_bri_u = (isset($education_honers_masters_program['sik_bri_u'])) ? $education_honers_masters_program['sik_bri_u'] : 0 ?>
+                                </td>
+                            </tr>
+
+                           
+                            <tr>
+                                <td class="tg-y698">প্লেসধারী সংবর্ধনা  </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $pla_son_s = (isset($education_honers_masters_program['pla_son_s'])) ? $education_honers_masters_program['pla_son_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $pla_son_u = (isset($education_honers_masters_program['pla_son_u'])) ? $education_honers_masters_program['pla_son_u'] : 0 ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">অদম্য মেধাবী সংবর্ধনা </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $med_son_s = (isset($education_honers_masters_program['med_son_s'])) ? $education_honers_masters_program['med_son_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $med_son_u = (isset($education_honers_masters_program['med_son_u'])) ? $education_honers_masters_program['med_son_u'] : 0 ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">দোয়া মাহফিল </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $dua_s = (isset($education_honers_masters_program['dua_s'])) ? $education_honers_masters_program['dua_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $dua_u = (isset($education_honers_masters_program['dua_u'])) ? $education_honers_masters_program['dua_u'] : 0 ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">স্বর্ণপদক প্রদান</td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $sorno_s = (isset($education_honers_masters_program['sorno_s'])) ? $education_honers_masters_program['sorno_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sorno_u = (isset($education_honers_masters_program['sorno_u'])) ? $education_honers_masters_program['sorno_u'] : 0 ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">শিক্ষা উপকরণ বিতরণ</td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $sik_upo_s = (isset($education_honers_masters_program['sik_upo_s'])) ? $education_honers_masters_program['sik_upo_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sik_upo_u = (isset($education_honers_masters_program['sik_upo_u'])) ? $education_honers_masters_program['sik_upo_u'] : 0 ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">নবীন বরণ (অনার্স ১ম বর্ষ)</td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $nobin_s = (isset($education_honers_masters_program['nobin_s'])) ? $education_honers_masters_program['nobin_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $nobin_u = (isset($education_honers_masters_program['nobin_u'])) ? $education_honers_masters_program['nobin_u'] : 0 ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">শিক্ষা সফর</td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $sik_sof_s = (isset($education_honers_masters_program['sik_sof_s'])) ? $education_honers_masters_program['sik_sof_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sik_sof_u = (isset($education_honers_masters_program['sik_sof_u'])) ? $education_honers_masters_program['sik_sof_u'] : 0 ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">অন্যান্য</td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $other_s = (isset($education_honers_masters_program['other_s'])) ? $education_honers_masters_program['other_s'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $other_u = (isset($education_honers_masters_program['other_u'])) ? $education_honers_masters_program['other_u'] : 0 ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">মোট</td>
+                                <td class="tg-0pky"> <?php echo $other_s+$sik_sof_s+$nobin_s+$sik_upo_s+$sorno_s+$dua_s+$med_son_s+$pla_son_s+$sik_bri_s  ?> </td>
+                                <td class="tg-0pky"> <?php echo $other_u+$sik_sof_u+$nobin_u+$sik_upo_u+$sorno_u+$dua_u+$med_son_u +$pla_son_u+$sik_bri_u ?> </td>
+                            </tr>
+                        </table>
+
+                        <table class="tg table table-header-rotated" id="বিশ্ববিদ্যালয়ের প্লেসধারী">
+                            <tr>
+                                <td class="tg-pwj7" colspan="13"><b>প্রফেশনাল আউটপুট-০১ (শিক্ষক):বিশ্ববিদ্যালয়ের প্লেসধারী</b></td>
+                                <td class="tg-pwj7" colspan="4">
+                                <a href="#" id='বিশ্ববিদ্যালয়ের প্লেসধারী' onclick="doit('xlsx','বিশ্ববিদ্যালয়ের প্লেসধারী','<?php echo 'প্রফেশনাল আউটপুট-০১ (শিক্ষক):বিশ্ববিদ্যালয়ের প্লেসধারী_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7" rowspan="2">মান</td>
+                                <td class="tg-pwj7" colspan="2">১ম সেমিষ্টার </td>
+                                <td class="tg-pwj7" colspan="2">২য় সেমিষ্টার </td>
+                                <td class="tg-pwj7" colspan="2">৩য় সেমিষ্টার</td> 
+                                <td class="tg-pwj7" colspan="2">৪র্থ সেমিষ্টার  </td>
+                                <td class="tg-pwj7" colspan="2">৫ম সেমিষ্টার </td>
+                                <td class="tg-pwj7" colspan="2"> ৬ষ্ঠ  সেমিষ্টার</td>
+                                <td class="tg-pwj7" colspan="2">৭ম সেমিষ্টার  </td>
+                                <td class="tg-pwj7" colspan="2">৮ম সেমিষ্টার </td>
+
+                            </tr>
+
+                            <tr>
+                            <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                            <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                            <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                            <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                            <td class="tg-pwj7 "><div><span>টার্গেট </span></div></td>
+                            <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                            <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                            <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                            <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                            <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                            <td class="tg-pwj7 "><div><span>টার্গেট </span></div></td>
+                            <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                            <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                            <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                            <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                            <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+
+
+                            </tr>
+
+                            <?php
+                            $pk = (isset($education_professionaloutput_teacher['id']))?$education_professionaloutput_teacher['id']:"";
+
+                            ?>
+                            <tr>
+                                   <td class="tg-0pky  type_3">সদস্য </td>
+                                <td class="tg-0pky  type_3">
+                                     <?php echo $so_1_t=$education_professionaloutput_teacher['so_1_t'] ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_1_o = (isset($education_professionaloutput_teacher['so_1_o'])) ? $education_professionaloutput_teacher['so_1_o'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_2_t = (isset($education_professionaloutput_teacher['so_2_t'])) ? $education_professionaloutput_teacher['so_2_t'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_2_o = (isset($education_professionaloutput_teacher['so_2_o'])) ? $education_professionaloutput_teacher['so_2_o'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_3_t = (isset($education_professionaloutput_teacher['so_3_t'])) ? $education_professionaloutput_teacher['so_3_t'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_3_o = (isset($education_professionaloutput_teacher['so_3_o'])) ? $education_professionaloutput_teacher['so_3_o'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_4_t = (isset($education_professionaloutput_teacher['so_4_t'])) ? $education_professionaloutput_teacher['so_4_t'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_4_o = (isset($education_professionaloutput_teacher['so_4_o'])) ? $education_professionaloutput_teacher['so_4_o'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_5_t = (isset($education_professionaloutput_teacher['so_5_t'])) ? $education_professionaloutput_teacher['so_5_t'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_5_o = (isset($education_professionaloutput_teacher['so_5_o'])) ? $education_professionaloutput_teacher['so_5_o'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_6_t = (isset($education_professionaloutput_teacher['so_6_t'])) ? $education_professionaloutput_teacher['so_6_t'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_6_o = (isset($education_professionaloutput_teacher['so_6_o'])) ? $education_professionaloutput_teacher['so_6_o'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_7_t = (isset($education_professionaloutput_teacher['so_7_t'])) ? $education_professionaloutput_teacher['so_7_t'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_7_o = (isset($education_professionaloutput_teacher['so_7_o'])) ? $education_professionaloutput_teacher['so_7_o'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_8_t = (isset($education_professionaloutput_teacher['so_8_t'])) ? $education_professionaloutput_teacher['so_8_t'] : 0 ?>
+                                 </td>
+                                 <td class="tg-0pky  type_3">
+                                 <?php echo $so_8_o = (isset($education_professionaloutput_teacher['so_8_o'])) ? $education_professionaloutput_teacher['so_8_o'] : 0 ?>
+                                 </td>
+                            </tr>
+
+                            <tr>
+
+                            <td class="tg-0pky  type_3">সাথী  </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_1_t = $education_professionaloutput_teacher['sa_1_t'] ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_1_o = (isset($education_professionaloutput_teacher['sa_1_o'])) ? $education_professionaloutput_teacher['sa_1_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_2_t = (isset($education_professionaloutput_teacher['sa_2_t'])) ? $education_professionaloutput_teacher['sa_2_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_2_o = (isset($education_professionaloutput_teacher['sa_2_o'])) ? $education_professionaloutput_teacher['sa_2_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_3_t = (isset($education_professionaloutput_teacher['sa_3_t'])) ? $education_professionaloutput_teacher['sa_3_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_3_o = (isset($education_professionaloutput_teacher['sa_3_o'])) ? $education_professionaloutput_teacher['sa_3_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_4_t = (isset($education_professionaloutput_teacher['sa_4_t'])) ? $education_professionaloutput_teacher['sa_4_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_4_o = (isset($education_professionaloutput_teacher['sa_4_o'])) ? $education_professionaloutput_teacher['sa_4_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_5_t = (isset($education_professionaloutput_teacher['sa_5_t'])) ? $education_professionaloutput_teacher['sa_5_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_5_o = (isset($education_professionaloutput_teacher['sa_5_o'])) ? $education_professionaloutput_teacher['sa_5_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_6_t = (isset($education_professionaloutput_teacher['sa_6_t'])) ? $education_professionaloutput_teacher['sa_6_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_6_o = (isset($education_professionaloutput_teacher['sa_6_o'])) ? $education_professionaloutput_teacher['sa_6_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_7_t = (isset($education_professionaloutput_teacher['sa_7_t'])) ? $education_professionaloutput_teacher['sa_7_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_7_o = (isset($education_professionaloutput_teacher['sa_7_o'])) ? $education_professionaloutput_teacher['sa_7_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_8_t = (isset($education_professionaloutput_teacher['sa_8_t'])) ? $education_professionaloutput_teacher['sa_8_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $sa_8_o = (isset($education_professionaloutput_teacher['sa_8_o'])) ? $education_professionaloutput_teacher['sa_8_o'] : 0 ?>
+                            </td>
+
+
+
+                            </tr>
+
+
+                            <tr>
+                            <td class="tg-0pky  type_3">কর্মী  </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_1_t = $education_professionaloutput_teacher['ko_1_t'] ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_1_o = (isset($education_professionaloutput_teacher['ko_1_o'])) ? $education_professionaloutput_teacher['ko_1_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_2_t = (isset($education_professionaloutput_teacher['ko_2_t'])) ? $education_professionaloutput_teacher['ko_2_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_2_o = (isset($education_professionaloutput_teacher['ko_2_o'])) ? $education_professionaloutput_teacher['ko_2_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_3_t = (isset($education_professionaloutput_teacher['ko_3_t'])) ? $education_professionaloutput_teacher['ko_3_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_3_o = (isset($education_professionaloutput_teacher['ko_3_o'])) ? $education_professionaloutput_teacher['ko_3_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_4_t = (isset($education_professionaloutput_teacher['ko_4_t'])) ? $education_professionaloutput_teacher['ko_4_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_4_o = (isset($education_professionaloutput_teacher['ko_4_o'])) ? $education_professionaloutput_teacher['ko_4_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_5_t = (isset($education_professionaloutput_teacher['ko_5_t'])) ? $education_professionaloutput_teacher['ko_5_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_5_o = (isset($education_professionaloutput_teacher['ko_5_o'])) ? $education_professionaloutput_teacher['ko_5_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_6_t = (isset($education_professionaloutput_teacher['ko_6_t'])) ? $education_professionaloutput_teacher['ko_6_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_6_o = (isset($education_professionaloutput_teacher['ko_6_o'])) ? $education_professionaloutput_teacher['ko_6_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_7_t = (isset($education_professionaloutput_teacher['ko_7_t'])) ? $education_professionaloutput_teacher['ko_7_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_7_o = (isset($education_professionaloutput_teacher['ko_7_o'])) ? $education_professionaloutput_teacher['ko_7_o'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_8_t = (isset($education_professionaloutput_teacher['ko_8_t'])) ? $education_professionaloutput_teacher['ko_8_t'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky  type_3">
+                                <?php echo $ko_8_o = (isset($education_professionaloutput_teacher['ko_8_o'])) ? $education_professionaloutput_teacher['ko_8_o'] : 0 ?>
+                            </td>
+
+
+
+                            </tr>
+
+                            
+                            <tr>
+                            <td class="tg-0pky  type_3">মোট </td>
+                            <td class="tg-0pky  type_3"><?php echo $so_1_t + $sa_1_t +$ko_1_t ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_1_o + $sa_1_o +$ko_1_o ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_2_t + $sa_2_t +$ko_2_t ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_2_o + $sa_2_o +$ko_2_o ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_3_t + $sa_3_t +$ko_3_t ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_3_o + $sa_3_o +$ko_3_o ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_4_t + $sa_4_t +$ko_4_t ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_4_o + $sa_4_o +$ko_4_o ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_5_t + $sa_5_t +$ko_5_t ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_5_o + $sa_5_o +$ko_5_o ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_6_t + $sa_6_t +$ko_6_t ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_6_o + $sa_6_o +$ko_6_o ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_7_t + $sa_7_t +$ko_7_t ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_7_o + $sa_7_o +$ko_7_o ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_8_t + $sa_8_t +$ko_8_t ?></td>
+                            <td class="tg-0pky  type_3"><?php echo $so_8_o + $sa_8_o +$ko_8_o ?></td>
+                            </tr>
+                             
+                        </table>
                         <table class="tg table table-header-rotated" id="testTable4">
                         <tr>
                             <td class="tg-pwj7" colspan="4"><b>সামিট </b></td>

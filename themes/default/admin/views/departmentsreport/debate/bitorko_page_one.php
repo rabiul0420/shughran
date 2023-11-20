@@ -606,8 +606,8 @@ $(document).ready(function(){
                         </table>
 
                         <table class="tg table table-header-rotated" id="testTable4">
-                        <tr><td class="tg-pwj7" colspan='4'><div><b>বিতর্ক ক্লাবের বিবরণ </b></div></td>
-                        <td class="tg-pwj7" colspan="">
+                        <tr><td class="tg-pwj7" colspan='6'><div><b>বিতর্ক ক্লাবের বিবরণ </b></div></td>
+                        <td class="tg-pwj7" colspan="1">
                           <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Debate_বিতর্ক ক্লাবের বিবরণ.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                         </td>
                         </tr>
@@ -617,8 +617,68 @@ $(document).ready(function(){
                                 <td class="tg-pwj7 "><div><span>বর্তমান </span></div></td>
                                 <td class="tg-pwj7 "><div><span>বৃদ্ধি </span></div></td>
                                 <td class="tg-pwj7 "><div><span>ঘাটতি </span></div></td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>কমিটি আছে কতটিতে?</span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>ক্লাবের সদস্য সংখ্যা</span></div>
+                                </td>
                                
                                
+                            </tr>
+
+                           
+                            <tr>
+                            <td class="tg-pwj7" rowspan="">সাংগঠনিক শাখা ক্লাব সংখ্যা </td>
+                            <td class="tg-0pky">
+                                 <?php echo $shang_shakha_club_prev = $debate_bitorko_club_biboron['shang_shakha_club_prev'] ?>
+                                </td>
+                               
+                                <td class="tg-0pky">
+                                 <?php echo $shang_shakha_club_pres = $debate_bitorko_club_biboron['shang_shakha_club_pres'] ?>
+                                </td>
+                               
+                                <td class="tg-0pky">
+                                 <?php echo $shang_shakha_club_bri = $debate_bitorko_club_biboron['shang_shakha_club_bri'] ?>
+                                </td>
+                               
+                                <td class="tg-0pky">
+                                 <?php echo $shang_shakha_club_gha = $debate_bitorko_club_biboron['shang_shakha_club_gha'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $shang_shakha_club_komiti = $debate_bitorko_club_biboron['shang_shakha_club_komiti'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $shang_shakha_club_club = $debate_bitorko_club_biboron['shang_shakha_club_club'] ?>
+                                </td>
+
+                            </tr>
+                           
+                            <tr>
+                            <td class="tg-pwj7" rowspan="">সাংগঠনিক থানা ক্লাব সংখ্যা</td>
+                            <td class="tg-0pky">
+                                 <?php echo $shang_thana_club_prev = $debate_bitorko_club_biboron['shang_thana_club_prev'] ?>
+                                </td>
+                               
+                                <td class="tg-0pky">
+                                 <?php echo $shang_thana_club_pres = $debate_bitorko_club_biboron['shang_thana_club_pres'] ?>
+                                </td>
+                               
+                                <td class="tg-0pky">
+                                 <?php echo $shang_thana_club_bri = $debate_bitorko_club_biboron['shang_thana_club_bri'] ?>
+                                </td>
+                               
+                                <td class="tg-0pky">
+                                 <?php echo $shang_thana_club_gha = $debate_bitorko_club_biboron['shang_thana_club_gha'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $shang_thana_club_komiti = $debate_bitorko_club_biboron['shang_thana_club_komiti'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $shang_thana_club_club = $debate_bitorko_club_biboron['shang_thana_club_club'] ?>
+                                </td>
+                               
+
                             </tr>
 
                             <tr>
@@ -638,89 +698,70 @@ $(document).ready(function(){
                                 <td class="tg-0pky">
                                  <?php echo $general_club_gha = $debate_bitorko_club_biboron['general_club_gha'] ?>
                                 </td>
+                                <td class="tg-0pky">
+                                 <?php echo $general_club_komiti = $debate_bitorko_club_biboron['general_club_komiti'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $general_club_club = $debate_bitorko_club_biboron['general_club_club'] ?>
+                                </td>
                                
                                 
                             </tr>
-                            <tr>
-                            <td class="tg-pwj7" rowspan="">সাংগঠনিক শাখা ক্লাব সংখ্যা </td>
-                            <td class="tg-0pky">
-                                 <?php echo $shang_shakha_club_prev = $debate_bitorko_club_biboron['shang_shakha_club_prev'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_shakha_club_pres = $debate_bitorko_club_biboron['shang_shakha_club_pres'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_shakha_club_bri = $debate_bitorko_club_biboron['shang_shakha_club_bri'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_shakha_club_gha = $debate_bitorko_club_biboron['shang_shakha_club_gha'] ?>
-                                </td>
-
-                            </tr>
-                            <tr>
-                            <td class="tg-pwj7" rowspan="">সাংগঠনিক থানা সংখ্যা</td>
-                            <td class="tg-0pky">
-                                 <?php echo $shang_thana_prev = $debate_bitorko_club_biboron['shang_thana_prev'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_thana_pres = $debate_bitorko_club_biboron['shang_thana_pres'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_thana_bri = $debate_bitorko_club_biboron['shang_thana_bri'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_thana_gha = $debate_bitorko_club_biboron['shang_thana_gha'] ?>
-                                </td>
-
-                            </tr>
-                            <tr>
-                            <td class="tg-pwj7" rowspan="">সাংগঠনিক থানা ক্লাব সংখ্যা</td>
-                            <td class="tg-0pky">
-                                 <?php echo $shang_thana_club_prev = $debate_bitorko_club_biboron['shang_thana_club_prev'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_thana_club_pres = $debate_bitorko_club_biboron['shang_thana_club_pres'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_thana_club_bri = $debate_bitorko_club_biboron['shang_thana_club_bri'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $shang_thana_club_gha = $debate_bitorko_club_biboron['shang_thana_club_gha'] ?>
-                                </td>
-                               
-
-                            </tr>
-                            <tr>
-                            <td class="tg-pwj7" rowspan="">বিশ্ববিদ্যালয় সংখ্যা</td>
-                            <td class="tg-0pky">
-                                 <?php echo $university_prev = $debate_bitorko_club_biboron['university_prev'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $university_pres = $debate_bitorko_club_biboron['university_pres'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $university_bri = $debate_bitorko_club_biboron['university_bri'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $university_gha = $debate_bitorko_club_biboron['university_gha'] ?>
-                                </td> 
                             
+ 
+                        </table>
+
+                        <table class="tg table table-header-rotated" id="testTable5">
+                        <tr><td class="tg-pwj7" colspan='7'><div><b>প্রাতিষ্ঠানিক ক্লাবের বিবরণ </b></div></td>
+                        <td class="tg-pwj7" colspan="1">
+                          <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Debate_বিতর্ক ক্লাবের বিবরণ.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                        </td>
+                        </tr>
+                        <tr>
+                                <td class="tg-pwj7 "rowspan="2" >
+                                    <div><span>ক্লাব </span></div>
+                                </td>
+                                <td class="tg-pwj7 " rowspan="2">
+                                    <div><span>প্রতিষ্ঠান সংখ্যা</span></div>
+                                </td>
+                                <td class="tg-pwj7 " colspan="4">
+                                    <div><span> ক্লাব সংখ্যা</span></div>
+                                </td>
+                                
+                                <td class="tg-pwj7 " rowspan="2">
+                                    <div><span>কমিটি আছে কতটিতে?</span></div>
+                                </td>
+                                <td class="tg-pwj7 " rowspan="2">
+                                    <div><span>ক্লাবের সদস্য সংখ্যা</span></div>
+                                </td>
+                               
+
                             </tr>
                             <tr>
-                            <td class="tg-pwj7" rowspan="">বিশ্ববিদ্যালয় ক্লাব সংখ্যা</td>
-                            <td class="tg-0pky">
+                                
+                                <td class="tg-pwj7 ">
+                                    <div><span>পূর্ব </span></div> 
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>বর্তমান </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>বৃদ্ধি </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>ঘাটতি </span></div>
+                                </td>
+                                
+
+                            </tr>
+
+                           
+                            
+                            <td class="tg-pwj7" rowspan="">বিশ্ববিদ্যালয়</td>
+                                <td class="tg-0pky">
+                                    <?php echo $university_pres = $debate_bitorko_club_biboron['university_pres'] ?>
+                                    </td>
+                                <td class="tg-0pky">
                                  <?php echo $university_club_prev = $debate_bitorko_club_biboron['university_club_prev'] ?>
                                 </td>
                                
@@ -735,31 +776,22 @@ $(document).ready(function(){
                                 <td class="tg-0pky">
                                  <?php echo $university_club_gha = $debate_bitorko_club_biboron['university_club_gha'] ?>
                                 </td>
+                                <td class="tg-0pky">
+                                 <?php echo $university_komiti = $debate_bitorko_club_biboron['university_komiti'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $university_club = $debate_bitorko_club_biboron['university_club'] ?>
+                                </td>
                                
 
                             </tr>
+                            
                             <tr>
-                            <td class="tg-pwj7" rowspan="">কলেজ সংখ্যা</td>
-                            <td class="tg-0pky">
-                                 <?php echo $college_prev = $debate_bitorko_club_biboron['college_prev'] ?>
-                                </td>
-                               
+                            <td class="tg-pwj7" rowspan="">কলেজ</td>
                                 <td class="tg-0pky">
                                  <?php echo $college_pres = $debate_bitorko_club_biboron['college_pres'] ?>
                                 </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $college_bri = $debate_bitorko_club_biboron['college_bri'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $college_gha = $debate_bitorko_club_biboron['college_gha'] ?>
-                                </td>
-
-                            </tr>
-                            <tr>
-                            <td class="tg-pwj7" rowspan="">কলেজ ক্লাব সংখ্যা</td>
-                            <td class="tg-0pky">
+                                 <td class="tg-0pky">
                                  <?php echo $college_club_prev = $debate_bitorko_club_biboron['college_club_prev'] ?>
                                 </td>
                                
@@ -774,30 +806,22 @@ $(document).ready(function(){
                                 <td class="tg-0pky">
                                  <?php echo $college_club_gha = $debate_bitorko_club_biboron['college_club_gha'] ?>
                                 </td>
+                                <td class="tg-0pky">
+                                 <?php echo $college_komiti = $debate_bitorko_club_biboron['college_komiti'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $college_club = $debate_bitorko_club_biboron['college_club'] ?>
+                                </td>
 
                             </tr>
                             <tr>
-                            <td class="tg-pwj7" rowspan="">মাদরাসা সংখ্যা</td>
-                            <td class="tg-0pky">
-                                 <?php echo $madrasha_prev = $debate_bitorko_club_biboron['madrasha_prev'] ?>
-                                </td>
-                               
+                            
+                            <tr>
+                            <td class="tg-pwj7" rowspan="">মাদরাসা</td>
                                 <td class="tg-0pky">
                                  <?php echo $madrasha_pres = $debate_bitorko_club_biboron['madrasha_pres'] ?>
                                 </td>
-                               
                                 <td class="tg-0pky">
-                                 <?php echo $madrasha_bri = $debate_bitorko_club_biboron['madrasha_bri'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $madrasha_gha = $debate_bitorko_club_biboron['madrasha_gha'] ?>
-                                </td>
-
-                            </tr>
-                            <tr>
-                            <td class="tg-pwj7" rowspan="">মাদরাসা ক্লাব সংখ্যা</td>
-                            <td class="tg-0pky">
                                  <?php echo $madrasha_club_prev = $debate_bitorko_club_biboron['madrasha_club_prev'] ?>
                                 </td>
                                
@@ -812,32 +836,23 @@ $(document).ready(function(){
                                 <td class="tg-0pky">
                                  <?php echo $madrasha_club_gha = $debate_bitorko_club_biboron['madrasha_club_gha'] ?>
                                 </td>
+                                <td class="tg-0pky">
+                                 <?php echo $madrasha_komiti = $debate_bitorko_club_biboron['madrasha_komiti'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $madrasha_club = $debate_bitorko_club_biboron['madrasha_club'] ?>
+                                </td>
                                
 
                             </tr>
+                            
                             <tr>
-                            <td class="tg-pwj7" rowspan="">স্কুল সংখ্যা</td>
-                            <td class="tg-0pky">
-                                 <?php echo $school_prev = $debate_bitorko_club_biboron['school_prev'] ?>
-                                </td>
-                               
+                            <td class="tg-pwj7" rowspan="">স্কুল</td>
                                 <td class="tg-0pky">
                                  <?php echo $school_pres = $debate_bitorko_club_biboron['school_pres'] ?>
                                 </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $school_bri = $debate_bitorko_club_biboron['school_bri'] ?>
-                                </td>
-                               
-                                <td class="tg-0pky">
-                                 <?php echo $school_gha = $debate_bitorko_club_biboron['school_gha'] ?>
-                                </td>
-                               
-
-                            </tr>
-                            <tr>
-                            <td class="tg-pwj7" rowspan="">স্কুল ক্লাব সংখ্যা</td>
-                            <td class="tg-0pky">
+                               <td class="tg-0pky">
+                                
                                  <?php echo $school_club_prev = $debate_bitorko_club_biboron['school_club_prev'] ?>
                                 </td>
                                
@@ -851,6 +866,12 @@ $(document).ready(function(){
                                
                                 <td class="tg-0pky">
                                  <?php echo $school_club_gha = $debate_bitorko_club_biboron['school_club_gha'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $school_komiti = $debate_bitorko_club_biboron['school_komiti'] ?>
+                                </td>
+                                <td class="tg-0pky">
+                                 <?php echo $school_club = $debate_bitorko_club_biboron['school_club'] ?>
                                 </td>
 
                             </tr>

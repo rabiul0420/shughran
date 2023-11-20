@@ -26,30 +26,46 @@
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash();?>" />
                         <div class="form-group">			
                             
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label for="s_name">সাহিত্য সংগঠনের নাম :</label>
                             <input type="text" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_name']:''; ?>" id="s_name" name='s_name' required>
                         </div>
                         <div class="form-group">
-                            <label for="s_m">সদস্য :</label>
-                            <input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_m']:'0'; ?>" id="s_m" name='s_m' required>
+                            <div><label for="s_m">সদস্য :</label></div>
+                            <div class="row">
+                                <div class="col-sm-6">পূর্ব:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_m_p']:'0'; ?>" id="s_m" name='s_m_p' required> </div>
+                                <div class="col-sm-6"> বর্তমান: <input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_m']:'0'; ?>" id="s_m" name='s_m' required> </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="s_a">সাথী :</label>
-                            <input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_a']:'0'; ?>" id="s_a" name='s_a' required>
-                        </div>
+                            <div><label for="s_a">সাথী :</label></div>
+                            <div class="row">
+                                <div class="col-sm-6">পূর্ব:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_a_p']:'0'; ?>" id="s_a_p" name='s_a_p' required></div>
+                                <div class="col-sm-6"> বর্তমান:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_a']:'0'; ?>" id="s_a" name='s_a' required></div>
+                            </div>
+                        </div> 
                         <div class="form-group">
-                            <label for="s_w">কর্মী :</label>
-                            <input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_w']:'0'; ?>" id="s_w" name='s_w' required>
-                        </div>
+                            <div><label for="s_w">কর্মী :</label></div>
+                            <div class="row">
+                                <div class="col-sm-6">পূর্ব:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_w_p']:'0'; ?>" id="s_w_p" name='s_w_p' required></div>
+                                <div class="col-sm-6"> বর্তমান:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_w']:'0'; ?>" id="s_w" name='s_w' required></div>
+                            </div>
+                        </div>    
+
                         <div class="form-group">
-                            <label for="s_s">সমর্থক :</label>
-                            <input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_s']:'0'; ?>" id="s_s" name='s_s' required>
-                        </div>
+                            <div><label for="s_s">সমর্থক :</label></div>
+                            <div class="row">
+                                <div class="col-sm-6">পূর্ব:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_s_p']:'0'; ?>" id="s_s_p" name='s_s_p' required></div>
+                                <div class="col-sm-6"> বর্তমান:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_s']:'0'; ?>" id="s_s" name='s_s' required></div>
+                            </div>
+                        </div> 
                         <div class="form-group">
-                            <label for="s_f">বন্ধু :</label>
-                            <input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_f']:'0'; ?>" id="s_f" name='s_f' required>
-                        </div>
+                            <div><label for="s_f">বন্ধু :</label></div>
+                            <div class="row">
+                                <div class="col-sm-6">পূর্ব:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_f_p']:'0'; ?>" id="s_f_p" name='s_f_p' required></div>
+                                <div class="col-sm-6"> বর্তমান:<input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_f']:'0'; ?>" id="s_f" name='s_f' required></div>
+                            </div>
+                        </div>    
                        
                         <button type="submit" class="btn btn-success" value="<?php echo ($this->input->get('type')=='edit')?'literature_songothon_update':'literature_songothon';?>" 
                         name="<?php echo ($this->input->get('type')=='edit')?'literature_songothon_update':'literature_songothon';?>">Submit</button>

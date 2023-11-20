@@ -172,61 +172,109 @@ class Debate extends MY_Controller
             $this->db->select_sum('general_club_bri');
             $this->db->select_sum('general_club_gha');
             $this->db->select_sum('general_club_comments');
+
+            $this->db->select_sum('general_club_komiti');
+            $this->db->select_sum('general_club_club');
+
             $this->db->select_sum('shang_shakha_club_prev');
             $this->db->select_sum('shang_shakha_club_pres');
             $this->db->select_sum('shang_shakha_club_bri');
             $this->db->select_sum('shang_shakha_club_gha');
             $this->db->select_sum('shang_shakha_club_comments');
+
+            $this->db->select_sum('shang_shakha_club_komiti');
+            $this->db->select_sum('shang_shakha_club_club');
+
             $this->db->select_sum('shang_thana_prev');
             $this->db->select_sum('shang_thana_pres');
             $this->db->select_sum('shang_thana_bri');
             $this->db->select_sum('shang_thana_gha');
             $this->db->select_sum('shang_thana_comments');
+
+            $this->db->select_sum('shang_thana_komiti');
+            $this->db->select_sum('shang_thana_club');
+
             $this->db->select_sum('shang_thana_club_prev');
             $this->db->select_sum('shang_thana_club_pres');
             $this->db->select_sum('shang_thana_club_bri');
             $this->db->select_sum('shang_thana_club_gha');
             $this->db->select_sum('shang_thana_club_comments');
+
+            $this->db->select_sum('shang_thana_club_komiti');
+            $this->db->select_sum('shang_thana_club_club');
+
             $this->db->select_sum('university_prev');
             $this->db->select_sum('university_pres');
             $this->db->select_sum('university_bri');
             $this->db->select_sum('university_gha');
             $this->db->select_sum('university_comments');
+
+            $this->db->select_sum('university_komiti');
+            $this->db->select_sum('university_club');
+
             $this->db->select_sum('university_club_prev');
             $this->db->select_sum('university_club_pres');
             $this->db->select_sum('university_club_bri');
             $this->db->select_sum('university_club_gha');
             $this->db->select_sum('university_club_comments');
+
+            $this->db->select_sum('university_club_komiti');
+            $this->db->select_sum('university_club_club');
+
             $this->db->select_sum('college_prev');
             $this->db->select_sum('college_pres');
             $this->db->select_sum('college_bri');
             $this->db->select_sum('college_gha');
             $this->db->select_sum('college_comments');
+
+            $this->db->select_sum('college_komiti');
+            $this->db->select_sum('college_club');
+
             $this->db->select_sum('college_club_prev');
             $this->db->select_sum('college_club_pres');
             $this->db->select_sum('college_club_bri');
             $this->db->select_sum('college_club_gha');
             $this->db->select_sum('college_club_comments');
+
+            $this->db->select_sum('college_club_komiti');
+            $this->db->select_sum('college_club_club');
+
             $this->db->select_sum('madrasha_prev');
             $this->db->select_sum('madrasha_pres');
             $this->db->select_sum('madrasha_bri');
             $this->db->select_sum('madrasha_gha');
             $this->db->select_sum('madrasha_comments');
+
+            $this->db->select_sum('madrasha_komiti');
+            $this->db->select_sum('madrasha_club');
+
             $this->db->select_sum('madrasha_club_prev');
             $this->db->select_sum('madrasha_club_pres');
             $this->db->select_sum('madrasha_club_bri');
             $this->db->select_sum('madrasha_club_gha');
             $this->db->select_sum('madrasha_club_comments');
+
+            $this->db->select_sum('madrasha_club_komiti');
+            $this->db->select_sum('madrasha_club_club');
+
             $this->db->select_sum('school_prev');
             $this->db->select_sum('school_pres');
             $this->db->select_sum('school_bri');
             $this->db->select_sum('school_gha');
             $this->db->select_sum('school_comments');
+
+            $this->db->select_sum('school_komiti');
+            $this->db->select_sum('school_club');
+
             $this->db->select_sum('school_club_prev');
             $this->db->select_sum('school_club_pres');
             $this->db->select_sum('school_club_bri');
             $this->db->select_sum('school_club_gha');
             $this->db->select_sum('school_club_comments');
+
+            $this->db->select_sum('school_club_komiti');
+            $this->db->select_sum('school_club_club');
+
             if ($branch_id)
             $this->db->where('branch_id', $branch_id);
             $this->db->where('report_type', $report_type['type']);

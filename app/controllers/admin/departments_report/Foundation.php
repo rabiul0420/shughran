@@ -78,16 +78,30 @@ function foundation_bivag($branch_id = NULL)
 
     if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
-    $this->db->select_sum('number');
-    $this->db->select_sum('joint_stock');
-    $this->db->select_sum('shomaj_sheba');
-    $this->db->select_sum('ca_farm_audit');
-    $this->db->select_sum('committee_resulation');
+     $this->db->select('*');
     if ($branch_id)
     $this->db->where('branch_id', $branch_id);
 $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $this->data['foundation_foundation_info'] = $this->db->get('foundation_foundation_info')->first_row('array');
+    $this->data['foundation_foundation_info'] = $this->db->get('foundation_foundation_info');
+   
+    
+    $this->db->select_sum('s_g');
+    $this->db->select_sum('s_h');
+    $this->db->select_sum('s_k');
+    $this->db->select_sum('s_l');
+    $this->db->select_sum('t_g');
+    $this->db->select_sum('t_h');
+    $this->db->select_sum('t_k');
+    $this->db->select_sum('t_l');
+    
+    if ($branch_id)
+    $this->db->where('branch_id', $branch_id);
+$this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+    $this->data['foundation_motorcycle'] = $this->db->get('foundation_motorcycle')->first_row('array');
+
+
 
 
     if ($branch_id)
@@ -108,10 +122,13 @@ $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_
 
     if ($branch_id)
     $this->db->where('branch_id', $branch_id);
-$this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+  $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
     $this->db->order_by('branch_id');
     $this->data['foundation_others'] = $this->db->get('foundation_others');
+
+
+   
 
 
     $this->db->select_sum('shikkha_central_s');
@@ -129,12 +146,14 @@ $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_
     $this->data['foundation_training_program'] = $this->db->get('foundation_training_program')->first_row('array');
 
 }
-else{
+else{  // current session for data entry
     $this->db->select('*');
     $this->db->where('branch_id',$branch_id);
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
     $query = $this->db->get('foundation_training_program');
+
+
     $this->data['foundation_training_program'] = $query->first_row('array');	
 
     $this->db->select('*');
@@ -142,7 +161,7 @@ else{
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
     $query = $this->db->get('foundation_foundation_info');
-    $this->data['foundation_foundation_info'] = $query->first_row('array');
+    $this->data['foundation_foundation_info'] = $query;
 
     $this->db->select('*');
     $this->db->where('branch_id',$branch_id);
@@ -164,6 +183,16 @@ else{
 
     $query = $this->db->get('foundation_others');
     $this->data['foundation_others'] = $query;
+
+
+
+
+    $this->db->select('*');
+    $this->db->where('branch_id',$branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+    $query = $this->db->get('foundation_motorcycle');
+    $this->data['foundation_motorcycle'] = $query->first_row('array');
 
 
 
@@ -355,6 +384,80 @@ function add_foundation_jomi_shongkranto($branch_id = NULL)
 
         if($branch_id)
             $this->page_construct('departmentsreport/foundation/add_foundation_flat_shongkranto', $meta, $this->data,'leftmenu/departmentsreport');
+    }
+
+    function add_foundation_trust($branch_id = NULL)
+    { 
+        //$this->sma->checkPermissions();
+
+        if($branch_id != NULL && !($this->Owner || $this->Admin || $this->departmentuser) && ($this->session->userdata('branch_id')!=$branch_id)){
+            $this->session->set_flashdata('warning', lang('access_denied'));
+
+           // admin_redirect('departmentsreport/potrikar-grahok-briddi/'.$this->session->userdata('branch_id'));
+		    admin_redirect('departmentsreport/add-foundation-trust/'.$this->session->userdata('branch_id'));
+        }else if ($branch_id == NULL && !($this->Owner || $this->Admin || $this->departmentuser) ) {
+           // admin_redirect('departmentsreport/potrikar-grahok-briddi/'.$this->session->userdata('branch_id'));
+
+            admin_redirect('departmentsreport/add-foundation-trust/'.$this->session->userdata('branch_id'));
+        } 
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+
+        if ($this->Owner || $this->Admin || $this->departmentuser || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+        $last_year =  date("Y",strtotime("-1 year"));
+        $report_type = $this->report_type();
+        
+		if($this->input->post('foundation-trust'))
+		{
+            $data['report_type']=$report_type['type'];
+            $data['report_year']=date("Y");
+            $data['date']=date("Y-m-d"); 				
+            $data['branch_id']=$branch_id;
+            $data['user_id']=$this->session->userdata('user_id');
+            $data['name']=$this->input->post('name');
+            $data['number']=$this->input->post('number');
+            $data['joint_stock']=$this->input->post('joint_stock');
+            $data['shomaj_sheba']=$this->input->post('shomaj_sheba');
+            $data['ca_farm_audit']=$this->input->post('ca_farm_audit');
+            $data['committee_resulation']=$this->input->post('committee_resulation');
+			
+			$this->site->insertData('foundation_foundation_info',$data);
+            header("Location: ".admin_url('departmentsreport/foundation-bivag/'.$this->data['branch_id']));
+        }
+        if($this->input->post('foundation-trust_update'))
+		{ 
+            $data['name']=$this->input->post('name');
+            $data['number']=$this->input->post('number');
+            $data['joint_stock']=$this->input->post('joint_stock');
+            $data['shomaj_sheba']=$this->input->post('shomaj_sheba');
+            $data['ca_farm_audit']=$this->input->post('ca_farm_audit');
+            $data['committee_resulation']=$this->input->post('committee_resulation');
+			$this->site->updateData('foundation_foundation_info',$data,array('id'=>$this->input->get('id')));
+            header("Location: ".admin_url('departmentsreport/foundation-bivag/'.$this->data['branch_id']));
+        }
+        if($this->input->get('type')=='edit')
+        {
+            $this->db->select('*');
+            $this->db->where('id',$this->input->get('id'));
+            $this->data['foundation_trust'] = $this->db->get('foundation_foundation_info')->first_row('array');
+
+        }
+
+        $this->data['m'] = 'foundation';
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
+        $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
+
+        if($branch_id)
+            $this->page_construct('departmentsreport/foundation/add_foundation_trust', $meta, $this->data,'leftmenu/departmentsreport');
     }
 
 

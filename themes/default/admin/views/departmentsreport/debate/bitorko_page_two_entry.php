@@ -554,7 +554,7 @@
                             ?>
 
                             <tr>
-                                <td class="tg-pwj7" rowspan="2">আন্তঃ(স্কুল, কলেজ, মাদরাসা, থানা, ওয়ার্ড)</td>
+                                <td class="tg-pwj7" rowspan="2">আন্তঃ(স্কুল, কলেজ, মাদরাসা, থানা, ওয়ার্ড)<br> বিতর্ক প্রতিযোগিতা</td>
                                 <td class="tg-pwj7">সাংগঠনিক</td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_protijogita" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="anto_s_s" data-title="Enter">

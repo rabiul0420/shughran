@@ -194,7 +194,7 @@ $(document).ready(function(){
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="6"><b>প্রচার বিভাগে অনলাইন এক্টিভিটিজ </b></td>
+                                <td class="tg-pwj7" colspan="6"><b>মিডিয়া এক্টিভিটিজ </b></td>
                                 <td class="tg-pwj7" colspan="3">
                                     <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Publicity_প্রচার বিভাগে অনলাইন এক্টিভিটিজ.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -219,7 +219,7 @@ $(document).ready(function(){
 
                             <tr>
                                 <td class="tg-y698 type_1" rowspan="2">টিভি	</td>
-                                <td class="tg-y698"> স্যাটেলাইট  </td>
+                                <td class="tg-y698"> ইলেক্ট্রনিক মিডিয়া  </td>
                                 <td class="tg-0pky  type_1">
                                 <?php echo $tv_sat_total = $publicity_online_activity['tv_sat_total'] ?>
                                 </td>
@@ -242,7 +242,7 @@ $(document).ready(function(){
                                  <?php echo $tv_sat_prokashito = $publicity_online_activity['tv_sat_prokashito'] ?>
                                 </td>
                             </tr>
-                                <td class="tg-y698" >অনলাইন	 </td>
+                                <td class="tg-y698" >অনলাইন	মিডিয়া </td>
                                 
                                 <td class="tg-0pky  type_1">
                                 <?php echo $tv_online_total = $publicity_online_activity['tv_online_total'] ?>
@@ -368,12 +368,38 @@ $(document).ready(function(){
                                 <td class="tg-0pky  type_7">
                                  <?php echo $online_ancholik_prokashito = $publicity_online_activity['online_ancholik_prokashito'] ?>
                                 </td>
-                            </tr>   
+                            </tr>
+                            
+                            <tr>
+                                <td class="tg-y698" colspan="2" >শাখার ফেইসবুক পেইজ </td> 
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $facebook_total = $publicity_online_activity['facebook_total'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                 <?php echo $facebook_prerito_news = $publicity_online_activity['facebook_prerito_news'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                 <?php echo $facebook_prokashito_news = $publicity_online_activity['facebook_prokashito_news'] ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                 <?php echo $facebook_kototite_preron = $publicity_online_activity['facebook_kototite_preron'] ?>
+                                </td>
+                                <td class="tg-0pky  type_5">
+                                 <?php echo $facebook_kototite_prokash = $publicity_online_activity['facebook_kototite_prokash'] ?>
+                                </td>
+                                <td class="tg-0pky  type_6">
+                                 <?php echo $facebook_prodan = $publicity_online_activity['facebook_prodan'] ?>
+                                </td>
+                                <td class="tg-0pky  type_7">
+                                 <?php echo $facebook_prokashito = $publicity_online_activity['facebook_prokashito'] ?>
+                                </td>
+                            </tr>
 
                         </table>
                         <table class="tg table table-header-rotated" id="testTable3">
                             <tr>
-                                <td class="tg-pwj7" colspan="5"><b>শাখার পরিচালিত অনলাইন নিউজ মিডিয়া সংক্রান্ত   </b></td>
+                                <td class="tg-pwj7" colspan="5"><b>শাখার পরিচালিত অনলাইন পোর্টাল সংক্রান্ত   </b></td>
                                 <td class="tg-pwj7" colspan="1">
                                     <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Publicity_শাখার পরিচালিত অনলাইন নিউজ মিডিয়া সংক্রান্ত.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -413,7 +439,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="2" >শাখার ফেসবুক পেজ আছে কিনা? </td>
+                                <td class="tg-pwj7" colspan="2" >পোর্টালের ফেসবুক পেজ আছে কিনা? </td>
                                 <td class="tg-pwj7" colspan="2">ভেরিফাইড কনিা?</td>
                                 <td class="tg-pwj7" rowspan="2">লাইক সংখ্যা</td>
                                 <td class="tg-pwj7" rowspan="2">ফলোয়ার সংখ্যা</td>
@@ -446,7 +472,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                              <tr>
-                                <td class="tg-pwj7" colspan="2" >শাখার ইউটিউব চ্যানলে আছে কনিা?</td>
+                                <td class="tg-pwj7" colspan="2" >পোর্টালের ইউটিউব চ্যানলে আছে কনিা?</td>
                                 <td class="tg-pwj7" colspan="2">ভেরিফাইড কনিা?</td>
                                 <td class="tg-pwj7" rowspan='2' colspan="2">সাবস্ক্রাইবার সংখ্যা</td>
                             </tr>
@@ -506,6 +532,22 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                             
+                            <td class="tg-pwj7 "><div><span>বিভাগীয় জনশক্তিদের নিয়ে জরুরি বৈঠক </span></div></td>
+
+                            <td class="tg-0pky ">
+                                <?php echo $bggth_num = $publicity_shova_shomuho['bggth_num'] ?>
+                                </td>
+                                <td class="tg-0pky ">
+                                <?php echo $bggth_pre = $publicity_shova_shomuho['bggth_pre'] ?>
+                                </td>
+                                <td class="tg-0pky" >
+                                <?php echo number_format (($bggth_num!=0 && $bggth_pre!=0)?$bggth_pre/$bggth_num:0,2)?>
+                                </td>
+                                          
+                           
+                            </tr>
+                        <!--     <tr>
+                            
                             <td class="tg-pwj7 "><div><span>প্রশিক্ষণ কর্মশালা</span></div></td>
                             <td class="tg-0pky ">
                                 <?php echo $training_workshop_num = $publicity_shova_shomuho['training_workshop_num'] ?>
@@ -518,7 +560,7 @@ $(document).ready(function(){
                                 </td>
                                           
                            
-                            </tr>
+                            </tr> -->
                             <tr>
                             
                             <td class="tg-pwj7 "><div><span> মতবিনিময়</span></div></td>

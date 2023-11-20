@@ -583,7 +583,7 @@ $(document).ready(function(){
                         </table>
                     <table class="tg table table-header-rotated" id="testTable2">
                           <tr>
-                            <td class="tg-pwj7" colspan="5"><b>আকর্ষণীয় প্রোগ্রাম </b></td>
+                            <td class="tg-pwj7" colspan="5"><b>আকর্ষণীয় প্রোগ্রাম  : (ইন্টারমিডিয়েট/ ডিপ্লোমা / পলিটেকনিক শিক্ষার্থীদের নিয়ে ) </b></td>
                             <td class="tg-pwj7" colspan="">
                                 <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'College_আকর্ষণীয় প্রোগ্রাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>

@@ -96,6 +96,12 @@ class Literature extends MY_Controller
             $this->db->select_sum('bkp_briddhi_grahok');
             $this->db->select_sum('bkp_ghatti_potrika');
             $this->db->select_sum('bkp_ghatti_grahok');
+            
+            $this->db->select_sum('bkp_bmn');
+            $this->db->select_sum('bkp_bbkry');
+            $this->db->select_sum('bkp_bbitrn');
+
+
             $this->db->select_sum('nbkp_pn_before');
             $this->db->select_sum('nbkp_pn_present');
             $this->db->select_sum('nbkp_gn_before');
@@ -106,6 +112,11 @@ class Literature extends MY_Controller
             $this->db->select_sum('nbkp_briddhi_grahok');
             $this->db->select_sum('nbkp_ghatti_potrika');
             $this->db->select_sum('nbkp_ghatti_grahok');
+
+            $this->db->select_sum('nbkp_bmn');
+            $this->db->select_sum('nbkp_bbkry');
+            $this->db->select_sum('nbkp_bbitrn');
+
             $this->db->select_sum('ekp_pn_before');
             $this->db->select_sum('ekp_pn_present');
             $this->db->select_sum('ekp_gn_before');
@@ -116,6 +127,11 @@ class Literature extends MY_Controller
             $this->db->select_sum('ekp_briddhi_grahok');
             $this->db->select_sum('ekp_ghatti_potrika');
             $this->db->select_sum('ekp_ghatti_grahok');
+
+            $this->db->select_sum('ekp_bmn');
+            $this->db->select_sum('ekp_bbkry');
+            $this->db->select_sum('ekp_bbitrn');
+
             $this->db->select_sum('cs_pn_before');
             $this->db->select_sum('cs_pn_present');
             $this->db->select_sum('cs_gn_before');
@@ -126,6 +142,11 @@ class Literature extends MY_Controller
             $this->db->select_sum('cs_briddhi_grahok');
             $this->db->select_sum('cs_ghatti_potrika');
             $this->db->select_sum('cs_ghatti_grahok');
+
+            $this->db->select_sum('cs_bmn');
+            $this->db->select_sum('cs_bbkry');
+            $this->db->select_sum('cs_bbitrn');
+
             $this->db->select_sum('bep_pn_before');
             $this->db->select_sum('bep_pn_after');
             $this->db->select_sum('bep_gn_before');
@@ -136,6 +157,11 @@ class Literature extends MY_Controller
             $this->db->select_sum('bep_briddhi_grahok');
             $this->db->select_sum('bep_ghatti_potrika');
             $this->db->select_sum('bep_ghatti_grahok');
+
+            $this->db->select_sum('bep_bmn');
+            $this->db->select_sum('bep_bbkry');
+            $this->db->select_sum('bep_bbitrn');
+
             $this->db->select_sum('skpp_pn_before');
             $this->db->select_sum('skpp_pn_present');
             $this->db->select_sum('skpp_gn_before');
@@ -146,6 +172,11 @@ class Literature extends MY_Controller
             $this->db->select_sum('skpp_briddhi_grahok');
             $this->db->select_sum('skpp_ghatti_potrika');
             $this->db->select_sum('skpp_ghatti_grahok');
+
+            $this->db->select_sum('skpp_bmn');
+            $this->db->select_sum('skpp_bbkry');
+            $this->db->select_sum('skpp_bbitrn');
+
             $this->db->select_sum('sp_pn_before');
             $this->db->select_sum('sp_pn_present');
             $this->db->select_sum('sp_gn_before');
@@ -156,8 +187,10 @@ class Literature extends MY_Controller
             $this->db->select_sum('sp_briddhi_grahok');
             $this->db->select_sum('sp_ghatti_potrika');
             $this->db->select_sum('sp_ghatti_grahok');
-            $this->db->select_sum('bkp_pn_present');
 
+            $this->db->select_sum('sp_bmn');
+            $this->db->select_sum('sp_bbkry');
+            $this->db->select_sum('sp_bbitrn');
 
             if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
@@ -305,6 +338,35 @@ class Literature extends MY_Controller
             $this->db->select_sum('kj_tg_sonkha');
             $this->db->select_sum('kj_p_sonkha');
             $this->db->select_sum('kj_t_upostit');
+
+            $this->db->select_sum('saso_tg_sonkha');
+            $this->db->select_sum('saso_p_sonkha');
+            $this->db->select_sum('saso_t_upostit');
+
+            $this->db->select_sum('guso_tg_sonkha');
+            $this->db->select_sum('guso_p_sonkha');
+            $this->db->select_sum('guso_t_upostit');
+
+            $this->db->select_sum('ifpur_tg_sonkha');
+            $this->db->select_sum('ifpur_p_sonkha');
+            $this->db->select_sum('ifpur_t_upostit');
+
+            $this->db->select_sum('sapro_tg_sonkha');
+            $this->db->select_sum('sapro_p_sonkha');
+            $this->db->select_sum('sapro_t_upostit');
+
+            $this->db->select_sum('noso_tg_sonkha');
+            $this->db->select_sum('noso_p_sonkha');
+            $this->db->select_sum('noso_t_upostit');
+
+            $this->db->select_sum('saud_tg_sonkha');
+            $this->db->select_sum('saud_p_sonkha');
+            $this->db->select_sum('saud_t_upostit');
+
+            $this->db->select_sum('leso_tg_sonkha');
+            $this->db->select_sum('leso_p_sonkha');
+            $this->db->select_sum('leso_t_upostit');
+
             $this->db->select_sum('sd_tg_sonkha');
             $this->db->select_sum('sd_p_sonkha');
             $this->db->select_sum('sd_t_upostit');
@@ -478,7 +540,7 @@ class Literature extends MY_Controller
             $data['literature_type'] = $this->input->post('literature_type');
             $data['literature_time'] = $this->input->post('literature_time');
             $data['literature_name'] = $this->input->post('literature_name');
-            $data['literature_term'] = $this->input->post('literature_term');
+           // $data['literature_term'] = $this->input->post('literature_term');
             $data['literature_amount'] = $this->input->post('literature_amount');
             $this->site->insertData('literature_shakhar_literature_publish', $data);
             header("Location: " . admin_url('departmentsreport/literature-page-one/' . $this->data['branch_id']));
@@ -487,7 +549,7 @@ class Literature extends MY_Controller
             $data['literature_type'] = $this->input->post('literature_type');
             $data['literature_time'] = $this->input->post('literature_time');
             $data['literature_name'] = $this->input->post('literature_name');
-            $data['literature_term'] = $this->input->post('literature_term');
+           // $data['literature_term'] = $this->input->post('literature_term');
             $data['literature_amount'] = $this->input->post('literature_amount');
             $this->site->updateData('literature_shakhar_literature_publish', $data, array('id' => $this->input->get('id')));
             header("Location: " . admin_url('departmentsreport/literature-page-one/' . $this->data['branch_id']));
@@ -542,21 +604,46 @@ class Literature extends MY_Controller
             $data['branch_id'] = $branch_id;
             $data['user_id'] = $this->session->userdata('user_id');
             $data['s_name'] = $this->input->post('s_name');
+            $data['s_m_p'] = $this->input->post('s_m_p');
+            $data['s_m_b'] = $this->input->post('s_m_b');
+            $data['s_a_p'] = $this->input->post('s_a_p');
+            $data['s_a_b'] = $this->input->post('s_a_b');
+            $data['s_w_p'] = $this->input->post('s_w_p');
+            $data['s_w_b'] = $this->input->post('s_w_b');
+            $data['s_s_p'] = $this->input->post('s_s_p');
+            $data['s_s_b'] = $this->input->post('s_s_b');
+            $data['s_f_p'] = $this->input->post('s_f_p');
+            $data['s_f_b'] = $this->input->post('s_f_b');
+
             $data['s_m'] = $this->input->post('s_m');
             $data['s_a'] = $this->input->post('s_a');
             $data['s_w'] = $this->input->post('s_w');
             $data['s_s'] = $this->input->post('s_s');
             $data['s_f'] = $this->input->post('s_f');
+
             $this->site->insertData('literature_songothon_one', $data);
             header("Location: " . admin_url('departmentsreport/literature-page-two/' . $this->data['branch_id']));
         }
         if ($this->input->post('literature_songothon_update')) {
             $data['s_name'] = $this->input->post('s_name');
+            $data['s_m_p'] = $this->input->post('s_m_p');
+            $data['s_m_b'] = $this->input->post('s_m_b');
+            $data['s_a_p'] = $this->input->post('s_a_p');
+            $data['s_a_b'] = $this->input->post('s_a_b');
+            $data['s_w_p'] = $this->input->post('s_w_p');
+            $data['s_w_b'] = $this->input->post('s_w_b');
+            $data['s_s_p'] = $this->input->post('s_s_p');
+            $data['s_s_b'] = $this->input->post('s_s_b');
+            $data['s_f_p'] = $this->input->post('s_f_p');
+            $data['s_f_b'] = $this->input->post('s_f_b');
+
             $data['s_m'] = $this->input->post('s_m');
             $data['s_a'] = $this->input->post('s_a');
             $data['s_w'] = $this->input->post('s_w');
             $data['s_s'] = $this->input->post('s_s');
             $data['s_f'] = $this->input->post('s_f');
+
+
             $this->site->updateData('literature_songothon_one', $data, array('id' => $this->input->get('id')));
             header("Location: " . admin_url('departmentsreport/literature-page-two/' . $this->data['branch_id']));
         }

@@ -152,7 +152,505 @@ $(document).ready(function(){
 }
 </style>
                     <div class="tg-wrap">
-                    <table class="tg table table-header-rotated" id="testTable10">
+                    
+                    
+                       <!--  <td class="tg-0pky  type_2">
+                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_p_t'] ?>
+                                </td>  -->
+
+                 <table class="tg table table-header-rotated" id="testTable1">
+                        <tr>
+                            <td class="tg-pwj7" colspan="10"><b>এ সেশনে পাঠাগার বৃদ্ধি ও ঘাটতি </b></td>
+                            
+                            <td class="tg-pwj7" colspan="5">
+                            <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Library_এ সেশনে পাঠাগার বৃদ্ধি ও ঘাটতি.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                             <td class="tg-pwj7"  rowspan="2">সংগঠনের ধরন</td>
+                             <td class="tg-pwj7  type_1" rowspan="2">মোট সংখ্যা</td>
+                             <td class="tg-pwj7" colspan='4'>পাঠাগার সংখ্যা</td>
+                             <td class="tg-pwj7" colspan='4'>বই সংখ্যা</td>
+                             <td class="tg-pwj7  type_1" rowspan="2">রেজিস্ট্রার সংরক্ষণ করা হয় কতটি পাঠাগারে ?</td>
+                             <td class="tg-pwj7" rowspan="2">ইস্যুকৃত বই</td>
+                             <td class="tg-pwj7  type_1" rowspan="2">পঠিত বই</td>
+                        </tr>
+
+                        <tr>
+                            <td class="tg-pwj7" >পূর্ব </td>
+                            <td class="tg-pwj7  type_1">বর্তমান </td>
+                            <td class="tg-pwj7" >বৃদ্ধি </td>
+                            <td class="tg-pwj7  type_1">ঘাটতি</td>
+                            <td class="tg-pwj7" >পূর্ব  </td>
+                            <td class="tg-pwj7  type_1">বর্তমান </td>
+                            <td class="tg-pwj7" >বৃদ্ধি </td>
+                            <td class="tg-pwj7  type_1">ঘাটতি</td>
+                            
+                        </tr>	
+                        <?php
+                                $pk = (isset($pathagar_birdhi_garthi['id']))?$pathagar_birdhi_garthi['id']:'';
+
+                                ?>		
+                        <tr>
+                            <td class="tg-pwj7" >শাখা </td>
+                            <td class="tg-0pky">
+                               <?php echo $total_s=(isset( $pathagar_birdhi_garthi['total_s']))? $pathagar_birdhi_garthi['total_s']:0 ?>
+                            </td>
+                            <td class="tg-0pky">
+                               <?php echo $pre_p_s=(isset( $pathagar_birdhi_garthi['pre_p_s']))? $pathagar_birdhi_garthi['pre_p_s']:0 ?>
+                            </td>
+                            <td class="tg-0pky">
+                            <?php echo $now_p_s=(isset( $pathagar_birdhi_garthi['now_p_s']))? $pathagar_birdhi_garthi['now_p_s']:0 ?>
+                            </td>
+                            <td class="tg-0pky">
+                            <?php echo $inc_p_s=(isset( $pathagar_birdhi_garthi['inc_p_s']))? $pathagar_birdhi_garthi['inc_p_s']:0 ?>
+                            </td>
+                            <td class="tg-0pky">
+                            <?php echo $dec_p_s=(isset( $pathagar_birdhi_garthi['dec_p_s']))? $pathagar_birdhi_garthi['dec_p_s']:0 ?>
+                            </td>
+                            <td class="tg-0pky">
+                            <?php echo $boi_s_pre=(isset( $pathagar_birdhi_garthi['boi_s_pre']))? $pathagar_birdhi_garthi['boi_s_pre']:0 ?>
+                              </td>
+                            <td class="tg-0pky">
+                            <?php echo $boi_s=(isset( $pathagar_birdhi_garthi['boi_s']))? $pathagar_birdhi_garthi['boi_s']:0 ?>
+                              </td>
+                              <td class="tg-0pky">
+                              <?php echo $boi_inc_s=(isset( $pathagar_birdhi_garthi['boi_inc_s']))? $pathagar_birdhi_garthi['boi_inc_s']:0 ?>
+                               </td>
+                               <td class="tg-0pky">
+                               <?php echo $dec_boi_s=(isset( $pathagar_birdhi_garthi['dec_boi_s']))? $pathagar_birdhi_garthi['dec_boi_s']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_st_s=(isset( $pathagar_birdhi_garthi['reg_st_s']))? $pathagar_birdhi_garthi['reg_st_s']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_is_s=(isset( $pathagar_birdhi_garthi['reg_is_s']))? $pathagar_birdhi_garthi['reg_is_s']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_re_s=(isset( $pathagar_birdhi_garthi['reg_re_s']))? $pathagar_birdhi_garthi['reg_re_s']:0 ?>
+                                 </td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td class="tg-pwj7" >থানা </td>
+                            <td class="tg-0pky">
+                            <?php echo $total_t=(isset( $pathagar_birdhi_garthi['total_t']))? $pathagar_birdhi_garthi['total_t']:0 ?>
+                            </td>
+                            
+                            <td class="tg-0pky">
+                            <?php echo $pre_p_t=(isset( $pathagar_birdhi_garthi['pre_p_t']))? $pathagar_birdhi_garthi['pre_p_t']:0 ?>
+                            </td>
+                            <td class="tg-0pky">
+                            <?php echo $t_boi_s=(isset( $pathagar_birdhi_garthi['t_boi_s']))? $pathagar_birdhi_garthi['t_boi_s']:0 ?>
+                            </td>
+                            <td class="tg-0pky">
+                            <?php echo $inc_p_t=(isset( $pathagar_birdhi_garthi['inc_p_t']))? $pathagar_birdhi_garthi['inc_p_t']:0 ?>
+                            </td>
+                            <td class="tg-0pky">
+                            <?php echo $dec_p_t=(isset( $pathagar_birdhi_garthi['dec_p_t']))? $pathagar_birdhi_garthi['dec_p_t']:0 ?>
+                             </td>
+                             <td class="tg-0pky">
+                             <?php echo $boi_t_pre=(isset( $pathagar_birdhi_garthi['boi_t_pre']))? $pathagar_birdhi_garthi['boi_t_pre']:0 ?>
+                              </td>
+                             <td class="tg-0pky">
+                             <?php echo $boi_t=(isset( $pathagar_birdhi_garthi['boi_t']))? $pathagar_birdhi_garthi['boi_t']:0 ?>
+                              </td>
+                              <td class="tg-0pky">
+                              <?php echo $boi_inc_t=(isset( $pathagar_birdhi_garthi['boi_inc_t']))? $pathagar_birdhi_garthi['boi_inc_t']:0 ?>
+                               </td>
+                               <td class="tg-0pky">
+                               <?php echo $dec_boi_t=(isset( $pathagar_birdhi_garthi['dec_boi_t']))? $pathagar_birdhi_garthi['dec_boi_t']:0 ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo $reg_st_t=(isset( $pathagar_birdhi_garthi['reg_st_t']))? $pathagar_birdhi_garthi['reg_st_t']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_is_t=(isset( $pathagar_birdhi_garthi['reg_is_t']))? $pathagar_birdhi_garthi['reg_is_t']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_re_t=(isset( $pathagar_birdhi_garthi['reg_re_t']))? $pathagar_birdhi_garthi['reg_re_t']:0 ?>
+                                 </td>
+
+                        </tr> 
+                        <tr>
+                            <td class="tg-pwj7" >ওয়ার্ড </td>
+                            <td class="tg-0pky">
+                            <?php echo $total_w=(isset( $pathagar_birdhi_garthi['total_w']))? $pathagar_birdhi_garthi['total_w']:0 ?>
+                             </td>
+                            
+                            <td class="tg-0pky">
+                            <?php echo $pre_p_w=(isset( $pathagar_birdhi_garthi['pre_p_w']))? $pathagar_birdhi_garthi['pre_p_w']:0 ?>
+                             </td>
+                            <td class="tg-0pky">
+                            <?php echo $w_boi_s=(isset( $pathagar_birdhi_garthi['w_boi_s']))? $pathagar_birdhi_garthi['w_boi_s']:0 ?>
+                             </td>
+                            <td class="tg-0pky">
+                            <?php echo $inc_p_w=(isset( $pathagar_birdhi_garthi['inc_p_w']))? $pathagar_birdhi_garthi['inc_p_w']:0 ?>
+                             </td>
+                             <td class="tg-0pky">
+                             <?php echo $dec_p_w=(isset( $pathagar_birdhi_garthi['dec_p_w']))? $pathagar_birdhi_garthi['dec_p_w']:0 ?>
+                             </td>
+                             <td class="tg-0pky">
+                             <?php echo $boi_w_pre=(isset( $pathagar_birdhi_garthi['boi_w_pre']))? $pathagar_birdhi_garthi['boi_w_pre']:0 ?>
+                              </td>
+                             <td class="tg-0pky">
+                             <?php echo $boi_w=(isset( $pathagar_birdhi_garthi['boi_w']))? $pathagar_birdhi_garthi['boi_w']:0 ?>
+                              </td>
+                              <td class="tg-0pky">
+                              <?php echo $boi_inc_w=(isset( $pathagar_birdhi_garthi['boi_inc_w']))? $pathagar_birdhi_garthi['boi_inc_w']:0 ?>
+                               </td>
+                                <td class="tg-0pky">
+                                <?php echo $dec_boi_w=(isset( $pathagar_birdhi_garthi['dec_boi_w']))? $pathagar_birdhi_garthi['dec_boi_w']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_st_w=(isset( $pathagar_birdhi_garthi['reg_st_w']))? $pathagar_birdhi_garthi['reg_st_w']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_is_w=(isset( $pathagar_birdhi_garthi['reg_is_w']))? $pathagar_birdhi_garthi['reg_is_w']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_re_w=(isset( $pathagar_birdhi_garthi['reg_re_w']))? $pathagar_birdhi_garthi['reg_re_w']:0 ?>
+                                 </td> 
+
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" >উপশাখা </td>
+                            <td class="tg-0pky">
+                            <?php echo $total_u=(isset( $pathagar_birdhi_garthi['total_u']))? $pathagar_birdhi_garthi['total_u']:0 ?>
+                               </td>
+                            
+                            <td class="tg-0pky">
+                            <?php echo $pre_p_u=(isset( $pathagar_birdhi_garthi['pre_p_u']))? $pathagar_birdhi_garthi['pre_p_u']:0 ?>
+                               </td>
+                            <td class="tg-0pky">
+                            <?php echo $u_boi_s=(isset( $pathagar_birdhi_garthi['u_boi_s']))? $pathagar_birdhi_garthi['u_boi_s']:0 ?>
+                              </td>
+                              <td class="tg-0pky">
+                              <?php echo $inc_p_u=(isset( $pathagar_birdhi_garthi['inc_p_u']))? $pathagar_birdhi_garthi['inc_p_u']:0 ?>
+                               </td>
+                               <td class="tg-0pky">
+                               <?php echo $dec_p_u=(isset( $pathagar_birdhi_garthi['dec_p_u']))? $pathagar_birdhi_garthi['dec_p_u']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $boi_u_pre=(isset( $pathagar_birdhi_garthi['boi_u_pre']))? $pathagar_birdhi_garthi['boi_u_pre']:0 ?>
+                                  </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $boi_u=(isset( $pathagar_birdhi_garthi['boi_u']))? $pathagar_birdhi_garthi['boi_u']:0 ?>
+                                  </td>
+                                  <td class="tg-0pky">
+                                  <?php echo $boi_inc_u=(isset( $pathagar_birdhi_garthi['boi_inc_u']))? $pathagar_birdhi_garthi['boi_inc_u']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $dec_boi_u=(isset( $pathagar_birdhi_garthi['dec_boi_u']))? $pathagar_birdhi_garthi['dec_boi_u']:0 ?>
+                                 </td>
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_st_u=(isset( $pathagar_birdhi_garthi['reg_st_u']))? $pathagar_birdhi_garthi['reg_st_u']:0 ?>
+                                 </td>
+
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_is_u=(isset( $pathagar_birdhi_garthi['reg_is_u']))? $pathagar_birdhi_garthi['reg_is_u']:0 ?>
+                                 </td>
+
+                                 <td class="tg-0pky">
+                                 <?php echo $reg_re_u=(isset( $pathagar_birdhi_garthi['reg_re_u']))? $pathagar_birdhi_garthi['reg_re_u']:0 ?>
+                                 </td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td class="tg-pwj7" >মোট </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $total_s+$total_t+$total_w+$total_u ?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $pre_p_s+$pre_p_t+$pre_p_w+$pre_p_u ?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $now_p_s+$t_boi_s+$w_boi_s+$u_boi_s ?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $inc_p_s+$inc_p_t+$inc_p_w+$inc_p_u ?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $dec_p_s+$dec_p_t+$dec_p_w+$dec_p_u?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $boi_s_pre+$boi_t_pre+$boi_w_pre+$boi_u_pre ?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $boi_s+$boi_t+$boi_w+$boi_u ?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $boi_inc_s+$boi_inc_t+$boi_inc_w+$boi_inc_u?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $dec_boi_s+$dec_boi_t+$dec_boi_w+$dec_boi_u?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $reg_st_s+$reg_st_t+$reg_st_w+$reg_st_u ?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $reg_is_s+$reg_is_t+$reg_is_w+$reg_is_u ?>
+                            </td>
+                            <td class="tg-0pky  type_2">
+                                    <?php echo $reg_re_s+$reg_re_t+$reg_re_w+$reg_re_u ?>
+                            </td>
+                        </tr>
+                       
+                        </table>     
+                    
+                        
+
+                        <table class="tg table table-header-rotated" id="testTable1">
+                        <tr>
+                            <td class="tg-pwj7" colspan="6"><b>মসজিদভিত্তিক পাঠাগার</b></td>
+                            
+                            <td class="tg-pwj7" colspan="3">
+                            <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Library_মসজিদভিত্তিক পাঠাগার.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                             <td class="tg-pwj7"  rowspan="2">সংগঠনের ধরন</td>
+                             <td class="tg-pwj7" colspan='4'>পাঠাগার সংখ্যা</td>
+                             <td class="tg-pwj7" colspan='4'>বই সংখ্যা</td>
+                             
+                        </tr>
+
+                        <tr>
+                            <td class="tg-pwj7" >পূর্ব </td>
+                            <td class="tg-pwj7  type_1">বর্তমান </td>
+                            <td class="tg-pwj7" >বৃদ্ধি </td>
+                            <td class="tg-pwj7  type_1">ঘাটতি</td>
+                            <td class="tg-pwj7" >পূর্ব  </td>
+                            <td class="tg-pwj7  type_1">বর্তমান </td>
+                            <td class="tg-pwj7" >বৃদ্ধি </td>
+                            <td class="tg-pwj7  type_1">ঘাটতি</td>
+                            
+                        </tr>	
+                       	
+                       <tr>
+                            <td class="tg-pwj7">মসজিদভিত্তিক পাঠাগার </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $mos_p_s_pre=(isset($pathagar_mosque['mos_p_s_pre']))? $pathagar_mosque['mos_p_s_pre']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $mos_p_s=(isset($pathagar_mosque['mos_p_s']))? $pathagar_mosque['mos_p_s']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $mos_inc_p=(isset($pathagar_mosque['mos_inc_p']))? $pathagar_mosque['mos_inc_p']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $dec_p_mos=(isset($pathagar_mosque['dec_p_mos']))? $pathagar_mosque['dec_p_mos']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $mos_boi_s_pre=(isset($pathagar_mosque['mos_boi_s_pre']))? $pathagar_mosque['mos_boi_s_pre']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $mos_boi_s=(isset($pathagar_mosque['mos_boi_s']))? $pathagar_mosque['mos_boi_s']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $mos_inc_boi=(isset($pathagar_mosque['mos_inc_boi']))? $pathagar_mosque['mos_inc_boi']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $dec_boi_mos=(isset($pathagar_mosque['dec_boi_mos']))? $pathagar_mosque['dec_boi_mos']:0 ?>
+                            </td>
+                        </tr>
+
+                        <tr> 
+                            <td class="tg-pwj7">লেন্ডিং  লাইব্রেরী </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $lal_p_pre=(isset($pathagar_mosque['lal_p_pre']))? $pathagar_mosque['lal_p_pre']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $lal_p_now=(isset($pathagar_mosque['lal_p_now']))? $pathagar_mosque['lal_p_now']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $lal_p_inc=(isset($pathagar_mosque['lal_p_inc']))? $pathagar_mosque['lal_p_inc']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $lal_p_dec=(isset($pathagar_mosque['lal_p_dec']))? $pathagar_mosque['lal_p_dec']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $lal_bo_pre=(isset($pathagar_mosque['lal_bo_pre']))? $pathagar_mosque['lal_bo_pre']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $lal_bo_now=(isset($pathagar_mosque['lal_bo_now']))? $pathagar_mosque['lal_bo_now']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $lal_bo_inc=(isset($pathagar_mosque['lal_bo_inc']))? $pathagar_mosque['lal_bo_inc']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $lal_bo_dec=(isset($pathagar_mosque['lal_bo_dec']))? $pathagar_mosque['lal_bo_dec']:0 ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="tg-pwj7">উন্মক্তু পাঠাগার </td>
+                            <td class="tg-0pky">
+                                <?php echo $ul_p_pre=(isset($pathagar_mosque['ul_p_pre']))? $pathagar_mosque['ul_p_pre']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $ul_p_now=(isset($pathagar_mosque['ul_p_now']))? $pathagar_mosque['ul_p_now']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $ul_p_inc=(isset($pathagar_mosque['ul_p_inc']))? $pathagar_mosque['ul_p_inc']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $ul_p_dec=(isset($pathagar_mosque['ul_p_dec']))? $pathagar_mosque['ul_p_dec']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $ul_bo_pre=(isset($pathagar_mosque['ul_bo_pre']))? $pathagar_mosque['ul_bo_pre']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $ul_bo_now=(isset($pathagar_mosque['ul_bo_now']))? $pathagar_mosque['ul_bo_now']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $ul_bo_inc=(isset($pathagar_mosque['ul_bo_inc']))? $pathagar_mosque['ul_bo_inc']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $ul_bo_dec=(isset($pathagar_mosque['ul_bo_dec']))? $pathagar_mosque['ul_bo_dec']:0 ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="tg-pwj7">সেলনু পাঠাগার </td>
+                            
+                            <td class="tg-0pky">
+                                <?php echo $sep_p_pre=(isset($pathagar_mosque['sep_p_pre']))? $pathagar_mosque['sep_p_pre']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $sep_p_now=(isset($pathagar_mosque['sep_p_now']))? $pathagar_mosque['sep_p_now']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $sep_p_inc=(isset($pathagar_mosque['sep_p_inc']))? $pathagar_mosque['sep_p_inc']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $sep_p_dec=(isset($pathagar_mosque['sep_p_dec']))? $pathagar_mosque['sep_p_dec']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $sep_bo_pre=(isset($pathagar_mosque['sep_bo_pre']))? $pathagar_mosque['sep_bo_pre']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $sep_bo_now=(isset($pathagar_mosque['sep_bo_now']))? $pathagar_mosque['sep_bo_now']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $sep_bo_inc=(isset($pathagar_mosque['sep_bo_inc']))? $pathagar_mosque['sep_bo_inc']:0 ?>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <?php echo $sep_bo_dec=(isset($pathagar_mosque['sep_bo_dec']))? $pathagar_mosque['sep_bo_dec']:0 ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                                <td class="tg-pwj7">রিকশা পাঠাগার </td>
+                            
+                                <td class="tg-0pky">
+                                    <?php echo $rip_p_pre=(isset($pathagar_mosque['rip_p_pre']))? $pathagar_mosque['rip_p_pre']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $rip_p_now=(isset($pathagar_mosque['rip_p_now']))? $pathagar_mosque['rip_p_now']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $rip_p_inc=(isset($pathagar_mosque['rip_p_inc']))? $pathagar_mosque['rip_p_inc']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $rip_p_dec=(isset($pathagar_mosque['rip_p_dec']))? $pathagar_mosque['rip_p_dec']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $rip_bo_pre=(isset($pathagar_mosque['rip_bo_pre']))? $pathagar_mosque['rip_bo_pre']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $rip_bo_now=(isset($pathagar_mosque['rip_bo_now']))? $pathagar_mosque['rip_bo_now']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $rip_bo_inc=(isset($pathagar_mosque['rip_bo_inc']))? $pathagar_mosque['rip_bo_inc']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $rip_bo_dec=(isset($pathagar_mosque['rip_bo_dec']))? $pathagar_mosque['rip_bo_dec']:0 ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-pwj7">অন্যান্য পাঠগার </td>
+                                
+                                <td class="tg-0pky">
+                                    <?php echo $op_p_pre=(isset($pathagar_mosque['op_p_pre']))? $pathagar_mosque['op_p_pre']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $op_p_now=(isset($pathagar_mosque['op_p_now']))? $pathagar_mosque['op_p_now']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $op_p_inc=(isset($pathagar_mosque['op_p_inc']))? $pathagar_mosque['op_p_inc']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $op_p_dec=(isset($pathagar_mosque['op_p_dec']))? $pathagar_mosque['op_p_dec']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $op_bo_pre=(isset($pathagar_mosque['op_bo_pre']))? $pathagar_mosque['op_bo_pre']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $op_bo_now=(isset($pathagar_mosque['op_bo_now']))? $pathagar_mosque['op_bo_now']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $op_bo_inc=(isset($pathagar_mosque['op_bo_inc']))? $pathagar_mosque['op_bo_inc']:0 ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $op_bo_dec=(isset($pathagar_mosque['op_bo_dec']))? $pathagar_mosque['op_bo_dec']:0 ?>
+                                </td>
+                            </tr>
+
+
+                        </table>  
+
+                        <table class="tg table table-header-rotated" id="testTable10">
                         <tr>
                             <td class="tg-pwj7" colspan="3"><b>বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম</b></td>
                             <td class="tg-pwj7" colspan="1">
@@ -218,290 +716,8 @@ $(document).ready(function(){
                             </td>
                         </tr>
                     </table>
-                        <table class="tg table table-header-rotated" id="testTable1">
-                        <tr>
-                            <td class="tg-pwj7" colspan="2"><b>এ সেশনে পাঠাগার বৃদ্ধি ও ঘাটতি </b></td>
-                            
-                            <td class="tg-pwj7" colspan="">
-                                <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Library_এ সেশনে পাঠাগার বৃদ্ধি ও ঘাটতি.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" colspan='2'>বিষয় </td>
-                            <td class="tg-pwj7  type_1">সংখ্যা</td>
-                        </tr>										
-                        <tr>
-                            <td class="tg-pwj7" colspan='2'>মোট থানা </td>
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['total_t'] ?>
-                                </td>
-                        </tr>
-                        <tr>
 
-                            <td class="tg-pwj7" colspan='2'>থানাভিত্তিক পাঠাগার সংখ্যা  </td>
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['t_boi_s'] ?>
-                                </td>
-                           
-                        </tr>
-                        <tr>
-
-                        <td class="tg-pwj7" colspan='2'>মোট ওয়ার্ড </td>
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['total_w'] ?>
-                                </td>
-
-                        </tr>
-                        <tr>
-                        <td class="tg-pwj7" colspan='2'>ওয়ার্ডভিত্তিক পাঠাগার সংখ্যা  </td>
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['w_boi_s'] ?>
-                                </td>
-
-                        </tr>
-                        <tr>
-
-                        <td class="tg-pwj7" colspan='2'>মোট উপশাখা </td>
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['total_u'] ?>
-                                </td>
-
-                        </tr>
-                        <tr>
-                        <td class="tg-pwj7" colspan='2'>উপশাখাভিত্তিক পাঠাগার সংখ্যা  </td>
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['u_boi_s'] ?>
-                                </td>
-
-                        </tr>
-                        <tr>
-
-                        <td class="tg-pwj7" rowspan='4' >এ বছরে পাঠাগার বৃদ্ধি  </td>
-                        <td class="tg-pwj7" >শাখা</td>   
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['inc_p_s'] ?>
-                                </td>
-
-                        </tr>
-                        <tr>
-                        <td class="tg-pwj7" >থানা</td>   
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['inc_p_t'] ?>
-                                </td>
-
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" >ওয়ার্ড  </td> 
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['inc_p_w'] ?>
-                                </td>
-                       </tr>
-                       <tr>
-                            <td class="tg-pwj7" >উপশাখা </td>
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['inc_p_u'] ?>
-                                </td>
-                       </tr>
-                        <tr>
-                        <td class="tg-pwj7" rowspan='4' >মোট বই সংখ্যা </td>
-                        <td class="tg-pwj7" >শাখা</td>  
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['boi_s'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                        <td class="tg-pwj7" >থানা</td>  
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['boi_t'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" >ওয়ার্ড  </td> 
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['boi_w'] ?>
-                                </td>
-                       </tr>
-                       <tr>
-                            <td class="tg-pwj7" >উপশাখা </td>
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['boi_u'] ?>
-                                </td>
-                       </tr>
-                        <tr>
-                        <td class="tg-pwj7" rowspan='4'>মোট বই বৃদ্ধি</td>
-                        <td class="tg-pwj7" >শাখা</td>  
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['boi_inc_s'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                        <td class="tg-pwj7" >থানা</td>  
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['boi_inc_t'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" >ওয়ার্ড  </td> 
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['boi_inc_w'] ?>
-                                </td>
-                       </tr>
-                       <tr>
-                            <td class="tg-pwj7" >উপশাখা </td>
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['boi_inc_u'] ?>
-                                </td>
-                       </tr>
-                        <tr>
-                        <td class="tg-pwj7" rowspan='4'>পাঠাগার ঘাটতি </td>
-                        <td class="tg-pwj7" >শাখা</td>  
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_p_s'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                        <td class="tg-pwj7" >থানা</td>  
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_p_t'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" >ওয়ার্ড  </td> 
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_p_w'] ?>
-                                </td>
-                       </tr>
-                       <tr>
-                            <td class="tg-pwj7" >উপশাখা </td>
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_p_u'] ?>
-                                </td>
-                       </tr>
-                        <tr>
-                        <td class="tg-pwj7" rowspan='4'>বই ঘাটতি </td>
-                        <td class="tg-pwj7" >শাখা</td>  
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_boi_s'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                        <td class="tg-pwj7" >থানা</td>  
-                           <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_boi_t'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" >ওয়ার্ড  </td> 
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_boi_w'] ?>
-                                </td>
-                       </tr>
-                       <tr>
-                            <td class="tg-pwj7" >উপশাখা </td>
-                               <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_birdhi_garthi['dec_boi_u'] ?>
-                                </td>
-                       </tr>
-                            
-                        </table>
-                        <table class="tg table table-header-rotated" id="testTable2">
-                            <tr>
-                                <td class="tg-pwj7" colspan="8"><b>রেজিস্টার সংরক্ষণ</b></td>
-                                <td class="tg-pwj7" colspan="5">
-                                <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Library_রেজিস্টার সংরক্ষণ.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                            </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan='4'>রেজিস্টার সংরক্ষণ করা হয় কতটি পাঠাগারে </td>
-                                <td class="tg-pwj7  type_1" colspan='4'>ইস্যুকৃত বই</td>
-                                <td class="tg-pwj7  type_1" colspan='4'>পঠিত বই</td>
-                                <td class="tg-pwj7  type_1" rowspan='2'>দাওয়াতের উদ্দেশ্যে বই  বিতরণ</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" >শাখা</td>
-                                <td class="tg-pwj7" >থানা</td>
-                                <td class="tg-pwj7" >ওয়ার্ড  </td>
-                                <td class="tg-pwj7" >উপশাখা </td>
-                                <td class="tg-pwj7" >শাখা</td>
-                                <td class="tg-pwj7" >থানা</td>
-                                <td class="tg-pwj7" >ওয়ার্ড  </td>
-                                <td class="tg-pwj7" >উপশাখা </td> 
-                                <td class="tg-pwj7" >শাখা</td>
-                                <td class="tg-pwj7" >থানা</td>
-                                <td class="tg-pwj7" >ওয়ার্ড  </td>
-                                <td class="tg-pwj7" >উপশাখা </td> 
-                            </tr>
-                            <tr>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_st_s'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_st_t'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_st_w'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_st_u'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_is_s'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_is_t'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_is_w'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_is_u'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_re_s'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_re_t'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_re_w'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_re_u'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_register['reg_boi_b_dowah'] ?>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <table class="tg table table-header-rotated" id="testTable3">
-                            <tr>
-                                <td class="tg-pwj7" colspan="3"><b>মসজিদভিত্তিক পাঠাগার</b></td>
-                                <td class="tg-pwj7" colspan="">
-                                <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Library_মসজিদভিত্তিক পাঠাগার.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                            </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan=''>মসজিদভিত্তিক পাঠাগার সংখ্যা</td>
-                                <td class="tg-pwj7  type_1" colspan=''>বই সংখ্যা</td>
-                                <td class="tg-pwj7  type_1" colspan=''>মসজিদভিত্তিক পাঠাগার বৃদ্ধি সংখ্যা</td>
-                                <td class="tg-pwj7  type_1" rowspan=''>বই বৃদ্ধি সংখ্যা </td>
-                            </tr>
-                            <tr>
-                                 <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_mosque['mos_p_s'] ?>
-                                </td>
-                                 <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_mosque['mos_boi_s'] ?>
-                                </td>
-                                 <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_mosque['mos_inc_p'] ?>
-                                </td>
-                                 <td class="tg-0pky  type_2">
-                                    <?php echo $pk_sts = $pathagar_mosque['mos_inc_boi'] ?>
-                                </td>
-                            </tr>
-                        </table>
+                        
                     </div>
 				
 				

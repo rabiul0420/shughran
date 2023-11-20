@@ -208,66 +208,149 @@ $(document).ready(function(){
                   </table>
                     <table class="tg table table-header-rotated" id="testTable1">
                     <tr>
-                        <td class="tg-pwj7" colspan='4'>
+                        <td class="tg-pwj7" colspan='5'>
                             <b>ফাউন্ডেশন/  ট্রাস্ট/ এসোসিয়েশন-সংক্রান্ত তথ্য</b>
                         </td>
-                        <td class="tg-pwj7" colspan='2'>
+                        <td class="tg-pwj7" colspan='1'>
                             <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Foundation_ফাউন্ডেশন/  ট্রাস্ট/ এসোসিয়েশন-সংক্রান্ত তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                        </td>
+                        <td class="tg-pwj7" colspan='1'>
+                        <a style="text-decoration:none;" href=<?php echo admin_url('departmentsreport/add-foundation-trust/'. $branch_id) ?> ><i class="fa fa-plus-square" aria-hidden="true"></i> তথ্য যুক্ত করুন</a>
                         </td>
                     </tr>
                   
                     <tr>
+                        <td class="tg-pwj7" rowspan='2'>নাম  </td>
                         <td class="tg-pwj7" rowspan='2'>সংখ্যা </td>
                         <td class="tg-pwj7" colspan='2'> রেজিস্ট্রিকৃত কতটি?</td>
                         <td class="tg-pwj7" rowspan='2'> সিএ ফার্ম কতৃক (আয়-ব্যয়) অডিট সম্পন্ন কতটির?</td>
                         <td class="tg-pwj7" rowspan='2'>কমিটি ও রেজুলেশন আপডেট আছে কতটির?</td>
+                        <td class="tg-pwj7" rowspan='2'>Action</td>
                     </tr>
                     <tr>
                         <td class="tg-pwj7">জয়েন্ট স্টক কোম্পানী থেকে </td>
                         <td class="tg-pwj7 ">সমাজ সেবা অধিদপ্তর  থেকে </td>
                        
                     </tr> 
+                   
+                    <?php 
+                                $i=0;
+                            foreach($foundation_foundation_info->result_array() as $row) 
+                                    {
+                                    $i++;
+                                ?>
+                                 <tr>
+                                 <td class="tg-0pky type_1"><?php echo $row['name'] ?>	</td>
+                                 <td class="tg-0pky type_1"><?php echo $row['number'] ?>	</td>
+                                 <td class="tg-0pky type_1"><?php echo $row['joint_stock'] ?>	</td>
+                                 <td class="tg-0pky type_1"><?php echo $row['shomaj_sheba'] ?>	</td>
+                                 <td class="tg-0pky type_1"><?php echo $row['ca_farm_audit'] ?>	</td>
+                                 <td class="tg-0pky type_1"><?php echo $row['committee_resulation'] ?>	</td>
+                                 <td class="tg-0pky  type_1">
+                                    <button class='btn btn-info'>
+                                    <a class='action_class' href=<?php echo admin_url('departmentsreport/add-foundation-trust/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
+                                    </button>
+                                    <button  class='btn btn-danger' id='<?php echo "delete@foundation_foundation_info@".$row['name']."@".$row['id'] ?>'>Delete</button>
+                                    </td>
+                                 </tr>
+                                <?php } ?>
+                    
+                                  
+                </table>
+
+
+                <table class="tg table table-header-rotated" id="bari">
+                    <tr>
+                        <td class="tg-pwj7" colspan='4'>
+                            <b>মোটরসাইকলের তথ্য</b>
+                        </td>
+                        <td class="tg-pwj7" colspan='1'>
+                            <a href="#" id='table_1' onclick="doit('xlsx','bari','<?php echo 'Foundation_মোটরসাইকলের তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                        </td>
+                       
+                    </tr>
+                  
+                    <tr>
+                        <td class="tg-pwj7">বিবরণ   </td>
+                        <td class="tg-pwj7" >গাড়ির সংখ্যা </td>
+                        <td class="tg-pwj7" >  হেলমেটের সংখ্যা</td>
+                        <td class="tg-pwj7" > কতটি গাড়ির কাগজ আছে</td>
+                        <td class="tg-pwj7" >কতজন ভাইয়ের ড্রাইভিং লাইসেন্স আছে </td>
+                    </tr>
+                    
                     <?php
-                        $pk = (isset($foundation_foundation_info['id']))?$foundation_foundation_info['id']:'';
+                        $pk = (isset($foundation_motorcycle['id']))?$foundation_motorcycle['id']:'';
                     ?>
                     <tr>
-                    <td class="tg-0pky  type_5"> 
-                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                        data-table="foundation_foundation_info" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                        data-name="number" 
-                        data-title="Enter"><?php echo $other_ap=(isset( $foundation_foundation_info['number']))? $foundation_foundation_info['number']:'' ?>
-                    </a>
-                    </td>
-                    <td class="tg-0pky  type_5"> 
-                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                        data-table="foundation_foundation_info" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                        data-name="joint_stock" 
-                        data-title="Enter"><?php echo $other_ap=(isset( $foundation_foundation_info['joint_stock']))? $foundation_foundation_info['joint_stock']:'' ?>
-                    </a>
-                    </td>
-                    <td class="tg-0pky  type_5"> 
-                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                        data-table="foundation_foundation_info" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                        data-name="shomaj_sheba" 
-                        data-title="Enter"><?php echo $other_ap=(isset( $foundation_foundation_info['shomaj_sheba']))? $foundation_foundation_info['shomaj_sheba']:'' ?>
-                    </a>
-                    </td>
-                    <td class="tg-0pky  type_5"> 
-                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                        data-table="foundation_foundation_info" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                        data-name="ca_farm_audit" 
-                        data-title="Enter"><?php echo $other_ap=(isset( $foundation_foundation_info['ca_farm_audit']))? $foundation_foundation_info['ca_farm_audit']:'' ?>
-                    </a>
-                    </td>
-                    <td class="tg-0pky  type_5"> 
-                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                        data-table="foundation_foundation_info" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                        data-name="committee_resulation" 
-                        data-title="Enter"><?php echo $other_ap=(isset( $foundation_foundation_info['committee_resulation']))? $foundation_foundation_info['committee_resulation']:'' ?>
-                    </a>
-                    </td>                    
-                    </tr>               
+                        <td class="tg-0pky type_5"> 
+                        শাখা 
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                            <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                                data-table="foundation_motorcycle" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="s_g" 
+                                data-title="Enter"><?php echo $other_ap=(isset($foundation_motorcycle['s_g']))? $foundation_motorcycle['s_g']:'' ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                            <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                                data-table="foundation_motorcycle" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="s_h" 
+                                data-title="Enter"><?php echo $other_ap=(isset($foundation_motorcycle['s_h']))? $foundation_motorcycle['s_h']:'' ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                            <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                                data-table="foundation_motorcycle" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="s_k" 
+                                data-title="Enter"><?php echo $other_ap=(isset($foundation_motorcycle['s_k']))? $foundation_motorcycle['s_k']:'' ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                            <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                                data-table="foundation_motorcycle" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="s_l" 
+                                data-title="Enter"><?php echo $other_ap=(isset($foundation_motorcycle['s_l']))? $foundation_motorcycle['s_l']:'' ?>
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tg-0pky type_5"> 
+                        থানা 
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                            <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                                data-table="foundation_motorcycle" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="t_g" 
+                                data-title="Enter"><?php echo $other_ap=(isset($foundation_motorcycle['t_g']))? $foundation_motorcycle['t_g']:'' ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                            <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                                data-table="foundation_motorcycle" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="t_h" 
+                                data-title="Enter"><?php echo $other_ap=(isset($foundation_motorcycle['t_h']))? $foundation_motorcycle['t_h']:'' ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                            <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                                data-table="foundation_motorcycle" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="t_k" 
+                                data-title="Enter"><?php echo $other_ap=(isset($foundation_motorcycle['t_k']))? $foundation_motorcycle['t_k']:'' ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                            <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                                data-table="foundation_motorcycle" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="t_l" 
+                                data-title="Enter"><?php echo $other_ap=(isset($foundation_motorcycle['t_l']))? $foundation_motorcycle['t_l']:'' ?>
+                            </a>
+                        </td>
+                    </tr>
+                    
                 </table>
+
                 <table class="tg table table-header-rotated" id="testTable2">
                     <tr>
                         <td class="tg-pwj7" colspan='9'>
@@ -299,8 +382,9 @@ $(document).ready(function(){
                         <td class="tg-pwj7">CS </td>
                         <td class="tg-pwj7 ">SA </td>
                         <td class="tg-pwj7">RS/ROR</td>
-                        <td class="tg-pwj7 ">DCR </td>
                         <td class="tg-pwj7">CITY/BS</td>
+                        <td class="tg-pwj7 ">Mutation/DCR </td>
+                       
                     </tr> 
                     <?php 
                                 $i=0;
@@ -330,11 +414,12 @@ $(document).ready(function(){
                                     <?php echo $row['rs_ror'] ?>      
                                     </td>
                                     <td class="tg-0pky  type_4">
-                                    <?php echo $row['dcr'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_4">
                                     <?php echo $row['city_bs'] ?>       
                                     </td>
+                                    <td class="tg-0pky  type_4">
+                                    <?php echo $row['dcr'] ?>       
+                                    </td>
+                                   
                                     <td class="tg-0pky  type_3">
                                     <?php echo $row['khajna_porishodh'] ?>      
                                     </td>
@@ -391,9 +476,10 @@ $(document).ready(function(){
                     <tr>
                         <td class="tg-pwj7">CS </td>
                         <td class="tg-pwj7 ">SA </td>
-                        <td class="tg-pwj7">RS/ROR</td>
-                        <td class="tg-pwj7 ">DCR </td>
+                        <td class="tg-pwj7">RS</td>
                         <td class="tg-pwj7">CITY/BS</td>
+                        <td class="tg-pwj7 ">Mutation & DCR </td>
+                        
                     </tr> 
                     <?php 
                                 $i=0;
@@ -425,11 +511,12 @@ $(document).ready(function(){
                                     <?php echo $row['rs_ror'] ?>      
                                     </td>
                                     <td class="tg-0pky  type_4">
-                                    <?php echo $row['dcr'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_4">
                                     <?php echo $row['city_bs'] ?>       
                                     </td>
+                                    <td class="tg-0pky  type_4">
+                                    <?php echo $row['dcr'] ?>       
+                                    </td>
+                                    
                                     <td class="tg-0pky  type_3">
                                     <?php echo $row['khajna_porishodh'] ?>      
                                     </td>

@@ -511,7 +511,7 @@ $(document).ready(function(){
                             </tr>
 
                             <tr>
-                                <td class="tg-pwj7" rowspan="2">আন্তঃ(স্কুল, কলেজ, মাদরাসা, থানা, ওয়ার্ড)</td>
+                                <td class="tg-pwj7" rowspan="2">আন্তঃ(স্কুল, কলেজ, মাদরাসা, থানা, ওয়ার্ড)<br> বিতর্ক প্রতিযোগিতা</td>
                                 <td class="tg-pwj7" >সাংগঠনিক</td>
                                 <td class="tg-0pky" colspan=""> 
                                     <?php echo $anto_s_s = $debate_protijogita['anto_s_s'] ?>

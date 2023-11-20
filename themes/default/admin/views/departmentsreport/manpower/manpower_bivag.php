@@ -152,179 +152,500 @@ $(document).ready(function(){
 }
 </style>
                     <div class="tg-wrap">
-                        <table class="tg table table-header-rotated" id="testTable1">
+                    <table class="tg table table-header-rotated" id="testTable1">
                             <tr>                           
-                                <td class="tg-pwj7" colspan='2'><b>মানবসম্পদ বিভাগীয় সাংগঠনিক কাঠামো</b></td>
-                                <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Human_management_মানবসম্পদ বিভাগীয় সাংগঠনিক কাঠামো.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                                </td>
-                               
+                                <td class="tg-pwj7" colspan='4'><b>HRM কমিটি </b></td>
+                                <td class="tg-pwj7" colspan="1">
+                                <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Human_management_মানবসম্পদ বিভাগীয় সাংগঠনিক কাঠামো_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
                             </tr>
-                            <tr>                           
-                                <td class="tg-pwj7" colspan='2'> বিবরণ </td>
-                                <td class="tg-y698 type_1">
-                                মন্তব্য
-                                 </td>
+                            <?php
+                            $pk = (isset($human_management_songothon['id']))?$human_management_songothon['id']:"";
+                            ?>
+                           
+                           <tr>                           
+                                <td class="tg-pwj7"> শাখায় এইচআরএম কমিটি আছে কিনা?</td>
+                                <td class="tg-y698 type_1" rowspan="2">এইচআরএম কমিটির সদস্য সংখ্যা কত? </td>
+                                <td class="tg-y698 type_1" colspan="2">এইচআরএম কমিটির সমন্বয় মিটিং </td>
+                                <td class="tg-y698 type_1">সেক্টরভিত্তিক লোক তৈরীর দীর্ঘমেয়াদী পরিকল্পনা নেওয়া হয়েছে কিনা? </td>
+                            
+                            </tr>
+                           <tr> 
+                                 <td class="tg-pwj7" >(হ্যাঁ/না) </td>                          
+                                <td class="tg-pwj7" > সংখ্যা </td>
+                                <td class="tg-pwj7"> উপস্থিতি</td>
+                                <td class="tg-pwj7" >(হ্যাঁ/না) </td>
                             
                             </tr>
                             <tr>                           
-                                <td class="tg-pwj7" rowspan='2'> শাখায় মানবসম্পদ বিভাগীয় কমিটি আছে কিনা? </td>
-                                <td class="tg-y698 type_1">
-                                হ্যাঁ
-                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo 
-                                    $jonosheba_terget=$human_management_songothon['branch_committee']; 
-                                    $total_terget=($total_terget ?? 0) + ($jonosheba_terget ?? 0);
-                                    ?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $branch_committee=(isset( $human_management_songothon['branch_committee']))? $human_management_songothon['branch_committee']:0; ?>
                                 </td>
+                               
+                                <td class="tg-0pky  type_3">
+                                <?php echo $coun_team=(isset( $human_management_songothon['coun_team']))? $human_management_songothon['coun_team']:0; ?>
+                                </td>
+
+                               
+                                <td class="tg-0pky  type_3">
+                                <?php echo $bivag_com_meeting=(isset( $human_management_songothon['bivag_com_meeting']))? $human_management_songothon['bivag_com_meeting']:0; ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $bivag_com_meeting_upos=(isset( $human_management_songothon['bivag_com_meeting']))? $human_management_songothon['bivag_com_meeting_upos']:0; ?>
+                                </td>
+
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sec_man_month=(isset( $human_management_songothon['sec_man_month']))? $human_management_songothon['sec_man_month']:0; ?>
+                                </td>
+
                             </tr>
 
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" >
-                                 না
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo ($total_human_management_songothon_row ?? 0 )-$human_management_songothon['branch_committee']; $total_terget=$total_terget + $jonosheba_terget;?>
-                                </td>
-                            </tr>
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" colspan='2'>
-                                মানবসম্পদ বিভাগীয় কাউন্সেলিং টিমে সদস্য সংখ্যা কত?
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_terget=$human_management_songothon['coun_team']; $total_terget=$total_terget + $jonosheba_terget;?>
-                                </td>
-                            </tr>
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" colspan='2'>
-                                বৃহত্তর আন্দোলনের মানবসম্পদ বিভাগীয় কমিটির সাথে মিটিং সংখ্যা কতটি? 
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_terget=$human_management_songothon['bivag_com_meeting']; $total_terget=$total_terget + $jonosheba_terget;?>
-                                </td>
-                            </tr>
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" colspan='2'>
-                                কত % জনশক্তির বায়োডাটা কালেকশন ও পর্যালোচনা হয়েছে?
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_terget=$human_management_songothon['per_biodata']; $total_terget=$total_terget + $jonosheba_terget;?>
-                                </td>
-                            </tr>
+                         
+                        </table>
+                        <table class="tg table table-header-rotated" id="বায়োডাটা">
                             <tr>                           
-                                <td class="tg-pwj7" rowspan='2'> নিম্নোক্ত সেক্টরভিত্তিক জনশক্তি ভাগ করে মাসভিত্তিক প্রোগ্রাম পরিকল্পনা নেওয়া হয়েছে কিনা? </td>
-                                <td class="tg-y698 type_1">
-                                হ্যাঁ
-                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_terget=$human_management_songothon['sec_man_month']; $total_terget=$total_terget + $jonosheba_terget;?>
+                                <td class="tg-pwj7" colspan='2'><b>জনশক্তির বায়োডাটা কালেকশন ও পর্যালোচনা হয়েছে? </b></td>
+                                <td class="tg-pwj7" colspan="1">
+                                <a href="#" id='বায়োডাটা' onclick="doit('xlsx','বায়োডাটা','<?php echo 'জনশক্তির বায়োডাটা কালেকশন ও পর্যালোচনা হয়েছে?_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                            </tr>
+                            <?php
+                            $pk = (isset($human_management_jonosokti_biodata['id']))?$human_management_jonosokti_biodata['id']:"";
+                            ?>
+                            <tr>                           
+                                
+                                <td class="tg-y698 type_1" >মান</td>
+                                <td class="tg-y698 type_1" >বর্তমান সংখ্যা</td>
+                                <td class="tg-y698 type_1" >বায়োডাটা সংগ্রহ ও পর্যালোচনা সংখ্যা</td>
+                               
+                            
+                            </tr>
+                            <tr>
+                            <td class="tg-y698 type_1" >সদস্য</td>
+                            <td class="tg-0pky  type_3">
+                            <?php echo $sodosso_s=(isset( $human_management_jonosokti_biodata['sodosso_s']))? $human_management_jonosokti_biodata['sodosso_s']:0; ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sodosso_p=(isset( $human_management_jonosokti_biodata['sodosso_p']))? $human_management_jonosokti_biodata['sodosso_p']:0; ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <td class="tg-y698 type_1" >সাথী </td>
+                            <td class="tg-0pky  type_3">
+                            <?php echo $sathi_s=(isset( $human_management_jonosokti_biodata['sathi_s']))? $human_management_jonosokti_biodata['sathi_s']:0; ?>
+                                </td>
+
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sathi_p=(isset( $human_management_jonosokti_biodata['sathi_p']))? $human_management_jonosokti_biodata['sathi_p']:0; ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <td class="tg-y698 type_1" >কর্মী</td>
+                            <td class="tg-0pky  type_3">
+                            <?php echo $kormi_s=(isset( $human_management_jonosokti_biodata['kormi_s']))? $human_management_jonosokti_biodata['kormi_s']:0; ?>
+                                </td>
+
+                                <td class="tg-0pky  type_3">
+                                <?php echo $kormi_p=(isset( $human_management_jonosokti_biodata['kormi_p']))? $human_management_jonosokti_biodata['kormi_p']:0; ?>
+                                </td>
+                            </tr>
+                           <tr>                           
+                           <td class="tg-y698 type_1" >মোট</td>
+                           <td class="tg-0pky  type_3" ><?php echo $sodosso_s+$sathi_s+$kormi_s ?></td>
+                           <td class="tg-0pky  type_3" ><?php echo $sodosso_p+$sathi_p+$kormi_p ?></td>
+                            
+                            </tr>
+                            
+                         
+                        </table>
+
+                        <table class="tg table table-header-rotated" id="বিদায়ীm">
+                            <tr>                           
+                                <td class="tg-pwj7" colspan='5'><b>বিদায়ী জনশক্তির তথ্য  </b></td>
+                                <td class="tg-pwj7" colspan="1">
+                                <a href="#" id='বিদায়ীm' onclick="doit('xlsx','বিদায়ীm','<?php echo 'বিদায়ী জনশক্তির তথ্য _'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                            </tr>
+                            <?php
+                            $pk = (isset($human_management_bidai_jonosokti['id']))?$human_management_bidai_jonosokti['id']:"";
+                            ?>
+                            <tr>                           
+                                
+                                <td class="tg-y698 type_1" rowspan="2" >মান</td>
+                                <td class="tg-y698 type_1" colspan="5" >এই সেশনে বিদায়ী জনশক্তিদের তথ্য</td>
+                               
+                            </tr>
+                            <tr>
+                               <td class="tg-y698 type_1" >মোট বিদায়ী সংখ্যা</td>
+                               <td class="tg-y698 type_1" >তথ্য/সিভি আছে সংখ্যা</td>
+                               <td class="tg-y698 type_1" >সরকারি চাকরিতে যোগদান সংখ্যা</td>
+                               <td class="tg-y698 type_1" >বেসরকারি চাকরিতে যোগদান সংখ্যা</td>
+                               <td class="tg-y698 type_1" >কর্মসংস্থান হয়নি সংখ্যা</td>
+
+                            </tr>
+                            <tr>
+                            <td class="tg-y698 type_1" >সদস্য</td>
+                              <td class="tg-0pky  type_3">
+                              <?php echo $bidai_so=(isset( $human_management_bidai_jonosokti['bidai_so']))? $human_management_bidai_jonosokti['bidai_so']:0; ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $cv_so=(isset( $human_management_bidai_jonosokti['cv_so']))? $human_management_bidai_jonosokti['cv_so']:0; ?>
+                                </td>
+
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sorkari_so=(isset( $human_management_bidai_jonosokti['sorkari_so']))? $human_management_bidai_jonosokti['sorkari_so']:0; ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $besorkari_so=(isset( $human_management_bidai_jonosokti['besorkari_so']))? $human_management_bidai_jonosokti['besorkari_so']:0; ?>
+                                </td>
+
+                                <td class="tg-0pky  type_3">
+                                <?php echo $kormo_so=(isset( $human_management_bidai_jonosokti['kormo_so']))? $human_management_bidai_jonosokti['kormo_so']:0; ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <td class="tg-y698 type_1" >সাথী </td>
+                            <td class="tg-0pky  type_3">
+                            <?php echo $bidai_sa = (isset($human_management_bidai_jonosokti['bidai_sa'])) ? $human_management_bidai_jonosokti['bidai_sa'] : 0; ?>
+                            </td>
+
+                            <td class="tg-0pky  type_3">
+                            <?php echo $cv_sa = (isset($human_management_bidai_jonosokti['cv_sa'])) ? $human_management_bidai_jonosokti['cv_sa'] : 0; ?>
+                            </td>
+
+                            <td class="tg-0pky  type_3">
+                            <?php echo $sorkari_sa = (isset($human_management_bidai_jonosokti['sorkari_sa'])) ? $human_management_bidai_jonosokti['sorkari_sa'] : 0; ?>
+                            </td>
+
+                            <td class="tg-0pky  type_3">
+                            <?php echo $besorkari_sa = (isset($human_management_bidai_jonosokti['besorkari_sa'])) ? $human_management_bidai_jonosokti['besorkari_sa'] : 0; ?>
+                            </td>
+
+                            <td class="tg-0pky  type_3">
+                            <?php echo $kormo_sa = (isset($human_management_bidai_jonosokti['kormo_sa'])) ? $human_management_bidai_jonosokti['kormo_sa'] : 0; ?>
+                            </td>
+
+                            </tr>
+                            <tr>
+                            <td class="tg-y698 type_1" >কর্মী</td>
+                            <td class="tg-0pky  type_3">
+                            <?php echo $bidai_ko = (isset($human_management_bidai_jonosokti['bidai_ko'])) ? $human_management_bidai_jonosokti['bidai_ko'] : 0; ?>
+                            </td>
+
+                            <td class="tg-0pky  type_3">
+                            <?php echo $cv_ko = (isset($human_management_bidai_jonosokti['cv_ko'])) ? $human_management_bidai_jonosokti['cv_ko'] : 0; ?>
+                            </td>
+
+                            <td class="tg-0pky  type_3">
+                            <?php echo $sorkari_ko = (isset($human_management_bidai_jonosokti['sorkari_ko'])) ? $human_management_bidai_jonosokti['sorkari_ko'] : 0; ?>
+                            </td>
+
+                            <td class="tg-0pky  type_3">
+                            <?php echo $besorkari_ko = (isset($human_management_bidai_jonosokti['besorkari_ko'])) ? $human_management_bidai_jonosokti['besorkari_ko'] : 0; ?>
+                            </td>
+
+                            <td class="tg-0pky  type_3">
+                            <?php echo $kormo_ko = (isset($human_management_bidai_jonosokti['kormo_ko'])) ? $human_management_bidai_jonosokti['kormo_ko'] : 0; ?>
+                            </td>
+
+                            </tr>
+                           <tr>                           
+                           <td class="tg-y698 type_1" >মোট</td>
+                           <td class="tg-0pky  type_3" ><?php echo $bidai_so+$bidai_sa+$bidai_ko ?></td>
+                           <td class="tg-0pky  type_3" ><?php echo $cv_so+$cv_sa+$cv_ko ?></td>
+                           <td class="tg-0pky  type_3" ><?php echo $sorkari_so+$sorkari_sa+$sorkari_ko ?></td>
+                           <td class="tg-0pky  type_3" ><?php echo $besorkari_so+$besorkari_sa+$besorkari_ko ?></td>
+                           <td class="tg-0pky  type_3" ><?php echo $kormo_so+$kormo_sa+$kormo_ko ?></td>
+                           
+                            
+                            </tr>
+                           
+                         
+                        </table>
+
+                        <table class="tg table table-header-rotated" id="আইডিয়াল হোমm">
+                            <tr>
+                                <td class="tg-pwj7" colspan="7"><b>প্রফেশনাল আইডিয়াল হোম </b></td>
+                                <td class="tg-pwj7" colspan="2">
+                                    <a href="#" id='আইডিয়াল হোমm' onclick="doit('xlsx','আইডিয়াল হোমm','<?php echo 'Education_আইডিয়াল হোম (একাডেমিক ও প্রফেশনাল)_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7" rowspan="2">আইডিয়াল হোমের ধরণ</td>
+                                <td class="tg-pwj7" colspan="4" style="text-align:center">হোম সংখ্যা </td>
+                                <td class="tg-pwj7" colspan="4" style="text-align:center">ছাত্র সংখ্যা </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-pwj7 ">
+                                    <div><span>পূর্বের সংখ্যা</span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>বর্তমান সংখ্যা </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>বৃদ্ধি </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>ঘাটতি </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>পূর্বের সংখ্যা </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>বর্তমান সংখ্যা </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>বৃদ্ধি </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>ঘাটতি </span></div>
+                                </td>
+
+                            </tr>
+                            <?php
+                            $pk = (isset($education_ideal_home['id'])) ? $education_ideal_home['id'] : '';
+
+                            ?>
+
+
+
+                           
+
+                            <tr>
+                                <td class="tg-y698">জনসেবা আইডিয়াল হোম </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $j_she_h_prev = (isset($education_ideal_home['j_she_h_prev'])) ? $education_ideal_home['j_she_h_prev'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $j_she_h_pres = (isset($education_ideal_home['j_she_h_pres'])) ? $education_ideal_home['j_she_h_pres'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $j_she_h_bri = (isset($education_ideal_home['j_she_h_bri'])) ? $education_ideal_home['j_she_h_bri'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                <?php echo $j_she_h_gha = (isset($education_ideal_home['j_she_h_gha'])) ? $education_ideal_home['j_she_h_gha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_5">
+                                <?php echo $j_she_s_prev = (isset($education_ideal_home['j_she_s_prev'])) ? $education_ideal_home['j_she_s_prev'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_6">
+                                <?php echo $j_she_s_pres = (isset($education_ideal_home['j_she_s_pres'])) ? $education_ideal_home['j_she_s_pres'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_7">
+                                <?php echo $j_she_s_bri = (isset($education_ideal_home['j_she_s_bri'])) ? $education_ideal_home['j_she_s_bri'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_8">
+                                <?php echo $j_she_s_gha = (isset($education_ideal_home['j_she_s_gha'])) ? $education_ideal_home['j_she_s_gha'] : 0 ?>
+                                </td>
+                            </tr>
+                           
+
+                            <tr>
+                                <td class="tg-y698">মানবসেবা আইডিয়াল হোম </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $m_she_h_prev = (isset($education_ideal_home['m_she_h_prev'])) ? $education_ideal_home['m_she_h_prev'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $m_she_h_pres = (isset($education_ideal_home['m_she_h_pres'])) ? $education_ideal_home['m_she_h_pres'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_she_h_bri = (isset($education_ideal_home['m_she_h_bri'])) ? $education_ideal_home['m_she_h_bri'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                <?php echo $m_she_h_gha = (isset($education_ideal_home['m_she_h_gha'])) ? $education_ideal_home['m_she_h_gha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_5">
+                                <?php echo $m_she_s_prev = (isset($education_ideal_home['m_she_s_prev'])) ? $education_ideal_home['m_she_s_prev'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_6">
+                                <?php echo $m_she_s_pres = (isset($education_ideal_home['m_she_s_pres'])) ? $education_ideal_home['m_she_s_pres'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_7">
+                                <?php echo $m_she_s_bri = (isset($education_ideal_home['m_she_s_bri'])) ? $education_ideal_home['m_she_s_bri'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_8">
+                                <?php echo $m_she_s_gha = (isset($education_ideal_home['m_she_s_gha'])) ? $education_ideal_home['m_she_s_gha'] : 0 ?>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">সরকারি চাকরির আইডিয়াল হোম</td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $sorkari_h_prev = (isset($education_ideal_home['sorkari_h_prev'])) ? $education_ideal_home['sorkari_h_prev'] : 0 ?>
+                                </td>
+
+                                <td class="tg-0pky  type_2">
+                                <?php echo $sorkari_h_pres = (isset($education_ideal_home['sorkari_h_pres'])) ? $education_ideal_home['sorkari_h_pres'] : 0 ?>
+                                </td>
+
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sorkari_h_bri = (isset($education_ideal_home['sorkari_h_bri'])) ? $education_ideal_home['sorkari_h_bri'] : 0 ?>
+                                </td>
+
+                                <td class="tg-0pky  type_4">
+                                <?php echo $sorkari_h_gha = (isset($education_ideal_home['sorkari_h_gha'])) ? $education_ideal_home['sorkari_h_gha'] : 0 ?>
+                                </td>
+
+                                <td class="tg-0pky  type_5">
+                                <?php echo $sorkari_s_prev = (isset($education_ideal_home['sorkari_s_prev'])) ? $education_ideal_home['sorkari_s_prev'] : 0 ?>
+                                </td>
+
+                                <td class="tg-0pky  type_6">
+                                <?php echo $sorkari_s_pres = (isset($education_ideal_home['sorkari_s_pres'])) ? $education_ideal_home['sorkari_s_pres'] : 0 ?>
+                                </td>
+
+                                <td class="tg-0pky  type_7">
+                                <?php echo $sorkari_s_bri = (isset($education_ideal_home['sorkari_s_bri'])) ? $education_ideal_home['sorkari_s_bri'] : 0 ?>
+                                </td>
+
+                                <td class="tg-0pky  type_8">
+                                <?php echo $sorkari_s_gha = (isset($education_ideal_home['sorkari_s_gha'])) ? $education_ideal_home['sorkari_s_gha'] : 0 ?>
+                                </td>
+
+
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7"> মোট</td>
+                                <td class="tg-0pky  type_8"> <?php echo $j_she_h_prev+$m_she_h_prev+$sorkari_h_prev?></td>
+                                <td class="tg-0pky  type_8"> <?php echo $j_she_h_pres+$m_she_h_pres+$sorkari_h_pres?></td>
+                                <td class="tg-0pky  type_8"> <?php echo $j_she_h_bri+$m_she_h_bri+$sorkari_h_bri?></td>
+                                <td class="tg-0pky  type_8"> <?php echo $j_she_h_gha+$m_she_h_gha+$sorkari_h_gha?></td>
+
+                                <td class="tg-0pky  type_8"> <?php echo $j_she_s_prev+$m_she_s_prev+$sorkari_s_prev?></td>
+                                <td class="tg-0pky  type_8"> <?php echo $j_she_s_pres+$m_she_s_pres+$sorkari_s_pres?></td>
+                                <td class="tg-0pky  type_8"> <?php echo $j_she_s_bri+$m_she_s_bri+$sorkari_s_bri?></td>
+                                <td class="tg-0pky  type_8"> <?php echo $j_she_s_gha+$m_she_s_gha+$sorkari_s_gha?></td>
+
+                               
+
+                            </tr>
+
+                        </table>
+
+                        <table class="tg table table-header-rotated" id="মোটিভেশনাল প্রোগ্রাম">
+                            <tr>
+                            <td class="tg-pwj7" colspan='2'><b>মোটিভেশনাল প্রোগ্রাম (প্রফেশনাল ও একাডেমিক) </b></td>
+                                <td class="tg-pwj7" colspan="">
+                                <a href="#" id='table_1'  onclick="doit('xlsx','মোটিভেশনাল প্রোগ্রাম','<?php echo 'Education_মোটিভেশনাল প্রোগ্রাম (প্রফেশনাল ও একাডেমিক)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7">প্রোগ্রামের ধরন</td>
+                                <td class="tg-pwj7" >সংখ্যা </td>
+                                <td class="tg-pwj7" >উপস্থিতি  </td>
+
+                            </tr>
+                            <?php
+                            $pk = (isset($education_motivational_program['id']))?$education_motivational_program['id']:"";
+
+                            ?>
+                            <tr>
+                                <td class="tg-y698 type_1" >ক্যারিয়ার কাউন্সেলিং (জনসেবা)	</td>
+
+                                <td class="tg-0pky  type_2">
+                                <?php echo $cc_jon_num=(isset( $education_motivational_program['cc_jon_num']))? $education_motivational_program['cc_jon_num']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $cc_jon_pre=(isset( $education_motivational_program['cc_jon_pre']))? $education_motivational_program['cc_jon_pre']:0 ?>
                                 </td>
                             </tr>
 
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" >
-                                 না
+                            <tr>
+                                <td class="tg-y698">ক্যারিয়ার কাউন্সেলিং (মানবসেবা) </td>
+
+                                <td class="tg-0pky  type_2">
+                                <?php echo $cc_man_num=(isset( $education_motivational_program['cc_man_num']))? $education_motivational_program['cc_man_num']:0 ?>
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo ($total_human_management_songothon_row ?? 0)-$human_management_songothon['sec_man_month']; $total_terget=$total_terget + $jonosheba_terget;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $cc_man_pre=(isset( $education_motivational_program['cc_man_pre']))? $education_motivational_program['cc_man_pre']:0 ?>
+                                </td>
+                            </tr>
+
+                           
+                            <tr>
+                                <td class="tg-y698">ক্যারিয়ার কাউন্সেলিং (তথ্যসেবা) </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $cc_info_num=(isset( $education_motivational_program['cc_info_num']))? $education_motivational_program['cc_info_num']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $cc_info_pre=(isset( $education_motivational_program['cc_info_pre']))? $education_motivational_program['cc_info_pre']:0 ?>
+                                </td>
+                            </tr>
+
+                            <td class="tg-y698">সরকারি চাকরি কাউন্সিলিং</td>
+                            <td class="tg-0pky  type_2">
+                                  <?php echo $sorkari_num=(isset( $education_motivational_program['sorkari_num']))? $education_motivational_program['sorkari_num']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sorkari_pres=(isset( $education_motivational_program['sorkari_pres']))? $education_motivational_program['sorkari_pres']:0 ?>
+                                </td>
+                            </tr>
+                           
+                            <td class="tg-y698">অন্যান্য</td>
+                            <td class="tg-0pky  type_2">
+                            <?php echo $other_num=(isset( $education_motivational_program['other_num']))? $education_motivational_program['other_num']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $other_pre=(isset( $education_motivational_program['other_pre']))? $education_motivational_program['other_pre']:0 ?>
                                 </td>
                             </tr>
                         </table>
                         				
-                        <table class="tg table table-header-rotated" id="testTable2">
+                        <table class="tg table table-header-rotated" id="জনবল">
                             <tr>                           
-                                <td class="tg-pwj7" colspan='7'><b>জনবল সরবরাহের সেক্টরসমূহ</b></td>
-                                <td class="tg-pwj7" colspan="3">
-                                <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Human_management_জনবল সরবরাহের সেক্টরসমূহ.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <td class="tg-pwj7" colspan='5'><b>জনবল সরবরাহের সেক্টরসমূহ</b></td>
+                                <td class="tg-pwj7" colspan="1">
+                                <a href="#" id='জনবল' onclick="doit('xlsx','জনবল','<?php echo 'Human_management_জনবল সরবরাহের সেক্টরসমূহ_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>
                             </tr>
                             <tr>                           
                                 <td class="tg-pwj7" colspan='2' rowspan='2'> সেক্টরসমূহ </td>
                                 <td class="tg-y698 type_1" colspan='2'>সেক্টরভিত্তিক জনশক্তি বাছাই সংখ্যা</td>
-                                <td class="tg-pwj7" colspan='2'>মোটিভেশনাল প্রোগ্রাম</td>
                                 <td class="tg-y698 type_1" colspan='2'>প্রাতিষ্ঠানিক প্রশিক্ষণ গ্রহণ</td>
-                                <td class="tg-y698 type_1" colspan='2'>প্রতিযোগিতামূলক পরীক্ষার ফলাফল</td>
                             </tr>
                             								
                             <tr>                           
                                 <td class="tg-y698 type_1">টার্গেট</td>
                                 <td class="tg-pwj7" colspan=''>বাছাই</td>
-                                <td class="tg-y698 type_1">সংখ্যা</td>
-                                <td class="tg-y698 type_1">উপস্থিতি</td>
+                               
                                 <td class="tg-y698 type_1">সাংগঠনিক</td>
                                 <td class="tg-y698 type_1">সাধারণ</td>
-                                <td class="tg-pwj7" colspan=''>অংশগ্রহণ</td>
-                                <td class="tg-y698 type_1">উত্তীর্ণ সংখ্যা</td>
+                               
                             </tr>
-                            <?php 
-                                $total_terget=0;
-                                $total_bachai=0;
-                                $total_num=0;
-                                $total_pre=0;
-                                $total_sang=0;
-                                $total_shadha=0;
-                                $total_ongsho=0;
-                                $total_uttirno=0;
+                            <?php
+                            $pk = (isset($human_managemant_jonobol_shorboraho['id']))?$human_managemant_jonobol_shorboraho['id']:"";
+                            $total_terget=0;
+                            $total_bachai=0;
+                            $total_num=0;
+                            $total_pre=0;
+                            $total_sang=0;
+                            $total_shadha=0;
+                            $total_ongsho=0;
+                            $total_uttirno=0;
                             ?>
                             <tr>                                                      
                                 <td class="tg-y698 tg-0pky" colspan='2'>
                                 জনসেবা
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_terget=$human_managemant_jonobol_shorboraho['jonosheba_terget']; $total_terget=$total_terget + $jonosheba_terget;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $jonosheba_terget=(isset( $human_managemant_jonobol_shorboraho['jonosheba_terget']))? $human_managemant_jonobol_shorboraho['jonosheba_terget']:0; $total_terget = $total_terget+ $jonosheba_terget; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_bachai=$human_managemant_jonobol_shorboraho['jonosheba_bachai']; $total_bachai=$total_bachai + $jonosheba_bachai;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $jonosheba_bachai=(isset( $human_managemant_jonobol_shorboraho['jonosheba_bachai']))? $human_managemant_jonobol_shorboraho['jonosheba_bachai']:0; $total_bachai = $total_bachai+ $jonosheba_bachai;?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_num=$human_managemant_jonobol_shorboraho['jonosheba_num']; $total_num=$total_num + $jonosheba_num;?>
+                                
+                                <td class="tg-0pky  type_3">
+                                <?php echo $jonosheba_sang=(isset( $human_managemant_jonobol_shorboraho['jonosheba_sang']))? $human_managemant_jonobol_shorboraho['jonosheba_sang']:0; $total_sang = $total_sang+ $jonosheba_sang; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_pre=$human_managemant_jonobol_shorboraho['jonosheba_pre']; $total_pre=$total_pre + $jonosheba_pre;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $jonosheba_shadha=(isset( $human_managemant_jonobol_shorboraho['jonosheba_shadha']))? $human_managemant_jonobol_shorboraho['jonosheba_shadha']:0; $total_shadha = $total_shadha+ $jonosheba_shadha; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_sang=$human_managemant_jonobol_shorboraho['jonosheba_sang']; $total_sang=$total_sang + $jonosheba_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_shadha=$human_managemant_jonobol_shorboraho['jonosheba_shadha']; $total_shadha=$total_shadha + $jonosheba_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_ongsho=$human_managemant_jonobol_shorboraho['jonosheba_ongsho']; $total_ongsho=$total_ongsho + $jonosheba_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_uttirno=$human_managemant_jonobol_shorboraho['jonosheba_uttirno']; $total_uttirno=$total_uttirno + $jonosheba_uttirno;?>
-                                </td>
+                                
                             </tr>
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" colspan='2'>
-                                সমাজসেবা
-                                </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo $shomajsheba_terget=$human_managemant_jonobol_shorboraho['shomajsheba_terget']; $total_terget=$total_terget + $shomajsheba_terget;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $shomajsheba_bachai=$human_managemant_jonobol_shorboraho['shomajsheba_bachai']; $total_bachai=$total_bachai + $shomajsheba_bachai;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $shomajsheba_num=$human_managemant_jonobol_shorboraho['shomajsheba_num']; $total_num=$total_num + $shomajsheba_num;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $shomajsheba_pre=$human_managemant_jonobol_shorboraho['shomajsheba_pre']; $total_pre=$total_pre + $shomajsheba_pre;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $shomajsheba_sang=$human_managemant_jonobol_shorboraho['shomajsheba_sang']; $total_sang=$total_sang + $shomajsheba_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $shomajsheba_shadha=$human_managemant_jonobol_shorboraho['shomajsheba_shadha']; $total_shadha=$total_shadha + $shomajsheba_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $shomajsheba_ongsho=$human_managemant_jonobol_shorboraho['shomajsheba_ongsho']; $total_ongsho=$total_ongsho + $shomajsheba_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $shomajsheba_uttirno=$human_managemant_jonobol_shorboraho['shomajsheba_uttirno']; $total_uttirno=$total_uttirno + $shomajsheba_uttirno;?>
-                                </td>
-                            </tr>
+                            
                             <tr>                                                      
                                 <td class="tg-y698 tg-0pky" rowspan='2'>
                                 মানবসেবা
@@ -332,391 +653,255 @@ $(document).ready(function(){
                                 <td class="tg-y698 tg-0pky" >
                                 মানবসেবা কর্মকর্তা
                                 </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo $manobsheba_terget=$human_managemant_jonobol_shorboraho['manobsheba_terget']; $total_terget=$total_terget + $manobsheba_terget;?>
+                              <td class="tg-0pky  type_3">
+                              <?php echo $manobsheba_terget=(isset( $human_managemant_jonobol_shorboraho['manobsheba_terget']))? $human_managemant_jonobol_shorboraho['manobsheba_terget']:0; $total_terget = $total_terget+ $manobsheba_terget; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $manobsheba_bachai=$human_managemant_jonobol_shorboraho['manobsheba_bachai']; $total_bachai=$total_bachai + $manobsheba_bachai;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $manobsheba_bachai=(isset( $human_managemant_jonobol_shorboraho['manobsheba_bachai']))? $human_managemant_jonobol_shorboraho['manobsheba_bachai']:0; $total_bachai = $total_bachai+ $manobsheba_bachai; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $manobsheba_num=$human_managemant_jonobol_shorboraho['manobsheba_num']; $total_num=$total_num + $manobsheba_num;?>
+                                
+                                <td class="tg-0pky  type_3">
+                                <?php echo $manobsheba_sang=(isset( $human_managemant_jonobol_shorboraho['manobsheba_sang']))? $human_managemant_jonobol_shorboraho['manobsheba_sang']:0; $total_sang = $total_sang+ $manobsheba_sang; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $manobsheba_pre=$human_managemant_jonobol_shorboraho['manobsheba_pre']; $total_pre=$total_pre + $manobsheba_pre;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $manobsheba_shadha=(isset( $human_managemant_jonobol_shorboraho['manobsheba_shadha']))? $human_managemant_jonobol_shorboraho['manobsheba_shadha']:0; $total_shadha = $total_shadha+ $manobsheba_shadha; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $manobsheba_sang=$human_managemant_jonobol_shorboraho['manobsheba_sang']; $total_sang=$total_sang + $manobsheba_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $manobsheba_shadha=$human_managemant_jonobol_shorboraho['manobsheba_shadha']; $total_shadha=$total_shadha + $manobsheba_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $manobsheba_ongsho=$human_managemant_jonobol_shorboraho['manobsheba_ongsho']; $total_ongsho=$total_ongsho + $manobsheba_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $manobsheba_uttirno=$human_managemant_jonobol_shorboraho['manobsheba_uttirno']; $total_uttirno=$total_uttirno + $manobsheba_uttirno;?>
-                                </td>
+                               
                             </tr>
                             <tr>                                                      
                                 <td class="tg-y698 tg-0pky" >
                                 আইনজীবী
                                 </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo $law_terget=$human_managemant_jonobol_shorboraho['law_terget']; $total_terget=$total_terget + $law_terget;?>
+                              <td class="tg-0pky  type_3">
+                              <?php echo $law_terget=(isset( $human_managemant_jonobol_shorboraho['law_terget']))? $human_managemant_jonobol_shorboraho['law_terget']:0; $total_terget = $total_terget+ $law_terget; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $law_bachai=$human_managemant_jonobol_shorboraho['law_bachai']; $total_bachai=$total_bachai + $law_bachai;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $law_bachai=(isset( $human_managemant_jonobol_shorboraho['law_bachai']))? $human_managemant_jonobol_shorboraho['law_bachai']:0; $total_bachai = $total_bachai+ $law_bachai; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $law_num=$human_managemant_jonobol_shorboraho['law_num']; $total_num=$total_num + $law_num;?>
+                                
+                                <td class="tg-0pky  type_3">
+                                <?php echo $law_sang=(isset( $human_managemant_jonobol_shorboraho['law_sang']))? $human_managemant_jonobol_shorboraho['law_sang']:0; $total_sang = $total_sang+ $law_sang; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $law_pre=$human_managemant_jonobol_shorboraho['law_pre']; $total_pre=$total_pre + $law_pre;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $law_shadha=(isset( $human_managemant_jonobol_shorboraho['law_shadha']))? $human_managemant_jonobol_shorboraho['law_shadha']:0; $total_shadha = $total_shadha+ $law_shadha; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $law_sang=$human_managemant_jonobol_shorboraho['law_sang']; $total_sang=$total_sang + $law_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $law_shadha=$human_managemant_jonobol_shorboraho['law_shadha']; $total_shadha=$total_shadha + $law_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $law_ongsho=$human_managemant_jonobol_shorboraho['law_ongsho']; $total_ongsho=$total_ongsho + $law_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $law_uttirno=$human_managemant_jonobol_shorboraho['law_uttirno']; $total_uttirno=$total_uttirno + $law_uttirno;?>
-                                </td>
+                                
                             </tr>
                             <tr>                                                      
                                 <td class="tg-y698 tg-0pky" colspan='2'>
                                 তথ্যসেবা
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $totthosheba_terget=$human_managemant_jonobol_shorboraho['totthosheba_terget']; $total_terget=$total_terget + $totthosheba_terget;?>
+                              <td class="tg-0pky  type_3">
+                              <?php echo $totthosheba_terget=(isset( $human_managemant_jonobol_shorboraho['totthosheba_terget']))? $human_managemant_jonobol_shorboraho['totthosheba_terget']:0; $total_terget = $total_terget+ $totthosheba_terget; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $totthosheba_bachai=$human_managemant_jonobol_shorboraho['totthosheba_bachai']; $total_bachai=$total_bachai + $totthosheba_bachai;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $totthosheba_bachai=(isset( $human_managemant_jonobol_shorboraho['totthosheba_bachai']))? $human_managemant_jonobol_shorboraho['totthosheba_bachai']:0; $total_bachai = $total_bachai+ $totthosheba_bachai; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $totthosheba_num=$human_managemant_jonobol_shorboraho['totthosheba_num']; $total_num=$total_num + $totthosheba_num;?>
+                               
+                                <td class="tg-0pky  type_3">
+                                <?php echo $totthosheba_sang=(isset( $human_managemant_jonobol_shorboraho['totthosheba_sang']))? $human_managemant_jonobol_shorboraho['totthosheba_sang']:0; $total_sang = $total_sang+ $totthosheba_sang; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $totthosheba_pre=$human_managemant_jonobol_shorboraho['totthosheba_pre']; $total_pre=$total_pre + $totthosheba_pre;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $totthosheba_shadha=(isset( $human_managemant_jonobol_shorboraho['totthosheba_shadha']))? $human_managemant_jonobol_shorboraho['totthosheba_shadha']:0; $total_shadha = $total_shadha+ $totthosheba_shadha; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $totthosheba_sang=$human_managemant_jonobol_shorboraho['totthosheba_sang']; $total_sang=$total_sang + $totthosheba_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $totthosheba_shadha=$human_managemant_jonobol_shorboraho['totthosheba_shadha']; $total_shadha=$total_shadha + $totthosheba_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $totthosheba_ongsho=$human_managemant_jonobol_shorboraho['totthosheba_ongsho']; $total_ongsho=$total_ongsho + $totthosheba_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $totthosheba_uttirno=$human_managemant_jonobol_shorboraho['totthosheba_uttirno']; $total_uttirno=$total_uttirno + $totthosheba_uttirno;?>
-                                </td>
+                               
                             </tr>
                             <tr>                                                      
-                                <td class="tg-y698 tg-0pky" rowspan='7'>
+                                <td class="tg-y698 tg-0pky" rowspan='3'>
                                 শিক্ষক
                                 </td>
+                                                         
                                 <td class="tg-y698 tg-0pky" >
-                                বিশ্ববিদ্যালয় শিক্ষক (সরকারি)
+                                কলেজ শিক্ষক (বেসরকারি)
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_govt_terget=$human_managemant_jonobol_shorboraho['uni_teacher_govt_terget']; $total_terget=$total_terget + $uni_teacher_govt_terget;?>
+                              <td class="tg-0pky  type_3">
+                              <?php echo $college_teacher_terget=(isset( $human_managemant_jonobol_shorboraho['college_teacher_terget']))? $human_managemant_jonobol_shorboraho['college_teacher_terget']:0; $total_terget = $total_terget+ $college_teacher_terget; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_govt_bachai=$human_managemant_jonobol_shorboraho['uni_teacher_govt_bachai']; $total_bachai=$total_bachai + $uni_teacher_govt_bachai;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $college_teacher_bachai=(isset( $human_managemant_jonobol_shorboraho['college_teacher_bachai']))? $human_managemant_jonobol_shorboraho['college_teacher_bachai']:0; $total_bachai = $total_bachai+ $college_teacher_bachai; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_govt_num=$human_managemant_jonobol_shorboraho['uni_teacher_govt_num']; $total_num=$total_num + $uni_teacher_govt_num;?>
+                                
+                                <td class="tg-0pky  type_3">
+                                <?php echo $college_teacher_sang=(isset( $human_managemant_jonobol_shorboraho['college_teacher_sang']))? $human_managemant_jonobol_shorboraho['college_teacher_sang']:0; $total_sang = $total_sang+ $college_teacher_sang; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_govt_pre=$human_managemant_jonobol_shorboraho['uni_teacher_govt_pre']; $total_pre=$total_pre + $uni_teacher_govt_pre;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $college_teacher_shadha=(isset( $human_managemant_jonobol_shorboraho['college_teacher_shadha']))? $human_managemant_jonobol_shorboraho['college_teacher_shadha']:0; $total_shadha = $total_shadha+ $college_teacher_shadha; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_govt_sang=$human_managemant_jonobol_shorboraho['uni_teacher_govt_sang']; $total_sang=$total_sang + $uni_teacher_govt_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_govt_shadha=$human_managemant_jonobol_shorboraho['uni_teacher_govt_shadha']; $total_shadha=$total_shadha + $uni_teacher_govt_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_govt_ongsho=$human_managemant_jonobol_shorboraho['uni_teacher_govt_ongsho']; $total_ongsho=$total_ongsho + $uni_teacher_govt_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_govt_uttirno=$human_managemant_jonobol_shorboraho['uni_teacher_govt_uttirno']; $total_uttirno=$total_uttirno + $uni_teacher_govt_uttirno;?>
-                                </td>
-                            </tr>
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" >
-                                বিশ্ববিদ্যালয় শিক্ষক (বেসরকারি)
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_private_terget=$human_managemant_jonobol_shorboraho['uni_teacher_private_terget']; $total_terget=$total_terget + $uni_teacher_private_terget;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_private_bachai=$human_managemant_jonobol_shorboraho['uni_teacher_private_bachai']; $total_bachai=$total_bachai + $uni_teacher_private_bachai;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_private_num=$human_managemant_jonobol_shorboraho['uni_teacher_private_num']; $total_num=$total_num + $uni_teacher_private_num;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_private_pre=$human_managemant_jonobol_shorboraho['uni_teacher_private_pre']; $total_pre=$total_pre + $uni_teacher_private_pre;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_private_sang=$human_managemant_jonobol_shorboraho['uni_teacher_private_sang']; $total_sang=$total_sang + $uni_teacher_private_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_private_shadha=$human_managemant_jonobol_shorboraho['uni_teacher_private_shadha']; $total_shadha=$total_shadha + $uni_teacher_private_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_private_ongsho=$human_managemant_jonobol_shorboraho['uni_teacher_private_ongsho']; $total_ongsho=$total_ongsho + $uni_teacher_private_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $uni_teacher_private_uttirno=$human_managemant_jonobol_shorboraho['uni_teacher_private_uttirno']; $total_uttirno=$total_uttirno + $uni_teacher_private_uttirno;?>
-                                </td>
+                                
                             </tr>
                             
                             <tr>                                                      
                                 <td class="tg-y698 tg-0pky" >
-                                মেডিকেল কলেজ শিক্ষক (বেসরকারি)
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $medi_teacher_terget=$human_managemant_jonobol_shorboraho['medi_teacher_terget']; $total_terget=$total_terget + $medi_teacher_terget;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $medi_teacher_bachai=$human_managemant_jonobol_shorboraho['medi_teacher_bachai']; $total_bachai=$total_bachai + $medi_teacher_bachai;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $medi_teacher_num=$human_managemant_jonobol_shorboraho['medi_teacher_num']; $total_num=$total_num + $medi_teacher_num;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $medi_teacher_pre=$human_managemant_jonobol_shorboraho['medi_teacher_pre']; $total_pre=$total_pre + $medi_teacher_pre;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $medi_teacher_sang=$human_managemant_jonobol_shorboraho['medi_teacher_sang']; $total_sang=$total_sang + $medi_teacher_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $medi_teacher_shadha=$human_managemant_jonobol_shorboraho['medi_teacher_shadha']; $total_shadha=$total_shadha + $medi_teacher_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $medi_teacher_ongsho=$human_managemant_jonobol_shorboraho['medi_teacher_ongsho']; $total_ongsho=$total_ongsho + $medi_teacher_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $medi_teacher_uttirno=$human_managemant_jonobol_shorboraho['medi_teacher_uttirno']; $total_uttirno=$total_uttirno + $medi_teacher_uttirno;?>
-                                </td>
-                            </tr>
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" >
-                                কলেজ শিক্ষক (বেসরকারি)
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $college_teacher_terget=$human_managemant_jonobol_shorboraho['college_teacher_terget']; $total_terget=$total_terget + $college_teacher_terget;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $college_teacher_bachai=$human_managemant_jonobol_shorboraho['college_teacher_bachai']; $total_bachai=$total_bachai + $college_teacher_bachai;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $college_teacher_num=$human_managemant_jonobol_shorboraho['college_teacher_num']; $total_num=$total_num + $college_teacher_num;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $college_teacher_pre=$human_managemant_jonobol_shorboraho['college_teacher_pre']; $total_pre=$total_pre + $college_teacher_pre;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $college_teacher_sang=$human_managemant_jonobol_shorboraho['college_teacher_sang']; $total_sang=$total_sang + $college_teacher_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $college_teacher_shadha=$human_managemant_jonobol_shorboraho['college_teacher_shadha']; $total_shadha=$total_shadha + $college_teacher_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $college_teacher_ongsho=$human_managemant_jonobol_shorboraho['college_teacher_ongsho']; $total_ongsho=$total_ongsho + $college_teacher_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $college_teacher_uttirno=$human_managemant_jonobol_shorboraho['college_teacher_uttirno']; $total_uttirno=$total_uttirno + $college_teacher_uttirno;?>
-                                </td>
-                            </tr>
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" >
-                                কারিগরি কলেজ শিক্ষক (সরকারি)
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $karigori_teacher_terget=$human_managemant_jonobol_shorboraho['karigori_teacher_terget']; $total_terget=$total_terget + $karigori_teacher_terget;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $karigori_teacher_bachai=$human_managemant_jonobol_shorboraho['karigori_teacher_bachai']; $total_bachai=$total_bachai + $karigori_teacher_bachai;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $karigori_teacher_num=$human_managemant_jonobol_shorboraho['karigori_teacher_num']; $total_num=$total_num + $karigori_teacher_num;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $karigori_teacher_pre=$human_managemant_jonobol_shorboraho['karigori_teacher_pre']; $total_pre=$total_pre + $karigori_teacher_pre;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $karigori_teacher_sang=$human_managemant_jonobol_shorboraho['karigori_teacher_sang']; $total_sang=$total_sang + $karigori_teacher_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $karigori_teacher_shadha=$human_managemant_jonobol_shorboraho['karigori_teacher_shadha']; $total_shadha=$total_shadha + $karigori_teacher_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $karigori_teacher_ongsho=$human_managemant_jonobol_shorboraho['karigori_teacher_ongsho']; $total_ongsho=$total_ongsho + $karigori_teacher_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $karigori_teacher_uttirno=$human_managemant_jonobol_shorboraho['karigori_teacher_uttirno']; $total_uttirno=$total_uttirno + $karigori_teacher_uttirno;?>
-                                </td>
-                            </tr>
-                            <tr>                                                      
-                                <td class="tg-y698 tg-0pky" >
                                 মাধ্যমিক বিদ্যালয় শিক্ষক (সরকারি)
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $maddhomik_teacher_terget=$human_managemant_jonobol_shorboraho['maddhomik_teacher_terget']; $total_terget=$total_terget + $maddhomik_teacher_terget;?>
+                              <td class="tg-0pky  type_3">
+                              <?php echo $maddhomik_teacher_terget=(isset( $human_managemant_jonobol_shorboraho['maddhomik_teacher_terget']))? $human_managemant_jonobol_shorboraho['maddhomik_teacher_terget']:0; $total_terget = $total_terget+ $maddhomik_teacher_terget; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $maddhomik_teacher_bachai=$human_managemant_jonobol_shorboraho['maddhomik_teacher_bachai']; $total_bachai=$total_bachai + $maddhomik_teacher_bachai;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $maddhomik_teacher_bachai=(isset( $human_managemant_jonobol_shorboraho['maddhomik_teacher_bachai']))? $human_managemant_jonobol_shorboraho['maddhomik_teacher_bachai']:0; $total_bachai = $total_bachai+ $maddhomik_teacher_bachai; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $maddhomik_teacher_num=$human_managemant_jonobol_shorboraho['maddhomik_teacher_num']; $total_num=$total_num + $maddhomik_teacher_num;?>
+                                
+                                <td class="tg-0pky  type_3">
+                                <?php echo $maddhomik_teacher_sang=(isset( $human_managemant_jonobol_shorboraho['maddhomik_teacher_sang']))? $human_managemant_jonobol_shorboraho['maddhomik_teacher_sang']:0; $total_sang = $total_sang+ $maddhomik_teacher_sang; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $maddhomik_teacher_pre=$human_managemant_jonobol_shorboraho['maddhomik_teacher_pre']; $total_pre=$total_pre + $maddhomik_teacher_pre;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $maddhomik_teacher_shadha=(isset( $human_managemant_jonobol_shorboraho['maddhomik_teacher_shadha']))? $human_managemant_jonobol_shorboraho['maddhomik_teacher_shadha']:0; $total_shadha = $total_shadha+ $maddhomik_teacher_shadha; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $maddhomik_teacher_sang=$human_managemant_jonobol_shorboraho['maddhomik_teacher_sang']; $total_sang=$total_sang + $maddhomik_teacher_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $maddhomik_teacher_shadha=$human_managemant_jonobol_shorboraho['maddhomik_teacher_shadha']; $total_shadha=$total_shadha + $maddhomik_teacher_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $maddhomik_teacher_ongsho=$human_managemant_jonobol_shorboraho['maddhomik_teacher_ongsho']; $total_ongsho=$total_ongsho + $maddhomik_teacher_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $maddhomik_teacher_uttirno=$human_managemant_jonobol_shorboraho['maddhomik_teacher_uttirno']; $total_uttirno=$total_uttirno + $maddhomik_teacher_uttirno;?>
-                                </td>
+                                
                             </tr>
                             <tr>                                                      
                                 <td class="tg-y698 tg-0pky" >
                                 মাদরাসা শিক্ষক
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $madrasah_teacher_terget=$human_managemant_jonobol_shorboraho['madrasah_teacher_terget']; $total_terget=$total_terget + $madrasah_teacher_terget;?>
+                              <td class="tg-0pky  type_3">
+                              <?php echo $madrasah_teacher_terget=(isset( $human_managemant_jonobol_shorboraho['madrasah_teacher_terget']))? $human_managemant_jonobol_shorboraho['madrasah_teacher_terget']:0; $total_terget = $total_terget+ $madrasah_teacher_terget; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $madrasah_teacher_bachai=$human_managemant_jonobol_shorboraho['madrasah_teacher_bachai']; $total_bachai=$total_bachai + $madrasah_teacher_bachai;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $madrasah_teacher_bachai=(isset( $human_managemant_jonobol_shorboraho['madrasah_teacher_bachai']))? $human_managemant_jonobol_shorboraho['madrasah_teacher_bachai']:0; $total_bachai = $total_bachai+ $madrasah_teacher_bachai; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $madrasah_teacher_num=$human_managemant_jonobol_shorboraho['madrasah_teacher_num']; $total_num=$total_num + $madrasah_teacher_num;?>
+                                
+                                <td class="tg-0pky  type_3">
+                                <?php echo $madrasah_teacher_sang=(isset( $human_managemant_jonobol_shorboraho['madrasah_teacher_sang']))? $human_managemant_jonobol_shorboraho['madrasah_teacher_sang']:0; $total_sang = $total_sang+ $madrasah_teacher_sang; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $madrasah_teacher_pre=$human_managemant_jonobol_shorboraho['madrasah_teacher_pre']; $total_pre=$total_pre + $madrasah_teacher_pre;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $madrasah_teacher_shadha=(isset( $human_managemant_jonobol_shorboraho['madrasah_teacher_shadha']))? $human_managemant_jonobol_shorboraho['madrasah_teacher_shadha']:0; $total_shadha = $total_shadha+ $madrasah_teacher_shadha; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $madrasah_teacher_sang=$human_managemant_jonobol_shorboraho['madrasah_teacher_sang']; $total_sang=$total_sang + $madrasah_teacher_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $madrasah_teacher_shadha=$human_managemant_jonobol_shorboraho['madrasah_teacher_shadha']; $total_shadha=$total_shadha + $madrasah_teacher_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $madrasah_teacher_ongsho=$human_managemant_jonobol_shorboraho['madrasah_teacher_ongsho']; $total_ongsho=$total_ongsho + $madrasah_teacher_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $madrasah_teacher_uttirno=$human_managemant_jonobol_shorboraho['madrasah_teacher_uttirno']; $total_uttirno=$total_uttirno + $madrasah_teacher_uttirno;?>
-                                </td>
+                                
                             </tr>
+
                             <tr>                                                      
-                                <td class="tg-y698 tg-0pky" >
-                                সাহিত্য ও সংস্কৃতি	
+                                <td class="tg-y698 tg-0pky" colspan='2'>
+                                ব্যাংকার
                                 </td>
-                                <td class="tg-y698 tg-0pky" >
-                                সাংস্কৃতিক কর্মী
+                              <td class="tg-0pky  type_3">
+                              <?php echo $banker_tar=(isset( $human_managemant_jonobol_shorboraho['banker_tar']))? $human_managemant_jonobol_shorboraho['banker_tar']:0;  ?>
                                 </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_terget=$human_managemant_jonobol_shorboraho['jonosheba_terget']; $total_terget=$total_terget + $jonosheba_terget;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $banker_bac=(isset( $human_managemant_jonobol_shorboraho['banker_bac']))? $human_managemant_jonobol_shorboraho['banker_bac']:0; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_bachai=$human_managemant_jonobol_shorboraho['jonosheba_bachai']; $total_bachai=$total_bachai + $jonosheba_bachai;?>
+                               
+                                <td class="tg-0pky  type_3">
+                                <?php echo $banker_san=(isset( $human_managemant_jonobol_shorboraho['banker_san']))? $human_managemant_jonobol_shorboraho['banker_san']:0;  ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_num=$human_managemant_jonobol_shorboraho['jonosheba_num']; $total_num=$total_num + $jonosheba_num;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $banker_sad=(isset( $human_managemant_jonobol_shorboraho['banker_sad']))? $human_managemant_jonobol_shorboraho['banker_sad']:0;  ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_pre=$human_managemant_jonobol_shorboraho['jonosheba_pre']; $total_pre=$total_pre + $jonosheba_pre;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_sang=$human_managemant_jonobol_shorboraho['jonosheba_sang']; $total_sang=$total_sang + $jonosheba_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_shadha=$human_managemant_jonobol_shorboraho['jonosheba_shadha']; $total_shadha=$total_shadha + $jonosheba_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_ongsho=$human_managemant_jonobol_shorboraho['jonosheba_ongsho']; $total_ongsho=$total_ongsho + $jonosheba_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_uttirno=$human_managemant_jonobol_shorboraho['jonosheba_uttirno']; $total_uttirno=$total_uttirno + $jonosheba_uttirno;?>
-                                </td>
+                               
                             </tr>
-                            <tr>                   
-                                <td class="tg-y698 tg-0pky" >
-                                ক্রীড়া ব্যক্তিত্ব	
+
+                            <tr>                                                      
+                                <td class="tg-y698 tg-0pky" colspan='2'>
+                                আন্তর্জাতিক সংস্থা
                                 </td>
-                                <td class="tg-y698 tg-0pky" >
-                                খেলোয়ার
+                                <td class="tg-0pky  type_3">
+                                <?php echo $anto_tar=(isset($human_managemant_jonobol_shorboraho['anto_tar'])) ? $human_managemant_jonobol_shorboraho['anto_tar'] : 0; ?>
                                 </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_terget=$human_managemant_jonobol_shorboraho['jonosheba_terget']; $total_terget=$total_terget + $jonosheba_terget;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $anto_bac=(isset($human_managemant_jonobol_shorboraho['anto_bac'])) ? $human_managemant_jonobol_shorboraho['anto_bac'] : 0; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_bachai=$human_managemant_jonobol_shorboraho['jonosheba_bachai']; $total_bachai=$total_bachai + $jonosheba_bachai;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $anto_san=(isset($human_managemant_jonobol_shorboraho['anto_san'])) ? $human_managemant_jonobol_shorboraho['anto_san'] : 0; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_num=$human_managemant_jonobol_shorboraho['jonosheba_num']; $total_num=$total_num + $jonosheba_num;?>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $anto_sad=(isset($human_managemant_jonobol_shorboraho['anto_sad'])) ? $human_managemant_jonobol_shorboraho['anto_sad'] : 0; ?>
                                 </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_pre=$human_managemant_jonobol_shorboraho['jonosheba_pre']; $total_pre=$total_pre + $jonosheba_pre;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_sang=$human_managemant_jonobol_shorboraho['jonosheba_sang']; $total_sang=$total_sang + $jonosheba_sang;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_shadha=$human_managemant_jonobol_shorboraho['jonosheba_shadha']; $total_shadha=$total_shadha + $jonosheba_shadha;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_ongsho=$human_managemant_jonobol_shorboraho['jonosheba_ongsho']; $total_ongsho=$total_ongsho + $jonosheba_ongsho;?>
-                                </td>
-                                 <td class="tg-0pky  type_6">
-                                    <?php echo $jonosheba_uttirno=$human_managemant_jonobol_shorboraho['jonosheba_uttirno']; $total_uttirno=$total_uttirno + $jonosheba_uttirno;?>
-                                </td>
+
+                               
                             </tr>
+                          
                             <tr>                                                      
                                 <td class="tg-y698 tg-0pky" colspan='2'>
                                 সর্বমোট
                                 </td>
-                
-                              <td class="tg-0pky  type_6">
-                                    <?php echo  $total_terget;?>
+                                <td class="tg-0pky  type_6">
+                                    <?php echo  $total_terget+$banker_tar+$anto_tar;?>
                                 </td>
                               <td class="tg-0pky  type_6">
-                                    <?php echo  $total_bachai;?>
+                                    <?php echo  $total_bachai+$banker_bac+ $anto_bac;?>
+                                </td>
+                              
+                              <td class="tg-0pky  type_6">
+                                    <?php echo  $total_sang+$banker_san+$anto_san;?>
                                 </td>
                               <td class="tg-0pky  type_6">
-                                    <?php echo  $total_num;?>
+                                    <?php echo  $total_shadha+$banker_sad+$anto_sad;?>
                                 </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo  $total_pre;?>
+                              
+                            </tr>
+
+                        </table>
+                        <table class="tg table table-header-rotated" id="কোচিং">
+                            <tr>
+                            <td class="tg-pwj7" colspan="3"><b>শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য  </b></td>
+                                <td class="tg-pwj7" colspan="">
+                                    <a href="#" id='কোচিং' onclick="doit('xlsx','কোচিং','<?php echo 'Education_শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo  $total_sang;?>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7">বিবরণ</td>
+                                <td class="tg-pwj7"> কোচিং সংখ্যা </td>
+                                <td class="tg-pwj7">ব্যাচ সংখ্যা </td>
+                                <td class="tg-pwj7"> ছাত্র সংখ্যা</td>
+
+                            </tr>
+
+                            <?php
+                            $pk = (isset($education_coaching_manob['id']))?$education_coaching_manob['id']:"";
+
+                            ?>
+                           
+
+                            <tr>
+                                <td class="tg-y698">প্রফেশনাল/জব </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $job_coaching=(isset( $education_coaching_manob['job_coaching']))? $education_coaching_manob['job_coaching']:0 ?>
                                 </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo  $total_shadha;?>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $job_batch=(isset( $education_coaching_manob['job_batch']))? $education_coaching_manob['job_batch']:0 ?>
                                 </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo  $total_ongsho;?>
-                                </td>
-                              <td class="tg-0pky  type_6">
-                                    <?php echo  $total_uttirno;?>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $job_student=(isset( $education_coaching_manob['job_student']))? $education_coaching_manob['job_student']:0 ?>
                                 </td>
                             </tr>
 
+                           
+                        </table>
+
+                        <table class="tg table table-header-rotated" id="কেন্দ্রীয় পাঠ-পরিকল্পনা">
+                            <tr>
+                            <td class="tg-pwj7" colspan="2"><b>সদস্যদের কেন্দ্রীয় পাঠ-পরিকল্পনা (ম্যানপাওয়ার প্লানিং) : </b></td>
+                                <td class="tg-pwj7" colspan="">
+                                    <a href="#" id='কেন্দ্রীয় পাঠ-পরিকল্পনা' onclick="doit('xlsx','কেন্দ্রীয় পাঠ-পরিকল্পনা','<?php echo 'সদস্যদের কেন্দ্রীয় পাঠ-পরিকল্পনা (ম্যানপাওয়ার প্লানিং)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7">সদস্যদের মাসিক পরীক্ষা গ্রহণ করা হয়েছে কতটি?</td>
+                                <td class="tg-pwj7"> মোট অংশগ্রহণকারী কতজন? </td>
+                                <td class="tg-pwj7">গড় </td>
+
+                            </tr>
+
+                            <?php
+                            $pk = (isset($manpower_planing['id']))?$manpower_planing['id']:"";
+
+                            ?>
+                           
+
+                            <tr>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $exam_sonkha=(isset( $manpower_planing['exam_sonkha']))? $manpower_planing['exam_sonkha']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $exam_uposthiti=(isset( $manpower_planing['exam_uposthiti']))? $manpower_planing['exam_uposthiti']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $exam_gor=(isset( $manpower_planing['exam_gor']))? $manpower_planing['exam_gor']:0 ?>
+                                </td>
+                            </tr>
+
+                           
                         </table>
                         <table class="tg table table-header-rotated" id="testTable4">
                             <tr>

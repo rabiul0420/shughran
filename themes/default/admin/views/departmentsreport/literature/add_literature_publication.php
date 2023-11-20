@@ -69,10 +69,10 @@
                             <label for="literature_name">নাম :</label>
                             <input type="text" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$shakhar_literature_publish['literature_name']:''; ?>" id="literature_name" name='literature_name' required>
                         </div>
-                        <div class="form-group">
+                         <!-- <div class="form-group">
                             <label for="literature_term">বিষয় :</label>
                             <input type="text" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$shakhar_literature_publish['literature_term']:''; ?>" id="literature_term" name='literature_term' required>
-                        </div>
+                        </div>  -->
                         <div class="form-group">
                             <label for="literature_amount">ইস্যু সংখ্যা :</label>
                             <input type="number" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$shakhar_literature_publish['literature_amount']:'0'; ?>" id="literature_amount" name='literature_amount' required>

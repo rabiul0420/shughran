@@ -70,9 +70,444 @@ class Manpower extends MY_Controller
         }
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
+
+
+            $this->db->select_sum('exam_sonkha');
+            $this->db->select_sum('exam_uposthiti');
+            $this->db->select_sum('exam_gor');
+            
+
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['manpower_planing'] = $this->db->get('manpower_planing')->first_row('array');
+
+        
+            $this->db->select_sum('job_coaching');
+            $this->db->select_sum('job_batch');
+            $this->db->select_sum('job_student');
+            
+
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['education_coaching_manob'] = $this->db->get('education_coaching_manob')->first_row('array');
+
+            $this->db->select_sum('4to10_coaching');
+            $this->db->select_sum('4to10_batch');
+            $this->db->select_sum('4to10_student');
+            $this->db->select_sum('11_12_coaching');
+            $this->db->select_sum('11_12_batch');
+            $this->db->select_sum('11_12_student');
+            $this->db->select_sum('university_coaching');
+            $this->db->select_sum('university_batch');
+            $this->db->select_sum('university_student');
+            $this->db->select_sum('medical_coaching');
+            $this->db->select_sum('medical_batch');
+            $this->db->select_sum('medical_student');
+            $this->db->select_sum('eng_coaching');
+            $this->db->select_sum('eng_batch');
+            $this->db->select_sum('eng_student');
+            $this->db->select_sum('job_coaching');
+            $this->db->select_sum('job_batch');
+            $this->db->select_sum('job_student');
+            $this->db->select_sum('other_coaching');
+            $this->db->select_sum('other_batch');
+            $this->db->select_sum('other_student');
+
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['education_coaching'] = $this->db->get('education_coaching')->first_row('array');
+
+            $this->db->select_sum('cc_jon_num');
+            $this->db->select_sum('cc_jon_pre');
+            $this->db->select_sum('cc_man_num');
+            $this->db->select_sum('cc_man_pre');
+            $this->db->select_sum('cc_sho_num');
+            $this->db->select_sum('cc_sho_pre');
+            $this->db->select_sum('cc_info_num');
+            $this->db->select_sum('cc_info_pre');
+            $this->db->select_sum('cc_tea_num');
+            $this->db->select_sum('cc_tea_pre');
+            $this->db->select_sum('ideal_cc_num');
+            $this->db->select_sum('ideal_cc_pre');
+            $this->db->select_sum('mot_pro_ssc_num');
+            $this->db->select_sum('mot_pro_ssc_pre');
+            $this->db->select_sum('mot_pro_hsc_num');
+            $this->db->select_sum('mot_pro_hsc_pre');
+            $this->db->select_sum('mot_pro_uni_num');
+            $this->db->select_sum('mot_pro_uni_pre');
+            $this->db->select_sum('eng_course_num');
+            $this->db->select_sum('eng_course_pre');
+            $this->db->select_sum('com_course_num');
+            $this->db->select_sum('com_course_pre');
+            $this->db->select_sum('meritorious_num');
+            $this->db->select_sum('meritorious_pre');
+            $this->db->select_sum('dowa_num');
+            $this->db->select_sum('dowa_pre');
+            $this->db->select_sum('other_num');
+            $this->db->select_sum('other_pre');
+
+            $this->db->select_sum('sorkari_num');
+            $this->db->select_sum('sorkari_pres');
+
+
+            if ($branch_id)
+            $this->db->where('branch_id', $branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $this->data['education_motivational_program'] = $this->db->get('education_motivational_program')->first_row('array');
+
+            $this->db->select_sum('sorkari_h_prev');
+            $this->db->select_sum('sorkari_h_pres');
+            $this->db->select_sum('sorkari_h_bri');
+            $this->db->select_sum('sorkari_h_gha');
+            $this->db->select_sum('sorkari_s_prev');
+            $this->db->select_sum('sorkari_s_pres');
+            $this->db->select_sum('sorkari_s_bri');
+            $this->db->select_sum('sorkari_s_gha');
+            
+            $this->db->select_sum('ssc_h_prev');
+            $this->db->select_sum('ssc_h_pres');
+            $this->db->select_sum('ssc_h_bri');
+            $this->db->select_sum('ssc_h_gha');
+            $this->db->select_sum('ssc_s_prev');
+            $this->db->select_sum('ssc_s_pres');
+            $this->db->select_sum('ssc_s_bri');
+            $this->db->select_sum('ssc_s_gha');
+
+            $this->db->select_sum('hsca_h_prev');
+            $this->db->select_sum('hsca_h_pres');
+            $this->db->select_sum('hsca_h_bri');
+            $this->db->select_sum('hsca_h_gha');
+            $this->db->select_sum('hsca_s_prev');
+            $this->db->select_sum('hsca_s_pres');
+            $this->db->select_sum('hsca_s_bri');
+            $this->db->select_sum('hsca_s_gha');
+
+            $this->db->select_sum('hsc_h_prev');
+            $this->db->select_sum('hsc_h_pres');
+            $this->db->select_sum('hsc_h_bri');
+            $this->db->select_sum('hsc_h_gha');
+            $this->db->select_sum('hsc_s_prev');
+            $this->db->select_sum('hsc_s_pres');
+            $this->db->select_sum('hsc_s_bri');
+            $this->db->select_sum('hsc_s_gha');
+
+            $this->db->select_sum('med_h_prev');
+            $this->db->select_sum('med_h_pres');
+            $this->db->select_sum('med_h_bri');
+            $this->db->select_sum('med_h_gha');
+            $this->db->select_sum('med_s_prev');
+            $this->db->select_sum('med_s_pres');
+            $this->db->select_sum('med_s_bri');
+            $this->db->select_sum('med_s_gha');
+
+            $this->db->select_sum('eng_h_prev');
+            $this->db->select_sum('eng_h_pres');
+            $this->db->select_sum('eng_h_bri');
+            $this->db->select_sum('eng_h_gha');
+            $this->db->select_sum('eng_s_prev');
+            $this->db->select_sum('eng_s_pres');
+            $this->db->select_sum('eng_s_bri');
+            $this->db->select_sum('eng_s_gha');
+
+            $this->db->select_sum('uni_h_prev');
+            $this->db->select_sum('uni_h_pres');
+            $this->db->select_sum('uni_h_bri');
+            $this->db->select_sum('uni_h_gha');
+            $this->db->select_sum('uni_s_prev');
+            $this->db->select_sum('uni_s_pres');
+            $this->db->select_sum('uni_s_bri');
+            $this->db->select_sum('uni_s_gha');
+
+            $this->db->select_sum('ideal_h_prev');
+            $this->db->select_sum('ideal_h_pres');
+            $this->db->select_sum('ideal_h_bri');
+            $this->db->select_sum('ideal_h_gha');
+            $this->db->select_sum('ideal_s_prev');
+            $this->db->select_sum('ideal_s_pres');
+            $this->db->select_sum('ideal_s_bri');
+            $this->db->select_sum('ideal_s_gha');
+
+            $this->db->select_sum('hons_h_prev');
+            $this->db->select_sum('hons_h_pres');
+            $this->db->select_sum('hons_h_bri');
+            $this->db->select_sum('hons_h_gha');
+            $this->db->select_sum('hons_s_prev');
+            $this->db->select_sum('hons_s_pres');
+            $this->db->select_sum('hons_s_bri');
+            $this->db->select_sum('hons_s_gha');
+
+            $this->db->select_sum('teacher_h_prev');
+            $this->db->select_sum('teacher_h_pres');
+            $this->db->select_sum('teacher_h_bri');
+            $this->db->select_sum('teacher_h_gha');
+            $this->db->select_sum('teacher_s_prev');
+            $this->db->select_sum('teacher_s_pres');
+            $this->db->select_sum('teacher_s_bri');
+            $this->db->select_sum('teacher_s_gha');
+
+            $this->db->select_sum('j_she_h_prev');
+            $this->db->select_sum('j_she_h_pres');
+            $this->db->select_sum('j_she_h_bri');
+            $this->db->select_sum('j_she_h_gha');
+            $this->db->select_sum('j_she_s_prev');
+            $this->db->select_sum('j_she_s_pres');
+            $this->db->select_sum('j_she_s_bri');
+            $this->db->select_sum('j_she_s_gha');
+
+            $this->db->select_sum('s_she_h_prev');
+            $this->db->select_sum('s_she_h_pres');
+            $this->db->select_sum('s_she_h_bri');
+            $this->db->select_sum('s_she_h_gha');
+            $this->db->select_sum('s_she_s_prev');
+            $this->db->select_sum('s_she_s_pres');
+            $this->db->select_sum('s_she_s_bri');
+            $this->db->select_sum('s_she_s_gha');
+
+            $this->db->select_sum('m_she_h_prev');
+            $this->db->select_sum('m_she_h_pres');
+            $this->db->select_sum('m_she_h_bri');
+            $this->db->select_sum('m_she_h_gha');
+            $this->db->select_sum('m_she_s_prev');
+            $this->db->select_sum('m_she_s_pres');
+            $this->db->select_sum('m_she_s_bri');
+            $this->db->select_sum('m_she_s_gha');
+
+            $this->db->select_sum('t_she_h_prev');
+            $this->db->select_sum('t_she_h_pres');
+            $this->db->select_sum('t_she_h_bri');
+            $this->db->select_sum('t_she_h_gha');
+            $this->db->select_sum('t_she_s_prev');
+            $this->db->select_sum('t_she_s_pres');
+            $this->db->select_sum('t_she_s_bri');
+            $this->db->select_sum('t_she_s_gha');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['education_ideal_home'] = $this->db->get('education_ideal_home')->first_row('array');
+
+            $this->db->select_sum('m_t1_tar');
+            $this->db->select_sum('m_t1_a');
+            $this->db->select_sum('m_t1_pri');
+            $this->db->select_sum('m_t1_li');
+            $this->db->select_sum('m_t1_vi');
+            $this->db->select_sum('m_t2_tar');
+            $this->db->select_sum('m_t2_a');
+            $this->db->select_sum('m_t2_pri');
+            $this->db->select_sum('m_t2_li');
+            $this->db->select_sum('m_t2_vi');
+            $this->db->select_sum('m_t3_tar');
+            $this->db->select_sum('m_t3_a');
+            $this->db->select_sum('m_t3_pri');
+            $this->db->select_sum('m_t3_li');
+            $this->db->select_sum('m_t3_vi');
+
+            $this->db->select_sum('a_t1_tar');
+            $this->db->select_sum('a_t1_a');
+            $this->db->select_sum('a_t1_pri');
+            $this->db->select_sum('a_t1_li');
+            $this->db->select_sum('a_t1_vi');
+            $this->db->select_sum('a_t2_tar');
+            $this->db->select_sum('a_t2_a');
+            $this->db->select_sum('a_t2_pri');
+            $this->db->select_sum('a_t2_li');
+            $this->db->select_sum('a_t2_vi');
+            $this->db->select_sum('a_t3_tar');
+            $this->db->select_sum('a_t3_a');
+            $this->db->select_sum('a_t3_pri');
+            $this->db->select_sum('a_t3_li');
+            $this->db->select_sum('a_t3_vi');
+
+            $this->db->select_sum('w_t1_tar');
+            $this->db->select_sum('w_t1_a');
+            $this->db->select_sum('w_t1_pri');
+            $this->db->select_sum('w_t1_li');
+            $this->db->select_sum('w_t1_vi');
+            $this->db->select_sum('w_t2_tar');
+            $this->db->select_sum('w_t2_a');
+            $this->db->select_sum('w_t2_pri');
+            $this->db->select_sum('w_t2_li');
+            $this->db->select_sum('w_t2_vi');
+            $this->db->select_sum('w_t3_tar');
+            $this->db->select_sum('w_t3_a');
+            $this->db->select_sum('w_t3_pri');
+            $this->db->select_sum('w_t3_li');
+            $this->db->select_sum('w_t3_vi');
+
+            $this->db->select_sum('s_t1_tar');
+            $this->db->select_sum('s_t1_a');
+            $this->db->select_sum('s_t1_pri');
+            $this->db->select_sum('s_t1_li');
+            $this->db->select_sum('s_t1_vi');
+            $this->db->select_sum('s_t2_tar');
+            $this->db->select_sum('s_t2_a');
+            $this->db->select_sum('s_t2_pri');
+            $this->db->select_sum('s_t2_li');
+            $this->db->select_sum('s_t2_vi');
+            $this->db->select_sum('s_t3_tar');
+            $this->db->select_sum('s_t3_a');
+            $this->db->select_sum('s_t3_pri');
+            $this->db->select_sum('s_t3_li');
+            $this->db->select_sum('s_t3_vi');
+
+            if ($branch_id)
+            $this->db->where('branch_id', $branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $this->data['education_pro_output_1'] = $this->db->get('education_pro_output_1')->first_row('array');
+
+            $this->db->select_sum('m_t1_tar');
+            $this->db->select_sum('m_t1_a');
+            $this->db->select_sum('m_t1_pri');
+            $this->db->select_sum('m_t1_li');
+            $this->db->select_sum('m_t1_vi');
+            $this->db->select_sum('m_t2_tar');
+            $this->db->select_sum('m_t2_a');
+            $this->db->select_sum('m_t2_pri');
+            $this->db->select_sum('m_t2_li');
+            $this->db->select_sum('m_t2_vi');
+
+            $this->db->select_sum('a_t1_tar');
+            $this->db->select_sum('a_t1_a');
+            $this->db->select_sum('a_t1_pri');
+            $this->db->select_sum('a_t1_li');
+            $this->db->select_sum('a_t1_vi');
+            $this->db->select_sum('a_t2_tar');
+            $this->db->select_sum('a_t2_a');
+            $this->db->select_sum('a_t2_pri');
+            $this->db->select_sum('a_t2_li');
+            $this->db->select_sum('a_t2_vi');
+
+
+            $this->db->select_sum('w_t1_tar');
+            $this->db->select_sum('w_t1_a');
+            $this->db->select_sum('w_t1_pri');
+            $this->db->select_sum('w_t1_li');
+            $this->db->select_sum('w_t1_vi');
+            $this->db->select_sum('w_t2_tar');
+            $this->db->select_sum('w_t2_a');
+            $this->db->select_sum('w_t2_pri');
+            $this->db->select_sum('w_t2_li');
+            $this->db->select_sum('w_t2_vi');
+
+            $this->db->select_sum('s_t1_tar');
+            $this->db->select_sum('s_t1_a');
+            $this->db->select_sum('s_t1_pri');
+            $this->db->select_sum('s_t1_li');
+            $this->db->select_sum('s_t1_vi');
+            $this->db->select_sum('s_t2_tar');
+            $this->db->select_sum('s_t2_a');
+            $this->db->select_sum('s_t2_pri');
+            $this->db->select_sum('s_t2_li');
+            $this->db->select_sum('s_t2_vi');
+            if ($branch_id)
+            $this->db->where('branch_id', $branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $this->data['education_pro_output_2'] = $this->db->get('education_pro_output_2')->first_row('array');
+
+            $this->db->select_sum('m_k_s_tar');
+            $this->db->select_sum('m_k_s_orj');
+            $this->db->select_sum('m_k_n_tar');
+            $this->db->select_sum('m_k_n_orj');
+            $this->db->select_sum('m_k_b_tar');
+            $this->db->select_sum('m_k_b_orj');
+            $this->db->select_sum('m_s_s_tar');
+            $this->db->select_sum('m_s_s_orj');
+            $this->db->select_sum('m_s_n_tar');
+            $this->db->select_sum('m_s_n_orj');
+            $this->db->select_sum('m_s_b_tar');
+            $this->db->select_sum('m_s_b_orj');
+
+            $this->db->select_sum('a_k_s_tar');
+            $this->db->select_sum('a_k_s_orj');
+            $this->db->select_sum('a_k_n_tar');
+            $this->db->select_sum('a_k_n_orj');
+            $this->db->select_sum('a_k_b_tar');
+            $this->db->select_sum('a_k_b_orj');
+            $this->db->select_sum('a_s_s_tar');
+            $this->db->select_sum('a_s_s_orj');
+            $this->db->select_sum('a_s_n_tar');
+            $this->db->select_sum('a_s_n_orj');
+            $this->db->select_sum('a_s_b_tar');
+            $this->db->select_sum('a_s_b_orj');
+
+            $this->db->select_sum('w_k_s_tar');
+            $this->db->select_sum('w_k_s_orj');
+            $this->db->select_sum('w_k_n_tar');
+            $this->db->select_sum('w_k_n_orj');
+            $this->db->select_sum('w_k_b_tar');
+            $this->db->select_sum('w_k_b_orj');
+            $this->db->select_sum('w_s_s_tar');
+            $this->db->select_sum('w_s_s_orj');
+            $this->db->select_sum('w_s_n_tar');
+            $this->db->select_sum('w_s_n_orj');
+            $this->db->select_sum('w_s_b_tar');
+            $this->db->select_sum('w_s_b_orj');
+
+            $this->db->select_sum('s_k_s_tar');
+            $this->db->select_sum('s_k_s_orj');
+            $this->db->select_sum('s_k_n_tar');
+            $this->db->select_sum('s_k_n_orj');
+            $this->db->select_sum('s_k_b_tar');
+            $this->db->select_sum('s_k_b_orj');
+            $this->db->select_sum('s_s_s_tar');
+            $this->db->select_sum('s_s_s_orj');
+            $this->db->select_sum('s_s_n_tar');
+            $this->db->select_sum('s_s_n_orj');
+            $this->db->select_sum('s_s_b_tar');
+            $this->db->select_sum('s_s_b_orj');
+
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $this->data['education_pro_output_3'] = $this->db->get('education_pro_output_3')->first_row('array');
+
+            $this->db->select_sum('sodosso_s');
+            $this->db->select_sum('sathi_s');
+            $this->db->select_sum('kormi_s');
+            $this->db->select_sum('sodosso_p');
+            $this->db->select_sum('sathi_p');
+            $this->db->select_sum('kormi_p');
+            if ($branch_id)
+            $this->db->where('branch_id', $branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['human_management_jonosokti_biodata'] = $this->db->get('human_management_jonosokti_biodata')->first_row('array');
+
+            $this->db->select_sum('bidai_so');
+            $this->db->select_sum('bidai_sa');
+            $this->db->select_sum('bidai_ko');
+
+            $this->db->select_sum('cv_so');
+            $this->db->select_sum('cv_sa');
+            $this->db->select_sum('cv_ko');
+
+            $this->db->select_sum('sorkari_so');
+            $this->db->select_sum('sorkari_sa');
+            $this->db->select_sum('sorkari_ko');
+            
+            $this->db->select_sum('besorkari_so');
+            $this->db->select_sum('besorkari_sa');
+            $this->db->select_sum('besorkari_ko');
+
+            $this->db->select_sum('kormo_so');
+            $this->db->select_sum('kormo_sa');
+            $this->db->select_sum('kormo_ko');
+            
+            if ($branch_id)
+            $this->db->where('branch_id', $branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['human_management_bidai_jonosokti'] = $this->db->get('human_management_bidai_jonosokti')->first_row('array');
+
+
         $this->db->select_sum('branch_committee');
         $this->db->select_sum('coun_team');
         $this->db->select_sum('bivag_com_meeting');
+        $this->db->select_sum('bivag_com_meeting_upos');
         $this->db->select_sum('per_biodata');
         $this->db->select_sum('sec_man_month');
         if ($branch_id)
@@ -213,6 +648,17 @@ class Manpower extends MY_Controller
         $this->db->select_sum('player_shadha');
         $this->db->select_sum('player_ongsho');
         $this->db->select_sum('player_uttirno');
+
+        $this->db->select_sum('banker_tar');
+        $this->db->select_sum('banker_bac');
+        $this->db->select_sum('banker_san');
+        $this->db->select_sum('banker_sad');
+
+        $this->db->select_sum('anto_tar');
+        $this->db->select_sum('anto_bac');
+        $this->db->select_sum('anto_san');
+        $this->db->select_sum('anto_sad');
+
         if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
@@ -234,6 +680,53 @@ class Manpower extends MY_Controller
 
     }
         else{
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get('education_coaching');
+            $this->data['education_coaching'] = $query->first_row('array');
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get('manpower_planing');
+            $this->data['manpower_planing'] = $query->first_row('array');
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get('education_coaching_manob');
+            $this->data['education_coaching_manob'] = $query->first_row('array');
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $query = $this->db->get('education_motivational_program');
+            $this->data['education_motivational_program'] = $query->first_row('array');
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['education_ideal_home'] = $this->db->get('education_ideal_home')->first_row('array');
+
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['education_pro_output_1'] = $this->db->get('education_pro_output_1')->first_row('array');
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['education_pro_output_2'] = $this->db->get('education_pro_output_2')->first_row('array');
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['education_pro_output_4'] = $this->db->get('education_pro_output_4')->first_row('array');
+
+
             $this->db->select('*');
             $this->db->where('branch_id',$branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
@@ -254,6 +747,20 @@ class Manpower extends MY_Controller
 
             $query = $this->db->get('human_management_songothon');
             $this->data['human_management_songothon'] = $query->first_row('array');
+
+            $this->db->select('*');
+            $this->db->where('branch_id',$branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $query = $this->db->get('human_management_jonosokti_biodata');
+            $this->data['human_management_jonosokti_biodata'] = $query->first_row('array');
+
+            $this->db->select('*');
+            $this->db->where('branch_id',$branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $query = $this->db->get('human_management_bidai_jonosokti');
+            $this->data['human_management_bidai_jonosokti'] = $query->first_row('array');
         }
 
 		$this->data['m'] = 'manpower';

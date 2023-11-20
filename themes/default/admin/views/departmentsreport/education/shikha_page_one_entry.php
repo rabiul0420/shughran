@@ -133,13 +133,13 @@
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="7"><b>আইডিয়াল হোম (একাডেমিক ও প্রফেশনাল)</b></td>
+                                <td class="tg-pwj7" colspan="7"><b>একাডেমিক হোম </b></td>
                                 <td class="tg-pwj7" colspan="2">
                                     <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Education_আইডিয়াল হোম (একাডেমিক ও প্রফেশনাল)_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan="2">আইডিয়াল হোমের ধরণ</td>
+                                <td class="tg-pwj7" rowspan="2">একাডেমিক হোমের ধরণ</td>
                                 <td class="tg-pwj7" colspan="4" style="text-align:center">হোম সংখ্যা </td>
                                 <td class="tg-pwj7" colspan="4" style="text-align:center">ছাত্র সংখ্যা </td>
                             </tr>
@@ -507,41 +507,7 @@
 
                             </tr>
 
-                            <tr>
-                                <td class="tg-y698">জনসেবা আইডিয়াল হোম </td>
-                                <td class="tg-0pky  type_1">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="j_she_h_prev" data-title="Enter"><?php echo $j_she_h_prev = (isset($education_ideal_home['j_she_h_prev'])) ? $education_ideal_home['j_she_h_prev'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="j_she_h_pres" data-title="Enter"><?php echo $j_she_h_pres = (isset($education_ideal_home['j_she_h_pres'])) ? $education_ideal_home['j_she_h_pres'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="j_she_h_bri" data-title="Enter"><?php echo $j_she_h_bri = (isset($education_ideal_home['j_she_h_bri'])) ? $education_ideal_home['j_she_h_bri'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_4">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="j_she_h_gha" data-title="Enter"><?php echo $j_she_h_gha = (isset($education_ideal_home['j_she_h_gha'])) ? $education_ideal_home['j_she_h_gha'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_5">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="j_she_s_prev" data-title="Enter"><?php echo $j_she_s_prev = (isset($education_ideal_home['j_she_s_prev'])) ? $education_ideal_home['j_she_s_prev'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="j_she_s_pres" data-title="Enter"><?php echo $j_she_s_pres = (isset($education_ideal_home['j_she_s_pres'])) ? $education_ideal_home['j_she_s_pres'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_7">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="j_she_s_bri" data-title="Enter"><?php echo $j_she_s_bri = (isset($education_ideal_home['j_she_s_bri'])) ? $education_ideal_home['j_she_s_bri'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_8">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="j_she_s_gha" data-title="Enter"><?php echo $j_she_s_gha = (isset($education_ideal_home['j_she_s_gha'])) ? $education_ideal_home['j_she_s_gha'] : 0 ?>
-                                    </a>
-                                </td>
-                            </tr>
+                           
                             <tr>
                                 <td class="tg-y698">সমাজসেবা আইডিয়াল হোম </td>
 
@@ -581,114 +547,40 @@
                             </tr>
 
                             <tr>
-                                <td class="tg-y698">মানবসেবা আইডিয়াল হোম </td>
-
-                                <td class="tg-0pky  type_1">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_she_h_prev" data-title="Enter"><?php echo $m_she_h_prev = (isset($education_ideal_home['m_she_h_prev'])) ? $education_ideal_home['m_she_h_prev'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_she_h_pres" data-title="Enter"><?php echo $m_she_h_pres = (isset($education_ideal_home['m_she_h_pres'])) ? $education_ideal_home['m_she_h_pres'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_she_h_bri" data-title="Enter"><?php echo $m_she_h_bri = (isset($education_ideal_home['m_she_h_bri'])) ? $education_ideal_home['m_she_h_bri'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_4">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_she_h_gha" data-title="Enter"><?php echo $m_she_h_gha = (isset($education_ideal_home['m_she_h_gha'])) ? $education_ideal_home['m_she_h_gha'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_5">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_she_s_prev" data-title="Enter"><?php echo $m_she_s_prev = (isset($education_ideal_home['m_she_s_prev'])) ? $education_ideal_home['m_she_s_prev'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_she_s_pres" data-title="Enter"><?php echo $m_she_s_pres = (isset($education_ideal_home['m_she_s_pres'])) ? $education_ideal_home['m_she_s_pres'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_7">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_she_s_bri" data-title="Enter"><?php echo $m_she_s_bri = (isset($education_ideal_home['m_she_s_bri'])) ? $education_ideal_home['m_she_s_bri'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_8">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_she_s_gha" data-title="Enter"><?php echo $m_she_s_gha = (isset($education_ideal_home['m_she_s_gha'])) ? $education_ideal_home['m_she_s_gha'] : 0 ?>
-                                    </a>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">তথ্য সেবা আইডিয়াল হোম </td>
-
-                                <td class="tg-0pky  type_1">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="t_she_h_prev" data-title="Enter"><?php echo $t_she_h_prev = (isset($education_ideal_home['t_she_h_prev'])) ? $education_ideal_home['t_she_h_prev'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="t_she_h_pres" data-title="Enter"><?php echo $t_she_h_pres = (isset($education_ideal_home['t_she_h_pres'])) ? $education_ideal_home['t_she_h_pres'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="t_she_h_bri" data-title="Enter"><?php echo $t_she_h_bri = (isset($education_ideal_home['t_she_h_bri'])) ? $education_ideal_home['t_she_h_bri'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_4">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="t_she_h_gha" data-title="Enter"><?php echo $t_she_h_gha = (isset($education_ideal_home['t_she_h_gha'])) ? $education_ideal_home['t_she_h_gha'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_5">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="t_she_s_prev" data-title="Enter"><?php echo $t_she_s_prev = (isset($education_ideal_home['t_she_s_prev'])) ? $education_ideal_home['t_she_s_prev'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_6">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="t_she_s_pres" data-title="Enter"><?php echo $t_she_s_pres = (isset($education_ideal_home['t_she_s_pres'])) ? $education_ideal_home['t_she_s_pres'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_7">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="t_she_s_bri" data-title="Enter"><?php echo $t_she_s_bri = (isset($education_ideal_home['t_she_s_bri'])) ? $education_ideal_home['t_she_s_bri'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_8">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="t_she_s_gha" data-title="Enter"><?php echo $t_she_s_gha = (isset($education_ideal_home['t_she_s_gha'])) ? $education_ideal_home['t_she_s_gha'] : 0 ?>
-                                    </a>
-                                </td>
-
-                            </tr>
-                            <tr>
                                 <td class="tg-pwj7"> মোট</td>
 
                                 <td class="tg-0pky">
-                                    <?php echo $total_h_prev = $ssc_h_prev + $hsca_h_prev + $hsc_h_prev + $med_h_prev + $eng_h_prev + $uni_h_prev + $ideal_h_prev + $hons_h_prev + $teacher_h_prev + $j_she_h_prev + $s_she_h_prev + $m_she_h_prev + $t_she_h_prev; ?>
+                                    <?php echo $total_h_prev = $ssc_h_prev + $hsca_h_prev + $hsc_h_prev + $med_h_prev + $eng_h_prev + $uni_h_prev + $ideal_h_prev + $hons_h_prev + $teacher_h_prev + $s_she_h_prev ; ?>
                                 </td>
 
                                 <td class="tg-0pky">
-                                    <?php echo $total_h_pres = $ssc_h_pres + $hsca_h_pres + $hsc_h_pres + $med_h_pres + $eng_h_pres + $uni_h_pres + $ideal_h_pres + $hons_h_pres + $teacher_h_pres + $j_she_h_pres + $s_she_h_pres + $m_she_h_pres + $t_she_h_pres; ?>
+                                    <?php echo $total_h_pres = $ssc_h_pres + $hsca_h_pres + $hsc_h_pres + $med_h_pres + $eng_h_pres + $uni_h_pres + $ideal_h_pres + $hons_h_pres + $teacher_h_pres  + $s_she_h_pres ; ?>
                                 </td>
 
                                 <td class="tg-0pky">
-                                    <?php echo $total_h_bri = ($ssc_h_bri + $hsca_h_bri + $hsc_h_bri + $med_h_bri + $eng_h_bri + $uni_h_bri + $ideal_h_bri + $hons_h_bri + $teacher_h_bri + $j_she_h_bri + $s_she_h_bri + $m_she_h_bri + $t_she_h_bri) ?>
+                                    <?php echo $total_h_bri = ($ssc_h_bri + $hsca_h_bri + $hsc_h_bri + $med_h_bri + $eng_h_bri + $uni_h_bri + $ideal_h_bri + $hons_h_bri + $teacher_h_bri  + $s_she_h_bri ) ?>
                                 </td>
 
                                 <td class="tg-0pky">
-                                    <?php echo $total_h_gha = ($ssc_h_gha + $hsca_h_gha + $hsc_h_gha + $med_h_gha + $eng_h_gha + $uni_h_gha + $ideal_h_gha + $hons_h_gha + $teacher_h_gha + $j_she_h_gha + $s_she_h_gha + $m_she_h_gha + $t_she_h_gha) ?>
-                                </td>
-
-
-                                <td class="tg-0pky">
-                                    <?php echo $total_s_prev = ($ssc_s_prev + $hsca_s_prev + $hsc_s_prev + $med_s_prev + $eng_s_prev + $uni_s_prev + $ideal_s_prev + $hons_s_prev + $teacher_s_prev  + $j_she_s_prev + $s_she_s_prev + $m_she_s_prev + $t_she_s_prev) ?>
-                                </td>
-
-                                <td class="tg-0pky">
-                                    <?php echo $total_s_pres = ($ssc_s_pres + $hsca_s_pres + $hsc_s_pres + $med_s_pres + $eng_s_pres + $uni_s_pres + $ideal_s_pres + $hons_s_pres + $teacher_s_pres  + $j_she_s_pres + $s_she_s_pres + $m_she_s_pres + $t_she_s_pres) ?>
-                                </td>
-
-                                <td class="tg-0pky">
-                                    <?php echo $total_s_bri = ($ssc_s_bri + $hsca_s_bri + $hsc_s_bri + $med_s_bri + $eng_s_bri + $uni_s_bri + $ideal_s_bri + $hons_s_bri + $teacher_s_bri  + $j_she_s_bri + $s_she_s_bri + $m_she_s_bri + $t_she_s_bri) ?>
+                                    <?php echo $total_h_gha = ($ssc_h_gha + $hsca_h_gha + $hsc_h_gha + $med_h_gha + $eng_h_gha + $uni_h_gha + $ideal_h_gha + $hons_h_gha + $teacher_h_gha  + $s_she_h_gha ) ?>
                                 </td>
 
 
                                 <td class="tg-0pky">
-                                    <?php echo $total_s_gha = ($ssc_s_gha + $hsca_s_gha + $hsc_s_gha + $med_s_gha + $eng_s_gha + $uni_s_gha + $ideal_s_gha + $hons_s_gha + $teacher_s_gha  + $j_she_s_gha + $s_she_s_gha + $m_she_s_gha + $t_she_s_gha) ?>
+                                    <?php echo $total_s_prev = ($ssc_s_prev + $hsca_s_prev + $hsc_s_prev + $med_s_prev + $eng_s_prev + $uni_s_prev + $ideal_s_prev + $hons_s_prev + $teacher_s_prev   + $s_she_s_prev ) ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $total_s_pres = ($ssc_s_pres + $hsca_s_pres + $hsc_s_pres + $med_s_pres + $eng_s_pres + $uni_s_pres + $ideal_s_pres + $hons_s_pres + $teacher_s_pres   + $s_she_s_pres ) ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <?php echo $total_s_bri = ($ssc_s_bri + $hsca_s_bri + $hsc_s_bri + $med_s_bri + $eng_s_bri + $uni_s_bri + $ideal_s_bri + $hons_s_bri + $teacher_s_bri  + $s_she_s_bri ) ?>
+                                </td>
+
+
+                                <td class="tg-0pky">
+                                    <?php echo $total_s_gha = ($ssc_s_gha + $hsca_s_gha + $hsc_s_gha + $med_s_gha + $eng_s_gha + $uni_s_gha + $ideal_s_gha + $hons_s_gha + $teacher_s_gha  + $s_she_s_gha ) ?>
                                 </td>
 
                             </tr>
@@ -705,7 +597,7 @@
 
                             <tr>
                                 <td class="tg-pwj7">প্রোগ্রামের ধরন</td>
-                                <td class="tg-pwj7">সংখ্যা </td>
+                                <td class="tg-pwj7">কত জনকে</td>
                                 <td class="tg-pwj7">টাকা (পরিমান)</td>
 
                             </tr>
@@ -744,59 +636,36 @@
 
 
                             </tr>
+
                             <tr>
-                                <td class="tg-y698">শিক্ষাবৃত্তি প্রদান (অনার্স)</td>
-
+                                <td class="tg-y698 type_1">(৫ম - ১০ম শ্রেণি)/পরীক্ষার্থীদের শিক্ষা উপকরণ প্রদান</td>
                                 <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="hons_number" data-title="Enter"><?php echo $hons_number = (isset($education_scholarship['hons_number'])) ? $education_scholarship['hons_number'] : 0 ?>
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="ps_u_s" data-title="Enter"><?php echo $ps_u_s = (isset($education_scholarship['ps_u_s'])) ? $education_scholarship['ps_u_s'] : 0 ?>
                                     </a>
                                 </td>
                                 <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="hons_taka" data-title="Enter"><?php echo $hons_taka = (isset($education_scholarship['hons_taka'])) ? $education_scholarship['hons_taka'] : 0 ?>
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="ps_u_a" data-title="Enter"><?php echo $ps_u_a = (isset($education_scholarship['ps_u_a'])) ? $education_scholarship['ps_u_a'] : 0 ?>
                                     </a>
                                 </td>
-
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">শিক্ষাবৃত্তি প্রদান (মাস্টার্স)</td>
-
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="masters_number" data-title="Enter"><?php echo $masters_number = (isset($education_scholarship['masters_number'])) ? $education_scholarship['masters_number'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="masters_taka" data-title="Enter"><?php echo $masters_taka = (isset($education_scholarship['masters_taka'])) ? $education_scholarship['masters_taka'] : 0 ?>
-                                    </a>
-                                </td>
-
 
 
                             </tr>
-                            <tr>
-                                <td class="tg-y698">লেন্ডিং লাইব্রেরি প্রতিষ্ঠা হয়েছে কতটি?</td>
 
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="landing_number" data-title="Enter"><?php echo $landing_number = (isset($education_scholarship['landing_number'])) ? $education_scholarship['landing_number'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="landing_taka" data-title="Enter"><?php echo $landing_taka = (isset($education_scholarship['landing_taka'])) ? $education_scholarship['landing_taka'] : 0 ?>
-                                    </a>
-                                </td>
 
                             <tr>
-                                <td class="tg-y698">ফ্রি কোচিং </td>
+                                <td class="tg-y698">(একাদশ - দ্বাদশ অধ্যায়নরত)/পরীক্ষার্থীদের শিক্ষা উপকরণ প্রদান</td>
+                                <td class="tg-0pky">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="h_u_s" data-title="Enter"><?php echo $h_u_s = (isset($education_scholarship['hsc_number'])) ? $education_scholarship['h_u_s'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="hsc_taka" data-title="Enter"><?php echo $h_u_a = (isset($education_scholarship['h_u_a'])) ? $education_scholarship['h_u_a'] : 0 ?>
+                                    </a>
+                                </td>
 
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="free_number" data-title="Enter"><?php echo $free_number = (isset($education_scholarship['free_number'])) ? $education_scholarship['free_number'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="free_taka" data-title="Enter"><?php echo $free_taka = (isset($education_scholarship['free_taka'])) ? $education_scholarship['free_taka'] : 0 ?>
-                                    </a>
-                                </td>
 
                             </tr>
+                           
 
                         </table>
 
