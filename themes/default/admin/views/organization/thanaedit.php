@@ -66,14 +66,7 @@
 
 
 
-                    <div class="form-group">
-                        <?= lang('সদস্য', 'member_number'); ?>
-                        <?= form_input('member_number', set_value('member_number', $thana->member_number), 'class="form-control tip" id="member_number" required="required" '); ?>
-                    </div>
-                    <div class="form-group">
-                        <?= lang('সাথী', 'associate_number'); ?>
-                        <?= form_input('associate_number', set_value('associate_number', $thana->associate_number), 'class="form-control tip" id="associate_number" required="required" '); ?>
-                    </div>
+                     
                     <div class="form-group">
                         <?= lang('কর্মী', 'worker_number'); ?>
                         <?= form_input('worker_number', set_value('worker_number', $thana->worker_number), 'class="form-control tip" id="worker_number" required="required" '); ?>
@@ -101,25 +94,7 @@
                     </div>
 
 
-
-
-                    <div class="form-group">
-                        <?= lang('চলতি সেশনে বৃদ্ধি কিনা?', 'increase_in_current_session'); ?>
-
-                        <div class="radio">
-                            <input type="radio" class="checkbox" name="increase_in_current_session" value="1" <?= $thana->increase_in_current_session == 1 ? 'checked="checked"' : ''; ?> />
-                            <label class="padding05"><?= 'হ্যাঁ' ?></label>
-                        </div>
-
-                        <div class="radio">
-                            <input type="radio" class="checkbox" name="increase_in_current_session" value="2" <?= $thana->increase_in_current_session != 1 ? 'checked="checked"' : ''; ?> />
-                            <label class="padding05"><?= 'না ' ?></label>
-
-                        </div>
-                    </div>
-
-
-
+ 
 
                     <div class="form-group">
                         <?= lang("শাখা", "branch"); ?>

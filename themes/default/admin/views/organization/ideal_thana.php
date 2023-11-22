@@ -33,7 +33,7 @@ oTable3 = $('#PRData5').dataTable({
     "iDisplayLength": <?= $Settings->rows_per_page ?>,
     'bProcessing': true, 'bServerSide': true,
    // 'sAjaxSource': '<?= admin_url('organization/getListthana'.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ? '?type='.$this->input->get('type') : '' ).( $this->input->get('year') ? '&year='.$this->input->get('year') : '' )  ) ?>',
-   'sAjaxSource': '<?= admin_url('organization/getListthana'.($branch_id ? '/'.$branch_id : '')  ) ?>',
+   'sAjaxSource': '<?= admin_url('organization/getListthanaideal'.($branch_id ? '/'.$branch_id : '')  ) ?>',
     
     'fnServerData': function (sSource, aoData, fnCallback) {
         aoData.push({
@@ -72,7 +72,7 @@ oTable3 = $('#PRData5').dataTable({
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'থানা তালিকা   ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'আদর্শ থানা তালিকা   ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
        
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         
@@ -87,13 +87,14 @@ oTable3 = $('#PRData5').dataTable({
         <div class="box-icon">
             <ul class="btn-tasks">
 			
+            <?php if($branch_id) { ?>
               <li class="dropdown">
-                    <a href="<?= admin_url('organization/addthana') ?>">
-                        <i class="icon fa fa-tasks" data-placement="left" title="<?= lang("actions") ?>"><?= 'থানা  যোগ করুন' ?></i>
+                    <a href="<?= admin_url('organization/increaseidealthana/'.$branch_id) ?>">
+                        <i class="icon fa fa-tasks" data-placement="left" title="<?= lang("actions") ?>"><?= 'আদর্শ থানা যোগ করুন' ?></i>
                     </a>
                      
                 </li>
-		 
+                <?php } ?>
 			
 			 
                
@@ -101,11 +102,11 @@ oTable3 = $('#PRData5').dataTable({
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("শাখা") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('organization/thanalist') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
+                            <li><a href="<?= admin_url('organization/ideal_thana') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('organization/thanalist/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('organization/ideal_thana/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>

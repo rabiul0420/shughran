@@ -657,7 +657,7 @@ class Site extends CI_Model
         //	$this->sma->print_arrays($query->first_row());
 
         if ($query->num_rows() > 0) {
-            foreach (($q->result()) as $row) {
+            foreach (($query->result()) as $row) {
                 $data[] = $row;
             }
             return $data;

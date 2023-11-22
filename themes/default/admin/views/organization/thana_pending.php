@@ -2,8 +2,8 @@
 <style>
 #PRData th:nth-child(2),#PRData2 th:nth-child(2),#PRData5 th:nth-child(2),#PRData4 th:nth-child(2) { width: 5% !important; }
 #PRData th:nth-child(1),#PRData2 th:nth-child(1),#PRData5 th:nth-child(1),#PRData4 th:nth-child(1) { width: 5% !important; }
-#PRData5 th:nth-child(13) { width: 10% !important; }
-#PRData5 th:nth-child(15) { width: 7% !important; }
+#PRData5 th:nth-child(10) { width: 5% !important; }
+#PRData5 th:nth-child(11) { width: 15% !important; }
 </style>
 
 
@@ -20,6 +20,11 @@
 return is_ideal_thana == 1 ? 'Yes' : 'No';
 }
     
+function increase_decrease(is_ideal_thana){
+   
+return is_ideal_thana == 1 ? 'বৃদ্ধি' : 'ঘাটতি';
+}
+
     var oTable3;
 
     $(document).ready(function () {
@@ -32,8 +37,8 @@ oTable3 = $('#PRData5').dataTable({
     "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
     "iDisplayLength": <?= $Settings->rows_per_page ?>,
     'bProcessing': true, 'bServerSide': true,
-   // 'sAjaxSource': '<?= admin_url('organization/getListthana'.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ? '?type='.$this->input->get('type') : '' ).( $this->input->get('year') ? '&year='.$this->input->get('year') : '' )  ) ?>',
-   'sAjaxSource': '<?= admin_url('organization/getListthana'.($branch_id ? '/'.$branch_id : '')  ) ?>',
+   // 'sAjaxSource': '<?= admin_url('organization/getListPendingthana'.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ? '?type='.$this->input->get('type') : '' ).( $this->input->get('year') ? '&year='.$this->input->get('year') : '' )  ) ?>',
+   'sAjaxSource': '<?= admin_url('organization/getListPendingthana'.($branch_id ? '/'.$branch_id : '')  ) ?>',
     
     'fnServerData': function (sSource, aoData, fnCallback) {
         aoData.push({
@@ -50,7 +55,7 @@ oTable3 = $('#PRData5').dataTable({
         return nRow;
     },
     "aoColumns": [
-        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, null, null, {  "mRender": yes_no}, null ,{"bSortable": false},{"bSortable": false}
+        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null,null, null, null, null, {  "mRender": yes_no}, null , {  "mRender": increase_decrease} ,{"bSortable": false}
     ]
 }).fnSetFilteringDelay().dtFilter([
     {column_number: 1, filter_default_label: "[<?='শাখা';?>]", filter_type: "text", data: []},
@@ -72,7 +77,7 @@ oTable3 = $('#PRData5').dataTable({
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'থানা তালিকা   ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'থানা পেন্ডিং তালিকা   ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
        
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         
@@ -87,25 +92,18 @@ oTable3 = $('#PRData5').dataTable({
         <div class="box-icon">
             <ul class="btn-tasks">
 			
-              <li class="dropdown">
-                    <a href="<?= admin_url('organization/addthana') ?>">
-                        <i class="icon fa fa-tasks" data-placement="left" title="<?= lang("actions") ?>"><?= 'থানা  যোগ করুন' ?></i>
-                    </a>
-                     
-                </li>
-		 
-			
+               
 			 
                
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("শাখা") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('organization/thanalist') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
+                            <li><a href="<?= admin_url('organization/thana_pending') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('organization/thanalist/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('organization/thana_pending/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -130,8 +128,8 @@ oTable3 = $('#PRData5').dataTable({
                             <th><?= 'থানার নাম' ?></th>
                             <th><?= 'কোড'  ?></th>
                             <th><?= 'ধরন' ?></th>
-                            <th><?= 'সদস্য' ?></th>
-                            <th><?= 'সাথী ' ?></th>
+                            <th>সদস্য </th>
+                            <th>সাথী </th>
                             <th><?= 'কর্মী ' ?></th>
                             <th>সমর্থক </th>
                             <th>ওয়ার্ড  </th>
@@ -139,7 +137,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th>আদর্শ থানা </th>
                             
                             <th><?= 'নোট'  ?></th>
-                            <th></th>
+                            <th>বৃদ্ধি/ঘাটতি</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -168,6 +166,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th></th>
                             <th></th>
                             <th></th>
+                        
                     </table>
                 </div>
             </div>

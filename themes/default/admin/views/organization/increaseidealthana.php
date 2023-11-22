@@ -45,7 +45,7 @@ if (!empty($variants)) {
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-plus"></i><?= 'থানা'; ?></h2>
+        <h2 class="blue"><i class="fa-fw fa fa-plus"></i><?= 'আদর্শ থানা'; ?></h2>
     </div>
     <div class="box-content">
         <div class="row">
@@ -55,76 +55,39 @@ if (!empty($variants)) {
 
                 <?php
                 $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
-                echo admin_form_open_multipart("organization/addthana", $attrib)
+                echo admin_form_open_multipart("organization/increaseidealthana/" . $branch_id, $attrib)
                 ?>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
 
-                    <div class="form-group">
-                        <?= lang("সাংগঠনিক থানার নাম", "thana_name") ?>
-
-                        <?= form_input('thana_name', (isset($_POST['thana_name']) ? $_POST['thana_name'] : ''), 'class="form-control" id="thana_name" required="required"'); ?>
-                    </div>
 
 
 
                     <div class="form-group all">
-                        <?= lang('থানা কোড', 'thana_code'); ?>
-                        
+                        <?= lang('থানা', 'thana_id'); ?>
 
-                      <?php  $tc = array();
-                      $tc[''] =  'থানা কোড';
-                        for($i=1; $i<=60; $i++){
-                            $tc[$i] =  $i;
 
+                        <?php $tc = array();
+                        $tc[''] =  'থানা';
+                        foreach ($thanalist as $row) {
+
+                            // var_dump($row);
+                            $tc[$row['id']] = $row['thana_name'];
                         }
 
-                        $tc[100] =  100;
 
-                    echo form_dropdown('thana_code', $tc, '', 'id="thana_code"  class="form-control select" required="required" style="width:100%;" ');
-                     ?>              
-                    </div>
-
-                   
-
-
-
-                    <div class="form-group">
-                        <?= lang("সংগঠনের ধরন", "org_type"); ?>
-
-                        <?php
-                        $wrt[''] = lang('select') . ' ' . lang('organization_type');
-                        foreach (['Institutional' => 'প্রাতিষ্ঠানিক', 'Residential' => 'আবাসিক'] as $key=>$type)
-                            $wrt[$key] = $type;
-
-
-
-                        echo form_dropdown('org_type', $wrt, (isset($_POST['org_type']) ? $_POST['org_type'] : ''), 'id="org_type"   class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('thana_id', $tc, '', 'id="thana_id"  class="form-control select" required="required" style="width:100%;" ');
                         ?>
-
-
-                        <?php  //echo  form_input('responsibility', (isset($_POST['responsibility']) ? $_POST['responsibility'] : ''), 'class="form-control" id="responsibility" '); 
-                        ?>
-
-
-
-
                     </div>
 
 
 
 
 
-                     
-                     
-                    <div class="form-group">
-                        <?= lang('কর্মী', 'worker_number'); ?>
-                        <?= form_input('worker_number', set_value('worker_number', '0'), 'class="form-control tip" id="worker_number" required="required" '); ?>
-                    </div>
-                    <div class="form-group">
-                        <?= lang('সমর্থক সংখ্যা', 'supporter_number'); ?>
-                        <?= form_input('supporter_number', set_value('supporter_number', '0'), 'class="form-control tip" id="supporter_number" required="required" '); ?>
-                    </div>
+
+
+
+
 
 
 
@@ -134,36 +97,22 @@ if (!empty($variants)) {
 
 
                 </div>
-
-
-                <div class="col-md-6">
-
-
-                    
+                <div class="col-md-4">
                     <div class="form-group">
-                        <?= lang('সাংগঠনিক ওয়ার্ড সংখ্যা', 'ward_number'); ?>
-                        <?= form_input('ward_number', set_value('ward_number', '0'), 'class="form-control tip" id="ward_number" required="required" '); ?>
-                    </div>
-                    <div class="form-group">
-                        <?= lang('উপশাখা সংখ্যা', 'unit_number'); ?>
-                        <?= form_input('unit_number', set_value('unit_number', '0'), 'class="form-control tip" id="unit_number" required="required" '); ?>
-                    </div>
-
-
-                    <div class="form-group">
-                        <?= lang('আদর্শ থানা?', 'is_ideal_thana'); ?>
-
-                        <div class="radio">
-                            <input type="radio" class="checkbox" name="is_ideal_thana" value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
-                            <label   class="padding05"><?= 'হ্যাঁ' ?></label>
-                        </div>
-
-                        <div class="radio">
-                            <input type="radio" class="checkbox" name="is_ideal_thana" value="2" <?= 2 ? 'checked="checked"' : ''; ?>>
-                            <label   class="padding05"><?= 'না ' ?></label>
-
+                        <?php echo lang('তারিখ', 'date'); ?>
+                        <div class="controls">
+                            <?php echo form_input('date', '', 'class="form-control fixed_date" id="date"  readonly required="required"'); ?>
                         </div>
                     </div>
+
+                </div>
+                <div class="col-md-4">
+
+
+
+
+
+
 
 
 
