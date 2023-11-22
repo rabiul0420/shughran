@@ -166,7 +166,7 @@ class Manpower extends MY_Controller
         $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
 
         if ($branch_id)
-        $this->data['associatecandidate_worker_transfer_in_out'] = $this->getassocandidate_worker_transferinfo($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
+            $this->data['associatecandidate_worker_transfer_in_out'] = $this->getassocandidate_worker_transferinfo($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
 
 
         $this->data['postpone'] = $this->postlog(1, $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
@@ -178,7 +178,7 @@ class Manpower extends MY_Controller
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
 
 
-       //  $this->sma->print_arrays( $this->data['manpower_record']); 
+        //  $this->sma->print_arrays( $this->data['manpower_record']); 
 
 
 
@@ -433,11 +433,11 @@ class Manpower extends MY_Controller
 
         return array(
             'arrival_worker' => $arrival_worker[0]['transfer_in_worker'],
-      
-        'transfer_worker' => $transfer_worker[0]['transfer_out_worker'],
+
+            'transfer_worker' => $transfer_worker[0]['transfer_out_worker'],
             'arrival_associatecandidate' => $arrival_associatecandidate[0]['transfer_in_aasocuatecandidate'],
             'transfer_associatecandidate' => $transfer_associatecandidate[0]['transfer_out_aasocuatecandidate'],
-  );
+        );
     }
 
     public function newName($field)
@@ -538,11 +538,11 @@ class Manpower extends MY_Controller
                 $field = 'ব্লাড গ্রুপ';
                 break;
             case 'upazila':
-                    $field = 'উপজেলা/থানা';
-                    break;
+                $field = 'উপজেলা/থানা';
+                break;
             case 'upazilla_name':
-                    $field = 'উপজেলা/থানা';
-                    break;
+                $field = 'উপজেলা/থানা';
+                break;
 
             default:
                 $field = $field;
@@ -564,7 +564,7 @@ class Manpower extends MY_Controller
 
         //for cell value
         $exColh = 'B';
-        
+
         foreach ($field_arr as $field) {
             $newName = $this->newName($field);
             $this->excel->getActiveSheet()->SetCellValue($exColh . '6', $newName);
@@ -587,7 +587,7 @@ class Manpower extends MY_Controller
 
         foreach ($data as $key => $data_row) {
 
-            
+
 
 
             $this->excel->getActiveSheet()->SetCellValue('A' . $row, $key + 1);
@@ -609,8 +609,8 @@ class Manpower extends MY_Controller
         }
 
 
-    //   $this->sma->print_arrays($field_arr);
-    //   $this->sma->print_arrays($data_row);
+        //   $this->sma->print_arrays($field_arr);
+        //   $this->sma->print_arrays($data_row);
 
 
 
@@ -1258,7 +1258,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         if ($branch_id) {
 
-        
+
 
             $this->datatables
                 ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,  {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
@@ -1554,7 +1554,8 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->load->view($this->theme . 'manpower/decrease/pending', $this->data);
         } else if ($manpower->is_pending == 1) {
             $this->data['modal_js'] = $this->site->modal_js();
-            $this->data['msg'] = 'His transfer status is still pending.';
+            $this->data['msg'] = 'His status is still in pending.';
+            $this->data['title'] = 'Member decrease';
             $this->load->view($this->theme . 'manpower/decrease/pending', $this->data);
         } else {
             //exit(json_encode(array('msg' => 'His transfer status is still pending.')));
@@ -1638,6 +1639,34 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                     $this->session->set_flashdata('message', 'Notification for transfer has been sent');
 
                     admin_redirect("manpower/member");
+                } else if ($process_id == 8) {
+
+                    $is_changeable_2 = $this->site->check_confirm($newbranchid, date('Y-m-d'));
+
+                    if ($is_changeable_2 == false) {
+                        $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
+                        redirect($_SERVER["HTTP_REFERER"]);
+                    }
+
+                    
+                    $update_8 = array();
+                    if ($this->input->post('sessionyear')) {
+                        $update_8['sessionyear'] = $this->input->post('sessionyear');
+                    }
+                    if ($this->input->post('institution_type')) {
+                        $update_8['institution_type'] = $this->input->post('institution_type');
+                    }
+                    $update_8['is_pending'] = 1;
+                    $update_8['is_studentship_pending'] = 1;
+                    
+                    
+                    $this->manpower_model->manpowerUpdate('manpower', $update_8, array('id' => $manpowerid));
+                    $data_member_log['is_log_pending'] = 1;
+                     
+                    $this->session->set_flashdata('message', 'Please wait for CP\'s decision.');
+
+                    $this->manpower_model->insertData('memberlog', $data_member_log);
+                    admin_redirect("manpower/member");
                 }
             } elseif ($this->input->post('memberdecrease')) {
                 $this->session->set_flashdata('error', validation_errors());
@@ -1658,7 +1687,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
                 //manpower update
                 $manpower_update_arr = array();
-                if ($processid != 15)
+                if ($processid != 15 && $processid != 8)
                     $manpower_update_arr['orgstatus_id'] = NULL;
 
                 else
@@ -1754,7 +1783,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                 }
 
 
-                if (in_array($processid, array(8, 9, 10, 11, 12, 14))) {
+                if (in_array($processid, array(9, 10, 11, 12, 14))) {
                     $manpower_update_arr['studentlife'] = 2;
                 }
 
@@ -2763,7 +2792,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         $this->db
             ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from,  {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
-            
+
             ->from('memberlog')
             ->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
             ->where('memberlog.process_id', $process_id)->where('memberlog.in_out', 1)
@@ -2966,7 +2995,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                     $field_arr_add = array(
                         'orgstatus_at_forum',
                         'education_qualification',
-                        'current_profession',                        
+                        'current_profession',
                         'district',
                         'upazilla_name'
                     );
@@ -2978,7 +3007,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'institution_type',
                         'sessionyear',
                         'barnch_id_to_from',
-                        
+
                     );
                     $field_arr = array_merge($field_arr, $field_arr_add);
                     break;
@@ -3031,7 +3060,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $branch_id = $branch ? $branch->id : lang('all_branches');
             $process_name = $process ? $process->process : '';
 
-            if ($process_id == 15 ) {
+            if ($process_id == 15) {
                 $process_name =  '_স্থানান্তর ';
             }
 

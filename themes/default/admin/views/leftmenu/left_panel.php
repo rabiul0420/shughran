@@ -31,6 +31,14 @@
                                 </li>
 
                                 <li class="mm_transfer">
+                                    <a href="<?= admin_url('studentshippending') ?>">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span class="text">সদস্য ছাত্রত্ব শেষ পেন্ডিং তালিকা  <?=isset($manpowerstdout) ? '('.$manpowerstdout.')': ''?></span>
+                                    </a>
+                                </li>
+
+
+                                <li class="mm_transfer">
                                     <a href="<?= admin_url('manpowertransfer/add') ?>">
                                         <i class="fa fa-dashboard"></i>
                                         <span class="text">সাথীপ্রার্থী/কর্মী স্থানান্তর করুন</span>
