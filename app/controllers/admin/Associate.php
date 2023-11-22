@@ -83,12 +83,12 @@ class Associate extends MY_Controller
     }
 
 
-    public function newName($field)
+    public function newName($field,$in_out=null)
     {
         switch ($field) {
 
             case 'barnch_id_to_from':
-                $field = 'স্থানান্তরিত শাখা';
+                $field = ($in_out == 1) ? 'শাখা হতে' :'স্থানান্তরিত শাখা' ;
                 break;
             case 'associatecode':
                 $field = 'আইডি';
@@ -198,7 +198,7 @@ class Associate extends MY_Controller
         return $field;
     }
 
-    public function sheetcellValue($branch = null, $field_arr = null, $data = null, $process_Title = null)
+    public function sheetcellValue($branch = null, $field_arr = null, $data = null, $process_Title = null,$in_out = null)
     {
         $style = array(
             'alignment' => array(
@@ -226,7 +226,7 @@ class Associate extends MY_Controller
             $exColh++;
         }
 
-        
+
 
 
         $row = 7;
@@ -242,7 +242,7 @@ class Associate extends MY_Controller
             $this->excel->getActiveSheet()->SetCellValue('A' . $row, $key + 1);
             $this->excel->getActiveSheet()->getStyle('A' . $row)->applyFromArray($style);
 
-            
+
 
             $exCol = 'B';
             foreach ($field_arr as $field) {
@@ -256,8 +256,6 @@ class Associate extends MY_Controller
                 $this->excel->getActiveSheet()->getStyle($exCol . $row)->applyFromArray($style);
 
                 $exCol++;
-
-                
             }
             $row++;
 
@@ -637,11 +635,11 @@ class Associate extends MY_Controller
 
         $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end  . '"');
 
-        if ($process_id != 15)             
-        $this->datatables->unset_column("barnch_id_to_from");
+        if ($process_id != 15)
+            $this->datatables->unset_column("barnch_id_to_from");
 
-        
-        
+
+
 
         echo $this->datatables->generate();
     }
@@ -1992,7 +1990,7 @@ class Associate extends MY_Controller
         }
 
 
-       
+
 
 
 
@@ -2048,7 +2046,7 @@ class Associate extends MY_Controller
             $data = NULL;
         }
 
-    //    $this->sma->print_arrays($data);
+        //    $this->sma->print_arrays($data);
 
         if (!empty($data)) {
 
@@ -2079,7 +2077,7 @@ class Associate extends MY_Controller
                     break;
                 case 15:
 
-                               
+
 
                     $field_arr = array(
                         'associatecode',
@@ -2109,7 +2107,7 @@ class Associate extends MY_Controller
             $process_name = $process ? $process->process : '';
             $process_Title = 'সাথী বৃদ্ধি : ' . $process_name;
 
-            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'associate_increase_report_' . str_replace(" ", "", $process->process);
             $this->load->helper('excel');
@@ -2231,8 +2229,8 @@ class Associate extends MY_Controller
                         'district'
                     );
                     break;
-                
-               
+
+
                 case 11:
                     $field_arr = array(
                         'associatecode',
@@ -2310,7 +2308,7 @@ class Associate extends MY_Controller
             $process_name = $process ? $process->process : '';
             $process_Title = 'সাথী ঘাটতি : ' . $process_name;
 
-            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title);
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'associate_decrease_report' . str_replace(" ", "", $process->process);
             $this->load->helper('excel');
@@ -2458,7 +2456,8 @@ class Associate extends MY_Controller
                 // $this->sma->print_arrays($data);
 
                 $process_Title = 'সাথী তালিকা';
-                $this->sheetcellValue($branch, $field_arr, $data, $process_Title);
+
+                $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
 
                 $filename = 'associate_list' . '_' . $this->input->get('year') . ($branch ? '_' . $branch : '');
 
@@ -2528,7 +2527,8 @@ class Associate extends MY_Controller
             // $this->sma->print_arrays($data);
 
             $process_Title = 'সাথী তালিকা';
-            $this->sheetcellValue($branch, $field_arr, $data, $process_Title);
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
 
             $filename = 'associate_list' . '_' . $this->input->get('year') . ($branch ? '_' . $branch : '');
 
@@ -2611,7 +2611,8 @@ class Associate extends MY_Controller
 
             //  for cellValue 
             $process_Title = 'সাথী মুলতবি';
-            $this->sheetcellValue($branch, $field_arr, $data, $process_Title);
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'postpone_report';
             $this->load->helper('excel');
