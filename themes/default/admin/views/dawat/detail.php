@@ -243,7 +243,7 @@ font: 18px SolaimanLipi, sans-serif;
 
 
 
-<td style="height: 18px; " colspan="19">৩। স্কুল দাওয়াতী দশক রিপোর্ট</td>
+<td style="height: 18px; " colspan="19">৩।স্কুল দাওয়াতী দশক রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
@@ -299,7 +299,7 @@ font: 18px SolaimanLipi, sans-serif;
 <td style="height: 18px; ">&nbsp;</td>
 <td style="height: 18px; ">&nbsp;</td>
 <td style="height: 18px; ">&nbsp;</td>
-<td style="height: 18px; " colspan="19">৪। মাদরাসা দাওয়াতী দশক রিপোর্ট</td>
+<td style="height: 18px; " colspan="19">৪। অনলাইন দাওয়াতি সপ্তাহ  রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
@@ -354,7 +354,7 @@ font: 18px SolaimanLipi, sans-serif;
 </tr>
 <tr style="height: 18px;">
 
-<td style="height: 18px; background-color: #fff;" colspan="19">৫। কলেজ দাওয়াতী দশক রিপোর্ট</td>
+<td style="height: 18px; background-color: #fff;" colspan="19">৫। উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি সপ্তাহ   রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
@@ -464,7 +464,7 @@ font: 18px SolaimanLipi, sans-serif;
 </tr>
 <tr style="height: 18px;">
 
-<td style="height: 18px; " colspan="19">৭। বিশ্ববিদ্যালয় দাওয়াতী দশক রিপোর্ট</td>
+<td style="height: 18px; " colspan="19">৭। বিশ্ববিদ্যালয় ও অনার্স কলেজ দাওয়াতি সপ্তাহ  রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
