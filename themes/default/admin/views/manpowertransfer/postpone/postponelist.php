@@ -62,7 +62,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'মুলতুবি' . ' (' . ($branch_id ? $branch->name : lang('সকল শাখা')) . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'মুলতবি' . ' (' . ($branch_id ? $branch->name : lang('সকল শাখা')) . ')'; ?>
         </h2>
 
         <div class="box-icon">
