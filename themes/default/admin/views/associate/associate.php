@@ -137,7 +137,7 @@
 							 <th><?= 'দায়িত্ব' ?></th>
 							  <th><?= 'থানা কোড' ?></th>
                              <th style="min-width:65px; text-align:center;"><?= 'ঘাটতি' ?></th>
-							 <th style="min-width:65px; text-align:center;"><?= 'মুলতুবি ' ?></th>
+							 <th style="min-width:65px; text-align:center;"><?= 'মুলতবি ' ?></th>
 							 
 							 <th style="min-width:65px; text-align:center;"><?= 'Action' ?></th>
                         </tr>

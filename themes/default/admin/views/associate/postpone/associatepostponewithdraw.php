@@ -4,7 +4,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">&times;</i>
             </button>
-            <h4 class="modal-title" id="myModalLabel"><?php echo 'মুলতুবি   প্রত্যাহার  ' . " (" . $manpower->associatecode . ")"; ?></h4>
+            <h4 class="modal-title" id="myModalLabel"><?php echo 'মুলতবি   প্রত্যাহার  ' . " (" . $manpower->associatecode . ")"; ?></h4>
         </div>
         
         <?php $attrib = array('data-toggle' => 'validator', 'role' => 'form','id'=>'decrease_member');
