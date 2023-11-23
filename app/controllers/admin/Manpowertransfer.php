@@ -239,17 +239,40 @@ class ManpowerTransfer extends MY_Controller
 
 
         $this->load->library('datatables');
-
+        //is_studentship_pending  => waiting for approval stdend, job at abroad, higher education
         if ($branch_id) {
             $this->datatables
-                ->select("manpower.id as id, manpower.name,{$this->db->dbprefix('manpower')}.membercode as membercode, {$this->db->dbprefix('manpower')}.associatecode as associatecode,t1.name as branch,manpower.note", FALSE)
+                ->select("manpower.id as id, t5.process,  t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
+                WHEN t3.process_id = 8 THEN  sma_manpower.note
+                WHEN t3.process_id = 11 THEN  CONCAT(COALESCE(sma_manpower.type_higher_education) ,', ' ,  t4.name)
+                WHEN t3.process_id = 14 THEN  sma_manpower.note 
+               END
+               note ,manpower.caretaker_contact_status", FALSE)
                 ->join('branches as t1', 't1.id=manpower.branch', 'left')
-                ->from('manpower')->where('manpower.branch', $branch_id)->where('is_studentship_pending', 1);
+                ->join('responsibilities as t2', 't2.id=manpower.responsibility_id', 'left')
+                ->join('memberlog as t3', 't3.manpower_id=manpower.id', 'left')
+                ->join('countries as t4', 't4.id=manpower.foreign_country', 'left')
+                ->join('process as t5', 't5.id=t3.process_id', 'left')
+                ->from('manpower')
+                ->where('manpower.branch', $branch_id)
+                ->where('is_studentship_pending', 1)
+                ->where('is_log_pending', 1);
         } else {
             $this->datatables
-                ->select("manpower.id as id, manpower.name,{$this->db->dbprefix('manpower')}.membercode as membercode, {$this->db->dbprefix('manpower')}.associatecode as associatecode,t1.name as branch,manpower.note", FALSE)
+                ->select("manpower.id as id,t5.process, t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
+                WHEN t3.process_id = 8 THEN  sma_manpower.note
+                WHEN t3.process_id = 11 THEN  CONCAT(COALESCE(sma_manpower.type_higher_education) ,', ' ,  t4.name)
+                WHEN t3.process_id = 14 THEN  sma_manpower.note 
+               END
+               note ,manpower.caretaker_contact_status", FALSE)
                 ->join('branches as t1', 't1.id=manpower.branch', 'left')
-                ->from('manpower')->where('is_studentship_pending', 1);
+                ->join('responsibilities as t2', 't2.id=manpower.responsibility_id', 'left')
+                ->join('memberlog as t3', 't3.manpower_id=manpower.id', 'left')
+                ->join('countries as t4', 't4.id=manpower.foreign_country', 'left')
+                ->join('process as t5', 't5.id=t3.process_id', 'left')
+                ->from('manpower')
+                ->where('is_studentship_pending', 1)
+                ->where('is_log_pending', 1);
         }
 
         $this->datatables->add_column("Actions", $action, "id");
@@ -435,7 +458,7 @@ class ManpowerTransfer extends MY_Controller
 
 
         $is_changeable = $this->site->check_confirm($member_info->branch, date('Y-m-d'));
-         
+
 
         if ($is_changeable == false) {
             $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
@@ -450,9 +473,9 @@ class ManpowerTransfer extends MY_Controller
         }
 
 
-        if ($member_info->orgstatus_id == 1){
-            
-            
+        if ($member_info->orgstatus_id == 1) {
+
+
             $data_member = array(
                 'end_date' => date('Y-m-d', strtotime('-1 day', time())),
                 'is_member_now' => 2
@@ -462,16 +485,16 @@ class ManpowerTransfer extends MY_Controller
                 'branch' => $branch_id
             );
             $this->manpower_model->manpowerUpdate('member', $data_member, $member_where);
-             
-    
-    
+
+
+
             $data_member_log = array(
                 'process_date' => $data_member['end_date'],
                 'is_log_pending' => 0
                 //'note' => $note 
             );
             $member_log_where = array(
-                 
+
                 'manpower_id' => $manpower_id,
                 'in_out' => 2,
                 'process_id' => 8,
@@ -479,27 +502,27 @@ class ManpowerTransfer extends MY_Controller
                 'is_log_pending' => 1
                 //'note' => $note 
             );
- 
-    
-            $this->site->updateData('memberlog', $data_member_log,$member_log_where);
-    
-            
+
+
+            $this->site->updateData('memberlog', $data_member_log, $member_log_where);
+
+
             $manpower_update_arr['is_pending'] = 0;
             $manpower_update_arr['is_studentship_pending'] = 0;
             $manpower_update_arr['thana_code'] = '';
             $manpower_update_arr['orgstatus_id'] = NULL;
             $manpower_update_arr['studentlife'] = 2;
-            
-            
+
+
             $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpower_id));
-    
-    
-            
-           // $this->site->updateData('associate', $asso, array('is_associate_now' => 1, 'branch' => $manpower->branch, 'manpower_id' => $manpowerid));
+
+
+
+            // $this->site->updateData('associate', $asso, array('is_associate_now' => 1, 'branch' => $manpower->branch, 'manpower_id' => $manpowerid));
 
         }
-             
-         
+
+
 
 
         $this->session->set_flashdata('message', 'Approved successfully.');
@@ -520,7 +543,7 @@ class ManpowerTransfer extends MY_Controller
 
 
         $is_changeable = $this->site->check_confirm($member_info->branch, date('Y-m-d'));
-         
+
 
         if ($is_changeable == false) {
             $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
@@ -535,10 +558,10 @@ class ManpowerTransfer extends MY_Controller
         }
 
 
-        if ($member_info->orgstatus_id == 1){
-              
+        if ($member_info->orgstatus_id == 1) {
+
             $member_log_where = array(
-                 
+
                 'manpower_id' => $manpower_id,
                 'in_out' => 2,
                 'process_id' => 8,
@@ -549,21 +572,17 @@ class ManpowerTransfer extends MY_Controller
 
             $this->site->delete('memberlog', $member_log_where);
 
-    
+
             $manpower_update_arr['is_pending'] = 0;
             $manpower_update_arr['is_studentship_pending'] = 0;
-           
+
             $manpower_update_arr['studentlife'] = 1;
-            
-            
+
+
             $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpower_id));
-    
-    
-            
-           
         }
-             
-         
+
+
 
 
         $this->session->set_flashdata('message', 'Cancelled successfully');

@@ -153,7 +153,7 @@ class Welcome extends MY_Controller
         $this->page_construct('mancomminglist', $meta, $this->data);
     }
 
-    public function studentshippending($branch_id = NULL)
+    public function memberpending($branch_id = NULL)
     {
 
         // $this->sma->print_arrays(111);
@@ -196,7 +196,7 @@ class Welcome extends MY_Controller
         $bc = array(array('link' => '#', 'page' => lang('dashboard')));
         $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);
         //$this->sma->print_arrays($this->data);
-        $this->page_construct('studentshippending', $meta, $this->data);
+        $this->page_construct('memberpending', $meta, $this->data);
     }
     
 

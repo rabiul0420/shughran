@@ -440,7 +440,7 @@ class Manpower extends MY_Controller
         );
     }
 
-    public function newName($field,$in_out = null)
+    public function newName($field, $in_out = null)
     {
 
 
@@ -448,13 +448,13 @@ class Manpower extends MY_Controller
         switch ($field) {
 
             case 'barnch_id_to_from':
-                $field = ($in_out == 1) ? 'শাখা হতে' :'স্থানান্তরিত শাখা' ;
+                $field = ($in_out == 1) ? 'শাখা হতে' : 'স্থানান্তরিত শাখা';
                 break;
             case 'membercode':
                 $field = 'আইডি';
                 break;
             case 'name':
-                $field = 'নাম'; 
+                $field = 'নাম';
                 break;
             case 'branch_name':
                 $field = 'শাখা কোড';
@@ -544,14 +544,14 @@ class Manpower extends MY_Controller
                 $field = 'উপজেলা/থানা';
                 break;
             case 'upazilla_name':
-                    $field = 'উপজেলা/থানা';
-                    break;
+                $field = 'উপজেলা/থানা';
+                break;
             case 'start_date':
-                    $field = 'তারিখ';
-                    break;
+                $field = 'তারিখ';
+                break;
             case 'note':
-                    $field = 'নোট';
-                    break;
+                $field = 'নোট';
+                break;
 
             default:
                 $field = $field;
@@ -561,7 +561,7 @@ class Manpower extends MY_Controller
     }
 
 
-    public function sheetcellValue($branch = null, $field_arr = null, $data = null, $process_Title = null,$in_out = null)
+    public function sheetcellValue($branch = null, $field_arr = null, $data = null, $process_Title = null, $in_out = null)
     {
         $style = array(
             'alignment' => array(
@@ -585,7 +585,7 @@ class Manpower extends MY_Controller
         $exColh = 'B';
 
         foreach ($field_arr as $field) {
-            $newName = $this->newName($field,$in_out);
+            $newName = $this->newName($field, $in_out);
             $this->excel->getActiveSheet()->SetCellValue($exColh . '6', $newName);
             $this->excel->getActiveSheet()->getColumnDimension($exColh)->setWidth(20);
             $exColh++;
@@ -603,7 +603,7 @@ class Manpower extends MY_Controller
 
         //  $this->sma->print_arrays($data); 
 
-        foreach ($data as $key => $data_row) {           
+        foreach ($data as $key => $data_row) {
 
 
             $this->excel->getActiveSheet()->SetCellValue('A' . $row, $key + 1);
@@ -615,7 +615,7 @@ class Manpower extends MY_Controller
                 if ($field == 'institution_type_child') // getvalue($value,$array, $field)
                     $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $this->getvalue($data_row->institution_type_child, $institution_type, 'institution_type'));
                 else
-                    $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $field == 'note' ? strip_tags( $data_row->{$field}) :  $data_row->{$field}   );
+                    $this->excel->getActiveSheet()->SetCellValue($exCol . $row, $field == 'note' ? strip_tags($data_row->{$field}) :  $data_row->{$field});
 
                 $this->excel->getActiveSheet()->getStyle($exCol . $row)->applyFromArray($style);
 
@@ -1655,30 +1655,147 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                     $this->session->set_flashdata('message', 'Notification for transfer has been sent');
 
                     admin_redirect("manpower/member");
-                } else if ($process_id == 8) {
+                } else if (in_array($process_id, array(8, 11, 14))) {
 
                     $is_changeable_2 = $this->site->check_confirm($newbranchid, date('Y-m-d'));
 
-                    if ($is_changeable_2 == false) {
-                        $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
-                        redirect($_SERVER["HTTP_REFERER"]);
+                    // if ($is_changeable_2 == false) {
+                    //     $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
+                    //     redirect($_SERVER["HTTP_REFERER"]);
+                    // }
+                    //11 14
+
+                    $update_8_11_14 = array();
+                    // if ($this->input->post('sessionyear')) {
+                    //     $update_8['sessionyear'] = $this->input->post('sessionyear');
+                    // }
+                    if ($this->input->post('institution_type')) {
+                        $update_8_11_14['institution_type'] = $this->input->post('institution_type');
                     }
 
-                    
-                    $update_8 = array();
+
+                    if ($this->input->post('caretaker_contact_status')) {
+                        $update_8_11_14['caretaker_contact_status'] = $this->input->post('caretaker_contact_status');
+                    }
+
+                    if ($this->input->post('masters_complete_status')) {
+                        $update_8_11_14['masters_complete_status'] = $this->input->post('masters_complete_status');
+                    }
+
+
+
+                    if ($this->input->post('prossion_target_id')) {
+                        $prossion_target = $this->site->getcolumn('profession_target', 'name', array('id' => $this->input->post('prossion_target_id')), 'id desc', 1, 0);
+                        $update_8_11_14['prossion_target_id'] = $this->input->post('prossion_target_id');
+                        $update_8_11_14['prossion_target'] = $prossion_target;
+                    }
+
+                    if ($this->input->post('prossion_target_sub_it')) {
+                        $prossion_target_sub = $this->site->getcolumn('profession_target', 'name', array('id' => $this->input->post('prossion_target_sub_it')), 'id desc', 1, 0);
+                        $update_8_11_14['prossion_target_sub_it'] = $this->input->post('prossion_target_sub_it');
+                        $update_8_11_14['prossion_target_sub'] = $prossion_target_sub;
+                    }
+
                     if ($this->input->post('sessionyear')) {
-                        $update_8['sessionyear'] = $this->input->post('sessionyear');
+                        $update_8_11_14['sessionyear'] = $this->input->post('sessionyear');
+                    }
+
+                    if ($this->input->post('responsibility_id')) {
+                        $update_8_11_14['responsibility_id'] = $this->input->post('responsibility_id');
+                    }
+
+                    if ($this->input->post('studentlife')) {
+                        $update_8_11_14['studentlife'] = $this->input->post('studentlife');
+                    }
+
+                    if ($this->input->post('education')) {
+                        $update_8_11_14['education'] = $this->input->post('education');
+                    }
+
+                    if ($this->input->post('district')) {
+                        $update_8_11_14['district'] = $this->input->post('district');
                     }
                     if ($this->input->post('institution_type')) {
-                        $update_8['institution_type'] = $this->input->post('institution_type');
+                        $update_8_11_14['institution_type'] = $this->input->post('institution_type');
                     }
-                    $update_8['is_pending'] = 1;
-                    $update_8['is_studentship_pending'] = 1;
-                    
-                    
-                    $this->manpower_model->manpowerUpdate('manpower', $update_8, array('id' => $manpowerid));
+                    if ($this->input->post('subject')) {
+                        $update_8_11_14['subject'] = $this->input->post('subject');
+                    }
+                    if ($this->input->post('education_institution')) {
+                        $update_8_11_14['education_institution'] = $this->input->post('education_institution');
+                    }
+                    if ($this->input->post('is_forum')) {
+                        $update_8_11_14['is_forum'] = $this->input->post('is_forum');
+                    }
+                    if ($this->input->post('current_profession')) {
+                        $update_8_11_14['current_profession'] = $this->input->post('current_profession');
+                    }
+                    if ($this->input->post('orgstatus_at_forum')) {
+                        $update_8_11_14['orgstatus_at_forum'] = $this->input->post('orgstatus_at_forum');
+                    }
+                    if ($this->input->post('education_qualification')) {
+                        $update_8_11_14['education_qualification'] = $this->input->post('education_qualification');
+                    }
+                    if ($this->input->post('type_of_profession')) {
+                        $update_8_11_14['type_of_profession'] = $this->input->post('type_of_profession');
+                    }
+                    if ($this->input->post('type_higher_education')) {
+                        $update_8_11_14['type_higher_education'] = $this->input->post('type_higher_education');
+                    }
+                    if ($this->input->post('mobile')) {
+                        $update_8_11_14['mobile'] = $this->input->post('mobile');
+                    }
+                    if ($this->input->post('opposition')) {
+                        $update_8_11_14['opposition'] = $this->input->post('opposition');
+                    }
+                    if ($this->input->post('date_death')) {
+                        $update_8_11_14['date_death'] = $this->sma->fsd($this->input->post('date_death'));
+                    }
+                    if ($this->input->post('higher_education_institution')) {
+                        $update_8_11_14['higher_education_institution'] = $this->input->post('higher_education_institution');
+                    }
+                    if ($this->input->post('email')) {
+                        $update_8_11_14['email'] = $this->input->post('email');
+                    }
+                    if ($this->input->post('foreign_country')) {
+                        $update_8_11_14['foreign_country'] = $this->input->post('foreign_country');
+                    }
+                    if ($this->input->post('foreign_address')) {
+                        $update_8_11_14['foreign_address'] = $this->input->post('foreign_address');
+                    }
+                    if ($this->input->post('how_death')) {
+                        $update_8_11_14['how_death'] = $this->input->post('how_death');
+                    }
+                    if ($this->input->post('myr_serial')) {
+                        $update_8_11_14['myr_serial'] = $this->input->post('myr_serial');
+                    }
+                    if ($this->input->post('note')) {
+                        $update_8_11_14['note'] = $this->input->post('note');
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    $update_8_11_14['is_pending'] = 1;
+                    $update_8_11_14['is_studentship_pending'] = 1;
+
+
+                    $this->manpower_model->manpowerUpdate('manpower', $update_8_11_14, array('id' => $manpowerid));
                     $data_member_log['is_log_pending'] = 1;
-                     
+
                     $this->session->set_flashdata('message', 'Please wait for CP\'s decision.');
 
                     $this->manpower_model->insertData('memberlog', $data_member_log);
@@ -1799,8 +1916,16 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                 }
 
 
-                if (in_array($processid, array(9, 10, 11, 12, 14))) {
+                if (in_array($processid, array(9, 10,  12))) { //11 14 8 
                     $manpower_update_arr['studentlife'] = 2;
+                }
+
+                if ($this->input->post('caretaker_contact_status')) {
+                    $manpower_update_arr['caretaker_contact_status'] = $this->input->post('caretaker_contact_status');
+                }
+
+                if ($this->input->post('masters_complete_status')) {
+                    $manpower_update_arr['masters_complete_status'] = $this->input->post('masters_complete_status');
                 }
 
                 $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpowerid));
@@ -2808,7 +2933,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         $this->db
             ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,thana_code,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, barnch_id_to_from,  {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,CASE studentlife WHEN 1 THEN 'Running'  WHEN 2 THEN 'Completed' END as studentlife,education,associatecode,member_oath_date,associate_oath_date,{$this->db->dbprefix('district')}.name as district,  upazilla.name AS upazilla_name, {$this->db->dbprefix('institution')}.institution_type,subject,prossion_target,prossion_target_sub,education_institution,CASE is_forum WHEN 1 THEN 'Yes' ELSE 'No' END as is_forum,current_profession,orgstatus_at_forum,education_qualification,type_of_profession,type_higher_education,mobile,opposition,date_death,higher_education_institution,{$this->db->dbprefix('manpower')}.email,{$this->db->dbprefix('countries')}.name as foreign_country,foreign_address,myr_serial,how_death", FALSE)
-            
+
             ->from('memberlog')
             ->join('manpower', 'manpower.id=memberlog.manpower_id', 'left')
             ->where('memberlog.process_id', $process_id)->where('memberlog.in_out', 1)
@@ -2883,8 +3008,8 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                         'prossion_target',
                         'prossion_target_sub',
                         'district',
-                        
-                       
+
+
                     );
 
                     break;
@@ -2903,10 +3028,10 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-            
-            
-            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title,$in_out);
-            
+
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
+
             // $this->sma->print_arrays($field_arr);
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'member_increase_report_' . str_replace(" ", "", $process->process);
@@ -3100,7 +3225,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
             $in_out = null;
 
-            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title,$in_out);
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
 
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'member_decrease_report' . str_replace(" ", "", $process_name);
@@ -4302,7 +4427,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
             $in_out = null;
 
-            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title,$in_out);
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
 
             //    $filename = 'associate_list'.($branch ? '_'.$branch: '');
 
@@ -4365,7 +4490,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $data = NULL;
         }
 
-        
+
         // $this->sma->print_arrays($data);
 
 
@@ -4395,10 +4520,10 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
             $in_out = null;
 
-          
 
 
-            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title,$in_out);
+
+            $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
 
 
             $filename = (isset($branch->code) ? $branch->code : '') . 'postpone_report';
