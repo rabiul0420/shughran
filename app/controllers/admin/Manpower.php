@@ -1657,7 +1657,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                     admin_redirect("manpower/member");
                 } else if (in_array($process_id, array(8, 11, 14))) {
 
-                    $is_changeable_2 = $this->site->check_confirm($newbranchid, date('Y-m-d'));
+                   // $is_changeable_2 = $this->site->check_confirm($newbranchid, date('Y-m-d'));
 
                     // if ($is_changeable_2 == false) {
                     //     $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');

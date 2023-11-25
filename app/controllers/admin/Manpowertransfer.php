@@ -282,6 +282,83 @@ class ManpowerTransfer extends MY_Controller
 
 
 
+
+    function getMembercandidatePendingList($branch_id = NULL)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            // $user = $this->site->getUser();
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
+
+        $accept = "<a href='#' class='tip po' title='<b>Approve</b>' data-content=\"<p>"
+            . lang('r_u_sure') . "</p><a class='btn btn-danger' id='a__$1' href='" . admin_url('manpowertransfer/candidatependingaccept/$1') . "'>"
+            . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-check\"></i> "
+            . 'Accept' . "</a>";
+
+        $cancel = "<a href='#' class='tip po' title='<b>Cancel</b>' data-content=\"<p>"
+            . lang('r_u_sure') . "</p><a class='btn btn-danger' id='a__$1' href='" . admin_url('manpowertransfer/candidatependingcancel/$1') . "'>"
+            . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i> "
+            . 'Cancel' . "</a>";
+
+        $action = '<div class="text-center"><div class="btn-group text-left">'
+            . '<button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">'
+            . lang('actions') . ' <span class="caret"></span></button>
+        <ul class="dropdown-menu pull-right" role="menu">
+             <li>' . $accept . '</li>';
+
+        $action .= '<li class="divider"></li>
+            <li>' . $cancel . '</li>
+            </ul>
+        </div></div>';
+
+
+        $this->load->library('datatables');
+        //is_studentship_pending  => waiting for approval stdend, job at abroad, higher education
+        if ($branch_id) {
+            $this->datatables
+                ->select("manpower.id as id, t5.process,  t1.name as branch,{$this->db->dbprefix('manpower')}.associatecode as associatecode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
+                WHEN t3.process_id = 8 THEN  sma_manpower.note
+                WHEN t3.process_id = 11 THEN  CONCAT(COALESCE(sma_manpower.type_higher_education) ,', ' ,  t4.name)
+                WHEN t3.process_id = 14 THEN  sma_manpower.note 
+               END
+               note ,manpower.caretaker_contact_status", FALSE)
+                ->join('branches as t1', 't1.id=manpower.branch', 'left')
+                ->join('responsibilities as t2', 't2.id=manpower.responsibility_id', 'left')
+                ->join('member_candidatelog as t3', 't3.manpower_id=manpower.id', 'left')
+                ->join('countries as t4', 't4.id=manpower.foreign_country', 'left')
+                ->join('process as t5', 't5.id=t3.process_id', 'left')
+                ->from('manpower')
+                ->where('manpower.branch', $branch_id)
+                ->where('is_studentship_pending', 1)
+                ->where('is_log_pending', 1);
+        } else {
+            $this->datatables
+                ->select("manpower.id as id,t5.process, t1.name as branch,{$this->db->dbprefix('manpower')}.associatecode as associatecode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
+                WHEN t3.process_id = 8 THEN  sma_manpower.note
+                WHEN t3.process_id = 11 THEN  CONCAT(COALESCE(sma_manpower.type_higher_education) ,', ' ,  t4.name)
+                WHEN t3.process_id = 14 THEN  sma_manpower.note 
+               END
+               note ,manpower.caretaker_contact_status", FALSE)
+                ->join('branches as t1', 't1.id=manpower.branch', 'left')
+                ->join('responsibilities as t2', 't2.id=manpower.responsibility_id', 'left')
+                ->join('member_candidatelog as t3', 't3.manpower_id=manpower.id', 'left')
+                ->join('countries as t4', 't4.id=manpower.foreign_country', 'left')
+                ->join('process as t5', 't5.id=t3.process_id', 'left')
+                ->from('manpower')
+                ->where('is_studentship_pending', 1)
+                ->where('is_log_pending', 1);
+        }
+
+        $this->datatables->add_column("Actions", $action, "id");
+
+        echo $this->datatables->generate();
+    }
+
+
+
+
     function getListPending($branch_id = NULL)
     {
 
@@ -497,7 +574,7 @@ class ManpowerTransfer extends MY_Controller
 
                 'manpower_id' => $manpower_id,
                 'in_out' => 2,
-                'process_id' => 8,
+                //'process_id' => 8,
                 'branch' => $branch_id,
                 'is_log_pending' => 1
                 //'note' => $note 
@@ -564,7 +641,7 @@ class ManpowerTransfer extends MY_Controller
 
                 'manpower_id' => $manpower_id,
                 'in_out' => 2,
-                'process_id' => 8,
+                //'process_id' => 8,
                 'branch' => $branch_id,
                 'is_log_pending' => 1
                 //'note' => $note 
@@ -588,6 +665,178 @@ class ManpowerTransfer extends MY_Controller
         $this->session->set_flashdata('message', 'Cancelled successfully');
         redirect($_SERVER["HTTP_REFERER"]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function candidatependingaccept($manpower_id = null)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+        $membercandidate_info = $this->site->getByID('manpower', 'id', $manpower_id);
+
+        $branch_id =   $membercandidate_info->branch;
+
+
+
+
+
+        $is_changeable = $this->site->check_confirm($membercandidate_info->branch, date('Y-m-d'));
+
+
+        if ($is_changeable == false) {
+            $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
+            redirect($_SERVER["HTTP_REFERER"]);
+        }
+
+
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('');
+        }
+
+
+        if ($membercandidate_info->orgstatus_id == 12) {
+
+
+            $data_member = array(
+                'end_date' => date('Y-m-d', strtotime('-1 day', time())),
+                'is_member_now' => 2
+            );
+            $member_where = array(
+                'manpower_id' => $manpower_id,
+                'branch' => $branch_id
+            );
+            $this->manpower_model->manpowerUpdate('member', $data_member, $member_where);
+
+
+
+            $data_member_log = array(
+                'process_date' => $data_member['end_date'],
+                'is_log_pending' => 0
+                //'note' => $note 
+            );
+            $member_log_where = array(
+
+                'manpower_id' => $manpower_id,
+                'in_out' => 2,
+                //'process_id' => 8,
+                'branch' => $branch_id,
+                'is_log_pending' => 1
+                //'note' => $note 
+            );
+
+
+            $this->site->updateData('memberlog', $data_member_log, $member_log_where);
+
+
+            $manpower_update_arr['is_pending'] = 0;
+            $manpower_update_arr['is_studentship_pending'] = 0;
+            $manpower_update_arr['thana_code'] = '';
+            $manpower_update_arr['orgstatus_id'] = NULL;
+            $manpower_update_arr['studentlife'] = 2;
+
+
+            $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpower_id));
+
+
+
+            // $this->site->updateData('associate', $asso, array('is_associate_now' => 1, 'branch' => $manpower->branch, 'manpower_id' => $manpowerid));
+
+        }
+
+
+
+
+        $this->session->set_flashdata('message', 'Approved successfully.');
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+
+    function candidatependingcancel($manpower_id = null)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+        $membercandidate_info = $this->site->getByID('manpower', 'id', $manpower_id);
+
+        $branch_id =   $membercandidate_info->branch;
+
+
+
+
+
+        $is_changeable = $this->site->check_confirm($membercandidate_info->branch, date('Y-m-d'));
+
+
+        if ($is_changeable == false) {
+            $this->session->set_flashdata('error', 'Report has been confirmed!!! You can\'t update/change info.');
+            redirect($_SERVER["HTTP_REFERER"]);
+        }
+
+
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('');
+        }
+
+
+        if ($membercandidate_info->orgstatus_id == 12) {
+
+            $membercandidate_log_where = array(
+
+                'manpower_id' => $manpower_id,
+                'in_out' => 2,
+                //'process_id' => 8,
+                'branch' => $branch_id,
+                'is_log_pending' => 1
+                //'note' => $note 
+            );
+
+            $this->site->delete('member_candidatelog', $membercandidate_log_where);
+
+
+            $manpower_update_arr['is_pending'] = 0;
+            $manpower_update_arr['is_studentship_pending'] = 0;
+
+            $manpower_update_arr['studentlife'] = 1;
+
+
+            $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpower_id));
+        }
+
+
+
+
+        $this->session->set_flashdata('message', 'Cancelled successfully');
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+
+
 
     function accept($transfer_id = NULL, $manpower_id = null)
     {

@@ -37,7 +37,12 @@
                                     </a>
                                 </li>
 
-                                
+                                <li class="mm_transfer">
+                                    <a href="<?= admin_url('membercandidatepending') ?>">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span class="text">সাথীপ্রার্থী ঘাটতি পেন্ডিং তালিকা  <?=isset($membercandidatepending) ? '('.$membercandidatepending.')': ''?></span>
+                                    </a>
+                                </li>
 
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('manpowertransfer/add') ?>">

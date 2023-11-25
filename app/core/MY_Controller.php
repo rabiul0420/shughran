@@ -161,6 +161,9 @@ class MY_Controller extends CI_Controller
         $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
         $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
         $meta['manpowerstdout'] = $this->getstdpendinglist();
+        $meta['membercandidatepending'] = $this->getmembercandidatependinglist();
+
+        
         }
 
 
@@ -545,12 +548,12 @@ class MY_Controller extends CI_Controller
         if ($branch_id) {
             $this->db
                 ->select("COUNT({$this->db->dbprefix('manpower')}.id) as total_pending", FALSE)
-                ->from('manpower')->where('manpower.branch', $branch_id)->where('is_studentship_pending', 1);
+                ->from('manpower')->where('manpower.branch', $branch_id)->where('orgstatus_id', 1)->where('is_studentship_pending', 1);
             $q = $this->db->get();
         } else {
             $this->db
                 ->select("COUNT({$this->db->dbprefix('manpower')}.id) as total_pending", FALSE)
-                ->from('manpower')->where('is_studentship_pending', 1);
+                ->from('manpower')->where('orgstatus_id', 1)->where('is_studentship_pending', 1);
             $q = $this->db->get();
         }
 
@@ -563,7 +566,38 @@ class MY_Controller extends CI_Controller
     }
 
 
+    function getmembercandidatependinglist()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
 
 
+        if ($branch_id) {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower')}.id) as total_pending", FALSE)
+                ->from('manpower')->where('manpower.branch', $branch_id)->where('orgstatus_id', 12)->where('is_studentship_pending', 1);
+            $q = $this->db->get();
+        } else {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower')}.id) as total_pending", FALSE)
+                ->from('manpower')->where('orgstatus_id', 12)->where('is_studentship_pending', 1);
+            $q = $this->db->get();
+        }
+
+        if ($q->num_rows() > 0) {
+            $result =  $q->result();
+            return $result[0]->total_pending;
+        } else {
+            return 0;
+        }
+    }
+
+    
 
 }
