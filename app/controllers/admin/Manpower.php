@@ -1654,7 +1654,9 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
                     $this->session->set_flashdata('message', 'Notification for transfer has been sent');
 
-                    admin_redirect("manpower/member");
+                    //admin_redirect("manpower/member");
+                    admin_redirect("manpower/member".( $this->session->userdata('branch_id') ? '/'.$this->session->userdata('branch_id') : ''));
+
                 } else if (in_array($process_id, array(8, 11, 14))) {
 
                    // $is_changeable_2 = $this->site->check_confirm($newbranchid, date('Y-m-d'));
@@ -1796,10 +1798,16 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
                     $this->manpower_model->manpowerUpdate('manpower', $update_8_11_14, array('id' => $manpowerid));
                     $data_member_log['is_log_pending'] = 1;
 
-                    $this->session->set_flashdata('message', 'Please wait for CP\'s decision.');
+                    $this->session->set_flashdata('message', 'কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
 
                     $this->manpower_model->insertData('memberlog', $data_member_log);
-                    admin_redirect("manpower/member");
+                    
+                    
+                    
+                    admin_redirect("manpower/member".( $this->session->userdata('branch_id') ? '/'.$this->session->userdata('branch_id') : ''));
+
+
+
                 }
             } elseif ($this->input->post('memberdecrease')) {
                 $this->session->set_flashdata('error', validation_errors());

@@ -155,15 +155,14 @@ class MY_Controller extends CI_Controller
         // $meta['shop_payment_alerts'] = SHOP ? $this->site->get_shop_payment_alerts() : 0;
 
 
-        if($left_panel == 'leftmenu/left_panel'){
-        $meta['pending_list'] = $this->getlist();
-        $meta['manpowertransferout'] = $this->manpowertransferout();
-        $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
-        $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
-        $meta['manpowerstdout'] = $this->getstdpendinglist();
-        $meta['membercandidatepending'] = $this->getmembercandidatependinglist();
-
-        
+        if ($left_panel == 'leftmenu/left_panel') {
+            $meta['pending_list'] = $this->getlist();
+            $meta['manpowertransferout'] = $this->manpowertransferout();
+            $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
+            $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
+            $meta['manpowerstdout'] = $this->getstdpendinglist();
+            $meta['membercandidatepending'] = $this->getmembercandidatependinglist();
+            $meta['thanapendingcount'] = $this->getpendingthanacount();
         }
 
 
@@ -257,11 +256,11 @@ class MY_Controller extends CI_Controller
         // $meta['shop_payment_alerts'] = SHOP ? $this->site->get_shop_payment_alerts() : 0;
 
 
-        if($left_panel == 'leftmenu/left_panel'){
-        $meta['pending_list'] = $this->getlist();
-        $meta['manpowertransferout'] = $this->manpowertransferout();
-        $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
-        $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
+        if ($left_panel == 'leftmenu/left_panel') {
+            $meta['pending_list'] = $this->getlist();
+            $meta['manpowertransferout'] = $this->manpowertransferout();
+            $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
+            $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
         }
 
 
@@ -566,6 +565,46 @@ class MY_Controller extends CI_Controller
     }
 
 
+
+    function getpendingthanacount()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
+
+
+
+
+
+
+        if ($branch_id) {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('thana')}.id) as total_pending", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana')->where('thana.branch_id', $branch_id)->where('is_pending', 1);
+            $q = $this->db->get();
+        } else {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('thana')}.id) as total_pending", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana')->where('is_pending', 1);
+            $q = $this->db->get();
+        }
+
+        if ($q->num_rows() > 0) {
+            $result =  $q->result();
+            return $result[0]->total_pending;
+        } else {
+            return 0;
+        }
+    }
+
+
     function getmembercandidatependinglist()
     {
 
@@ -597,7 +636,4 @@ class MY_Controller extends CI_Controller
             return 0;
         }
     }
-
-    
-
 }

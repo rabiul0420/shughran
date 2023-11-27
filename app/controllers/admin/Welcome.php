@@ -236,8 +236,8 @@ class Welcome extends MY_Controller
 
 
  
-        $bc = array(array('link' => '#', 'page' => lang('সাথীপ্রার্থী ঘাটতি পেন্ডিং তালিকা')));
-        $meta = array('page_title' => lang('সাথীপ্রার্থী ঘাটতি পেন্ডিং তালিকা'), 'bc' => $bc);
+        $bc = array(array('link' => '#', 'page' => lang('সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা')));
+        $meta = array('page_title' => lang('সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা'), 'bc' => $bc);
         //$this->sma->print_arrays($this->data);
         $this->page_construct('membercandidatepending', $meta, $this->data);
     }

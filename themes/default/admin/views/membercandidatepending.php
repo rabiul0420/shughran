@@ -124,7 +124,7 @@
         } ?>
         <div class="box">
             <div class="box-header">
-                <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সাথীপ্রার্থী ঘাটতি পেন্ডিং তালিকা' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
                 </h2>
 
                 <div class="box-icon">

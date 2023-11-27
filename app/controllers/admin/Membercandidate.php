@@ -821,8 +821,9 @@ class Membercandidate extends MY_Controller
                     $this->manpower_model->insertData('manpower_transfer', $data_newbranch_member_log);
 
                     $this->session->set_flashdata('message', 'Notification for transfer has been sent');
+                    admin_redirect("membercandidate".( $this->session->userdata('branch_id') ? '/'.$this->session->userdata('branch_id') : ''));
 
-                    admin_redirect("membercandidate");
+                    //admin_redirect("membercandidate");
                 } else if ( in_array($process_id, array( 8, 11, 14 )) ){
 
 
@@ -945,14 +946,14 @@ class Membercandidate extends MY_Controller
                     $this->manpower_model->manpowerUpdate('manpower', $update_8_11_14, array('id' => $manpowerid));
                     $data_membercandidate_log['is_log_pending'] = 1;
 
-                    $this->session->set_flashdata('message', 'Please wait for CP\'s decision.');
-
+                   
                     $this->manpower_model->insertData('member_candidatelog', $data_membercandidate_log);
 
                      
-                    $this->session->set_flashdata('message', 'Notification for transfer has been sent');
+                    $this->session->set_flashdata('message', 'সেক্রেটারি জেনারেলের সিদ্ধান্তের জন্য অপেক্ষা করুন।');
 
-                    admin_redirect("membercandidate");
+                    admin_redirect("membercandidate".( $this->session->userdata('branch_id') ? '/'.$this->session->userdata('branch_id') : ''));
+
                 }
             } elseif ($this->input->post('membercandidatedecrease')) {
                 $this->session->set_flashdata('error', validation_errors());

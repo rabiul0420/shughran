@@ -79,12 +79,12 @@ function row_status($x)
         if ($confirmreport !== false) { ?>
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Congratulations!</strong> You branch report has been confirmed!
+                <strong>জাযাকাল্লাহ, আপনার শাখার রিপোর্টটি গৃহীত হয়েছে।</strong>
             </div>
         <?php } else { ?>
             <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Not Completed!</strong> You branch report is yet to be confirmed!
+                <button type="button" class="close hidden" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>আপনার শাখার রিপোর্টটি এখনো গৃহীত হয়নি।</strong>
             </div>
     <?php }
     } ?>

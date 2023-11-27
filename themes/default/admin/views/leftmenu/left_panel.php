@@ -40,7 +40,7 @@
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('membercandidatepending') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">সাথীপ্রার্থী ঘাটতি পেন্ডিং তালিকা  <?=isset($membercandidatepending) ? '('.$membercandidatepending.')': ''?></span>
+                                        <span class="text">সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা  <?=isset($membercandidatepending) ? '('.$membercandidatepending.')': ''?></span>
                                     </a>
                                 </li>
 
@@ -67,7 +67,7 @@
 
                                 <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thana_pending')) ? 'active' : '' ?>">
                                             <a href="<?= admin_url('organization/thana_pending') ?>">
-                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা পেন্ডিং তালিকা"; ?></span>
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা পেন্ডিং তালিকা"; ?> <?=isset($thanapendingcount) ? '('.$thanapendingcount.')': ''?></span>
                                             </a>
                                         </li>
 
