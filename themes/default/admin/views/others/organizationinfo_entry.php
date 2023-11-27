@@ -19,7 +19,7 @@
 if($report_info['is_current'] || $report_info['year'] == date('Y')) {
 	if($report_info['type']=='annual'){
 		echo anchor('admin/others/organizationinfo'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষান্মাসিক '.$report_info['year']); 
-		echo  "&nbsp;|&nbsp;".anchor('admin/others/organizationinfo'.( $branch_id ? '/'.$branch_id : ''),'জুলাই-নভেম্বর\''.$report_info['year']); 
+		echo  "&nbsp;|&nbsp;".anchor('admin/others/organizationinfo'.( $branch_id ? '/'.$branch_id : ''),'জুন-নভেম্বর\''.$report_info['year']); 
 		echo "&nbsp;|&nbsp;";   echo anchor('admin/others/organizationinfo'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
 	}
 	else{
@@ -153,8 +153,11 @@ font: 18px SolaimanLipi, sans-serif;
 <td>
 <?php 
  
+ if($organizationinfo->id != 1 && $organizationinfo->id != 2 ) {
   $row_info = record_row($organizationinfo_summary,'organizationinfo_id',$organizationinfo->id);
- 
+ }
+
+
  //$prev =  sum_org($organizationinfo_summary_prev,'institutional',$organizationinfo->id); 
  //$prev2 =  sum_org($organizationinfo_summary_prev,'residential',$organizationinfo->id); 
  
@@ -162,22 +165,39 @@ font: 18px SolaimanLipi, sans-serif;
  $prev2 =  sum_orginfo($organizationinfo_summary_prev,'residential',$organizationinfo->id); 
  
  
- $increase = $row_info['institutional_increase'];
- $decrease = $row_info['institutional_decrease'];
  
- if($organizationinfo->id == 4) { 
+ if($organizationinfo->id == 1) {
+    $increase = $thanainfo_summary[0]['institutional_increase'];
+    $decrease = $thanainfo_summary[0]['institutional_decrease'];
+    $increase2 = $thanainfo_summary[0]['residential_increase'];
+    $decrease2 = $thanainfo_summary[0]['residential_decrease'];
+
+ }
+ else if($organizationinfo->id == 2) {
+
+    
+    $increase = $idealthanainfo_summary[0]['institutional_increase'];
+    $decrease = $idealthanainfo_summary[0]['institutional_decrease'];
+    $increase2 = $idealthanainfo_summary[0]['residential_increase'];
+    $decrease2 = $idealthanainfo_summary[0]['residential_decrease'];
+
+ }
+ else if($organizationinfo->id == 4) { 
 $increase = isset($unit_increase_decrease[0]['unit_increase']) ? $unit_increase_decrease[0]['unit_increase'] : 0;
 $decrease = isset($unit_increase_decrease[0]['unit_decrease']) ? $unit_increase_decrease[0]['unit_decrease'] : 0;
+$increase2 = $row_info['residential_increase'];
+ $decrease2 = $row_info['residential_decrease'];
 }
 else { 
 $increase = $row_info['institutional_increase'];
  $decrease = $row_info['institutional_decrease'];
+ $increase2 = $row_info['residential_increase'];
+ $decrease2 = $row_info['residential_decrease'];
  }
  
  
  
- $increase2 = $row_info['residential_increase'];
- $decrease2 = $row_info['residential_decrease'];
+ 
  
  
  
@@ -199,7 +219,11 @@ if($report_info['prev_record'])
 <td ><?php if($report_info['prev_record'])    echo $prev+$increase-$decrease;?></td>
 
 
-<?php  if($organizationinfo->id == 4) { ?>
+<?php if($organizationinfo->id == 1 || $organizationinfo->id == 2) { ?>
+
+<td colspan="2"><?php echo $increase;?></td>
+<td colspan="2"><?php echo $decrease;?></td>
+<?php  } else if($organizationinfo->id == 4) { ?>
 
 <td colspan="2"><?php echo $increase;?></td>
 <td colspan="2"><?php echo $decrease;?></td>
@@ -217,10 +241,22 @@ if($report_info['prev_record'])
 
 <td><?php if($report_info['prev_record'])   echo $prev2;?></td>
 <td colspan="2"><?php if($report_info['prev_record'])   echo $prev2+$increase2-$decrease2;?></td>
-<td><a href="#"  class="editable editable-click"   data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('organization/detailupdate');?>" data-name="residential_increase" data-title="Enter"><?php echo $row_info['residential_increase'];?></a>
+
+
+
+<?php if($organizationinfo->id == 1 || $organizationinfo->id == 2) { ?>
+<td><?=$increase2?></td>
+<td><?=$decrease2?></td>
+<?php  }  else {?>
+
+    <td><a href="#"  class="editable editable-click"   data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('organization/detailupdate');?>" data-name="residential_increase" data-title="Enter"><?php echo $row_info['residential_increase'];?></a>
 </td>
 <td><a href="#"  class="editable editable-click"   data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('organization/detailupdate');?>" data-name="residential_decrease" data-title="Enter"><?php echo $row_info['residential_decrease'];?></a>
 </td>
+<?php  } ?>
+
+
+
 </tr>
 <?php }?>
 </tbody>

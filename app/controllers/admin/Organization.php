@@ -3889,7 +3889,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->site->updateData('thana', array('is_pending' => 2), array('id' => $thana_id));
 
             if ($thana_info->in_out == 1)
-                $this->site->updateData('thana_ideal_log', array('is_pending' => 2, 'date' => date('Y-m-d')), array('thana_id' => $thana_id));
+                $this->site->updateData('thana_ideal_log', array('is_pending' => 2,  'date' => date('Y-m-d')), array('thana_id' => $thana_id));
             if ($thana_info->in_out == 1)
                 $this->site->insertData('thana_log', $thana_log);
 

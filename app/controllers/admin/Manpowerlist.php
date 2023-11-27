@@ -1565,8 +1565,8 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
            //  exit();
             if ($q->num_rows() > 0) {
                 foreach (($q->result()) as $row) {
-                    $row->upazila = $row->district.'_'.$row->thana_name;
-                    unset($row->thana_name);
+                   // $row->upazila = $row->district.'_'.$row->thana_name;
+                   // unset($row->thana_name);
                     $data[] = $row;
                 }
             } else {
@@ -1598,7 +1598,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                     'prossion_target_sub' ,
                     'blood_group' , 
                     'district' ,
-                    'upazila' ,
+                    'thana_name' ,
 
                     'single_digit' ,
                     'jsc_jdc' ,

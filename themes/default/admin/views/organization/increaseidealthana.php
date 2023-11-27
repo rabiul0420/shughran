@@ -101,7 +101,7 @@ if (!empty($variants)) {
                     <div class="form-group">
                         <?php echo lang('তারিখ', 'date'); ?>
                         <div class="controls">
-                            <?php echo form_input('date', '', 'class="form-control fixed_date" id="date"  readonly required="required"'); ?>
+                            <?php echo form_input('date', '', 'class="form-control fixed_date_bk tmp_date" id="date"  readonly required="required"'); ?>
                         </div>
                     </div>
 

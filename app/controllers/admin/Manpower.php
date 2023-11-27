@@ -4897,6 +4897,37 @@ FROM `sma_manpower_output` where   date BETWEEN ? AND ? ", array($report_start, 
         return '';
     }
 
+    function find_upazila_id($district, $upazila, $array, $field)
+    {
+
+
+        $district_id = null;
+
+        foreach ($array as $row) {
+
+
+            if ($district == $row->{$field}) {
+                $district_id = $row->id;
+                break;
+            }
+            
+        }
+        
+        
+        foreach ($array as $row) {
+
+
+            if ($upazila == $row->{$field} && $district_id==$row->parent_id)
+                return $row->id;
+        }
+        return '0';
+    }
+
+
+    
+
+
+
     function getvalue($value, $array, $field)
     {
 
@@ -5004,25 +5035,26 @@ FROM `sma_manpower_output` where   date BETWEEN ? AND ? ", array($report_start, 
                         'prossion_target_sub_it' => $this->find_id($value[12], $targets, 'name'),  //list
                         'blood_group' => $value[13],
                         'district' => $this->find_id($value[14], $districts, 'name'),   //list
-                        'single_digit' =>  $value[15] == 1 ? 1 : 0,
-                        'jsc_jdc' => $value[16] == 1 ? 1 : 0,
-                        'ssc_dhakil' => $value[17] == 1 ? 1 : 0,
-                        'hsc_alim' => $value[18] == 1 ? 1 : 0,
-                        'department_position' => $value[19] == 1 ? 1 : 0,
-                        'department_position_private' => $value[20] == 1 ? 1 : 0,
-                        'influential' => $value[21] == 1 ? 1 : 0,
-                        'hc_science' => $value[22] == 1 ? 1 : 0,
-                        'madrasha' => $value[23] == 1 ? 1 : 0,
-                        'medical_college' => $value[24] == 1 ? 1 : 0,
-                        'ideal_college' => $value[25] == 1 ? 1 : 0,
-                        'engineeering' => $value[26] == 1 ? 1 : 0,
-                        'agri' => $value[27] == 1 ? 1 : 0,
-                        'science' => $value[28] == 1 ? 1 : 0,
-                        'business' => $value[29] == 1 ? 1 : 0,
-                        'arts' => $value[30] == 1 ? 1 : 0
+                        'upazila' => $this->find_upazila_id($value[14],$value[15], $districts, 'name'),   //list
+                        'single_digit' =>  $value[16] == 1 ? 1 : 0,
+                        'jsc_jdc' => $value[17] == 1 ? 1 : 0,
+                        'ssc_dhakil' => $value[18] == 1 ? 1 : 0,
+                        'hsc_alim' => $value[19] == 1 ? 1 : 0,
+                        'department_position' => $value[20] == 1 ? 1 : 0,
+                        'department_position_private' => $value[21] == 1 ? 1 : 0,
+                        'influential' => $value[22] == 1 ? 1 : 0,
+                        'hc_science' => $value[23] == 1 ? 1 : 0,
+                        'madrasha' => $value[24] == 1 ? 1 : 0,
+                        'medical_college' => $value[25] == 1 ? 1 : 0,
+                        'ideal_college' => $value[26] == 1 ? 1 : 0,
+                        'engineeering' => $value[27] == 1 ? 1 : 0,
+                        'agri' => $value[28] == 1 ? 1 : 0,
+                        'science' => $value[29] == 1 ? 1 : 0,
+                        'business' => $value[30] == 1 ? 1 : 0,
+                        'arts' => $value[31] == 1 ? 1 : 0
                     );
                 }
-                //  $this->sma->print_arrays(  $final);
+                 //  $this->sma->print_arrays(  $final);
 
             }
         } elseif ($this->input->post('update_info')) {
