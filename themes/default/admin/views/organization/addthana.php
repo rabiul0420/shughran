@@ -60,6 +60,16 @@ if (!empty($variants)) {
 
                 <div class="col-md-6">
 
+
+                    <div class="form-group">
+                        <?php echo lang('তারিখ', 'date'); ?>
+                        <div class="controls">
+                            <?php echo form_input('date', '', 'class="form-control fixed_date" id="date" readonly required="required"'); ?>
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group">
                         <?= lang("সাংগঠনিক থানার নাম", "thana_name") ?>
 
@@ -70,22 +80,21 @@ if (!empty($variants)) {
 
                     <div class="form-group all">
                         <?= lang('থানা কোড', 'thana_code'); ?>
-                        
 
-                      <?php  $tc = array();
-                      $tc[''] =  'থানা কোড';
-                        for($i=1; $i<=60; $i++){
+
+                        <?php $tc = array();
+                        $tc[''] =  'থানা কোড';
+                        for ($i = 1; $i <= 60; $i++) {
                             $tc[$i] =  $i;
-
                         }
 
                         $tc[100] =  100;
 
-                    echo form_dropdown('thana_code', $tc, '', 'id="thana_code"  class="form-control select" required="required" style="width:100%;" ');
-                     ?>              
+                        echo form_dropdown('thana_code', $tc, '', 'id="thana_code"  class="form-control select" required="required" style="width:100%;" ');
+                        ?>
                     </div>
 
-                   
+
 
 
 
@@ -94,7 +103,7 @@ if (!empty($variants)) {
 
                         <?php
                         $wrt[''] = lang('select') . ' ' . lang('organization_type');
-                        foreach (['Institutional' => 'প্রাতিষ্ঠানিক', 'Residential' => 'আবাসিক'] as $key=>$type)
+                        foreach (['Institutional' => 'প্রাতিষ্ঠানিক', 'Residential' => 'আবাসিক'] as $key => $type)
                             $wrt[$key] = $type;
 
 
@@ -115,8 +124,8 @@ if (!empty($variants)) {
 
 
 
-                     
-                     
+
+
                     <div class="form-group">
                         <?= lang('কর্মী', 'worker_number'); ?>
                         <?= form_input('worker_number', set_value('worker_number', '0'), 'class="form-control tip" id="worker_number" required="required" '); ?>
@@ -139,7 +148,7 @@ if (!empty($variants)) {
                 <div class="col-md-6">
 
 
-                    
+
                     <div class="form-group">
                         <?= lang('সাংগঠনিক ওয়ার্ড সংখ্যা', 'ward_number'); ?>
                         <?= form_input('ward_number', set_value('ward_number', '0'), 'class="form-control tip" id="ward_number" required="required" '); ?>
@@ -155,12 +164,12 @@ if (!empty($variants)) {
 
                         <div class="radio">
                             <input type="radio" class="checkbox" name="is_ideal_thana" value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
-                            <label   class="padding05"><?= 'হ্যাঁ' ?></label>
+                            <label class="padding05"><?= 'হ্যাঁ' ?></label>
                         </div>
 
                         <div class="radio">
                             <input type="radio" class="checkbox" name="is_ideal_thana" value="2" <?= 2 ? 'checked="checked"' : ''; ?>>
-                            <label   class="padding05"><?= 'না ' ?></label>
+                            <label class="padding05"><?= 'না ' ?></label>
 
                         </div>
                     </div>

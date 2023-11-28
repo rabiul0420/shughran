@@ -112,6 +112,143 @@
                         </div>
 
                     <?php } ?>
+			<?php if(in_array($process->id,array(8))){ ?> 	
+				<div class="form-group">
+                                    <?= lang("বর্তমান পেশা", "current_profession"); ?>
+                                  <?= form_input('current_profession', (isset($_POST['current_profession']) ? $_POST['current_profession'] : ($manpower ? $manpower->current_profession : '')), 'class="form-control" id="current_profession" required="required"  '); ?>
+                    </div>
+					<?php } ?>
+					<?php if(in_array($process->id,array(8))){ ?> 	
+					<div class="form-group">
+                                    <?= lang("শিক্ষাগত যোগ্যতা", "education_qualification"); ?>
+                                  <?= form_input('education_qualification', (isset($_POST['education_qualification']) ? $_POST['education_qualification'] : ($manpower ? $manpower->education_qualification : '')), 'class="form-control" id="education_qualification" required="required" '); ?>
+                    </div>
+					 <?php } ?>
+		<?php if(in_array($process->id,array(8))){ ?> 	
+		<div class="form-group all">
+								<?= lang("বৃহত্তর আন্দোলনের মান", "orgstatus_at_forum") ?>
+
+
+                                <?php    $options = array(
+                                        'রুকন'         => 'রুকন',
+                                        'রুকনপ্রার্থী'           => 'রুকনপ্রার্থী',
+                                        'কর্মী'         => 'কর্মী',
+                                        'সহযোগী সদস্য'        => 'সহযোগী সদস্য',
+                                        'যুক্ত হয়নি'        => 'যুক্ত হয়নি',
+                                );
+                                ?>
+
+<?=  form_dropdown('orgstatus_at_forum', $options, (isset($_POST['orgstatus_at_forum']) ? $_POST['orgstatus_at_forum'] : ($manpower ? $manpower->orgstatus_at_forum : '')), 'class="form-control" id="orgstatus_at_forum" '  );?>
+
+								
+						 </div>
+							 <?php } ?>
+							
+						<?php if(in_array($process->id,array(14,11,8))){ ?> 		  
+							<div class="form-group all">
+								<?= lang("মোবাইল নং", "mobile") ?>
+								<?= form_input('mobile', (isset($_POST['mobile']) ? $_POST['mobile'] : ($manpower ? $manpower->mobile : '')), 'class="form-control" id="mobile" required="required"  '); ?>
+						 </div>
+						 
+						 <?php } ?>
+						 
+						<?php if(in_array($process->id,array(11))){ ?> 	
+							<div class="form-group all">
+								<?= lang("ইমেইল", "email") ?>
+								<?= form_input('email', (isset($_POST['email']) ? $_POST['email'] : ($manpower ? $manpower->email : '')), 'class="form-control" id="email" required="required" '); ?>
+						 </div>
+				   
+					<div class="form-group all">
+                        <?= lang("শিক্ষা প্রতিষ্ঠানের নাম", "higher_education_institution") ?>
+                        <?= form_input('higher_education_institution', (isset($_POST['higher_education_institution']) ? $_POST['higher_education_institution'] : ($manpower ? $manpower->higher_education_institution : '')), 'class="form-control" id="higher_education_institution" required="required" '); ?>
+                    </div>
+				  <div class="form-group all">
+                        <?= lang("উচ্চশিক্ষার ধরন", "type_higher_education") ?>
+                        <?= form_input('type_higher_education', (isset($_POST['type_higher_education']) ? $_POST['type_higher_education'] : ($manpower ? $manpower->type_higher_education : '')), 'class="form-control" id="type_higher_education" required="required" '); ?>
+                    </div>
+					<?php } ?>
+					 
+					<?php if(in_array($process->id,array(11,14))){ ?> 
+					<div class="form-group">
+                                    <?= lang("দেশের নাম ", "foreign_country"); ?>
+                                    <?php
+                                    $ct[''] = lang('select').' '.lang('country');
+                                    foreach ($countries as $country)   
+                                        $ct[$country->id] = $country->name;
+                                   
+                                    echo form_dropdown('foreign_country', $ct, ($manpower->foreign_country ? $manpower->foreign_country : ''), 'id="foreign_country"  class="form-control select" style="width:100%;" required="required" ');
+                                    ?>
+                                </div>
+							<?php } ?>
+							<?php if(in_array($process->id,array(14))){ ?> 
+								<div class="form-group all">
+							<?= lang("শহরের নাম", "foreign_address") ?>
+							<?= form_input('foreign_address', (isset($_POST['foreign_address']) ? $_POST['foreign_address'] : ($manpower ? $manpower->foreign_address : '')), 'class="form-control" id="foreign_address" required="required" '); ?>
+						</div>
+						<?php } ?>
+						
+						<?php if(in_array($process->id,array(14))){ ?> 
+						 <div class="form-group all">
+								<?= lang("পেশার ধরন", "type_of_profession") ?>
+								<?= form_input('type_of_profession', (isset($_POST['type_of_profession']) ? $_POST['type_of_profession'] : ($manpower ? $manpower->type_of_profession : '')), 'class="form-control" id="type_of_profession" required="required"  '); ?>
+							</div>
+							<?php } ?>
+							
+							<?php if(in_array($process->id,array(14,11))){ ?> 
+							 <div class="form-group all">
+								 
+							 
+								<?= lang("ফোরামে যুক্ত হয়েছেন কিনা?", "is_forum") ?> <br/>
+								 <input type="checkbox" class="checkbox" value="1" name="is_forum" id="is_forum" <?= empty($manpower->is_forum) ? '' : 'checked="checked"' ?>/>
+                       
+								
+							</div>
+							<?php } ?>
+							
+							<?php if(in_array($process->id,array(9,10))){ ?> 
+							<div class="form-group">
+                                     
+                                <?= lang( (  $process->id == 9 ? "ইন্তেকালের তারিখ" : "শাহাদাতের তারিখ"), "date_death"); ?>
+                        <?= form_input('date_death', (isset($_POST['date_death']) ? $_POST['date_death'] : ($manpower ? $manpower->date_death : '')), 'class="form-control date" id="date_death" required="required"  '); ?>
+                                </div>
+							<?php } ?>
+					 
+					
+					
+					<?php if(in_array($process->id,array(10))){ ?> 
+					<div class="form-group all">
+                        <?= lang("প্রতিপক্ষ", "opposition") ?>
+                        <?= form_input('opposition', (isset($_POST['opposition']) ? $_POST['opposition'] : ($manpower ? $manpower->opposition : '')), 'class="form-control" id="opposition" required="required" '); ?>
+                    </div>
+					<?php } ?>
+					 
+					 
+					<?php if(in_array($process->id,array(10))){ ?> 
+					<div class="form-group all">
+							<?= lang("কততম শহিদ", "myr_serial") ?>
+							<?= form_input('myr_serial', (isset($_POST['myr_serial']) ? $_POST['myr_serial'] : ($manpower ? $manpower->myr_serial : '')), 'class="form-control" id="myr_serial" required="required"  '); ?>
+						</div>
+				  
+				   <?php } ?> 	
+				  
+				  <?php if(in_array($process->id,array(9))){ ?> 
+						 <div class="form-group all">
+								<?= lang("কীভাবে", "how_death") ?>
+								<?= form_input('how_death', (isset($_POST['how_death']) ? $_POST['how_death'] : ($manpower ? $manpower->how_death : '')), 'class="form-control" id="how_death"  required="required"  '); ?>
+							</div>
+					 
+				  <?php } ?> 	
+							
+				  
+					 
+					
+					
+								
+								 
+								
+	 </div>
+                 
+ </div>
 
 
 
