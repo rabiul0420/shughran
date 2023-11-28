@@ -154,7 +154,7 @@ else {
 <td colspan="3"><?php if($report_info['prev_record'])  echo  $prev + $detailinfo[0]['work_increase_mosque'] - $detailinfo[0]['work_decrease_mosque']; ?></td>
 
 
-<td colspan="3"><?php echo $detailinfo[0]['work_increase_mosque']; ?></td>
+<td colspan="4"><?php echo $detailinfo[0]['work_increase_mosque']; ?></td>
 <td colspan="3"><?php echo $detailinfo[0]['work_decrease_mosque']; ?></td>
 <td colspan="4"><?php echo $detailinfo[0]['dars_quran']; ?></td>
 <td colspan="3"><?php echo $detailinfo[0]['dars_hadith']; ?></td>

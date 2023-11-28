@@ -230,7 +230,7 @@ class Dawat extends MY_Controller
             $this->excel->getActiveSheet()->SetCellValue('F8', 'গ্রুপ দাওয়াত');
             $this->excel->getActiveSheet()->SetCellValue('G8', 'দাওয়াতী গ্রুপ প্রেরন');
             $this->excel->getActiveSheet()->SetCellValue('H8', 'স্কুল দাওয়াতী দশক');
-            $this->excel->getActiveSheet()->SetCellValue('I8', 'মাদ্রাসা দাওয়াতী দশক');
+            $this->excel->getActiveSheet()->SetCellValue('I8', 'অনলাইন দাওয়াতি সপ্তাহ');
             $this->excel->getActiveSheet()->SetCellValue('J8', 'উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি সপ্তাহ  ');
             $this->excel->getActiveSheet()->SetCellValue('K8', 'বিশ্ববিদ্যালয় ও অনার্স কলেজ দাওয়াতি সপ্তাহ ');
             $this->excel->getActiveSheet()->SetCellValue('L8', 'দাওয়াতী পক্ষ/দশক');

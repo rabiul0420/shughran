@@ -3204,17 +3204,28 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function ideal_thana($branch_id = NULL)
     {
 
+    //  $this->sma->print_arrays("fuad");
+
+    $branch_id = $this->input->get('branch_id');
+    $this->sma->checkPermissions('index', TRUE);
+    if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+        $this->session->set_flashdata('warning', lang('access_denied'));
+        admin_redirect('organization/ideal_thana?branch_id=' . $this->session->userdata('branch_id'));
+    } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+        admin_redirect('organization/ideal_thana?branch_id=' . $this->session->userdata('branch_id'));
+    }
 
 
 
-        $this->sma->checkPermissions('index', TRUE);
 
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
+            $this->sma->print_arrays("fuad1");
             $this->session->set_flashdata('warning', lang('access_denied'));
             admin_redirect('organization/thanalist/' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            $this->sma->print_arrays("fuad2");
             admin_redirect('organization/thanalist/' . $this->session->userdata('branch_id'));
         }
 
@@ -3226,7 +3237,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $this->data['report_info'] = $report_type;
 
-
+        // $this->sma->print_arrays("fuad");
 
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -4372,12 +4383,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $branch_id = $this->input->get('branch_id');
-
         $this->sma->checkPermissions('index', TRUE);
-
-
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
-
             $this->session->set_flashdata('warning', lang('access_denied'));
             admin_redirect('organization/decreaselist_thana?branch_id=' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {

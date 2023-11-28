@@ -749,7 +749,7 @@ class Site extends CI_Model
 
 
         if ($table == 'responsibilities')
-            $this->db->order_by('priority', 'ASC');
+            $this->db->order_by('priority', 'Desc');
 
         $q = $this->db->get($table);
         if ($q->num_rows() > 0) {
