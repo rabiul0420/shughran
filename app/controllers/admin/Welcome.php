@@ -144,12 +144,11 @@ class Welcome extends MY_Controller
 
 
 
-        $lmsdate = date('Y-m-d', strtotime('first day of last month')) . ' 00:00:00';
-        $lmedate = date('Y-m-d', strtotime('last day of last month')) . ' 23:59:59';
+         
         //$this->data['lmbs'] = $this->db_model->getBestSeller($lmsdate, $lmedate);
         $bc = array(array('link' => '#', 'page' => lang('dashboard')));
         $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);
-        //$this->sma->print_arrays($this->data);
+         //$this->sma->print_arrays($this->data);
         $this->page_construct('mancomminglist', $meta, $this->data);
     }
 
