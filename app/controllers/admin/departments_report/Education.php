@@ -490,6 +490,15 @@ class Education extends MY_Controller
             $this->db->select_sum('pub_t_w_orj');
             $this->db->select_sum('pub_t_s_abe');
             $this->db->select_sum('pub_t_s_orj');
+            $this->db->select_sum('mon_t_m_abe');
+            $this->db->select_sum('mon_t_m_orj');
+            $this->db->select_sum('mon_t_a_abe');
+            $this->db->select_sum('mon_t_a_orj');
+            $this->db->select_sum('mon_t_w_abe');
+            $this->db->select_sum('mon_t_w_orj');
+            $this->db->select_sum('mon_t_s_abe');
+            $this->db->select_sum('mon_t_s_orj');
+    
 
             $this->db->select_sum('pri_t_m_abe');
             $this->db->select_sum('pri_t_m_orj');

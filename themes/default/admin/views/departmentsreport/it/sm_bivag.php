@@ -7,27 +7,27 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'তথ্যপ্রযুক্তি বিভাগ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'সোশ্যাল মিডিয়া বিভাগ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
                 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php
 if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
     if ($report_info['type'] == 'annual') {
-        echo anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষান্মাসিক ' . $report_info['year']);
-        echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : ''), 'জুলাই-নভেম্বর\'' . $report_info['year']);
+        echo anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষান্মাসিক ' . $report_info['year']);
+        echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : ''), 'জুলাই-নভেম্বর\'' . $report_info['year']);
         echo "&nbsp;|&nbsp;";
-        echo anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
+        echo anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
     } else {
-        echo anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : ''), 'ষান্মাসিক ' . $report_info['year']);
-        echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
+        echo anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : ''), 'ষান্মাসিক ' . $report_info['year']);
+        echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
     }
 } else {
 
     if ($report_info['type'] == 'annual') {
-        echo    anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
+        echo    anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
     } else {
 
-        echo   anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষান্মাসিক ' . $report_info['year']);
+        echo   anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষান্মাসিক ' . $report_info['year']);
     }
 }
 ?>
@@ -44,11 +44,11 @@ if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
 
         <?php
 
-        echo   ' <li>' . anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : ''), 'বর্তমান ') . ' </li>';
+        echo   ' <li>' . anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : ''), 'বর্তমান ') . ' </li>';
 
         for ($i = date('Y') - 1; $i >= 2019; $i--) {
-            echo   ' <li>' . anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
-            echo   ' <li>' . anchor('admin/departmentsreport/it-bivag' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষান্মাসিক ' . $i) . ' </li>';
+            echo   ' <li>' . anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
+            echo   ' <li>' . anchor('admin/departmentsreport/it-bivag_sm' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষান্মাসিক ' . $i) . ' </li>';
         }
         ?>
 
@@ -65,11 +65,11 @@ if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= "সকল শাখা" ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('departmentsreport/it-bivag') ?>"><i class="fa fa-building-o"></i> <?= "সকল শাখা" ?></a></li>
+                            <li><a href="<?= admin_url('departmentsreport/it-bivag_sm') ?>"><i class="fa fa-building-o"></i> <?= "সকল শাখা" ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('departmentsreport/it-bivag/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('departmentsreport/it-bivag_sm/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -1300,11 +1300,11 @@ $(document).ready(function(){
                         
 
                   </table>
-                  <table class="tg table table-header-rotated" id="testTable10">
+                  <table class="tg table table-header-rotated" id="বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রামsm">
                         <tr>
                             <td class="tg-pwj7" colspan="3"><b>বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম</b></td>
                             <td class="tg-pwj7" colspan="1">
-                                <a href="#" id='table_10' onclick="doit('xlsx','testTable10','<?php echo 'IT_বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <a href="#" id='বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রামsm' onclick="doit('xlsx','বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রামsm','<?php echo 'IT_বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>
                         </tr> 
                         <tr>
@@ -1316,55 +1316,56 @@ $(document).ready(function(){
                         <tr>
                             <td class="tg-y698">শিক্ষাশিবির (কেন্দ্র)</td>
                             <td class="tg-0pky type_1">
-                            <?php echo $shikkha_central_s=$it_training_program['shikkha_central_s'] ?>
+                                <?php echo $shikkha_central_s=$sm_training_program['shikkha_central_s'] ?>
                             </td>
-                            <td class="tg-0pky  type_2">
-                            <?php echo $shikkha_central_p=$it_training_program['shikkha_central_p'] ?>
+                            <td class="tg-0pky type_2">
+                                <?php echo $shikkha_central_p=$sm_training_program['shikkha_central_p'] ?>
                             </td>
-                            <td class="tg-0pky  type_3">
-                            <?php if($shikkha_central_s>0 && $shikkha_central_p>0)
-                            {echo ($shikkha_central_p/$shikkha_central_s);}else{echo 0;}?>
+                            <td class="tg-0pky type_3">
+                                <?php if($shikkha_central_s>0 && $shikkha_central_p>0)
+                                {echo ($shikkha_central_p/$shikkha_central_s);}else{echo 0;}?>
                             </td>
                         </tr>
                         <tr>
                             <td class="tg-y698">শিক্ষাশিবির (শাখা)</td>
                             <td class="tg-0pky type_1">
-                            <?php echo $shikkha_shakha_s=$it_training_program['shikkha_shakha_s'] ?>
+                                <?php echo $shikkha_shakha_s=$sm_training_program['shikkha_shakha_s'] ?>
                             </td>
-                            <td class="tg-0pky  type_2">
-                            <?php echo $shikkha_shakha_p=$it_training_program['shikkha_shakha_p'] ?>
+                            <td class="tg-0pky type_2">
+                                <?php echo $shikkha_shakha_p=$sm_training_program['shikkha_shakha_p'] ?>
                             </td>
-                            <td class="tg-0pky  type_3">
-                            <?php if($shikkha_shakha_s>0 && $shikkha_shakha_p>0)
-                            {echo ($shikkha_shakha_p/$shikkha_shakha_s);}else{echo 0;}?>
+                            <td class="tg-0pky type_3">
+                                <?php if($shikkha_shakha_s>0 && $shikkha_shakha_p>0)
+                                {echo ($shikkha_shakha_p/$shikkha_shakha_s);}else{echo 0;}?>
                             </td>
                         </tr>
                         <tr>
                             <td class="tg-y698">কর্মশালা (কেন্দ্র)</td>
                             <td class="tg-0pky type_1">
-                            <?php echo $kormoshala_central_s=$it_training_program['kormoshala_central_s'] ?>
+                                <?php echo $kormoshala_central_s=$sm_training_program['kormoshala_central_s'] ?>
                             </td>
-                            <td class="tg-0pky  type_2">
-                            <?php echo $kormoshala_central_p=$it_training_program['kormoshala_central_p'] ?>
+                            <td class="tg-0pky type_2">
+                                <?php echo $kormoshala_central_p=$sm_training_program['kormoshala_central_p'] ?>
                             </td>
-                            <td class="tg-0pky  type_3">
-                            <?php if($kormoshala_central_s>0 && $kormoshala_central_p>0)
-                            {echo ($kormoshala_central_p/$kormoshala_central_s);}else{echo 0;}?>
+                            <td class="tg-0pky type_3">
+                                <?php if($kormoshala_central_s>0 && $kormoshala_central_p>0)
+                                {echo ($kormoshala_central_p/$kormoshala_central_s);}else{echo 0;}?>
                             </td>
                         </tr>
                         <tr>
                             <td class="tg-y698">কর্মশালা (শাখা)</td>
                             <td class="tg-0pky type_1">
-                            <?php echo $kormoshala_shakha_s=$it_training_program['kormoshala_shakha_s'] ?>
+                                <?php echo $kormoshala_shakha_s=$sm_training_program['kormoshala_shakha_s'] ?>
                             </td>
-                            <td class="tg-0pky  type_2">
-                            <?php echo $kormoshala_shakha_p=$it_training_program['kormoshala_shakha_p'] ?>
+                            <td class="tg-0pky type_2">
+                                <?php echo $kormoshala_shakha_p=$sm_training_program['kormoshala_shakha_p'] ?>
                             </td>
-                            <td class="tg-0pky  type_3">
-                            <?php if($kormoshala_shakha_s>0 && $kormoshala_shakha_p>0)
-                            {echo ($kormoshala_shakha_p/$kormoshala_shakha_s);}else{echo 0;}?>
+                            <td class="tg-0pky type_3">
+                                <?php if($kormoshala_shakha_s>0 && $kormoshala_shakha_p>0)
+                                {echo ($kormoshala_shakha_p/$kormoshala_shakha_s);}else{echo 0;}?>
                             </td>
                         </tr>
+
                     </table>
                    
 

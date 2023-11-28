@@ -290,6 +290,10 @@ $route['admin/departmentsreport/add-science-biggan-school-magazine-circulation/(
 $route['admin/departmentsreport/it-bivag'] = 'admin/departments_report/It/it_bivag';
 $route['admin/departmentsreport/it-bivag/(:num)'] = 'admin/departments_report/It/it_bivag/$1';
 
+//SM
+$route['admin/departmentsreport/it-bivag_sm'] = 'admin/departments_report/It/it_bivag_sm';
+$route['admin/departmentsreport/it-bivag_sm/(:num)'] = 'admin/departments_report/It/it_bivag_sm/$1';
+
 //sports
 
 $route['admin/departmentsreport/sports-page-one'] = 'admin/departments_report/Sports/sports_page_one';

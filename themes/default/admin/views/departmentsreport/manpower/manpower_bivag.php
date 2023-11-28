@@ -525,6 +525,44 @@ $(document).ready(function(){
 
                         </table>
 
+                        <table class="tg table table-header-rotated" id="কোচিং">
+                            <tr>
+                            <td class="tg-pwj7" colspan="3"><b>শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য  </b></td>
+                                <td class="tg-pwj7" colspan="">
+                                    <a href="#" id='কোচিং' onclick="doit('xlsx','কোচিং','<?php echo 'Education_শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7">বিবরণ</td>
+                                <td class="tg-pwj7"> কোচিং সংখ্যা </td>
+                                <td class="tg-pwj7">ব্যাচ সংখ্যা </td>
+                                <td class="tg-pwj7"> ছাত্র সংখ্যা</td>
+
+                            </tr>
+
+                            <?php
+                            $pk = (isset($education_coaching_manob['id']))?$education_coaching_manob['id']:"";
+
+                            ?>
+                           
+
+                            <tr>
+                                <td class="tg-y698">প্রফেশনাল/জব </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $job_coaching=(isset( $education_coaching_manob['job_coaching']))? $education_coaching_manob['job_coaching']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $job_batch=(isset( $education_coaching_manob['job_batch']))? $education_coaching_manob['job_batch']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $job_student=(isset( $education_coaching_manob['job_student']))? $education_coaching_manob['job_student']:0 ?>
+                                </td>
+                            </tr>
+
+                           
+                        </table>
+
                         <table class="tg table table-header-rotated" id="মোটিভেশনাল প্রোগ্রাম">
                             <tr>
                             <td class="tg-pwj7" colspan='2'><b>মোটিভেশনাল প্রোগ্রাম (প্রফেশনাল ও একাডেমিক) </b></td>
@@ -830,43 +868,7 @@ $(document).ready(function(){
                             </tr>
 
                         </table>
-                        <table class="tg table table-header-rotated" id="কোচিং">
-                            <tr>
-                            <td class="tg-pwj7" colspan="3"><b>শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য  </b></td>
-                                <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='কোচিং' onclick="doit('xlsx','কোচিং','<?php echo 'Education_শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7">বিবরণ</td>
-                                <td class="tg-pwj7"> কোচিং সংখ্যা </td>
-                                <td class="tg-pwj7">ব্যাচ সংখ্যা </td>
-                                <td class="tg-pwj7"> ছাত্র সংখ্যা</td>
-
-                            </tr>
-
-                            <?php
-                            $pk = (isset($education_coaching_manob['id']))?$education_coaching_manob['id']:"";
-
-                            ?>
-                           
-
-                            <tr>
-                                <td class="tg-y698">প্রফেশনাল/জব </td>
-
-                                <td class="tg-0pky  type_1">
-                                <?php echo $job_coaching=(isset( $education_coaching_manob['job_coaching']))? $education_coaching_manob['job_coaching']:0 ?>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <?php echo $job_batch=(isset( $education_coaching_manob['job_batch']))? $education_coaching_manob['job_batch']:0 ?>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <?php echo $job_student=(isset( $education_coaching_manob['job_student']))? $education_coaching_manob['job_student']:0 ?>
-                                </td>
-                            </tr>
-
-                           
-                        </table>
+                       
 
                         <table class="tg table table-header-rotated" id="কেন্দ্রীয় পাঠ-পরিকল্পনা">
                             <tr>
@@ -903,72 +905,1420 @@ $(document).ready(function(){
 
                            
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable4">
+                        
+                        <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
-                                <td class="tg-pwj7" colspan="3"><b>বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম</b></td>
-                                <td class="tg-pwj7" colspan="1">
-                                    <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Human_management_বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                                </td>
-                            </tr> 
-                            <tr>
-                                <td class="tg-pwj7" rowspan=''>প্রোগ্রামের নাম</td>
-                                <td class="tg-pwj7" colspan=''> সংখ্যা </td>
-                                <td class="tg-pwj7" colspan=''>উপস্থিতি </td>
-                                <td class="tg-pwj7" colspan=''>গড়</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">শিক্ষাশিবির (কেন্দ্র)</td>
-                                <td class="tg-0pky type_1">
-                                <?php echo $shikkha_central_s=$human_management_training_program['shikkha_central_s'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                <?php echo $shikkha_central_p=$human_management_training_program['shikkha_central_p'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                <?php if($shikkha_central_s>0 && $shikkha_central_p>0)
-                                {echo ($shikkha_central_p/$shikkha_central_s);}else{echo 0;}?>
+                            <td class="tg-pwj7" colspan='17'><b>প্রফেশনাল আউটপুট-০১ (জনসেবা) </b></td>
+                                <td class="tg-pwj7" colspan="4">
+                                <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Education_প্রফেশনাল আউটপুট-০১ (জনসেবা).xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698">শিক্ষাশিবির (শাখা)</td>
-                                <td class="tg-0pky type_1">
-                                <?php echo $shikkha_shakha_s=$human_management_training_program['shikkha_shakha_s'] ?>
+                                <td class="tg-pwj7" rowspan='2'>মান</td>
+                                <td class="tg-pwj7" colspan="5">৪৫ তম জনসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">৪৪ তম জনসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">৪১ তম জনসেবা তথ্য   </td>
+                                <td class="tg-pwj7" colspan="5">৪৩ তম জনসেবা তথ্য  </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>প্রিলি উত্তীর্ণ</span></div></td>
+                                <td class="tg-pwj7 "><div><span>লিখিত উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভাইবা উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>প্রিলি উত্তীর্ণ</span></div></td>
+                                <td class="tg-pwj7 "><div><span>লিখিত উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভাইবা উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>প্রিলি উত্তীর্ণ</span></div></td>
+                                <td class="tg-pwj7 "><div><span>লিখিত উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভাইবা উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>প্রিলি উত্তীর্ণ</span></div></td>
+                                <td class="tg-pwj7 "><div><span>লিখিত উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভাইবা উত্তীর্ণ </span></div></td>
+
+                            </tr>
+
+
+
+
+                            <tr>
+                                <td class="tg-y698 type_1"> সদস্য	</td>
+                                <td class="tg-0pky  type_1">
+                                    <?php echo $m_t4_tar = $education_pro_output_1['m_t4_tar'] ?>
                                 </td>
                                 <td class="tg-0pky  type_2">
-                                <?php echo $shikkha_shakha_p=$human_management_training_program['shikkha_shakha_p'] ?>
+                                    <?php echo $m_t4_a = $education_pro_output_1['m_t4_a'] ?>
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php if($shikkha_shakha_s>0 && $shikkha_shakha_p>0)
-                                {echo ($shikkha_shakha_p/$shikkha_shakha_s);}else{echo 0;}?>
+                                    <?php echo $m_t4_pri = $education_pro_output_1['m_t4_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $m_t4_li = $education_pro_output_1['m_t4_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $m_t4_vi = $education_pro_output_1['m_t4_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $m_t1_tar = $education_pro_output_1['m_t1_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $m_t1_a = $education_pro_output_1['m_t1_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t1_pri = $education_pro_output_1['m_t1_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t1_li = $education_pro_output_1['m_t1_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t1_vi = $education_pro_output_1['m_t1_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $m_t2_tar = $education_pro_output_1['m_t2_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $m_t2_a = $education_pro_output_1['m_t2_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t2_pri = $education_pro_output_1['m_t2_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t2_li = $education_pro_output_1['m_t2_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t2_vi = $education_pro_output_1['m_t2_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $m_t3_tar = $education_pro_output_1['m_t3_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $m_t3_a = $education_pro_output_1['m_t3_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t3_pri = $education_pro_output_1['m_t3_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t3_li = $education_pro_output_1['m_t3_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t3_vi = $education_pro_output_1['m_t3_vi'] ?>
+                                </td>
+
+
+                            </tr>
+
+
+                            <tr>
+                                <td class="tg-y698">সাথী </td>
+                                <td class="tg-0pky  type_1">
+                                    <?php echo $a_t4_tar = $education_pro_output_1['a_t4_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $a_t4_a = $education_pro_output_1['a_t4_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $a_t4_pri = $education_pro_output_1['a_t4_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $a_t4_li = $education_pro_output_1['a_t4_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $a_t4_vi = $education_pro_output_1['a_t4_vi'] ?>
+                                </td>
+
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $a_t1_tar = $education_pro_output_1['a_t1_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $a_t1_a = $education_pro_output_1['a_t1_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t1_pri = $education_pro_output_1['a_t1_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t1_li = $education_pro_output_1['a_t1_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t1_vi = $education_pro_output_1['a_t1_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $a_t2_tar = $education_pro_output_1['a_t2_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $a_t2_a = $education_pro_output_1['a_t2_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t2_pri = $education_pro_output_1['a_t2_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t2_li = $education_pro_output_1['a_t2_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t2_vi = $education_pro_output_1['a_t2_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $a_t3_tar = $education_pro_output_1['a_t3_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $a_t3_a = $education_pro_output_1['a_t3_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t3_pri = $education_pro_output_1['a_t3_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t3_li = $education_pro_output_1['a_t3_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t3_vi = $education_pro_output_1['a_t3_vi'] ?>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td class="tg-y698">কর্মী </td>
+                                <td class="tg-0pky  type_1">
+                                    <?php echo $w_t4_tar = $education_pro_output_1['w_t4_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $w_t4_a = $education_pro_output_1['w_t4_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $w_t4_pri = $education_pro_output_1['w_t4_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $w_t4_li = $education_pro_output_1['w_t4_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $w_t4_vi = $education_pro_output_1['w_t4_vi'] ?>
+                                </td>
+
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $w_t1_tar = $education_pro_output_1['w_t1_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $w_t1_a = $education_pro_output_1['w_t1_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t1_pri = $education_pro_output_1['w_t1_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t1_li = $education_pro_output_1['w_t1_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t1_vi = $education_pro_output_1['w_t1_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $w_t2_tar = $education_pro_output_1['w_t2_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $w_t2_a = $education_pro_output_1['w_t2_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t2_pri = $education_pro_output_1['w_t2_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t2_li = $education_pro_output_1['w_t2_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t2_vi = $education_pro_output_1['w_t2_vi'] ?>
+                                </td2>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $w_t3_tar = $education_pro_output_1['w_t3_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $w_t3_a = $education_pro_output_1['w_t3_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t3_pri = $education_pro_output_1['w_t3_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t3_li = $education_pro_output_1['w_t3_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t3_vi = $education_pro_output_1['w_t3_vi'] ?>
+                                </td2>
+                            </tr>
+
+
+                            <tr>
+                                <td class="tg-y698">সমর্থক </td>
+                                <td class="tg-0pky  type_1">
+                                    <?php echo $s_t4_tar = $education_pro_output_1['s_t4_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $s_t4_a = $education_pro_output_1['s_t4_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $s_t4_pri = $education_pro_output_1['s_t4_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $s_t4_li = $education_pro_output_1['s_t4_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $s_t4_vi = $education_pro_output_1['s_t4_vi'] ?>
+                                </td>
+
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $s_t1_tar = $education_pro_output_1['s_t1_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $s_t1_a = $education_pro_output_1['s_t1_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t1_pri = $education_pro_output_1['s_t1_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t1_li = $education_pro_output_1['s_t1_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t1_vi = $education_pro_output_1['s_t1_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $s_t2_tar = $education_pro_output_1['s_t2_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $s_t2_a = $education_pro_output_1['s_t2_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t2_pri = $education_pro_output_1['s_t2_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t2_li = $education_pro_output_1['s_t2_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t2_vi = $education_pro_output_1['s_t2_vi'] ?>
+                                </td2>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $s_t3_tar = $education_pro_output_1['s_t3_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $s_t3_a = $education_pro_output_1['s_t3_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t3_pri = $education_pro_output_1['s_t3_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t3_li = $education_pro_output_1['s_t3_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t3_vi = $education_pro_output_1['s_t3_vi'] ?>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="tg-0pky"> মোট</td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t4_tar + $a_t4_tar + $w_t4_tar + $s_t4_tar) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t4_a + $a_t4_a + $w_t4_a + $s_t4_a) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t4_pri + $a_t4_pri + $w_t4_pri + $s_t4_pri) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t4_li + $a_t4_li + $w_t4_li + $s_t4_li) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t4_vi + $a_t4_vi + $w_t4_vi + $s_t4_vi) ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_tar + $a_t1_tar + $w_t1_tar + $s_t1_tar) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_a + $a_t1_a + $w_t1_a + $s_t1_a) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_pri + $a_t1_pri + $w_t1_pri + $s_t1_pri) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_li + $a_t1_li + $w_t1_li + $s_t1_li) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_vi + $a_t1_vi + $w_t1_vi + $s_t1_vi) ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_tar + $a_t2_tar + $w_t2_tar + $s_t2_tar) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_a + $a_t2_a + $w_t2_a + $s_t2_a) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_pri + $a_t2_pri + $w_t2_pri + $s_t2_pri) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_li + $a_t2_li + $w_t2_li + $s_t2_li) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_vi + $a_t2_vi + $w_t2_vi + $s_t2_vi) ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                <?php echo ($m_t3_tar + $a_t3_tar + $w_t3_tar + $s_t3_tar) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t3_a + $a_t3_a + $w_t3_a + $s_t3_a) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t3_pri + $a_t3_pri + $w_t3_pri + $s_t3_pri) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t3_li + $a_t3_li + $w_t3_li + $s_t3_li) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t3_vi + $a_t3_vi + $w_t3_vi + $s_t3_vi) ?>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                        <table class="tg table table-header-rotated" id="testTable2">
+                            <tr>
+                                <td class="tg-pwj7" colspan='9'><b>প্রফেশনাল আউটপুট-০২ (মানবসেবা) </b></td>
+                                <td class="tg-pwj7" colspan="2">
+                                <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Education_প্রফেশনাল আউটপুট-০২ (মানবসেবা).xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698">কর্মশালা (কেন্দ্র)</td>
-                                <td class="tg-0pky type_1">
-                                <?php echo $kormoshala_central_s=$human_management_training_program['kormoshala_central_s'] ?>
+                                <td class="tg-pwj7" rowspan="2">মান</td>
+                                <td class="tg-pwj7" colspan="5">১৭ তম মানবসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">১৬ তম মানবসেবা তথ্য  </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>প্রিলি উত্তীর্ণ</span></div></td>
+                                <td class="tg-pwj7 "><div><span>লিখিত উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভাইবা উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>প্রিলি উত্তীর্ণ</span></div></td>
+                                <td class="tg-pwj7 "><div><span>লিখিত উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভাইবা উত্তীর্ণ </span></div></td>
+
+                            </tr>
+
+
+
+
+                                     <tr>
+                                <td class="tg-y698 type_1"> সদস্য	</td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $m_t1_tar = $education_pro_output_2['m_t1_tar'] ?>
                                 </td>
                                 <td class="tg-0pky  type_2">
-                                <?php echo $kormoshala_central_p=$human_management_training_program['kormoshala_central_p'] ?>
+                                <?php echo $m_t1_a = $education_pro_output_2['m_t1_a'] ?>
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php if($kormoshala_central_s>0 && $kormoshala_central_p>0)
-                                {echo ($kormoshala_central_p/$kormoshala_central_s);}else{echo 0;}?>
+                                <?php echo $m_t1_pri = $education_pro_output_2['m_t1_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t1_li = $education_pro_output_2['m_t1_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t1_vi = $education_pro_output_2['m_t1_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $m_t2_tar = $education_pro_output_2['m_t2_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $m_t2_a = $education_pro_output_2['m_t2_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t2_pri = $education_pro_output_2['m_t2_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t2_li = $education_pro_output_2['m_t2_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $m_t2_vi = $education_pro_output_2['m_t2_vi'] ?>
+                                </td>
+
+                             
+
+
+                            </tr>
+
+
+                            <tr>
+                                <td class="tg-y698">সাথী </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $a_t1_tar = $education_pro_output_2['a_t1_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $a_t1_a = $education_pro_output_2['a_t1_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t1_pri = $education_pro_output_2['a_t1_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t1_li = $education_pro_output_2['a_t1_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t1_vi = $education_pro_output_2['a_t1_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $a_t2_tar = $education_pro_output_2['a_t2_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $a_t2_a = $education_pro_output_2['a_t2_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t2_pri = $education_pro_output_2['a_t2_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t2_li = $education_pro_output_2['a_t2_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $a_t2_vi = $education_pro_output_2['a_t2_vi'] ?>
+                                </td>
+
+                               
+
+                            </tr>
+
+
+                            <tr>
+                                <td class="tg-y698">কর্মী </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $w_t1_tar = $education_pro_output_2['w_t1_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $w_t1_a = $education_pro_output_2['w_t1_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t1_pri = $education_pro_output_2['w_t1_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t1_li = $education_pro_output_2['w_t1_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t1_vi = $education_pro_output_2['w_t1_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $w_t2_tar = $education_pro_output_2['w_t2_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $w_t2_a = $education_pro_output_2['w_t2_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t2_pri = $education_pro_output_2['w_t2_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t2_li = $education_pro_output_2['w_t2_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $w_t2_vi = $education_pro_output_2['w_t2_vi'] ?>
+                                </td>
+
+                              
+                            </tr>
+
+
+                            <tr>
+                                <td class="tg-y698">সমর্থক </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $s_t1_tar = $education_pro_output_2['s_t1_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $s_t1_a = $education_pro_output_2['s_t1_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t1_pri = $education_pro_output_2['s_t1_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t1_li = $education_pro_output_2['s_t1_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t1_vi = $education_pro_output_2['s_t1_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $s_t2_tar = $education_pro_output_2['s_t2_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $s_t2_a = $education_pro_output_2['s_t2_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t2_pri = $education_pro_output_2['s_t2_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t2_li = $education_pro_output_2['s_t2_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $s_t2_vi = $education_pro_output_2['s_t2_vi'] ?>
+                                </td>
+
+                             
+                            </tr>
+
+
+                            <tr>
+                                <td class="tg-0pky"> মোট</td>
+
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_tar + $a_t1_tar + $w_t1_tar + $s_t1_tar) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_a + $a_t1_a + $w_t1_a + $s_t1_a) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_pri + $a_t1_pri + $w_t1_pri + $s_t1_pri) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_li + $a_t1_li + $w_t1_li + $s_t1_li) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t1_vi + $a_t1_vi + $w_t1_vi + $s_t1_vi) ?>
+                                </td>
+
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_tar + $a_t2_tar + $w_t2_tar + $s_t2_tar) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_a + $a_t2_a + $w_t2_a + $s_t2_a) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_pri + $a_t2_pri + $w_t2_pri + $s_t2_pri) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_li + $a_t2_li + $w_t2_li + $s_t2_li) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_t2_vi + $a_t2_vi + $w_t2_vi + $s_t2_vi) ?>
+                                </td>
+
+                              
+
+                            </tr>
+
+
+                        </table>
+                        <table class="tg table table-header-rotated" id="আউটপুট-০৩">
+                            <tr>
+                                <td class="tg-pwj7" colspan="8"><b>প্রফেশনাল আউটপুট-০৩ (অন্যান্য) </b></td>
+                                <td class="tg-pwj7" colspan="4">
+                                <a href="#" id='table_4' onclick="doit('xlsx','আউটপুট-০৩','<?php echo 'Education_প্রফেশনাল আউটপুট-০৪ (অন্যান্য)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698">কর্মশালা (শাখা)</td>
+                                <td class="tg-pwj7" rowspan="2">সেক্টরসমূহ</td>
+                                <td class="tg-pwj7" colspan="2">সদস্য </td>
+                                <td class="tg-pwj7" colspan="2">সাথী  </td>
+                                <td class="tg-pwj7" colspan="2"> কর্মী </td>
+                                <td class="tg-pwj7" colspan="2">সমর্থক  </td>
+                                <td class="tg-pwj7" colspan="2">মোট  </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="tg-pwj7 "><div><span>আবেদন</span></div></td>
+                                <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন</span></div></td>
+                                <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন</span></div></td>
+                                <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন</span></div></td>
+                                <td class="tg-pwj7 "><div><span>অর্জন </span></div></td>
+
+                            </tr>
+
+                            
+                              <tr>
+                                <td class="tg-y698 type_1"> মন্ত্রনালয়	</td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $mon_t_m_abe = (isset($education_pro_output_4['mon_t_m_abe'])) ? $education_pro_output_4['mon_t_m_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $mon_t_m_orj = (isset($education_pro_output_4['mon_t_m_orj'])) ? $education_pro_output_4['mon_t_m_orj'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $mon_t_a_abe = (isset($education_pro_output_4['mon_t_a_abe'])) ? $education_pro_output_4['mon_t_a_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $mon_t_a_orj = (isset($education_pro_output_4['mon_t_a_orj'])) ? $education_pro_output_4['mon_t_a_orj'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $mon_t_w_abe = (isset($education_pro_output_4['mon_t_w_abe'])) ? $education_pro_output_4['mon_t_w_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $mon_t_w_orj = (isset($education_pro_output_4['mon_t_w_orj'])) ? $education_pro_output_4['mon_t_w_orj'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $mon_t_s_abe = (isset($education_pro_output_4['mon_t_s_abe'])) ? $education_pro_output_4['mon_t_s_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $mon_t_s_orj = (isset($education_pro_output_4['mon_t_s_orj'])) ? $education_pro_output_4['mon_t_s_orj'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                    <?php echo ($mon_t_m_abe + $mon_t_a_abe + $mon_t_w_abe + $mon_t_s_abe)  ?>
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                    <?php echo ($mon_t_m_orj + $mon_t_a_orj + $mon_t_w_orj + $mon_t_s_orj)  ?>
+                                </td>
+
+                            </tr>
+
+                                <td class="tg-y698">পুলিশ এস আই ও সার্জেন্ট </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $pol_m_abe=(isset( $education_pro_output_4['pol_m_abe']))? $education_pro_output_4['pol_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $pol_m_orj=(isset( $education_pro_output_4['pol_m_orj']))? $education_pro_output_4['pol_m_orj']:0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $pol_a_abe=(isset( $education_pro_output_4['pol_a_abe']))? $education_pro_output_4['pol_a_abe']:0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $pol_a_orj=(isset( $education_pro_output_4['pol_a_orj']))? $education_pro_output_4['pol_a_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $pol_w_abe=(isset( $education_pro_output_4['pol_w_abe']))? $education_pro_output_4['pol_w_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $pol_w_orj=(isset( $education_pro_output_4['pol_w_orj']))? $education_pro_output_4['pol_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $pol_s_abe=(isset( $education_pro_output_4['pol_s_abe']))? $education_pro_output_4['pol_s_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $pol_s_orj=(isset( $education_pro_output_4['pol_s_orj']))? $education_pro_output_4['pol_s_orj']:0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($pol_m_abe + $pol_a_abe + $pol_w_abe + $pol_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($pol_m_orj + $pol_a_orj + $pol_w_orj + $pol_s_orj)  ?>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">বেসরকারি কলেজ শিক্ষক </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bc_t_m_abe=(isset( $education_pro_output_4['bc_t_m_abe']))? $education_pro_output_4['bc_t_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bc_t_m_orj=(isset( $education_pro_output_4['bc_t_m_orj']))? $education_pro_output_4['bc_t_m_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bc_t_a_abe=(isset( $education_pro_output_4['bc_t_a_abe']))? $education_pro_output_4['bc_t_a_abe']:0 ?>
+                                
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bc_t_a_orj=(isset( $education_pro_output_4['bc_t_a_orj']))? $education_pro_output_4['bc_t_a_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bc_t_w_abe=(isset( $education_pro_output_4['bc_t_w_abe']))? $education_pro_output_4['bc_t_w_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bc_t_w_orj=(isset( $education_pro_output_4['bc_t_w_orj']))? $education_pro_output_4['bc_t_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bc_t_s_abe=(isset( $education_pro_output_4['bc_t_s_abe']))? $education_pro_output_4['bc_t_s_abe']:0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bc_t_s_orj=(isset( $education_pro_output_4['bc_t_s_orj']))? $education_pro_output_4['bc_t_s_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($bc_t_m_abe + $bc_t_a_abe + $bc_t_w_abe + $bc_t_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($bc_t_m_orj + $bc_t_a_orj + $bc_t_w_orj + $bc_t_s_orj)  ?>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">প্রাথমিক বিদ্যালয় শিক্ষক </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $ps_t_m_abe=(isset( $education_pro_output_4['ps_t_m_abe']))? $education_pro_output_4['ps_t_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $ps_t_m_orj=(isset( $education_pro_output_4['ps_t_m_orj']))? $education_pro_output_4['ps_t_m_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $ps_t_a_abe=(isset( $education_pro_output_4['ps_t_a_abe']))? $education_pro_output_4['ps_t_a_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $ps_t_a_orj=(isset( $education_pro_output_4['ps_t_a_orj']))? $education_pro_output_4['ps_t_a_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $ps_t_w_abe=(isset( $education_pro_output_4['ps_t_w_abe']))? $education_pro_output_4['ps_t_w_abe']:0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $ps_t_w_orj=(isset( $education_pro_output_4['ps_t_w_orj']))? $education_pro_output_4['ps_t_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $ps_t_s_abe=(isset( $education_pro_output_4['ps_t_s_abe']))? $education_pro_output_4['ps_t_s_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $ps_t_s_orj=(isset( $education_pro_output_4['ps_t_s_orj']))? $education_pro_output_4['ps_t_s_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($ps_t_m_abe + $ps_t_a_abe + $ps_t_w_abe + $ps_t_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($ps_t_m_orj + $ps_t_a_orj + $ps_t_w_orj + $ps_t_s_orj)  ?>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">বেসরকারি মাধ্যমিক স্কুল শিক্ষক </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bm_t_m_abe=(isset( $education_pro_output_4['bm_t_m_abe']))? $education_pro_output_4['bm_t_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bm_t_m_orj=(isset( $education_pro_output_4['bm_t_m_orj']))? $education_pro_output_4['bm_t_m_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bm_t_a_abe=(isset( $education_pro_output_4['bm_t_a_abe']))? $education_pro_output_4['bm_t_a_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bm_t_a_orj=(isset( $education_pro_output_4['bm_t_a_orj']))? $education_pro_output_4['bm_t_a_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bm_t_w_abe=(isset( $education_pro_output_4['bm_t_w_abe']))? $education_pro_output_4['bm_t_w_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bm_t_w_orj=(isset( $education_pro_output_4['bm_t_w_orj']))? $education_pro_output_4['bm_t_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bm_t_s_abe=(isset( $education_pro_output_4['bm_t_s_abe']))? $education_pro_output_4['bm_t_s_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bm_t_s_orj=(isset( $education_pro_output_4['bm_t_s_orj']))? $education_pro_output_4['bm_t_s_orj']:0 ?>
+                                
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($bm_t_m_abe + $bm_t_a_abe + $bm_t_w_abe + $bm_t_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($bm_t_m_orj + $bm_t_a_orj + $bm_t_w_orj + $bm_t_s_orj)  ?>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">বেসরকারি স্কুল শিক্ষক </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bs_t_m_abe=(isset( $education_pro_output_4['bs_t_m_abe']))? $education_pro_output_4['bs_t_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bs_t_m_orj=(isset( $education_pro_output_4['bs_t_m_orj']))? $education_pro_output_4['bs_t_m_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bs_t_a_abe=(isset( $education_pro_output_4['bs_t_a_abe']))? $education_pro_output_4['bs_t_a_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bs_t_a_orj=(isset( $education_pro_output_4['bs_t_a_orj']))? $education_pro_output_4['bs_t_a_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bs_t_w_abe=(isset( $education_pro_output_4['bs_t_w_abe']))? $education_pro_output_4['bs_t_w_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bs_t_w_orj=(isset( $education_pro_output_4['bs_t_w_orj']))? $education_pro_output_4['bs_t_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bs_t_s_abe=(isset( $education_pro_output_4['bs_t_s_abe']))? $education_pro_output_4['bs_t_s_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bs_t_s_orj=(isset( $education_pro_output_4['bs_t_s_orj']))? $education_pro_output_4['bs_t_s_orj']:0 ?>
+                                
+                                </td>
+
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($bs_t_m_abe + $bs_t_a_abe + $bs_t_w_abe + $bs_t_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($bs_t_m_orj + $bs_t_a_orj + $bs_t_w_orj + $bs_t_s_orj)  ?>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">ইংলিশ মিডিয়াম শিক্ষক </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $em_t_m_abe=(isset( $education_pro_output_4['em_t_m_abe']))? $education_pro_output_4['em_t_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $em_t_m_orj=(isset( $education_pro_output_4['em_t_m_orj']))? $education_pro_output_4['em_t_m_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $em_t_a_abe=(isset( $education_pro_output_4['em_t_a_abe']))? $education_pro_output_4['em_t_a_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $em_t_a_orj=(isset( $education_pro_output_4['em_t_a_orj']))? $education_pro_output_4['em_t_a_orj']:0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $em_t_w_abe=(isset( $education_pro_output_4['em_t_w_abe']))? $education_pro_output_4['em_t_w_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $em_t_w_orj=(isset( $education_pro_output_4['em_t_w_orj']))? $education_pro_output_4['em_t_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $em_t_s_abe=(isset( $education_pro_output_4['em_t_s_abe']))? $education_pro_output_4['em_t_s_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $em_t_s_orj=(isset( $education_pro_output_4['em_t_s_orj']))? $education_pro_output_4['em_t_s_orj']:0 ?>
+                                </td>
+
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($em_t_m_abe + $em_t_a_abe + $em_t_w_abe + $em_t_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($em_t_m_orj + $em_t_a_orj + $em_t_w_orj + $em_t_s_orj)  ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">বেসরকারি কোম্পানি </td>
+
+                                <td class="tg-0pky  type_1">
+                                <?php echo $besh_m_abe=(isset( $education_pro_output_4['besh_m_abe']))? $education_pro_output_4['besh_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $besh_m_orj=(isset( $education_pro_output_4['besh_m_orj']))? $education_pro_output_4['besh_m_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $besh_a_abe=(isset( $education_pro_output_4['besh_a_abe']))? $education_pro_output_4['besh_a_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $besh_a_orj=(isset( $education_pro_output_4['besh_a_orj']))? $education_pro_output_4['besh_a_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $besh_w_abe=(isset( $education_pro_output_4['besh_w_abe']))? $education_pro_output_4['besh_w_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $besh_w_orj=(isset( $education_pro_output_4['besh_w_orj']))? $education_pro_output_4['besh_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $besh_s_abe=(isset( $education_pro_output_4['besh_s_abe']))? $education_pro_output_4['besh_s_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $besh_s_orj=(isset( $education_pro_output_4['besh_s_orj']))? $education_pro_output_4['besh_s_orj']:0 ?>
+                                </td>
+
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($besh_m_abe + $besh_a_abe + $besh_w_abe + $besh_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($besh_m_orj + $besh_a_orj + $besh_w_orj + $besh_s_orj)  ?>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">আন্তর্জাতিক সংস্থা </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $int_m_abe=(isset( $education_pro_output_4['int_m_abe']))? $education_pro_output_4['int_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $int_m_orj=(isset( $education_pro_output_4['int_m_orj']))? $education_pro_output_4['int_m_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $int_a_abe=(isset( $education_pro_output_4['int_a_abe']))? $education_pro_output_4['int_a_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $int_a_orj=(isset( $education_pro_output_4['int_a_orj']))? $education_pro_output_4['int_a_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $int_w_abe=(isset( $education_pro_output_4['int_w_abe']))? $education_pro_output_4['int_w_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $int_w_orj=(isset( $education_pro_output_4['int_w_orj']))? $education_pro_output_4['int_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $int_s_abe=(isset( $education_pro_output_4['int_s_abe']))? $education_pro_output_4['int_s_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $int_s_orj=(isset( $education_pro_output_4['int_s_orj']))? $education_pro_output_4['int_s_orj']:0 ?>
+                                </td>
+
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($int_m_abe + $int_a_abe + $int_w_abe + $int_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($int_m_orj + $int_a_orj + $int_w_orj + $int_s_orj)  ?>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">বাংলাদেশ ব্যাংক </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bnbk_t_m_abe = (isset($education_pro_output_4['bnbk_t_m_abe'])) ? $education_pro_output_4['bnbk_t_m_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bnbk_t_m_orj = (isset($education_pro_output_4['bnbk_t_m_orj'])) ? $education_pro_output_4['bnbk_t_m_orj'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bnbk_t_a_abe = (isset($education_pro_output_4['bnbk_t_a_abe'])) ? $education_pro_output_4['bnbk_t_a_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bnbk_t_a_orj = (isset($education_pro_output_4['bnbk_t_a_orj'])) ? $education_pro_output_4['bnbk_t_a_orj'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bnbk_t_w_abe = (isset($education_pro_output_4['bnbk_t_w_abe'])) ? $education_pro_output_4['bnbk_t_w_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bnbk_t_w_orj = (isset($education_pro_output_4['bnbk_t_w_orj'])) ? $education_pro_output_4['bnbk_t_w_orj'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bnbk_t_s_abe = (isset($education_pro_output_4['bnbk_t_s_abe'])) ? $education_pro_output_4['bnbk_t_s_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $bnbk_t_s_orj = (isset($education_pro_output_4['bnbk_t_s_orj'])) ? $education_pro_output_4['bnbk_t_s_orj'] : 0 ?>
+                            
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                    <?php echo ($bnbk_t_m_abe + $bnbk_t_a_abe + $bnbk_t_w_abe + $bnbk_t_s_abe)  ?>
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                    <?php echo ($bnbk_t_m_orj + $bnbk_t_a_orj + $bnbk_t_w_orj + $bnbk_t_s_orj)  ?>
+                                </td>
+
+
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">ইসলামী ব্যাংক </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $kormoshala_shakha_s=$human_management_training_program['kormoshala_shakha_s'] ?>
+                                <?php echo $isbk_t_m_abe = (isset($education_pro_output_4['isbk_t_m_abe'])) ? $education_pro_output_4['isbk_t_m_abe'] : 0 ?>
                                 </td>
-                                <td class="tg-0pky  type_2">
-                                <?php echo $kormoshala_shakha_p=$human_management_training_program['kormoshala_shakha_p'] ?>
+                                <td class="tg-0pky type_1">
+                                <?php echo $isbk_t_m_orj = (isset($education_pro_output_4['isbk_t_m_orj'])) ? $education_pro_output_4['isbk_t_m_orj'] : 0 ?>
                                 </td>
-                                <td class="tg-0pky  type_3">
-                                <?php if($kormoshala_shakha_s>0 && $kormoshala_shakha_p>0)
-                                {echo ($kormoshala_shakha_p/$kormoshala_shakha_s);}else{echo 0;}?>
+                                <td class="tg-0pky type_1">
+                                <?php echo $isbk_t_a_abe = (isset($education_pro_output_4['isbk_t_a_abe'])) ? $education_pro_output_4['isbk_t_a_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $isbk_t_a_orj = (isset($education_pro_output_4['isbk_t_a_orj'])) ? $education_pro_output_4['isbk_t_a_orj'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $isbk_t_w_abe = (isset($education_pro_output_4['isbk_t_w_abe'])) ? $education_pro_output_4['isbk_t_w_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $isbk_t_w_orj = (isset($education_pro_output_4['isbk_t_w_orj'])) ? $education_pro_output_4['isbk_t_w_orj'] : 0 ?>
+                            
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $isbk_t_s_abe = (isset($education_pro_output_4['isbk_t_s_abe'])) ? $education_pro_output_4['isbk_t_s_abe'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $isbk_t_s_orj = (isset($education_pro_output_4['isbk_t_s_orj'])) ? $education_pro_output_4['isbk_t_s_orj'] : 0 ?>
+                                </td>
+
+                                <td class="tg-0pky type_9">
+                                    <?php echo ($isbk_t_m_abe + $isbk_t_a_abe + $isbk_t_w_abe + $isbk_t_s_abe)  ?>
+                                </td>
+                                <td class="tg-0pky type_9">
+                                    <?php echo ($isbk_t_m_orj + $isbk_t_a_orj + $isbk_t_w_orj + $isbk_t_s_orj)  ?>
+                                </td>
+
+
+
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698">অন্যান্য </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $other_m_abe=(isset( $education_pro_output_4['other_m_abe']))? $education_pro_output_4['other_m_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $other_m_orj=(isset( $education_pro_output_4['other_m_orj']))? $education_pro_output_4['other_m_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $other_a_abe=(isset( $education_pro_output_4['other_a_abe']))? $education_pro_output_4['other_a_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $other_a_orj=(isset( $education_pro_output_4['other_a_orj']))? $education_pro_output_4['other_a_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $other_w_abe=(isset( $education_pro_output_4['other_w_abe']))? $education_pro_output_4['other_w_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $other_w_orj=(isset( $education_pro_output_4['other_w_orj']))? $education_pro_output_4['other_w_orj']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $other_s_abe=(isset( $education_pro_output_4['other_s_abe']))? $education_pro_output_4['other_s_abe']:0 ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $other_s_orj=(isset( $education_pro_output_4['other_s_orj']))? $education_pro_output_4['other_s_orj']:0 ?>
+                                </td>
+
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($other_m_abe + $other_a_abe + $other_w_abe + $other_s_abe)  ?>
+                                </td>
+
+                                <td class="tg-0pky  type_9">
+                                <?php echo ($other_m_orj + $other_a_orj + $other_w_orj + $other_s_orj)  ?>
                                 </td>
                             </tr>
                         </table>
+
+                        <table class="tg table table-header-rotated" id="দক্ষতা উন্নয়নমূলক প্রশিক্ষণ কোর্স">
+                            <tr>
+                                <td class="tg-pwj7" colspan="6"><b>দক্ষতা উন্নয়নমূলক প্রশিক্ষণ কোর্স </b></td>
+                                <td class="tg-pwj7" colspan="3">
+                                <a href="#" id='দক্ষতা উন্নয়নমূলক প্রশিক্ষণ কোর্স' onclick="doit('xlsx','দক্ষতা উন্নয়নমূলক প্রশিক্ষণ কোর্স','<?php echo 'দক্ষতা উন্নয়নমূলক প্রশিক্ষণ কোর্স_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7" rowspan="2">কোর্সের নাম</td>
+                                <td class="tg-pwj7" colspan="2">কোর্স সংখ্যা</td>
+                                <td class="tg-pwj7" colspan="2">ডেলিগেট সংখ্যা </td>
+                                <td class="tg-pwj7" colspan="2"> কোর্স সম্পন্ন করেছে কতজন </td>
+                                <td class="tg-pwj7" colspan="2">সার্টিফিকেট অর্জন করেছে কতজন </td>
+                               
+
+                            </tr>
+
+                            <tr>
+                                <td class="tg-pwj7 "><div><span>শাখা </span></div></td>
+                                <td class="tg-pwj7 "><div><span>কেন্দ্র </span></div></td>
+                                <td class="tg-pwj7 "><div><span>শাখা </span></div></td>
+                                <td class="tg-pwj7 "><div><span>কেন্দ্র </span></div></td>
+                                <td class="tg-pwj7 "><div><span>শাখা  </span></div></td>
+                                <td class="tg-pwj7 "><div><span>কেন্দ্র </span></div></td>
+                                <td class="tg-pwj7 "><div><span>শাখা </span></div></td>
+                                <td class="tg-pwj7 "><div><span>কেন্দ্র </span></div></td>
+                                
+
+
+
+                            </tr>
+
+                           
+                              <tr>
+                                <td class="tg-y698 type_1"> অফিস ম্যানেজমেন্ট কোর্স	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $office_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['office_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['office_course_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $office_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['office_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['office_course_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $office_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['office_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['office_deligat_shakha'] : 0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $office_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['office_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['office_deligat_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $office_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['office_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['office_terminate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $office_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['office_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['office_terminate_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $office_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['office_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['office_certificate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $office_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['office_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['office_certificate_kendro'] : 0 ?>
+                                </td>
+  
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1"> লাইব্রেরী ম্যানেজমেন্ট কোর্স	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $library_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['library_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['library_course_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $library_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['library_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['library_course_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $library_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['library_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['library_deligat_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $library_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['library_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['library_deligat_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $library_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['library_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['library_terminate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $library_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['library_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['library_terminate_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $library_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['library_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['library_certificate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $library_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['library_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['library_certificate_kendro'] : 0 ?>
+                                
+                                </td>
+
+  
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1"> সিভি রাইটিং	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $cv_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cv_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_course_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $cv_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cv_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_course_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $cv_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cv_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_deligat_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $cv_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cv_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_deligat_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $cv_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cv_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_terminate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $cv_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cv_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_terminate_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $cv_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cv_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_certificate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $cv_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cv_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_certificate_kendro'] : 0 ?>
+                                </td>
+
+  
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1"> বেসিক কম্পিউটার কোর্স	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $computer_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['computer_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_course_shakha'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $computer_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['computer_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_course_kendro'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $computer_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['computer_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_deligat_shakha'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $computer_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['computer_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_deligat_kendro'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $computer_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['computer_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_terminate_shakha'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $computer_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['computer_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_terminate_kendro'] : 0 ?>
+                            
+                            </td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $computer_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['computer_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_certificate_shakha'] : 0 ?>
+                            </td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $computer_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['computer_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_certificate_kendro'] : 0 ?>
+                            </td>
+
+  
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1"> গ্রাফিক ডিজাইন	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $graphics_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_course_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $graphics_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_course_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $graphics_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_deligat_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $graphics_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_deligat_kendro'] : 0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $graphics_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_terminate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $graphics_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_terminate_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $graphics_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_certificate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $graphics_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_certificate_kendro'] : 0 ?>
+                                </td>
+
+  
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1"> ইংলিশ স্পিকিং কোর্স	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $english_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['english_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['english_course_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $english_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['english_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['english_course_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $english_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['english_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['english_deligat_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $english_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['english_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['english_deligat_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $english_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['english_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['english_terminate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $english_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['english_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['english_terminate_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $english_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['english_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['english_certificate_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $english_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['english_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['english_certificate_kendro'] : 0 ?>
+                                </td>
+
+  
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1"> কার ড্রাইভিং কোর্স	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $car_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['car_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['car_course_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $car_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['car_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['car_course_kendro'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $car_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['car_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['car_deligat_shakha'] : 0 ?>
+                                    
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $car_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['car_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['car_deligat_kendro'] : 0 ?>
+                                    
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $car_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['car_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['car_terminate_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $car_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['car_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['car_terminate_kendro'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $car_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['car_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['car_certificate_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $car_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['car_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['car_certificate_kendro'] : 0 ?>
+                                    
+                                    </td>
+
+  
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1"> অনান্য	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $other_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['other_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['other_course_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $other_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['other_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['other_course_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $other_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['other_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['other_deligat_shakha'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $other_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['other_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['other_deligat_kendro'] : 0 ?>
+                                    
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $other_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['other_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['other_terminate_shakha'] : 0 ?>
+                                
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $other_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['other_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['other_terminate_kendro'] : 0 ?>
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $other_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['other_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['other_certificate_shakha'] : 0 ?>
+                                    
+                                </td>
+                                <td class="tg-0pky type_1">
+                                <?php echo $other_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['other_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['other_certificate_kendro'] : 0 ?>
+                                </td>
+
+  
+
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1">মোট </td>
+                                <td class="tg-0pky type_1"><?php echo $other_course_shakha+$car_course_shakha+$english_course_shakha+$graphics_course_shakha+$computer_course_shakha+$cv_course_shakha+$library_course_shakha+$office_course_shakha  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_course_kendro+$car_course_kendro+$english_course_kendro+$graphics_course_kendro+$computer_course_kendro+$cv_course_kendro+$library_course_kendro+$office_course_kendro  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_deligat_shakha+$car_deligat_shakha+$english_deligat_shakha+$graphics_deligat_shakha+$computer_deligat_shakha+$cv_deligat_shakha+$library_deligat_shakha+$office_deligat_shakha  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_deligat_kendro+$car_deligat_kendro+$english_deligat_kendro+$graphics_deligat_kendro+$computer_deligat_kendro+$cv_deligat_kendro+$library_deligat_kendro+$office_deligat_kendro  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_terminate_shakha+$car_terminate_shakha+$english_terminate_shakha+$graphics_terminate_shakha+$computer_terminate_shakha+$cv_terminate_shakha+$library_terminate_shakha+$office_terminate_shakha  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_terminate_kendro+$car_terminate_kendro+$english_terminate_kendro+$graphics_terminate_kendro+$computer_terminate_kendro+$cv_terminate_kendro+$library_terminate_kendro+$office_terminate_kendro  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_certificate_shakha+$car_certificate_shakha+$english_certificate_shakha+$graphics_certificate_shakha+$computer_certificate_shakha+$cv_certificate_shakha+$library_certificate_shakha+$office_certificate_shakha  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_certificate_kendro+$car_certificate_kendro+$english_certificate_kendro+$graphics_certificate_kendro+$computer_certificate_kendro+$cv_certificate_kendro+$library_certificate_kendro+$office_certificate_kendro  ?></td>
+
+                           
+                            </tr>
+
+                              
+                        </table>
+                       
                     </div>
 				
 				

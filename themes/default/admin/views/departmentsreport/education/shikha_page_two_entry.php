@@ -86,6 +86,124 @@ $(document).ready(function(){
                 <p class="introtext">
                 <div class="table-responsive">
                     <div class="tg-wrap">
+                    <table class="tg table table-header-rotated" id="testTable4">
+                      <tr>
+                          <td class="tg-pwj7" colspan="3"><b>বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম</b></td>
+                          <td class="tg-pwj7" colspan="1">
+                              <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Education_বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                          </td>
+                      </tr> 
+                      <?php
+                          $pk = (isset($education_training_program['id']))?$education_training_program['id']:'';
+                          
+                      ?>
+                      <tr>
+                          <td class="tg-pwj7" rowspan=''>প্রোগ্রামের নাম</td>
+                          <td class="tg-pwj7" colspan=''> সংখ্যা </td>
+                          <td class="tg-pwj7" colspan=''>উপস্থিতি </td>
+                          <td class="tg-pwj7" colspan=''>গড়</td>
+                      </tr>
+                      <tr>
+                          <td class="tg-y698">শিক্ষাশিবির (কেন্দ্র)</td>
+                          <td class="tg-0pky type_1">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="shikkha_central_s" 
+                              data-title="Enter">
+                              <?php echo $shikkha_central_s=(isset( $education_training_program['shikkha_central_s']))? $education_training_program['shikkha_central_s']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_2">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="shikkha_central_p" 
+                              data-title="Enter">
+                              <?php echo $shikkha_central_p=(isset( $education_training_program['shikkha_central_p']))? $education_training_program['shikkha_central_p']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_3">
+                          <?php if($shikkha_central_s>0 && $shikkha_central_p>0)
+                          {echo ($shikkha_central_p/$shikkha_central_s);}else{echo 0;}?>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tg-y698">শিক্ষাশিবির (শাখা)</td>
+                          <td class="tg-0pky type_1">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="shikkha_shakha_s" 
+                              data-title="Enter">
+                              <?php echo $shikkha_shakha_s=(isset( $education_training_program['shikkha_shakha_s']))? $education_training_program['shikkha_shakha_s']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_2">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="shikkha_shakha_p" 
+                              data-title="Enter">
+                              <?php echo $shikkha_shakha_p=(isset( $education_training_program['shikkha_shakha_p']))? $education_training_program['shikkha_shakha_p']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_3">
+                          <?php if($shikkha_shakha_s>0 && $shikkha_shakha_p>0)
+                          {echo ($shikkha_shakha_p/$shikkha_shakha_s);}else{echo 0;}?>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tg-y698">কর্মশালা (কেন্দ্র)</td>
+                          <td class="tg-0pky type_1">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="kormoshala_central_s" 
+                              data-title="Enter">
+                              <?php echo $kormoshala_central_s=(isset( $education_training_program['kormoshala_central_s']))? $education_training_program['kormoshala_central_s']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_2">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="kormoshala_central_p" 
+                              data-title="Enter">
+                              <?php echo $kormoshala_central_p=(isset( $education_training_program['kormoshala_central_p']))? $education_training_program['kormoshala_central_p']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_3">
+                          <?php if($kormoshala_central_s>0 && $kormoshala_central_p>0)
+                          {echo ($kormoshala_central_p/$kormoshala_central_s);}else{echo 0;}?>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tg-y698">কর্মশালা (শাখা)</td>
+                          <td class="tg-0pky type_1">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="kormoshala_shakha_s" 
+                              data-title="Enter">
+                              <?php echo $kormoshala_shakha_s=(isset( $education_training_program['kormoshala_shakha_s']))? $education_training_program['kormoshala_shakha_s']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_2">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="kormoshala_shakha_p" 
+                              data-title="Enter">
+                              <?php echo $kormoshala_shakha_p=(isset( $education_training_program['kormoshala_shakha_p']))? $education_training_program['kormoshala_shakha_p']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_3">
+                          <?php if($kormoshala_shakha_s>0 && $kormoshala_shakha_p>0)
+                          {echo ($kormoshala_shakha_p/$kormoshala_shakha_s);}else{echo 0;}?>
+                          </td>
+                      </tr>
+                  </table>
                     <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
                             <td class="tg-pwj7" colspan='2'><b>মোটিভেশনাল প্রোগ্রাম </b></td>
@@ -413,6 +531,333 @@ $(document).ready(function(){
                                 <td class="tg-y698">মোট</td>
                                 <td class="tg-0pky"> <?php echo $other_s+$sik_sof_s+$nobin_s+$sik_upo_s+$sorno_s+$dua_s+$med_son_s+$pla_son_s+$sik_bri_s  ?> </td>
                                 <td class="tg-0pky"> <?php echo $other_u+$sik_sof_u+$nobin_u+$sik_upo_u+$sorno_u+$dua_u+$med_son_u +$pla_son_u+$sik_bri_u ?> </td>
+                            </tr>
+                        </table>
+                        <table class="tg table table-header-rotated" id="testTable5">
+                        <td class="tg-pwj7" colspan="4"><b>সামিট </b></td>
+                            <td class="tg-pwj7" colspan="1">
+                                <a href="#" id='table_5' onclick="doit('xlsx','testTable5','<?php echo 'Education_সামিট_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                      <?php
+                          $pk = (isset($education_summit['id']))?$education_summit['id']:'';
+                          
+                      ?>
+                      <tr>
+                          <td class="tg-pwj7" rowspan=''>প্রোগ্রামের নাম</td>
+                          <td class="tg-pwj7" rowspan=''>ধরন</td>
+                          <td class="tg-pwj7" colspan=''> সংখ্যা </td>
+                          <td class="tg-pwj7" colspan=''>উপস্থিতি </td>
+                          <td class="tg-pwj7" colspan=''>গড়</td>
+                      </tr>
+                      <tr>
+                          <td class="tg-y698" rowspan='2'>অনার্স পর্যায়ে সামাজিক বিজ্ঞান, কলা ও ফাইন আর্টসে অধ্যয়নরত ছাত্রদের নিয়ে সামিট (কেন্দ্র)</td>
+                          <td class="tg-y698">জনশক্তি</td>
+                          <td class="tg-0pky type_1">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_summit" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="hons_central_manpower_s" 
+                              data-title="Enter">
+                              <?php echo $hons_central_manpower_s=(isset( $education_summit['hons_central_manpower_s']))? $education_summit['hons_central_manpower_s']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_2">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_summit" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="hons_central_manpower_p" 
+                              data-title="Enter">
+                              <?php echo $hons_central_manpower_p=(isset( $education_summit['hons_central_manpower_p']))? $education_summit['hons_central_manpower_p']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_3">
+                          <?php if($hons_central_manpower_s>0 && $hons_central_manpower_p>0)
+                          {echo ($hons_central_manpower_p/$hons_central_manpower_s);}else{echo 0;}?>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tg-y698">সাধারণ</td>
+                          <td class="tg-0pky type_1">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_summit" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="hons_central_general_s" 
+                              data-title="Enter">
+                              <?php echo $hons_central_general_s=(isset( $education_summit['hons_central_general_s']))? $education_summit['hons_central_general_s']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_2">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_summit" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="hons_central_general_p" 
+                              data-title="Enter">
+                              <?php echo $hons_central_general_p=(isset( $education_summit['hons_central_general_p']))? $education_summit['hons_central_general_p']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_3">
+                          <?php if($hons_central_general_s>0 && $hons_central_general_p>0)
+                          {echo ($hons_central_general_p/$hons_central_general_s);}else{echo 0;}?>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tg-y698" rowspan='2'>অনার্স পর্যায়ে সামাজিক বিজ্ঞান, কলা ও ফাইন আর্টসে অধ্যয়নরত ছাত্রদের নিয়ে সামিট (শাখা)</td>
+                          <td class="tg-y698">জনশক্তি</td>
+                          <td class="tg-0pky type_1">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_summit" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="hons_shakha_manpower_s" 
+                              data-title="Enter">
+                              <?php echo $hons_shakha_manpower_s=(isset( $education_summit['hons_shakha_manpower_s']))? $education_summit['hons_shakha_manpower_s']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_2">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_summit" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="hons_shakha_manpower_p" 
+                              data-title="Enter">
+                              <?php echo $hons_shakha_manpower_p=(isset( $education_summit['hons_shakha_manpower_p']))? $education_summit['hons_shakha_manpower_p']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_3">
+                          <?php if($hons_shakha_manpower_s>0 && $hons_shakha_manpower_p>0)
+                          {echo ($hons_shakha_manpower_p/$hons_shakha_manpower_s);}else{echo 0;}?>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tg-y698">সাধারণ</td>
+                          <td class="tg-0pky type_1">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_summit" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="hons_shakha_general_s" 
+                              data-title="Enter">
+                              <?php echo $hons_shakha_general_s=(isset( $education_summit['hons_shakha_general_s']))? $education_summit['hons_shakha_general_s']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_2">
+                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                              data-table="education_summit" data-pk="<?php echo $pk ?>"
+                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                              data-name="hons_shakha_general_p" 
+                              data-title="Enter">
+                              <?php echo $hons_shakha_general_p=(isset( $education_summit['hons_shakha_general_p']))? $education_summit['hons_shakha_general_p']:'' ?>
+                              </a>
+                          </td>
+                          <td class="tg-0pky  type_3">
+                          <?php if($hons_shakha_general_s>0 && $hons_shakha_general_p>0)
+                          {echo ($hons_shakha_general_p/$hons_shakha_general_s);}else{echo 0;}?>
+                          </td>
+                      </tr>
+                    </table>
+                    <table class="tg table table-header-rotated" id="testTable2">
+                            <tr>
+                            <td class="tg-pwj7" colspan="3"><b>শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য  </b></td>
+                                <td class="tg-pwj7" colspan="">
+                                    <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Education_শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-pwj7">বিবরণ</td>
+                                <td class="tg-pwj7"> কোচিংয়ের নাম</td>
+                                <td class="tg-pwj7">ব্যাচ সংখ্যা </td>
+                                <td class="tg-pwj7"> ছাত্র সংখ্যা</td>
+
+                            </tr>
+
+                            <?php
+                            $pk = (isset($education_coaching['id']))?$education_coaching['id']:"";
+
+                            ?>
+                            <tr>
+                                <td class="tg-y698 type_1">চতুর্থ-দশম শ্রেণি</td>
+
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="4to10_coachingname" 
+                                    data-title="Enter"><?php echo $ssc_coachingname=(isset( $education_coaching['4to10_coachingname']))? $education_coaching['4to10_coachingname']:"" ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="4to10_batch" 
+                                    data-title="Enter"><?php echo $ssc_batch=(isset( $education_coaching['4to10_batch']))? $education_coaching['4to10_batch']:0 ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="4to10_student" 
+                                    data-title="Enter"><?php echo $ssc_student=(isset( $education_coaching['4to10_student']))? $education_coaching['4to10_student']:0 ?>
+                                </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">একাদশ-দ্বাদশ শ্রেণি </td>
+
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="11_12_coachingname" 
+                                    data-title="Enter"><?php echo $hsc_coachingname=(isset( $education_coaching['11_12_coachingname']))? $education_coaching['11_12_coachingname']:"" ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="11_12_batch" 
+                                    data-title="Enter"><?php echo $hsc_batch=(isset( $education_coaching['11_12_batch']))? $education_coaching['11_12_batch']:0 ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="11_12_student" 
+                                    data-title="Enter"><?php echo $hsc_student=(isset( $education_coaching['11_12_student']))? $education_coaching['11_12_student']:0 ?>
+                                </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698"> বিশ্ববিদ্যালয় ভর্তিচ্ছু </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="university_coachingname" 
+                                    data-title="Enter"><?php echo $university_coachingname=(isset( $education_coaching['university_coachingname']))? $education_coaching['university_coachingname']:"" ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="university_batch" 
+                                    data-title="Enter"><?php echo $university_batch=(isset( $education_coaching['university_batch']))? $education_coaching['university_batch']:0 ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="university_student" 
+                                    data-title="Enter"><?php echo $university_student=(isset( $education_coaching['university_student']))? $education_coaching['university_student']:0 ?>
+                                </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">মেডিকেল ভর্তিচ্ছু </td>
+
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="medical_coachingname" 
+                                    data-title="Enter"><?php echo $medical_coachingname=(isset( $education_coaching['medical_coachingname']))? $education_coaching['medical_coachingname']:"" ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="medical_batch" 
+                                    data-title="Enter"><?php echo $medical_batch=(isset( $education_coaching['medical_batch']))? $education_coaching['medical_batch']:0 ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="medical_student" 
+                                    data-title="Enter"><?php echo $medical_student=(isset( $education_coaching['medical_student']))? $education_coaching['medical_student']:0 ?>
+                                </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">ইঞ্জিনিয়ারিং ভর্তিচ্ছু </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="eng_coachingname" 
+                                    data-title="Enter"><?php echo $eng_coachingname=(isset( $education_coaching['eng_coachingname']))? $education_coaching['eng_coachingname']:"" ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="eng_batch" 
+                                    data-title="Enter"><?php echo $eng_batch=(isset( $education_coaching['eng_batch']))? $education_coaching['eng_batch']:0 ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="eng_student" 
+                                    data-title="Enter"><?php echo $eng_student=(isset( $education_coaching['eng_student']))? $education_coaching['eng_student']:0 ?>
+                                </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">প্রফেশনাল/জব </td>
+
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="job_coachingname" 
+                                    data-title="Enter"><?php echo $job_coachingname=(isset( $education_coaching['job_coachingname']))? $education_coaching['job_coachingname']:"" ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="job_batch" 
+                                    data-title="Enter"><?php echo $job_batch=(isset( $education_coaching['job_batch']))? $education_coaching['job_batch']:0 ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="job_student" 
+                                    data-title="Enter"><?php echo $job_student=(isset( $education_coaching['job_student']))? $education_coaching['job_student']:0 ?>
+                                </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-y698">অন্যান্য </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="other_coachingname" 
+                                    data-title="Enter"><?php echo $other_coachingname=(isset( $education_coaching['other_coachingname']))? $education_coaching['other_coachingname']:"" ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="other_batch" 
+                                    data-title="Enter"><?php echo $other_batch=(isset( $education_coaching['other_batch']))? $education_coaching['other_batch']:0 ?>
+                                </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="other_student" 
+                                    data-title="Enter"><?php echo $other_student=(isset( $education_coaching['other_student']))? $education_coaching['other_student']:0 ?>
+                                </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tg-0pky" colspan="2"> মোট</td>
+                                <td class="tg-0pky">
+                                <?php echo  ($ssc_batch + $hsc_batch + $university_batch + $medical_batch + $eng_batch + $job_batch + $other_batch)  ?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($ssc_student + $hsc_student + $university_student + $medical_student + $eng_student + $job_student + $other_student) ?>
+                                </td>
                             </tr>
                         </table>
 
@@ -869,451 +1314,9 @@ $(document).ready(function(){
                              
                         </table>
                         
-                        <table class="tg table table-header-rotated" id="testTable5">
-                        <td class="tg-pwj7" colspan="4"><b>সামিট </b></td>
-                            <td class="tg-pwj7" colspan="1">
-                                <a href="#" id='table_5' onclick="doit('xlsx','testTable5','<?php echo 'Education_সামিট_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                            </td>
-                      <?php
-                          $pk = (isset($education_summit['id']))?$education_summit['id']:'';
-                          
-                      ?>
-                      <tr>
-                          <td class="tg-pwj7" rowspan=''>প্রোগ্রামের নাম</td>
-                          <td class="tg-pwj7" rowspan=''>ধরন</td>
-                          <td class="tg-pwj7" colspan=''> সংখ্যা </td>
-                          <td class="tg-pwj7" colspan=''>উপস্থিতি </td>
-                          <td class="tg-pwj7" colspan=''>গড়</td>
-                      </tr>
-                      <tr>
-                          <td class="tg-y698" rowspan='2'>অনার্স পর্যায়ে সামাজিক বিজ্ঞান, কলা ও ফাইন আর্টসে অধ্যয়নরত ছাত্রদের নিয়ে সামিট (কেন্দ্র)</td>
-                          <td class="tg-y698">জনশক্তি</td>
-                          <td class="tg-0pky type_1">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_summit" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="hons_central_manpower_s" 
-                              data-title="Enter">
-                              <?php echo $hons_central_manpower_s=(isset( $education_summit['hons_central_manpower_s']))? $education_summit['hons_central_manpower_s']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_2">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_summit" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="hons_central_manpower_p" 
-                              data-title="Enter">
-                              <?php echo $hons_central_manpower_p=(isset( $education_summit['hons_central_manpower_p']))? $education_summit['hons_central_manpower_p']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_3">
-                          <?php if($hons_central_manpower_s>0 && $hons_central_manpower_p>0)
-                          {echo ($hons_central_manpower_p/$hons_central_manpower_s);}else{echo 0;}?>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="tg-y698">সাধারণ</td>
-                          <td class="tg-0pky type_1">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_summit" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="hons_central_general_s" 
-                              data-title="Enter">
-                              <?php echo $hons_central_general_s=(isset( $education_summit['hons_central_general_s']))? $education_summit['hons_central_general_s']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_2">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_summit" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="hons_central_general_p" 
-                              data-title="Enter">
-                              <?php echo $hons_central_general_p=(isset( $education_summit['hons_central_general_p']))? $education_summit['hons_central_general_p']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_3">
-                          <?php if($hons_central_general_s>0 && $hons_central_general_p>0)
-                          {echo ($hons_central_general_p/$hons_central_general_s);}else{echo 0;}?>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="tg-y698" rowspan='2'>অনার্স পর্যায়ে সামাজিক বিজ্ঞান, কলা ও ফাইন আর্টসে অধ্যয়নরত ছাত্রদের নিয়ে সামিট (শাখা)</td>
-                          <td class="tg-y698">জনশক্তি</td>
-                          <td class="tg-0pky type_1">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_summit" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="hons_shakha_manpower_s" 
-                              data-title="Enter">
-                              <?php echo $hons_shakha_manpower_s=(isset( $education_summit['hons_shakha_manpower_s']))? $education_summit['hons_shakha_manpower_s']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_2">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_summit" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="hons_shakha_manpower_p" 
-                              data-title="Enter">
-                              <?php echo $hons_shakha_manpower_p=(isset( $education_summit['hons_shakha_manpower_p']))? $education_summit['hons_shakha_manpower_p']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_3">
-                          <?php if($hons_shakha_manpower_s>0 && $hons_shakha_manpower_p>0)
-                          {echo ($hons_shakha_manpower_p/$hons_shakha_manpower_s);}else{echo 0;}?>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="tg-y698">সাধারণ</td>
-                          <td class="tg-0pky type_1">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_summit" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="hons_shakha_general_s" 
-                              data-title="Enter">
-                              <?php echo $hons_shakha_general_s=(isset( $education_summit['hons_shakha_general_s']))? $education_summit['hons_shakha_general_s']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_2">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_summit" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="hons_shakha_general_p" 
-                              data-title="Enter">
-                              <?php echo $hons_shakha_general_p=(isset( $education_summit['hons_shakha_general_p']))? $education_summit['hons_shakha_general_p']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_3">
-                          <?php if($hons_shakha_general_s>0 && $hons_shakha_general_p>0)
-                          {echo ($hons_shakha_general_p/$hons_shakha_general_s);}else{echo 0;}?>
-                          </td>
-                      </tr>
-                  </table>
-                        <table class="tg table table-header-rotated" id="testTable4">
-                      <tr>
-                          <td class="tg-pwj7" colspan="3"><b>বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম</b></td>
-                          <td class="tg-pwj7" colspan="1">
-                              <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Education_বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                          </td>
-                      </tr> 
-                      <?php
-                          $pk = (isset($education_training_program['id']))?$education_training_program['id']:'';
-                          
-                      ?>
-                      <tr>
-                          <td class="tg-pwj7" rowspan=''>প্রোগ্রামের নাম</td>
-                          <td class="tg-pwj7" colspan=''> সংখ্যা </td>
-                          <td class="tg-pwj7" colspan=''>উপস্থিতি </td>
-                          <td class="tg-pwj7" colspan=''>গড়</td>
-                      </tr>
-                      <tr>
-                          <td class="tg-y698">শিক্ষাশিবির (কেন্দ্র)</td>
-                          <td class="tg-0pky type_1">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="shikkha_central_s" 
-                              data-title="Enter">
-                              <?php echo $shikkha_central_s=(isset( $education_training_program['shikkha_central_s']))? $education_training_program['shikkha_central_s']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_2">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="shikkha_central_p" 
-                              data-title="Enter">
-                              <?php echo $shikkha_central_p=(isset( $education_training_program['shikkha_central_p']))? $education_training_program['shikkha_central_p']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_3">
-                          <?php if($shikkha_central_s>0 && $shikkha_central_p>0)
-                          {echo ($shikkha_central_p/$shikkha_central_s);}else{echo 0;}?>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="tg-y698">শিক্ষাশিবির (শাখা)</td>
-                          <td class="tg-0pky type_1">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="shikkha_shakha_s" 
-                              data-title="Enter">
-                              <?php echo $shikkha_shakha_s=(isset( $education_training_program['shikkha_shakha_s']))? $education_training_program['shikkha_shakha_s']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_2">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="shikkha_shakha_p" 
-                              data-title="Enter">
-                              <?php echo $shikkha_shakha_p=(isset( $education_training_program['shikkha_shakha_p']))? $education_training_program['shikkha_shakha_p']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_3">
-                          <?php if($shikkha_shakha_s>0 && $shikkha_shakha_p>0)
-                          {echo ($shikkha_shakha_p/$shikkha_shakha_s);}else{echo 0;}?>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="tg-y698">কর্মশালা (কেন্দ্র)</td>
-                          <td class="tg-0pky type_1">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="kormoshala_central_s" 
-                              data-title="Enter">
-                              <?php echo $kormoshala_central_s=(isset( $education_training_program['kormoshala_central_s']))? $education_training_program['kormoshala_central_s']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_2">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="kormoshala_central_p" 
-                              data-title="Enter">
-                              <?php echo $kormoshala_central_p=(isset( $education_training_program['kormoshala_central_p']))? $education_training_program['kormoshala_central_p']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_3">
-                          <?php if($kormoshala_central_s>0 && $kormoshala_central_p>0)
-                          {echo ($kormoshala_central_p/$kormoshala_central_s);}else{echo 0;}?>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="tg-y698">কর্মশালা (শাখা)</td>
-                          <td class="tg-0pky type_1">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="kormoshala_shakha_s" 
-                              data-title="Enter">
-                              <?php echo $kormoshala_shakha_s=(isset( $education_training_program['kormoshala_shakha_s']))? $education_training_program['kormoshala_shakha_s']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_2">
-                          <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
-                              data-table="education_training_program" data-pk="<?php echo $pk ?>"
-                              data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                              data-name="kormoshala_shakha_p" 
-                              data-title="Enter">
-                              <?php echo $kormoshala_shakha_p=(isset( $education_training_program['kormoshala_shakha_p']))? $education_training_program['kormoshala_shakha_p']:'' ?>
-                              </a>
-                          </td>
-                          <td class="tg-0pky  type_3">
-                          <?php if($kormoshala_shakha_s>0 && $kormoshala_shakha_p>0)
-                          {echo ($kormoshala_shakha_p/$kormoshala_shakha_s);}else{echo 0;}?>
-                          </td>
-                      </tr>
-                  </table>
-                        <table class="tg table table-header-rotated" id="testTable2">
-                            <tr>
-                            <td class="tg-pwj7" colspan="3"><b>শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য  </b></td>
-                                <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Education_শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7">বিবরণ</td>
-                                <td class="tg-pwj7"> কোচিংয়ের নাম</td>
-                                <td class="tg-pwj7">ব্যাচ সংখ্যা </td>
-                                <td class="tg-pwj7"> ছাত্র সংখ্যা</td>
-
-                            </tr>
-
-                            <?php
-                            $pk = (isset($education_coaching['id']))?$education_coaching['id']:"";
-
-                            ?>
-                            <tr>
-                                <td class="tg-y698 type_1">চতুর্থ-দশম শ্রেণি</td>
-
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="4to10_coachingname" 
-                                    data-title="Enter"><?php echo $ssc_coachingname=(isset( $education_coaching['4to10_coachingname']))? $education_coaching['4to10_coachingname']:"" ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="4to10_batch" 
-                                    data-title="Enter"><?php echo $ssc_batch=(isset( $education_coaching['4to10_batch']))? $education_coaching['4to10_batch']:0 ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="4to10_student" 
-                                    data-title="Enter"><?php echo $ssc_student=(isset( $education_coaching['4to10_student']))? $education_coaching['4to10_student']:0 ?>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="tg-y698">একাদশ-দ্বাদশ শ্রেণি </td>
-
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="11_12_coachingname" 
-                                    data-title="Enter"><?php echo $hsc_coachingname=(isset( $education_coaching['11_12_coachingname']))? $education_coaching['11_12_coachingname']:"" ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="11_12_batch" 
-                                    data-title="Enter"><?php echo $hsc_batch=(isset( $education_coaching['11_12_batch']))? $education_coaching['11_12_batch']:0 ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="11_12_student" 
-                                    data-title="Enter"><?php echo $hsc_student=(isset( $education_coaching['11_12_student']))? $education_coaching['11_12_student']:0 ?>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="tg-y698"> বিশ্ববিদ্যালয় ভর্তিচ্ছু </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="university_coachingname" 
-                                    data-title="Enter"><?php echo $university_coachingname=(isset( $education_coaching['university_coachingname']))? $education_coaching['university_coachingname']:"" ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="university_batch" 
-                                    data-title="Enter"><?php echo $university_batch=(isset( $education_coaching['university_batch']))? $education_coaching['university_batch']:0 ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="university_student" 
-                                    data-title="Enter"><?php echo $university_student=(isset( $education_coaching['university_student']))? $education_coaching['university_student']:0 ?>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="tg-y698">মেডিকেল ভর্তিচ্ছু </td>
-
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="medical_coachingname" 
-                                    data-title="Enter"><?php echo $medical_coachingname=(isset( $education_coaching['medical_coachingname']))? $education_coaching['medical_coachingname']:"" ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="medical_batch" 
-                                    data-title="Enter"><?php echo $medical_batch=(isset( $education_coaching['medical_batch']))? $education_coaching['medical_batch']:0 ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="medical_student" 
-                                    data-title="Enter"><?php echo $medical_student=(isset( $education_coaching['medical_student']))? $education_coaching['medical_student']:0 ?>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="tg-y698">ইঞ্জিনিয়ারিং ভর্তিচ্ছু </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="eng_coachingname" 
-                                    data-title="Enter"><?php echo $eng_coachingname=(isset( $education_coaching['eng_coachingname']))? $education_coaching['eng_coachingname']:"" ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="eng_batch" 
-                                    data-title="Enter"><?php echo $eng_batch=(isset( $education_coaching['eng_batch']))? $education_coaching['eng_batch']:0 ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="eng_student" 
-                                    data-title="Enter"><?php echo $eng_student=(isset( $education_coaching['eng_student']))? $education_coaching['eng_student']:0 ?>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="tg-y698">প্রফেশনাল/জব </td>
-
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="job_coachingname" 
-                                    data-title="Enter"><?php echo $job_coachingname=(isset( $education_coaching['job_coachingname']))? $education_coaching['job_coachingname']:"" ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="job_batch" 
-                                    data-title="Enter"><?php echo $job_batch=(isset( $education_coaching['job_batch']))? $education_coaching['job_batch']:0 ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="job_student" 
-                                    data-title="Enter"><?php echo $job_student=(isset( $education_coaching['job_student']))? $education_coaching['job_student']:0 ?>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="tg-y698">অন্যান্য </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="other_coachingname" 
-                                    data-title="Enter"><?php echo $other_coachingname=(isset( $education_coaching['other_coachingname']))? $education_coaching['other_coachingname']:"" ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="other_batch" 
-                                    data-title="Enter"><?php echo $other_batch=(isset( $education_coaching['other_batch']))? $education_coaching['other_batch']:0 ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="other_student" 
-                                    data-title="Enter"><?php echo $other_student=(isset( $education_coaching['other_student']))? $education_coaching['other_student']:0 ?>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="tg-0pky" colspan="2"> মোট</td>
-                                <td class="tg-0pky">
-                                <?php echo  ($ssc_batch + $hsc_batch + $university_batch + $medical_batch + $eng_batch + $job_batch + $other_batch)  ?>
-                                </td>
-                                <td class="tg-0pky">
-                                <?php echo ($ssc_student + $hsc_student + $university_student + $medical_student + $eng_student + $job_student + $other_student) ?>
-                                </td>
-                            </tr>
-                        </table>
+                       
+                       
+                       
                     </div>
                 </div>
             </div>
