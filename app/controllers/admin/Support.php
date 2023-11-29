@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class Support extends MY_Controller
 {
@@ -13,28 +13,28 @@ class Support extends MY_Controller
         $this->lang->admin_load('pages', $this->Settings->user_language);
         $this->load->library('form_validation');
         $this->load->admin_model('pages_model');
-        $this->digital_upload_path = $this->config->item('upload_location').'files/pages/';
-        $this->upload_path = $this->config->item('upload_location').'files/pages/';
-        $this->thumbs_path = $this->config->item('upload_location').'assets/uploads/thumbs/';
+        $this->digital_upload_path = $this->config->item('upload_location') . 'files/pages/';
+        $this->upload_path = $this->config->item('upload_location') . 'files/pages/';
+        $this->thumbs_path = $this->config->item('upload_location') . 'assets/uploads/thumbs/';
         $this->image_types = 'gif|jpg|jpeg|png|tif';
         $this->digital_file_types = 'zip|psd|ai|rar|pdf|doc|docx|xls|xlsx|ppt|pptx|gif|jpg|jpeg|png|tif|txt';
         $this->allowed_file_size = '1024';
         $this->popup_attributes = array('width' => '900', 'height' => '600', 'window_name' => 'sma_popup', 'menubar' => 'yes', 'scrollbars' => 'yes', 'status' => 'no', 'resizable' => 'yes', 'screenx' => '0', 'screeny' => '0');
     }
 
-    function index($warehouse_id = NULL)
+    function index($branch_id = NULL)
     {
-       // $this->sma->checkPermissions();
+        // $this->sma->checkPermissions();
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         if ($this->Owner || $this->Admin || !$this->session->userdata('warehouse_id')) {
-           // $this->data['warehouses'] = $this->site->getAllWarehouses();
-          //  $this->data['warehouse_id'] = $warehouse_id;
-           // $this->data['warehouse'] = $warehouse_id ? $this->site->getWarehouseByID($warehouse_id) : NULL;
+            // $this->data['warehouses'] = $this->site->getAllWarehouses();
+            //  $this->data['warehouse_id'] = $warehouse_id;
+            // $this->data['warehouse'] = $warehouse_id ? $this->site->getWarehouseByID($warehouse_id) : NULL;
         } else {
-          //  $this->data['warehouses'] = NULL;
-           // $this->data['warehouse_id'] = $this->session->userdata('warehouse_id');
-           // $this->data['warehouse'] = $this->session->userdata('warehouse_id') ? $this->site->getWarehouseByID($this->session->userdata('warehouse_id')) : NULL;
+            //  $this->data['warehouses'] = NULL;
+            // $this->data['warehouse_id'] = $this->session->userdata('warehouse_id');
+            // $this->data['warehouse'] = $this->session->userdata('warehouse_id') ? $this->site->getWarehouseByID($this->session->userdata('warehouse_id')) : NULL;
         }
         $this->data['supports'] = $this->site->query_binding('SELECT id, title from sma_pages where status = ? order by priority desc', array(1));
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('সহায়িকা')));
@@ -42,30 +42,91 @@ class Support extends MY_Controller
         $this->page_construct('support/index', $meta, $this->data);
     }
 
-     
 
-     
 
-     function detail($id)
+
+
+    function detail($id)
     {
-       // $this->sma->checkPermissions();
- 
-        $this->data['supportdetail'] = $this->site->getOneRecord('pages','*',array('id'=>$id,'status'=>1),'id asc',1,0 );
+        // $this->sma->checkPermissions();
+
+        $this->data['supportdetail'] = $this->site->getOneRecord('pages', '*', array('id' => $id, 'status' => 1), 'id asc', 1, 0);
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('support'), 'page' => lang('সহায়িকা')), array('link' => '#', 'page' => $this->data['supportdetail']->title));
-        
-		$meta = array('page_title' => lang('সহায়িকা'), 'bc' => $bc);
+
+        $meta = array('page_title' => lang('সহায়িকা'), 'bc' => $bc);
         $this->page_construct('support/detail', $meta, $this->data);
     }
 
 
-      
-    
-    
 
-     
 
-    
+
+
+
+
+
+    function add($branch_id=null)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+
+        $this->load->helper('security');
+
+         
+
+
+
+        $this->form_validation->set_rules('ticket_caption', 'Ticket caption', 'required');
+        $this->form_validation->set_rules('note', 'Ticket detail', 'required');
+        
+
+        if ($this->form_validation->run() == true) {
+
  
-    
 
+
+
+            $ticket_caption = $this->input->post('ticket_caption');
+            $ticket_detail = $this->input->post('note');
+            $page = $this->input->post('page'); 
+            $is_status = 'New'; 
+            $department_id = $this->input->post('department'); 
+            $user_id = $this->session->userdata('user_id');
+            $branch_id = $this->session->userdata('branch_id') ? $this->session->userdata('branch_id') : $branch_id;
+
+            
+
+            $ticket_data = array(
+                'ticket_caption' => $ticket_caption,
+                'ticket_detail' => $this->sma->clear_tags($ticket_detail),
+                'page' => $page,
+                'is_status' => $is_status,
+                //'department_id' => $department_id,
+                'category'=>   $department_id,
+                'user_id' => $user_id,
+                'branch_id' => $branch_id
+            );
+ 
+        } elseif ($this->input->post('ticket')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect("support".($branch_id? '/'.$branch_id : ''));
+        }
+
+        if ($this->form_validation->run() == true && $this->site->insertData('support_ticket', $ticket_data)) {
+
+
+            
+            $this->session->set_flashdata('message', 'Submitted successfully');
+            admin_redirect("support".($branch_id? '/'.$branch_id : ''));
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $this->data['modal_js'] = $this->site->modal_js();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['departments'] = $this->site->getAll('ticket_category');
+		
+           
+
+            $this->load->view($this->theme . 'support/add', $this->data);
+        }
+    }
 }

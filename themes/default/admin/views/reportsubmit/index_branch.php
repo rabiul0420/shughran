@@ -6,7 +6,7 @@
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-info-circle"></i><?= 'Report Submit'; ?></h2>
+        <h2 class="blue"><i class="fa-fw fa fa-info-circle"></i><?= 'ছাড়পত্র'; ?></h2>
 
 
     </div>
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <p class="introtext"><?= lang('customize_report'); ?></p>
+                
 
                 <div id="form">
 
@@ -36,7 +36,7 @@
                                 foreach ($types as $type) {
                                     $bl[$type['id']] =  $type['name'];
                                 }
-                                echo form_dropdown('type', $bl, (isset($_GET['type']) ? $_GET['type'] : ""), 'class="form-control" required id="type" data-placeholder="' . $this->lang->line("select") . " " . 'Type' . '"');
+                                echo form_dropdown('type', $bl, (isset($_GET['type']) ? $_GET['type'] : "annual"), 'class="form-control" required id="type" data-placeholder="' . $this->lang->line("select") . " " . 'Type' . '"');
                                 ?>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                 foreach ($years as $year) {
                                     $wh[$year['id']] = $year['name'];
                                 }
-                                echo form_dropdown('year', $wh, (isset($_GET['year']) ? $_GET['year'] : ""), 'class="form-control" id="year" required data-placeholder="' . $this->lang->line("select") . " " . 'year' . '"');
+                                echo form_dropdown('year', $wh, (isset($_GET['year']) ? $_GET['year'] : date('Y')), 'class="form-control" id="year" required data-placeholder="' . $this->lang->line("select") . " " . 'year' . '"');
                                 ?>
                             </div>
                         </div>

@@ -416,7 +416,15 @@ $(function() {
         $(this).datetimepicker({format: site.dateFormats.js_sdate, fontAwesome: true, todayBtn: 1, autoclose: 1, minView: 2});
     });
 	
+	$('.tmp_date').datetimepicker({format: site.dateFormats.js_sdate, fontAwesome: true, language: 'sma', todayBtn: 1, autoclose: 1, minView: 2 ,     endDate: reportEndDate});
 	
+	
+    $(document).on('focus','.tmp_date', function(t) {
+        $(this).datetimepicker({format: site.dateFormats.js_sdate, fontAwesome: true, todayBtn: 1, autoclose: 1, minView: 2,   endDate: reportEndDate});
+    });
+
+
+
 	
 	$('.fixed_date').datetimepicker({format: site.dateFormats.js_sdate, fontAwesome: true, language: 'sma', todayBtn: 1, autoclose: 1, minView: 2 ,  startDate: reportStartDate,  endDate: reportEndDate});
 	

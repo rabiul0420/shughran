@@ -144,15 +144,104 @@ class Welcome extends MY_Controller
 
 
 
-        $lmsdate = date('Y-m-d', strtotime('first day of last month')) . ' 00:00:00';
-        $lmedate = date('Y-m-d', strtotime('last day of last month')) . ' 23:59:59';
+         
         //$this->data['lmbs'] = $this->db_model->getBestSeller($lmsdate, $lmedate);
         $bc = array(array('link' => '#', 'page' => lang('dashboard')));
         $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);
-        //$this->sma->print_arrays($this->data);
+         //$this->sma->print_arrays($this->data);
         $this->page_construct('mancomminglist', $meta, $this->data);
     }
 
+    public function memberpending($branch_id = NULL)
+    {
+
+        // $this->sma->print_arrays(111);
+
+        if ($this->Settings->version == '2.3') {
+            $this->session->set_flashdata('warning', 'Please complete your update by synchronizing your database.');
+            admin_redirect('sync');
+        }
+
+        $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+
+
+        if ($this->session->userdata('group_id') == 6) {
+            $report_type = $this->report_type();
+            $this->data['submitinfo'] = $this->site->getOneRecord('reportsubmit', "*", array('branch_id' => $this->session->userdata('branch_id'), 'year' => substr($report_type['start'], 0, 4), 'report_type' => $report_type['type']));
+            $this->data['departments'] = $this->site->getAllDepartments();
+        }
+
+
+
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+
+           
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+
+
+
+       
+        $bc = array(array('link' => '#', 'page' => lang('সদস্য ঘাটতি পেন্ডিং তালিকা')));
+        $meta = array('page_title' => lang('সদস্য ঘাটতি পেন্ডিং তালিকা'), 'bc' => $bc);
+        //$this->sma->print_arrays($this->data);
+        $this->page_construct('memberpending', $meta, $this->data);
+    }
+    
+
+
+    public function membercandidatepending($branch_id = NULL)
+    {
+
+        // $this->sma->print_arrays(111);
+
+        if ($this->Settings->version == '2.3') {
+            $this->session->set_flashdata('warning', 'Please complete your update by synchronizing your database.');
+            admin_redirect('sync');
+        }
+
+        $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+
+
+        if ($this->session->userdata('group_id') == 6) {
+            $report_type = $this->report_type();
+            $this->data['submitinfo'] = $this->site->getOneRecord('reportsubmit', "*", array('branch_id' => $this->session->userdata('branch_id'), 'year' => substr($report_type['start'], 0, 4), 'report_type' => $report_type['type']));
+            $this->data['departments'] = $this->site->getAllDepartments();
+        }
+
+
+
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+
+           
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+
+
+ 
+        $bc = array(array('link' => '#', 'page' => lang('সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা')));
+        $meta = array('page_title' => lang('সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা'), 'bc' => $bc);
+        //$this->sma->print_arrays($this->data);
+        $this->page_construct('membercandidatepending', $meta, $this->data);
+    }
+
+    
 
     public function mantransferlist($branch_id = NULL)
     {

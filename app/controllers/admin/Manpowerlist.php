@@ -1528,7 +1528,7 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
 		// $field_arr = array('education','associatecode','member_oath_date','associate_oath_date','district','institution_type','subject','prossion_target','prossion_target_sub','education_institution','is_forum','current_profession','orgstatus_at_forum','education_qualification','type_of_profession','type_higher_education','mobile','opposition','date_death','higher_education_institution','email','foreign_country','foreign_address','myr_serial','how_death');
        
 		$this->db
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, membercode, associatecode, thana_code, blood_group, institution_type_child,institution_type,   {$this->db->dbprefix('manpower')}.name,   sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,  studentlife,education, {$this->db->dbprefix('district')}.name as district,  subject,prossion_target,prossion_target_sub,education_institution,  education_qualification,type_of_profession,     {$this->db->dbprefix('manpower')}.email, single_digit ,
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid, membercode, associatecode, thana_code, blood_group, institution_type_child,institution_type,   {$this->db->dbprefix('manpower')}.name,   sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,  studentlife,education, {$this->db->dbprefix('district')}.name as district,  district_upazila(upazila) as thana_name, subject,prossion_target,prossion_target_sub,education_institution,  education_qualification,type_of_profession,     {$this->db->dbprefix('manpower')}.email, single_digit ,
                 jsc_jdc ,
                 ssc_dhakil ,
                 hsc_alim ,
@@ -1565,6 +1565,8 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
            //  exit();
             if ($q->num_rows() > 0) {
                 foreach (($q->result()) as $row) {
+                   // $row->upazila = $row->district.'_'.$row->thana_name;
+                   // unset($row->thana_name);
                     $data[] = $row;
                 }
             } else {
@@ -1594,8 +1596,10 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
                     'responsibility',
                     'prossion_target',
                     'prossion_target_sub' ,
-                    'blood_group' ,
+                    'blood_group' , 
                     'district' ,
+                    'thana_name' ,
+
                     'single_digit' ,
                     'jsc_jdc' ,
                     'ssc_dhakil' ,

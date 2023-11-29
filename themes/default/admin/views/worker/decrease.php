@@ -73,7 +73,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
      
      <?php echo anchor('admin/worker/workerdecreaselist/'.$process->id.($branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).('type=half_yearly'),'ষান্মাসিক');?>
-     |  <?php echo anchor('admin/worker/workerdecreaselist/'.$process->id.($branch_id ? '?branch_id='.$branch_id : ''),'জুলাই-নভেম্বর\'২১');?>
+     |  <?php echo anchor('admin/worker/workerdecreaselist/'.$process->id.($branch_id ? '?branch_id='.$branch_id : ''),'জুন-নভেম্বর\'২১');?>
      | <?php echo anchor('admin/worker/workerdecreaselist/'.$process->id.($branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?').'type=annual','বার্ষিক ২১');?>
       
 

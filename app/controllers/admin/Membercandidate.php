@@ -63,7 +63,7 @@ class Membercandidate extends MY_Controller
 
 
 
-    public function newName($field,$in_out=null)
+    public function newName($field, $in_out = null)
     {
         switch ($field) {
             case 'barnch_id_to_from':
@@ -208,7 +208,7 @@ class Membercandidate extends MY_Controller
         //for cell value
         $exColh = 'B';
         foreach ($field_arr as $field) {
-            $newName = $this->newName($field,$in_out);
+            $newName = $this->newName($field, $in_out);
             $this->excel->getActiveSheet()->SetCellValue($exColh . '6', $newName);
             $this->excel->getActiveSheet()->getColumnDimension($exColh)->setWidth(20);
             $exColh++;
@@ -738,7 +738,7 @@ class Membercandidate extends MY_Controller
             $this->load->view($this->theme . 'manpower/decrease/pending', $this->data);
         } else if ($manpower->is_pending == 1) {
             $this->data['modal_js'] = $this->site->modal_js();
-            $this->data['msg'] = 'His transfer status is still pending.';
+            $this->data['msg'] = 'His status is still pending.';
             $this->load->view($this->theme . 'manpower/decrease/pending', $this->data);
         } else {
 
@@ -821,8 +821,139 @@ class Membercandidate extends MY_Controller
                     $this->manpower_model->insertData('manpower_transfer', $data_newbranch_member_log);
 
                     $this->session->set_flashdata('message', 'Notification for transfer has been sent');
+                    admin_redirect("membercandidate".( $this->session->userdata('branch_id') ? '/'.$this->session->userdata('branch_id') : ''));
 
-                    admin_redirect("membercandidate");
+                    //admin_redirect("membercandidate");
+                } else if ( in_array($process_id, array( 8, 11, 14 )) ){
+
+
+                    
+
+
+                    $update_8_11_14 = array();
+                    // if ($this->input->post('sessionyear')) {
+                    //     $update_8['sessionyear'] = $this->input->post('sessionyear');
+                    // }
+                    if ($this->input->post('institution_type')) {
+                        $update_8_11_14['institution_type'] = $this->input->post('institution_type');
+                    }
+
+
+                    if ($this->input->post('caretaker_contact_status')) {
+                        $update_8_11_14['caretaker_contact_status'] = $this->input->post('caretaker_contact_status');
+                    }
+
+                    if ($this->input->post('masters_complete_status')) {
+                        $update_8_11_14['masters_complete_status'] = $this->input->post('masters_complete_status');
+                    }
+
+
+
+                    if ($this->input->post('prossion_target_id')) {
+                        $prossion_target = $this->site->getcolumn('profession_target', 'name', array('id' => $this->input->post('prossion_target_id')), 'id desc', 1, 0);
+                        $update_8_11_14['prossion_target_id'] = $this->input->post('prossion_target_id');
+                        $update_8_11_14['prossion_target'] = $prossion_target;
+                    }
+
+                    if ($this->input->post('prossion_target_sub_it')) {
+                        $prossion_target_sub = $this->site->getcolumn('profession_target', 'name', array('id' => $this->input->post('prossion_target_sub_it')), 'id desc', 1, 0);
+                        $update_8_11_14['prossion_target_sub_it'] = $this->input->post('prossion_target_sub_it');
+                        $update_8_11_14['prossion_target_sub'] = $prossion_target_sub;
+                    }
+
+                    if ($this->input->post('sessionyear')) {
+                        $update_8_11_14['sessionyear'] = $this->input->post('sessionyear');
+                    }
+
+                    if ($this->input->post('responsibility_id')) {
+                        $update_8_11_14['responsibility_id'] = $this->input->post('responsibility_id');
+                    }
+
+                    if ($this->input->post('studentlife')) {
+                        $update_8_11_14['studentlife'] = $this->input->post('studentlife');
+                    }
+
+                    if ($this->input->post('education')) {
+                        $update_8_11_14['education'] = $this->input->post('education');
+                    }
+
+                    if ($this->input->post('district')) {
+                        $update_8_11_14['district'] = $this->input->post('district');
+                    }
+                    if ($this->input->post('institution_type')) {
+                        $update_8_11_14['institution_type'] = $this->input->post('institution_type');
+                    }
+                    if ($this->input->post('subject')) {
+                        $update_8_11_14['subject'] = $this->input->post('subject');
+                    }
+                    if ($this->input->post('education_institution')) {
+                        $update_8_11_14['education_institution'] = $this->input->post('education_institution');
+                    }
+                    if ($this->input->post('is_forum')) {
+                        $update_8_11_14['is_forum'] = $this->input->post('is_forum');
+                    }
+                    if ($this->input->post('current_profession')) {
+                        $update_8_11_14['current_profession'] = $this->input->post('current_profession');
+                    }
+                    if ($this->input->post('orgstatus_at_forum')) {
+                        $update_8_11_14['orgstatus_at_forum'] = $this->input->post('orgstatus_at_forum');
+                    }
+                    if ($this->input->post('education_qualification')) {
+                        $update_8_11_14['education_qualification'] = $this->input->post('education_qualification');
+                    }
+                    if ($this->input->post('type_of_profession')) {
+                        $update_8_11_14['type_of_profession'] = $this->input->post('type_of_profession');
+                    }
+                    if ($this->input->post('type_higher_education')) {
+                        $update_8_11_14['type_higher_education'] = $this->input->post('type_higher_education');
+                    }
+                    if ($this->input->post('mobile')) {
+                        $update_8_11_14['mobile'] = $this->input->post('mobile');
+                    }
+                    if ($this->input->post('opposition')) {
+                        $update_8_11_14['opposition'] = $this->input->post('opposition');
+                    }
+                    if ($this->input->post('date_death')) {
+                        $update_8_11_14['date_death'] = $this->sma->fsd($this->input->post('date_death'));
+                    }
+                    if ($this->input->post('higher_education_institution')) {
+                        $update_8_11_14['higher_education_institution'] = $this->input->post('higher_education_institution');
+                    }
+                    if ($this->input->post('email')) {
+                        $update_8_11_14['email'] = $this->input->post('email');
+                    }
+                    if ($this->input->post('foreign_country')) {
+                        $update_8_11_14['foreign_country'] = $this->input->post('foreign_country');
+                    }
+                    if ($this->input->post('foreign_address')) {
+                        $update_8_11_14['foreign_address'] = $this->input->post('foreign_address');
+                    }
+                    if ($this->input->post('how_death')) {
+                        $update_8_11_14['how_death'] = $this->input->post('how_death');
+                    }
+                    if ($this->input->post('myr_serial')) {
+                        $update_8_11_14['myr_serial'] = $this->input->post('myr_serial');
+                    }
+                    if ($this->input->post('note')) {
+                        $update_8_11_14['note'] = $this->input->post('note');
+                    }
+
+
+                    $update_8_11_14['is_pending'] = 1;
+                    $update_8_11_14['is_studentship_pending'] = 1;
+
+
+                    $this->manpower_model->manpowerUpdate('manpower', $update_8_11_14, array('id' => $manpowerid));
+                    $data_membercandidate_log['is_log_pending'] = 1;
+
+                   
+                    $this->manpower_model->insertData('member_candidatelog', $data_membercandidate_log);
+
+                     
+                    $this->session->set_flashdata('message', 'সেক্রেটারি জেনারেলের সিদ্ধান্তের জন্য অপেক্ষা করুন।');
+
+                    admin_redirect("membercandidate".( $this->session->userdata('branch_id') ? '/'.$this->session->userdata('branch_id') : ''));
+
                 }
             } elseif ($this->input->post('membercandidatedecrease')) {
                 $this->session->set_flashdata('error', validation_errors());

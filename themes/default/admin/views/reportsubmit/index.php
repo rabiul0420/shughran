@@ -3,7 +3,7 @@
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-info-circle"></i><?= 'Report Submit'; ?></h2>
+        <h2 class="blue"><i class="fa-fw fa fa-info-circle"></i><?= 'ছাড়পত্র'; ?></h2>
 
 
     </div>
@@ -13,9 +13,9 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <p class="introtext"><?= lang('customize_report'); ?></p>
+                 
 
-                <div id="form">
+                <div id="form" class="hidden">
 
                     <?php echo admin_form_open("reportsubmit", array('method' => 'get')); ?>
                     <div class="row">

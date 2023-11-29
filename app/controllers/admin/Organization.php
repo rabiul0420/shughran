@@ -3678,8 +3678,11 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) &&  $this->site->insertData('thana_log', $thana_log)) {
 
-            $this->session->set_flashdata('message', 'Saved successfully. Please wait for CP\'s approval.');
-            admin_redirect("organization/thanalist");
+            $this->session->set_flashdata('message', 'কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
+
+
+
+            admin_redirect("organization/thanalist" . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
         } else {
 
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
@@ -3737,7 +3740,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $thana_data  = array(
                 'note' => $note,
                 'update_at' => date('Y-m-d H:i:s'),
-                'is_ideal_thana'=>2
+                'is_ideal_thana' => 2
             );
 
             $ideal_log  = array(
@@ -3747,20 +3750,20 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'note' => $note,
                 'in_out' => 2,
                 'is_pending' => 2,
-                'is_ideal_thana'=>2,
+                'is_ideal_thana' => 2,
                 'user_id' => $this->session->userdata('user_id')
             );
         } elseif ($this->input->post('idealthanadecrease')) {
 
 
             $this->session->set_flashdata('error', validation_errors());
-            admin_redirect('organization/ideal_thana/'.$thana_info->branch_id);
+            admin_redirect('organization/ideal_thana/' . $thana_info->branch_id);
         }
 
         if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) &&  $this->site->insertData('thana_ideal_log', $ideal_log)) {
 
             $this->session->set_flashdata('message', 'Saved successfully.');
-            admin_redirect("organization/ideal_thana/".$thana_info->branch_id);
+            admin_redirect("organization/ideal_thana/" . $thana_info->branch_id);
         } else {
 
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
@@ -3840,8 +3843,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
 
-        $this->datatables->add_column("Actions", $action, "id");
-
+        if ($branch_id)
+            $this->datatables->add_column("Actions", "", "id");
+        else
+            $this->datatables->add_column("Actions", $action, "id");
         //$this->datatables->unset_column("manpower_id");
         echo $this->datatables->generate();
     }
@@ -3895,7 +3900,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->site->updateData('thana', array('is_pending' => 2), array('id' => $thana_id));
 
             if ($thana_info->in_out == 1)
-                $this->site->updateData('thana_ideal_log', array('is_pending' => 2, 'date' => date('Y-m-d')), array('thana_id' => $thana_id));
+                $this->site->updateData('thana_ideal_log', array('is_pending' => 2,  'date' => date('Y-m-d')), array('thana_id' => $thana_id));
             if ($thana_info->in_out == 1)
                 $this->site->insertData('thana_log', $thana_log);
 
@@ -4005,7 +4010,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'branch_id' => $this->input->post('branch_id'),
                 'thana_name' => $this->input->post('thana_name'),
                 'thana_code' => $this->input->post('thana_code'),
-                'org_type' => $this->input->post('org_type'),
+               // 'org_type' => $this->input->post('org_type'),
 
                 //'member_number' => $this->input->post('member_number'),
                 // 'associate_number' => $this->input->post('associate_number'),
@@ -4059,7 +4064,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-    
+
     function increaselist_ideal_thana()
     {
 
@@ -4129,20 +4134,19 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->select($this->db->dbprefix('thana_ideal_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_ideal_log')}.date,  member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
                 ->from('thana_ideal_log');
             $this->datatables->join('thana', 'thana.id=thana_ideal_log.thana_id', 'left');
-                
+
             $this->datatables->join('branches', 'branches.id=thana_ideal_log.branch_id', 'left')
                 ->where('branches.id', $branch_id);
 
-            $this->datatables->where('thana_ideal_log.in_out', 1); 
-            
+            $this->datatables->where('thana_ideal_log.in_out', 1);
         } else {
             $this->datatables
-            ->select($this->db->dbprefix('thana_ideal_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_ideal_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
-            ->from('thana_ideal_log');
-        $this->datatables->join('thana', 'thana.id=thana_ideal_log.thana_id', 'left');
-            
-        $this->datatables->join('branches', 'branches.id=thana_ideal_log.branch_id', 'left');
-        $this->datatables->where('thana_ideal_log.in_out', 1);    
+                ->select($this->db->dbprefix('thana_ideal_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_ideal_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_ideal_log');
+            $this->datatables->join('thana', 'thana.id=thana_ideal_log.thana_id', 'left');
+
+            $this->datatables->join('branches', 'branches.id=thana_ideal_log.branch_id', 'left');
+            $this->datatables->where('thana_ideal_log.in_out', 1);
         }
 
 
@@ -4155,14 +4159,14 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $this->datatables->where("DATE({$this->db->dbprefix('thana_ideal_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
- 
+
 
         $this->datatables->unset_column("id");
 
         echo $this->datatables->generate();
     }
-    
-    
+
+
 
 
     function decreaselist_ideal_thana()
@@ -4234,20 +4238,19 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->select($this->db->dbprefix('thana_ideal_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_ideal_log')}.date,  member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
                 ->from('thana_ideal_log');
             $this->datatables->join('thana', 'thana.id=thana_ideal_log.thana_id', 'left');
-                
+
             $this->datatables->join('branches', 'branches.id=thana_ideal_log.branch_id', 'left')
                 ->where('branches.id', $branch_id);
 
-            $this->datatables->where('thana_ideal_log.in_out', 2); 
-            
+            $this->datatables->where('thana_ideal_log.in_out', 2);
         } else {
             $this->datatables
-            ->select($this->db->dbprefix('thana_ideal_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_ideal_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
-            ->from('thana_ideal_log');
-        $this->datatables->join('thana', 'thana.id=thana_ideal_log.thana_id', 'left');
-            
-        $this->datatables->join('branches', 'branches.id=thana_ideal_log.branch_id', 'left');
-        $this->datatables->where('thana_ideal_log.in_out', 2);    
+                ->select($this->db->dbprefix('thana_ideal_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_ideal_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_ideal_log');
+            $this->datatables->join('thana', 'thana.id=thana_ideal_log.thana_id', 'left');
+
+            $this->datatables->join('branches', 'branches.id=thana_ideal_log.branch_id', 'left');
+            $this->datatables->where('thana_ideal_log.in_out', 2);
         }
 
 
@@ -4260,7 +4263,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $this->datatables->where("DATE({$this->db->dbprefix('thana_ideal_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
- 
+
 
         $this->datatables->unset_column("id");
 
@@ -4340,20 +4343,19 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,  member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
                 ->from('thana_log');
             $this->datatables->join('thana', 'thana.id=thana_log.thana_id', 'left');
-                
+
             $this->datatables->join('branches', 'branches.id=thana_log.branch_id', 'left')
                 ->where('branches.id', $branch_id);
 
-            $this->datatables->where('thana_log.in_out', 1); 
-            
+            $this->datatables->where('thana_log.in_out', 1);
         } else {
             $this->datatables
-            ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
-            ->from('thana_log');
-        $this->datatables->join('thana', 'thana.id=thana_log.thana_id', 'left');
-            
-        $this->datatables->join('branches', 'branches.id=thana_log.branch_id', 'left');
-        $this->datatables->where('thana_log.in_out', 1);    
+                ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_log');
+            $this->datatables->join('thana', 'thana.id=thana_log.thana_id', 'left');
+
+            $this->datatables->join('branches', 'branches.id=thana_log.branch_id', 'left');
+            $this->datatables->where('thana_log.in_out', 1);
         }
 
 
@@ -4366,7 +4368,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $this->datatables->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
- 
+
 
         $this->datatables->unset_column("id");
 
@@ -4443,20 +4445,19 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,  member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
                 ->from('thana_log');
             $this->datatables->join('thana', 'thana.id=thana_log.thana_id', 'left');
-                
+
             $this->datatables->join('branches', 'branches.id=thana_log.branch_id', 'left')
                 ->where('branches.id', $branch_id);
 
-            $this->datatables->where('thana_log.in_out', 2); 
-            
+            $this->datatables->where('thana_log.in_out', 2);
         } else {
             $this->datatables
-            ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
-            ->from('thana_log');
-        $this->datatables->join('thana', 'thana.id=thana_log.thana_id', 'left');
-            
-        $this->datatables->join('branches', 'branches.id=thana_log.branch_id', 'left');
-        $this->datatables->where('thana_log.in_out', 2);    
+                ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,   member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_log');
+            $this->datatables->join('thana', 'thana.id=thana_log.thana_id', 'left');
+
+            $this->datatables->join('branches', 'branches.id=thana_log.branch_id', 'left');
+            $this->datatables->where('thana_log.in_out', 2);
         }
 
 
@@ -4469,12 +4470,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $this->datatables->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
- 
+
 
         $this->datatables->unset_column("id");
 
         echo $this->datatables->generate();
     }
-
-
 }

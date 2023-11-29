@@ -24,7 +24,13 @@ class Auth extends MY_Controller
 
 $array = array(
     array('user'=> '1', 'pass'=>'*A3uF#'),
-    
+    array('user'=> '1', 'pass'=>'*A3uF#'),
+    array('user'=> '1', 'pass'=>'*A3uF#'),
+    array('user'=> '1', 'pass'=>'*A3uF#'),
+    array('user'=> '1', 'pass'=>'*A3uF#'),
+    array('user'=> '1', 'pass'=>'*A3uF#'),
+    array('user'=> '1', 'pass'=>'*A3uF#'),
+    array('user'=> '1', 'pass'=>'*A3uF#'),
 
 	);
 

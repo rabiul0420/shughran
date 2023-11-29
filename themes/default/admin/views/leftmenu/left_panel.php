@@ -31,6 +31,20 @@
                                 </li>
 
                                 <li class="mm_transfer">
+                                    <a href="<?= admin_url('memberpending') ?>">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span class="text">সদস্য ঘাটতি পেন্ডিং তালিকা  <?=isset($manpowerstdout) ? '('.$manpowerstdout.')': ''?></span>
+                                    </a>
+                                </li>
+
+                                <li class="mm_transfer">
+                                    <a href="<?= admin_url('membercandidatepending') ?>">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span class="text">সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা  <?=isset($membercandidatepending) ? '('.$membercandidatepending.')': ''?></span>
+                                    </a>
+                                </li>
+
+                                <li class="mm_transfer">
                                     <a href="<?= admin_url('manpowertransfer/add') ?>">
                                         <i class="fa fa-dashboard"></i>
                                         <span class="text">সাথীপ্রার্থী/কর্মী স্থানান্তর করুন</span>
@@ -51,7 +65,11 @@
                                     </a>
                                 </li>
 
-
+                                <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thana_pending')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/thana_pending') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা পেন্ডিং তালিকা"; ?> <?=isset($thanapendingcount) ? '('.$thanapendingcount.')': ''?></span>
+                                            </a>
+                                        </li>
 
 
 

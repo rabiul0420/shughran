@@ -19,7 +19,7 @@
 if($report_info['is_current'] || $report_info['year'] == date('Y')) {
 	if($report_info['type']=='annual'){
 		echo anchor('admin/others/organizationinfo'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষান্মাসিক '.$report_info['year']); 
-		echo  "&nbsp;|&nbsp;".anchor('admin/others/organizationinfo'.( $branch_id ? '/'.$branch_id : ''),'জুলাই-নভেম্বর\''.$report_info['year']); 
+		echo  "&nbsp;|&nbsp;".anchor('admin/others/organizationinfo'.( $branch_id ? '/'.$branch_id : ''),'জুন-নভেম্বর\''.$report_info['year']); 
 		echo "&nbsp;|&nbsp;";   echo anchor('admin/others/organizationinfo'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
 	}
 	else{
@@ -157,22 +157,43 @@ font: 18px SolaimanLipi, sans-serif;
 <td>
 <?php 
 
-if($organizationinfo->id == 4) { 
+if($organizationinfo->id == 1) {
+    $increase = $thanainfo_summary[0]['institutional_increase'];
+    $decrease = $thanainfo_summary[0]['institutional_decrease'];
+    $increase2 = $thanainfo_summary[0]['residential_increase'];
+    $decrease2 = $thanainfo_summary[0]['residential_decrease'];
+
+ }
+else if($organizationinfo->id == 2) {
+    $increase = $idealthanainfo_summary[0]['institutional_increase'];
+    $decrease = $idealthanainfo_summary[0]['institutional_decrease'];
+    $increase2 = $idealthanainfo_summary[0]['residential_increase'];
+    $decrease2 = $idealthanainfo_summary[0]['residential_decrease'];
+
+ }
+else if($organizationinfo->id == 4) { 
 $increase = isset($unit_increase_decrease[0]['unit_increase']) ? $unit_increase_decrease[0]['unit_increase'] : 0;
 $decrease = isset($unit_increase_decrease[0]['unit_decrease']) ? $unit_increase_decrease[0]['unit_decrease'] : 0;
+$increase2 = sum_record($organizationinfo_summary,'residential_increase',$organizationinfo->id,'organizationinfo_id');
+$decrease2 = sum_record($organizationinfo_summary,'residential_decrease',$organizationinfo->id,'organizationinfo_id');
+ 
 }
 else { 
 $increase = sum_record($organizationinfo_summary,'institutional_increase',$organizationinfo->id,'organizationinfo_id');
 $decrease = sum_record($organizationinfo_summary,'institutional_decrease',$organizationinfo->id,'organizationinfo_id');
+$increase2 = sum_record($organizationinfo_summary,'residential_increase',$organizationinfo->id,'organizationinfo_id');
+$decrease2 = sum_record($organizationinfo_summary,'residential_decrease',$organizationinfo->id,'organizationinfo_id');
+ 
 }
 	
  
 $prev =     sum_record($organizationinfo_summary_prev,'institutional',$organizationinfo->id,'organizationinfo_id'); 
 
-$increase2 = sum_record($organizationinfo_summary,'residential_increase',$organizationinfo->id,'organizationinfo_id');
+
+
 $prev2 =  sum_record($organizationinfo_summary_prev,'residential',$organizationinfo->id,'organizationinfo_id'); 
-$decrease2 = sum_record($organizationinfo_summary,'residential_decrease',$organizationinfo->id,'organizationinfo_id');
-;
+
+
 if($report_info['prev_record']) 
   echo $prev+$increase-$decrease + $prev2+$increase2-$decrease2; 
 ?>
@@ -184,9 +205,12 @@ if($report_info['prev_record'])
 <td ><?php    echo $decrease  + $decrease2;?></td>
 <td ><?php if($report_info['prev_record'])   echo $prev;?></td>
 <td ><?php  if($report_info['prev_record'])   echo $prev+$increase-$decrease;?></td>
+
+
+ 
 <td colspan="2"><?php echo $increase;?></td>
 <td colspan="2"><?php echo $decrease;?></td>
-
+ 
 
 <td><?php  if($report_info['prev_record'])   echo $prev2;?></td>
 <td colspan="2"><?php  if($report_info['prev_record'])  echo $prev2+$increase2-$decrease2;?></td>

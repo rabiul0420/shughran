@@ -30,8 +30,8 @@ class Reportsubmit extends MY_Controller
        
 
         $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
-        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Report Submit'));
-        $meta = array('page_title' => 'Report Submit', 'bc' => $bc);
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'ছাড়পত্র'));
+        $meta = array('page_title' => 'ছাড়পত্র', 'bc' => $bc);
 		
 		 
           

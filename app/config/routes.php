@@ -43,6 +43,12 @@ $route['reset_password/(:any)'] = 'main/reset_password/$1';
 $route['admin'] = 'admin/welcome';
 $route['admin/mantransferlist'] = 'admin/welcome/mantransferlist';
 $route['admin/mancomminglist'] = 'admin/welcome/mancomminglist';
+$route['admin/memberpending'] = 'admin/welcome/memberpending';
+$route['admin/memberpending/(:num)'] = 'admin/welcome/memberpending/$1';
+
+$route['admin/membercandidatepending'] = 'admin/welcome/membercandidatepending';
+$route['admin/membercandidatepending/(:num)'] = 'admin/welcome/membercandidatepending/$1';
+
 $route['admin/dashboard'] = 'admin/welcome/dashboard';
 $route['admin/dashboardtransfer'] = 'admin/welcome/dashboardtransfer';
 $route['admin/users'] = 'admin/auth/users';
