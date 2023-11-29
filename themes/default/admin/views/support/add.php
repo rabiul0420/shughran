@@ -20,28 +20,43 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    
+
+
+                <?php if($this->Owner || $this->Admin) {?>
+                    <div class="form-group">
+                        <?= lang("শাখা", "branch_id"); ?>
+                        <?php
+                        $wh[''] = lang('select') . ' ' . lang('branch');
+                        foreach ($branches as $branch) {
+                            $wh[$branch->id] = $branch->name;
+                        }
+                        echo form_dropdown('branch_id', $wh, (isset($_POST['branch_id']) ? $_POST['branch_id'] : ''), 'id="branch_id" required="required" class="form-control select" style="width:100%;" ');
+                        ?>
+                    </div>
+                    <?php }?>
+
+
 
                     <div class="form-group">
                         <?php echo lang('Menu', 'page'); ?>
                         <div class="controls">
-                        
 
 
 
- 
+
+
                             <?php
-                        $opt = array(
-                            '' => lang('choose'),
-                            'জনশক্তি' => lang('জনশক্তি'),
-                            'সংগঠন' => lang('সংগঠন'),
-                            'অন্যান্য' => lang('অন্যান্য'),
-                            'দাওয়াত' => lang('দাওয়াত'),
-                            'বিভাগীয় রিপোর্ট' => lang('বিভাগীয় রিপোর্ট')
-                    );
-                        echo form_dropdown('page', $opt, (isset($_POST['page']) ? $_POST['page'] : ''), 'id="status" required="required" class="form-control select" style="width:100%;"');
-                        ?>
-                        
+                            $opt = array(
+                                '' => lang('choose'),
+                                'জনশক্তি' => lang('জনশক্তি'),
+                                'সংগঠন' => lang('সংগঠন'),
+                                'অন্যান্য' => lang('অন্যান্য'),
+                                'দাওয়াত' => lang('দাওয়াত'),
+                                'বিভাগীয় রিপোর্ট' => lang('বিভাগীয় রিপোর্ট')
+                            );
+                            echo form_dropdown('page', $opt, (isset($_POST['page']) ? $_POST['page'] : ''), 'id="status" required="required" class="form-control select" style="width:100%;"');
+                            ?>
+
                         </div>
                     </div>
 

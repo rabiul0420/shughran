@@ -32,17 +32,18 @@ class Support extends MY_Controller
             $this->data['branches'] = $this->site->getAllBranches();
             $this->data['branch_id'] = $branch_id;
             $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+            $this->data['tickets'] = $this->site->query_binding('SELECT sma_support_ticket.*,  sma_branches.code from sma_support_ticket left join sma_branches on sma_branches.id = sma_support_ticket.branch_id  where is_status != ? order by id desc limit 20', array('Closed'));
         } else {
             $this->data['branches'] = NULL;
             $this->data['branch_id'] = $this->session->userdata('branch_id');
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+            $this->data['tickets'] = $this->site->query_binding('SELECT sma_support_ticket.*,  sma_branches.code from sma_support_ticket left join sma_branches on sma_branches.id = sma_support_ticket.branch_id  where is_status != ? and branch_id = ? order by id desc limit 20', array('Closed', $this->session->userdata('branch_id')));
         }
 
 
         $this->data['supports'] = $this->site->query_binding('SELECT id, title from sma_pages where status = ? order by priority desc', array(1));
-       
-        $this->data['tickets'] = $this->site->query_binding('SELECT sma_support_ticket.*,  sma_branches.code from sma_support_ticket left join sma_branches on sma_branches.id = sma_support_ticket.branch_id  where is_status != ? order by id desc limit 20', array('Closed'));
-       
+
+
 
         //$this->sma->print_arrays($this->data['tickets']);
 
@@ -77,9 +78,9 @@ class Support extends MY_Controller
     function add($branch_id = null)
     {
 
-        $this->sma->checkPermissions('index', TRUE);
+      //  $this->sma->checkPermissions('index', TRUE);
 
-        $this->load->helper('security');
+       // $this->load->helper('security');
 
 
 
@@ -101,8 +102,11 @@ class Support extends MY_Controller
             $is_status = 'New';
             $department_id = $this->input->post('department');
             $user_id = $this->session->userdata('user_id');
-            $branch_id = $this->session->userdata('branch_id') ? $this->session->userdata('branch_id') : $branch_id;
 
+            if ($this->Owner || $this->Admin) {
+                $branch_id = $this->input->post('branch_id');
+            } else
+                $branch_id = $this->session->userdata('branch_id') ? $this->session->userdata('branch_id') : $branch_id;
 
 
             $ticket_data = array(
@@ -117,7 +121,8 @@ class Support extends MY_Controller
             );
         } elseif ($this->input->post('ticket')) {
             $this->session->set_flashdata('error', validation_errors());
-            admin_redirect("support" . ($branch_id ? '/' . $branch_id : ''));
+            //admin_redirect("support" . ($branch_id ? '/' . $branch_id : ''));
+            admin_redirect("support");
         }
 
         if ($this->form_validation->run() == true && $this->site->insertData('support_ticket', $ticket_data)) {
@@ -125,16 +130,40 @@ class Support extends MY_Controller
 
 
             $this->session->set_flashdata('message', 'Submitted successfully');
-            admin_redirect("support" . ($branch_id ? '/' . $branch_id : ''));
+            admin_redirect("support");
+            //admin_redirect("support" . ($branch_id ? '/' . $branch_id : ''));
         } else {
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
             $this->data['modal_js'] = $this->site->modal_js();
             $this->data['branch_id'] = $branch_id;
             $this->data['departments'] = $this->site->getAll('ticket_category');
-
+            $this->data['branches'] = $this->site->getAll('branches');
 
 
             $this->load->view($this->theme . 'support/add', $this->data);
         }
+    }
+
+    function ticketdetail($id = null)
+    {
+
+        //$this->sma->checkPermissions('index', TRUE);
+
+       // $this->load->helper('security');
+
+
+
+        $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+        $this->data['modal_js'] = $this->site->modal_js();
+
+        $this->data['departments'] = $this->site->getAll('ticket_category');
+
+        $this->data['ticketdetail'] = $this->site->getByID('support_ticket', 'id', $id);
+        $this->data['user'] = $this->site->getByID('users', 'id', $this->data['ticketdetail']->user_id);
+
+        $this->data['branch'] =  $this->site->getBranchByID($this->data['ticketdetail']->branch_id);
+
+
+        $this->load->view($this->theme . 'support/ticketdetail', $this->data);
     }
 }

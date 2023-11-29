@@ -199,7 +199,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
       $('.ticket_status').editable(
 				{
-					mode:'inline',
+					mode:'popup',
 					 prepend: "not selected",
 				inputclass: 'form-control',
 				source: [{
