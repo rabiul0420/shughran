@@ -3336,10 +3336,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
             // $this->sma->print_arrays($branchinfo->last_assocode);
+// $originalDate = $this->sma->fsd($this->input->post('date'));
+
+
+
+            //  $this->sma->print_arrays($originalDate);
 
             //new manpower
             $data = array(
-                'date' =>  date('Y-m-d'),
+                'date' =>  $this->sma->fsd($this->input->post('date')),
                 'branch_id' => $this->input->post('branch_id'),
                 'thana_name' => $this->input->post('thana_name'),
                 'thana_code' => $this->input->post('thana_code'),
@@ -3380,7 +3385,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-            $this->session->set_flashdata('message', 'Added');
+            $this->session->set_flashdata('message', 'কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
+
 
 
             admin_redirect('organization/addthana');

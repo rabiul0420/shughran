@@ -40,6 +40,10 @@
             },
             "aoColumns": [
                 {"bVisible": false},   null, null, <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,null,null,null
+                <?php if ($process->id == 15) { ?>
+                    ,null
+                <?php } ?>
+
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
@@ -49,7 +53,13 @@
             {column_number: 5, filter_default_label: "[<?='Session';?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?='Responsibility';?>]", filter_type: "text", data: []},
             {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
-            
+            <?php if ($process->id == 15) { ?> {
+                    column_number: 8,
+                    filter_default_label: "[<?= 'স্থানান্তরিত শাখা'; ?>]",
+                    filter_type: "text",
+                    data: []
+                },
+            <?php } ?>
              
             
             
@@ -182,7 +192,12 @@ else {
 							
 							
 							 <th><?php echo  in_array($process->id,array(9,10,11,8,14)) ? "সর্বশেষ দায়িত্ব" : "দায়িত্ব"; ?></th>
+
 							 <th><?= 'থানা কোড' ?></th>
+                             <?php if ($process->id == 15) { ?>
+                                    <th><?= 'স্থানান্তরিত শাখা' ?></th>
+                                <?php } ?>
+
                                   </tr>
                         </thead>
                         <tbody>
@@ -202,6 +217,9 @@ else {
                             <th></th>
                             <th></th>
                             <th></th>
+                            <?php if ($process->id == 15) { ?>
+                                    <th></th>
+                                <?php } ?>
                         </tr>
                         </tfoot>
                     </table>
