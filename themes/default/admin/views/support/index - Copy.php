@@ -468,17 +468,13 @@
                                     <div class="col-md-12">
                                         <ul class="list-group fa-padding">
 
-                                            <?php foreach($tickets as $key=>$row) {?>
+                                            <?php foreach($tickets as $row) {?>
                                             <li class="list-group-item">
-
                                                 <div class="media">
-                                                    
-                                                    <i class="pull-left" style="width:20px; padding-right:20px; padding-top:2px;"><?=$row['code']?></i>
-
+                                                    <i class="fa fa-cog pull-left"></i>
                                                     <div class="media-body">
-                                                        <a  href="<?= admin_url('support/add') ?>" data-toggle="modal" data-target="#myModal" ><strong><?=$row['ticket_caption']?></strong></a> 
-                                                        <span class="label label-<?=$row['is_status']=='New'? 'primary': ($row['is_status'] == 'Done' ? 'success' :  ( $row['is_status'] == 'Cancelled' ? 'danger': 'warning')  )?>"><a href="" class="ticket_status"></a><?=$row['is_status']?></span><span class="number pull-right"># <?=$row['id']?></span>
-                                                        <p class="info">Opened by <a href="#"></a> <?=$row['entry_date']?></p>
+                                                        <a  href="<?= admin_url('support/add') ?>" data-toggle="modal" data-target="#myModal" ><strong>Add drag and drop config import closes</strong></a><span class="label label-danger">IMPORTANT</span><span class="number pull-right"># 13698</span>
+                                                        <p class="info">Opened by <a href="#"></a> 5 hours ago <i class="fa fa-comments"></i> <a href="#">2 comments</a></p>
                                                     </div>
                                                 </div>
                                             </li>
