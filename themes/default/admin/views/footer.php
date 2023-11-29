@@ -191,6 +191,67 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 	
 	
 	
+      
+
+
+
+
+
+      $('.ticket_status').editable(
+				{
+					mode:'inline',
+					 prepend: "not selected",
+				inputclass: 'form-control',
+				source: [{
+					value: 'New',
+					text: 'New'
+				}, {
+					value: 'Received',
+					text: 'Received'
+				}, {
+					value: 'In process',
+					text: 'In process'
+				}, {
+					value: 'Done',
+					text: 'Done'
+				}, {
+					value: 'Cancelled',
+					text: 'Cancelled'
+				}, {
+					value: 'Closed',
+					text: 'Closed'
+				}
+            
+            
+            ],	
+                
+				params: function(params) {
+                     // add additional params from data-attributes of trigger element
+                     params.table = $(this).editable().data('table');
+                     params.id = $(this).editable().data('id');
+                     params.idname = $(this).editable().data('idname');
+                     params.branch_id =  <?php echo isset($branch->id) ? $branch->id : "''";?>;
+                     params.token = $("meta[name=token]").attr("content");
+                     return params;
+                 },
+                 success: function (response) {  console.log('test',response);
+                     var data = $.parseJSON(response);
+                     if(data.flag==3)
+                         location.reload();
+                     else if(data.flag==1)
+                         alert(data.msg);
+                 },
+                 error: function (response) {
+                     console.log(response);
+                 } 
+             }
+	 
+	 
+	 
+	 
+	 
+	 
+	  );
 	
 	
 	

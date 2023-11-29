@@ -20,12 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <div class="form-group">
-                        <?php echo lang('সমস্যা', 'ticket_caption'); ?>
-                        <div class="controls">
-                            <?php echo form_input('ticket_caption', '', 'class="form-control" id="ticket_caption" required="required"'); ?>
-                        </div>
-                    </div>
+                    
 
                     <div class="form-group">
                         <?php echo lang('Menu', 'page'); ?>
@@ -71,10 +66,15 @@
                         ?>
                     </div>
 
-
+                    <div class="form-group">
+                        <?php echo lang('শিরোনাম', 'ticket_caption'); ?>
+                        <div class="controls">
+                            <?php echo form_input('ticket_caption', '', 'class="form-control" id="ticket_caption" required="required"'); ?>
+                        </div>
+                    </div>
 
                     <div class="form-group">
-                        <?= lang("note", "note"); ?>
+                        <?= lang("সমস্যা এবং কি ধরণের সমাধান চান লিখুন ", "note"); ?>
                         <?php echo form_textarea('note', '', 'class="form-control" id="note" required style="height:100px;"'); ?>
                     </div>
                 </div>
