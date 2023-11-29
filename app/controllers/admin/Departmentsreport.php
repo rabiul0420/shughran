@@ -24,6 +24,14 @@ class Departmentsreport extends MY_Controller
     }
 
 function index(){
+
+if (!($this->Owner || $this->Admin)) {
+    $this->sma->print_arrays("৩ ডিসেম্বর সকাল ১০ টা থেকে বিভাগীয় রিপোর্ট গ্রহণ শুরু হবে । নির্ধারিত সময়ে প্রবেশ করুন। ");
+}
+    
+
+
+
 	   $this->sma->checkPermissions();
 	//$this->sma->print_arrays($';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));

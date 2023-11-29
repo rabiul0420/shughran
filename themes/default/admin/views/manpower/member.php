@@ -33,7 +33,7 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},   null, null, null,  null,null,null,null,  {"bSortable": false}, {"bSortable": false},  {"bSortable": false}
+                {"bSortable": false, "mRender": checkbox},   null, null, null,  null,null,null,null,null,  {"bSortable": false}, {"bSortable": false},  {"bSortable": false}
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?='কোড';?>]", filter_type: "text", data: []},
@@ -43,6 +43,7 @@
             {column_number: 5, filter_default_label: "[<?='সেশন';?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?='দায়িত্ব';?>]", filter_type: "text", data: []},
             {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
+            {column_number: 8, filter_default_label: "[<?='নিজ উপজেলা/থানা';?>]", filter_type: "text", data: []},
         ], "footer");
 
     });
@@ -122,6 +123,7 @@
 							<th><?= 'শ্রেণি/বর্ষ' ?></th>
                             <th><?= 'দায়িত্ব' ?></th>
                             <th><?= 'থানা কোড' ?></th>
+                            <th><?= 'নিজ উপজেলা/থানা' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'ঘাটতি' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'মুলতবি' ?></th>
                             <th style="min-width:65px; text-align:center;"><?= 'Action' ?></th>
@@ -138,6 +140,7 @@
                             <th style="min-width:30px; width: 30px; text-align: center;">
                                 <input class="checkbox checkft" type="checkbox" name="check"/>
                             </th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

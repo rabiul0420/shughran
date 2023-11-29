@@ -115,6 +115,25 @@ function row_status($x)
 
 
 
+
+                function orgstatus(status_name) {
+
+                    if(status_name=='Member'){
+                        return 'সদস্য'; 
+                    }else if(status_name=='Associate'){
+                        return 'সাথী';
+                    }else if(status_name=='Worker'){
+                        return 'কর্মী';
+                    }else if(status_name=='MemberCandidate'){
+                        return 'সদস্যপ্রার্থী';
+                    }else if(status_name=='AssociateCandidate'){
+                        return 'সাথীপ্রার্থী';
+                    }  else 
+                        return status_name;
+
+                }
+
+
                 oTable = $('#PRData').dataTable({
                     "aaSorting": [
                         [2, "asc"],
@@ -151,7 +170,7 @@ function row_status($x)
                     "aoColumns": [{
                         "bSortable": false,
                         "mRender": checkbox
-                    }, null, null, null,null, null, null, null, {
+                    }, null, null, null, null, null, {"mRender": orgstatus} ,  null,{
                         "bSortable": false
                     }]
                 }).fnSetFilteringDelay().dtFilter([{
@@ -167,7 +186,7 @@ function row_status($x)
                         data: []
                     },
                     {
-                        column_number:3,
+                        column_number: 3,
                         filter_default_label: "[<?= 'সাথী কোড'; ?>]",
                         filter_type: "text",
                         data: []
@@ -250,7 +269,7 @@ function row_status($x)
                                         <th style="min-width:30px; width: 30px; text-align: center;">
                                             <input class="checkbox checkth" type="checkbox" name="check" />
                                         </th>
-                                        
+
                                         <th><?= 'নাম' ?></th>
                                         <th><?= 'সদস্য কোড' ?></th>
                                         <th><?= 'সাথী কোড' ?></th>
@@ -330,9 +349,3 @@ function row_status($x)
 
 
 </div>
-
-
-
-
-
- 

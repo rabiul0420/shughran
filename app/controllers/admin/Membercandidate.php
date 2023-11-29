@@ -378,7 +378,7 @@ class Membercandidate extends MY_Controller
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
                 ->from('member_candidatelog');
             $this->datatables->join('manpower', 'manpower.id=member_candidatelog.manpower_id', 'left')
                 ->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 1);
@@ -387,7 +387,7 @@ class Membercandidate extends MY_Controller
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
                 ->from('member_candidatelog');
             $this->datatables->join('manpower', 'manpower.id=member_candidatelog.manpower_id', 'left')
                 ->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 1);

@@ -203,6 +203,9 @@ class ManpowerTransfer extends MY_Controller
 
         $this->datatables->add_column("Actions", $action, "id,manpower_id");
         $this->datatables->unset_column("manpower_id");
+
+        
+
         echo $this->datatables->generate();
     }
 
