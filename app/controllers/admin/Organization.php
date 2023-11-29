@@ -1810,7 +1810,18 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         exit;
     }
 
-
+    function ticketupdate()
+    {
+        $flag = 1;
+        $msg = 'done';
+        if ($this->Owner || $this->Admin) {
+            $flag = 100;
+            $this->site->updateData($this->input->get_post('table'), array($this->input->get_post('name') => $this->input->get_post('value')), array('id' => $this->input->get_post('pk')));
+        } else
+            $msg = 'failed';
+        echo json_encode(array('flag' => $flag, 'msg' => $msg));
+        exit;
+    }
 
 
     function institutionwithoutorgexport($branch_id = NULL)  // with no organization export

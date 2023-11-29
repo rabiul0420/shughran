@@ -455,11 +455,23 @@
                                         <li><a href="#"><i class="fa"> </i> Least commented</a></li>
                                     </ul>
                                 </div>
+                                
 
                                 <!-- BEGIN NEW TICKET -->
                                 <a class="tip  btn btn-primary pull-right" title="" href="<?= admin_url('support/add') ?>" data-toggle="modal" data-target="#myModal" data-original-title="New ticket"> <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' New ticket' ?></i> </a>
 
                                 <!-- END NEW TICKET -->
+
+                                <div class="btn-group pull-right" style="padding-right:5px">
+                                <button type="button" class="btn btn-default"><i class="fa fa-arrow-left"></i></button>
+                                <button type="button" class="btn btn-default"><i class="fa fa-arrow-right"></i></button>
+                              
+                                </div>
+
+                                <div class="btn-group pull-right" style="padding-right:5px">
+                                <button type="button" class="btn">Page: 5</button>
+                                
+                                </div>
 
                                 <div class="padding"></div>
 
@@ -476,8 +488,13 @@
                                                     <i class="pull-left" style="width:20px; padding-right:20px; padding-top:2px;"><?=$row['code']?></i>
 
                                                     <div class="media-body">
-                                                        <a  href="<?= admin_url('support/add') ?>" data-toggle="modal" data-target="#myModal" ><strong><?=$row['ticket_caption']?></strong></a> 
-                                                        <span class="label label-<?=$row['is_status']=='New'? 'primary': ($row['is_status'] == 'Done' ? 'success' :  ( $row['is_status'] == 'Cancelled' ? 'danger': 'warning')  )?>"><a href="" class="ticket_status"></a><?=$row['is_status']?></span><span class="number pull-right"># <?=$row['id']?></span>
+                                                        <a  href="<?= admin_url('support/ticketdetail/'.$row['id']) ?>" data-toggle="modal" data-target="#myModal" ><strong><?=$row['ticket_caption']?></strong></a> 
+                                                        <span class="label label-<?=$row['is_status']=='New'? 'primary': ($row['is_status'] == 'Done' ? 'success' :  ( $row['is_status'] == 'Cancelled' ? 'danger': 'warning')  )?>">
+                                                        
+                                                        <a href="#"  class="ticket_status  editable-click"   data-type="select" data-table="support_ticket" data-pk="<?php echo  $row['id'];?>" data-url="<?php echo admin_url('organization/ticketupdate');?>" data-name="is_status" data-title="Enter"><?=$row['is_status']?></a> 
+  
+                                                        
+                                                    </span><span class="number pull-right"># <?=$row['id']?></span>
                                                         <p class="info">Opened by <a href="#"></a> <?=$row['entry_date']?></p>
                                                     </div>
                                                 </div>
