@@ -477,7 +477,12 @@
 
                                                     <div class="media-body">
                                                         <a  href="<?= admin_url('support/add') ?>" data-toggle="modal" data-target="#myModal" ><strong><?=$row['ticket_caption']?></strong></a> 
-                                                        <span class="label label-<?=$row['is_status']=='New'? 'primary': ($row['is_status'] == 'Done' ? 'success' :  ( $row['is_status'] == 'Cancelled' ? 'danger': 'warning')  )?>"><a href="" class="ticket_status"></a><?=$row['is_status']?></span><span class="number pull-right"># <?=$row['id']?></span>
+                                                        <span class="label label-<?=$row['is_status']=='New'? 'primary': ($row['is_status'] == 'Done' ? 'success' :  ( $row['is_status'] == 'Cancelled' ? 'danger': 'warning')  )?>">
+                                                        
+                                                        <a href="#"  class="ticket_status"   data-type="text" data-table="support_ticket" data-pk="<?php echo  $row['id'];?>" data-url="<?php echo admin_url('organization/detailupdate');?>" data-name="is_status" data-title="Enter"><?=$row['is_status']?></a> 
+  
+                                                        
+                                                    </span><span class="number pull-right"># <?=$row['id']?></span>
                                                         <p class="info">Opened by <a href="#"></a> <?=$row['entry_date']?></p>
                                                     </div>
                                                 </div>
