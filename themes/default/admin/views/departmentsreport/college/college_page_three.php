@@ -616,7 +616,7 @@ $(document).ready(function(){
                             </tr>
 
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable2">
+                       <!--  <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
                               <td class="tg-pwj7" colspan="7"><b>আইডিয়াল হোম: (একাডেমিক ও ভর্তিচ্ছু )</b></td>
                               <td class="tg-pwj7" colspan="2">
@@ -792,7 +792,7 @@ $(document).ready(function(){
                                
                             </tr>
 
-                        </table>
+                        </table> -->
                         <table class="tg table table-header-rotated" id="testTable3">
                             <tr>
                               <td class="tg-pwj7" colspan="9"><b>ব্রিজিং প্রজেক্ট: (তত্ত্বাবধানকারী শাখার জন্য)</b></td>

@@ -236,63 +236,78 @@
                     </style>
                     <div class="tg-wrap">
                         <table class="tg table table-header-rotated" id="testTable1">
-                            <tr>
-                                <td class="tg-pwj7" colspan="9"><b> পত্রিকার গ্রাহক বৃদ্ধি </b></td>
-                                <td class="tg-pwj7" colspan="2">
-                                    <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Literature_পত্রিকার গ্রাহক বৃদ্ধি.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="2">পত্রিকার নাম</td>
-                                <td class="tg-pwj7" colspan="2">মাসিক পত্রিকা সংখ্যা </td>
-                                <td class="tg-pwj7" colspan="2">গ্রাহক সংখ্যা </td>
-                                <td class="tg-pwj7 " colspan="2"> বৃদ্ধির বার্ষিক টার্গেট </td>
-                                <td class="tg-pwj7 " colspan="2"> বৃদ্ধি </td>
-                                <td class="tg-pwj7 " colspan="2"> ঘাটতি </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7">
-                                    <div><span>পূর্ব </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>বর্তমান </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>পূর্ব </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>বর্তমান </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>পত্রিকা </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>গ্রাহক </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>পত্রিকা </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>গ্রাহক </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>পত্রিকা </span></div>
-                                </td>
-                                <td class="tg-pwj7">
-                                    <div><span>গ্রাহক </span></div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="tg-pwj7" colspan="9"><b> পত্রিকা ও গ্রাহক সংক্রান্ত </b></td>
+                            <td class="tg-pwj7" colspan="7">
+                                <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Literature_পত্রিকার গ্রাহক বৃদ্ধি_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" rowspan="3">পত্রিকার নাম</td>
+                            <td class="tg-pwj7" colspan="8">পত্রিকা </td>
+                            <td class="tg-pwj7" colspan="5">গ্রাহক  </td>
+                            
+                        </tr>
 
+                        <tr>
+           
+                            <td class="tg-pwj7" colspan="5">মাসিক সংখ্যা </td>
+                            <td class="tg-pwj7" colspan="3">বার্ষিক সংখ্যা  </td>
+
+                            <td class="tg-pwj7" rowspan="2"><div><span>পূর্ব </span></div></td>
+                            <td class="tg-pwj7" rowspan="2"><div><span>বর্তমান </span></div></td>
+                            <td class="tg-pwj7" rowspan="2"><div><span>বৃদ্ধির <br>টার্গেট </span></div></td>
+                            <td class="tg-pwj7" rowspan="2"><div><span>বৃদ্ধি </span></div></td>
+                            <td class="tg-pwj7" rowspan="2"><div><span>ঘাটতি </span></div></td>
+                        
+                        </tr>
+
+                        <tr>
+                        <td class="tg-pwj7"><div><span>পূর্ব </span></div></td>
+                        <td class="tg-pwj7"><div><span>বর্তমান </span></div></td>
+                        <td class="tg-pwj7"><div><span>বৃদ্ধির <br>টার্গেট </span></div></td>
+                        <td class="tg-pwj7"><div><span>বৃদ্ধি </span></div></td>
+                        <td class="tg-pwj7"><div><span>ঘাটতি </span></div></td>
+
+                        <td class="tg-pwj7"><div><span>মোট <br>সংখ্যা</span></div></td>
+                        <td class="tg-pwj7"><div><span>বিক্রয়  </span></div></td>
+                        <td class="tg-pwj7"><div><span>বিতরণ </span></div></td>
+
+                        
+                    </tr>
 
                             <tr>
-                                <td class="tg-y698 type_1">বাংলা কিশোর পত্রিকা </td>
+                                <td class="tg-y698 type_1">বাংলা কিশোর পত্রিকা  </td>
                                 <td class="tg-0pky  type_1">
                                     <?php echo $potrikar_grahok_briddhi['bkp_pn_before'] ?>
                                 </td>
-
+                                 
 
                                 <td class="tg-0pky  type_2">
                                     <?php echo $potrikar_grahok_briddhi['bkp_pn_present'] ?>
+                                </td>
+                                <td class="tg-0pky  type_5">
+                                    <?php echo $potrikar_grahok_briddhi['bkp_bt_potrika'] ?>
+                                </td>
+                                <td class="tg-0pky  type_7">
+                                    <?php echo $potrikar_grahok_briddhi['bkp_briddhi_potrika'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                    <?php echo $potrikar_grahok_briddhi['bkp_ghatti_potrika'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_11">
+                                    <?php echo $potrikar_grahok_briddhi['bkp_bmn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_12">
+                                    <?php echo $potrikar_grahok_briddhi['bkp_bbkry'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_13">
+                                    <?php echo $potrikar_grahok_briddhi['bkp_bbitrn'] ?>
+
                                 </td>
                                 <td class="tg-0pky  type_3">
                                     <?php echo $potrikar_grahok_briddhi['bkp_gn_before'] ?>
@@ -300,25 +315,17 @@
                                 <td class="tg-0pky  type_4">
                                     <?php echo $potrikar_grahok_briddhi['bkp_gn_present'] ?>
                                 </td>
-                                <td class="tg-0pky  type_5">
-                                    <?php echo $potrikar_grahok_briddhi['bkp_bt_potrika'] ?>
-                                </td>
+                                
                                 <td class="tg-0pky  type_6">
                                     <?php echo $potrikar_grahok_briddhi['bkp_bt_grahok'] ?>
 
                                 </td>
-                                <td class="tg-0pky  type_7">
-                                    <?php echo $potrikar_grahok_briddhi['bkp_briddhi_potrika'] ?>
-
-                                </td>
+                                
                                 <td class="tg-0pky type_8">
                                     <?php echo $potrikar_grahok_briddhi['bkp_briddhi_grahok'] ?>
 
                                 </td>
-                                <td class="tg-0pky  type_9">
-                                    <?php echo $potrikar_grahok_briddhi['bkp_ghatti_potrika'] ?>
-
-                                </td>
+                               
                                 <td class="tg-0pky  type_10">
                                     <?php echo $potrikar_grahok_briddhi['bkp_ghatti_grahok'] ?>
 
@@ -328,45 +335,55 @@
 
                             <tr>
                                 <td class="tg-y698">নতুন বাংলা কিশোর পত্রিকা </td>
-                                <td class="tg-0pky">
+                                <td class="tg-0pky  type_1">
                                     <?php echo $potrikar_grahok_briddhi['nbkp_pn_before'] ?>
                                 </td>
-                                <td class="tg-0pky">
+                                 
+
+                                <td class="tg-0pky  type_2">
                                     <?php echo $potrikar_grahok_briddhi['nbkp_pn_present'] ?>
-
                                 </td>
-                                <td class="tg-0pky">
-                                    <?php echo $potrikar_grahok_briddhi['nbkp_gn_before'] ?>
-
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo $potrikar_grahok_briddhi['nbkp_gn_present'] ?>
-
-                                </td>
-                                <td class="tg-0pky">
+                                <td class="tg-0pky  type_5">
                                     <?php echo $potrikar_grahok_briddhi['nbkp_bt_potrika'] ?>
-
                                 </td>
-                                <td class="tg-0pky">
-                                    <?php echo $potrikar_grahok_briddhi['nbkp_bt_grahok'] ?>
-
-                                </td>
-                                <td class="tg-0pky">
+                                <td class="tg-0pky  type_7">
                                     <?php echo $potrikar_grahok_briddhi['nbkp_briddhi_potrika'] ?>
 
                                 </td>
-
-
-
-                                <td class="tg-0pky">
-                                    <?php echo $potrikar_grahok_briddhi['nbkp_briddhi_grahok'] ?>
-
-                                </td>
-                                <td class="tg-0pky">
+                                <td class="tg-0pky  type_9">
                                     <?php echo $potrikar_grahok_briddhi['nbkp_ghatti_potrika'] ?>
 
                                 </td>
-                                <td class="tg-0pky">
+                                <td class="tg-0pky  type_11">
+                                    <?php echo $potrikar_grahok_briddhi['nbkp_bmn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_12">
+                                    <?php echo $potrikar_grahok_briddhi['nbkp_bbkry'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_13">
+                                    <?php echo $potrikar_grahok_briddhi['nbkp_bbitrn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $potrikar_grahok_briddhi['nbkp_gn_before'] ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                    <?php echo $potrikar_grahok_briddhi['nbkp_gn_present'] ?>
+                                </td>
+                                
+                                <td class="tg-0pky  type_6">
+                                    <?php echo $potrikar_grahok_briddhi['nbkp_bt_grahok'] ?>
+
+                                </td>
+                                
+                                <td class="tg-0pky type_8">
+                                    <?php echo $potrikar_grahok_briddhi['nbkp_briddhi_grahok'] ?>
+
+                                </td>
+                               
+                                <td class="tg-0pky  type_10">
                                     <?php echo $potrikar_grahok_briddhi['nbkp_ghatti_grahok'] ?>
 
                                 </td>
@@ -375,44 +392,54 @@
 
                             <tr>
                                 <td class="tg-y698">ইংরেজি কিশোর পত্রিকা </td>
-                                <td class="tg-0pky type_1">
+                                <td class="tg-0pky  type_1">
                                     <?php echo $potrikar_grahok_briddhi['ekp_pn_before'] ?>
-
                                 </td>
+                                 
+
                                 <td class="tg-0pky  type_2">
                                     <?php echo $potrikar_grahok_briddhi['ekp_pn_present'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <?php echo $potrikar_grahok_briddhi['ekp_gn_before'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_4">
-                                    <?php echo $potrikar_grahok_briddhi['ekp_gn_present'] ?>
-
                                 </td>
                                 <td class="tg-0pky  type_5">
                                     <?php echo $potrikar_grahok_briddhi['ekp_bt_potrika'] ?>
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $potrikar_grahok_briddhi['ekp_bt_grahok'] ?>
-
-
-                                </td>
-
                                 <td class="tg-0pky  type_7">
                                     <?php echo $potrikar_grahok_briddhi['ekp_briddhi_potrika'] ?>
-
-                                </td>
-
-                                <td class="tg-0pky  type_8">
-                                    <?php echo $potrikar_grahok_briddhi['ekp_briddhi_grahok'] ?>
 
                                 </td>
                                 <td class="tg-0pky  type_9">
                                     <?php echo $potrikar_grahok_briddhi['ekp_ghatti_potrika'] ?>
 
                                 </td>
+                                <td class="tg-0pky  type_11">
+                                    <?php echo $potrikar_grahok_briddhi['ekp_bmn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_12">
+                                    <?php echo $potrikar_grahok_briddhi['ekp_bbkry'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_13">
+                                    <?php echo $potrikar_grahok_briddhi['ekp_bbitrn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $potrikar_grahok_briddhi['ekp_gn_before'] ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                    <?php echo $potrikar_grahok_briddhi['ekp_gn_present'] ?>
+                                </td>
+                                
+                                <td class="tg-0pky  type_6">
+                                    <?php echo $potrikar_grahok_briddhi['ekp_bt_grahok'] ?>
+
+                                </td>
+                                
+                                <td class="tg-0pky type_8">
+                                    <?php echo $potrikar_grahok_briddhi['ekp_briddhi_grahok'] ?>
+
+                                </td>
+                               
                                 <td class="tg-0pky  type_10">
                                     <?php echo $potrikar_grahok_briddhi['ekp_ghatti_grahok'] ?>
 
@@ -424,44 +451,54 @@
 
                             <tr>
                                 <td class="tg-y698">ছাত্রসংবাদ </td>
-                                <td class="tg-0pky type_1">
+                                <td class="tg-0pky  type_1">
                                     <?php echo $potrikar_grahok_briddhi['cs_pn_before'] ?>
-
                                 </td>
+                                 
+
                                 <td class="tg-0pky  type_2">
                                     <?php echo $potrikar_grahok_briddhi['cs_pn_present'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <?php echo $potrikar_grahok_briddhi['cs_gn_before'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_4">
-                                    <?php echo $potrikar_grahok_briddhi['cs_gn_present'] ?>
-
                                 </td>
                                 <td class="tg-0pky  type_5">
                                     <?php echo $potrikar_grahok_briddhi['cs_bt_potrika'] ?>
-
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $potrikar_grahok_briddhi['cs_bt_grahok'] ?>
-
-                                </td>
-
                                 <td class="tg-0pky  type_7">
                                     <?php echo $potrikar_grahok_briddhi['cs_briddhi_potrika'] ?>
-
-                                </td>
-
-                                <td class="tg-0pky  type_8">
-                                    <?php echo $potrikar_grahok_briddhi['cs_briddhi_grahok'] ?>
 
                                 </td>
                                 <td class="tg-0pky  type_9">
                                     <?php echo $potrikar_grahok_briddhi['cs_ghatti_potrika'] ?>
 
                                 </td>
+                                <td class="tg-0pky  type_11">
+                                    <?php echo $potrikar_grahok_briddhi['cs_bmn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_12">
+                                    <?php echo $potrikar_grahok_briddhi['cs_bbkry'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_13">
+                                    <?php echo $potrikar_grahok_briddhi['cs_bbitrn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $potrikar_grahok_briddhi['cs_gn_before'] ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                    <?php echo $potrikar_grahok_briddhi['cs_gn_present'] ?>
+                                </td>
+                                
+                                <td class="tg-0pky  type_6">
+                                    <?php echo $potrikar_grahok_briddhi['cs_bt_grahok'] ?>
+
+                                </td>
+                                
+                                <td class="tg-0pky type_8">
+                                    <?php echo $potrikar_grahok_briddhi['cs_briddhi_grahok'] ?>
+
+                                </td>
+                               
                                 <td class="tg-0pky  type_10">
                                     <?php echo $potrikar_grahok_briddhi['cs_ghatti_grahok'] ?>
 
@@ -473,44 +510,54 @@
 
                             <tr>
                                 <td class="tg-y698">বড় ইংরেজি পত্রিকা</td>
-                                <td class="tg-0pky type_1">
+                                <td class="tg-0pky  type_1">
                                     <?php echo $potrikar_grahok_briddhi['bep_pn_before'] ?>
-
                                 </td>
+                                 
+
                                 <td class="tg-0pky  type_2">
                                     <?php echo $potrikar_grahok_briddhi['bep_pn_after'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <?php echo $potrikar_grahok_briddhi['bep_gn_before'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_4">
-                                    <?php echo $potrikar_grahok_briddhi['bep_gn_present'] ?>
-
                                 </td>
                                 <td class="tg-0pky  type_5">
                                     <?php echo $potrikar_grahok_briddhi['bep_bt_potrika'] ?>
                                 </td>
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $potrikar_grahok_briddhi['bep_bt_grahok'] ?>
-
-
-                                </td>
-
                                 <td class="tg-0pky  type_7">
                                     <?php echo $potrikar_grahok_briddhi['bep_briddhi_potrika'] ?>
-
-                                </td>
-
-                                <td class="tg-0pky  type_8">
-                                    <?php echo $potrikar_grahok_briddhi['bep_briddhi_grahok'] ?>
 
                                 </td>
                                 <td class="tg-0pky  type_9">
                                     <?php echo $potrikar_grahok_briddhi['bep_ghatti_potrika'] ?>
 
                                 </td>
+                                <td class="tg-0pky  type_11">
+                                    <?php echo $potrikar_grahok_briddhi['bep_bmn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_12">
+                                    <?php echo $potrikar_grahok_briddhi['bep_bbkry'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_13">
+                                    <?php echo $potrikar_grahok_briddhi['bep_bbitrn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $potrikar_grahok_briddhi['bep_gn_before'] ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                    <?php echo $potrikar_grahok_briddhi['bep_gn_present'] ?>
+                                </td>
+                                
+                                <td class="tg-0pky  type_6">
+                                    <?php echo $potrikar_grahok_briddhi['bep_bt_grahok'] ?>
+
+                                </td>
+                                
+                                <td class="tg-0pky type_8">
+                                    <?php echo $potrikar_grahok_briddhi['bep_briddhi_grahok'] ?>
+
+                                </td>
+                               
                                 <td class="tg-0pky  type_10">
                                     <?php echo $potrikar_grahok_briddhi['bep_ghatti_grahok'] ?>
 
@@ -519,29 +566,113 @@
 
                             <tr>
                                 <td class="tg-y698">শাখা কর্তৃক প্রকাশিত পত্রিকা </td>
-                                <td class="tg-0pky type_1"><?php echo $potrikar_grahok_briddhi['skpp_pn_before'] ?></td>
-                                <td class="tg-0pky type_2"><?php echo $potrikar_grahok_briddhi['skpp_pn_present'] ?></td>
-                                <td class="tg-0pky type_3"><?php echo $potrikar_grahok_briddhi['skpp_gn_before'] ?></td>
-                                <td class="tg-0pky type_4"><?php echo $potrikar_grahok_briddhi['skpp_gn_present'] ?></td>
-                                <td class="tg-0pky type_5"><?php echo $potrikar_grahok_briddhi['skpp_bt_potrika'] ?></td>
-                                <td class="tg-0pky type_6"><?php echo $potrikar_grahok_briddhi['skpp_bt_grahok'] ?></td>
-                                <td class="tg-0pky type_7 "><?php echo $potrikar_grahok_briddhi['skpp_briddhi_potrika'] ?></td>
-                                <td class="tg-0pky type_8"><?php echo $potrikar_grahok_briddhi['skpp_briddhi_grahok'] ?></td>
-                                <td class="tg-0pky type_9"><?php echo $potrikar_grahok_briddhi['skpp_ghatti_potrika'] ?></td>
-                                <td class="tg-0pky type_10"><?php echo $potrikar_grahok_briddhi['skpp_ghatti_grahok'] ?></td>
+                                <td class="tg-0pky  type_1">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_pn_before'] ?>
+                                </td>
+                                 
+
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_pn_present'] ?>
+                                </td>
+                                <td class="tg-0pky  type_5">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bt_potrika'] ?>
+                                </td>
+                                <td class="tg-0pky  type_7">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_briddhi_potrika'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_ghatti_potrika'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_11">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bmn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_12">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bbkry'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_13">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bbitrn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_gn_before'] ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_gn_present'] ?>
+                                </td>
+                                
+                                <td class="tg-0pky  type_6">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bt_grahok'] ?>
+
+                                </td>
+                                
+                                <td class="tg-0pky type_8">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_briddhi_grahok'] ?>
+
+                                </td>
+                               
+                                <td class="tg-0pky  type_10">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_ghatti_grahok'] ?>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td class="tg-y698">সাহিত্য পত্রিকা </td>
-                                <td class="tg-0pky type_1"><?php echo $potrikar_grahok_briddhi['sp_pn_before'] ?></td>
-                                <td class="tg-0pky type_2"><?php echo $potrikar_grahok_briddhi['sp_pn_present'] ?></td>
-                                <td class="tg-0pky type_3"><?php echo $potrikar_grahok_briddhi['sp_gn_before'] ?></td>
-                                <td class="tg-0pky type_4"><?php echo $potrikar_grahok_briddhi['sp_gn_present'] ?></td>
-                                <td class="tg-0pky type_5"><?php echo $potrikar_grahok_briddhi['sp_bt_potrika'] ?></td>
-                                <td class="tg-0pky type_6"><?php echo $potrikar_grahok_briddhi['sp_bt_grahok'] ?></td>
-                                <td class="tg-0pky type_7"><?php echo $potrikar_grahok_briddhi['sp_briddhi_potrika'] ?></td>
-                                <td class="tg-0pky type_8"><?php echo $potrikar_grahok_briddhi['sp_briddhi_grahok'] ?></td>
-                                <td class="tg-0pky type_9"><?php echo $potrikar_grahok_briddhi['sp_ghatti_potrika'] ?></td>
-                                <td class="tg-0pky type_10"><?php echo $potrikar_grahok_briddhi['sp_ghatti_grahok'] ?></td>
+                                 <td class="tg-0pky  type_1">
+                                    <?php echo $potrikar_grahok_briddhi['sp_pn_before'] ?>
+                                </td>
+                                 
+
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $potrikar_grahok_briddhi['sp_pn_present'] ?>
+                                </td>
+                                <td class="tg-0pky  type_5">
+                                    <?php echo $potrikar_grahok_briddhi['sp_bt_potrika'] ?>
+                                </td>
+                                <td class="tg-0pky  type_7">
+                                    <?php echo $potrikar_grahok_briddhi['sp_briddhi_potrika'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                    <?php echo $potrikar_grahok_briddhi['sp_ghatti_potrika'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_11">
+                                    <?php echo $potrikar_grahok_briddhi['sp_bmn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_12">
+                                    <?php echo $potrikar_grahok_briddhi['sp_bbkry'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_13">
+                                    <?php echo $potrikar_grahok_briddhi['sp_bbitrn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $potrikar_grahok_briddhi['sp_gn_before'] ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                    <?php echo $potrikar_grahok_briddhi['sp_gn_present'] ?>
+                                </td>
+                                
+                                <td class="tg-0pky  type_6">
+                                    <?php echo $potrikar_grahok_briddhi['sp_bt_grahok'] ?>
+
+                                </td>
+                                
+                                <td class="tg-0pky type_8">
+                                    <?php echo $potrikar_grahok_briddhi['sp_briddhi_grahok'] ?>
+
+                                </td>
+                               
+                                <td class="tg-0pky  type_10">
+                                    <?php echo $potrikar_grahok_briddhi['sp_ghatti_grahok'] ?>
+
+                                </td>
                             </tr>
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
@@ -557,7 +688,7 @@
                                 <td class="tg-pwj7">ধরণ</td>
                                 <td class="tg-pwj7"> সময়কাল </td>
                                 <td class="tg-pwj7">নাম </td>
-                                <td class="tg-pwj7"> বিষয় </td>
+                                <!-- <td class="tg-pwj7"> বিষয় </td> -->
                                 <td class="tg-pwj7"> ইস্যু সংখ্যা </td>
                                 <!-- <td class='tg-pwj7'>Actions</td> -->
                             </tr>
@@ -579,9 +710,11 @@
                                     <td class="tg-0pky  type_3">
                                         <?php echo $row['literature_name'] ?>
                                     </td>
-                                    <td class="tg-0pky  type_4">
-                                        <?php echo $row['literature_term'] ?>
-                                    </td>
+                                    <!-- <td class="tg-0pky  type_4"> -->
+
+                                        <!-- <?php echo $row['literature_term'] ?> -->
+
+                                    <!-- </td> -->
                                     <td class="tg-0pky  type_1">
                                         <?php echo $row['literature_amount'] ?>
                                     </td>

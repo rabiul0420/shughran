@@ -251,7 +251,7 @@
                             </tr>
                             <tr>
                                 <td class="tg-y698" rowspan="6">টিভি </td>
-                                <td class="tg-y698" rowspan='3'>স্যাটেলাইট</td>
+                                <td class="tg-y698" rowspan='3'>ইলেকট্রনিক</td>
                                 <td class="tg-y698">জেলা প্রতিনিধি</td>
                                 <td class="tg-0pky">
                                     <?php

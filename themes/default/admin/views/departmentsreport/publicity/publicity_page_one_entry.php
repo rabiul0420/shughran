@@ -148,7 +148,7 @@ $(document).ready(function(){
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="6"><b>প্রচার বিভাগে অনলাইন এক্টিভিটিজ </b></td>
+                                <td class="tg-pwj7" colspan="6"><b> মিডিয়া এক্টিভিটিজ </b></td>
                                 <td class="tg-pwj7" colspan="3">
                                     <a href="#" id='table_2' onclick="doit('xlsx','testTable2', '<?php echo 'Publicity_প্রচার বিভাগে অনলাইন এক্টিভিটিজ_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -158,8 +158,8 @@ $(document).ready(function(){
                                 <td class="tg-pwj7" rowspan="2">মোট সংখ্যা</td>
                                 <td class="tg-pwj7" rowspan="2">প্রেরিত নিউজ  </td>
                                 <td class="tg-pwj7" rowspan="2"> প্রকাশিত নিউজ </td>
-                                <td class="tg-pwj7" rowspan="2">কতটিতে প্রেরণ </td>
-                                <td class="tg-pwj7" rowspan="2">কতটিতে প্রকাশ </td>
+                                <td class="tg-pwj7" rowspan="2">প্রেরিত বিবৃতি  </td>
+                                <td class="tg-pwj7" rowspan="2">প্রকাশিত বিবৃতি </td>
                                 <td class="tg-pwj7" colspan="2">সাক্ষাৎকার </td>   
                             </tr>
 
@@ -175,7 +175,7 @@ $(document).ready(function(){
                             ?>
                             <tr>
                                 <td class="tg-y698 type_1" rowspan="2">টিভি	</td>
-                                <td class="tg-y698"> স্যাটেলাইট  </td>
+                                <td class="tg-y698">ইলেক্ট্রনিক মিডিয়া </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                         data-table="publicity_online_activity" data-pk="<?php echo $pk ?>" 
@@ -234,7 +234,7 @@ $(document).ready(function(){
                                 </td>
                           
                             </tr>
-                                <td class="tg-y698" >অনলাইন	 </td>
+                                <td class="tg-y698" >অনলাইন	মিডিয়া </td>
                                 
                                 <td class="tg-0pky  type_1">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -541,10 +541,72 @@ $(document).ready(function(){
                           
                             </tr>   
 
-                        </table>
+
+                            <tr>
+                            <td class="tg-y698" colspan="2" >শাখার ফেইসবুক পেইজ </td> 
+                                <td class="tg-0pky  type_1">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                        data-table="publicity_online_activity" data-pk="<?php echo $pk ?>" 
+                                        data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                        data-name="facebook_total" data-title="Enter">
+                                        <?php echo $facebook_total=  (isset( $publicity_online_activity['facebook_total']))? $publicity_online_activity['facebook_total']:'' ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                        data-table="publicity_online_activity" data-pk="<?php echo $pk ?>" 
+                                        data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                        data-name="facebook_prerito_news" data-title="Enter">
+                                        <?php echo $facebook_prerito_news=  (isset( $publicity_online_activity['facebook_prerito_news']))? $publicity_online_activity['facebook_prerito_news']:'' ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                        data-table="publicity_online_activity" data-pk="<?php echo $pk ?>" 
+                                        data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                        data-name="facebook_prokashito_news" data-title="Enter">
+                                        <?php echo $facebook_prokashito_news=  (isset( $publicity_online_activity['facebook_prokashito_news']))? $publicity_online_activity['facebook_prokashito_news']:'' ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                        data-table="publicity_online_activity" data-pk="<?php echo $pk ?>" 
+                                        data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                        data-name="facebook_kototite_preron" data-title="Enter">
+                                        <?php echo $facebook_kototite_preron=  (isset( $publicity_online_activity['facebook_kototite_preron']))? $publicity_online_activity['facebook_kototite_preron']:'' ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                        data-table="publicity_online_activity" data-pk="<?php echo $pk ?>" 
+                                        data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                        data-name="facebook_kototite_prokash" data-title="Enter">
+                                        <?php echo $facebook_kototite_prokash=  (isset( $publicity_online_activity['facebook_kototite_prokash']))? $publicity_online_activity['facebook_kototite_prokash']:'' ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                        data-table="publicity_online_activity" data-pk="<?php echo $pk ?>" 
+                                        data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                        data-name="facebook_prodan" data-title="Enter">
+                                        <?php echo $facebook_prodan=  (isset( $publicity_online_activity['facebook_prodan']))? $publicity_online_activity['facebook_prodan']:'' ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_1">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                        data-table="publicity_online_activity" data-pk="<?php echo $pk ?>" 
+                                        data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                        data-name="facebook_prokashito" data-title="Enter">
+                                        <?php echo $facebook_prokashito=  (isset( $publicity_online_activity['facebook_prokashito']))? $publicity_online_activity['facebook_prokashito']:'' ?>
+                                    </a>
+                                </td>
+                          
+                            </tr>
+
+                        </table> 
                         <table class="tg table table-header-rotated" id="testTable3">
                             <tr>
-                                <td class="tg-pwj7" colspan="3"><b>শাখার পরিচালিত অনলাইন নিউজ মিডিয়া সংক্রান্ত   </b></td>
+                                <td class="tg-pwj7" colspan="3"><b>শাখার পরিচালিত অনলাইন পোর্টাল সংক্রান্ত   </b></td>
                                 <td class="tg-pwj7" colspan="1">
                                     <a href="#" id='table_3' onclick="doit('xlsx','testTable3', '<?php echo 'Publicity_শাখার পরিচালিত অনলাইন নিউজ মিডিয়া সংক্রান্ত_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -592,7 +654,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="" >শাখার ফেসবুক পেজ আছে কিনা? </td>
+                                <td class="tg-pwj7" colspan="" >পোর্টালের ফেসবুক পেজ আছে কিনা? </td>
                                 <td class="tg-pwj7" colspan="">ভেরিফাইড কনিা?</td>
                                 <td class="tg-pwj7" rowspan="">লাইক সংখ্যা</td>
                                 <td class="tg-pwj7" rowspan="">ফলোয়ার সংখ্যা</td>
@@ -629,9 +691,9 @@ $(document).ready(function(){
                                         <?php echo $follower=  (isset( $publicity_shakhar_online_news_media['follower']))? $publicity_shakhar_online_news_media['follower']:'' ?>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr> 
                              <tr>
-                                <td class="tg-pwj7" colspan="" >শাখার ইউটিউব চ্যানলে আছে কনিা?</td>
+                                <td class="tg-pwj7" colspan="পোর্টালের ইউটিউব চ্যানলে আছে কনিা?</td>
                                 <td class="tg-pwj7" colspan="">ভেরিফাইড কনিা?</td>
                                 <td class="tg-pwj7" rowspan='' colspan="2">সাবস্ক্রাইবার সংখ্যা</td>
                             </tr>
@@ -706,6 +768,33 @@ $(document).ready(function(){
                         </tr>
                         <tr>
                         
+                        <td class="tg-pwj7 "><div><span>বিভাগীয় জনশক্তিদের নিয়ে জরুরি বৈঠক </span></div></td>
+                            <td class="tg-0pky  type_1" >
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="publicity_shova_shomuho" data-pk="<?php echo $pk ?>" 
+                                    data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                    data-name="bggth_num" data-title="Enter">
+                                    <?php echo $bggth_num=  (isset( $publicity_shova_shomuho['bggth_num']))? $publicity_shova_shomuho['bggth_num']:0; ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky  type_1" >
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="publicity_shova_shomuho" data-pk="<?php echo $pk ?>" 
+                                    data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
+                                    data-name="bggth_pre" data-title="Enter">
+                                    <?php echo $bggth_pre=  (isset( $publicity_shova_shomuho['bggth_pre']))? $publicity_shova_shomuho['bggth_pre']:0; ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky" >
+                            <?php echo number_format(($bggth_num!=0 && $bggth_pre!=0)?$bggth_pre/$bggth_num:0,2)?>
+                            </td>
+                                      
+                       
+                        </tr>
+                        <tr>
+
+                        <!-- <tr>
+                        
                         <td class="tg-pwj7 "><div><span>প্রশিক্ষণ কর্মশালা</span></div></td>
                             <td class="tg-0pky  type_1" >
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -729,7 +818,7 @@ $(document).ready(function(){
                                       
                        
                         </tr>
-                        <tr>
+                        <tr> -->
                         
                         <td class="tg-pwj7 "><div><span> মতবিনিময়</span></div></td>
                      

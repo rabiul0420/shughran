@@ -128,6 +128,15 @@ class Publicity extends MY_Controller
             $this->db->select_sum('online_ancholik_kototite_prokash');
             $this->db->select_sum('online_ancholik_prodan');
             $this->db->select_sum('online_ancholik_prokashito');
+
+            $this->db->select_sum('facebook_total');
+            $this->db->select_sum('facebook_prerito_news');
+            $this->db->select_sum('facebook_prokashito_news');
+            $this->db->select_sum('facebook_kototite_preron');
+            $this->db->select_sum('facebook_kototite_prokash');
+            $this->db->select_sum('facebook_prodan');
+            $this->db->select_sum('facebook_prokashito');
+           
             if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
@@ -165,6 +174,9 @@ class Publicity extends MY_Controller
             $this->db->select_sum('motobinimoy_pre');
             $this->db->select_sum('shong_shommelon_num');
             $this->db->select_sum('shong_shommelon_pre');
+
+            $this->db->select_sum('bggth_num');
+            $this->db->select_sum('bggth_pre');
             if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');

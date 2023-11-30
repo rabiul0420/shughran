@@ -262,7 +262,7 @@
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="7"><b>আইডিয়াল হোম (একাডেমিক ও প্রফেশনাল)</b></td>
+                                <td class="tg-pwj7" colspan="7"><b>একাডেমিক হোম :</b></td>
                                 <td class="tg-pwj7" colspan="2">
                                     <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Education_সাআইডিয়াল হোম (একাডেমিক ও প্রফেশনাল).xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
@@ -513,7 +513,7 @@
                                     <?php echo $hons_h_pres = $education_ideal_home['hons_h_pres'] ?>
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                    <?php echo $hons_h_pres = $education_ideal_home['hons_h_pres'] ?>
+                                    <?php echo $hons_h_bri = $education_ideal_home['hons_h_bri'] ?>
                                 </td>
                                 <td class="tg-0pky  type_4">
                                     <?php echo $hons_h_gha = $education_ideal_home['hons_h_gha'] ?>
@@ -567,7 +567,7 @@
                                     <?php echo $j_she_h_prev = $education_ideal_home['j_she_h_prev'] ?>
                                 </td>
                                 <td class="tg-0pky  type_2">
-                                    <?php echo $J_she_h_pres = $education_ideal_home['j_she_h_pres'] ?>
+                                    <?php echo $j_she_h_pres = $education_ideal_home['j_she_h_pres'] ?>
                                 </td>
                                 <td class="tg-0pky  type_3">
                                     <?php echo $j_she_h_bri = $education_ideal_home['j_she_h_bri'] ?>

@@ -261,8 +261,8 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-y698" rowspan="6">টিভি </td>
-                                <td class="tg-y698" rowspan='3'>স্যাটেলাইট</td>
-                                <td class="tg-y698">জেলা প্রতিনিধি</td>
+                                <td class="tg-y698" rowspan='3'>ইলেক্ট্রনিক</td>
+                                <td class="tg-y698">জেলা প্রতিনিধি</td> 
                                 <td class="tg-0pky"> 
                                 <?php echo ($publicity_contact['tv_satelite_jela_shovapoti'] +$publicity_contact['tv_satelite_jela_prochar']) ?>
                                 </td>

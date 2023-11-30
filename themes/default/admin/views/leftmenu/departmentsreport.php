@@ -81,7 +81,13 @@
                        </li>
 					   <li class="mm_it">
                             <a href="<?= admin_url('departmentsreport/it-bivag') ?>">
-                                <i class="fa fa-cog"></i><span class="text">তথ্যপ্রযুক্তি ও সোশ্যাল মিডিয়া বিভাগ</span>
+                                <i class="fa fa-cog"></i><span class="text">তথ্যপ্রযুক্তি বিভাগ</span>
+                               
+                            </a>
+                        </li>
+                        <li class="mm_sm">
+                            <a href="<?= admin_url('departmentsreport/it-bivag_sm') ?>">
+                                <i class="fa fa-cog"></i><span class="text">সোশ্যাল মিডিয়া বিভাগ</span>
                                
                             </a>
                         </li>

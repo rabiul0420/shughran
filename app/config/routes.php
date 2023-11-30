@@ -247,11 +247,15 @@ $route['admin/departmentsreport/manpower-bivag/(:num)'] = 'admin/departments_rep
 $route['admin/departmentsreport/pathagar-bivag'] = 'admin/departments_report/Library/pathagar_bivag';
 $route['admin/departmentsreport/pathagar-bivag/(:num)'] = 'admin/departments_report/Library/pathagar_bivag/$1';
 
-//foundation
+//foundation   [webview->controller]
 
 $route['admin/departmentsreport/foundation-bivag'] = 'admin/departments_report/Foundation/foundation_bivag';
 $route['admin/departmentsreport/foundation-bivag/(:num)'] = 'admin/departments_report/Foundation/foundation_bivag/$1';
 
+/* // <a style="text-decoration:none;" href=<?php echo admin_url('departmentsreport/add-foundation-trust/'. $branch_id) ?> ><i class="fa fa-plus-square" aria-hidden="true"></i> তথ্য যুক্ত করুন</a>
+ */
+
+$route['admin/departmentsreport/add-foundation-trust/(:num)'] = 'admin/departments_report/Foundation/add_foundation_trust/$1';
 $route['admin/departmentsreport/add-foundation-jomi-shongkranto/(:num)'] = 'admin/departments_report/Foundation/add_foundation_jomi_shongkranto/$1';
 $route['admin/departmentsreport/add-foundation-flat-shongkranto/(:num)'] = 'admin/departments_report/Foundation/add_foundation_flat_shongkranto/$1';
 $route['admin/departmentsreport/add-foundation-others/(:num)'] = 'admin/departments_report/Foundation/add_foundation_others/$1';
@@ -291,6 +295,10 @@ $route['admin/departmentsreport/add-science-biggan-school-magazine-circulation/(
 //It
 $route['admin/departmentsreport/it-bivag'] = 'admin/departments_report/It/it_bivag';
 $route['admin/departmentsreport/it-bivag/(:num)'] = 'admin/departments_report/It/it_bivag/$1';
+
+//SM
+$route['admin/departmentsreport/it-bivag_sm'] = 'admin/departments_report/It/it_bivag_sm';
+$route['admin/departmentsreport/it-bivag_sm/(:num)'] = 'admin/departments_report/It/it_bivag_sm/$1';
 
 //sports
 

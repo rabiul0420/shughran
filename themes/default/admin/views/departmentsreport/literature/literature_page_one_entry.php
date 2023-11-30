@@ -95,30 +95,43 @@ $(document).ready(function(){
 
 <table class="tg table table-header-rotated" id="testTable1">
         <tr>
-            <td class="tg-pwj7" colspan="9"><b> পত্রিকার গ্রাহক বৃদ্ধি </b></td>
-            <td class="tg-pwj7" colspan="2">
+            <td class="tg-pwj7" colspan="9"><b> পত্রিকা ও গ্রাহক সংক্রান্ত </b></td>
+            <td class="tg-pwj7" colspan="7">
                 <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Literature_পত্রিকার গ্রাহক বৃদ্ধি_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
             </td>
         </tr>
+
         <tr>
-            <td class="tg-pwj7" rowspan="2">পত্রিকার নাম</td>
-            <td class="tg-pwj7" colspan="2">মাসিক পত্রিকা সংখ্যা </td>
-            <td class="tg-pwj7" colspan="2">গ্রাহক সংখ্যা  </td>
-            <td class="tg-pwj7 " colspan="2"> বৃদ্ধির বার্ষিক টার্গেট </td>
-            <td class="tg-pwj7 " colspan="2"> বৃদ্ধি </td>
-            <td class="tg-pwj7 " colspan="2"> ঘাটতি </td>
+            <td class="tg-pwj7" rowspan="3">পত্রিকার নাম</td>
+            <td class="tg-pwj7" colspan="8">পত্রিকা </td>
+            <td class="tg-pwj7" colspan="5">গ্রাহক  </td>
+            
+        </tr>
+        
+        <tr>
+           
+            <td class="tg-pwj7" colspan="5">মাসিক সংখ্যা </td>
+            <td class="tg-pwj7" colspan="3">বার্ষিক সংখ্যা  </td>
+
+            <td class="tg-pwj7" rowspan="2"><div><span>পূর্ব </span></div></td>
+            <td class="tg-pwj7" rowspan="2"><div><span>বর্তমান </span></div></td>
+            <td class="tg-pwj7" rowspan="2"><div><span>বৃদ্ধির <br>টার্গেট </span></div></td>
+            <td class="tg-pwj7" rowspan="2"><div><span>বৃদ্ধি </span></div></td>
+            <td class="tg-pwj7" rowspan="2"><div><span>ঘাটতি </span></div></td>
+           
         </tr>
         <tr>
             <td class="tg-pwj7"><div><span>পূর্ব </span></div></td>
             <td class="tg-pwj7"><div><span>বর্তমান </span></div></td>
-            <td class="tg-pwj7"><div><span>পূর্ব </span></div></td>
-            <td class="tg-pwj7"><div><span>বর্তমান </span></div></td>
-            <td class="tg-pwj7"><div><span>পত্রিকা </span></div></td>
-            <td class="tg-pwj7"><div><span>গ্রাহক  </span></div></td>
-            <td class="tg-pwj7"><div><span>পত্রিকা </span></div></td>
-            <td class="tg-pwj7"><div><span>গ্রাহক  </span></div></td>
-            <td class="tg-pwj7"><div><span>পত্রিকা </span></div></td>
-            <td class="tg-pwj7"><div><span>গ্রাহক  </span></div></td>
+            <td class="tg-pwj7"><div><span>বৃদ্ধির <br>টার্গেট </span></div></td>
+            <td class="tg-pwj7"><div><span>বৃদ্ধি </span></div></td>
+            <td class="tg-pwj7"><div><span>ঘাটতি </span></div></td>
+
+            <td class="tg-pwj7"><div><span>মোট <br>সংখ্যা</span></div></td>
+            <td class="tg-pwj7"><div><span>বিক্রয়  </span></div></td>
+            <td class="tg-pwj7"><div><span>বিতরণ </span></div></td>
+
+            
         </tr>
         <?php
         $pk = (isset($potrikar_grahok_briddhi['id']))?$potrikar_grahok_briddhi['id']:'';
@@ -143,6 +156,53 @@ $(document).ready(function(){
                 data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_pn_present']))? $potrikar_grahok_briddhi['bkp_pn_present']:'' ?>
             </a>
             </td>
+            <td class="tg-0pky  type_5">
+            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                data-name="bkp_bt_potrika" 
+                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_bt_potrika']))? $potrikar_grahok_briddhi['bkp_bt_potrika']:'' ?>
+            </a>
+            </td>
+
+            <td class="tg-0pky  type_7">
+            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                data-name="bkp_briddhi_potrika" 
+                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_briddhi_potrika']))? $potrikar_grahok_briddhi['bkp_briddhi_potrika']:'' ?>
+            </a>
+            </td>
+            <td class="tg-0pky  type_9">
+            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                data-name="bkp_ghatti_potrika" 
+                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_ghatti_potrika']))? $potrikar_grahok_briddhi['bkp_ghatti_potrika']:'' ?>
+            </a>
+            </td>
+
+            <td class="tg-0pky  type_9">
+            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                data-name="bkp_bmn" 
+                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_bmn']))? $potrikar_grahok_briddhi['bkp_bmn']:'' ?>
+            </a>
+            </td>
+
+            <td class="tg-0pky  type_9">
+            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                data-name="bkp_bbkry" 
+                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_bbkry']))? $potrikar_grahok_briddhi['bkp_bbkry']:'' ?>
+            </a>
+            </td>
+
+            <td class="tg-0pky  type_9">
+            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                data-name="bkp_bbitrn" 
+                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_bbitrn']))? $potrikar_grahok_briddhi['bkp_bbitrn']:'' ?>
+            </a>
+            </td>
+
             <td class="tg-0pky  type_3">
             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                 data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
@@ -159,32 +219,16 @@ $(document).ready(function(){
             </a>
             
             </td>
-            <td class="tg-0pky  type_5">
-            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bkp_bt_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_bt_potrika']))? $potrikar_grahok_briddhi['bkp_bt_potrika']:'' ?>
-            </a>
             
-            </td>
             <td class="tg-0pky  type_6">
             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                 data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
                 data-name="bkp_bt_grahok" 
                 data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_bt_grahok']))? $potrikar_grahok_briddhi['bkp_bt_grahok']:'' ?>
             </a>
-           
 
             </td>
-            <td class="tg-0pky  type_7">
-            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bkp_briddhi_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_briddhi_potrika']))? $potrikar_grahok_briddhi['bkp_briddhi_potrika']:'' ?>
-            </a>
-           
-
-            </td>
+            
             <td class="tg-0pky type_8">
             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                 data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
@@ -192,16 +236,6 @@ $(document).ready(function(){
                 data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_briddhi_grahok']))? $potrikar_grahok_briddhi['bkp_briddhi_grahok']:'' ?>
             </a>
             
-
-            </td>
-            <td class="tg-0pky  type_9">
-            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bkp_ghatti_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bkp_ghatti_potrika']))? $potrikar_grahok_briddhi['bkp_ghatti_potrika']:'' ?>
-            </a>
-           
-
             </td>
             <td class="tg-0pky  type_10">
             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -217,174 +251,69 @@ $(document).ready(function(){
 
         <tr>
             <td class="tg-y698">নতুন বাংলা কিশোর পত্রিকা	 </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_pn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_pn_before']))? $potrikar_grahok_briddhi['nbkp_pn_before']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_pn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_pn_present']))? $potrikar_grahok_briddhi['nbkp_pn_present']:'' ?>
-            </a> 
+            <?php
 
-            </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_gn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_gn_before']))? $potrikar_grahok_briddhi['nbkp_gn_before']:'' ?>
-            </a>
+            $types = array(
+                'pn_before' => '1',
+                'pn_present' => '2',
+                'bt_potrika' => '5',
+                'briddhi_potrika' => '7',
+                'ghatti_potrika' => '9',
+                'bmn' => '11',
+                'bbkry' => '12',
+                'bbitrn' => '13',
+                'gn_before' => '3',
+                'gn_present' => '4',
+                'bt_grahok' => '6',
+                'briddhi_grahok' => '8',
+                'ghatti_grahok' => '10',
+            );
 
-            </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_gn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_gn_present']))? $potrikar_grahok_briddhi['nbkp_gn_present']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_bt_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_bt_potrika']))? $potrikar_grahok_briddhi['nbkp_bt_potrika']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_bt_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_bt_grahok']))? $potrikar_grahok_briddhi['nbkp_bt_grahok']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_briddhi_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_briddhi_potrika']))? $potrikar_grahok_briddhi['nbkp_briddhi_potrika']:'' ?>
-            </a> 
-
-            </td>
-
-
-
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_briddhi_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_briddhi_grahok']))? $potrikar_grahok_briddhi['nbkp_briddhi_grahok']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_ghatti_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_ghatti_potrika']))? $potrikar_grahok_briddhi['nbkp_ghatti_potrika']:'' ?>
-            </a>
-
-            </td>
-            <td class="tg-0pky">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nbkp_ghatti_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['nbkp_ghatti_grahok']))? $potrikar_grahok_briddhi['nbkp_ghatti_grahok']:'' ?>
-            </a>
-            
-            </td>
+            foreach ($types as $type => $number) {
+                echo '<td class="tg-0pky type_' . $number . '">
+                        <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                            data-table="literature_potrikar_grahok_briddhi" data-pk="' . $pk . '" 
+                            data-url="' . admin_url('departmentsreport/detailupdate') . '" 
+                            data-name="nbkp_' . $type . '" 
+                            data-title="Enter">' . (isset($potrikar_grahok_briddhi['nbkp_' . $type]) ? $potrikar_grahok_briddhi['nbkp_' . $type] : '') . '
+                        </a>
+                    </td>';
+            }
+            ?>
 
         </tr>
 
         <tr>
             <td class="tg-y698">ইংরেজি কিশোর পত্রিকা	 </td>
-            <td class="tg-0pky type_1">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_pn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_pn_before']))? $potrikar_grahok_briddhi['ekp_pn_before']:'' ?>
-            </a>
+            <?php
 
-            </td>
-            <td class="tg-0pky  type_2">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_pn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_pn_present']))? $potrikar_grahok_briddhi['ekp_pn_present']:'' ?>
-            </a>
+            $types = array(
+                'pn_before' => '1',
+                'pn_present' => '2',
+                'bt_potrika' => '5',
+                'briddhi_potrika' => '7',
+                'ghatti_potrika' => '9',
+                'bmn' => '11',
+                'bbkry' => '12',
+                'bbitrn' => '13',
+                'gn_before' => '3',
+                'gn_present' => '4',
+                'bt_grahok' => '6',
+                'briddhi_grahok' => '8',
+                'ghatti_grahok' => '10',
+            );
 
-            </td>
-            <td class="tg-0pky  type_3">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_gn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_gn_before']))? $potrikar_grahok_briddhi['ekp_gn_before']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky  type_4">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_gn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_gn_present']))? $potrikar_grahok_briddhi['ekp_gn_present']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky  type_5">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_bt_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_bt_potrika']))? $potrikar_grahok_briddhi['ekp_bt_potrika']:'' ?>
-            </a>
-            </td>
-            <td class="tg-0pky  type_6">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_bt_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_bt_grahok']))? $potrikar_grahok_briddhi['ekp_bt_grahok']:'' ?>
-            </a>
-
-            </td>
-
-            <td class="tg-0pky  type_7">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_briddhi_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_briddhi_potrika']))? $potrikar_grahok_briddhi['ekp_briddhi_potrika']:'' ?>
-            </a>
-
-            </td>
-
-            <td class="tg-0pky  type_8">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_briddhi_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_briddhi_grahok']))? $potrikar_grahok_briddhi['ekp_briddhi_grahok']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky  type_9">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_ghatti_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_ghatti_potrika']))? $potrikar_grahok_briddhi['ekp_ghatti_potrika']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky  type_10">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ekp_ghatti_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['ekp_ghatti_grahok']))? $potrikar_grahok_briddhi['ekp_ghatti_grahok']:'' ?>
-            </a>
-
-            </td>
+            foreach ($types as $type => $number) {
+                echo '<td class="tg-0pky type_' . $number . '">
+                        <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                            data-table="literature_potrikar_grahok_briddhi" data-pk="' . $pk . '" 
+                            data-url="' . admin_url('departmentsreport/detailupdate') . '" 
+                            data-name="ekp_' . $type . '" 
+                            data-title="Enter">' . (isset($potrikar_grahok_briddhi['ekp_' . $type]) ? $potrikar_grahok_briddhi['ekp_' . $type] : '') . '
+                        </a>
+                    </td>';
+            }
+            ?>
 
         </tr>
 
@@ -392,88 +321,36 @@ $(document).ready(function(){
 
         <tr>
             <td class="tg-y698">ছাত্রসংবাদ	</td>
-            <td class="tg-0pky type_1">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_pn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_pn_before']))? $potrikar_grahok_briddhi['cs_pn_before']:'' ?>
-            </a>
+            <?php
 
-            </td>
-            <td class="tg-0pky  type_2">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_pn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_pn_present']))? $potrikar_grahok_briddhi['cs_pn_present']:'' ?>
-            </a> 
+            $types = array(
+                'pn_before' => '1',
+                'pn_present' => '2',
+                'bt_potrika' => '5',
+                'briddhi_potrika' => '7',
+                'ghatti_potrika' => '9',
+                'bmn' => '11',
+                'bbkry' => '12',
+                'bbitrn' => '13',
+                'gn_before' => '3',
+                'gn_present' => '4',
+                'bt_grahok' => '6',
+                'briddhi_grahok' => '8',
+                'ghatti_grahok' => '10',
+            );
 
-            </td>
-            <td class="tg-0pky  type_3">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_gn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_gn_before']))? $potrikar_grahok_briddhi['cs_gn_before']:'' ?>
-            </a> 
+            foreach ($types as $type => $number) {
+                echo '<td class="tg-0pky type_' . $number . '">
+                        <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                            data-table="literature_potrikar_grahok_briddhi" data-pk="' . $pk . '" 
+                            data-url="' . admin_url('departmentsreport/detailupdate') . '" 
+                            data-name="cs_' . $type . '" 
+                            data-title="Enter">' . (isset($potrikar_grahok_briddhi['cs_' . $type]) ? $potrikar_grahok_briddhi['cs_' . $type] : '') . '
+                        </a>
+                    </td>';
+            }
+            ?>
 
-            </td>
-            <td class="tg-0pky  type_4">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_gn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_gn_present']))? $potrikar_grahok_briddhi['cs_gn_present']:'' ?>
-            </a>  
-
-            </td>
-            <td class="tg-0pky  type_5">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_bt_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_bt_potrika']))? $potrikar_grahok_briddhi['cs_bt_potrika']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky  type_6">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_bt_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_bt_grahok']))? $potrikar_grahok_briddhi['cs_bt_grahok']:'' ?>
-            </a>
-
-            </td>
-
-            <td class="tg-0pky  type_7">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_briddhi_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_briddhi_potrika']))? $potrikar_grahok_briddhi['cs_briddhi_potrika']:'' ?>
-            </a>  
-
-            </td>
-
-            <td class="tg-0pky  type_8">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_briddhi_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_briddhi_grahok']))? $potrikar_grahok_briddhi['cs_briddhi_grahok']:'' ?>
-            </a>  
-
-            </td>
-            <td class="tg-0pky  type_9">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_ghatti_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_ghatti_potrika']))? $potrikar_grahok_briddhi['cs_ghatti_potrika']:'' ?>
-            </a>  
-
-            </td>
-            <td class="tg-0pky  type_10">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="cs_ghatti_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['cs_ghatti_grahok']))? $potrikar_grahok_briddhi['cs_ghatti_grahok']:'' ?>
-            </a>  
-
-            </td>
 
 
         </tr>
@@ -481,222 +358,106 @@ $(document).ready(function(){
 
         <tr>
             <td class="tg-y698">বড় ইংরেজি পত্রিকা</td>
-            <td class="tg-0pky type_1">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_pn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_pn_before']))? $potrikar_grahok_briddhi['bep_pn_before']:'' ?>
-            </a>  
+            <?php
 
-            </td>
-            <td class="tg-0pky  type_2">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_pn_after" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_pn_after']))? $potrikar_grahok_briddhi['bep_pn_after']:'' ?>
-            </a>  
+            $types = array(
+                'pn_before' => '1',
+                'pn_after' => '2',
+                'bt_potrika' => '5',
+                'briddhi_potrika' => '7',
+                'ghatti_potrika' => '9',
+                'bmn' => '11',
+                'bbkry' => '12',
+                'bbitrn' => '13',
+                'gn_before' => '3',
+                'gn_present' => '4',
+                'bt_grahok' => '6',
+                'briddhi_grahok' => '8',
+                'ghatti_grahok' => '10',
+            );
 
-            </td>
-            <td class="tg-0pky  type_3">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_gn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_gn_before']))? $potrikar_grahok_briddhi['bep_gn_before']:'' ?>
-            </a>  
-
-            </td>
-            <td class="tg-0pky  type_4">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_gn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_gn_present']))? $potrikar_grahok_briddhi['bep_gn_present']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky  type_5">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_bt_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_bt_potrika']))? $potrikar_grahok_briddhi['bep_bt_potrika']:'' ?>
-            </a>  
-            </td>
-            <td class="tg-0pky  type_6">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_bt_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_bt_grahok']))? $potrikar_grahok_briddhi['bep_bt_grahok']:'' ?>
-            </a>  
-
-
-            </td>
-
-            <td class="tg-0pky  type_7">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_briddhi_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_briddhi_potrika']))? $potrikar_grahok_briddhi['bep_briddhi_potrika']:'' ?>
-            </a> 
-
-            </td>
-
-            <td class="tg-0pky  type_8">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_briddhi_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_briddhi_grahok']))? $potrikar_grahok_briddhi['bep_briddhi_grahok']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky  type_9">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_ghatti_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_ghatti_potrika']))? $potrikar_grahok_briddhi['bep_ghatti_potrika']:'' ?>
-            </a> 
-
-            </td>
-            <td class="tg-0pky  type_10">
-           <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="bep_ghatti_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['bep_ghatti_grahok']))? $potrikar_grahok_briddhi['bep_ghatti_grahok']:'' ?>
-            </a> 
-
-            </td>
+            foreach ($types as $type => $number) {
+                echo '<td class="tg-0pky type_' . $number . '">
+                        <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                            data-table="literature_potrikar_grahok_briddhi" data-pk="' . $pk . '" 
+                            data-url="' . admin_url('departmentsreport/detailupdate') . '" 
+                            data-name="bep_' . $type . '" 
+                            data-title="Enter">' . (isset($potrikar_grahok_briddhi['bep_' . $type]) ? $potrikar_grahok_briddhi['bep_' . $type] : '') . '
+                        </a>
+                    </td>';
+            }
+            ?>
         </tr>
 
         <tr>
             <td class="tg-y698">শাখা কর্তৃক প্রকাশিত পত্রিকা	 </td>
-            <td class="tg-0pky type_1"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_pn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_pn_before']))? $potrikar_grahok_briddhi['skpp_pn_before']:'' ?>
-            </a>  
-            </td>
-            <td class="tg-0pky type_2"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_pn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_pn_present']))? $potrikar_grahok_briddhi['skpp_pn_present']:'' ?>
-            </a>
-            </td>
-            <td class="tg-0pky type_3"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_gn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_gn_before']))? $potrikar_grahok_briddhi['skpp_gn_before']:'' ?>
-            </a>
-            </td>
-            <td class="tg-0pky type_4"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_gn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_gn_present']))? $potrikar_grahok_briddhi['skpp_gn_present']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_5"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_bt_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_bt_potrika']))? $potrikar_grahok_briddhi['skpp_bt_potrika']:'' ?>
-            </a>
-            </td>
-            <td class="tg-0pky type_6"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_bt_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_bt_grahok']))? $potrikar_grahok_briddhi['skpp_bt_grahok']:'' ?>
-            </a>
-            </td>
-            <td class="tg-0pky type_7 "> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_briddhi_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_briddhi_potrika']))? $potrikar_grahok_briddhi['skpp_briddhi_potrika']:'' ?>
-            </a>  
-            </td>
-            <td class="tg-0pky type_8"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_briddhi_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_briddhi_grahok']))? $potrikar_grahok_briddhi['skpp_briddhi_grahok']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_9"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_ghatti_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_ghatti_potrika']))? $potrikar_grahok_briddhi['skpp_ghatti_potrika']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_10"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="skpp_ghatti_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['skpp_ghatti_grahok']))? $potrikar_grahok_briddhi['skpp_ghatti_grahok']:'' ?>
-            </a>
-            </td>
+            <?php
+
+            $types = array(
+                'pn_before' => '1',
+                'pn_present' => '2',
+                'bt_potrika' => '5',
+                'briddhi_potrika' => '7',
+                'ghatti_potrika' => '9',
+                'bmn' => '11',
+                'bbkry' => '12',
+                'bbitrn' => '13',
+                'gn_before' => '3',
+                'gn_present' => '4',
+                'bt_grahok' => '6',
+                'briddhi_grahok' => '8',
+                'ghatti_grahok' => '10',
+            );
+
+            foreach ($types as $type => $number) {
+                echo '<td class="tg-0pky type_' . $number . '">
+                        <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                            data-table="literature_potrikar_grahok_briddhi" data-pk="' . $pk . '" 
+                            data-url="' . admin_url('departmentsreport/detailupdate') . '" 
+                            data-name="skpp_' . $type . '" 
+                            data-title="Enter">' . (isset($potrikar_grahok_briddhi['skpp_' . $type]) ? $potrikar_grahok_briddhi['skpp_' . $type] : '') . '
+                        </a>
+                    </td>';
+            }
+            ?>
         </tr>
         <tr>
             <td class="tg-y698">সাহিত্য পত্রিকা	</td>
-            <td class="tg-0pky type_1"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_pn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_pn_before']))? $potrikar_grahok_briddhi['sp_pn_before']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_2"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_pn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_pn_present']))? $potrikar_grahok_briddhi['sp_pn_present']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_3"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_gn_before" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_gn_before']))? $potrikar_grahok_briddhi['sp_gn_before']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_4"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_gn_present" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_gn_present']))? $potrikar_grahok_briddhi['sp_gn_present']:'' ?>
-            </a>
-            </td>
-            <td class="tg-0pky type_5"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_bt_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_bt_potrika']))? $potrikar_grahok_briddhi['sp_bt_potrika']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_6"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_bt_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_bt_grahok']))? $potrikar_grahok_briddhi['sp_bt_grahok']:'' ?>
-            </a>
-            </td>
-            <td class="tg-0pky type_7"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_briddhi_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_briddhi_potrika']))? $potrikar_grahok_briddhi['sp_briddhi_potrika']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_8"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_briddhi_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_briddhi_grahok']))? $potrikar_grahok_briddhi['sp_briddhi_grahok']:'' ?>
-            </a> 
-            </td>
-            <td class="tg-0pky type_9"> <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_ghatti_potrika" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_ghatti_potrika']))? $potrikar_grahok_briddhi['sp_ghatti_potrika']:'' ?>
-            </a>
-            </td>
-            <td class="tg-0pky type_10"> 
-            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_potrikar_grahok_briddhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_ghatti_grahok" 
-                data-title="Enter"><?php echo (isset( $potrikar_grahok_briddhi['sp_ghatti_grahok']))? $potrikar_grahok_briddhi['sp_ghatti_grahok']:'' ?>
-            </a> 
-            </td>
+            <?php
+
+            $types = array(
+                'pn_before' => '1',
+                'pn_present' => '2',
+                'bt_potrika' => '5',
+                'briddhi_potrika' => '7',
+                'ghatti_potrika' => '9',
+                'bmn' => '11',
+                'bbkry' => '12',
+                'bbitrn' => '13',
+                'gn_before' => '3',
+                'gn_present' => '4',
+                'bt_grahok' => '6',
+                'briddhi_grahok' => '8',
+                'ghatti_grahok' => '10',
+            );
+
+            foreach ($types as $type => $number) {
+                echo '<td class="tg-0pky type_' . $number . '">
+                        <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                            data-table="literature_potrikar_grahok_briddhi" data-pk="' . $pk . '" 
+                            data-url="' . admin_url('departmentsreport/detailupdate') . '" 
+                            data-name="sp_' . $type . '" 
+                            data-title="Enter">' . (isset($potrikar_grahok_briddhi['sp_' . $type]) ? $potrikar_grahok_briddhi['sp_' . $type] : '') . '
+                        </a>
+                    </td>';
+            }
+            ?>
         </tr>
     </table>
 
     <table class="tg table table-header-rotated" id="testTable2">
         <tr>
-        <td class="tg-pwj7" colspan="4"><b> শাখার উদ্যোগে সাহিত্য প্রকাশ </b></td>
+        <td class="tg-pwj7" colspan="3"><b> শাখার উদ্যোগে সাহিত্য প্রকাশ </b></td>
         <td class="tg-pwj7" colspan="1">
                 <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Literature_শাখার উদ্যোগে সাহিত্য প্রকাশ_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
             </td>
@@ -708,7 +469,7 @@ $(document).ready(function(){
             <td class="tg-pwj7">ধরণ</td>
             <td class="tg-pwj7" > সময়কাল </td>
             <td class="tg-pwj7" >নাম </td>
-            <td class="tg-pwj7" > বিষয় </td>
+            <!-- <td class="tg-pwj7" > বিষয় </td> -->
             <td class="tg-pwj7" > ইস্যু সংখ্যা </td>
             <td class="tg-pwj7" > Actions </td>
         </tr>
@@ -729,9 +490,9 @@ $(document).ready(function(){
             <td class="tg-0pky  type_3">
             <?php echo $row['literature_name'] ?>      
             </td>
-            <td class="tg-0pky  type_4">
+           <!--  <td class="tg-0pky  type_4">
             <?php echo $row['literature_term'] ?>       
-            </td>
+            </td> -->
             <td class="tg-0pky  type_1">
             <?php echo $row['literature_amount'] ?> 
             </td>

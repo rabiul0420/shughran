@@ -607,10 +607,10 @@
                         </table>
                         <table class="tg table table-header-rotated" id="testTable4">
                             <tr>
-                                <td class="tg-pwj7" colspan='4'>
+                                <td class="tg-pwj7" colspan='7'>
                                     <div><b>বিতর্ক ক্লাবের বিবরণ </b></div>
                                 </td>
-                                <td class="tg-pwj7" colspan="2">
+                                <td class="tg-pwj7" colspan="1">
                                     <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Debate_বিতর্ক ক্লাবের বিবরণ_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
                             </tr>
@@ -631,6 +631,12 @@
                                     <div><span>ঘাটতি </span></div>
                                 </td>
                                 <td class="tg-pwj7 ">
+                                    <div><span>কমিটি আছে কতটিতে?</span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>ক্লাবের সদস্য সংখ্যা</span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
                                     <div><span>মন্তব্য </span></div>
                                 </td>
 
@@ -638,25 +644,7 @@
                             <?php
                             $pk = (isset($debate_bitorko_club_biboron['id'])) ? $debate_bitorko_club_biboron['id'] : '';;
                             ?>
-                            <tr>
-                                <td class="tg-pwj7">জেনারেল ক্লাব সংখ্যা</td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_prev" data-title="Enter"><?php echo $general_club_prev =  (isset($debate_bitorko_club_biboron['general_club_prev'])) ? $debate_bitorko_club_biboron['general_club_prev'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_pres" data-title="Enter"><?php echo $general_club_pres =  (isset($debate_bitorko_club_biboron['general_club_pres'])) ? $debate_bitorko_club_biboron['general_club_pres'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_bri" data-title="Enter"><?php echo $general_club_bri =  (isset($debate_bitorko_club_biboron['general_club_bri'])) ? $debate_bitorko_club_biboron['general_club_bri'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_gha" data-title="Enter"><?php echo $general_club_gha =  (isset($debate_bitorko_club_biboron['general_club_gha'])) ? $debate_bitorko_club_biboron['general_club_gha'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_comments" data-title="Enter"><?php echo $general_club_comments =  (isset($debate_bitorko_club_biboron['general_club_comments'])) ? $debate_bitorko_club_biboron['general_club_comments'] : ''; ?></a>
-                                </td>
-
-                            </tr>
+                           
 
                             <tr>
                                 <td class="tg-pwj7" rowspan="">সাংগঠনিক শাখা ক্লাব সংখ্যা </td>
@@ -672,28 +660,19 @@
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_shakha_club_gha" data-title="Enter"><?php echo $shang_shakha_club_gha =  (isset($debate_bitorko_club_biboron['shang_shakha_club_gha'])) ? $debate_bitorko_club_biboron['shang_shakha_club_gha'] : 0; ?></a>
                                 </td>
+
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_shakha_club_komiti" data-title="Enter"><?php echo $shang_shakha_club_komiti =  (isset($debate_bitorko_club_biboron['shang_shakha_club_komiti'])) ? $debate_bitorko_club_biboron['shang_shakha_club_komiti'] : 0; ?></a>
+                                </td>
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_shakha_club_club" data-title="Enter"><?php echo $shang_shakha_club_club =  (isset($debate_bitorko_club_biboron['shang_shakha_club_club'])) ? $debate_bitorko_club_biboron['shang_shakha_club_club'] : 0; ?></a>
+                                </td>
+
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_shakha_club_comments" data-title="Enter"><?php echo $shang_shakha_club_comments =  (isset($debate_bitorko_club_biboron['shang_shakha_club_comments'])) ? $debate_bitorko_club_biboron['shang_shakha_club_comments'] : ""; ?></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="">সাংগঠনিক থানা সংখ্যা </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_prev" data-title="Enter"><?php echo $shang_thana_prev =  (isset($debate_bitorko_club_biboron['shang_thana_prev'])) ? $debate_bitorko_club_biboron['shang_thana_prev'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_pres" data-title="Enter"><?php echo $shang_thana_pres =  (isset($debate_bitorko_club_biboron['shang_thana_pres'])) ? $debate_bitorko_club_biboron['shang_thana_pres'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_bri" data-title="Enter"><?php echo $shang_thana_bri =  (isset($debate_bitorko_club_biboron['shang_thana_bri'])) ? $debate_bitorko_club_biboron['shang_thana_bri'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_gha" data-title="Enter"><?php echo $shang_thana_gha =  (isset($debate_bitorko_club_biboron['shang_thana_gha'])) ? $debate_bitorko_club_biboron['shang_thana_gha'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_comments" data-title="Enter"><?php echo $shang_thana_comments =  (isset($debate_bitorko_club_biboron['shang_thana_comments'])) ? $debate_bitorko_club_biboron['shang_thana_comments'] : ""; ?></a>
-                                </td>
-                            </tr>
+                           
                             <tr>
                                 <td class="tg-pwj7" rowspan="">সাংগঠনিক থানা ক্লাব সংখ্যা</td>
                                 <td class="tg-0pky  type_10">
@@ -708,30 +687,109 @@
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_club_gha" data-title="Enter"><?php echo $shang_thana_club_gha =  (isset($debate_bitorko_club_biboron['shang_thana_club_gha'])) ? $debate_bitorko_club_biboron['shang_thana_club_gha'] : 0; ?></a>
                                 </td>
+
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_club_komiti" data-title="Enter"><?php echo $shang_thana_club_komiti =  (isset($debate_bitorko_club_biboron['shang_thana_club_komiti'])) ? $debate_bitorko_club_biboron['shang_thana_club_komiti'] : 0; ?></a>
+                                </td>
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_club_club" data-title="Enter"><?php echo $shang_thana_club_club =  (isset($debate_bitorko_club_biboron['shang_thana_club_club'])) ? $debate_bitorko_club_biboron['shang_thana_club_club'] : 0; ?></a>
+                                </td>
+
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shang_thana_club_comments" data-title="Enter"><?php echo $shang_thana_club_comments =  (isset($debate_bitorko_club_biboron['shang_thana_club_comments'])) ? $debate_bitorko_club_biboron['shang_thana_club_comments'] : ""; ?></a>
                                 </td>
                             </tr>
+
                             <tr>
-                                <td class="tg-pwj7" rowspan="">বিশ্ববিদ্যালয় সংখ্যা </td>
+                                <td class="tg-pwj7">জেনারেল ক্লাব সংখ্যা</td>
                                 <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_prev" data-title="Enter"><?php echo $university_prev =  (isset($debate_bitorko_club_biboron['university_prev'])) ? $debate_bitorko_club_biboron['university_prev'] : 0; ?></a>
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_prev" data-title="Enter"><?php echo $general_club_prev =  (isset($debate_bitorko_club_biboron['general_club_prev'])) ? $debate_bitorko_club_biboron['general_club_prev'] : 0; ?></a>
                                 </td>
                                 <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_pres" data-title="Enter"><?php echo $university_pres =  (isset($debate_bitorko_club_biboron['university_pres'])) ? $debate_bitorko_club_biboron['university_pres'] : 0; ?></a>
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_pres" data-title="Enter"><?php echo $general_club_pres =  (isset($debate_bitorko_club_biboron['general_club_pres'])) ? $debate_bitorko_club_biboron['general_club_pres'] : 0; ?></a>
                                 </td>
                                 <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_bri" data-title="Enter"><?php echo $university_bri =  (isset($debate_bitorko_club_biboron['university_bri'])) ? $debate_bitorko_club_biboron['university_bri'] : 0; ?></a>
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_bri" data-title="Enter"><?php echo $general_club_bri =  (isset($debate_bitorko_club_biboron['general_club_bri'])) ? $debate_bitorko_club_biboron['general_club_bri'] : 0; ?></a>
                                 </td>
                                 <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_gha" data-title="Enter"><?php echo $university_gha =  (isset($debate_bitorko_club_biboron['university_gha'])) ? $debate_bitorko_club_biboron['university_gha'] : 0; ?></a>
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_gha" data-title="Enter"><?php echo $general_club_gha =  (isset($debate_bitorko_club_biboron['general_club_gha'])) ? $debate_bitorko_club_biboron['general_club_gha'] : 0; ?></a>
+                                </td>
+
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_komiti" data-title="Enter"><?php echo $general_club_komiti =  (isset($debate_bitorko_club_biboron['general_club_komiti'])) ? $debate_bitorko_club_biboron['general_club_komiti'] : 0; ?></a>
                                 </td>
                                 <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_comments" data-title="Enter"><?php echo $university_comments =  (isset($debate_bitorko_club_biboron['university_comments'])) ? $debate_bitorko_club_biboron['university_comments'] : ""; ?></a>
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_club" data-title="Enter"><?php echo $general_club_club =  (isset($debate_bitorko_club_biboron['general_club_club'])) ? $debate_bitorko_club_biboron['general_club_club'] : 0; ?></a>
+                                </td>
+
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="general_club_comments" data-title="Enter"><?php echo $general_club_comments =  (isset($debate_bitorko_club_biboron['general_club_comments'])) ? $debate_bitorko_club_biboron['general_club_comments'] : ''; ?></a>
+                                </td>
+
+                            </tr>
+                           
+
+                        </table>
+
+
+                        <table class="tg table table-header-rotated" id="testTable5">
+                            <tr>
+                                <td class="tg-pwj7" colspan='8'>
+                                    <div><b>প্রাতিষ্ঠানিক ক্লাবের বিবরণ </b></div> 
+                                </td>
+                                <td class="tg-pwj7" colspan="1">
+                                    <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Debate_বিতর্ক ক্লাবের বিবরণ_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan="">বিশ্ববিদ্যালয় ক্লাব সংখ্যা</td>
+                                <td class="tg-pwj7 "rowspan="2" >
+                                    <div><span>ক্লাব </span></div>
+                                </td>
+                                <td class="tg-pwj7 " rowspan="2">
+                                    <div><span>প্রতিষ্ঠান সংখ্যা</span></div>
+                                </td>
+                                <td class="tg-pwj7 " colspan="4">
+                                    <div><span> ক্লাব সংখ্যা</span></div>
+                                </td>
+                                
+                                <td class="tg-pwj7 " rowspan="2">
+                                    <div><span>কমিটি আছে কতটিতে?</span></div>
+                                </td>
+                                <td class="tg-pwj7 " rowspan="2">
+                                    <div><span>ক্লাবের সদস্য সংখ্যা</span></div>
+                                </td>
+                                <td class="tg-pwj7 " rowspan="2">
+                                    <div><span>মন্তব্য </span></div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                
+                                <td class="tg-pwj7 ">
+                                    <div><span>পূর্ব </span></div> 
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>বর্তমান </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>বৃদ্ধি </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>ঘাটতি </span></div>
+                                </td>
+                                
+
+                            </tr>
+                            <?php
+                            $pk = (isset($debate_bitorko_club_biboron['id'])) ? $debate_bitorko_club_biboron['id'] : '';;
+                            ?>
+                            
+                            
+                            <tr>
+                                <td class="tg-pwj7" rowspan="">বিশ্ববিদ্যালয়</td>
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_pres" data-title="Enter"><?php echo $university_pres =  (isset($debate_bitorko_club_biboron['university_pres'])) ? $debate_bitorko_club_biboron['university_pres'] : 0; ?></a>
+                                </td>
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_club_prev" data-title="Enter"><?php echo $university_club_prev =  (isset($debate_bitorko_club_biboron['university_club_prev'])) ? $debate_bitorko_club_biboron['university_club_prev'] : 0; ?></a>
                                 </td>
@@ -744,30 +802,25 @@
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_club_gha" data-title="Enter"><?php echo $university_club_gha =  (isset($debate_bitorko_club_biboron['university_club_gha'])) ? $debate_bitorko_club_biboron['university_club_gha'] : 0; ?></a>
                                 </td>
+
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_komiti" data-title="Enter"><?php echo $university_komiti =  (isset($debate_bitorko_club_biboron['university_komiti'])) ? $debate_bitorko_club_biboron['university_komiti'] : 0; ?></a>
+                                </td>
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_club" data-title="Enter"><?php echo $university_club =  (isset($debate_bitorko_club_biboron['university_club'])) ? $debate_bitorko_club_biboron['university_club'] : 0; ?></a>
+                                </td>
+
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="university_club_comments" data-title="Enter"><?php echo $university_club_comments =  (isset($debate_bitorko_club_biboron['university_club_comments'])) ? $debate_bitorko_club_biboron['university_club_comments'] : ""; ?></a>
                                 </td>
                             </tr>
+                           
                             <tr>
-                                <td class="tg-pwj7" rowspan="">কলেজ সংখ্যা </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_prev" data-title="Enter"><?php echo $college_prev =  (isset($debate_bitorko_club_biboron['college_prev'])) ? $debate_bitorko_club_biboron['college_prev'] : 0; ?></a>
-                                </td>
+                                <td class="tg-pwj7" rowspan="">কলেজ </td>
+
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_pres" data-title="Enter"><?php echo $college_pres =  (isset($debate_bitorko_club_biboron['college_pres'])) ? $debate_bitorko_club_biboron['college_pres'] : 0; ?></a>
                                 </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_bri" data-title="Enter"><?php echo $college_bri =  (isset($debate_bitorko_club_biboron['college_bri'])) ? $debate_bitorko_club_biboron['college_bri'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_gha" data-title="Enter"><?php echo $college_gha =  (isset($debate_bitorko_club_biboron['college_gha'])) ? $debate_bitorko_club_biboron['college_gha'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_comments" data-title="Enter"><?php echo $college_comments =  (isset($debate_bitorko_club_biboron['college_comments'])) ? $debate_bitorko_club_biboron['college_comments'] : ""; ?></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="">কলেজ ক্লাব সংখ্যা</td>
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_club_prev" data-title="Enter"><?php echo $college_club_prev =  (isset($debate_bitorko_club_biboron['college_club_prev'])) ? $debate_bitorko_club_biboron['college_club_prev'] : 0; ?></a>
                                 </td>
@@ -780,30 +833,24 @@
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_club_gha" data-title="Enter"><?php echo $college_club_gha =  (isset($debate_bitorko_club_biboron['college_club_gha'])) ? $debate_bitorko_club_biboron['college_club_gha'] : 0; ?></a>
                                 </td>
+
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_komiti" data-title="Enter"><?php echo $college_komiti =  (isset($debate_bitorko_club_biboron['college_komiti'])) ? $debate_bitorko_club_biboron['college_komiti'] : 0; ?></a>
+                                </td>
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_club" data-title="Enter"><?php echo $college_club =  (isset($debate_bitorko_club_biboron['college_club'])) ? $debate_bitorko_club_biboron['college_club'] : 0; ?></a>
+                                </td>
+
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="college_club_comments" data-title="Enter"><?php echo $college_club_comments =  (isset($debate_bitorko_club_biboron['college_club_comments'])) ? $debate_bitorko_club_biboron['college_club_comments'] : ""; ?></a>
                                 </td>
                             </tr>
+                            
                             <tr>
-                                <td class="tg-pwj7" rowspan="">মাদরাসা সংখ্যা </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_prev" data-title="Enter"><?php echo $madrasha_prev =  (isset($debate_bitorko_club_biboron['madrasha_prev'])) ? $debate_bitorko_club_biboron['madrasha_prev'] : 0; ?></a>
-                                </td>
+                                <td class="tg-pwj7" rowspan="">মাদরাসা</td>
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_pres" data-title="Enter"><?php echo $madrasha_pres =  (isset($debate_bitorko_club_biboron['madrasha_pres'])) ? $debate_bitorko_club_biboron['madrasha_pres'] : 0; ?></a>
                                 </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_bri" data-title="Enter"><?php echo $madrasha_bri =  (isset($debate_bitorko_club_biboron['madrasha_bri'])) ? $debate_bitorko_club_biboron['madrasha_bri'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_gha" data-title="Enter"><?php echo $madrasha_gha =  (isset($debate_bitorko_club_biboron['madrasha_gha'])) ? $debate_bitorko_club_biboron['madrasha_gha'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_comments" data-title="Enter"><?php echo $madrasha_comments =  (isset($debate_bitorko_club_biboron['madrasha_comments'])) ? $debate_bitorko_club_biboron['madrasha_comments'] : ""; ?></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="">মাদরাসা ক্লাব সংখ্যা</td>
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_club_prev" data-title="Enter"><?php echo $madrasha_club_prev =  (isset($debate_bitorko_club_biboron['madrasha_club_prev'])) ? $debate_bitorko_club_biboron['madrasha_club_prev'] : 0; ?></a>
                                 </td>
@@ -816,30 +863,24 @@
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_club_gha" data-title="Enter"><?php echo $madrasha_club_gha =  (isset($debate_bitorko_club_biboron['madrasha_club_gha'])) ? $debate_bitorko_club_biboron['madrasha_club_gha'] : 0; ?></a>
                                 </td>
+
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_komiti" data-title="Enter"><?php echo $madrasha_komiti =  (isset($debate_bitorko_club_biboron['madrasha_komiti'])) ? $debate_bitorko_club_biboron['madrasha_komiti'] : 0; ?></a>
+                                </td>
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_club" data-title="Enter"><?php echo $madrasha_club =  (isset($debate_bitorko_club_biboron['madrasha_club'])) ? $debate_bitorko_club_biboron['madrasha_club'] : 0; ?></a>
+                                </td>
+
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasha_club_comments" data-title="Enter"><?php echo $madrasha_club_comments =  (isset($debate_bitorko_club_biboron['madrasha_club_comments'])) ? $debate_bitorko_club_biboron['madrasha_club_comments'] : ""; ?></a>
                                 </td>
                             </tr>
+                            
                             <tr>
-                                <td class="tg-pwj7" rowspan="">স্কুল সংখ্যা </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_prev" data-title="Enter"><?php echo $school_prev =  (isset($debate_bitorko_club_biboron['school_prev'])) ? $debate_bitorko_club_biboron['school_prev'] : 0; ?></a>
-                                </td>
+                                <td class="tg-pwj7" rowspan="">স্কুল</td>
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_pres" data-title="Enter"><?php echo $school_pres =  (isset($debate_bitorko_club_biboron['school_pres'])) ? $debate_bitorko_club_biboron['school_pres'] : 0; ?></a>
                                 </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_bri" data-title="Enter"><?php echo $school_bri =  (isset($debate_bitorko_club_biboron['school_bri'])) ? $debate_bitorko_club_biboron['school_bri'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_gha" data-title="Enter"><?php echo $school_gha =  (isset($debate_bitorko_club_biboron['school_gha'])) ? $debate_bitorko_club_biboron['school_gha'] : 0; ?></a>
-                                </td>
-                                <td class="tg-0pky  type_10">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_comments" data-title="Enter"><?php echo $school_comments =  (isset($debate_bitorko_club_biboron['school_comments'])) ? $debate_bitorko_club_biboron['school_comments'] : ""; ?></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="">স্কুল ক্লাব সংখ্যা</td>
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_club_prev" data-title="Enter"><?php echo $school_club_prev =  (isset($debate_bitorko_club_biboron['school_club_prev'])) ? $debate_bitorko_club_biboron['school_club_prev'] : 0; ?></a>
                                 </td>
@@ -852,6 +893,14 @@
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_club_gha" data-title="Enter"><?php echo $school_club_gha =  (isset($debate_bitorko_club_biboron['school_club_gha'])) ? $debate_bitorko_club_biboron['school_club_gha'] : 0; ?></a>
                                 </td>
+
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_komiti" data-title="Enter"><?php echo $school_komiti =  (isset($debate_bitorko_club_biboron['school_komiti'])) ? $debate_bitorko_club_biboron['school_komiti'] : 0; ?></a>
+                                </td>
+                                <td class="tg-0pky  type_10">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_club" data-title="Enter"><?php echo $school_club=  (isset($debate_bitorko_club_biboron['school_club'])) ? $debate_bitorko_club_biboron['school_club'] : 0; ?></a>
+                                </td>
+
                                 <td class="tg-0pky  type_10">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="debate_bitorko_club_biboron" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_club_comments" data-title="Enter"><?php echo $school_club_comments =  (isset($debate_bitorko_club_biboron['school_club_comments'])) ? $debate_bitorko_club_biboron['school_club_comments'] : ""; ?></a>
                                 </td>

@@ -898,7 +898,7 @@ $(document).ready(function(){
                         </table>
 
                         <!-- second table -->
-                        <table class="tg table table-header-rotated" id="testTable2">
+                        <!-- <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
                               <td class="tg-pwj7" colspan="8"><b>আইডিয়াল হোম: (একাডেমিক ও ভর্তিচ্ছু )</b></td>
                               <td class="tg-pwj7" colspan="2">
@@ -1266,7 +1266,7 @@ $(document).ready(function(){
 
                             </tr>
 
-                        </table>
+                        </table> -->
 
                         <!-- third table -->
                         <table class="tg table table-header-rotated" id="testTable3">

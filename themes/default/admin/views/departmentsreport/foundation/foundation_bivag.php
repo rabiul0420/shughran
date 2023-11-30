@@ -259,6 +259,57 @@ $(document).ready(function(){
                         
                     </tr>               
                 </table>
+
+                <table class="tg table table-header-rotated" id="bari">
+                    <tr>
+                        <td class="tg-pwj7" colspan='4'>
+                            <b>মোটরসাইকলের তথ্য</b>
+                        </td>
+                        <td class="tg-pwj7" colspan='1'>
+                            <a href="#" id='table_1' onclick="doit('xlsx','bari','<?php echo 'Foundation_মোটরসাইকলের তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                        </td>
+                       
+                    </tr>
+                  
+                    <tr>
+                        <td class="tg-pwj7">বিবরণ   </td>
+                        <td class="tg-pwj7" >গাড়ির সংখ্যা </td>
+                        <td class="tg-pwj7" >  হেলমেটের সংখ্যা</td>
+                        <td class="tg-pwj7" > কতটি গাড়ির কাগজ আছে</td>
+                        <td class="tg-pwj7" >কতজন ভাইয়ের ড্রাইভিং লাইসেন্স আছে </td>
+                    </tr>
+                    
+                   
+                    <tr>
+                        <td class="tg-0pky type_5"> 
+                        শাখা 
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                        <?php echo $foundation_motorcycle['s_g'] ?>                                </td>
+                        <td class="tg-0pky type_5"> 
+                        <?php echo $foundation_motorcycle['s_h'] ?>                                </td>
+                        <td class="tg-0pky type_5"> 
+                        <?php echo $foundation_motorcycle['s_k'] ?>                                </td>
+                        <td class="tg-0pky type_5"> 
+                        <?php echo $foundation_motorcycle['s_l'] ?>                          </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tg-0pky type_5"> 
+                        থানা 
+                        </td>
+                        <td class="tg-0pky type_5"> 
+                        <?php echo $foundation_motorcycle['t_g'] ?>                          </td>
+                        <td class="tg-0pky type_5"> 
+                        <?php echo $foundation_motorcycle['t_h'] ?>                          </td>
+                        <td class="tg-0pky type_5"> 
+                        <?php echo $foundation_motorcycle['t_k'] ?>                          </td>
+                        <td class="tg-0pky type_5"> 
+                        <?php echo $foundation_motorcycle['t_l'] ?>    
+                        </td>
+                    </tr>
+                    
+                </table>
                 <table class="tg table table-header-rotated" id="testTable2">
                     <tr>
                         <td class="tg-pwj7" colspan='11'>
@@ -287,8 +338,8 @@ $(document).ready(function(){
                         <td class="tg-pwj7">CS </td>
                         <td class="tg-pwj7 ">SA </td>
                         <td class="tg-pwj7">RS/ROR</td>
-                        <td class="tg-pwj7 ">DCR </td>
                         <td class="tg-pwj7">CITY/BS</td>
+                        <td class="tg-pwj7 ">Mutation/DCR </td>
                     </tr> 
                     <?php 
                                 $i=0;
@@ -321,11 +372,12 @@ $(document).ready(function(){
                                     <?php echo $row['rs_ror'] ?>      
                                     </td>
                                     <td class="tg-0pky  type_4">
-                                    <?php echo $row['dcr'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_4">
                                     <?php echo $row['city_bs'] ?>       
                                     </td>
+                                    <td class="tg-0pky  type_4">
+                                    <?php echo $row['dcr'] ?>       
+                                    </td>
+                                    
                                     <td class="tg-0pky  type_3">
                                     <?php echo $row['khajna_porishodh'] ?>      
                                     </td>
@@ -373,9 +425,9 @@ $(document).ready(function(){
                     <tr>
                         <td class="tg-pwj7">CS </td>
                         <td class="tg-pwj7 ">SA </td>
-                        <td class="tg-pwj7">RS/ROR</td>
-                        <td class="tg-pwj7 ">DCR </td>
+                        <td class="tg-pwj7">RS</td>
                         <td class="tg-pwj7">CITY/BS</td>
+                        <td class="tg-pwj7 ">Mutation & DCR </td>
                     </tr> 
                     <?php 
                                 $i=0;
@@ -408,11 +460,12 @@ $(document).ready(function(){
                                     <?php echo $row['rs_ror'] ?>      
                                     </td>
                                     <td class="tg-0pky  type_4">
-                                    <?php echo $row['dcr'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_4">
                                     <?php echo $row['city_bs'] ?>       
                                     </td>
+                                    <td class="tg-0pky  type_4">
+                                    <?php echo $row['dcr'] ?>       
+                                    </td>
+                                    
                                     <td class="tg-0pky  type_3">
                                     <?php echo $row['khajna_porishodh'] ?>      
                                     </td>

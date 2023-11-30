@@ -72,6 +72,28 @@ class Library extends MY_Controller
         }
 
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
+        $this->db->select_sum('total_s');
+        $this->db->select_sum('now_p_s');
+        $this->db->select_sum('reg_st_s');
+        $this->db->select_sum('reg_st_t');
+        $this->db->select_sum('reg_st_w');
+        $this->db->select_sum('reg_st_u');
+        $this->db->select_sum('reg_is_s');
+        $this->db->select_sum('reg_is_t');
+        $this->db->select_sum('reg_is_w');
+        $this->db->select_sum('reg_is_u');
+        $this->db->select_sum('reg_re_s');
+        $this->db->select_sum('reg_re_t');
+        $this->db->select_sum('reg_re_w');
+        $this->db->select_sum('reg_re_u');
+        $this->db->select_sum('boi_s_pre');
+        $this->db->select_sum('boi_t_pre');
+        $this->db->select_sum('boi_w_pre');
+        $this->db->select_sum('boi_u_pre'); 
+        $this->db->select_sum('pre_p_s');
+        $this->db->select_sum('pre_p_t');
+        $this->db->select_sum('pre_p_w');
+        $this->db->select_sum('pre_p_u');
 
         $this->db->select_sum('total_t');
         $this->db->select_sum('t_boi_s');
@@ -120,7 +142,7 @@ class Library extends MY_Controller
         $this->db->select_sum('reg_boi_b_dowah');
         if ($branch_id)
         $this->db->where('branch_id', $branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+         $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
 		
         $this->data['pathagar_register'] = $this->db->get('pathagar_register')->first_row('array');
@@ -129,6 +151,67 @@ class Library extends MY_Controller
         $this->db->select_sum('mos_boi_s');
         $this->db->select_sum('mos_inc_p');
         $this->db->select_sum('mos_inc_boi');
+
+
+        $this->db->select_sum('mos_p_s_pre');
+        $this->db->select_sum('dec_p_mos');
+        $this->db->select_sum('mos_boi_s_pre');
+        $this->db->select_sum('dec_boi_mos');
+
+        $this->db->select_sum('lal_p_pre');
+        $this->db->select_sum('lal_p_now');
+        $this->db->select_sum('lal_p_inc');
+        $this->db->select_sum('lal_p_dec');
+
+        $this->db->select_sum('lal_bo_pre');
+        $this->db->select_sum('lal_bo_now');
+        $this->db->select_sum('lal_bo_inc');
+        $this->db->select_sum('lal_bo_dec');
+
+        $this->db->select_sum('ul_p_pre');
+        $this->db->select_sum('ul_p_now');
+        $this->db->select_sum('ul_p_inc');
+        $this->db->select_sum('ul_p_dec');
+
+        $this->db->select_sum('ul_bo_pre');
+        $this->db->select_sum('ul_bo_now');
+        $this->db->select_sum('ul_bo_inc');
+        $this->db->select_sum('ul_bo_dec');
+
+        $this->db->select_sum('sep_p_pre');
+        $this->db->select_sum('sep_p_now');
+        $this->db->select_sum('sep_p_inc');
+        $this->db->select_sum('sep_p_dec');
+
+        $this->db->select_sum('rip_p_pre');
+        $this->db->select_sum('rip_p_now');
+        $this->db->select_sum('rip_p_inc');
+        $this->db->select_sum('rip_p_dec');
+
+        $this->db->select_sum('op_p_pre');
+        $this->db->select_sum('op_p_now');
+        $this->db->select_sum('op_p_inc');
+        $this->db->select_sum('op_p_dec');
+
+        $this->db->select_sum('op_bo_pre');
+        $this->db->select_sum('op_bo_now');
+        $this->db->select_sum('op_bo_inc');
+        $this->db->select_sum('op_bo_dec');
+
+        $this->db->select_sum('sep_bo_pre');
+        $this->db->select_sum('sep_bo_now');
+        $this->db->select_sum('sep_bo_inc');
+        $this->db->select_sum('sep_bo_dec');
+
+        $this->db->select_sum('rip_bo_pre');
+        $this->db->select_sum('rip_bo_now');
+        $this->db->select_sum('rip_bo_inc');
+        $this->db->select_sum('rip_bo_dec');
+
+       
+        
+        
+        
         if ($branch_id)
         $this->db->where('branch_id', $branch_id);
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
@@ -144,6 +227,10 @@ class Library extends MY_Controller
         $this->db->select_sum('kormoshala_central_p');
         $this->db->select_sum('kormoshala_shakha_s');
         $this->db->select_sum('kormoshala_shakha_p'); 
+        
+       
+
+
         if ($branch_id)
         $this->db->where('branch_id', $branch_id);
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
