@@ -393,7 +393,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <?= lang("ছুটির প্রস্তাবের যৌক্তিকতা", "note"); ?>
-                            <?php echo form_textarea('note', '', 'class="form-control" id="note" style="height:100px;" '); ?>
+                            <?php echo form_textarea('note', '', 'class="form-control" required="required" id="note" style="height:100px;" '); ?>
                         </div>
                     </div>
                 </div>

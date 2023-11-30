@@ -213,24 +213,26 @@
                     <?php if (in_array($process->id, array(8))) { ?>
                         <div class="form-group">
                             <?= lang("শিক্ষাগত যোগ্যতা", "education_qualification"); ?>
-
-                            <?php $options = array(
-                                'রুকন'          => 'রুকন',
-                                'রুকনপ্রার্থী'      => 'রুকনপ্রার্থী',
-                                'কর্মী'           => 'কর্মী',
-                                'সহযোগী সদস্য'  => 'সহযোগী সদস্য',
-                                'যুক্ত হয়নি'      => 'যুক্ত হয়নি',
-                            );
-                            ?>
-
-                            <?= form_dropdown('orgstatus_at_forum', $options, (isset($_POST['orgstatus_at_forum']) ? $_POST['orgstatus_at_forum'] : ($manpower ? $manpower->orgstatus_at_forum : '')), 'class="form-control" id="orgstatus_at_forum" '); ?>
-
+                            <?= form_input('education_qualification', (isset($_POST['education_qualification']) ? $_POST['education_qualification'] : ($manpower ? $manpower->education_qualification : '')), 'class="form-control" id="education_qualification" required="required" '); ?>
                         </div>
                     <?php } ?>
                     <?php if (in_array($process->id, array(8))) { ?>
                         <div class="form-group all">
                             <?= lang("বৃহত্তর আন্দোলনের মান", "orgstatus_at_forum") ?>
-                            <?= form_input('orgstatus_at_forum', (isset($_POST['orgstatus_at_forum']) ? $_POST['orgstatus_at_forum'] : ($manpower ? $manpower->orgstatus_at_forum : '')), 'class="form-control" id="orgstatus_at_forum" '); ?>
+
+
+                            <?php $options = array(
+                                'রুকন'         => 'রুকন',
+                                'রুকনপ্রার্থী'           => 'রুকনপ্রার্থী',
+                                'কর্মী'         => 'কর্মী',
+                                'সহযোগী সদস্য'        => 'সহযোগী সদস্য',
+                                'যুক্ত হয়নি'        => 'যুক্ত হয়নি',
+                            );
+                            ?>
+
+                            <?= form_dropdown('orgstatus_at_forum', $options, (isset($_POST['orgstatus_at_forum']) ? $_POST['orgstatus_at_forum'] : ($manpower ? $manpower->orgstatus_at_forum : '')), 'class="form-control" id="orgstatus_at_forum" '); ?>
+
+
                         </div>
                     <?php } ?>
 
@@ -392,7 +394,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <?= lang("ছুটির প্রস্তাবের যৌক্তিকতা", "note"); ?>
-                            <?php echo form_textarea('note', '', 'class="form-control" required id="note" style="height:100px;" '); ?>
+                            <?php echo form_textarea('note', '', 'class="form-control" required="required" id="note" style="height:100px;" '); ?>
                         </div>
                     </div>
                 </div>

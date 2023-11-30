@@ -472,14 +472,14 @@ class Membercandidate extends MY_Controller
             $this->datatables->join('manpower', 'manpower.id=member_candidatelog.manpower_id', 'left')
                 ->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 2);
             $this->datatables->join('branches', 'branches.id=member_candidatelog.branch', 'left')
-                ->where('branches.id', $branch_id);
+                ->where('branches.id', $branch_id)->where('manpower.is_pending !=', 1)->where('manpower.is_studentship_pending !=', 1);
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
                 ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.membercandidate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code,barnch_id_to_from", FALSE)
                 ->from('member_candidatelog');
             $this->datatables->join('manpower', 'manpower.id=member_candidatelog.manpower_id', 'left')
-                ->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 2);
+                ->where('member_candidatelog.process_id', $process_id)->where('member_candidatelog.in_out', 2)->where('manpower.is_pending !=', 1)->where('manpower.is_studentship_pending !=', 1);
             $this->datatables->join('branches', 'branches.id=member_candidatelog.branch', 'left');
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         }
