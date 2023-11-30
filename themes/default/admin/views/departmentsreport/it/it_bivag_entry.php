@@ -1267,7 +1267,7 @@ $(document).ready(function(){
                       </tr>
                       <tr>
                               
-                                <td class="tg-0pky type_1">
+                        <td class="tg-0pky type_1">
                           <a href="#"  class="yes_no" data-type="select" data-id="" data-idname=""  
                               data-table="it_ictcenter_prosikkhok" data-pk="<?php echo $pk ?>"
                               data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 

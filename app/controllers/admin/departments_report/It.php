@@ -872,8 +872,305 @@ class It extends MY_Controller
         $this->db->where('branch_id', $branch_id);
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
         $this->data['it_cseit_jonosokti'] = $this->db->get('it_cseit_jonosokti')->first_row('array');
+
+        $this->db->select_sum('facebook_s');
+        $this->db->select_sum('facebook_u');
+        $this->db->select_sum('facebook_g');
+        $this->db->select_sum('twitter_s');
+        $this->db->select_sum('twitter_u');
+        $this->db->select_sum('twitter_g');
+        $this->db->select_sum('blog_s');
+        $this->db->select_sum('blog_u');
+        $this->db->select_sum('blog_g');
+        $this->db->select_sum('wiki_s');
+        $this->db->select_sum('wiki_u');
+        $this->db->select_sum('wiki_g');
+        $this->db->select_sum('onni_s');
+        $this->db->select_sum('onni_u');
+        $this->db->select_sum('onni_g');
+        $this->db->select_sum('camp_s');
+        $this->db->select_sum('camp_u');
+        $this->db->select_sum('camp_g');
+        $this->db->select_sum('vul_s');
+        $this->db->select_sum('vul_u');
+        $this->db->select_sum('vul_g');
+
+
+
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->data['sm_proshikkhon'] = $this->db->get('sm_proshikkhon')->first_row('array');
+
+
+            $this->db->select_sum('facebook_fo');
+            $this->db->select_sum('facebook_link');
+
+            $this->db->select_sum('twitter_fo');
+            $this->db->select_sum('twitter_link');
+
+            $this->db->select_sum('youtube_fo');
+            $this->db->select_sum('youtube_link');
+
+
+           
+
+                    // Facebook
+                $this->db->select("
+                SUM(CASE WHEN facebook_acc = 'yes' THEN 1 ELSE 0 END) as facebook_acc_yes
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN facebook_acc = 'no' THEN 1 ELSE 0 END) as facebook_acc_no
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN facebook_act = 'yes' THEN 1 ELSE 0 END) as facebook_act_yes
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN facebook_act = 'no' THEN 1 ELSE 0 END) as facebook_act_no
+                ");
+
+                // Youtube
+                $this->db->select("
+                SUM(CASE WHEN youtube_acc = 'yes' THEN 1 ELSE 0 END) as youtube_acc_yes
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN youtube_acc = 'no' THEN 1 ELSE 0 END) as youtube_acc_no
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN youtube_act = 'yes' THEN 1 ELSE 0 END) as youtube_act_yes
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN youtube_act = 'no' THEN 1 ELSE 0 END) as youtube_act_no
+                ");
+
+                // Twitter
+                $this->db->select("
+                SUM(CASE WHEN twitter_acc = 'yes' THEN 1 ELSE 0 END) as twitter_acc_yes
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN twitter_acc = 'no' THEN 1 ELSE 0 END) as twitter_acc_no
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN twitter_act = 'yes' THEN 1 ELSE 0 END) as twitter_act_yes
+                ");
+
+                $this->db->select("
+                SUM(CASE WHEN twitter_act = 'no' THEN 1 ELSE 0 END) as twitter_act_no
+                ");
+
+            
+
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->data['sm_official_platform'] = $this->db->get('sm_official_platform')->first_row('array');
+
+        //    $this->sma->print_arrays( $this->db->last_query());
+
+
+        $this->db->select('*');
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        if ($branch_id)
+            $this->db->where('branch_id', $branch_id);
+
+        $this->db->order_by('branch_id');
+        $this->data['sm_official_platform_link'] = $this->db->get('sm_official_platform');
+
+
+            $this->db->select_sum('m_s');
+            $this->db->select_sum('m_fc');
+            $this->db->select_sum('m_tc');
+            $this->db->select_sum('m_wi');
+            $this->db->select_sum('m_bb');
+            $this->db->select_sum('m_be');
+            $this->db->select_sum('m_bng');
+            $this->db->select_sum('m_fgp');
+            $this->db->select_sum('m_up');
+
+            $this->db->select_sum('a_s');
+            $this->db->select_sum('a_fc');
+            $this->db->select_sum('a_tc');
+            $this->db->select_sum('a_wi');
+            $this->db->select_sum('a_bb');
+            $this->db->select_sum('a_be');
+            $this->db->select_sum('a_bng');
+            $this->db->select_sum('a_fgp');
+            $this->db->select_sum('a_up');
+
+            $this->db->select_sum('w_s');
+            $this->db->select_sum('w_fc');
+            $this->db->select_sum('w_tc');
+            $this->db->select_sum('w_wi');
+            $this->db->select_sum('w_bb');
+            $this->db->select_sum('w_be');
+            $this->db->select_sum('w_bng');
+            $this->db->select_sum('w_fgp');
+            $this->db->select_sum('w_up');
+
+
+
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->data['sm_jonosokti'] = $this->db->get('sm_jonosokti')->first_row('array');
+
+
+
+
+        $this->db->select_sum('f_ts');
+        $this->db->select_sum('f_pb');
+        $this->db->select_sum('tw_ts');
+        $this->db->select_sum('tw_pb');
+        $this->db->select_sum('le_ts');
+        $this->db->select_sum('le_pb');
+        $this->db->select_sum('vu_ts');
+        $this->db->select_sum('vu_pb');
+
+        //facebook
+        $this->db->select("
+        SUM(CASE WHEN f_yn = 'yes' THEN 1 ELSE 0 END) as f_yn_yes
+        ");
+
+        $this->db->select("
+        SUM(CASE WHEN f_yn = 'no' THEN 1 ELSE 0 END) as f_yn_no
+        ");
+
+        //twitter
+
+        $this->db->select("
+        SUM(CASE WHEN tw_yn = 'yes' THEN 1 ELSE 0 END) as tw_yn_yes
+        ");
+
+        $this->db->select("
+        SUM(CASE WHEN tw_yn = 'no' THEN 1 ELSE 0 END) as tw_yn_no
+        ");
+        //lekha
+        $this->db->select("
+        SUM(CASE WHEN le_yn = 'yes' THEN 1 ELSE 0 END) as le_yn_yes
+        ");
+
+        $this->db->select("
+        SUM(CASE WHEN le_yn = 'no' THEN 1 ELSE 0 END) as le_yn_no
+        ");
+
+        // vul
+        $this->db->select("
+        SUM(CASE WHEN vu_yn = 'yes' THEN 1 ELSE 0 END) as vu_yn_yes
+        ");
+
+        $this->db->select("
+        SUM(CASE WHEN vu_yn = 'no' THEN 1 ELSE 0 END) as vu_yn_no
+        ");
+
+
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->data['sm_social_meadia_team'] = $this->db->get('sm_social_meadia_team')->first_row('array');
+
+
+
+        $this->db->select_sum('so_web');
+        $this->db->select_sum('so_fa');
+        $this->db->select_sum('so_fp');
+        $this->db->select_sum('so_fg');
+        $this->db->select_sum('so_tw');
+        $this->db->select_sum('so_in');
+        $this->db->select_sum('so_you');
+        $this->db->select_sum('so_ma');
+        $this->db->select_sum('so_ot');
+        $this->db->select_sum('bri_web');
+        $this->db->select_sum('bri_fa');
+        $this->db->select_sum('bri_fp');
+        $this->db->select_sum('bri_fg');
+        $this->db->select_sum('bri_tw');
+        $this->db->select_sum('bri_in');
+        $this->db->select_sum('bri_you');
+        $this->db->select_sum('bri_ma');
+        $this->db->select_sum('bri_ot');
+        $this->db->select_sum('gha_web');
+        $this->db->select_sum('gha_fa');
+        $this->db->select_sum('gha_fp');
+        $this->db->select_sum('gha_fg');
+        $this->db->select_sum('gha_tw');
+        $this->db->select_sum('gha_in');
+        $this->db->select_sum('gha_you');
+        $this->db->select_sum('gha_ma');
+        $this->db->select_sum('gha_ot');
+        $this->db->select_sum('act_web');
+        $this->db->select_sum('act_fa');
+        $this->db->select_sum('act_fp');
+        $this->db->select_sum('act_fg');
+        $this->db->select_sum('act_tw');
+        $this->db->select_sum('act_in');
+        $this->db->select_sum('act_you');
+        $this->db->select_sum('act_ma');
+        $this->db->select_sum('act_ot');
+        $this->db->select_sum('inact_web');
+        $this->db->select_sum('inact_fa');
+        $this->db->select_sum('inact_fp');
+        $this->db->select_sum('inact_fg');
+        $this->db->select_sum('inact_tw');
+        $this->db->select_sum('inact_in');
+        $this->db->select_sum('inact_you');
+        $this->db->select_sum('inact_ma');
+        $this->db->select_sum('inact_ot');
+        $this->db->select_sum('pa_web');
+        $this->db->select_sum('pa_fa');
+        $this->db->select_sum('pa_fp');
+        $this->db->select_sum('pa_fg');
+        $this->db->select_sum('pa_tw');
+        $this->db->select_sum('pa_in');
+        $this->db->select_sum('pa_you');
+        $this->db->select_sum('pa_ma');
+        $this->db->select_sum('pa_ot');
+        
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->data['sm_shakhar_online_resourse'] = $this->db->get('sm_shakhar_online_resourse')->first_row('array');
+
     }
     else{
+        $this->db->select('*');
+        $this->db->where('branch_id',$branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $query = $this->db->get('sm_shakhar_online_resourse');
+        $this->data['sm_shakhar_online_resourse'] = $query->first_row('array');
+
+
+        $this->db->select('*');
+        $this->db->where('branch_id',$branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $query = $this->db->get('sm_social_meadia_team');
+        $this->data['sm_social_meadia_team'] = $query->first_row('array');
+
+
+        $this->db->select('*');
+        $this->db->where('branch_id',$branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $query = $this->db->get('sm_jonosokti');
+        $this->data['sm_jonosokti'] = $query->first_row('array');
+
+        $this->db->select('*');
+        $this->db->where('branch_id',$branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $query = $this->db->get('sm_official_platform');
+        $this->data['sm_official_platform'] = $query->first_row('array');
+
+        $this->db->select('*');
+        $this->db->where('branch_id',$branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $query = $this->db->get('sm_proshikkhon');
+        $this->data['sm_proshikkhon'] = $query->first_row('array');
 
         $this->db->select('*');
         $this->db->where('branch_id',$branch_id);
