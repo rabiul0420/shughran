@@ -83,7 +83,7 @@ function foundation_bivag($branch_id = NULL)
     $this->db->where('branch_id', $branch_id);
 $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
-    $this->data['foundation_foundation_info'] = $this->db->get('foundation_foundation_info');
+    $this->data['foundation_foundation_info'] = $this->db->get('foundation_foundation_info')->first_row('array');
    
     
     $this->db->select_sum('s_g');
@@ -201,6 +201,7 @@ else{  // current session for data entry
     $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
     $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
     
+   // exit();
     if($branch_id)
     $this->page_construct('departmentsreport/foundation/foundation_bivag_entry', $meta, $this->data,'leftmenu/departmentsreport');
     else

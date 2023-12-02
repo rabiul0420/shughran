@@ -3577,7 +3577,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-        $edit_link = anchor('admin/organization/editthana/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+        $edit_link = anchor('admin/organization/editidealinfo/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
 
         //
 
@@ -3585,12 +3585,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($branch_id) {
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->select($this->db->dbprefix('thana') . ".id as id, ideal_id({$this->db->dbprefix('thana')}.id) as ideal_id,  t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
                 ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana')->where('thana.branch_id', $branch_id);
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code) as member_number, associate_thana_count(  {$this->db->dbprefix('thana')}.branch_id, thana_code )  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->select($this->db->dbprefix('thana') . ".id as id, ideal_id({$this->db->dbprefix('thana')}.id) as ideal_id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code) as member_number, associate_thana_count(  {$this->db->dbprefix('thana')}.branch_id, thana_code )  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
                 ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana');
         }
@@ -3607,9 +3607,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
         $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/idealthanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
         $this->datatables->add_column("Decrease", $decrease, "id");
-        $this->datatables->add_column("Actions", $edit_link, "id");
-
-        //$this->datatables->unset_column("manpower_id");
+        //$this->datatables->add_column("Actions", $edit_link, "ideal_id");
+        $this->datatables->add_column("Actions", "", "ideal_id");
+        $this->datatables->unset_column("ideal_id");
         echo $this->datatables->generate();
     }
 
