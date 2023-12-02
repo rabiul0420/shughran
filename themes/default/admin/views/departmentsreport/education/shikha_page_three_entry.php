@@ -87,15 +87,15 @@ $(document).ready(function(){
                 <div class="table-responsive">
                     <div class="tg-wrap">
                    
-                        <table class="tg table table-header-rotated" id="testTable3">
+                        <table class="tg table table-header-rotated" id="প্রফেশনাল আউটপুট-০২ (সমাজসেবা):">
                             <tr>
-                                <td class="tg-pwj7" colspan="10"><b>প্রফেশনাল আউটপুট-০৩ (সমাজসেবা) </b></td>
+                                <td class="tg-pwj7" colspan="10"><b>প্রফেশনাল আউটপুট-০২ (সমাজসেবা): </b></td>
                                 <td class="tg-pwj7" colspan="3">
-                                <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Education_প্রফেশনাল আউটপুট-০৩ (সমাজসেবা)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <a href="#" id='table_3' onclick="doit('xlsx','প্রফেশনাল আউটপুট-০২ (সমাজসেবা):','<?php echo 'Education_প্রফেশনাল আউটপুট-০২ (সমাজসেবা):_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan="3">জনশক্তি</td>
+                                <td class="tg-pwj7" rowspan="3">মান</td>
                                 <td class="tg-pwj7" colspan="6" style="text-align:center;">কমিশনার </td>
                                 <td class="tg-pwj7" colspan="6" style="text-align:center;">সৈনিক  </td>
 

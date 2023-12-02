@@ -234,7 +234,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7 " rowspan="2"><div><span>কোয়াশমেন্ট কতটা </span></div></td>
                                 <td class="tg-pwj7 " rowspan="2"><div><span>রায়ের জন্য অপেক্ষামান </span></div></td>
                                 <td class="tg-pwj7 " rowspan="2"><div><span>রিমান্ড কতটি</span></div></td>
-                                <td class="tg-pwj7 " rowspan="2"><div><span>রিমান্ড হয়েছে কত জনের</span></div></td>
+                                <td class="tg-pwj7 " rowspan="2"><div><span>রিমান্ড হয়েছে কত জনের?</span></div></td>
                               
                         
                             </tr>
@@ -407,7 +407,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7 "><div><span>সাজার মেয়াদ  </span></div></td>
                                 <td class="tg-pwj7 "><div><span>আসামির সংখ্যা</span></div></td>
                                 <td class="tg-pwj7 " ><div><span>কত জন সাজা খেটেছে</span></div></td>
-                                <td class="tg-pwj7 " ><div><span>আসামী পক্ষের আপিল হয়েছে কিনা</span></div></td>
+                                <td class="tg-pwj7 " ><div><span>আসামী পক্ষের আপিল হয়েছে কিনা?</span></div></td>
                                 <td class="tg-pwj7 " ><div><span>মন্তব্য</span></div></td>
                               
                         
@@ -464,7 +464,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7 "  ><div><span>খালাসপ্রাপ্ত মামলার নম্বর</span></div></td>
                                 <td class="tg-pwj7 " ><div><span>মোট আসামীর সংখ্যা </span></div></td>
                                 <td class="tg-pwj7 " ><div><span>খালাসপ্রাপ্ত আসামী সংখ্যা  </span></div></td>
-                                <td class="tg-pwj7 " ><div><span>বাদী পক্ষের আপিল হয়েছে কিনা </span></div></td>
+                                <td class="tg-pwj7 " ><div><span>বাদী পক্ষের আপিল হয়েছে কিনা? </span></div></td>
                                 <td class="tg-pwj7 " ><div><span>মন্তব্য </span></div></td>
                         
                             </tr>

@@ -159,7 +159,7 @@
 
                             </tr>
                             <tr>
-                                <td class="tg-y698"> সাধারন সভা </td>
+                                <td class="tg-y698"> সাধারণ সভা </td>
                                 <td class="tg-0pky  type_10">
                                     <?php echo $shadharon_shova_num = $total_media_shova['shadharon_shova_num'] ?>
                                 </td>
@@ -462,7 +462,7 @@
                                 </tr>
                                 <tr>                                                     
                                 
-                                <td class="tg-y698 type_1">  বিট ভিত্তিক সাংবাদিকতা	</td>
+                                <td class="tg-y698 type_1">  বিটভিত্তিক সাংবাদিকতা	</td>
                                 <td class="tg-0pky  type_10">
                                     <?php echo $bit_vittik_num = $total_media_training_course['bit_vittik_num'] ?>
                                 </td>

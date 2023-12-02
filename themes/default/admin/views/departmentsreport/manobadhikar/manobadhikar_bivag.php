@@ -312,7 +312,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7" >মোট উপস্থিতি</td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7 type_1">কমিটির বৈঠক</td>
+                                <td class="tg-pwj7 type_1">মানবাধিকার বিষয়ক কমিটির বৈঠক</td>
                                 <td class="tg-0pky type_1">
                                     <?php echo $committee_meeting_num = $human_rights_program['committee_meeting_num'] ?>
                                 </td>
@@ -322,7 +322,7 @@ $(document).ready(function(){
                             </tr>
 
                             <tr>
-                                <td class="tg-pwj7 type_1">মানবাধিকার প্রতিনিধি সভা</td>
+                                <td class="tg-pwj7 type_1">মানবাধিকার বিষয়ক প্রতিনিধি সভা</td>
                                 <td class="tg-0pky type_1">
                                     <?php echo $representative_num = $human_rights_program['representative_num'] ?>
                                 </td>
@@ -334,7 +334,7 @@ $(document).ready(function(){
                             </tr>
 
                             <tr>
-                                <td class="tg-pwj7 type_1">মানবাধিকার কর্মশালা</td>
+                                <td class="tg-pwj7 type_1">মানবাধিকার বিষয়ক কর্মশালা</td>
                                 <td class="tg-0pky type_1">
                                     <?php echo $workshop_num = $human_rights_program['workshop_num'] ?>
                                 </td>
@@ -345,7 +345,7 @@ $(document).ready(function(){
                             </tr>
 
                             <tr>
-                                <td class="tg-pwj7 type_1">মানবাধিকার সংগঠনের সাথে মতবিনিময়</td>
+                                <td class="tg-pwj7 type_1">মানবাধিকার বিষয়ক সংগঠনের সাথে মতাবিনিময়</td>
                                 <td class="tg-0pky type_1">
                                     <?php echo $shong_mot_num = $human_rights_program['shong_mot_num'] ?>
                                 </td>
@@ -394,8 +394,8 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" >ধরন</td>
-                                <td class="tg-pwj7" >সংখ্যা </td>
+                                <td class="tg-pwj7" >বিষয়</td>
+                                <td class="tg-pwj7" >   ঘটনার সংখ্যা </td>
                                 <td class="tg-pwj7" >নিহত</td>
                                 <td class="tg-pwj7" >আহত</td>
                                 <td class="tg-pwj7" >আটক</td>     

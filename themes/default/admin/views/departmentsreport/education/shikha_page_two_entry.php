@@ -204,11 +204,11 @@ $(document).ready(function(){
                           </td>
                       </tr>
                   </table>
-                    <table class="tg table table-header-rotated" id="testTable1">
+                    <table class="tg table table-header-rotated" id="মোটিভেশনাল প্রোগ্রাম">
                             <tr>
                             <td class="tg-pwj7" colspan='2'><b>মোটিভেশনাল প্রোগ্রাম </b></td>
                                 <td class="tg-pwj7" colspan="">
-                                <a href="#" id='table_1'  onclick="doit('xlsx','testTable1','<?php echo 'Education_মোটিভেশনাল প্রোগ্রাম (প্রফেশনাল ও একাডেমিক)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <a href="#" id='table_1'  onclick="doit('xlsx','মোটিভেশনাল প্রোগ্রাম','<?php echo 'Education_মোটিভেশনাল প্রোগ্রাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
@@ -223,7 +223,7 @@ $(document).ready(function(){
                             ?>
                            
                             <tr>
-                                <td class="tg-y698">ক্যারিয়ার কাউন্সেলিং (সমাজসেবা) </td>
+                                <td class="tg-y698">ক্যারিয়ার গাইড লাইন/কাউন্সেলিং (সমাজসেবা)</td>
                                 <td class="tg-0pky  type_2">
                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                     data-table="education_motivational_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
@@ -241,7 +241,7 @@ $(document).ready(function(){
                             </tr>
                            
                             <tr>
-                                <td class="tg-y698">ক্যারিয়ার কাউন্সেলিং (বিশ্ব. শিক্ষক তৈরি) </td>
+                                <td class="tg-y698">ক্যারিয়ার গাইড লাইন/কাউন্সেলিং (বিশ্ববিদ্যালয় শিক্ষক তৈরি) </td>
                                 <td class="tg-0pky  type_2">
                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                     data-table="education_motivational_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
@@ -257,7 +257,7 @@ $(document).ready(function(){
                                 </a>
                                 </td>
                             <tr>
-                                <td class="tg-y698">আদর্শ কলেজে কাউন্সেলিং </td>
+                                <td class="tg-y698">আদর্শ কলেজ গাইড লাইন/কাউন্সেলিং </td>
                                 <td class="tg-0pky  type_2">
                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                     data-table="education_motivational_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
@@ -660,7 +660,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">বিবরণ</td>
+                                <td class="tg-pwj7">স্তর</td>
                                 <td class="tg-pwj7"> কোচিংয়ের নাম</td>
                                 <td class="tg-pwj7">ব্যাচ সংখ্যা </td>
                                 <td class="tg-pwj7"> ছাত্র সংখ্যা</td>
@@ -799,31 +799,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td class="tg-y698">প্রফেশনাল/জব </td>
-
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="text" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="job_coachingname" 
-                                    data-title="Enter"><?php echo $job_coachingname=(isset( $education_coaching['job_coachingname']))? $education_coaching['job_coachingname']:"" ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="job_batch" 
-                                    data-title="Enter"><?php echo $job_batch=(isset( $education_coaching['job_batch']))? $education_coaching['job_batch']:0 ?>
-                                </a>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                    data-table="education_coaching" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                    data-name="job_student" 
-                                    data-title="Enter"><?php echo $job_student=(isset( $education_coaching['job_student']))? $education_coaching['job_student']:0 ?>
-                                </a>
-                                </td>
-                            </tr>
+                           
 
                             <tr>
                                 <td class="tg-y698">অন্যান্য </td>
@@ -853,31 +829,31 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-0pky" colspan="2"> মোট</td>
                                 <td class="tg-0pky">
-                                <?php echo  ($ssc_batch + $hsc_batch + $university_batch + $medical_batch + $eng_batch + $job_batch + $other_batch)  ?>
+                                <?php echo  ($ssc_batch + $hsc_batch + $university_batch + $medical_batch + $eng_batch + $other_batch)  ?>
                                 </td>
                                 <td class="tg-0pky">
-                                <?php echo ($ssc_student + $hsc_student + $university_student + $medical_student + $eng_student + $job_student + $other_student) ?>
+                                <?php echo ($ssc_student + $hsc_student + $university_student + $medical_student + $eng_student  + $other_student) ?>
                                 </td>
                             </tr>
                         </table>
 
                         <table class="tg table table-header-rotated" id="প্লেসধারী">
                             <tr>
-                                <td class="tg-pwj7" colspan="13"><b>প্রফেশনাল আউটপুট-০১ (শিক্ষক):বিশ্ববিদ্যালয়ের প্লেসধারী</b></td>
+                                <td class="tg-pwj7" colspan="13"><b>প্রফেশনাল আউটপুট-০১ (শিক্ষক) : বিশ্ববিদ্যালয়ের প্লেসধারী</b></td>
                                 <td class="tg-pwj7" colspan="4">
                                 <a href="#" id='table_4' onclick="doit('xlsx','প্লেসধারী','<?php echo 'প্রফেশনাল আউটপুট-০১ (শিক্ষক):বিশ্ববিদ্যালয়ের প্লেসধারী_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">মান</td>
-                                <td class="tg-pwj7" colspan="2">১ম সেমিষ্টার </td>
-                                <td class="tg-pwj7" colspan="2">২য় সেমিষ্টার </td>
-                                <td class="tg-pwj7" colspan="2">৩য় সেমিষ্টার</td> 
-                                <td class="tg-pwj7" colspan="2">৪র্থ সেমিষ্টার  </td>
-                                <td class="tg-pwj7" colspan="2">৫ম সেমিষ্টার </td>
-                                <td class="tg-pwj7" colspan="2"> ৬ষ্ঠ  সেমিষ্টার</td>
-                                <td class="tg-pwj7" colspan="2">৭ম সেমিষ্টার  </td>
-                                <td class="tg-pwj7" colspan="2">৮ম সেমিষ্টার </td>
+                                <td class="tg-pwj7" colspan="2">১ম সেমিস্টার </td>
+                                <td class="tg-pwj7" colspan="2">২য় সেমিস্টার </td>
+                                <td class="tg-pwj7" colspan="2">৩য় সেমিস্টার</td> 
+                                <td class="tg-pwj7" colspan="2">৪র্থ সেমিস্টার  </td>
+                                <td class="tg-pwj7" colspan="2">৫ম সেমিস্টার </td>
+                                <td class="tg-pwj7" colspan="2"> ৬ষ্ঠ  সেমিস্টার</td>
+                                <td class="tg-pwj7" colspan="2">৭ম সেমিস্টার  </td>
+                                <td class="tg-pwj7" colspan="2">৮ম সেমিস্টার</td>
 
                             </tr>
 

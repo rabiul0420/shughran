@@ -911,7 +911,7 @@ $pk = (isset($publication_kendro_hote_prokashona['id'])) ? $publication_kendro_h
                                                </tr>
                             <tr>
                                 <td class="tg-y698 type_1">
-                                ক্লাঅন্যান্য বই
+                                অন্যান্য বই
                                 </td>
                                    <td class="tg-0pky">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
@@ -1453,7 +1453,7 @@ $pk = (isset($publication_kendro_hote_prokashona['id'])) ? $publication_kendro_h
                                 </td>
                                                </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan='7'>রমাদন প্রকাশনা</td>
+                                <td class="tg-pwj7" rowspan='7'>রমজান প্রকাশনা</td>
                                 <td class="tg-pwj7" colspan=''>  উপকরণ </td>
                                 <td class="tg-pwj7" colspan=''>  সংখ্যা </td>
                                 <td class="tg-pwj7" colspan=''>  বিক্রি </td>
@@ -1461,7 +1461,7 @@ $pk = (isset($publication_kendro_hote_prokashona['id'])) ? $publication_kendro_h
                             </tr>
                             <tr>
                                 <td class="tg-y698 type_1">
-                                রমাদন ক্যালেন্ডার
+                                রমজান ক্যালেন্ডার
                                 </td>
                                    <td class="tg-0pky">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
@@ -1591,7 +1591,7 @@ $pk = (isset($publication_kendro_hote_prokashona['id'])) ? $publication_kendro_h
                                                </tr>
                             <tr>
                                 <td class="tg-y698 type_1">
-                                রমাদন কর্ম পরিকল্পনা
+                                রমজান কর্ম পরিকল্পনা
                                 </td>
                                    <td class="tg-0pky">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"

@@ -737,7 +737,7 @@ $(document).ready(function(){
                 <td class="tg-pwj7" colspan=""> সংগঠনের নাম</td>
                 <td class="tg-pwj7" colspan=""> রেজিস্টার্ড /নন রেজিস্টার্ড </td>
                 <td class="tg-pwj7" colspan="">প্রতিষ্ঠা সাল </td>
-                <td class="tg-pwj7" colspan="">চলতি সেশনে কতটি র্কমসূচি বাস্তবায়তি হয়েছে? </td>
+                <td class="tg-pwj7" colspan="">চলতি সেশনে কতটি কর্মসূচি বাস্তবায়তি হয়েছে? </td>
                 <td class="tg-pwj7" colspan="">Actions </td>
             </tr>
                             

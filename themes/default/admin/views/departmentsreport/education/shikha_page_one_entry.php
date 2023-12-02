@@ -139,7 +139,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan="2">একাডেমিক হোমের ধরণ</td>
+                                <td class="tg-pwj7" rowspan="2">একাডেমিক হোমের ধরন</td>
                                 <td class="tg-pwj7" colspan="4" style="text-align:center">হোম সংখ্যা </td>
                                 <td class="tg-pwj7" colspan="4" style="text-align:center">ছাত্র সংখ্যা </td>
                             </tr>
@@ -471,7 +471,7 @@
                             </tr>
 
                             <tr>
-                                <td class="tg-y698 type_1">বিশ্ববিদযালয় শিক্ষক তৈরি </td>
+                                <td class="tg-y698 type_1">বিশ্ববিদ্যালয় শিক্ষক তৈরি </td>
                                 <td class="tg-0pky  type_1">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_ideal_home" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="teacher_h_prev" data-title="Enter"><?php echo $teacher_h_prev = (isset($education_ideal_home['teacher_h_prev'])) ? $education_ideal_home['teacher_h_prev'] : 0 ?>
                                     </a>
@@ -589,7 +589,7 @@
 
                         <table class="tg table table-header-rotated" id="testTable3">
                             <tr>
-                                <td class="tg-pwj7" colspan="2"><b>শিক্ষাবৃত্তি/উপকরণ-সংক্রান্ত</b></td>
+                                <td class="tg-pwj7" colspan="2"><b>শিক্ষাবৃত্তি/উপকরণ সংক্রান্ত :</b></td>
                                 <td class="tg-pwj7" colspan="">
                                     <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Education_শিক্ষাবৃত্তি/উপকরণ-সংক্রান্ত_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
@@ -598,7 +598,7 @@
                             <tr>
                                 <td class="tg-pwj7">প্রোগ্রামের ধরন</td>
                                 <td class="tg-pwj7">কত জনকে</td>
-                                <td class="tg-pwj7">টাকা (পরিমান)</td>
+                                <td class="tg-pwj7">টাকা (পরিমাণ)</td>
 
                             </tr>
 
@@ -609,7 +609,7 @@
 
 
                             <tr>
-                                <td class="tg-y698 type_1">(৫ম - ১০ম শ্রেণি)/পরীক্ষার্থীদের শিক্ষাবৃত্তি</td>
+                                <td class="tg-y698 type_1">৫ম-১০ম শ্রেণিতে অধ্যয়নরত শিক্ষার্থীদের শিক্ষাবৃত্তি প্রদান</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="5_to_10_number" data-title="Enter"><?php echo $number = (isset($education_scholarship['5_to_10_number'])) ? $education_scholarship['5_to_10_number'] : 0 ?>
                                     </a>
@@ -624,7 +624,7 @@
 
 
                             <tr>
-                                <td class="tg-y698">(একাদশ - দ্বাদশ অধ্যায়নরত)/পরীক্ষার্থীদের শিক্ষাবৃত্তি</td>
+                                <td class="tg-y698">একাদশ-দ্বাদশ শ্রেণিতে অধ্যয়নরত শিক্ষার্থীদের শিক্ষাবৃত্তি প্রদান</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="hsc_number" data-title="Enter"><?php echo $hsc_number = (isset($education_scholarship['hsc_number'])) ? $education_scholarship['hsc_number'] : 0 ?>
                                     </a>
@@ -638,7 +638,7 @@
                             </tr>
 
                             <tr>
-                                <td class="tg-y698 type_1">(৫ম - ১০ম শ্রেণি)/পরীক্ষার্থীদের শিক্ষা উপকরণ প্রদান</td>
+                                <td class="tg-y698 type_1">৫ম-১০ম শ্রেণিতে অধ্যায়নরত শিক্ষার্থীদের শিক্ষা উপকরণ প্রদান</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="ps_u_s" data-title="Enter"><?php echo $ps_u_s = (isset($education_scholarship['ps_u_s'])) ? $education_scholarship['ps_u_s'] : 0 ?>
                                     </a>
@@ -653,7 +653,7 @@
 
 
                             <tr>
-                                <td class="tg-y698">(একাদশ - দ্বাদশ অধ্যায়নরত)/পরীক্ষার্থীদের শিক্ষা উপকরণ প্রদান</td>
+                                <td class="tg-y698">একাদশ-দ্বাদশ শ্রেণিতে অধ্যায়নরত শিক্ষার্থীদের শিক্ষা উপকরণ প্রদান</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_scholarship" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="h_u_s" data-title="Enter"><?php echo $h_u_s = (isset($education_scholarship['hsc_number'])) ? $education_scholarship['h_u_s'] : 0 ?>
                                     </a>

@@ -272,7 +272,7 @@
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1"> মাসিক/দ্বিমাসিক সাময়িকি</td>
+                                <td class="tg-y698 type_1"> মাসিক/দ্বিমাসিক সাময়িকী</td>
 
                                 <td class="tg-0pky">
                                     <?php echo $masik_shamoyiki_prev = $total_school_bitoron['masik_shamoyiki_prev'] ?>
@@ -469,7 +469,7 @@
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1">সাথী প্রার্থী বৈঠক</td>
+                                <td class="tg-y698 type_1">সাথীপ্রার্থী বৈঠক</td>
 
                                 <td class="tg-0pky">
                                     <?php echo $sathi_prarthi_boithok_num = $total_school_boithok['sathi_prarthi_boithok_num'] ?>

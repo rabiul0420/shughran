@@ -440,7 +440,7 @@ $(document).ready(function(){
                         <!-- Second table -->
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="9"><b>প্রফেশনাল ডিগ্রি সংক্রান্ত</b> </td>
+                                <td class="tg-pwj7" colspan="9"><b>প্রফেশনাল ডিগ্রি সংক্রান্ত</b><h6>(বর্তমান এবং সাবেকদের মধ্যে ব্যবসায় শিক্ষায় প্রফেশনাল ডিগ্রিতে অধ্যয়নরত-সংক্রান্ত তথ্যাবলী) </h6> </td>
                                 <td class="tg-pwj7" colspan="2">
                                     <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Business_প্রফেশনাল ডিগ্রি সংক্রান্ত_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -845,7 +845,7 @@ $(document).ready(function(){
                         <!-- Third Table -->
                         <table class="tg table table-header-rotated" id="testTable3">
                             <tr>
-                                <td class="tg-pwj7" colspan="11"><b>প্রফেশনাল আউটপুট সংক্রান্ত : প্রফেশনাল ডিগ্রি</b> </td>
+                                <td class="tg-pwj7" colspan="11"><b>প্রফেশনাল আউটপুট সংক্রান্ত: প্রফেশনাল ডিগ্রি</b><h6>(বর্তমান এবং সাবেকদের মধ্যে ব্যবসায় শিক্ষায় প্রফেশনাল ডিগ্রিতে অধ্যয়নরতদের আউটপুট -সংক্রান্ত তথ্যাবলী) </h6> </td>
                                 <td class="tg-pwj7" colspan="2">
                                     <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Business_প্রফেশনাল আউটপুট সংক্রান্ত : প্রফেশনাল ডিগ্রি_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>

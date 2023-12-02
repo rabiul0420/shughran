@@ -96,7 +96,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">ধরণ</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7">প্রোগ্রামের সংখ্যা</td>
                                 <td class="tg-pwj7">মোট উপস্থিতি</td>
                                 <td class="tg-pwj7">গড়</td>
@@ -227,7 +227,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">ধরণ</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7">প্রোগ্রামের সংখ্যা</td>
                                 <td class="tg-pwj7">মোট উপস্থিতি</td>
                                 <td class="tg-pwj7">গড়</td>
@@ -458,7 +458,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">ধরণ</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7">প্রোগ্রামের সংখ্যা</td>
                                 <td class="tg-pwj7">মোট উপস্থিতি</td>
                                 <td class="tg-pwj7">গড়</td>
@@ -466,27 +466,7 @@ $(document).ready(function(){
                             <?php
                                 $pk = (isset($school_reception['id']))?$school_reception['id']:'';
                             ?>
-                            <tr>
-
-                                <td class="tg-y698 type_1"> PEC</td>
-
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_reception" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="pec_num" data-title="Enter">
-                                        <?php echo $pec_num =  (isset($school_reception['pec_num'])) ? $school_reception['pec_num'] :0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_reception" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="pec_pre" data-title="Enter">
-                                        <?php echo $pec_pre =  (isset($school_reception['pec_pre'])) ? $school_reception['pec_pre'] :0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo ($pec_pre!=0 && $pec_num!=0 )?$pec_pre / $pec_num:0 ?>
-                                </td>
-
-                            </tr>
+                           
                             <tr>
 
                                 <td class="tg-y698 type_1"> JSC</td>
@@ -662,7 +642,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">ধরণ</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7">প্রোগ্রামের সংখ্যা</td>
                                 <td class="tg-pwj7">মোট উপস্থিতি</td>
                                 <td class="tg-pwj7">গড়</td>
@@ -744,7 +724,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1"> কবিতা আবৃতি প্রতিযোগিতা</td>
+                                <td class="tg-y698 type_1"> কবিতা আবৃত্তি প্রতিযোগিতা</td>
 
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_compition_dawati_program" 
@@ -881,7 +861,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">ধরণ</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7">প্রোগ্রামের সংখ্যা</td>
                                 <td class="tg-pwj7">মোট উপস্থিতি</td>
                                 <td class="tg-pwj7">গড়</td>

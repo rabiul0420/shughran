@@ -268,7 +268,7 @@
                               <td class="tg-pwj7" rowspan="3" > প্রিন্ট</td>
                               <td class="tg-pwj7" rowspan="2" >পত্রিকায় কতজন</td>
                               <td class="tg-pwj7" rowspan="2"  >সাময়িকী/প্রকাশনায় কতজন</td>
-                              <td class="tg-pwj7" rowspan="2" > অনন্য কতজন</td>
+                              <td class="tg-pwj7" rowspan="2" > অন্যান্য কতজন</td>
                               <td class="tg-pwj7" colspan='3'> ক্যাটাগরি </td>
                               <td class="tg-pwj7" rowspan="2" > মোট </td>
                               

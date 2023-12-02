@@ -406,7 +406,7 @@
                            <td class="tg-pwj7" rowspan="2" > পদের নাম </td>
                            <td class="tg-pwj7" rowspan="2" >পত্রিকায় কতজন</td>
                            <td class="tg-pwj7" rowspan="2"  >সাময়িকী/প্রকাশনায় কতজন</td>
-                           <td class="tg-pwj7" rowspan="2" > অনন্য কতজন</td>
+                           <td class="tg-pwj7" rowspan="2" >অন্যান্য কতজন</td>
                            <td class="tg-pwj7" colspan='4'> ক্যাটাগরি </td>
                            
                            
@@ -849,7 +849,7 @@
                      </table>
                      <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan='13'><b>একনজরে নবীন বৃদ্ধি</b></td>
+                                <td class="tg-pwj7" colspan='13'><b>একনজরে সাংবাদিক বৃদ্ধি</b></td>
                             </tr>
                             <tr>
                               <td class="tg-pwj7" rowspan="2">ধরন</td>

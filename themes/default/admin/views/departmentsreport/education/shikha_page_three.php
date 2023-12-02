@@ -152,13 +152,13 @@ $(document).ready(function(){
 
 <table class="tg table table-header-rotated" id="testTable3">
                             <tr>
-                                <td class="tg-pwj7" colspan="10"><b>প্রফেশনাল আউটপুট-০৩ (সমাজসেবা) </b></td>
+                                <td class="tg-pwj7" colspan="10"><b>প্রফেশনাল আউটপুট-০২ (সমাজসেবা): </b></td>
                                 <td class="tg-pwj7" colspan="3">
-                                <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Education_প্রফেশনাল আউটপুট-০৩ (সমাজসেবা).xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <a href="#" id='প্রফেশনাল আউটপুট-০২ (সমাজসেবা):' onclick="doit('xlsx','প্রফেশনাল আউটপুট-০২ (সমাজসেবা):','<?php echo 'Education_প্রফেশনাল আউটপুট-০২ (সমাজসেবা):.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan="3">জনশক্তি</td>
+                                <td class="tg-pwj7" rowspan="3">মান</td>
                                 <td class="tg-pwj7" colspan="6" style="text-align:center;">কমিশনার </td>
                                 <td class="tg-pwj7" colspan="6" style="text-align:center;">সৈনিক  </td>
 

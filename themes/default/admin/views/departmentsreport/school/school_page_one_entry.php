@@ -125,7 +125,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1"> সদস্য প্রার্থী </td>
+                                <td class="tg-y698 type_1"> সদস্যপ্রার্থী </td>
 
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_manpower" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="member_prarthi_prev" data-title="Enter"><?php echo $member_prarthi_prev =  (isset($school_manpower['member_prarthi_prev'])) ? $school_manpower['member_prarthi_prev'] : '' ?></a>
@@ -161,7 +161,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1"> সাথী প্রার্থী </td>
+                                <td class="tg-y698 type_1"> সাথীপ্রার্থী </td>
 
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_manpower" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="associate_prarthi_prev" data-title="Enter"><?php echo $associate_prarthi_prev =  (isset($school_manpower['associate_prarthi_prev'])) ? $school_manpower['associate_prarthi_prev'] : '' ?></a>
@@ -701,9 +701,10 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                         </table>
+
                         <table class="tg table table-header-rotated" id="testTable5">
                             <tr>
-                                <td class="tg-pwj7" colspan="3"><b>দাওয়াতীমূলক প্রোগ্রাম</b></td>
+                                <td class="tg-pwj7" colspan="3"><b>দাওয়াতিমূলক প্রোগ্রাম</b></td>
                                 <td class="tg-pwj7" colspan="1">
                                     <a href="#" id='table_5' onclick="doit('xlsx','testTable5','<?php echo 'School_দাওয়াতীমূলক প্রোগ্রাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>

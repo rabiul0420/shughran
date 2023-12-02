@@ -604,7 +604,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>                                                     
                                 <td class="tg-y698 type_1">
-                                ক্লাঅন্যান্য বই
+                                অন্যান্য বই
                                  </td>
                                     <td class="tg-0pky  type_10">
                                 <?php echo $is_sa_other_boi_num = $publication_kendro_hote_prokashona['is_sa_other_boi_num'] ?>
@@ -906,7 +906,7 @@ $(document).ready(function(){
                                 </td> 
                             </tr>
                             <tr> 
-                                <td class="tg-pwj7" rowspan='7'>রমাদন প্রকাশনা</td>
+                                <td class="tg-pwj7" rowspan='7'>রমজান প্রকাশনা</td>
                                 <td class="tg-pwj7" colspan=''>  উপকরণ </td>
                                 <td class="tg-pwj7" colspan=''>  সংখ্যা </td>
                                 <td class="tg-pwj7" colspan=''>  বিক্রি </td>
@@ -914,7 +914,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>                                                     
                                 <td class="tg-y698 type_1">
-                                রমাদন ক্যালেন্ডার 
+                                রমজান ক্যালেন্ডার 
                                  </td>
                                     <td class="tg-0pky  type_10">
                                 <?php echo $rom_proka_cal_num = $publication_kendro_hote_prokashona['rom_proka_cal_num'] ?>
@@ -984,7 +984,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>                                                     
                                 <td class="tg-y698 type_1">
-                                রমাদন কর্ম পরিকল্পনা
+                                রমজান কর্ম পরিকল্পনা
                                  </td>
                                     <td class="tg-0pky  type_10">
                                 <?php echo $rom_proka_ramadan_kormo_plan_num = $publication_kendro_hote_prokashona['rom_proka_ramadan_kormo_plan_num'] ?>

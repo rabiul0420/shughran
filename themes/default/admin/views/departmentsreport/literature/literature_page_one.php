@@ -563,62 +563,6 @@
 
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td class="tg-y698">শাখা কর্তৃক প্রকাশিত পত্রিকা </td>
-                                <td class="tg-0pky  type_1">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_pn_before'] ?>
-                                </td>
-                                 
-
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_pn_present'] ?>
-                                </td>
-                                <td class="tg-0pky  type_5">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_bt_potrika'] ?>
-                                </td>
-                                <td class="tg-0pky  type_7">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_briddhi_potrika'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_9">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_ghatti_potrika'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_11">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_bmn'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_12">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_bbkry'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_13">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_bbitrn'] ?>
-
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_gn_before'] ?>
-                                </td>
-                                <td class="tg-0pky  type_4">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_gn_present'] ?>
-                                </td>
-                                
-                                <td class="tg-0pky  type_6">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_bt_grahok'] ?>
-
-                                </td>
-                                
-                                <td class="tg-0pky type_8">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_briddhi_grahok'] ?>
-
-                                </td>
-                               
-                                <td class="tg-0pky  type_10">
-                                    <?php echo $potrikar_grahok_briddhi['skpp_ghatti_grahok'] ?>
-
-                                </td>
-                            </tr>
                             <tr>
                                 <td class="tg-y698">সাহিত্য পত্রিকা </td>
                                  <td class="tg-0pky  type_1">
@@ -674,6 +618,62 @@
 
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="tg-y698">শাখা কর্তৃক প্রকাশিত পত্রিকা </td>
+                                <td class="tg-0pky  type_1">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_pn_before'] ?>
+                                </td>
+                                 
+
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_pn_present'] ?>
+                                </td>
+                                <td class="tg-0pky  type_5">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bt_potrika'] ?>
+                                </td>
+                                <td class="tg-0pky  type_7">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_briddhi_potrika'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_9">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_ghatti_potrika'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_11">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bmn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_12">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bbkry'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_13">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bbitrn'] ?>
+
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_gn_before'] ?>
+                                </td>
+                                <td class="tg-0pky  type_4">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_gn_present'] ?>
+                                </td>
+                                
+                                <td class="tg-0pky  type_6">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_bt_grahok'] ?>
+
+                                </td>
+                                
+                                <td class="tg-0pky type_8">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_briddhi_grahok'] ?>
+
+                                </td>
+                               
+                                <td class="tg-0pky  type_10">
+                                    <?php echo $potrikar_grahok_briddhi['skpp_ghatti_grahok'] ?>
+
+                                </td>
+                            </tr>
+                            
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
@@ -685,7 +685,7 @@
                             <tr>
                                 <td class="tg-pwj7">ক্রম</td>
                                 <td class="tg-pwj7">শাখা আইডি</td>
-                                <td class="tg-pwj7">ধরণ</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7"> সময়কাল </td>
                                 <td class="tg-pwj7">নাম </td>
                                 <!-- <td class="tg-pwj7"> বিষয় </td> -->
@@ -726,115 +726,7 @@
 
 
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable3">
-                            <tr>
-                                <td class="tg-pwj7" colspan="3"><b> সাহিত্য সম্পর্কিত দাওয়াতি প্রোগ্রাম</b></td>
-                                <td class="tg-pwj7" colspan="1">
-                                    <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Literature_সাহিত্য সম্পর্কিত দাওয়াতি প্রোগ্রাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7">প্রোগ্রামের নাম</td>
-                                <td class="tg-pwj7"> সংখ্যা </td>
-                                <td class="tg-pwj7">মোট উপস্থিতি </td>
-                                <td class="tg-pwj7"> গড় উপস্থিতি </td>
-
-                            </tr>
-
-
-
-
-                            <tr>
-                                <td class="tg-y698 type_1">সাহিত্য সম্পর্কিত দিবস উদযাপন </td>
-                                <td class="tg-0pky  type_1">
-                                    <?php echo $sahitto_somporkito_dawati_program['ssdu_sonkha'] ?>
-                                </td>
-
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $sahitto_somporkito_dawati_program['ssdu_ta'] ?>
-                                </td>
-
-                                <td class="tg-0pky  type_3">
-                                    <?php echo (isset($sahitto_somporkito_dawati_program['ssdu_sonkha']) && isset($sahitto_somporkito_dawati_program['ssdu_ta']) && (int)$sahitto_somporkito_dawati_program['ssdu_ta'] > 0) ?
-                                        ($sahitto_somporkito_dawati_program['ssdu_ta'] / $sahitto_somporkito_dawati_program['ssdu_sonkha']) : '' ?>
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-                                <td class="tg-y698">লেখক সমাবেশ </td>
-                                <td class="tg-0pky">
-                                    <?php echo $sahitto_somporkito_dawati_program['ls_sonkha'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo $sahitto_somporkito_dawati_program['ls_ta'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo (isset($sahitto_somporkito_dawati_program['ls_sonkha']) && isset($sahitto_somporkito_dawati_program['ls_ta']) && (int)$sahitto_somporkito_dawati_program['ls_ta'] > 0) ?
-                                        ($sahitto_somporkito_dawati_program['ls_ta'] / $sahitto_somporkito_dawati_program['ls_sonkha']) : '' ?>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="tg-y698">গুণীজন সংবর্ধনা </td>
-                                <td class="tg-0pky type_1">
-                                    <?php echo $sahitto_somporkito_dawati_program['gs_sonkha'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $sahitto_somporkito_dawati_program['gs_ta'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <?php echo (isset($sahitto_somporkito_dawati_program['gs_sonkha']) && isset($sahitto_somporkito_dawati_program['gs_ta']) && (int)$sahitto_somporkito_dawati_program['gs_ta'] > 0) ?
-                                        ($sahitto_somporkito_dawati_program['gs_ta'] / $sahitto_somporkito_dawati_program['gs_sonkha']) : '' ?>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="tg-y698">ইফতার মাহফিল/ ঈদ পুনর্মিলনী</td>
-                                <td class="tg-0pky type_1">
-                                    <?php echo $sahitto_somporkito_dawati_program['im_sonkha'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $sahitto_somporkito_dawati_program['im_ta'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <?php echo (isset($sahitto_somporkito_dawati_program['im_sonkha']) && isset($sahitto_somporkito_dawati_program['im_ta']) && (int)$sahitto_somporkito_dawati_program['im_ta'] > 0) ?
-                                        ($sahitto_somporkito_dawati_program['im_ta'] / $sahitto_somporkito_dawati_program['im_sonkha']) : '' ?>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">সাহিত্য সম্পর্কিত প্রতিযোগীতা </td>
-                                <td class="tg-0pky type_1">
-                                    <?php echo $sahitto_somporkito_dawati_program['sp_sonkha'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $sahitto_somporkito_dawati_program['sp_ta'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <?php echo (isset($sahitto_somporkito_dawati_program['sp_sonkha']) && isset($sahitto_somporkito_dawati_program['sp_ta']) && (int)$sahitto_somporkito_dawati_program['sp_ta'] > 0) ?
-                                        ($sahitto_somporkito_dawati_program['sp_ta'] / $sahitto_somporkito_dawati_program['sp_sonkha']) : '' ?>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">নবীন লেখক প্রতিযোগিতা </td>
-                                <td class="tg-0pky type_1">
-                                    <?php echo $sahitto_somporkito_dawati_program['nlp_sonkha'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <?php echo $sahitto_somporkito_dawati_program['nlp_ta'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                    <?php echo (isset($sahitto_somporkito_dawati_program['nlp_sonkha']) && isset($sahitto_somporkito_dawati_program['nlp_ta']) && (int)$sahitto_somporkito_dawati_program['nlp_ta'] > 0) ?
-                                        ($sahitto_somporkito_dawati_program['nlp_ta'] / $sahitto_somporkito_dawati_program['nlp_sonkha']) : '' ?>
-                                </td>
-
-                            </tr>
-                        </table>
+                       
                     </div>
 
 

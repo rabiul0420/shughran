@@ -218,11 +218,11 @@ $(document).ready(function(){
                             </td>
                         </tr>
                     </table>
-<table class="tg table table-header-rotated" id="testTable1" data-branch="<?php echo isset($branch_id) ? $branch_id.'_centraltraing_1_' : 'central_centraltraing_1'?>">
+                    <table class="tg table table-header-rotated" id="মোটিভেশনাল প্রোগ্রাম">
                             <tr>
-                                <td class="tg-pwj7" colspan='2'><b>মোটিভেশনাল প্রোগ্রাম </b></td>
+                            <td class="tg-pwj7" colspan='2'><b>মোটিভেশনাল প্রোগ্রাম </b></td>
                                 <td class="tg-pwj7" colspan="">
-                                <a href="#" id='table_1'  onclick="doit('xlsx','testTable1','<?php echo 'Education_মোটিভেশনাল প্রোগ্রাম (প্রফেশনাল ও একাডেমিক).xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <a href="#" id='table_1'  onclick="doit('xlsx','মোটিভেশনাল প্রোগ্রাম','<?php echo 'Education_মোটিভেশনাল প্রোগ্রাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
@@ -231,145 +231,89 @@ $(document).ready(function(){
                                 <td class="tg-pwj7" >উপস্থিতি  </td>
 
                             </tr>
-
+                           
+                           
                             <tr>
-                                <td class="tg-y698 type_1" >ক্যারিয়ার কাউন্সেলিং (জনসেবা)	</td>
-
+                                <td class="tg-y698">ক্যারিয়ার গাইড লাইন/কাউন্সেলিং (সমাজসেবা)</td>
                                 <td class="tg-0pky  type_2">
-                                <?php echo $cc_jon_num = $education_motivational_program['cc_jon_num'] ?>
+                                <?php echo $cc_sho_num=(isset( $education_motivational_program['cc_sho_num']))? $education_motivational_program['cc_sho_num']:0 ?>
+
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php echo $cc_jon_pre = $education_motivational_program['cc_jon_pre'] ?>
+                                <?php echo $cc_sho_pre=(isset( $education_motivational_program['cc_sho_pre']))? $education_motivational_program['cc_sho_pre']:0 ?>
+
                                 </td>
                             </tr>
-
+                           
                             <tr>
-                                <td class="tg-y698">ক্যারিয়ার কাউন্সেলিং (মানবসেবা) </td>
-
+                                <td class="tg-y698">ক্যারিয়ার গাইড লাইন/কাউন্সেলিং (বিশ্ববিদ্যালয় শিক্ষক তৈরি) </td>
                                 <td class="tg-0pky  type_2">
-                                <?php echo $cc_man_num = $education_motivational_program['cc_man_num'] ?>
+                                <?php echo $cc_tea_num=(isset( $education_motivational_program['cc_tea_num']))? $education_motivational_program['cc_tea_num']:0 ?>
+
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php echo $cc_man_pre = $education_motivational_program['cc_man_pre'] ?>
-                                </td>
-                            </tr>
+                                <?php echo $cc_tea_pre=(isset( $education_motivational_program['cc_tea_pre']))? $education_motivational_program['cc_tea_pre']:0 ?>
 
+                                </td>
                             <tr>
-                                <td class="tg-y698">ক্যারিয়ার কাউন্সেলিং (সমাজসেবা) </td>
-
-                                 <td class="tg-0pky  type_2">
-                                <?php echo $cc_sho_num = $education_motivational_program['cc_sho_num'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                <?php echo $cc_sho_pre = $education_motivational_program['cc_sho_pre'] ?>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">ক্যারিয়ার কাউন্সেলিং (তথ্যসেবা) </td>
-
+                                <td class="tg-y698">আদর্শ কলেজ গাইড লাইন/কাউন্সেলিং </td>
                                 <td class="tg-0pky  type_2">
-                                <?php echo $cc_info_num = $education_motivational_program['cc_info_num'] ?>
+                                <?php echo $ideal_cc_num=(isset( $education_motivational_program['ideal_cc_num']))? $education_motivational_program['ideal_cc_num']:0 ?>
+
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php echo $cc_info_pre = $education_motivational_program['cc_info_pre'] ?>
+                                <?php echo $ideal_cc_pre=(isset( $education_motivational_program['ideal_cc_pre']))? $education_motivational_program['ideal_cc_pre']:0 ?>
+
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698">ক্যারিয়ার কাউন্সেলিং (বিশ্ব. শিক্ষক তৈরি) </td>
-
+                                <td class="tg-y698">মোটিভেশনাল প্রোগ্রাম (এসএসসি/দাখিল) </td>
                                 <td class="tg-0pky  type_2">
-                                <?php echo $cc_tea_num = $education_motivational_program['cc_tea_num'] ?>
+                                <?php echo $mot_pro_ssc_num=(isset( $education_motivational_program['mot_pro_ssc_num']))? $education_motivational_program['mot_pro_ssc_num']:0 ?>
+
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php echo $cc_tea_pre = $education_motivational_program['cc_tea_pre'] ?>
-                                </td>
-                            <tr>
-                                <td class="tg-y698">আদর্শ কলেজে কাউন্সেলিং </td>
+                                <?php echo $mot_pro_ssc_pre=(isset( $education_motivational_program['mot_pro_ssc_pre']))? $education_motivational_program['mot_pro_ssc_pre']:0 ?>
 
-                                <td class="tg-0pky  type_2">
-                                <?php echo $ideal_cc_num = $education_motivational_program['ideal_cc_num'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                <?php echo $ideal_cc_pre = $education_motivational_program['ideal_cc_pre'] ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">মোটিভেশনাল প্রোগ্রাম (জেএসসি/জেডিসি/এসএসসি/দাখিল) </td>
-
-                                <td class="tg-0pky  type_2">
-                                <?php echo $mot_pro_ssc_num = $education_motivational_program['mot_pro_ssc_num'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                <?php echo $mot_pro_ssc_pre = $education_motivational_program['mot_pro_ssc_pre'] ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tg-y698">মোটিভেশনাল প্রোগ্রাম (এইচএসসি/আলিম)</td>
-
                                 <td class="tg-0pky  type_2">
-                                <?php echo $mot_pro_hsc_num = $education_motivational_program['mot_pro_hsc_num'] ?>
+                                <?php echo $mot_pro_hsc_num=(isset( $education_motivational_program['mot_pro_hsc_num']))? $education_motivational_program['mot_pro_hsc_num']:0 ?>
+
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php echo $mot_pro_hsc_pre = $education_motivational_program['mot_pro_hsc_pre'] ?>
+                                <?php echo $mot_pro_hsc_pre=(isset( $education_motivational_program['mot_pro_hsc_pre']))? $education_motivational_program['mot_pro_hsc_pre']:0 ?>
+
                                 </td>
                             </tr>
                            
                             <tr>
                                 <td class="tg-y698">মোটিভেশনাল প্রোগ্রাম (বিশ্ববিদ্যালয় ভর্তিচ্ছু)</td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $mot_pro_uni_num=(isset( $education_motivational_program['mot_pro_uni_num']))? $education_motivational_program['mot_pro_uni_num']:0 ?>
 
-                                <td class="tg-0pky  type_2">
-                                <?php echo $mot_pro_uni_num = $education_motivational_program['mot_pro_uni_num'] ?>
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php echo $mot_pro_uni_pre = $education_motivational_program['mot_pro_uni_pre'] ?>
+                                <?php echo $mot_pro_uni_pre=(isset( $education_motivational_program['mot_pro_uni_pre']))? $education_motivational_program['mot_pro_uni_pre']:0 ?>
+
                                 </td>
                             </tr>
-                           
-                            <tr>
-                                <td class="tg-y698">মেধাবী সংবর্ধনা (অনার্স এবং মাস্টার্সে প্লেস ধারী)</td>
-                                <td class="tg-0pky  type_2">
-                                <?php echo $meritorious_num = $education_motivational_program['meritorious_num'] ?>
+                    <td class="tg-y698">অন্যান্য</td>
+                            <td class="tg-0pky  type_2">
+                            <?php echo $other_num=(isset( $education_motivational_program['other_num']))? $education_motivational_program['other_num']:0 ?>
+
                                 </td>
                                 <td class="tg-0pky  type_3">
-                                <?php echo $meritorious_pre = $education_motivational_program['meritorious_pre'] ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">ইংলিশ স্পোকেন কোর্স</td>
-                                <td class="tg-0pky  type_2">
-                                <?php echo $eng_course_num = $education_motivational_program['eng_course_num'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                <?php echo $eng_course_pre = $education_motivational_program['eng_course_pre'] ?>
+                                <?php echo $other_pre=(isset( $education_motivational_program['other_pre']))? $education_motivational_program['other_pre']:0 ?>
+
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698">কম্পিউটার কোর্স</td>
-                                <td class="tg-0pky  type_2">
-                                <?php echo $com_course_num = $education_motivational_program['com_course_num'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                <?php echo $com_course_pre = $education_motivational_program['com_course_pre'] ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">দোয়া মাহফিল</td>
-                                <td class="tg-0pky  type_2">
-                                <?php echo $dowa_num = $education_motivational_program['dowa_num'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                <?php echo $dowa_pre = $education_motivational_program['dowa_pre'] ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-y698">অন্যান্য</td>
-                                <td class="tg-0pky  type_2">
-                                <?php echo $other_num = $education_motivational_program['other_num'] ?>
-                                </td>
-                                <td class="tg-0pky  type_3">
-                                <?php echo $other_pre = $education_motivational_program['other_pre'] ?>
-                                </td>
+                                <td class="tg-y698">মোট</td>
+                                <td class="tg-0pky"> <?php echo $other_num+$mot_pro_uni_num+$mot_pro_hsc_num+$mot_pro_ssc_num+$ideal_cc_num+$cc_tea_num+$cc_sho_num  ?> </td>
+                                <td class="tg-0pky"> <?php echo $other_pre+$mot_pro_uni_pre+$mot_pro_hsc_pre+$mot_pro_ssc_pre+$ideal_cc_pre+$cc_tea_num+$cc_sho_pre  ?> </td>
                             </tr>
                         </table>
                         <table class="tg table table-header-rotated" id="honers_masters">
@@ -562,7 +506,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">বিবরণ</td>
+                                <td class="tg-pwj7">স্তর</td>
                                 <td class="tg-pwj7"> কোচিংয়ের নাম</td>
                                 <td class="tg-pwj7">ব্যাচ সংখ্যা </td>
                                 <td class="tg-pwj7"> ছাত্র সংখ্যা</td>
@@ -644,20 +588,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td class="tg-y698">প্রফেশনাল/জব </td>
-
-                                <td class="tg-0pky  type_1">
-                                <?php echo $job_coachingname=(isset( $education_coaching['job_coachingname']))? $education_coaching['job_coachingname']:"" ?>
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <?php echo $job_batch=(isset( $education_coaching['job_batch']))? $education_coaching['job_batch']:0 ?>
-                                
-                                </td>
-                                <td class="tg-0pky  type_1">
-                                <?php echo $job_student=(isset( $education_coaching['job_student']))? $education_coaching['job_student']:0 ?>
-                                </td>
-                            </tr>
+                          
 
                             <tr>
                                 <td class="tg-y698">অন্যান্য </td>
@@ -673,33 +604,33 @@ $(document).ready(function(){
                             </tr>
 
                             <tr>
-                                <td class="tg-0pky" colspan="2"> মোট</td>
+                            <td class="tg-0pky" colspan="2"> মোট</td>
                                 <td class="tg-0pky">
-                                <?php echo  ($ssc_batch + $hsc_batch + $university_batch + $medical_batch + $eng_batch + $job_batch + $other_batch)  ?>
+                                <?php echo  ($ssc_batch + $hsc_batch + $university_batch + $medical_batch + $eng_batch + $other_batch)  ?>
                                 </td>
                                 <td class="tg-0pky">
-                                <?php echo ($ssc_student + $hsc_student + $university_student + $medical_student + $eng_student + $job_student + $other_student) ?>
+                                <?php echo ($ssc_student + $hsc_student + $university_student + $medical_student + $eng_student  + $other_student) ?>
                                 </td>
                             </tr>
                         </table>
 
                         <table class="tg table table-header-rotated" id="বিশ্ববিদ্যালয়ের প্লেসধারী">
                             <tr>
-                                <td class="tg-pwj7" colspan="13"><b>প্রফেশনাল আউটপুট-০১ (শিক্ষক):বিশ্ববিদ্যালয়ের প্লেসধারী</b></td>
+                                <td class="tg-pwj7" colspan="13"><b>প্রফেশনাল আউটপুট-০১ (শিক্ষক) : বিশ্ববিদ্যালয়ের প্লেসধারী</b></td>
                                 <td class="tg-pwj7" colspan="4">
                                 <a href="#" id='বিশ্ববিদ্যালয়ের প্লেসধারী' onclick="doit('xlsx','বিশ্ববিদ্যালয়ের প্লেসধারী','<?php echo 'প্রফেশনাল আউটপুট-০১ (শিক্ষক):বিশ্ববিদ্যালয়ের প্লেসধারী_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">মান</td>
-                                <td class="tg-pwj7" colspan="2">১ম সেমিষ্টার </td>
-                                <td class="tg-pwj7" colspan="2">২য় সেমিষ্টার </td>
-                                <td class="tg-pwj7" colspan="2">৩য় সেমিষ্টার</td> 
-                                <td class="tg-pwj7" colspan="2">৪র্থ সেমিষ্টার  </td>
-                                <td class="tg-pwj7" colspan="2">৫ম সেমিষ্টার </td>
-                                <td class="tg-pwj7" colspan="2"> ৬ষ্ঠ  সেমিষ্টার</td>
-                                <td class="tg-pwj7" colspan="2">৭ম সেমিষ্টার  </td>
-                                <td class="tg-pwj7" colspan="2">৮ম সেমিষ্টার </td>
+                                <td class="tg-pwj7" colspan="2">১ম সেমিস্টার </td>
+                                <td class="tg-pwj7" colspan="2">২য় সেমিস্টার </td>
+                                <td class="tg-pwj7" colspan="2">৩য় সেমিস্টার</td> 
+                                <td class="tg-pwj7" colspan="2">৪র্থ সেমিস্টার  </td>
+                                <td class="tg-pwj7" colspan="2">৫ম সেমিস্টার </td>
+                                <td class="tg-pwj7" colspan="2"> ৬ষ্ঠ  সেমিস্টার</td>
+                                <td class="tg-pwj7" colspan="2">৭ম সেমিস্টার  </td>
+                                <td class="tg-pwj7" colspan="2">৮ম সেমিস্টার </td>
 
                             </tr>
 

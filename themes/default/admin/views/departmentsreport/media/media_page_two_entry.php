@@ -639,7 +639,7 @@ $(document).ready(function(){
                                 </tr>
                                 <tr>                                                     
                                 
-                                <td class="tg-y698 type_1">  বিট ভিত্তিক সাংবাদিকতা	</td>
+                                <td class="tg-y698 type_1">  বিটভিত্তিক সাংবাদিকতা	</td>
                                 <td class="tg-0pky  type_5"> 
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                         data-table="media_training_course" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 

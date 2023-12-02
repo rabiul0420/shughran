@@ -184,7 +184,7 @@
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1"> মাসিক/দ্বিমাসিক সাময়িকি</td>
+                                <td class="tg-y698 type_1"> মাসিক/দ্বিমাসিক সাময়িকী</td>
 
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_bitoron" 
@@ -466,7 +466,7 @@
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1">সাথী প্রার্থী বৈঠক</td>
+                                <td class="tg-y698 type_1">সাথীপ্রার্থী বৈঠক</td>
 
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_boithok" 

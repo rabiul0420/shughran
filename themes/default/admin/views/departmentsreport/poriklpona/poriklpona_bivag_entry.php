@@ -89,75 +89,7 @@ $(document).ready(function(){
                 <p class="introtext">
                 <div class="table-responsive">
                     <div class="tg-wrap">
-                    <table class="tg table table-header-rotated" id="testTable1">
-                        <tr><td class="tg-pwj7" colspan="2"><b> জনশক্তির বার্ষিক পরিকল্পনা সংক্রান্ত </b></td>
-                        <td class="tg-pwj7" colspan="1">
-                                <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Planning_জনশক্তির বার্ষিক পরিকল্পনা সংক্রান্ত_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                            </td>
-                    </tr>
-                        <tr>
-                            <td class="tg-pwj7" colspan="2"> জনশক্তি</td>
-                            <td class="tg-pwj7" rowspan="2"> ব্যক্তিগত বার্ষিক পরিকল্পনা গ্রহণ করেছেন কতজন  </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" rowspan="">মান </td>
-                            <td class="tg-pwj7" colspan=""> সংখ্যা </td>
-                        </tr>
-                        <?php
-                                $pk = (isset($planning_jonoshokti_plan['id']))?$planning_jonoshokti_plan['id']:"";
-                            ?>
-                        <tr>
-                            <td class="tg-pwj7" colspan=""> সদস্য </td>
-                            <td class="tg-0pky  type_1">
-                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                data-name="mem_num" 
-                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['mem_num']))? $planning_jonoshokti_plan['mem_num']:'' ?>
-                            </a>
-                            </td>
-                            <td class="tg-0pky  type_1">
-                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                data-name="mem_plan" 
-                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['mem_plan']))? $planning_jonoshokti_plan['mem_plan']:'' ?>
-                            </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" colspan=""> সাথী</td>
-                            <td class="tg-0pky  type_1">
-                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                data-name="associate_num" 
-                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['associate_num']))? $planning_jonoshokti_plan['associate_num']:'' ?>
-                            </a>
-                            </td>
-                            <td class="tg-0pky  type_1">
-                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                data-name="associate_plan" 
-                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['associate_plan']))? $planning_jonoshokti_plan['associate_plan']:'' ?>
-                            </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" colspan=""> কর্মী </td>
-                            <td class="tg-0pky  type_1">
-                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                data-name="worker_num" 
-                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['worker_num']))? $planning_jonoshokti_plan['worker_num']:'' ?>
-                            </a>
-                            </td>
-                            <td class="tg-0pky  type_1">
-                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                                data-name="worker_plan" 
-                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['worker_plan']))? $planning_jonoshokti_plan['worker_plan']:'' ?>
-                            </a>
-                            </td>
-                        </tr>
-                    </table>
+                   
                     <table class="tg table table-header-rotated" id="testTable2">
                         <tr><td class="tg-pwj7" colspan=""> <b>শাখার পরিকল্পনা সংক্রান্ত</b></td>
                         <td class="tg-pwj7" colspan="">
@@ -171,7 +103,7 @@ $(document).ready(function(){
                                 $pk = (isset($planning_shakha_plan['id']))?$planning_shakha_plan['id']:"";
                             ?>
                         <tr>
-                            <td class="tg-pwj7" rowspan=""> শাখায় পরিকল্পনা কমিটি আছে? </td>
+                            <td class="tg-pwj7" rowspan=""> শাখায় পরিকল্পনা কমিটি আছে?  হ্যাঁ/না  	 </td>
                             
                             <td class="tg-0pky  type_1">
                             <a href="#"  class="editable editable-click"  id="shakhay_porikolpona_comitte" data-idname=""   data-type="select" 
@@ -192,7 +124,7 @@ $(document).ready(function(){
                          
                         </tr>
                        <tr>
-                            <td class="tg-pwj7" rowspan=""> শাখায় দীর্ঘমেয়াদী পরিকল্পনা নেওয়া হয়েছে কি? </td>
+                            <td class="tg-pwj7" rowspan=""> শাখায় দীর্ঘমেয়াদী পরিকল্পনা নেওয়া হয়েছে কি?  হ্যাঁ/না</td>
                             <td class="tg-0pky  type_1">
                             <a href="#"  class="editable editable-click"  id="dirghomeyadi_plan" data-idname=""   data-type="select" 
                                 data-table="planning_shakha_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate2/'.$branch_id);?>" 
@@ -295,7 +227,7 @@ $(document).ready(function(){
                             </td>
                         </tr>
                         <tr> 
-                            <td class="tg-pwj7" colspan=""> শাখায় বর্তামানে নিষ্ক্রিয় উপশাখা কতটি? </td>
+                            <td class="tg-pwj7" colspan="">শাখায় বর্তমানে নিষ্ক্রিয় উপশাখা কতটি? </td>
                                <td class="tg-0pky  type_1">
                             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                 data-table="planning_shakha_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
@@ -362,6 +294,75 @@ $(document).ready(function(){
                                 data-table="planning_shakha_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
                                 data-name="2_member_at_least" 
                                 data-title="Enter"><?php echo $arabic_c=(isset( $planning_shakha_plan['2_member_at_least']))? $planning_shakha_plan['2_member_at_least']:'' ?>
+                            </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="tg table table-header-rotated" id="testTable1">
+                        <tr><td class="tg-pwj7" colspan="2"><b> জনশক্তির বার্ষিক পরিকল্পনা সংক্রান্ত </b></td>
+                        <td class="tg-pwj7" colspan="1">
+                                <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Planning_জনশক্তির বার্ষিক পরিকল্পনা সংক্রান্ত_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                    </tr>
+                        <tr>
+                            <td class="tg-pwj7" colspan="2"> জনশক্তি</td>
+                            <td class="tg-pwj7" rowspan="2"> ব্যক্তিগত বার্ষিক পরিকল্পনা গ্রহণ করেছেন কতজন  </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" rowspan="">মান </td>
+                            <td class="tg-pwj7" colspan=""> সংখ্যা </td>
+                        </tr>
+                        <?php
+                                $pk = (isset($planning_jonoshokti_plan['id']))?$planning_jonoshokti_plan['id']:"";
+                            ?>
+                        <tr>
+                            <td class="tg-pwj7" colspan=""> সদস্য </td>
+                            <td class="tg-0pky  type_1">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="mem_num" 
+                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['mem_num']))? $planning_jonoshokti_plan['mem_num']:'' ?>
+                            </a>
+                            </td>
+                            <td class="tg-0pky  type_1">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="mem_plan" 
+                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['mem_plan']))? $planning_jonoshokti_plan['mem_plan']:'' ?>
+                            </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" colspan=""> সাথী</td>
+                            <td class="tg-0pky  type_1">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="associate_num" 
+                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['associate_num']))? $planning_jonoshokti_plan['associate_num']:'' ?>
+                            </a>
+                            </td>
+                            <td class="tg-0pky  type_1">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="associate_plan" 
+                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['associate_plan']))? $planning_jonoshokti_plan['associate_plan']:'' ?>
+                            </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" colspan=""> কর্মী </td>
+                            <td class="tg-0pky  type_1">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="worker_num" 
+                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['worker_num']))? $planning_jonoshokti_plan['worker_num']:'' ?>
+                            </a>
+                            </td>
+                            <td class="tg-0pky  type_1">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="planning_jonoshokti_plan" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="worker_plan" 
+                                data-title="Enter"><?php echo $arabic_c=(isset( $planning_jonoshokti_plan['worker_plan']))? $planning_jonoshokti_plan['worker_plan']:'' ?>
                             </a>
                             </td>
                         </tr>

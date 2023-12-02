@@ -509,7 +509,7 @@ $(document).ready(function(){
                             </tr>
                          			
                             <tr>	
-                                <td class="tg-pwj7" rowspan="3">ধরণ</td>
+                                <td class="tg-pwj7" rowspan="3">ধরন</td>
                                 <td class="tg-pwj7" rowspan="3">মেয়াদ</td>
                                 <td class="tg-pwj7" colspan="6">আর্থিক সহযোগিতা</td>
                                 <td class="tg-pwj7" colspan="6">চিকিৎসা সহযোগিতা</td>
@@ -517,9 +517,9 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" colspan="3">সংখ্যা</td>
-                                <td class="tg-pwj7" colspan="3">পরিমান</td>
+                                <td class="tg-pwj7" colspan="3">পরিমাণ</td>
                                 <td class="tg-pwj7" colspan="3">সংখ্যা</td>
-                                <td class="tg-pwj7" colspan="3">পরিমান</td>
+                                <td class="tg-pwj7" colspan="3">পরিমাণ</td>
                             </tr>
                             		
 		
@@ -959,7 +959,7 @@ $(document).ready(function(){
                             </td>
                             </tr> 				
                             <tr>
-                                <td class="tg-pwj7" rowspan="3">ধরণ</td>
+                                <td class="tg-pwj7" rowspan="3">ধরন</td>
                                 <td class="tg-pwj7" rowspan="3">মেয়াদ</td>
                                 <td class="tg-pwj7" colspan="6">শিক্ষা সহযোগিতা/শিক্ষাবৃত্তি প্রদান</td>
                               
@@ -969,7 +969,7 @@ $(document).ready(function(){
                             ?>
                             <tr>
                                 <td class="tg-pwj7" colspan="3">সংখ্যা</td>
-                                <td class="tg-pwj7" colspan="3">পরিমান</td>
+                                <td class="tg-pwj7" colspan="3">পরিমাণ</td>
                            
                             </tr>
                             		

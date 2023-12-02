@@ -152,48 +152,6 @@ $(document).ready(function(){
 }
 </style>
                     <div class="tg-wrap">
-                    <table class="tg table table-header-rotated" id="testTable1">
-                        <tr><td class="tg-pwj7" colspan="2"><b> জনশক্তির বার্ষিক পরিকল্পনা সংক্রান্ত </b></td>
-                        <td class="tg-pwj7" colspan="1">
-                                <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Planning_জনশক্তির বার্ষিক পরিকল্পনা সংক্রান্ত.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                            </td>
-                    </tr>
-                        <tr>
-                            <td class="tg-pwj7" colspan="2"> জনশক্তি</td>
-                            <td class="tg-pwj7" rowspan="2"> ব্যক্তিগত বার্ষিক পরিকল্পনা গ্রহণ করেছেন কতজন  </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" rowspan="">মান </td>
-                            <td class="tg-pwj7" colspan=""> সংখ্যা </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" colspan=""> সদস্য </td>
-                            <td class="tg-0pky  type_1">
-                                    <?php echo $mem_num = $planning_jonoshokti_plan['mem_num'] ?>
-                                </td>
-                            <td class="tg-0pky  type_1">
-                                    <?php echo $mem_plan = $planning_jonoshokti_plan['mem_plan'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" colspan=""> সাথী</td>
-                            <td class="tg-0pky  type_1">
-                                    <?php echo $associate_num = $planning_jonoshokti_plan['associate_num'] ?>
-                                </td>
-                            <td class="tg-0pky  type_1">
-                                    <?php echo $associate_plan = $planning_jonoshokti_plan['associate_plan'] ?>
-                                </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-pwj7" colspan=""> কর্মী </td>
-                            <td class="tg-0pky  type_1">
-                                    <?php echo $worker_num = $planning_jonoshokti_plan['worker_num'] ?>
-                                </td>
-                            <td class="tg-0pky  type_1">
-                                    <?php echo $worker_plan = $planning_jonoshokti_plan['worker_plan'] ?>
-                                </td>
-                        </tr>
-                    </table>
                     <table class="tg table table-header-rotated" id="testTable2">
                         <tr><td class="tg-pwj7" colspan="2"> <b>শাখার পরিকল্পনা সংক্রান্ত</b></td>
                         <td class="tg-pwj7" colspan="">
@@ -205,7 +163,7 @@ $(document).ready(function(){
                             <td class="tg-pwj7" colspan=""> মন্তব্য  </td>
                         </tr>
                         <tr>
-                            <td class="tg-pwj7" rowspan="2"> শাখায় পরিকল্পনা কমিটি আছে? </td>
+                            <td class="tg-pwj7" rowspan="2"> শাখায় পরিকল্পনা কমিটি আছে?  হ্যাঁ/না  	 </td>
                             <td class="tg-pwj7" colspan=""> হাা </td>
                               <td class="tg-0pky  type_1">
                                     <?php echo $shakhay_porikolpona_comitte	 = $planning_shakha_plan['shakhay_porikolpona_comitte'] ?>
@@ -224,7 +182,7 @@ $(document).ready(function(){
                                 </td>
                         </tr>
                        <tr>
-                            <td class="tg-pwj7" rowspan="2"> শাখায় দীর্ঘমেয়াদী পরিকল্পনা নেওয়া হয়েছে কি? </td>
+                            <td class="tg-pwj7" rowspan="2"> শাখায় দীর্ঘমেয়াদী পরিকল্পনা নেওয়া হয়েছে কি?  হ্যাঁ/না </td>
                             <td class="tg-pwj7" colspan=""> হাা </td>
                               <td class="tg-0pky  type_1">
                                     <?php echo $dirghomeyadi_plan = $planning_shakha_plan['dirghomeyadi_plan'] ?>
@@ -292,7 +250,7 @@ $(document).ready(function(){
                                 </td>
                         </tr>
                         <tr> 
-                            <td class="tg-pwj7" colspan="2"> শাখায় বর্তামানে নিষ্ক্রিয় উপশাখা কতটি? </td>
+                            <td class="tg-pwj7" colspan="2">শাখায় বর্তমানে নিষ্ক্রিয় উপশাখা কতটি? </td>
                               <td class="tg-0pky  type_1">
                                     <?php echo $nishkriyo_up = $planning_shakha_plan['nishkriyo_up'] ?>
                                 </td>
@@ -334,6 +292,49 @@ $(document).ready(function(){
                                 </td>
                         </tr>
                     </table>
+                    <table class="tg table table-header-rotated" id="testTable1">
+                        <tr><td class="tg-pwj7" colspan="2"><b> জনশক্তির বার্ষিক পরিকল্পনা সংক্রান্ত </b></td>
+                        <td class="tg-pwj7" colspan="1">
+                                <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Planning_জনশক্তির বার্ষিক পরিকল্পনা সংক্রান্ত.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                    </tr>
+                        <tr>
+                            <td class="tg-pwj7" colspan="2"> জনশক্তি</td>
+                            <td class="tg-pwj7" rowspan="2"> ব্যক্তিগত বার্ষিক পরিকল্পনা গ্রহণ করেছেন কতজন  </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" rowspan="">মান </td>
+                            <td class="tg-pwj7" colspan=""> সংখ্যা </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" colspan=""> সদস্য </td>
+                            <td class="tg-0pky  type_1">
+                                    <?php echo $mem_num = $planning_jonoshokti_plan['mem_num'] ?>
+                                </td>
+                            <td class="tg-0pky  type_1">
+                                    <?php echo $mem_plan = $planning_jonoshokti_plan['mem_plan'] ?>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" colspan=""> সাথী</td>
+                            <td class="tg-0pky  type_1">
+                                    <?php echo $associate_num = $planning_jonoshokti_plan['associate_num'] ?>
+                                </td>
+                            <td class="tg-0pky  type_1">
+                                    <?php echo $associate_plan = $planning_jonoshokti_plan['associate_plan'] ?>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-pwj7" colspan=""> কর্মী </td>
+                            <td class="tg-0pky  type_1">
+                                    <?php echo $worker_num = $planning_jonoshokti_plan['worker_num'] ?>
+                                </td>
+                            <td class="tg-0pky  type_1">
+                                    <?php echo $worker_plan = $planning_jonoshokti_plan['worker_plan'] ?>
+                                </td>
+                        </tr>
+                    </table>
+                    
                     <table class="tg table table-header-rotated" id="testTable6">
                             <tr>
                                 <td class="tg-pwj7" colspan="3"><b>বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম</b></td>

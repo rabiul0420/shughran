@@ -838,7 +838,8 @@ $(document).ready(function(){
 
                   </table><table class="tg table table-header-rotated" id="আইসিটি সেন্টার এবং প্রশিক্ষক এবং শাখার তথ্যপ্রযুক্তি রিসোর্স">
                       <tr>
-                          <td class="tg-pwj7" colspan="6"><b>আইসিটি সেন্টার এবং প্রশিক্ষক</b></td>
+                      <td class="tg-pwj7" colspan="4"><b>আইসিটি সেন্টার </b></td>
+                          <td class="tg-pwj7" colspan="2"><b> প্রশিক্ষক</b></td>
 
                           <td class="tg-pwj7" colspan="6"><b> শাখার তথ্যপ্রযুক্তি রিসোর্স</b></td>
                           <td class="tg-pwj7" colspan="1">

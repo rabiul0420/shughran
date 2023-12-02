@@ -154,7 +154,7 @@ $(document).ready(function(){
                         <table class="tg table table-header-rotated" id="testTable1">
                         
                         <tr>
-                            <td class="tg-pwj7" colspan="7"><b>সাহিত্য সংগঠন সম্পর্কিত : ১</b></td>
+                            <td class="tg-pwj7" colspan="7"><b>সাহিত্য সংগঠন সম্পর্কিত </b></td>
                             <td class="tg-pwj7" colspan="2">
                                 <a href="#" id="table_1" onclick="doit('xlsx','testTable1','<?php echo 'Literature_সাহিত্য সংগঠন সম্পর্কিত : ১.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>

@@ -154,7 +154,7 @@ $(document).ready(function(){
                         <table class="tg table table-header-rotated" id="testTable1">
                         
                         <tr>
-                            <td class="tg-pwj7" colspan="13"><b>সাহিত্য সংগঠন সম্পর্কিত : 1</b></td>
+                            <td class="tg-pwj7" colspan="13"><b>সাহিত্য সংগঠন সম্পর্কিত </b></td>
                             <td class="tg-pwj7" colspan="2">
                                 <a href="#" id="table_1" onclick="doit('xlsx','testTable1','<?php echo 'Literature_সাহিত্য সংগঠন সম্পর্কিত : ১.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>
@@ -541,7 +541,7 @@ $(document).ready(function(){
 
         </tr>
         <tr>
-            <td class="tg-y698">শাখা সাহিত্য সংগঠনরে উদ্যোগে সাধারণ সভা</td>
+            <td class="tg-y698">শাখা সাহিত্য সংগঠনের উদ্যোগে সাধারণ সভা</td>
             <!-- <td class="tg-0pky type_1">
                 <?php echo $literature_program['bs_tg_sonkha'] ?>
             </td> -->
@@ -558,7 +558,7 @@ $(document).ready(function(){
 
         </tr>
         <tr>
-            <td class="tg-y698">থানা সাহিত্য সংগঠনরে উদ্যোগে সাধারণ সভা</td>
+            <td class="tg-y698">থানা সাহিত্য সংগঠনের উদ্যোগে সাধারণ সভা</td>
             <!-- <td class="tg-0pky type_1">
                 <?php echo $literature_program['ts_tg_sonkha'] ?>
             </td> -->

@@ -524,8 +524,8 @@ $(document).ready(function(){
                     <td class="tg-pwj7 " ><div><span>আমাদের নিয়ন্ত্রণাধীন বিজনেস ক্লাব সংখ্যা	 </span></div></td>
                     <td class="tg-pwj7 "><div><span>কমিটি আছে কতটিতে? </span></div></td>
                     <td class="tg-pwj7 " ><div><span>ক্লাবের সদস্য সংখ্যা	 	 </span></div></td>
-                    <td class="tg-pwj7 "><div><span>অন্যান্য কতটি ক্লাবে জনশক্তি আছে</span></div></td>
-                    <td class="tg-pwj7 " ><div><span>কতজন জনশক্তি সংযুক্ত আছেন 	 </span></div></td>
+                    <td class="tg-pwj7 "><div><span>অন্যান্য কতটি ক্লাবে জনশক্তি আছে?</span></div></td>
+                    <td class="tg-pwj7 " ><div><span>কতজন জনশক্তি সংযুক্ত আছে? 	 </span></div></td>
                     <?php
                             $pk = (isset($business_studies_business_club['id']))?$business_studies_business_club['id']:'';
                             ?>
