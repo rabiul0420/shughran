@@ -519,7 +519,7 @@ $(document).ready(function(){
                                 </tr>
                                 <tr>                                                     
                                 
-                                <td class="tg-y698 type_1">  বিট ভিত্তিক সাংবাদিকতা	</td>
+                                <td class="tg-y698 type_1"> বিটভিত্তিক সাংবাদিকতা	</td>
                                 <td class="tg-0pky  type_10">
                                     <?php echo $bit_vittik_num = $media_training_course['bit_vittik_num'] ?>
                                 </td>

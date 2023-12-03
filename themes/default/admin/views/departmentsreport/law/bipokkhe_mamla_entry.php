@@ -51,7 +51,7 @@
                          <td class="tg-pwj7 " rowspan="3"><div><span>কোয়াশমেন্ট কতটা </span></div></td>
                          <td class="tg-pwj7 " rowspan="3"><div><span>রায়ের জন্য অপেক্ষা মান </span></div></td>
                          <td class="tg-pwj7 " rowspan="3"><div><span>রিমান্ড কতটি মামলা </span></div></td>
-                         <td class="tg-pwj7 " rowspan="3"><div><span>রিমান্ড হয়েছে কত জনের</span></div></td>
+                         <td class="tg-pwj7 " rowspan="3"><div><span>রিমান্ড হয়েছে কত জনের?</span></div></td>
                        
                  
                      </tr>

@@ -323,7 +323,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">ধরণ </td>
+                                <td class="tg-pwj7">ধরন </td>
                                 <td class="tg-pwj7">সংখ্যা</td>
                                 <td class="tg-pwj7"> মোট উপস্থিতি </td>
                                 <td class="tg-pwj7">গড়</td>
@@ -824,7 +824,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-pwj7">প্রোগ্রামের নাম</td>
-                                <td class="tg-pwj7">ধরণ</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7">সংখ্যা</td>
                                 <td class="tg-pwj7">উপস্থিতি</td>
                                 <td class="tg-pwj7">গড়</td>

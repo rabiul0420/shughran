@@ -217,11 +217,14 @@ $(function(){
                             
                             </tr>
                             <tr>                           
-                                <td class="tg-0pky  type_3">
-                                <a href="#"   id="status5" class="editable editable-click"  data-type="select" 
-                                    data-table="human_management_songothon" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate2/'.$branch_id );?>" 
-                                    data-name="branch_committee@human_management_songothon" 
-                                    data-title="শাখায় মানবসম্পদ বিভাগীয় কমিটি আছে কিনা?">  </a>
+                               <td class="tg-0pky type_1">
+                                <a href="#"  class="yes_no" data-type="select" data-id="" data-idname=""  
+                                    data-table="human_management_songothon" data-pk="<?php echo $pk ?>"
+                                    data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="branch_committee" 
+                                    data-title="Enter">
+                                    <?php echo $branch_committee=(isset( $human_management_songothon['branch_committee']))? $human_management_songothon['branch_committee']:'' ?>
+                                    </a>
                                 </td>
 
                                

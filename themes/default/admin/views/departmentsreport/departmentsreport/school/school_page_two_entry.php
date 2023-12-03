@@ -189,7 +189,7 @@
 
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="5"><b>দাওয়াতীমূলক প্রোগ্রাম</b></td>
+                                <td class="tg-pwj7" colspan="5"><b>দাওয়াতিমূলক প্রোগ্রাম</b></td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7">প্রোগ্রাম</td>
@@ -532,7 +532,7 @@
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1">সাথী প্রার্থী</td>
+                                <td class="tg-y698 type_1">সাথীপ্রার্থী</td>
 
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_workshop" 

@@ -532,7 +532,7 @@
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1">সাথী প্রার্থী</td>
+                                <td class="tg-y698 type_1">সাথীপ্রার্থী</td>
 
                                 <td class="tg-0pky">
                                     <?php echo $associate_can_num = $total_school_workshop['associate_can_num'] ?>

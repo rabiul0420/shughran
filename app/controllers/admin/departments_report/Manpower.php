@@ -524,12 +524,30 @@ class Manpower extends MY_Controller
             $this->data['human_management_bidai_jonosokti'] = $this->db->get('human_management_bidai_jonosokti')->first_row('array');
 
 
-        $this->db->select_sum('branch_committee');
         $this->db->select_sum('coun_team');
         $this->db->select_sum('bivag_com_meeting');
         $this->db->select_sum('bivag_com_meeting_upos');
         $this->db->select_sum('per_biodata');
-        $this->db->select_sum('sec_man_month');
+      
+
+         // branch_committee
+         $this->db->select("
+         SUM(CASE WHEN branch_committee = 'yes' THEN 1 ELSE 0 END) as branch_committee_yes
+         ");
+ 
+         $this->db->select("
+         SUM(CASE WHEN branch_committee = 'no' THEN 1 ELSE 0 END) as branch_committee_no
+         ");
+
+         // sec_man_month
+         $this->db->select("
+         SUM(CASE WHEN sec_man_month = 'yes' THEN 1 ELSE 0 END) as sec_man_month_yes
+         ");
+ 
+         $this->db->select("
+         SUM(CASE WHEN sec_man_month= 'no' THEN 1 ELSE 0 END) as sec_man_month_no
+         ");
+ 
         if ($branch_id)
         $this->db->where('branch_id', $branch_id);
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');

@@ -5,7 +5,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue">
-            <i class="fa-fw fa fa-barcode"></i><?= 'সাহিত্য সংগঠন সম্পর্কিত : ১' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+            <i class="fa-fw fa fa-barcode"></i><?= 'সাহিত্য সংগঠন সম্পর্কিত : ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
         </h2>
 
         <div class="box-icon">
@@ -27,7 +27,7 @@
                         <div class="form-group">			
                             
                         <div class="form-group ">
-                            <label for="s_name">সাহিত্য সংগঠনের নাম :</label>
+                            <label for="s_name">সাহিত্য সংগঠনের নাম </label>
                             <input type="text" class="form-control" value="<?php echo ($this->input->get('type')=='edit')?$literature_songothon_one['s_name']:''; ?>" id="s_name" name='s_name' required>
                         </div>
                         <div class="form-group">

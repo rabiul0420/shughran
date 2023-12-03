@@ -221,7 +221,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7" >নন-রেজিস্টার্ড </td>
                                 <td class="tg-pwj7">বৃদ্ধি সংখ্যা </td>
                                 <td class="tg-pwj7" >ঘাটতি সংখ্যা</td>
-                                <td class="tg-pwj7" >কার্যক্রম চালু আছে কতটির</td>
+                                <td class="tg-pwj7" >কার্যক্রম চালু আছে কতটির?</td>
                             </tr>
                             <?php
                             $pk = (isset($chatroandolon_songothon['id']))?$chatroandolon_songothon['id']:'';
@@ -398,7 +398,7 @@ $(document).ready(function(){
                             <tr>
                             
                                 <td class="tg-pwj7" >গুরুত্বপূর্ণ শিক্ষাপ্রতিষ্ঠানের নাম</td>
-                                <td class="tg-pwj7" >ছাত্রসংসদ কার্যকর আছে কিনা?</td>
+                                <td class="tg-pwj7" >ছাত্রসংসদ কার্যকর আছে কিনা? (হ্যাঁ/না)</td>
                                 <td class="tg-pwj7" >সর্বশেষ নির্বাচন হয়েছে কত সালে?  </td>
                                 <td class="tg-pwj7" >ছাত্রসংসদ কার্যকর থাকলে কোন সংগঠনের নিয়ন্ত্রণে আছে? </td>
                                 <td class="tg-pwj7">পরবর্তী নির্বাচনে আমাদের প্যানেল ঘোষণার প্রস্তুতি আছে কিনা? </td>

@@ -388,39 +388,6 @@ $(document).ready(function(){
             }
             ?>
         </tr>
-
-        <tr>
-            <td class="tg-y698">শাখা কর্তৃক প্রকাশিত পত্রিকা	 </td>
-            <?php
-
-            $types = array(
-                'pn_before' => '1',
-                'pn_present' => '2',
-                'bt_potrika' => '5',
-                'briddhi_potrika' => '7',
-                'ghatti_potrika' => '9',
-                'bmn' => '11',
-                'bbkry' => '12',
-                'bbitrn' => '13',
-                'gn_before' => '3',
-                'gn_present' => '4',
-                'bt_grahok' => '6',
-                'briddhi_grahok' => '8',
-                'ghatti_grahok' => '10',
-            );
-
-            foreach ($types as $type => $number) {
-                echo '<td class="tg-0pky type_' . $number . '">
-                        <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
-                            data-table="literature_potrikar_grahok_briddhi" data-pk="' . $pk . '" 
-                            data-url="' . admin_url('departmentsreport/detailupdate') . '" 
-                            data-name="skpp_' . $type . '" 
-                            data-title="Enter">' . (isset($potrikar_grahok_briddhi['skpp_' . $type]) ? $potrikar_grahok_briddhi['skpp_' . $type] : '') . '
-                        </a>
-                    </td>';
-            }
-            ?>
-        </tr>
         <tr>
             <td class="tg-y698">সাহিত্য পত্রিকা	</td>
             <?php
@@ -453,6 +420,39 @@ $(document).ready(function(){
             }
             ?>
         </tr>
+        <tr>
+            <td class="tg-y698">শাখা কর্তৃক প্রকাশিত পত্রিকা	 </td>
+            <?php
+
+            $types = array(
+                'pn_before' => '1',
+                'pn_present' => '2',
+                'bt_potrika' => '5',
+                'briddhi_potrika' => '7',
+                'ghatti_potrika' => '9',
+                'bmn' => '11',
+                'bbkry' => '12',
+                'bbitrn' => '13',
+                'gn_before' => '3',
+                'gn_present' => '4',
+                'bt_grahok' => '6',
+                'briddhi_grahok' => '8',
+                'ghatti_grahok' => '10',
+            );
+
+            foreach ($types as $type => $number) {
+                echo '<td class="tg-0pky type_' . $number . '">
+                        <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 
+                            data-table="literature_potrikar_grahok_briddhi" data-pk="' . $pk . '" 
+                            data-url="' . admin_url('departmentsreport/detailupdate') . '" 
+                            data-name="skpp_' . $type . '" 
+                            data-title="Enter">' . (isset($potrikar_grahok_briddhi['skpp_' . $type]) ? $potrikar_grahok_briddhi['skpp_' . $type] : '') . '
+                        </a>
+                    </td>';
+            }
+            ?>
+        </tr>
+      
     </table>
 
     <table class="tg table table-header-rotated" id="testTable2">
@@ -466,7 +466,7 @@ $(document).ready(function(){
             </td>
         </tr>
         <tr>
-            <td class="tg-pwj7">ধরণ</td>
+            <td class="tg-pwj7">ধরন</td>
             <td class="tg-pwj7" > সময়কাল </td>
             <td class="tg-pwj7" >নাম </td>
             <!-- <td class="tg-pwj7" > বিষয় </td> -->
@@ -509,167 +509,7 @@ $(document).ready(function(){
 
       
     </table>
-    <table class="tg table table-header-rotated" id="testTable3">
-        <tr>
-        <td class="tg-pwj7" colspan="3"><b> সাহিত্য সম্পর্কিত দাওয়াতি প্রোগ্রাম</b></td>
-        <td class="tg-pwj7" colspan="1">
-                <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Literature_সাহিত্য সম্পর্কিত দাওয়াতি প্রোগ্রাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-            </td>
-        </tr>
-                <tr>
-                    <td class="tg-pwj7">প্রোগ্রামের নাম</td>
-                    <td class="tg-pwj7" > সংখ্যা </td>
-                    <td class="tg-pwj7" >মোট উপস্থিতি </td>
-                    <td class="tg-pwj7" > গড় উপস্থিতি </td>
-                   
-                </tr>
-
-                <?php
-                $pk = (isset($sahitto_somporkito_dawati_program['id']))?$sahitto_somporkito_dawati_program['id']:'';
-                // var_dump($law_bipkhe_mamla) ;
-                ?>
-
-
-
-                <tr>
-                    <td class="tg-y698 type_1">সাহিত্য সম্পর্কিত দিবস উদযাপন	</td>
-                    <td class="tg-0pky  type_1">
-                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                        data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                        data-name="ssdu_sonkha" 
-                        data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['ssdu_sonkha']))? $sahitto_somporkito_dawati_program['ssdu_sonkha']:'' ?>
-                    </a> 
-                    </td>
-
-                    <td class="tg-0pky  type_2">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ssdu_ta" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['ssdu_ta']))? $sahitto_somporkito_dawati_program['ssdu_ta']:'' ?>
-            </a>  
-                    </td>
-
-                    <td class="tg-0pky  type_3">
-                    <?php echo (isset( $sahitto_somporkito_dawati_program['ssdu_sonkha']) && isset( $sahitto_somporkito_dawati_program['ssdu_ta']) && (int)$sahitto_somporkito_dawati_program['ssdu_ta']>0)?
-                    ($sahitto_somporkito_dawati_program['ssdu_ta']/$sahitto_somporkito_dawati_program['ssdu_sonkha']):''?>
-                    </td>
-                   
-                </tr>
-
-
-                <tr>
-                    <td class="tg-y698">লেখক সমাবেশ	 </td>
-                    <td class="tg-0pky">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ls_sonkha" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['ls_sonkha']))? $sahitto_somporkito_dawati_program['ls_sonkha']:'' ?>
-            </a>  
-                    </td>
-                    <td class="tg-0pky">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="ls_ta" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['ls_ta']))? $sahitto_somporkito_dawati_program['ls_ta']:'' ?>
-            </a>   
-                    </td>
-                    <td class="tg-0pky">
-                    <?php echo (isset( $sahitto_somporkito_dawati_program['ls_sonkha']) && isset( $sahitto_somporkito_dawati_program['ls_ta']) && (int)$sahitto_somporkito_dawati_program['ls_ta']>0)?
-                    ($sahitto_somporkito_dawati_program['ls_ta']/$sahitto_somporkito_dawati_program['ls_sonkha']):''?>
-                    </td>
-                   
-                </tr>
-
-                <tr>
-                    <td class="tg-y698">গুণীজন সংবর্ধনা	 </td>
-                    <td class="tg-0pky type_1">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="gs_sonkha" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['gs_sonkha']))? $sahitto_somporkito_dawati_program['gs_sonkha']:'' ?>
-            </a>  
-                    </td>
-                    <td class="tg-0pky  type_2">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="gs_ta" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['gs_ta']))? $sahitto_somporkito_dawati_program['gs_ta']:'' ?>
-            </a>   
-                    </td>
-                    <td class="tg-0pky  type_3">
-                    <?php echo (isset( $sahitto_somporkito_dawati_program['gs_sonkha']) && isset( $sahitto_somporkito_dawati_program['gs_ta']) && (int)$sahitto_somporkito_dawati_program['gs_ta']>0)?
-                    ($sahitto_somporkito_dawati_program['gs_ta']/$sahitto_somporkito_dawati_program['gs_sonkha']):''?>
-                    </td>
-                 
-                </tr>
-
-                <tr>
-                    <td class="tg-y698">ইফতার মাহফিল/ ঈদ পুনর্মিলনী</td>
-                    <td class="tg-0pky type_1">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="im_sonkha" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['im_sonkha']))? $sahitto_somporkito_dawati_program['im_sonkha']:'' ?>
-            </a> 
-                    </td>
-                    <td class="tg-0pky  type_2">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="im_ta" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['im_ta']))? $sahitto_somporkito_dawati_program['im_ta']:'' ?>
-            </a>  
-                    </td>
-                    <td class="tg-0pky  type_3">
-                     <?php echo (isset( $sahitto_somporkito_dawati_program['im_sonkha']) && isset( $sahitto_somporkito_dawati_program['im_ta']) && (int)$sahitto_somporkito_dawati_program['im_ta']>0)?
-                    ($sahitto_somporkito_dawati_program['im_ta']/$sahitto_somporkito_dawati_program['im_sonkha']):''?>
-                    </td>
-                  
-                </tr>
-                <tr>
-                    <td class="tg-y698">সাহিত্য সম্পর্কিত প্রতিযোগীতা	</td>
-                    <td class="tg-0pky type_1">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_sonkha" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['sp_sonkha']))? $sahitto_somporkito_dawati_program['sp_sonkha']:'' ?>
-            </a>  
-                    </td>
-                    <td class="tg-0pky  type_2">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="sp_ta" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['sp_ta']))? $sahitto_somporkito_dawati_program['sp_ta']:'' ?>
-            </a>  
-                    </td>
-                    <td class="tg-0pky  type_3">
-                    <?php echo (isset( $sahitto_somporkito_dawati_program['sp_sonkha']) && isset( $sahitto_somporkito_dawati_program['sp_ta']) && (int)$sahitto_somporkito_dawati_program['sp_ta']>0)?
-                    ($sahitto_somporkito_dawati_program['sp_ta']/$sahitto_somporkito_dawati_program['sp_sonkha']):''?> 
-                    </td>
-                 
-                </tr>
-                <tr>
-                    <td class="tg-y698">নবীন লেখক প্রতিযোগিতা	</td>
-                    <td class="tg-0pky type_1">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nlp_sonkha" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['nlp_sonkha']))? $sahitto_somporkito_dawati_program['nlp_sonkha']:'' ?>
-            </a>  
-                    </td>
-                    <td class="tg-0pky  type_2">
-                        <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
-                data-table="literature_sahitto_somporkito_dawati_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
-                data-name="nlp_ta" 
-                data-title="Enter"><?php echo (isset( $sahitto_somporkito_dawati_program['nlp_ta']))? $sahitto_somporkito_dawati_program['nlp_ta']:'' ?>
-            </a> 
-                    </td>
-                    <td class="tg-0pky  type_2">
-                    <?php echo (isset( $sahitto_somporkito_dawati_program['nlp_sonkha']) && isset( $sahitto_somporkito_dawati_program['nlp_ta']) && (int)$sahitto_somporkito_dawati_program['nlp_ta']>0)?
-                    ($sahitto_somporkito_dawati_program['nlp_ta']/$sahitto_somporkito_dawati_program['nlp_sonkha']):''?>
-                    </td>
-                  
-                </tr>
-        </table>
+    
                         
                     </div>
                 </div>

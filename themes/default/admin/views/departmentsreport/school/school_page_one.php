@@ -254,7 +254,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1"> সদস্য প্রার্থী </td>
+                                <td class="tg-y698 type_1"> সদস্যপ্রার্থী </td>
 
                                 <td class="tg-0pky">
                                     <?php echo $member_prarthi_prev = $school_manpower['member_prarthi_prev'] ?>
@@ -290,7 +290,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1"> সাথী প্রার্থী </td>
+                                <td class="tg-y698 type_1"> সাথীপ্রার্থী </td>
 
                                 <td class="tg-0pky">
                                     <?php echo $associate_prarthi_prev = $school_manpower['associate_prarthi_prev'] ?>

@@ -26,7 +26,7 @@
                     <?php  } ?>
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash();?>" />
                         <div class="form-group">			
-                            <label for="literature_type">ধরণ :</label>
+                            <label for="literature_type">ধরন :</label>
                             <select class="form-control" id="literature_type" name='literature_type'>
                             <?php  if($this->input->get('type')=='edit'){ ?> 
                                 <option><?php echo $shakhar_literature_publish['literature_type'] ?></option>

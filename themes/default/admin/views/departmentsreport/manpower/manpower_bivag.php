@@ -154,7 +154,7 @@ $(document).ready(function(){
                     <div class="tg-wrap">
                     <table class="tg table table-header-rotated" id="testTable1">
                             <tr>                           
-                                <td class="tg-pwj7" colspan='4'><b>HRM কমিটি </b></td>
+                                <td class="tg-pwj7" colspan='6'><b>HRM কমিটি </b></td>
                                 <td class="tg-pwj7" colspan="1">
                                 <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Human_management_মানবসম্পদ বিভাগীয় সাংগঠনিক কাঠামো_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>
@@ -164,24 +164,29 @@ $(document).ready(function(){
                             ?>
                            
                            <tr>                           
-                                <td class="tg-pwj7"> শাখায় এইচআরএম কমিটি আছে কিনা?</td>
+                                <td class="tg-pwj7"colspan="2"> শাখায় এইচআরএম কমিটি আছে কিনা?</td>
                                 <td class="tg-y698 type_1" rowspan="2">এইচআরএম কমিটির সদস্য সংখ্যা কত? </td>
                                 <td class="tg-y698 type_1" colspan="2">এইচআরএম কমিটির সমন্বয় মিটিং </td>
-                                <td class="tg-y698 type_1">সেক্টরভিত্তিক লোক তৈরীর দীর্ঘমেয়াদী পরিকল্পনা নেওয়া হয়েছে কিনা? </td>
+                                <td class="tg-y698 type_1"colspan="2">সেক্টরভিত্তিক লোক তৈরীর দীর্ঘমেয়াদী পরিকল্পনা নেওয়া হয়েছে কিনা? </td>
                             
                             </tr>
-                           <tr> 
-                                 <td class="tg-pwj7" >(হ্যাঁ/না) </td>                          
+                           <tr>  
+                                <td class="tg-pwj7">হ্যাঁ</td> 
+                                <td class="tg-pwj7">না</td>                        
                                 <td class="tg-pwj7" > সংখ্যা </td>
                                 <td class="tg-pwj7"> উপস্থিতি</td>
-                                <td class="tg-pwj7" >(হ্যাঁ/না) </td>
+                                <td class="tg-pwj7">হ্যাঁ</td> 
+                                 <td class="tg-pwj7">না</td> 
                             
                             </tr>
+                            
                             <tr>                           
                                 <td class="tg-0pky  type_3">
-                                <?php echo $branch_committee=(isset( $human_management_songothon['branch_committee']))? $human_management_songothon['branch_committee']:0; ?>
+                                <?php echo $branch_committee_yes=(isset( $human_management_songothon['branch_committee_yes']))? $human_management_songothon['branch_committee_yes']:0; ?>
                                 </td>
-                               
+                                <td class="tg-0pky  type_3">
+                                <?php echo $branch_committee_no=(isset( $human_management_songothon['branch_committee_no']))? $human_management_songothon['branch_committee_no']:0; ?>
+                                </td>
                                 <td class="tg-0pky  type_3">
                                 <?php echo $coun_team=(isset( $human_management_songothon['coun_team']))? $human_management_songothon['coun_team']:0; ?>
                                 </td>
@@ -195,7 +200,10 @@ $(document).ready(function(){
                                 </td>
 
                                 <td class="tg-0pky  type_3">
-                                <?php echo $sec_man_month=(isset( $human_management_songothon['sec_man_month']))? $human_management_songothon['sec_man_month']:0; ?>
+                                <?php echo $sec_man_month_yes=(isset( $human_management_songothon['sec_man_month_yes']))? $human_management_songothon['sec_man_month_yes']:0; ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                <?php echo $sec_man_month_no=(isset( $human_management_songothon['sec_man_month_no']))? $human_management_songothon['sec_man_month_no']:0; ?>
                                 </td>
 
                             </tr>
