@@ -3215,16 +3215,16 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function ideal_thana($branch_id = NULL)
     {
 
-    //  $this->sma->print_arrays("fuad");
+        //  $this->sma->print_arrays("fuad");
 
-    $branch_id = $this->input->get('branch_id');
-    $this->sma->checkPermissions('index', TRUE);
-    if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
-        $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/ideal_thana?branch_id=' . $this->session->userdata('branch_id'));
-    } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/ideal_thana?branch_id=' . $this->session->userdata('branch_id'));
-    }
+        $branch_id = $this->input->get('branch_id');
+        $this->sma->checkPermissions('index', TRUE);
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/ideal_thana?branch_id=' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/ideal_thana?branch_id=' . $this->session->userdata('branch_id'));
+        }
 
 
 
@@ -3347,7 +3347,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
             // $this->sma->print_arrays($branchinfo->last_assocode);
-// $originalDate = $this->sma->fsd($this->input->post('date'));
+            // $originalDate = $this->sma->fsd($this->input->post('date'));
 
 
 
@@ -3607,8 +3607,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
         $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/idealthanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
         $this->datatables->add_column("Decrease", $decrease, "id");
-        //$this->datatables->add_column("Actions", $edit_link, "ideal_id");
-        $this->datatables->add_column("Actions", "", "ideal_id");
+        $this->datatables->add_column("Actions", $edit_link, "ideal_id");
+        //$this->datatables->add_column("Actions", "", "ideal_id");
         $this->datatables->unset_column("ideal_id");
         echo $this->datatables->generate();
     }
@@ -4015,7 +4015,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $id = $this->input->get('id');
         }
 
-        $thana_details = $this->site->getByID('sma_thana', 'id', $id);
+        $thana_details = $this->site->getByID('thana', 'id', $id);
 
 
         $this->form_validation->set_rules('thana_name', 'name', 'required');
@@ -4027,7 +4027,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'branch_id' => $this->input->post('branch_id'),
                 'thana_name' => $this->input->post('thana_name'),
                 'thana_code' => $this->input->post('thana_code'),
-               // 'org_type' => $this->input->post('org_type'),
+                // 'org_type' => $this->input->post('org_type'),
 
                 //'member_number' => $this->input->post('member_number'),
                 // 'associate_number' => $this->input->post('associate_number'),
@@ -4042,6 +4042,11 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'update_at' => date("Y-m-d H:i:s"),
                 'note' => $this->input->post('note')
             );
+            if ($this->Owner || $this->Admin) { 
+                $data['date'] = $this->sma->fsd($this->input->post('date'));
+            }
+
+
         } elseif ($this->input->post('edit_thana')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect('organization/thanalist');
@@ -4079,7 +4084,64 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
     }
 
+    function editidealinfo($id = NULL)
+    {
 
+
+        $this->sma->checkPermissions('index', TRUE);
+
+
+        $ideal_info = $this->site->getByID('thana_ideal_log', 'id', $id);
+        $thana_details = $this->site->getByID('thana', 'id', $ideal_info->thana_id);
+
+
+        $this->form_validation->set_rules('date', 'date', 'required');
+
+
+
+        if ($this->form_validation->run() == true) {
+            $data = array(
+                'date' => $this->sma->fsd($this->input->post('date')),
+                'update_by' => $this->session->userdata('user_id'),
+                'update_at' => date("Y-m-d H:i:s")
+            );
+            //new manpower
+            $datawhere = array(
+                
+                'branch_id' => $this->session->userdata('branch_id'),
+                'id' => $id
+            );
+
+            if ($this->Owner || $this->Admin) {
+                unset($datawhere['branch_id']);
+            }
+
+ 
+
+
+        } elseif ($this->input->post('edit_ideal_thana')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect('organization/ideal_thana' . ($this->session->userdata('branch_id') ? '?branch_id='.$this->session->userdata('branch_id') : ''));
+        }
+
+        if ($this->form_validation->run() == true && $this->site->updateData('thana_ideal_log', $data, $datawhere)) {
+
+            $this->session->set_flashdata('message', 'Updated successfully');
+            admin_redirect('organization/ideal_thana' . ($this->session->userdata('branch_id') ? '?branch_id='.$this->session->userdata('branch_id') : ''));
+        } else {
+
+
+
+
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $this->data['modal_js'] = $this->site->modal_js();
+
+            $this->data['thana'] = $thana_details;
+            $this->data['ideal_info'] = $ideal_info;
+
+            $this->load->view($this->theme . 'organization/idealthanaedit', $this->data);
+        }
+    }
 
 
     function increaselist_ideal_thana()

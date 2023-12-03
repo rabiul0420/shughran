@@ -925,8 +925,9 @@ class Others extends MY_Controller
 		$this->data['thanainfo_summary'] = $this->getthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 		$this->data['idealthanainfo_summary'] = $this->getidealthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
-
-		//$this->sma->print_arrays($this->data['thanainfo_summary']);
+		$this->data['current_thana'] = $this->current_thana($branch_id);
+		$this->data['current_ideal_thana'] = $this->current_ideal_thana($branch_id);
+		//$this->sma->print_arrays($this->data['current_ideal_thana']);
 		$this->data['organizationinfo_summary'] = $this->getorganizationinfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
 
@@ -955,6 +956,40 @@ class Others extends MY_Controller
 		} else
 			$this->page_construct('others/organizationinfo', $meta, $this->data, 'leftmenu/organization');
 	}
+
+
+
+	function current_thana($branch_id = null)
+	{
+
+		 
+		if ($branch_id)
+			$result =  $this->site->query_binding("SELECT count(id) current_thana from sma_thana WHERE  ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND branch_id = ?  ", array($branch_id));
+		else
+			$result =  $this->site->query("SELECT count(id) current_thana from sma_thana WHERE ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
+
+
+			 
+		return isset($result[0]['current_thana']) ? $result[0]['current_thana'] : 0;
+	}
+
+
+
+
+	function current_ideal_thana($branch_id = null)
+	{
+
+		 
+		if ($branch_id)
+			$result =  $this->site->query_binding("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND  branch_id = ?  ", array($branch_id));
+		else
+			$result =  $this->site->query("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
+
+
+			 
+		return isset($result[0]['current_ideal_thana']) ? $result[0]['current_ideal_thana'] : 0;
+	}
+	
 
 
 
@@ -1120,7 +1155,7 @@ class Others extends MY_Controller
 
 
 		if ($branch_id) {
- 
+
 			$result =  $this->site->query_binding("select 
 			SUM( case WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_increase, 
 			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_increase, 
