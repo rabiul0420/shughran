@@ -2943,8 +2943,11 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
 		$flag = 2;  //update
 		}
 	 elseif($branch_id){
+
+        //edu_committee@education_edu_committee
+
         $data=explode("@",$this->input->get('name'));
-        echo($data+" ggg");
+       // echo($data+" ggg");
 		$this->site->insertData($data[1], array('user_id'=>$this->session->userdata('user_id'),'report_year'=>date('Y'),'branch_id'=>$branch_id, 'report_type'=>$report_type['type'],$data[0]=>$this->input->get('value'),   'date'=>date('Y-m-d')));
 	     $flag = 3;  //new entry
          
