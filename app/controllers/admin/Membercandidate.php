@@ -350,7 +350,7 @@ class Membercandidate extends MY_Controller
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
-
+        // $this->sma->print_arrays(3333);
 
         $this->data['process'] = $process;
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Membercandidate increase list'));
@@ -363,6 +363,10 @@ class Membercandidate extends MY_Controller
     function getIncreaseMembercandidate($process_id, $branch_id = NULL)
     {
 
+        
+
+
+
         $this->sma->checkPermissions('index', TRUE);
 
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {
@@ -374,6 +378,8 @@ class Membercandidate extends MY_Controller
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
+
+
 
         if ($branch_id) {
 

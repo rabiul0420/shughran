@@ -17,8 +17,6 @@
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
             'bProcessing': true, 'bServerSide': true,
-            
-			
 			
 			'sAjaxSource': '<?= admin_url('membercandidate/getIncreaseMembercandidate/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ? '?type='.$this->input->get('type') : '' ).( $this->input->get('year') ? '&year='.$this->input->get('year') : '' ) ) ?>',
 			
@@ -38,8 +36,14 @@
                 //if(aData[7] > aData[9]){ nRow.className = "product_link warning"; } else { nRow.className = "product_link"; }
                 return nRow;
             },
-            "aoColumns": [
-                {"bVisible": false},   null, null, <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,null,null,null,null
+            "aoColumns": [ 
+                {"bVisible": false},   null, null,
+                
+                <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,
+                
+                null,null,null     <?php if ($process->id == 15) { ?>
+                    ,null
+                <?php } ?>
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
@@ -48,11 +52,7 @@
             {column_number: 4, filter_default_label: "[<?='Oath';?>]", filter_type: "text", data: []},
             {column_number: 5, filter_default_label: "[<?='Session';?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?='Responsibility';?>]", filter_type: "text", data: []},
-            {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
-            {column_number: 8, filter_default_label: "[<?='শাখা হতে';?>]", filter_type: "text", data: []},
-
-            
-             
+            {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},  
             
             
         ], "footer");
