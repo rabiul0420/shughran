@@ -14,7 +14,7 @@
             if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
                 if ($report_info['type'] == 'annual') {
                     echo anchor('admin/departmentsreport/science-page-one' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষাণ্মাসিক ' . $report_info['year']);
-                    echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/science-page-one' . ($branch_id ? '/' . $branch_id : ''), 'জুলাই-নভেম্বর\'' . $report_info['year']);
+                    echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/science-page-one' . ($branch_id ? '/' . $branch_id : ''), 'বার্ষিক\'' . $report_info['year']);
                     echo "&nbsp;|&nbsp;";
                     echo anchor('admin/departmentsreport/science-page-one' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
                 } else {
