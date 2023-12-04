@@ -102,11 +102,17 @@ else {
             </ul>
         </div>
     </div>
+
+
+	
+
+
+
     <div class="box-content">
         <div class="row">
             <div class="col-lg-12">
                 <p class="introtext"><?php // lang('list_results'); ?></p>
-
+				<p style=" text-align: center; ">সম্পূর্ণ বছরের রিপোর্ট প্রদান করুণ</p>
 				 
 				<style>
 			.table-responsive{width: 100%;
