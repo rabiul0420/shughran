@@ -5,7 +5,8 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue">
-            <i class="fa-fw fa fa-barcode"></i><?= 'সাহিত্য সম্পর্কিত দাওয়াতি প্রোগ্রাম' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+            <i class="fa-fw fa fa-barcode"></i><?= '
+            ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
         </h2>
 
         <div class="box-icon">

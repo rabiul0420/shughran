@@ -236,9 +236,75 @@ class Library extends MY_Controller
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
         $this->data['pathagar_training_program'] = $this->db->get('pathagar_training_program')->first_row('array');
-    
+   
+       
+       
+       
+        $this->db->select_sum('shakha_total');
+        $this->db->select_sum('shakha_higher_ache');
+        $this->db->select_sum('shakha_higher_briddi');
+        $this->db->select_sum('shakha_member_ache');
+        $this->db->select_sum('shakha_member_briddi');
+        $this->db->select_sum('shakha_sathi_ache');
+        $this->db->select_sum('shakha_sathi_briddi');
+        $this->db->select_sum('shakha_kormi_ache');
+        $this->db->select_sum('shakha_kormi_briddi');
+        $this->db->select_sum('shakha_school_ache');
+        $this->db->select_sum('shakha_school_briddi');
+
+        $this->db->select_sum('thana_total');
+        $this->db->select_sum('thana_higher_ache');
+        $this->db->select_sum('thana_higher_briddi');
+        $this->db->select_sum('thana_member_ache');
+        $this->db->select_sum('thana_member_briddi');
+        $this->db->select_sum('thana_sathi_ache');
+        $this->db->select_sum('thana_sathi_briddi');
+        $this->db->select_sum('thana_kormi_ache');
+        $this->db->select_sum('thana_kormi_briddi');
+        $this->db->select_sum('thana_school_ache');
+        $this->db->select_sum('thana_school_briddi');
+
+        $this->db->select_sum('oard_total');
+        $this->db->select_sum('oard_higher_ache');
+        $this->db->select_sum('oard_higher_briddi');
+        $this->db->select_sum('oard_member_ache');
+        $this->db->select_sum('oard_member_briddi');
+        $this->db->select_sum('oard_sathi_ache');
+        $this->db->select_sum('oard_sathi_briddi');
+        $this->db->select_sum('oard_kormi_ache');
+        $this->db->select_sum('oard_kormi_briddi');
+        $this->db->select_sum('oard_school_ache');
+        $this->db->select_sum('oard_school_briddi');
+
+        $this->db->select_sum('uposhaka_total');
+        $this->db->select_sum('uposhaka_higher_ache');
+        $this->db->select_sum('uposhaka_higher_briddi');
+        $this->db->select_sum('uposhaka_member_ache');
+        $this->db->select_sum('uposhaka_member_briddi');
+        $this->db->select_sum('uposhaka_sathi_ache');
+        $this->db->select_sum('uposhaka_sathi_briddi');
+        $this->db->select_sum('uposhaka_kormi_ache');
+        $this->db->select_sum('uposhaka_kormi_briddi');
+        $this->db->select_sum('uposhaka_school_ache');
+        $this->db->select_sum('uposhaka_school_briddi');
+
+       
+
+        if ($branch_id)
+        $this->db->where('branch_id', $branch_id);
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+        $this->data['pathagar_sthorvittik_pathagar'] = $this->db->get('pathagar_sthorvittik_pathagar')->first_row('array');
+
     }
     else{
+        $this->db->select('*');
+        $this->db->where('branch_id',$branch_id);
+        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $query = $this->db->get('pathagar_sthorvittik_pathagar');
+        $this->data['pathagar_sthorvittik_pathagar'] = $query->first_row('array');	
+
+
         $this->db->select('*');
         $this->db->where('branch_id',$branch_id);
         $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');

@@ -526,7 +526,379 @@ $(document).ready(function(){
                             
                         </table>
 
+                        <table class="tg table table-header-rotated" id="স্তরভিত্তিক পাঠাগার">
+                        <tr>
+                            <td class="tg-pwj7" colspan="10"><b>স্তরভিত্তিক পাঠাগার </b></td>
+                            
+                            <td class="tg-pwj7" colspan="2">
+                                <a href="#" id='স্তরভিত্তিক পাঠাগার' onclick="doit('xlsx','স্তরভিত্তিক পাঠাগার','<?php echo 'Library_স্তরভিত্তিক পাঠাগার_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                             <td class="tg-pwj7"  rowspan="2">সংগঠনের ধরন</td>
+                             <td class="tg-pwj7  type_1" rowspan="2">মোট সংখ্যা</td>
+                             <td class="tg-pwj7" colspan='2'>উচ্চতর সিলেবাস </td>
+                             <td class="tg-pwj7" colspan='2'>সদস্য  সিলেবাস    </td>
+                             <td class="tg-pwj7" colspan='2'>সাথী সিলেবাস</td>
+                             <td class="tg-pwj7" colspan='2'>কর্মী সিলেবাস</td>
+                             <td class="tg-pwj7" colspan='2'>স্কুল সিলেবাস</td>
+                             
+                        </tr>
 
+                        <tr>
+                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
+                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
+                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
+                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
+                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
+                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
+                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
+                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
+                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
+                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
+                            
+                        </tr>	
+                        <?php
+                                $pk = (isset($pathagar_sthorvittik_pathagar['id']))?$pathagar_sthorvittik_pathagar['id']:'';
+
+                                ?>		
+                        <tr>
+                            <td class="tg-pwj7" >শাখা </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_total" 
+                                    data-title="Enter"><?php echo $total_s=(isset( $pathagar_sthorvittik_pathagar['shakha_total']))? $pathagar_sthorvittik_pathagar['shakha_total']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_higher_ache" 
+                                    data-title="Enter"><?php echo $shakha_higher_ache=(isset( $pathagar_sthorvittik_pathagar['shakha_higher_ache']))? $pathagar_sthorvittik_pathagar['shakha_higher_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_higher_briddi" 
+                                    data-title="Enter"><?php echo $shakha_higher_briddi=(isset( $pathagar_sthorvittik_pathagar['shakha_higher_briddi']))? $pathagar_sthorvittik_pathagar['shakha_higher_briddi']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_member_ache" 
+                                    data-title="Enter"><?php echo $shakha_member_ache=(isset( $pathagar_sthorvittik_pathagar['shakha_member_ache']))? $pathagar_sthorvittik_pathagar['shakha_member_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_member_briddi" 
+                                    data-title="Enter"><?php echo $shakha_member_briddi=(isset( $pathagar_sthorvittik_pathagar['shakha_member_briddi']))? $pathagar_sthorvittik_pathagar['shakha_member_briddi']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_sathi_ache" 
+                                    data-title="Enter"><?php echo $shakha_sathi_ache=(isset( $pathagar_sthorvittik_pathagar['shakha_sathi_ache']))? $pathagar_sthorvittik_pathagar['shakha_sathi_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_sathi_briddi" 
+                                    data-title="Enter"><?php echo $shakha_sathi_briddi=(isset( $pathagar_sthorvittik_pathagar['shakha_sathi_briddi']))? $pathagar_sthorvittik_pathagar['shakha_sathi_briddi']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_kormi_ache" 
+                                    data-title="Enter"><?php echo $shakha_kormi_ache=(isset( $pathagar_sthorvittik_pathagar['shakha_kormi_ache']))? $pathagar_sthorvittik_pathagar['shakha_kormi_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_kormi_briddi" 
+                                    data-title="Enter"><?php echo $shakha_kormi_briddi=(isset( $pathagar_sthorvittik_pathagar['shakha_kormi_briddi']))? $pathagar_sthorvittik_pathagar['shakha_kormi_briddi']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_school_ache" shakha_
+                                    data-title="Enter"><?php echo $shakha_school_ache=(isset( $pathagar_sthorvittik_pathagar['shakha_school_ache']))? $pathagar_sthorvittik_pathagar['shakha_school_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="shakha_school_briddi" 
+                                    data-title="Enter"><?php echo $shakha_school_briddi=(isset( $pathagar_sthorvittik_pathagar['shakha_school_briddi']))? $pathagar_sthorvittik_pathagar['shakha_school_briddi']:0 ?>
+                                </a>
+                            </td>
+                           
+
+                            
+                        </tr>
+                        
+                        <tr>
+                        <td class="tg-pwj7" >থানা </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_total" 
+                                data-title="Enter"><?php echo $total_s=(isset( $pathagar_sthorvittik_pathagar['thana_total']))? $pathagar_sthorvittik_pathagar['thana_total']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_higher_ache" 
+                                data-title="Enter"><?php echo $thana_higher_ache=(isset( $pathagar_sthorvittik_pathagar['thana_higher_ache']))? $pathagar_sthorvittik_pathagar['thana_higher_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_higher_briddi" 
+                                data-title="Enter"><?php echo $thana_higher_briddi=(isset( $pathagar_sthorvittik_pathagar['thana_higher_briddi']))? $pathagar_sthorvittik_pathagar['thana_higher_briddi']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_member_ache" 
+                                data-title="Enter"><?php echo $thana_member_ache=(isset( $pathagar_sthorvittik_pathagar['thana_member_ache']))? $pathagar_sthorvittik_pathagar['thana_member_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_member_briddi" 
+                                data-title="Enter"><?php echo $thana_member_briddi=(isset( $pathagar_sthorvittik_pathagar['thana_member_briddi']))? $pathagar_sthorvittik_pathagar['thana_member_briddi']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_sathi_ache" 
+                                data-title="Enter"><?php echo $thana_sathi_ache=(isset( $pathagar_sthorvittik_pathagar['thana_sathi_ache']))? $pathagar_sthorvittik_pathagar['thana_sathi_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_sathi_briddi" 
+                                data-title="Enter"><?php echo $thana_sathi_briddi=(isset( $pathagar_sthorvittik_pathagar['thana_sathi_briddi']))? $pathagar_sthorvittik_pathagar['thana_sathi_briddi']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_kormi_ache" 
+                                data-title="Enter"><?php echo $thana_kormi_ache=(isset( $pathagar_sthorvittik_pathagar['thana_kormi_ache']))? $pathagar_sthorvittik_pathagar['thana_kormi_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_kormi_briddi" 
+                                data-title="Enter"><?php echo $thana_kormi_briddi=(isset( $pathagar_sthorvittik_pathagar['thana_kormi_briddi']))? $pathagar_sthorvittik_pathagar['thana_kormi_briddi']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_school_ache" 
+                                data-title="Enter"><?php echo $thana_school_ache=(isset( $pathagar_sthorvittik_pathagar['thana_school_ache']))? $pathagar_sthorvittik_pathagar['thana_school_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="thana_school_briddi" 
+                                data-title="Enter"><?php echo $thana_school_briddi=(isset( $pathagar_sthorvittik_pathagar['thana_school_briddi']))? $pathagar_sthorvittik_pathagar['thana_school_briddi']:0 ?>
+                            </a>
+                        </td>
+
+                               
+                        </tr> 
+                        <tr>
+                        <td class="tg-pwj7" >ওয়ার্ড </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_total" 
+                                data-title="Enter"><?php echo $total_s=(isset( $pathagar_sthorvittik_pathagar['oard_total']))? $pathagar_sthorvittik_pathagar['oard_total']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_higher_ache" 
+                                data-title="Enter"><?php echo $oard_higher_ache=(isset( $pathagar_sthorvittik_pathagar['oard_higher_ache']))? $pathagar_sthorvittik_pathagar['oard_higher_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_higher_briddi" 
+                                data-title="Enter"><?php echo $oard_higher_briddi=(isset( $pathagar_sthorvittik_pathagar['oard_higher_briddi']))? $pathagar_sthorvittik_pathagar['oard_higher_briddi']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_member_ache" 
+                                data-title="Enter"><?php echo $oard_member_ache=(isset( $pathagar_sthorvittik_pathagar['oard_member_ache']))? $pathagar_sthorvittik_pathagar['oard_member_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_member_briddi" 
+                                data-title="Enter"><?php echo $oard_member_briddi=(isset( $pathagar_sthorvittik_pathagar['oard_member_briddi']))? $pathagar_sthorvittik_pathagar['oard_member_briddi']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_sathi_ache" 
+                                data-title="Enter"><?php echo $oard_sathi_ache=(isset( $pathagar_sthorvittik_pathagar['oard_sathi_ache']))? $pathagar_sthorvittik_pathagar['oard_sathi_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_sathi_briddi" 
+                                data-title="Enter"><?php echo $oard_sathi_briddi=(isset( $pathagar_sthorvittik_pathagar['oard_sathi_briddi']))? $pathagar_sthorvittik_pathagar['oard_sathi_briddi']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_kormi_ache" 
+                                data-title="Enter"><?php echo $oard_kormi_ache=(isset( $pathagar_sthorvittik_pathagar['oard_kormi_ache']))? $pathagar_sthorvittik_pathagar['oard_kormi_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_kormi_briddi" 
+                                data-title="Enter"><?php echo $oard_kormi_briddi=(isset( $pathagar_sthorvittik_pathagar['oard_kormi_briddi']))? $pathagar_sthorvittik_pathagar['oard_kormi_briddi']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_school_ache" 
+                                data-title="Enter"><?php echo $oard_school_ache=(isset( $pathagar_sthorvittik_pathagar['oard_school_ache']))? $pathagar_sthorvittik_pathagar['oard_school_ache']:0 ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky">
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="oard_school_briddi" 
+                                data-title="Enter"><?php echo $oard_school_briddi=(isset( $pathagar_sthorvittik_pathagar['oard_school_briddi']))? $pathagar_sthorvittik_pathagar['oard_school_briddi']:0 ?>
+                            </a>
+                        </td>
+
+                                 
+
+                        </tr>
+                        <tr>
+                        <td class="tg-pwj7" >উপশাখা </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_total" 
+                                    data-title="Enter"><?php echo $total_s=(isset( $pathagar_sthorvittik_pathagar['uposhaka_total']))? $pathagar_sthorvittik_pathagar['uposhaka_total']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_higher_ache" 
+                                    data-title="Enter"><?php echo $uposhaka_higher_ache=(isset( $pathagar_sthorvittik_pathagar['uposhaka_higher_ache']))? $pathagar_sthorvittik_pathagar['uposhaka_higher_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_higher_briddi" 
+                                    data-title="Enter"><?php echo $uposhaka_higher_briddi=(isset( $pathagar_sthorvittik_pathagar['uposhaka_higher_briddi']))? $pathagar_sthorvittik_pathagar['uposhaka_higher_briddi']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_member_ache" 
+                                    data-title="Enter"><?php echo $uposhaka_member_ache=(isset( $pathagar_sthorvittik_pathagar['uposhaka_member_ache']))? $pathagar_sthorvittik_pathagar['uposhaka_member_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_member_briddi" 
+                                    data-title="Enter"><?php echo $uposhaka_member_briddi=(isset( $pathagar_sthorvittik_pathagar['uposhaka_member_briddi']))? $pathagar_sthorvittik_pathagar['uposhaka_member_briddi']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_sathi_ache" 
+                                    data-title="Enter"><?php echo $uposhaka_sathi_ache=(isset( $pathagar_sthorvittik_pathagar['uposhaka_sathi_ache']))? $pathagar_sthorvittik_pathagar['uposhaka_sathi_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_sathi_briddi" 
+                                    data-title="Enter"><?php echo $uposhaka_sathi_briddi=(isset( $pathagar_sthorvittik_pathagar['uposhaka_sathi_briddi']))? $pathagar_sthorvittik_pathagar['uposhaka_sathi_briddi']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_kormi_ache" 
+                                    data-title="Enter"><?php echo $uposhaka_kormi_ache=(isset( $pathagar_sthorvittik_pathagar['uposhaka_kormi_ache']))? $pathagar_sthorvittik_pathagar['uposhaka_kormi_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_kormi_briddi" 
+                                    data-title="Enter"><?php echo $uposhaka_kormi_briddi=(isset( $pathagar_sthorvittik_pathagar['uposhaka_kormi_briddi']))? $pathagar_sthorvittik_pathagar['uposhaka_kormi_briddi']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_school_ache" 
+                                    data-title="Enter"><?php echo $uposhaka_school_ache=(isset( $pathagar_sthorvittik_pathagar['uposhaka_school_ache']))? $pathagar_sthorvittik_pathagar['uposhaka_school_ache']:0 ?>
+                                </a>
+                            </td>
+                            <td class="tg-0pky">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                    data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                    data-name="uposhaka_school_briddi" 
+                                    data-title="Enter"><?php echo $uposhaka_school_briddi=(isset( $pathagar_sthorvittik_pathagar['uposhaka_school_briddi']))? $pathagar_sthorvittik_pathagar['uposhaka_school_briddi']:0 ?>
+                                </a>
+                            </td>
+ 
+
+                        </tr>
+                       <tr>
+                        <td style="border:none;text-align:left" colspan="12"> <b>বিশেষ দ্রষ্টব্য :</b> উপরিউক্ত ছকে সিলেবাসের সেট সংখ্যা লিখতে হবে, বই সংখ্যা নয়।</td>
+                       </tr>
+                            
+                        </table>
 
                         <table class="tg table table-header-rotated" id="testTable1">
                         <tr>
