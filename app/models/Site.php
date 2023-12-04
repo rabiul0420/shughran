@@ -465,6 +465,25 @@ class Site extends CI_Model
         }
     }
 
+    public function getTickets()
+    {
+
+        if ($this->Owner || $this->Admin) {
+            $this->db->where('is_read_admin', 'No');
+        } else {
+            $this->db->where('is_read_branch', 'No');
+            $this->db->where('branch_id', $this->session->userdata('branch_id'));
+        }
+
+        $this->db->select('count(id) as total', FALSE);
+        $q = $this->db->get('support_ticket');
+        if ($q->num_rows() > 0) {
+            return $q->row();
+        }
+        return FALSE;
+    }
+
+
     public function getUpcomingEvents()
     {
         $dt = date('Y-m-d');

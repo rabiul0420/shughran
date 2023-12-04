@@ -138,6 +138,9 @@ class MY_Controller extends CI_Controller
         $meta['error'] = isset($data['error']) ? $data['error'] : $this->session->flashdata('error');
         $meta['warning'] = isset($data['warning']) ? $data['warning'] : $this->session->flashdata('warning');
         $meta['info'] = $this->site->getNotifications();
+        $meta['support_ticket'] = $this->site->getTickets();
+
+        //$this->sma->print_arrays($meta['support_ticket']);
         $meta['events'] = $this->site->getUpcomingEvents();
         $meta['ip_address'] = $this->input->ip_address();
         $meta['Owner'] = $data['Owner'];

@@ -204,8 +204,21 @@ $increase = $row_info['institutional_increase'];
  
  
 //echo $prev;
-if($report_info['prev_record']) 
-   echo $prev+$increase-$decrease + $prev2+$increase2-$decrease2; 
+if($report_info['prev_record']) {
+    $is_equal = '';
+
+    if ($organizationinfo->id == 1 ) 
+    $is_equal = ($prev+$increase-$decrease + $prev2+$increase2-$decrease2 != $current_thana) ? 'red' : '';
+    
+    else if ($organizationinfo->id == 2 ) 
+    $is_equal = ($prev+$increase-$decrease + $prev2+$increase2-$decrease2 != $current_ideal_thana) ? 'red' : '';
+
+    echo '<span style="color:'.$is_equal.'">'.($prev+$increase-$decrease + $prev2+$increase2-$decrease2).'</span>';
+
+
+
+    
+}
 
  
 ?>
