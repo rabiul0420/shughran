@@ -4,7 +4,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">&times;</i>
             </button>
-            <h4 class="modal-title" id="myModalLabel"><?php echo 'বৃদ্ধিকৃত থানা/সাথী শাখা' .  ': Entry'; ?></h4>
+            <h4 class="modal-title" id="myModalLabel"><?php echo 'বৃদ্ধিকৃত থানা/আদর্শ থানা শাখা' .  ': Entry'; ?></h4>
         </div>
         
         <?php $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'id'=>'add_institute');
@@ -26,7 +26,7 @@
                 
                      <div class="form-group">
                                     
-									<label for="increase_branch_name">থানা/ সাথী শাখার  নাম </label>
+									<label for="increase_branch_name">থানা/ আদর্শ থানা শাখার  নাম </label>
                     <?php echo form_input('increase_branch_name', '', 'class="form-control" required="required" id="increase_branch_name"'); ?>                  
                 </div>
 				 

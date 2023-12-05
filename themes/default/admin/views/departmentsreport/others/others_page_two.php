@@ -116,15 +116,15 @@ $(document).ready(function(){
                 <div class="tg-wrap">
                 <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
-                                <td class="tg-pwj7" colspan="5"><b>এ সেশনে বৃদ্ধিকৃত সাথী শাখার নাম</b></td>
+                                <td class="tg-pwj7" colspan="5"><b>এ সেশনে বৃদ্ধিকৃত আদর্শ থানা শাখার নাম</b></td>
                                 <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Other_এ সেশনে বৃদ্ধিকৃত সাথী শাখার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                    <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Other_এ সেশনে বৃদ্ধিকৃত আদর্শ থানা শাখার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">ক্রম</td>
                                 <td class="tg-pwj7" rowspan="2">শাখা আইডি</td>
-                                <td class="tg-pwj7" rowspan="2">সাথী শাখার নাম</td>
+                                <td class="tg-pwj7" rowspan="2">আদর্শ থানা শাখার নাম</td>
                                 <td class="tg-pwj7" colspan="3" >জনশক্তির র্বতমান সংখ্যা</td>
                                
                             </tr>
@@ -162,15 +162,15 @@ $(document).ready(function(){
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="6"><b>এ সেশনে ঘাটতিকৃত সাথী শাখার নাম</b></td>
+                                <td class="tg-pwj7" colspan="6"><b>এ সেশনে ঘাটতিকৃত আদর্শ থানা শাখার নাম</b></td>
                                 <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Other_এ সেশনে ঘাটতিকৃত সাথী শাখার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                    <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Other_এ সেশনে ঘাটতিকৃত আদর্শ থানা শাখার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">ক্রম</td>
                                 <td class="tg-pwj7" rowspan="2">শাখা আইডি</td>
-                                <td class="tg-pwj7" rowspan="2">সাথী শাখার নাম</td>
+                                <td class="tg-pwj7" rowspan="2">আদর্শ থানা শাখার নাম</td>
                                 <td class="tg-pwj7" colspan="3" >জনশক্তির র্বতমান সংখ্যা</td>
                                 <td class="tg-pwj7" rowspan="2" >ঘাটতির কারণ</td>
                             </tr>

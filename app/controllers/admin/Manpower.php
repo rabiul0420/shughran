@@ -179,7 +179,7 @@ class Manpower extends MY_Controller
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
 
 
-        //  $this->sma->print_arrays( $this->data['manpower_record']); 
+        //   $this->sma->print_arrays( $this->data['manpower_record']); 
 
 
 
