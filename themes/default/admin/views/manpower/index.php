@@ -250,7 +250,16 @@
 	//echo $member_prev;
 
 	//temporary
+
+if ($_GET) {
 	echo $member_improvement_target;
+	# code...
+}else{
+	echo 0;
+
+}
+
+
 
 	?>
 	</td>

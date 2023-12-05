@@ -104,7 +104,7 @@
                                 <td class="tg-pwj7" colspan="">ধরন</td>
                                 <td class="tg-pwj7" colspan="3">প্রতিষ্ঠান  </td>
                                 <td class="tg-pwj7" colspan="4">সংগঠন   </td>
-                                <td class="tg-pwj7" colspan="3">  সাথী শাখা মানের  </td>
+                                <td class="tg-pwj7" colspan="3">  আদর্শ থানা শাখা মানের  </td>
                                 <td class="tg-pwj7" colspan="3"> থানা মানের  </td>
                                 <td class="tg-pwj7" colspan="3"> ওয়ার্ড মানে  </td>
                                 <td class="tg-pwj7" colspan="3">উপশাখা  মানের  </td>

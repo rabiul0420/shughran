@@ -340,7 +340,8 @@
 									if (isset($manpower_record[0])) {
 										$arr = $manpower_record[0];
 										$member_improvement_target = $arr['member_improvement_target'];
-										$pk =  $arr['id'];
+										// $pk =  $arr['id'];
+										$pk =  "";
 									} else {
 										$member_improvement_target = 0;
 										$pk =  "";
@@ -359,10 +360,10 @@
 								<td class="tg-0pky  type_7">
 									<?php //3:2:1
 									// if ($report_info['prev_record']) echo ($member_prev > 0) ? round(100 * $member_improvement / $member_prev, 2) : 0;
-									
+
 									//temporay
 									if ($report_info['prev_record']) echo ($member_improvement_target > 0) ? round(100 * $member_improvement / $member_improvement_target, 2) : 0;
-									
+
 									?>
 
 								</td>
@@ -456,7 +457,8 @@
 									if (isset($manpower_record[0])) {
 										$arr = $manpower_record[0];
 										$membercandidate_target = $arr['member_candidate_candidate_target'];
-										$pk =  $arr['id'];
+										// $pk =  $arr['id'];
+										$pk =  "";
 									} else {
 										$membercandidate_target = 0;
 										$pk =  "";
@@ -464,7 +466,8 @@
 									?>
 
 									<?php if ($report_info['last_half'] == 1)
-										echo $membercandidate_target;
+										// echo $membercandidate_target;
+										echo '';
 									else { ?>
 										<a href="#" class="editable editable-click <?php if (!1) echo 'hidden' ?>" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="member_candidate_candidate_target" data-title="Enter"><?php echo $membercandidate_target; ?></a>
 									<?php } ?>
@@ -654,9 +657,9 @@
 							$associate_candidate_endstd = sum_manpower($manpower_record,   'associate_candidate_endstd');
 							//$associate_candidate_transfer = sum_manpower($manpower_record,   'associate_candidate_transfer');
 							$associate_candidate_transfer = $associatecandidate_worker_transfer_in_out['transfer_associatecandidate'];
-							
+
 							$associate_candidate_cancel = sum_manpower($manpower_record,   'associate_candidate_cancel');
-							 
+
 							$associate_candidate_abroad_study = sum_manpower($manpower_record,  'associate_candidate_abroad_study');
 							$associate_candidate_abroad_job = sum_manpower($manpower_record,   'associate_candidate_abroad_job');
 							$associate_candidate_death = sum_manpower($manpower_record,  'associate_candidate_death');
@@ -665,7 +668,7 @@
 							$associate_candidate_improvement_d = $associate_improvement;
 							$total_associate_candidate_decrease = $associate_candidate_improvement_d + $associate_candidate_endstd  + $associate_candidate_transfer  + $associate_candidate_cancel  + $associate_candidate_abroad_study + $associate_candidate_abroad_job + $associate_candidate_death + $associate_candidate_martyr + $associate_candidate_demotion;
 
-							 
+
 							$associate_candidate_improvement_target = sum_manpower($manpower_record, 'associate_candidate_improvement_target');
 
 							?>
@@ -681,7 +684,7 @@
 								<td class="tg-0pky"><?php if ($report_info['prev_record']) echo $associate_candidate_prev; ?></td>
 								<td class="tg-0pky  ">
 									<?php
-									
+
 									if ($report_info['prev_record']) echo $associate_candidate_prev + $associate_candidate_improvement + $associate_candidate_arrival - $total_associate_candidate_decrease;
 									?>
 								</td>
@@ -696,7 +699,8 @@
 
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_improvement = $arr['associate_candidate_improvement'];
-										$pk =  $arr['id'];
+										// $pk =  $arr['id'];
+										$pk =  "";
 									} else {
 										//$associate_candidate_improvement = 0;
 										$pk =  "";
@@ -708,9 +712,9 @@
 								</td>
 								<td class="tg-0pky">
 
-									 
-									 		<?php  echo $associate_candidate_arrival; ?>
-									 
+
+									<?php echo $associate_candidate_arrival; ?>
+
 
 								</td>
 								<td class="tg-0pky type_6">
@@ -729,7 +733,8 @@
 									<?php
 
 									if ($report_info['last_half'] == 1)
-										echo $associate_candidate_improvement_target;
+										// echo $associate_candidate_improvement_target;
+										echo '';
 
 									else { ?>
 										<a href="#" class="editable editable-click <?php echo 1 ? ''   : 'hidden' ?>" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_improvement_target" data-title="Enter"><?php echo $associate_candidate_improvement_target; ?></a>
@@ -773,13 +778,13 @@
 
 								</td>
 								<td class="tg-0pky">
-									 
 
-									 <?php echo $associate_candidate_transfer; ?>
+
+									<?php echo $associate_candidate_transfer; ?>
 								</td>
 								<td class="tg-0pky">
 									<?php
- 
+
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_cancel = $arr['associate_candidate_cancel'];
 										$pk =  $arr['id'];
@@ -872,7 +877,7 @@
 										$associate_candidate_postpone = $arr['associate_candidate_postpone'];
 										$pk =  $arr['id'];
 									} else {
-									//	$associate_candidate_postpone = 0;
+										//	$associate_candidate_postpone = 0;
 										$pk =  "";
 									}
 									?>
@@ -958,9 +963,9 @@
 
 								</td>
 								<td class="tg-0pky  type_5">
- 
-									 
- 
+
+
+
 									<?php echo $worker_arrival; ?>
 
 								</td>
@@ -1018,9 +1023,9 @@
 								</td>
 								<td class="tg-0pky  type_11">
 
-									 
 
-									 <?php echo $worker_transfer; ?>
+
+									<?php echo $worker_transfer; ?>
 
 
 								</td>
