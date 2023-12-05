@@ -17,7 +17,7 @@
 					echo anchor('admin/departmentsreport/literature-page-one' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষান্মাসিক ' . $report_info['year']);
 					echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/literature-page-one' . ($branch_id ? '/' . $branch_id : ''), 'জুলাই-নভেম্বর\'' . $report_info['year']);
 					echo "&nbsp;|&nbsp;";
-					echo anchor('admin/departmentsreport/literature-page-one' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
+					echo anchor('admin/departmentsreport/literature-page-one' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'X ' . $report_info['year']);
 				} else {
 					echo anchor('admin/departmentsreport/literature-page-one' . ($branch_id ? '/' . $branch_id : ''), 'ষান্মাসিক ' . $report_info['year']);
 					echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/literature-page-one' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
