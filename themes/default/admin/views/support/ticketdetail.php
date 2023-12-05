@@ -43,7 +43,7 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-10">
-                        <p>Replied by <b><?= trim($row['first_name'] . ' ' . $row['last_name']) ?></b> on <?= date("d M,Y h:i:s A", strtotime($row['entry_time'])) ?>
+                        <p>Replied by <b><?= trim($row['first_name'] . ' ' . $row['last_name']) ?></b> on <?= date("d M,Y h:i:s A", strtotime($row['entry_date'])) ?>
                             &nbsp; Admin: <?= ($row['is_read_admin'] == 'Yes') ? '<i class="fa fa-check-circle-o"></i>' : '' ?> | &nbsp; Branch: <?= ($row['is_read_branch'] == 'Yes') ? '<i class="fa fa-check-circle-o"></i>' : '' ?>
 
 

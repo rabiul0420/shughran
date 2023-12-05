@@ -4058,12 +4058,26 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             }
 
 
+
+            $datalog = array(
+
+                
+            );
+
+            if ($this->Owner || $this->Admin) { 
+                $datalog['date'] = $this->sma->fsd($this->input->post('date'));
+               }
+
         } elseif ($this->input->post('edit_thana')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect('organization/thanalist');
         }
 
         if ($this->form_validation->run() == true && $this->site->updateData('thana', $data, array('id' => $id))) {
+
+            if ($this->Owner || $this->Admin) { 
+                 $this->site->updateData('thana_log',$datalog,array('thana_id'=>$id,'in_out'=>1) );
+            }
 
             $this->session->set_flashdata('message', 'Updated successfully');
             admin_redirect("organization/thanalist");

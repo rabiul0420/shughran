@@ -32,12 +32,12 @@ class Support extends MY_Controller
             $this->data['branches'] = $this->site->getAllBranches();
             $this->data['branch_id'] = $branch_id;
             $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
-            $this->data['tickets'] = $this->site->query_binding('SELECT sma_support_ticket.*,  sma_branches.code from sma_support_ticket left join sma_branches on sma_branches.id = sma_support_ticket.branch_id  where is_status != ? AND ticket_id = 0 order by id desc limit 20', array('Closed'));
+            $this->data['tickets'] = $this->site->query_binding('SELECT sma_support_ticket.*,  sma_branches.code from sma_support_ticket left join sma_branches on sma_branches.id = sma_support_ticket.branch_id  where is_status != ? AND ticket_id = 0 order by update_at desc limit 500', array('Closed'));
         } else {
             $this->data['branches'] = NULL;
             $this->data['branch_id'] = $this->session->userdata('branch_id');
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
-            $this->data['tickets'] = $this->site->query_binding('SELECT sma_support_ticket.*,  sma_branches.code from sma_support_ticket left join sma_branches on sma_branches.id = sma_support_ticket.branch_id  where is_status != ? and branch_id = ? AND ticket_id = 0 order by id desc limit 20', array('Closed', $this->session->userdata('branch_id')));
+            $this->data['tickets'] = $this->site->query_binding('SELECT sma_support_ticket.*,  sma_branches.code from sma_support_ticket left join sma_branches on sma_branches.id = sma_support_ticket.branch_id  where is_status != ? and branch_id = ? AND ticket_id = 0 order by update_at desc limit 500', array('Closed', $this->session->userdata('branch_id')));
         }
 
 
@@ -49,7 +49,12 @@ class Support extends MY_Controller
 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('সহায়িকা')));
         $meta = array('page_title' => lang('সহায়িকা'), 'bc' => $bc);
-        $this->page_construct('support/index', $meta, $this->data);
+
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->page_construct('support/index', $meta, $this->data);
+        } else {
+            $this->page_construct('support/index_branch', $meta, $this->data);
+        }
     }
 
 
@@ -121,11 +126,13 @@ class Support extends MY_Controller
             );
             if ($this->Owner || $this->Admin) {
                 $ticket_data['is_read_admin'] = 'Yes';
-            }elseif($this->session->userdata('branch_id')){
+                $ticket_data['is_read_reply_admin'] = 'Yes';
+            } elseif ($this->session->userdata('branch_id')) {
                 $ticket_data['is_read_branch'] = 'Yes';
+                $ticket_data['is_read_reply_branch'] = 'Yes';
             }
-            
 
+            $ticket_data['update_at'] = date('Y-m-d H:i:s');
         } elseif ($this->input->post('ticket')) {
             $this->session->set_flashdata('error', validation_errors());
             //admin_redirect("support" . ($branch_id ? '/' . $branch_id : ''));
@@ -157,10 +164,11 @@ class Support extends MY_Controller
 
         //$this->sma->checkPermissions('index', TRUE);
 
-       // $this->load->helper('security');
+        // $this->load->helper('security');
 
         if ($this->input->is_ajax_request()) {
 
+            $ticket_main_data = array();
             $ticket_reply_data = array(
                 'ticket_detail' => $this->sma->clear_tags($this->input->post('reply_text')),
                 'ticket_id' => $this->input->post('ticket_id'),
@@ -169,23 +177,31 @@ class Support extends MY_Controller
             );
             if ($this->Owner || $this->Admin) {
                 $ticket_reply_data['is_read_admin'] = 'Yes';
-            }elseif($this->session->userdata('branch_id')){
+                $ticket_reply_data['is_read_reply_admin'] = 'Yes';
+
+                $ticket_main_data['is_read_reply_admin'] = 'Yes';
+                $ticket_main_data['is_read_reply_branch'] = 'No';
+            } elseif ($this->session->userdata('branch_id')) {
                 $ticket_reply_data['is_read_branch'] = 'Yes';
-                 
+                $ticket_reply_data['is_read_reply_branch'] = 'Yes';
+
+                $ticket_main_data['is_read_reply_admin'] = 'No';
+                $ticket_main_data['is_read_reply_branch'] = 'Yes';
             }
 
+            $ticket_main_data['update_at'] = date('Y-m-d H:i:s');
+
+
             $this->site->insertData('support_ticket', $ticket_reply_data);
+            $this->site->updateData('support_ticket', $ticket_main_data, array('id' => $this->input->post('ticket_id')));
 
             $this->sma->send_json(array('error' => 0, 'msg' => 'Replied successfully'));
-        }else {
+        } else {
             $this->sma->send_json(array('error' => 1, 'msg' => 'There was an error'));
         }
-
-
- 
     }
 
-    
+
 
     function ticketdetail($id = null)
     {
@@ -202,19 +218,19 @@ class Support extends MY_Controller
         $this->data['departments'] = $this->site->getAll('ticket_category');
 
         if ($this->Owner || $this->Admin) {
-            $this->site->updateData('support_ticket', array('is_read_admin' => 'Yes'), array('id' => $id));
-            $this->site->updateData('support_ticket', array('is_read_admin' => 'Yes'), array('ticket_id' => $id));
-        
-        } elseif ($this->session->userdata('branch_id')){
-            $this->site->updateData('support_ticket', array('is_read_branch' => 'Yes'), array('id' => $id, 'branch_id' => $this->session->userdata('branch_id')));
-            $this->site->updateData('support_ticket', array('is_read_branch' => 'Yes'), array('ticket_id' => $id));
-        
+
+            $this->site->updateData('support_ticket', array('is_read_admin' => 'Yes', 'is_read_reply_admin' => 'Yes'), array('id' => $id));
+            $this->site->updateData('support_ticket', array('is_read_admin' => 'Yes', 'is_read_reply_admin' => 'Yes'), array('ticket_id' => $id));
+        } elseif ($this->session->userdata('branch_id')) {
+            $this->site->updateData('support_ticket', array('is_read_branch' => 'Yes', 'is_read_reply_branch' => 'Yes'), array('id' => $id, 'branch_id' => $this->session->userdata('branch_id')));
+            $this->site->updateData('support_ticket', array('is_read_branch' => 'Yes', 'is_read_reply_branch' => 'Yes'), array('ticket_id' => $id));
         }
+
 
 
         $this->data['ticketdetail'] = $this->site->getByID('support_ticket', 'id', $id);
 
-       
+
         $this->data['replies'] =  $this->site->query_binding("select * from `sma_support_ticket` 
         left join `sma_users` on sma_users.id = sma_support_ticket.user_id 
         where  ticket_id = ? order by sma_support_ticket.id asc", array($id));
