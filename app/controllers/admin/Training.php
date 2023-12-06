@@ -547,10 +547,17 @@ class Training extends MY_Controller
 		$prev = $report_type_get['last_year'];
 
 
+		// $this->sma->print_arrays($report_type_get);
+
+
 		if ($branch_id)  //&& (  !$this->Owner && !$this->Admin  )
 		{
 			$this->data['detailinfo'] = $this->getEntryInfoLibrary($report_type_get, $branch_id);
+
+			// $this->sma->print_arrays($this->data['detailinfo']);
+
 			$totalreader = $this->gettotalreader($report_start, $report_end, $prev, $branch_id);
+
 			$this->data['totalreader'] = isset($totalreader[0]['current_manpower']) ? $totalreader[0]['current_manpower'] : 0;
 		} else {
 			$this->data['detailinfo'] = $this->getEntryInfoLibrarySUM($report_type_get, $branch_id);
