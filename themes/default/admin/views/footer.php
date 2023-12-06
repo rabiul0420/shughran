@@ -220,7 +220,46 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
 
+            $('.yes_no_2').editable({
+                    mode: 'inline',
+                    prepend: "not selected",
+                    inputclass: 'form-control',
+                    source: [{
+                        value: '1',
+                        text: 'Yes'
+                    }, {
+                        value: '0',
+                        text: 'No'
+                    }],
 
+                    params: function(params) {
+                        // add additional params from data-attributes of trigger element
+                        params.table = $(this).editable().data('table');
+                        params.id = $(this).editable().data('id');
+                        params.idname = $(this).editable().data('idname');
+                        params.branch_id = <?php echo isset($branch->id) ? $branch->id : "''"; ?>;
+                        params.token = $("meta[name=token]").attr("content");
+                        return params;
+                    },
+                    success: function(response) {
+                        console.log('test', response);
+                        var data = $.parseJSON(response);
+                        if (data.flag == 3)
+                            location.reload();
+                        else if (data.flag == 1)
+                            alert(data.msg);
+                    },
+                    error: function(response) {
+                        console.log(response);
+                    }
+                }
+
+
+
+
+
+
+            );
 
 
 
@@ -433,13 +472,13 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                 url: url,
                 data: form.serialize(), // serializes the form's elements.
                 success: function(data) {
-                    if(data.error==1){
-                            alert(data.msg);
-                    }else {
+                    if (data.error == 1) {
+                        alert(data.msg);
+                    } else {
 
                         $("#ticket_reply").html($("#reply_text").val());
                     }
-                   
+
                 }
             });
         }
