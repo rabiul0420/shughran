@@ -239,14 +239,14 @@ font: 18px SolaimanLipi, sans-serif;
 </tr>
 
 
-<tr style="height: 18px;">
+<tr class="hidden" style="height: 18px;">
 
 
 
 <td style="height: 18px; " colspan="19">৩।স্কুল দাওয়াতী দশক রিপোর্ট</td>
 
 </tr>
-<tr style="height: 36px;">
+<tr class="hidden" style="height: 36px;">
 <td style="height: 72px; " rowspan="2" width="44">সমর্থক বৃদ্ধি</td>
 <td style="height: 72px; " rowspan="2" width="46">বন্ধু বৃদ্ধি</td>
 <td style="height: 36px; " colspan="2" width="101">সাধারণ সভা</td>
@@ -265,13 +265,13 @@ font: 18px SolaimanLipi, sans-serif;
 <td style="height: 72px; " rowspan="2" width="42">অমুসলিম বন্ধু বৃদ্ধি</td>
 <td style="height: 72px; " rowspan="2" width="44">শুভাকাংখী বৃদ্ধি</td>
 </tr>
-<tr style="height: 36px;">
+<tr class="hidden" style="height: 36px;">
 <td style="height: 36px; " width="53">সংখ্যা</td>
 <td style="height: 36px; " width="48">গড় উপঃ</td>
 <td style="height: 36px; " width="38">সংখ্যা</td>
 <td style="height: 36px; " width="47">গড় উপঃ</td>
 </tr>
-<tr style="height: 18px;">
+<tr class="hidden" style="height: 18px;">
 <td style="height: 18px; ">
 <?php  $school_dawat_report =   isset($detailinfo['school_dawat_reportinfo']) ? $detailinfo['school_dawat_reportinfo'] : NULL ; ?>
  <?php  echo sum_detail($school_dawat_report,'supporter_increase'); ?>
@@ -299,7 +299,7 @@ font: 18px SolaimanLipi, sans-serif;
 <td style="height: 18px; ">&nbsp;</td>
 <td style="height: 18px; ">&nbsp;</td>
 <td style="height: 18px; ">&nbsp;</td>
-<td style="height: 18px; " colspan="19">৪। অনলাইন দাওয়াতি সপ্তাহ  রিপোর্ট</td>
+<td style="height: 18px; " colspan="19">৩। অনলাইন দাওয়াতি সপ্তাহ  রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
@@ -354,7 +354,7 @@ font: 18px SolaimanLipi, sans-serif;
 </tr>
 <tr style="height: 18px;">
 
-<td style="height: 18px; background-color: #fff;" colspan="19">৫। উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি সপ্তাহ   রিপোর্ট</td>
+<td style="height: 18px; background-color: #fff;" colspan="19">৪। উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি সপ্তাহ   রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
@@ -409,7 +409,7 @@ font: 18px SolaimanLipi, sans-serif;
 </tr>
 <tr style="height: 18px;">
 
-<td style="height: 18px; " colspan="19">৬। দাওয়াতী পক্ষ/ দশক রিপোর্ট</td>
+<td style="height: 18px; " colspan="19">৫। দাওয়াতী পক্ষ/ দশক রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
@@ -464,7 +464,7 @@ font: 18px SolaimanLipi, sans-serif;
 </tr>
 <tr style="height: 18px;">
 
-<td style="height: 18px; " colspan="19">৭। বিশ্ববিদ্যালয় ও অনার্স কলেজ দাওয়াতি সপ্তাহ  রিপোর্ট</td>
+<td style="height: 18px; " colspan="19">৬। বিশ্ববিদ্যালয় ও অনার্স কলেজ দাওয়াতি সপ্তাহ  রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
@@ -527,7 +527,7 @@ font: 18px SolaimanLipi, sans-serif;
 
 
 
-<td style="height: 18px; " colspan="19">৮। মাধ্যমিক (স্কুল ও মাদ্রাসা) দাওয়াতী দশক রিপোর্ট</td>
+<td style="height: 18px; " colspan="19">৭। মাধ্যমিক (স্কুল ও মাদ্রাসা) দাওয়াতী দশক রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">

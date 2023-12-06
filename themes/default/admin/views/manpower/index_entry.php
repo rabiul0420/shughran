@@ -987,7 +987,7 @@
 								</td>
 								<td class="tg-0pky  type_7">
 									<?php
-									if (1)  echo ($worker_prev > 0) ? round(100 * $worker_improvement / $worker_prev, 2) : 0;;
+									if (1)  echo ($worker_prev > 0) ? round(100 * $worker_improvement / $worker_improvement_target, 2) : 0;;
 									?>
 
 								</td>
