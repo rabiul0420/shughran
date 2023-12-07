@@ -76,7 +76,7 @@
                     "aoColumns": [{
                         "bSortable": false,
                         "mRender": checkbox
-                    }, null, null, null,null, null, null, null, null, null, {
+                    }, null, null, null,null,null, null, null, null, null, null, {
                         "mRender": yes_no
                     }, {
                         "bSortable": false
@@ -162,6 +162,7 @@
                                         <th><?= 'ছুটির ধরণ'  ?></th>
                                         <th><?= 'শাখা'  ?></th>
                                         <th><?= 'সদস্য কোড' ?></th>
+                                        <th><?= 'শপথ' ?></th>
                                         <th><?= 'নাম' ?></th>
 
                                         <th>বর্তমান পড়া লেখা <br />(শ্রেণি/বর্ষ)</th>
@@ -176,7 +177,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="7" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                        <td colspan="8" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                                     </tr>
                                 </tbody>
 
@@ -185,6 +186,7 @@
                                         <th style="min-width:30px; width: 30px; text-align: center;">
                                             <input class="checkbox checkft" type="checkbox" name="check" />
                                         </th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>

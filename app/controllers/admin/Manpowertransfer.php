@@ -245,7 +245,7 @@ class ManpowerTransfer extends MY_Controller
         //is_studentship_pending  => waiting for approval stdend, job at abroad, higher education
         if ($branch_id) {
             $this->datatables
-                ->select("manpower.id as id, t5.process,  t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
+                ->select("manpower.id as id, t5.process,  t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode, manpower.member_oath_date, manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
                 WHEN t3.process_id = 8 THEN  sma_manpower.note
                 WHEN t3.process_id = 11 THEN  CONCAT(COALESCE(sma_manpower.type_higher_education) ,', ' ,  t4.name)
                 WHEN t3.process_id = 14 THEN  CONCAT(COALESCE(sma_manpower.foreign_address) ,', ' ,  t4.name) 
@@ -262,7 +262,7 @@ class ManpowerTransfer extends MY_Controller
                 ->where('is_log_pending', 1);
         } else {
             $this->datatables
-                ->select("manpower.id as id,t5.process, t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
+                ->select("manpower.id as id,t5.process, t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode, manpower.member_oath_date, manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
                 WHEN t3.process_id = 8 THEN  sma_manpower.note
                 WHEN t3.process_id = 11 THEN  CONCAT(COALESCE(sma_manpower.type_higher_education) ,', ' ,  t4.name)
                 WHEN t3.process_id = 14 THEN  CONCAT(COALESCE(sma_manpower.foreign_address) ,', ' ,  t4.name) 
