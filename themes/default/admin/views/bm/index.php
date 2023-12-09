@@ -78,7 +78,7 @@ else {
             <ul class="btn-tasks">
                 
 						<li>	
-                            <a href="<?= admin_url('bm/export').( $this->input->get('type') ?  '?type='.$this->input->get('type') : '') ?>" >	
+                            <a href="<?= admin_url('bm/export').( $this->input->get('type') ?  '?type='.$this->input->get('type').'&year='.$this->input->get('year') : '') ?>" >	
                                 <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>	
                             </a>	
                         </li>
