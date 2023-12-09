@@ -193,7 +193,7 @@
                 <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('manpower/export/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
                     সদস্য তালিকা
                 </a>
-                
+
 
 
                 <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('manpower/memberincreaseexport/2/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
@@ -244,13 +244,13 @@
 
             <div class="row">
 
-              
+
                 <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('membercandidate/export/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
                     সদস্য প্রার্থী তালিকা
                 </a>
 
                 <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('membercandidate/membercandidateincreaseexport/2/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
-                সদস্য প্রার্থী বৃদ্ধি: মানোন্নয়ন
+                    সদস্য প্রার্থী বৃদ্ধি: মানোন্নয়ন
                 </a>
 
                 <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('membercandidate/membercandidateincreaseexport/15/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
@@ -279,7 +279,7 @@
                 <a class="btn  btn-outline-success" style=" margin-top: 10px; " data-placement="bottom" data-html="true" href="<?= admin_url('membercandidate/membercandidatedecreaseexport/10/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
                     সদস্য প্রার্থী ঘাটতি: শাহাদাত
                 </a>
-                
+
             </div>
 
             <div class="clearfix"></div>
@@ -290,7 +290,7 @@
         <div class="box-content" style="padding: 0px 0px 0px 20px; ">
 
             <div class="row">
-             
+
 
                 <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('associate/export/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
                     সাথী তালিকা
@@ -327,7 +327,7 @@
                     সাথী ঘাটতি: শাহাদাত
                 </a>
                 <a class="btn  btn-outline-success" style=" margin-top: 10px; " data-placement="bottom" data-html="true" href="<?= admin_url('associate/exportpostpone/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
-                সাথী মুলতবি
+                    সাথী মুলতবি
                 </a>
 
 
@@ -368,12 +368,36 @@
 
         <h2 class="text-bold">সংগঠন:</h2>
         <div class="box-content" style="padding: 0px 0px 0px 20px; ">
+
+
             <div class="row">
-                <a class="btn  btn-outline-success" data-placement="bottom" data-html="true" href="<?= admin_url('') ?>">
-                    Coming
+
+                <a class="btn  btn-outline-success" style=" margin-top: 10px; " data-placement="bottom" data-html="true" href="<?= admin_url('organization/institutionexport/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
+                    প্রতিষ্ঠান তালিকা
+                </a>
+
+                <a class="btn  btn-outline-success" style=" margin-top: 10px; " data-placement="bottom" data-html="true" href="<?= admin_url('organization/institutionwithoutorgexport/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
+                    যে সব প্রতিষ্ঠানে সংগঠন নেই
+                </a>
+                <a class="btn  btn-outline-success" style=" margin-top: 10px; " data-placement="bottom" data-html="true" href="<?= admin_url('organization/institutionwithorgexport/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
+                    যে সব প্রতিষ্ঠানে সংগঠন আছে
+                </a>
+
+                <a class="btn  btn-outline-success" style=" margin-top: 10px; " data-placement="bottom" data-html="true" href="<?= admin_url('organization/organizationincreaseexport/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
+                    সংগঠন বৃদ্ধি তালিকা
+                </a>
+
+                <a class="btn  btn-outline-success" style=" margin-top: 10px; " data-placement="bottom" data-html="true" href="<?= admin_url('organization/organizationdecreaseexport/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
+                    সংগঠন ঘাটতি তালিকা
+                </a>
+
+                <a class="btn  btn-outline-success" style=" margin-top: 10px; " data-placement="bottom" data-html="true" href="<?= admin_url('organization/organizationincreaseexport/' . $_GET['branch'] . '?type=' . $_GET['type'] . '&year=' . $_GET['year']) ?>">
+                    সংগঠন বৃদ্ধি তালিকা
                 </a>
 
             </div>
+
+
 
             <div class="clearfix"></div>
         </div>
