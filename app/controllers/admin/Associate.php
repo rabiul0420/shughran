@@ -2457,11 +2457,18 @@ class Associate extends MY_Controller
 
                 $process_Title = 'সাথী তালিকা';
 
-                $this->sheetcellValue($branch_id, $field_arr, $data, $process_Title, $in_out);
+                $in_out='';
+
+                $this->sheetcellValue($branch, $field_arr, $data, $process_Title, $in_out);
 
                 $filename = 'associate_list' . '_' . $this->input->get('year') . ($branch ? '_' . $branch : '');
 
                 $this->load->helper('excel');
+
+
+               
+
+
                 create_excel($this->excel, $filename);
             }
             $this->session->set_flashdata('error', lang('nothing_found'));

@@ -2072,7 +2072,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
                 // $res = ( $rule1 ? true : $rule2 ? true : false )
 
-                $this->excel->getActiveSheet()->SetCellValue('R' . $row, ($data_row->org_type== 'unit' ? 'উপশাখা': ($data_row->org_type== 'ward' ? 'ওয়ার্ড' : ($data_row->org_type== 'thana' ? 'থানা' : ($data_row->org_type== 'branch' ? 'শাখা'  : 'নেই')) ) )    );
+                $this->excel->getActiveSheet()->SetCellValue('R' . $row, ($data_row->org_type == 'unit' ? 'উপশাখা' : ($data_row->org_type == 'ward' ? 'ওয়ার্ড' : ($data_row->org_type == 'thana' ? 'থানা' : ($data_row->org_type == 'branch' ? 'শাখা'  : 'নেই')))));
 
                 $this->excel->getActiveSheet()->SetCellValue('S' . $row, $data_row->in_current_session == 1 ? 'Increase' : ($data_row->in_current_session == 2 ? 'Decrease' : ''));
                 //$this->excel->getActiveSheet()->SetCellValue('R' . $row, $data_row->in_current_session);
@@ -2408,8 +2408,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
 
 
-        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'সংগঠন Ghatti তালিকা'));
-        $meta = array('page_title' => ' সংগঠন Ghatti তালিকা', 'bc' => $bc);
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'সংগঠন ঘাটতি তালিকা'));
+        $meta = array('page_title' => ' সংগঠন ঘাটতি তালিকা', 'bc' => $bc);
         $this->page_construct('organization/institution_org_decrease', $meta, $this->data, 'leftmenu/organization');
     }
 
@@ -2949,6 +2949,135 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
         //   $this->sma->print_arrays($data);
+        if (!empty($data)) {
+
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+
+
+            $this->excel->getActiveSheet()->setTitle('শিক্ষাপ্রতিষ্ঠান ঘাটতি তালিকা');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'প্রতিষ্ঠানের কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম ');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'মন্তব্য ');
+
+
+            $row = 2;
+
+            foreach ($data as $data_row) {
+                $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->code);
+                $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->institution_name);
+                $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row->plname);
+                $this->excel->getActiveSheet()->SetCellValue('D' . $row, $data_row->rcname);
+                $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->branch_name);
+                $this->excel->getActiveSheet()->SetCellValue('F' . $row, strip_tags($data_row->notes));
+
+                $row++;
+            }
+            // $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
+            // ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+
+
+
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(35);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(35);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(50);
+            $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+            $this->excel->getActiveSheet()->getStyle('C2:G' . $row)->getAlignment()->setWrapText(true);
+            $filename = 'decrease_list_institution';
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+        $this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+
+
+    function organizationincreaseexport($branch_id = NULL, $type = null, $year = null)
+    {
+
+
+        // $this->sma->print_arrays();
+
+
+
+        $this->sma->checkPermissions('index', TRUE);
+
+        if (0 && !$this->Owner) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            redirect($_SERVER["HTTP_REFERER"]);
+        }
+
+
+
+        $report_type = $this->report_type();
+
+
+        if ($year == 'year')
+            $year = date("Y");
+
+
+        if ($type == 'half_yearly') {
+            $start =  $report_type['info']->startdate_half;
+            $end = $report_type['info']->enddate_half;
+        } elseif ($type == 'annual') {
+            $start =  $report_type['info']->startdate_half;
+            $end = $report_type['info']->enddate_annual;
+        } else {
+            $start =  $report_type['info']->startdate_annual;
+            $end = $report_type['info']->enddate_annual;
+        }
+
+
+
+        if ($branch_id) {
+
+            $this->db
+                ->select($this->db->dbprefix('institution_organization') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  {$this->db->dbprefix('institutionlist')}.id as institution_id, institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name", FALSE)
+                ->from('institution_organization');
+            $this->db->join('institutionlist', 'institution_organization.institution_id=institutionlist.id', 'left');
+
+            $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
+            $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
+
+            $this->db->join('branches', 'branches.id=institutionlist.branch_id', 'left')
+                ->where('branches.id', $branch_id);
+        } else {
+            $this->db
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('institutionlist')}.notes as notes", FALSE)
+                ->from('institutionlist');
+            $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
+            $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
+
+            $this->db->join('branches', 'branches.id=institutionlist.branch_id', 'left');
+        }
+
+
+        $this->db->where('institution_organization.org_change_type = 1');
+
+        $this->db->where('institution_organization.date  BETWEEN "' . $start . '" AND "' . $end . '"');
+
+
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+        } else {
+            $data = NULL;
+        }
+
+
+
+        $this->sma->print_arrays($this->db->last_query());
+        $this->sma->print_arrays($data);
+
+
         if (!empty($data)) {
 
             $this->load->library('excel');
