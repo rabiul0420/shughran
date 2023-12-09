@@ -3871,10 +3871,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
 
-        if ($branch_id)
-            $this->datatables->add_column("Actions", "", "id");
-        else
-            $this->datatables->add_column("Actions", $action, "id");
+        // if ($branch_id)
+        //     $this->datatables->add_column("Actions", "", "id");
+        // else
+         $this->datatables->add_column("Actions", $action, "id");
         //$this->datatables->unset_column("manpower_id");
         echo $this->datatables->generate();
     }
@@ -3955,13 +3955,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $this->sma->checkPermissions('index', TRUE);
 
-        if (!($this->Owner || $this->Admin)) {
-            $this->session->set_flashdata('warning', lang('access_denied'));
-            admin_redirect('');
-        }
+        
 
 
         $thana_info = $this->site->getByID('thana', 'id', $thana_id);
+
+        if (!($this->Owner || $this->Admin) && ($thana_info->branch_id != $this->session->userdata('branch_id'))) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('');
+        }
 
         $is_changeable = $this->site->check_confirm($thana_info->thana_id, date('Y-m-d'));
 
