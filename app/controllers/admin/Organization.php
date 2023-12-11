@@ -334,8 +334,8 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
      SUM( CASE WHEN org_type = 'ward' THEN 1 ELSE 0 END ) AS count_ward,
      SUM( CASE WHEN org_type = 'branch' THEN 1 ELSE 0 END ) AS count_branch,
     SUM( CASE WHEN is_organization != 1 THEN 1 ELSE 0 END ) AS no_organization 
-    FROM `sma_institutionlist` WHERE   branch_id = " . $branch_id . " AND is_active = 1 
-    GROUP BY institution_type_child");
+    FROM `sma_institutionlist` WHERE   branch_id = " . $branch_id . "  
+    GROUP BY institution_type_child");  //AND is_active = 1
 
 
 
