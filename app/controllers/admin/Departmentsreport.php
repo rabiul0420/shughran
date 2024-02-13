@@ -2937,15 +2937,18 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
 	$msg = 'done';
 	if($is_changeable ) {  //&& (int)$this->input->get('value')<2
        
-	 if($this->input->get('pk') && $this->input->get('pk')>0){ 
-        $data=explode("@",$this->input->get('name'));
-	   $this->site->updateData($data[1], array($data[0]=>$this->input->get('value')),array('id'=>$this->input->get('pk')));
+	 if($this->input->get_post('pk') && $this->input->get_post('pk')>0){ 
+        $data=explode("@",$this->input->get_post('name'));
+	   $this->site->updateData($data[1], array($data[0]=>$this->input->get_post('value')),array('id'=>$this->input->get_post('pk')));
 		$flag = 2;  //update
 		}
 	 elseif($branch_id){
-        $data=explode("@",$this->input->get('name'));
-        echo($data+" ggg");
-		$this->site->insertData($data[1], array('user_id'=>$this->session->userdata('user_id'),'report_year'=>date('Y'),'branch_id'=>$branch_id, 'report_type'=>$report_type['type'],$data[0]=>$this->input->get('value'),   'date'=>date('Y-m-d')));
+
+        //edu_committee@education_edu_committee
+
+        $data=explode("@",$this->input->get_post('name'));
+       
+		$this->site->insertData($data[1], array('user_id'=>$this->session->userdata('user_id'),'report_year'=>date('Y'),'branch_id'=>$branch_id, 'report_type'=>$report_type['type'],$data[0]=>$this->input->get_post('value'),   'date'=>date('Y-m-d')));
 	     $flag = 3;  //new entry
          
 		 

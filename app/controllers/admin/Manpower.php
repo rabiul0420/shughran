@@ -156,6 +156,7 @@ class Manpower extends MY_Controller
 
         $this->data['prev_manpower'] = $this->getPrev('annual', $last_year, $branch_id);
 
+      // $this->data['current_member_n_associate'] = $this->current_member_n_associate();
 
 
         $this->data['memberlog'] = $this->manPowerLog('memberlog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);

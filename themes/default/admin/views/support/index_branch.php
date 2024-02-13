@@ -416,20 +416,18 @@
 
                                 <hr>
                                 <div class="hidden">
-                                    <p><strong>Labels</strong></p>
-                                    <ul class="support-label">
-                                        <li><a href="#"><span class="bg-blue">&nbsp;</span>&nbsp;&nbsp;&nbsp;Manpower<span class="pull-right">2</span></a></li>
-                                        <li><a href="#"><span class="bg-red">&nbsp;</span>&nbsp;&nbsp;&nbsp;BM<span class="pull-right">7</span></a></li>
-                                        <li><a href="#"><span class="bg-yellow">&nbsp;</span>&nbsp;&nbsp;&nbsp;Organization<span class="pull-right">128</span></a></li>
-                                        <li><a href="#"><span class="bg-black">&nbsp;</span>&nbsp;&nbsp;&nbsp;Visit<span class="pull-right">41</span></a></li>
-                                        <li><a href="#"><span class="bg-light-blue">&nbsp;</span>&nbsp;&nbsp;&nbsp;Program<span class="pull-right">22</span></a></li>
-                                        <li><a href="#"><span class="bg-green">&nbsp;</span>&nbsp;&nbsp;&nbsp;Dawat<span class="pull-right">87</span></a></li>
-                                        <li><a href="#"><span class="bg-purple">&nbsp;</span>&nbsp;&nbsp;&nbsp;Others<span class="pull-right">92</span></a></li>
-                                        <li><a href="#"><span class="bg-teal">&nbsp;</span>&nbsp;&nbsp;&nbsp;Clearance<span class="pull-right">140</span></a></li>
-                                    </ul>
+                                <p><strong>Labels</strong></p>
+                                <ul class="support-label">
+                                    <li><a href="#"><span class="bg-blue">&nbsp;</span>&nbsp;&nbsp;&nbsp;Manpower<span class="pull-right">2</span></a></li>
+                                    <li><a href="#"><span class="bg-red">&nbsp;</span>&nbsp;&nbsp;&nbsp;BM<span class="pull-right">7</span></a></li>
+                                    <li><a href="#"><span class="bg-yellow">&nbsp;</span>&nbsp;&nbsp;&nbsp;Organization<span class="pull-right">128</span></a></li>
+                                    <li><a href="#"><span class="bg-black">&nbsp;</span>&nbsp;&nbsp;&nbsp;Visit<span class="pull-right">41</span></a></li>
+                                    <li><a href="#"><span class="bg-light-blue">&nbsp;</span>&nbsp;&nbsp;&nbsp;Program<span class="pull-right">22</span></a></li>
+                                    <li><a href="#"><span class="bg-green">&nbsp;</span>&nbsp;&nbsp;&nbsp;Dawat<span class="pull-right">87</span></a></li>
+                                    <li><a href="#"><span class="bg-purple">&nbsp;</span>&nbsp;&nbsp;&nbsp;Others<span class="pull-right">92</span></a></li>
+                                    <li><a href="#"><span class="bg-teal">&nbsp;</span>&nbsp;&nbsp;&nbsp;Clearance<span class="pull-right">140</span></a></li>
+                                </ul>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -458,7 +456,7 @@
                                         <li><a href="#"><i class="fa"> </i> Least commented</a></li>
                                     </ul>
                                 </div>
-
+                                
 
                                 <!-- BEGIN NEW TICKET -->
                                 <a class="tip  btn btn-primary pull-right" title="" href="<?= admin_url('support/add') ?>" data-toggle="modal" data-target="#myModal" data-original-title="New ticket"> <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' New ticket' ?></i> </a>
@@ -466,14 +464,14 @@
                                 <!-- END NEW TICKET -->
 
                                 <div class="btn-group pull-right" style="padding-right:5px">
-                                    <button type="button" class="btn btn-default"><i class="fa fa-arrow-left"></i></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-arrow-right"></i></button>
-
+                                <button type="button" class="btn btn-default"><i class="fa fa-arrow-left"></i></button>
+                                <button type="button" class="btn btn-default"><i class="fa fa-arrow-right"></i></button>
+                              
                                 </div>
 
                                 <div class="btn-group pull-right" style="padding-right:5px">
-                                    <button type="button" class="btn">Page: 5</button>
-
+                                <button type="button" class="btn">Page: 5</button>
+                                
                                 </div>
 
                                 <div class="padding"></div>
@@ -483,26 +481,26 @@
                                     <div class="col-md-12">
                                         <ul class="list-group fa-padding">
 
-                                            <?php foreach ($tickets as $key => $row) { ?>
-                                                <li class="list-group-item" <?php if ($row['is_read_admin'] == 'Yes' && $row['is_read_reply_admin'] == 'Yes') { ?> style="background:#eee" <?php } ?>>
+                                            <?php foreach($tickets as $key=>$row) {?>
+                                            <li class="list-group-item" <?php if($row['is_read_branch']=='Yes' && $row['is_read_reply_branch']=='Yes') {?> style="background:#eee" <?php }?>>
 
-                                                    <div class="media">
+                                                <div class="media">
+                                                  
+                                                    <i class="pull-left" style="width:20px; padding-right:20px; padding-top:2px;"><?=$row['code']?></i>
 
-                                                        <i class="pull-left" style="width:20px; padding-right:20px; padding-top:2px;"><?= $row['code'] ?></i>
-
-                                                        <div class="media-body">
-                                                            <a href="<?= admin_url('support/ticketdetail/' . $row['id']) ?>" data-toggle="modal" data-target="#myModal"><strong><?= $row['ticket_caption'] ?></strong></a>
-                                                            <span class="label label-<?= $row['is_status'] == 'New' ? 'primary' : ($row['is_status'] == 'Done' ? 'success' : ($row['is_status'] == 'Cancelled' ? 'danger' : 'warning')) ?>">
-
-                                                                <a href="#" class="ticket_status  editable-click" data-type="select" data-table="support_ticket" data-pk="<?php echo  $row['id']; ?>" data-url="<?php echo admin_url('organization/ticketupdate'); ?>" data-name="is_status" data-title="Enter"><?= $row['is_status'] ?></a>
-
-
-                                                            </span><span class="number pull-right"># <?= $row['id'] ?></span>
-                                                            <p class="info">Opened by <a href="#"></a> <?= $row['entry_date'] ?></p>
-                                                        </div>
+                                                    <div class="media-body">
+                                                        <a  href="<?= admin_url('support/ticketdetail/'.$row['id']) ?>" data-toggle="modal" data-target="#myModal" ><strong><?=$row['ticket_caption']?></strong></a> 
+                                                        <span class="label label-<?=$row['is_status']=='New'? 'primary': ($row['is_status'] == 'Done' ? 'success' :  ( $row['is_status'] == 'Cancelled' ? 'danger': 'warning')  )?>">
+                                                        
+                                                        <a href="#"  class="ticket_status  editable-click"   data-type="select" data-table="support_ticket" data-pk="<?php echo  $row['id'];?>" data-url="<?php echo admin_url('organization/ticketupdate');?>" data-name="is_status" data-title="Enter"><?=$row['is_status']?></a> 
+  
+                                                        
+                                                    </span><span class="number pull-right"># <?=$row['id']?></span>
+                                                        <p class="info">Opened by <a href="#"></a> <?=$row['entry_date']?></p>
                                                     </div>
-                                                </li>
-                                            <?php } ?>
+                                                </div>
+                                            </li>
+                                            <?php }?>
                                         </ul>
 
                                         <!-- BEGIN DETAIL TICKET -->

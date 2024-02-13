@@ -138,6 +138,9 @@ class MY_Controller extends CI_Controller
         $meta['error'] = isset($data['error']) ? $data['error'] : $this->session->flashdata('error');
         $meta['warning'] = isset($data['warning']) ? $data['warning'] : $this->session->flashdata('warning');
         $meta['info'] = $this->site->getNotifications();
+        $meta['support_ticket'] = $this->site->getTickets();
+
+        //$this->sma->print_arrays($meta['support_ticket']);
         $meta['events'] = $this->site->getUpcomingEvents();
         $meta['ip_address'] = $this->input->ip_address();
         $meta['Owner'] = $data['Owner'];
@@ -326,17 +329,18 @@ class MY_Controller extends CI_Controller
     {
 
 
-
+        
         $type = $this->input->get('type');  //half_yearly/annual
         $year = $this->input->get('year');
         // $is_current = false;
         $is_current = $this->input->get('type');
 
         // $this->sma->print_arrays($year);
-
+        
         if (!$year && !$type) {
 
-            $year = 2023; //date('Y');
+          
+            $year = date('Y');
 
 
 
@@ -358,7 +362,7 @@ class MY_Controller extends CI_Controller
                 return array('info' => $entrytimeinfo, 'last_half' => true, 'prev_record' => false, 'last_year' => $year - 1, 'is_current' => $is_current,  'type' => 'annual', 'start' => $entrytimeinfo->startdate_annual, 'end' => $entrytimeinfo->enddate_annual, 'year' => $year);
             }
         } else if ($year && $type) {
-
+           
             //$this->sma->print_arrays(222222);
 
             $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => $year), 'id desc', 1, 0);

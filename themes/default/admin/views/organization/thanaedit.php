@@ -25,10 +25,15 @@
                         <?php echo form_input('thana_name', $thana->thana_name, 'class="form-control" required="required" id="thana_name"'); ?>
                     </div>
 
+                    <?php if ($this->Owner || $this->Admin) { ?>
 
-
-
-
+                    <div class="form-group">
+                        <?php echo lang('তারিখ', 'date'); ?>
+                        <div class="controls">
+                            <?php echo form_input('date',  $this->sma->hrsd($thana->date), 'class="form-control fixed_date_bk tmp_date" id="date" readonly required="required"'); ?>
+                        </div>
+                    </div>
+                    <?php } ?>
 
                     <div class="form-group all">
                         <?= lang('থানা কোড', 'thana_code'); ?>

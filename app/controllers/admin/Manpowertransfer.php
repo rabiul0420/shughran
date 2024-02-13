@@ -245,7 +245,7 @@ class ManpowerTransfer extends MY_Controller
         //is_studentship_pending  => waiting for approval stdend, job at abroad, higher education
         if ($branch_id) {
             $this->datatables
-                ->select("manpower.id as id, t5.process,  t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
+                ->select("manpower.id as id, t5.process,  t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode, manpower.member_oath_date, manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
                 WHEN t3.process_id = 8 THEN  sma_manpower.note
                 WHEN t3.process_id = 11 THEN  CONCAT(COALESCE(sma_manpower.type_higher_education) ,', ' ,  t4.name)
                 WHEN t3.process_id = 14 THEN  CONCAT(COALESCE(sma_manpower.foreign_address) ,', ' ,  t4.name) 
@@ -262,7 +262,7 @@ class ManpowerTransfer extends MY_Controller
                 ->where('is_log_pending', 1);
         } else {
             $this->datatables
-                ->select("manpower.id as id,t5.process, t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
+                ->select("manpower.id as id,t5.process, t1.name as branch,{$this->db->dbprefix('manpower')}.membercode as membercode, manpower.member_oath_date, manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
                 WHEN t3.process_id = 8 THEN  sma_manpower.note
                 WHEN t3.process_id = 11 THEN  CONCAT(COALESCE(sma_manpower.type_higher_education) ,', ' ,  t4.name)
                 WHEN t3.process_id = 14 THEN  CONCAT(COALESCE(sma_manpower.foreign_address) ,', ' ,  t4.name) 
@@ -336,7 +336,7 @@ class ManpowerTransfer extends MY_Controller
                 ->where('manpower.branch', $branch_id)
                 ->where('is_studentship_pending', 1)
                 ->where('is_log_pending', 1);
-                $this->datatables->add_column("Actions","", "id");
+                $this->datatables->add_column("Actions",$action, "id");
         } else {
             $this->datatables
                 ->select("t3.id as id,t5.process, t1.name as branch,{$this->db->dbprefix('manpower')}.associatecode as associatecode,  manpower.name, manpower.sessionyear,manpower.masters_complete_status,t2.responsibility,manpower.current_profession,CASE 
@@ -632,13 +632,12 @@ class ManpowerTransfer extends MY_Controller
             redirect($_SERVER["HTTP_REFERER"]);
         }
 
-
-
-        if ( !($this->Owner || $this->Admin)) {
+ 
+        if ( !($this->Owner || $this->Admin)  && ($member_info->branch != $this->session->userdata('branch_id'))) {
             $this->session->set_flashdata('warning', lang('access_denied'));
             admin_redirect('');
         }
-
+    
 
         if ($member_info->orgstatus_id == 1) {
 
@@ -653,14 +652,9 @@ class ManpowerTransfer extends MY_Controller
             );
 
             $this->site->delete('memberlog', $member_log_where);
-
-
             $manpower_update_arr['is_pending'] = 0;
             $manpower_update_arr['is_studentship_pending'] = 0;
-
             $manpower_update_arr['studentlife'] = 1;
-
-
             $this->manpower_model->manpowerUpdate('manpower', $manpower_update_arr, array('id' => $manpower_id));
         }
 
@@ -847,7 +841,7 @@ class ManpowerTransfer extends MY_Controller
 
 
 
-        if ( !($this->Owner || $this->Admin)) {
+        if ( !($this->Owner || $this->Admin) && ($membercandidate_info->branch != $this->session->userdata('branch_id'))) {
             $this->session->set_flashdata('warning', lang('access_denied'));
             admin_redirect('');
         }

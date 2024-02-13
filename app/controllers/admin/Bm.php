@@ -243,6 +243,9 @@ class Bm extends MY_Controller
 		$type = $report_type['type'];
 		$report_year = $report_type['year'];
 
+		//$this->sma->print_arrays($report_type);
+
+
 		if ($branch_id) {
 
 			$this->db
