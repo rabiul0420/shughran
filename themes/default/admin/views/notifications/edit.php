@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group ">
                 <input type="radio" class="checkbox" name="scope" value="1"
                        id="customer" <?= $notification->scope == '1' ? 'checked="checked"' : ''; ?>/><label
                     for="customer" class="padding05"><?= lang('for_customers_only') ?></label>
