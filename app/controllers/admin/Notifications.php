@@ -47,29 +47,27 @@ class Notifications extends MY_Controller
     function details($id = NULL)
     {
         $this->form_validation->set_rules('group', lang("group"), 'is_natural_no_zero');
-    
+
         if ($this->form_validation->run() == true) {
             $checked_branches = [];
-    
+
             foreach ($this->input->post() as $key => $value) {
                 if (strpos($key, 'branch') === 0 && $value == '1') {
                     $branch_id = substr($key, 6);
                     $checked_branches[] = $branch_id;
                 }
             }
-    
-           
         }
 
         //  $this->sma->print_arrays($data);
         // $this->sma->print_arrays();
-    
+
         if ($this->form_validation->run() == true && $this->cmt_model->updatePermissions($id, $checked_branches)) {
             $this->session->set_flashdata('message', lang("Branch_Notifications_updated"));
             redirect($_SERVER["HTTP_REFERER"]);
         } else {
             $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
-    
+
             $this->data['id'] = $id;
             $this->data['group'] = $this->cmt_model->getCommentByID($id);
             $this->data['branch_permitted_comment'] = $this->cmt_model->getBranchPermittedCommentByID($id);
@@ -79,8 +77,8 @@ class Notifications extends MY_Controller
             $this->page_construct('notifications/details', $meta, $this->data);
         }
     }
-    
-    
+
+
 
     function getNotifications1()
     {
@@ -132,6 +130,8 @@ class Notifications extends MY_Controller
         }
     }
 
+
+
     function edit($id = NULL)
     {
         if (!$this->Owner) {
@@ -176,13 +176,19 @@ class Notifications extends MY_Controller
 
             $this->data['branches'] = $this->site->getAllBranches();
 
-            //  $this->sma->print_arrays( $this->data['branches']);
-
 
             $this->data['notification'] = $comment;
             $this->data['id'] = $id;
-            $this->data['modal_js'] = $this->site->modal_js();
+
+
+            // $this->data['modal_js'] = $this->site->modal_js();
+
+
+            // $this->sma->print_arrays($this->data);
+
             $this->data['error'] = validation_errors();
+
+
             $this->load->view($this->theme . 'notifications/edit', $this->data);
         }
     }

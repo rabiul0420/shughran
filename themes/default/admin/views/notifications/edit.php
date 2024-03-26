@@ -57,7 +57,9 @@
     </div>
     <?php echo form_close(); ?>
 </div>
+
 <?= $modal_js ?>
+
 <script type="text/javascript" src="<?= $assets ?>js/custom.js"></script>
 <script type="text/javascript" charset="UTF-8">
     $.fn.datetimepicker.dates['sma'] = <?=$dp_lang?>;

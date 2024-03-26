@@ -341,6 +341,10 @@ class Site extends CI_Model
 
     public function modal_js()
     {
+
+        // echo 222;
+        // exit();
+        
         return '<script type="text/javascript">' . file_get_contents($this->data['assets'] . 'js/modal.js?v=2') . '</script>';
     }
 
@@ -475,37 +479,22 @@ class Site extends CI_Model
     public function getNotifications()
     {
         $branch_id = $this->session->userdata('branch_id');
+$date = date('Y-m-d H:i:s', time());
 
-        $date = date('Y-m-d H:i:s', time());
+$this->db->select('sma_notifications.*');
+$this->db->from('sma_branch_notifications');
+$this->db->join('sma_notifications', 'sma_notifications.id = sma_branch_notifications.notification_id');
+$this->db->where("sma_notifications.from_date <=", $date);
+$this->db->where("sma_notifications.till_date >=", $date);
 
-        $this->db->select('notifications.*');
-        $this->db->from('notifications');
-        $this->db->join('branch_notifications', 'notifications.id = branch_notifications.notification_id');
-
-
-        $this->db->where("notifications.from_date <=", $date);
-        $this->db->where("notifications.till_date >=", $date);
-
-        if (!$this->Owner) {
-            if ($this->Supplier) {
-                $this->db->where('notifications.scope', 4);
-            } elseif ($this->Customer) {
-                $this->db->where('notifications.scope', 1)->or_where('notifications.scope', 3);
-            } elseif (!$this->Customer && !$this->Supplier) {
-                $this->db->where('notifications.scope', 2)->or_where('notifications.scope', 3);
-            }
-
-            $this->db->where('branch_notifications.branch_id', $branch_id);
-        }
-
-        $q = $this->db->get();
-
-
-                $this->sma->print_arrays( $this->db->last_query());
-
-
-
-
+if (!$this->Owner) {
+    $branch_id = $this->session->userdata('branch_id');
+    $this->db->where('sma_branch_notifications.branch_id', $branch_id);
+}
+$this->db->group_by('sma_notifications.id');
+// echo $this->db->get_compiled_select();
+$q = $this->db->get();
+// $this->sma->print_arrays( $this->db->last_query());
 
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
