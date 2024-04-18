@@ -100,122 +100,25 @@ if (!empty($variants)) {
 
                     <div class="form-group">
                         <?= lang("সংগঠনের ধরন", "org_type"); ?>
+
                         <?php
                         $wrt[''] = lang('select') . ' ' . lang('organization_type');
                         foreach (['Institutional' => 'প্রাতিষ্ঠানিক', 'Residential' => 'আবাসিক'] as $key => $type)
                             $wrt[$key] = $type;
 
+
+
                         echo form_dropdown('org_type', $wrt, (isset($_POST['org_type']) ? $_POST['org_type'] : ''), 'id="org_type"   class="form-control select" style="width:100%;" ');
                         ?>
-                    </div>
 
 
-                    <!-- for আবাসিক -->
-                    <div>
-
-                        <hr> <hr>                        
-                        <h1>প্রশাসনিক বিবরন</h1>                      
-
-                        <h2>আবাসিক সংগঠন হলে মেস/আইডিয়াল হোম কি না ? </h2>                        
-                        <div class="form-group">
-                            <?= lang("জেলা", "dist"); ?>
-                            <?php
-                            $dst[''] = lang('select') . ' ' . lang('জেলা');
-                            foreach (['Dhaka' => 'Dhaka', 'Tangail' => 'Tangail'] as $key => $type)
-                                $dst[$key] = $type;
-
-                            echo form_dropdown('dist', $dst, (isset($_POST['dist']) ? $_POST['dist'] : ''), 'id="dist"   class="form-control select" style="width:100%;" ');
-                            ?>
-                        </div>
-
-
-                        <div class="form-group">
-                            <?= lang("থানা/ উপজেলা", "dist"); ?>
-                            <?php
-                            $dst[''] = lang('select') . ' ' . lang('জেলা');
-                            foreach (['Dhaka' => 'Dhaka', 'Tangail' => 'Tangail'] as $key => $type)
-                                $dst[$key] = $type;
-
-                            echo form_dropdown('dist', $dst, (isset($_POST['dist']) ? $_POST['dist'] : ''), 'id="dist"   class="form-control select" style="width:100%;" ');
-                            ?>
-                        </div>
-
-
-                        <div class="form-group">
-                            <?= lang("পৌরসভা /ইউনিয়ন", "dist"); ?>
-                            <?php
-                            $dst[''] = lang('select') . ' ' . lang('জেলা');
-                            foreach (['Dhaka' => 'Dhaka', 'Tangail' => 'Tangail'] as $key => $type)
-                                $dst[$key] = $type;
-
-                            echo form_dropdown('dist', $dst, (isset($_POST['dist']) ? $_POST['dist'] : ''), 'id="dist"   class="form-control select" style="width:100%;" ');
-                            ?>
-                        </div>
-
-                        <div class="form-group">
-                            <?= lang("সিটি/ পৌরসভা /ইউনিয়নের ওয়ার্ড", "dist"); ?>
-                            <?php
-                            $dst[''] = lang('select') . ' ' . lang('জেলা');
-                            foreach (['Dhaka' => 'Dhaka', 'Tangail' => 'Tangail'] as $key => $type)
-                                $dst[$key] = $type;
-
-                            echo form_dropdown('dist', $dst, (isset($_POST['dist']) ? $_POST['dist'] : ''), 'id="dist"   class="form-control select" style="width:100%;" ');
-                            ?>
-                        </div>
-
-                        <!-- শিক্ষাপ্রতিষ্ঠানের বিবরন -->
-                        <hr> <hr>                        
-                        <h1>শিক্ষাপ্রতিষ্ঠানের বিবরন</h1> 
-                        
-                        
-
-                        <div class="form-group"><strong><?= lang('notify_user') ?></strong>
-                    
-                    <label class="checkbox" for="notify">
-                        
-                    <input type="checkbox" name="notify" value="1" id="notify" checked="checked" /> <?= lang('notify_user_by_email') ?></label></div>
-
-                        <h2>আবাসিক সংগঠন কিন্তু কোন শিক্ষা প্রতিষ্ঠানের অন্তর্ভুক্ত কি না? </h2>                        
-                        <div class="form-group">
-                            <?= lang("ক্যাটাগরি", "dist"); ?>
-                            <?php
-                            $dst[''] = lang('select') . ' ' . lang('ক্যাটাগরি');
-                            foreach (['Dhaka' => 'Dhaka', 'Tangail' => 'Tangail'] as $key => $type)
-                                $dst[$key] = $type;
-
-                            echo form_dropdown('dist', $dst, (isset($_POST['dist']) ? $_POST['dist'] : ''), 'id="dist"   class="form-control select" style="width:100%;" ');
-                            ?>
-                        </div>
-
-
-                        <div class="form-group">
-                            <?= lang("সাব-ক্যাটাগরি", "dist"); ?>
-                            <?php
-                            $dst[''] = lang('select') . ' ' . lang('সাব-ক্যাটাগরি');
-                            foreach (['Dhaka' => 'Dhaka', 'Tangail' => 'Tangail'] as $key => $type)
-                                $dst[$key] = $type;
-
-                            echo form_dropdown('dist', $dst, (isset($_POST['dist']) ? $_POST['dist'] : ''), 'id="dist"   class="form-control select" style="width:100%;" ');
-                            ?>
-                        </div>
+                        <?php  //echo  form_input('responsibility', (isset($_POST['responsibility']) ? $_POST['responsibility'] : ''), 'class="form-control" id="responsibility" '); 
+                        ?>
 
 
 
-                        <div class="form-group">
-                            <?= lang("প্রতিষ্ঠানের নাম", "dist"); ?>
-                            <?= form_input('ward_number', '', 'class="form-control tip" id="ward_number" required="required" '); ?>
-                        </div>
-
-
-
-
-
-                        <hr>
 
                     </div>
-
-
-
 
 
 

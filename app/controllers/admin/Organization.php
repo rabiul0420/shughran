@@ -3563,7 +3563,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $meta = array('page_title' => lang('থানা '), 'bc' => $bc);
             $this->page_construct('organization/addthana', $meta, $this->data, 'leftmenu/organization');
         }
-    }
+    } 
 
 
 
