@@ -346,7 +346,8 @@
                                 ?>
                                             <div class="alert alert-info">
                                                 <a href="#" id="<?= $n->id ?>" class="close hideComment external" data-dismiss="alert">&times;</a>
-                                                <?= $n->comment; ?>
+                                                <?= $n->comment;  echo 111; ?>
+                                                
                                             </div>
                                 <?php }
                                     }

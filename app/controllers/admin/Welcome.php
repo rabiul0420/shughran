@@ -39,7 +39,10 @@ class Welcome extends MY_Controller
 
         $bc = array(array('link' => '#', 'page' => lang('dashboard')));
         $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);
-        // $this->sma->print_arrays($this->data['confirmreport']);
+
+
+ 
+        // $this->sma->print_arrays($this->data);
 
         $this->page_construct('dashboard', $meta, $this->data);
     }

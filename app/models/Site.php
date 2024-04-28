@@ -341,6 +341,10 @@ class Site extends CI_Model
 
     public function modal_js()
     {
+
+        // echo 222;
+        // exit();
+        
         return '<script type="text/javascript">' . file_get_contents($this->data['assets'] . 'js/modal.js?v=2') . '</script>';
     }
 
@@ -442,8 +446,13 @@ class Site extends CI_Model
         return FALSE;
     }
 
-    public function getNotifications()
+
+
+    public function getNotifications_old()
     {
+
+        $branch_id = $this->session->userdata('branch_id');
+
         $date = date('Y-m-d H:i:s', time());
         $this->db->where("from_date <=", $date);
         $this->db->where("till_date >=", $date);
@@ -457,6 +466,8 @@ class Site extends CI_Model
             }
         }
         $q = $this->db->get("notifications");
+
+
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -464,6 +475,37 @@ class Site extends CI_Model
             return $data;
         }
     }
+
+    public function getNotifications()
+    {
+        $branch_id = $this->session->userdata('branch_id');
+$date = date('Y-m-d H:i:s', time());
+
+$this->db->select('sma_notifications.*');
+$this->db->from('sma_branch_notifications');
+$this->db->join('sma_notifications', 'sma_notifications.id = sma_branch_notifications.notification_id');
+$this->db->where("sma_notifications.from_date <=", $date);
+$this->db->where("sma_notifications.till_date >=", $date);
+
+if (!$this->Owner) {
+    $branch_id = $this->session->userdata('branch_id');
+    $this->db->where('sma_branch_notifications.branch_id', $branch_id);
+}
+$this->db->group_by('sma_notifications.id');
+// echo $this->db->get_compiled_select();
+$q = $this->db->get();
+// $this->sma->print_arrays( $this->db->last_query());
+
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+    }
+
+
+
 
     public function getTickets()
     {

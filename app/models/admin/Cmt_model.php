@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 
 class Cmt_model extends CI_Model
@@ -7,7 +7,6 @@ class Cmt_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-
     }
 
     public function getAllComments()
@@ -56,8 +55,58 @@ class Cmt_model extends CI_Model
         }
 
         return FALSE;
-
     }
+    public function getBranchPermittedCommentByID($id)
+    {
+
+        $q = $this->db->get_where("branch_notifications", array('notification_id' => $id));
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row->branch_id;
+            }
+
+            return $data;
+        }
+
+        return FALSE;
+    }
+    public function getAllBranches()
+    {
+        $this->db->select('id, name');
+
+        $q = $this->db->get('branches');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
+    public function updatePermissions($id, $checked_branches)
+    {
+        $id = intval($id);
+        $data = [];
+        foreach ($checked_branches as $branch_id) {
+            $data[] = array(
+                'notification_id' => $id,
+                'branch_id' => $branch_id
+            );
+        }
+        $this->db->where('notification_id', $id);
+        $this->db->delete('sma_branch_notifications');
+        if (!empty($data)) {
+           
+            if ($this->db->insert_batch('sma_branch_notifications', $data)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
 
 
     public function addNotification($data)
@@ -88,8 +137,6 @@ class Cmt_model extends CI_Model
         }
         return FALSE;
     }
-
-
 }
 
 /* End of file pts_model.php */
