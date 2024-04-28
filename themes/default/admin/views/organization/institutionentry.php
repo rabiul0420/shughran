@@ -71,6 +71,8 @@
                             foreach ($institutions as $institution) {
                                 echo '<option  value="' . $institution->id . '" data-chained="' . $institution->type_id . '">' . $institution->institution_type . '</option>';
 
+    
+
                                 // $wh[$institution->id] = $institution->institution_type;
                             }
 

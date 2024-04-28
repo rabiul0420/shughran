@@ -83,7 +83,7 @@ if (!empty($variants)) {
 
 
 
- 
+
 
 
                     <div class="form-group">
@@ -418,16 +418,9 @@ if (!empty($variants)) {
         });
 
 
-
-
-
         var _URL = window.URL || window.webkitURL;
 
         var variants = <?= json_encode($vars); ?>;
-
-
-
-
 
 
     });
