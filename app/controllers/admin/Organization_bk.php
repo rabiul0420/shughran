@@ -126,7 +126,7 @@ class Organization extends MY_Controller
         $row = 2;
 
         foreach($branches as $branch) {
-        $record = $this->site->query("SELECT id,organization_institution_current(id, '2021-12-23' , '2022-12-17',".$branch->id.",2021) current_number from `sma_institution`");
+        $record = $this->site->query("SELECT id,v2_organization_institution_current(id, '2021-12-23' , '2022-12-17',".$branch->id.",2021) current_number from `sma_institution`");
         
        
 
@@ -171,7 +171,7 @@ class Organization extends MY_Controller
         $row = 2;
 
         foreach($branches as $branch) {
-        $record = $this->site->query("SELECT id,organization_minimum_one_unit_current(id, '2021-12-23' , '2022-12-17',".$branch->id.",2021) current_number from `sma_institution`");
+        $record = $this->site->query("SELECT id,v2_organization_minimum_one_unit_current(id, '2021-12-23' , '2022-12-17',".$branch->id.",2021) current_number from `sma_institution`");
         
        
 
@@ -298,7 +298,7 @@ class Organization extends MY_Controller
         if ($branch_id) {
 
 
-            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  prev_institution(institution_type_child, " . $prev . ", " . $branch_id . ") prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
+            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  v2_prev_institution(institution_type_child, " . $prev . ", " . $branch_id . ") prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
       institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution
      FROM `sma_institutionlist`
      WHERE `date` BETWEEN '" . $start . "' AND '" . $end . "' AND branch_id = " . $branch_id . "
@@ -323,9 +323,9 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
 
 
             $this->data['institution_info'] = $this->site->query("SELECT     
-     institution_type_child ,  SUM( organization_prev( sma_institutionlist.id, '" . $prev . "', 2," . $branch_id . ")) unit_prev, SUM(current_unit) current_unit, 
-    SUM( latest_unit_status( sma_institutionlist.id, '" . $start . "', '" . $end . "', 1, " . $branch_id . ")) unit_increase, 
-    SUM( latest_unit_status( sma_institutionlist.id, '" . $start . "', '" . $end . "', 2, " . $branch_id . ")) unit_decrease ,
+     institution_type_child ,  SUM( v2_organization_prev( sma_institutionlist.id, '" . $prev . "', 2," . $branch_id . ")) unit_prev, SUM(current_unit) current_unit, 
+    SUM( v2_latest_unit_status( sma_institutionlist.id, '" . $start . "', '" . $end . "', 1, " . $branch_id . ")) unit_increase, 
+    SUM( v2_latest_unit_status( sma_institutionlist.id, '" . $start . "', '" . $end . "', 2, " . $branch_id . ")) unit_decrease ,
     SUM( total_student_number ) total_student_number, SUM( supporter) supporter, 
     SUM(other_org_worker) other_org_worker, 
     SUM(total_female_student) total_female_student, 
@@ -351,7 +351,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
 
 
 
-            $this->data['supporter_org_but_org_info'] = $this->site->query("SELECT a.institution_type_child, prev_support_but_org(a.institution_type_child,'" . $prev . "', " . $branch_id . ") prev_, SUM(a.support_increase_but_org) support_increase_but_org, SUM(a.support_decrease_but_org) support_decrease_but_org
+            $this->data['supporter_org_but_org_info'] = $this->site->query("SELECT a.institution_type_child, v2_prev_support_but_org(a.institution_type_child,'" . $prev . "', " . $branch_id . ") prev_, SUM(a.support_increase_but_org) support_increase_but_org, SUM(a.support_decrease_but_org) support_decrease_but_org
    FROM
    (SELECT `institution_type_child`, COUNT(`sma_institution_supporter_organization`.id) support_increase_but_org, 
    0  support_decrease_but_org
@@ -373,7 +373,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
    GROUP BY a.institution_type_child ");
         } else {
 
-            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  prev_institution(institution_type_child, " . $prev . ", -1) prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
+            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  v2_prev_institution(institution_type_child, " . $prev . ", -1) prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
         institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution
        FROM `sma_institutionlist`
        WHERE `date` BETWEEN '" . $start . "' AND '" . $end . "' 
@@ -396,9 +396,9 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
 
 
             $this->data['institution_info'] = $this->site->query("SELECT     
-       institution_type_child,  SUM( organization_prev( sma_institutionlist.id, '" . $prev . "', 2,-1)) unit_prev, SUM(current_unit) current_unit, 
-      SUM( latest_unit_status( sma_institutionlist.id, '" . $start . "', '" . $end . "', 1, -1)) unit_increase, 
-      SUM( latest_unit_status( sma_institutionlist.id, '" . $start . "', '" . $end . "', 2, -1)) unit_decrease ,
+       institution_type_child,  SUM( v2_organization_prev( sma_institutionlist.id, '" . $prev . "', 2,-1)) unit_prev, SUM(current_unit) current_unit, 
+      SUM( v2_latest_unit_status( sma_institutionlist.id, '" . $start . "', '" . $end . "', 1, -1)) unit_increase, 
+      SUM( v2_latest_unit_status( sma_institutionlist.id, '" . $start . "', '" . $end . "', 2, -1)) unit_decrease ,
       SUM( total_student_number ) total_student_number, SUM( supporter) supporter, 
       SUM(other_org_worker) other_org_worker, 
       SUM(total_female_student) total_female_student, 
@@ -424,7 +424,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
 
 
 
-            $this->data['supporter_org_but_org_info'] = $this->site->query("SELECT a.institution_type_child, prev_support_but_org(a.institution_type_child,'" . $prev . "', -1) prev_, SUM(a.support_increase_but_org) support_increase_but_org, SUM(a.support_decrease_but_org) support_decrease_but_org
+            $this->data['supporter_org_but_org_info'] = $this->site->query("SELECT a.institution_type_child, v2_prev_support_but_org(a.institution_type_child,'" . $prev . "', -1) prev_, SUM(a.support_increase_but_org) support_increase_but_org, SUM(a.support_decrease_but_org) support_decrease_but_org
      FROM
      (SELECT `institution_type_child`, COUNT(`sma_institution_supporter_organization`.id) support_increase_but_org, 
      0  support_decrease_but_org
@@ -848,7 +848,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name,  {$this->db->dbprefix('institutionlist')}.org_type as org_type,t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,    organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev, current_unit, latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name,  {$this->db->dbprefix('institutionlist')}.org_type as org_type,t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,    v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev, current_unit, v2_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, v2_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease", FALSE)
                 ->from('institutionlist');
             $this->datatables->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->datatables->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -859,7 +859,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_organization', 1);
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name,  {$this->db->dbprefix('institutionlist')}.org_type as org_type,t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,    organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev, current_unit, latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1,-1) increase, latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, -1) decrease", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name,  {$this->db->dbprefix('institutionlist')}.org_type as org_type,t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,    v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev, current_unit, v2_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1,-1) increase, v2_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, -1) decrease", FALSE)
                 ->from('institutionlist');
             $this->datatables->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->datatables->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1286,7 +1286,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,  thana_code, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,  thana_code, v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, v2_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, v2_latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization", FALSE)
                 ->from('institutionlist');
             $this->datatables->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->datatables->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1296,7 +1296,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_active', 1);
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code, institution_name,  t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, thana_code,  organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1,-1) prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1) increase, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease ,`supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,is_organization", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code, institution_name,  t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, thana_code,  v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1,-1) prev, current_supporter_organization, v2_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1) increase, v2_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease ,`supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,is_organization", FALSE)
                 ->from('institutionlist');
             $this->datatables->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->datatables->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -1948,10 +1948,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         if ($branch_id) {
 
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, org_current_session( {$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date,current_unit,  
-                organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev_unit,
-                latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, 
-                latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, v2_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, v2_latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, v2_org_current_session( {$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date,current_unit,  
+                v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev_unit,
+                v2_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, 
+                v2_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease
          ", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
@@ -1962,10 +1962,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_active', 1);
         } else {
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, org_current_session({$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date,current_unit,  
-                organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev_unit,
-                latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, 
-                latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease ", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1," . $branch_id . ") prev, current_supporter_organization, v2_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, v2_latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, v2_org_current_session({$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date,current_unit,  
+                v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev_unit,
+                v2_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, 
+                v2_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease ", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -2756,7 +2756,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $this->db
-            ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code, institution_name,  t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,  organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1, -1) prev, current_supporter_organization, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1) increase, latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease ,current_unit,is_organization", FALSE);
+            ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code, institution_name,  t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,  v2_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',1, -1) prev, current_supporter_organization, v2_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1) increase, v2_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease ,current_unit,is_organization", FALSE);
         $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
         $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
 
