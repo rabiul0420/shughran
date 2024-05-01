@@ -72,9 +72,9 @@ $db['default'] = array(
 	 
 	 
         'hostname' => 'localhost',
-	    'username' => 'shughranz_reporting_bd',
-        'password' => 'W3h)-&U&X[Nd',
-	    'database' => 'shughranz_reporting_db', 
+	    'username' => 'root',
+        'password' => '',
+	    'database' => 'shughran', 
 	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'sma_',
