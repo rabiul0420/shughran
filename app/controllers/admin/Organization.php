@@ -1388,9 +1388,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function addinstitution($branch_id = NULL)
     {
 
-
         $this->sma->checkPermissions('index', TRUE);
-
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
@@ -1399,8 +1397,6 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
             admin_redirect('organization/addinstitution/' . $this->session->userdata('branch_id'));
         }
-
-
 
 
         $this->form_validation->set_rules('branch_id', lang("branch"), 'required');
@@ -3557,6 +3553,11 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
             }
 
+            $this->data['districts'] = $this->site->getAll('district');
+
+            $this->data['institutions'] = $this->organization_model->getAllInstitution(1);
+            // $this->data['institutiontype'] = $this->organization_model->getInstitutionType();
+            $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
 
 
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('থানা')));
@@ -4003,7 +4004,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         // if ($branch_id)
         //     $this->datatables->add_column("Actions", "", "id");
         // else
-         $this->datatables->add_column("Actions", $action, "id");
+        $this->datatables->add_column("Actions", $action, "id");
         //$this->datatables->unset_column("manpower_id");
         echo $this->datatables->generate();
     }
@@ -4084,7 +4085,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $this->sma->checkPermissions('index', TRUE);
 
-        
+
 
 
         $thana_info = $this->site->getByID('thana', 'id', $thana_id);
@@ -4184,21 +4185,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'update_at' => date("Y-m-d H:i:s"),
                 'note' => $this->input->post('note')
             );
-            if ($this->Owner || $this->Admin) { 
+            if ($this->Owner || $this->Admin) {
                 $data['date'] = $this->sma->fsd($this->input->post('date'));
             }
 
 
 
-            $datalog = array(
+            $datalog = array();
 
-                
-            );
-
-            if ($this->Owner || $this->Admin) { 
+            if ($this->Owner || $this->Admin) {
                 $datalog['date'] = $this->sma->fsd($this->input->post('date'));
-               }
-
+            }
         } elseif ($this->input->post('edit_thana')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect('organization/thanalist');
@@ -4206,8 +4203,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($this->form_validation->run() == true && $this->site->updateData('thana', $data, array('id' => $id))) {
 
-            if ($this->Owner || $this->Admin) { 
-                 $this->site->updateData('thana_log',$datalog,array('thana_id'=>$id,'in_out'=>1) );
+            if ($this->Owner || $this->Admin) {
+                $this->site->updateData('thana_log', $datalog, array('thana_id' => $id, 'in_out' => 1));
             }
 
             $this->session->set_flashdata('message', 'Updated successfully');
@@ -4263,7 +4260,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             );
             //new manpower
             $datawhere = array(
-                
+
                 'branch_id' => $this->session->userdata('branch_id'),
                 'id' => $id
             );
@@ -4271,19 +4268,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             if ($this->Owner || $this->Admin) {
                 unset($datawhere['branch_id']);
             }
-
- 
-
-
         } elseif ($this->input->post('edit_ideal_thana')) {
             $this->session->set_flashdata('error', validation_errors());
-            admin_redirect('organization/ideal_thana' . ($this->session->userdata('branch_id') ? '?branch_id='.$this->session->userdata('branch_id') : ''));
+            admin_redirect('organization/ideal_thana' . ($this->session->userdata('branch_id') ? '?branch_id=' . $this->session->userdata('branch_id') : ''));
         }
 
         if ($this->form_validation->run() == true && $this->site->updateData('thana_ideal_log', $data, $datawhere)) {
 
             $this->session->set_flashdata('message', 'Updated successfully');
-            admin_redirect('organization/ideal_thana' . ($this->session->userdata('branch_id') ? '?branch_id='.$this->session->userdata('branch_id') : ''));
+            admin_redirect('organization/ideal_thana' . ($this->session->userdata('branch_id') ? '?branch_id=' . $this->session->userdata('branch_id') : ''));
         } else {
 
 
