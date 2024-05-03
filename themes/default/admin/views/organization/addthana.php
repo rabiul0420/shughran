@@ -105,7 +105,7 @@ if (!empty($variants)) {
 
                         <hr>
                         <hr>
-                        <h1>প্রশাসনিক বিবরন</h1>
+                        <h2>প্রশাসনিক বিবরন</h2>
 
                         <label class="checkbox" for="is_mess">
                             <input type="checkbox" name="is_mess" value="1" id="is_mess" />
@@ -156,7 +156,7 @@ if (!empty($variants)) {
                         <hr>
 
 
-                        <h1>শিক্ষাপ্রতিষ্ঠানের বিবরন</h1>
+                        <h2>শিক্ষাপ্রতিষ্ঠানের বিবরন</h2>
 
 
                         <label class="checkbox" for="is_under_instute">
@@ -219,12 +219,11 @@ if (!empty($variants)) {
                         <hr>
 
 
-                        <h1>শিক্ষাপ্রতিষ্ঠানের বিবরন</h1>
+                        <h2>শিক্ষাপ্রতিষ্ঠানের বিবরন</h2>
                         <label class="checkbox" for="is_coaching">
                             <input type="checkbox" name="is_coaching" value="1" id="is_coaching" />
                             প্রাতিষ্ঠানিক কিন্তু কোচিং, প্রাইভেট সেন্টার, বিভাগ কিনা?
                         </label>
-
 
 
                         <div class="form-group">
@@ -394,7 +393,7 @@ if (!empty($variants)) {
 
 
                     <div class="form-group">
-                        <?php echo form_submit('add_transfer', 'Save', 'class="btn btn-primary"'); ?>
+                        <?php echo form_submit('add_transfer111', 'Save', 'class="btn btn-primary"'); ?>
                     </div>
 
                 </div>
@@ -418,8 +417,13 @@ if (!empty($variants)) {
             if (selectedValue === 'Institutional') {
                 $('.show_when_Institutional').show();
                 $('.show_when_Residential').hide();
+                $('#union_name').attr('required',false);
+                
+
 
             } else if (selectedValue === 'Residential') {
+                $('#union_name').attr('required',true);
+
                 $('.show_when_Residential').show();
                 $('.show_when_Institutional').hide();
 

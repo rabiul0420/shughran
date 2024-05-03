@@ -3467,7 +3467,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     {
 
         $this->load->admin_model('organization_model');
-        //   $this->sma->print_arrays($_POST, $_GET);
+
+
+        //   $this->sma->print_arrays(11111);
 
         $this->sma->checkPermissions('index', TRUE);
         $this->load->helper('security');
@@ -3481,6 +3483,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($this->form_validation->run() == true) {
 
+            // $this->sma->print_arrays($_POST, $_GET);
 
             // $this->sma->print_arrays($branchinfo->last_assocode);
             // $originalDate = $this->sma->fsd($this->input->post('date'));
