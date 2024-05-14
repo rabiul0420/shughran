@@ -3298,34 +3298,21 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
+
+
     function thanalist($branch_id = NULL)
     {
-
-
-
-
         $this->sma->checkPermissions('index', TRUE);
-
-
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
-
             $this->session->set_flashdata('warning', lang('access_denied'));
             admin_redirect('organization/thanalist/' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
             admin_redirect('organization/thanalist/' . $this->session->userdata('branch_id'));
         }
-
-
         $report_type = $this->report_type();
-
         if ($report_type == false)
             admin_redirect();
-
         $this->data['report_info'] = $report_type;
-
-
-
-
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
             $this->data['branches'] = $this->site->getAllBranches();
@@ -3337,13 +3324,19 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
-
         // $this->sma->print_arrays($this->data['branch']);
 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'থানা তালিকা'));
         $meta = array('page_title' => 'থানা তালিকা', 'bc' => $bc);
         $this->page_construct('organization/thanalist', $meta, $this->data, 'leftmenu/organization');
     }
+
+
+
+
+
+
+    // for ward  pppppppppppppp
 
 
 
@@ -3411,22 +3404,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
     function thana_pending($branch_id = NULL)
     {
-
-
-
-
         $this->sma->checkPermissions('index', TRUE);
-
-
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
-
             $this->session->set_flashdata('warning', lang('access_denied'));
             admin_redirect('organization/thana_pending/' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
             admin_redirect('organization/thana_pending/' . $this->session->userdata('branch_id'));
         }
-
-
         $report_type = $this->report_type();
 
         if ($report_type == false)
@@ -3499,6 +3483,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'thana_name' => $this->input->post('thana_name'),
                 'thana_code' => $this->input->post('thana_code'),
                 'org_type' => $this->input->post('org_type'),
+                'is_mess' => $this->input->post('is_mess'),
+                'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
+                'union_name' => $this->input->post('union_name'),
+                'ward_name' => $this->input->post('ward_name'),
+                'is_under_institute' => $this->input->post('is_under_institute'),
+                'institution_parent_id' => $this->input->post('institution_parent_id'),
+                'institution_type_id' => $this->input->post('institution_type_id'),
+                'name_institution' => $this->input->post('name_institution'),
 
                 // 'member_number' => $this->input->post('member_number'),
                 // 'associate_number' => $this->input->post('associate_number'),
@@ -3513,9 +3506,6 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'user_id' => $this->session->userdata('user_id'),
 
             );
-
-
-
 
 
             $thana_id = $this->site->insertData('thana', $data, 'id');
@@ -3943,16 +3933,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $this->sma->checkPermissions('index', TRUE);
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {
-            // $user = $this->site->getUser();
             $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
         }
 
 
 
         $report_type = $this->report_type();
-
-        //$this->sma->print_arrays($report_type);
-
         if ($report_type['is_current'] == 'annual')
             $from = $report_type['info']->startdate_half;
         else
@@ -3974,14 +3960,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $action = '<div class="text-center"><div class="btn-group text-left">'
             . '<button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">'
-            . lang('actions') . ' <span class="caret"></span></button>
-    <ul class="dropdown-menu pull-right" role="menu">
-         <li>' . $accept . '</li>';
+            . lang('actions') . ' <span class="caret"></span></button> <ul class="dropdown-menu pull-right" role="menu"> <li>' . $accept . '</li>';
 
-        $action .= '<li class="divider"></li>
-        <li>' . $cancel . '</li>
-        </ul>
-    </div></div>';
+        $action .= '<li class="divider"></li> <li>' . $cancel . '</li> </ul> </div></div>';
 
 
         $this->load->library('datatables');
@@ -4707,4 +4688,414 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         echo $this->datatables->generate();
     }
+
+
+    //////////////////////////////////////////////////////////////////
+    //////////////////////  ward start ///////////////////////////
+    //////////////////////////////////////////////////////////////// 
+
+    function wardlist($branch_id = NULL)
+    {
+        $this->sma->checkPermissions('index', TRUE);
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/wardlist/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/wardlist/' . $this->session->userdata('branch_id'));
+        }
+        $report_type = $this->report_type();
+        if ($report_type == false)
+            admin_redirect();
+        $this->data['report_info'] = $report_type;
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+        // $this->sma->print_arrays($this->data['branch']);
+
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'ওয়ার্ড তালিকা'));
+        $meta = array('page_title' => 'ওয়ার্ড তালিকা', 'bc' => $bc);
+        $this->page_construct('organization/wardlist', $meta, $this->data, 'leftmenu/organization');
+    }
+
+
+    function getListward($branch_id = NULL)
+    {
+        $this->sma->checkPermissions('index', TRUE);
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
+
+        $report_type = $this->report_type();
+
+        $edit_link = anchor('admin/organization/editward/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+
+        $this->load->library('datatables');
+
+        if ($branch_id) {
+            $this->datatables
+                ->select($this->db->dbprefix('ward') . ".id , t1.name as branch_name, {$this->db->dbprefix('ward')}.ward_name, {$this->db->dbprefix('ward')}.ward_code, {$this->db->dbprefix('ward')}.org_type, 0 as member_number, 0 as associate_number, {$this->db->dbprefix('ward')}.worker_number, {$this->db->dbprefix('ward')}.supporter_number, {$this->db->dbprefix('ward')}.ward_number, {$this->db->dbprefix('ward')}.unit_number, {$this->db->dbprefix('ward')}.is_ideal_ward, {$this->db->dbprefix('ward')}.note", FALSE)
+                ->join('branches as t1', 't1.id=ward.branch_id', 'left')
+                ->from('ward')->where('ward.branch_id', $branch_id);
+        } else {
+            $this->datatables
+                ->select($this->db->dbprefix('ward') . ".id , t1.name as branch_name, {$this->db->dbprefix('ward')}.ward_name, {$this->db->dbprefix('ward')}.ward_code, {$this->db->dbprefix('ward')}.org_type, 0 as member_number, 0 as associate_number, {$this->db->dbprefix('ward')}.worker_number, {$this->db->dbprefix('ward')}.supporter_number, {$this->db->dbprefix('ward')}.ward_number, {$this->db->dbprefix('ward')}.unit_number, {$this->db->dbprefix('ward')}.is_ideal_ward, {$this->db->dbprefix('ward')}.note", FALSE)
+                ->join('branches as t1', 't1.id=ward.branch_id', 'left')
+                ->from('ward');
+        }
+
+        $this->datatables->where('((is_pending = 1 AND in_out = 2) OR (is_pending = 2 AND in_out = 1))');
+
+        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary\" title='" . 'Decrease' . "' href='" . admin_url('organization/warddecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+        $this->datatables->add_column("Decrease", $decrease, "id");
+        $this->datatables->add_column("Actions", $edit_link, "id");
+        echo $this->datatables->generate();
+    }
+
+    function addward($id = NULL)
+    {
+        $this->load->admin_model('organization_model');
+
+        $this->sma->checkPermissions('index', TRUE);
+        $this->load->helper('security');
+
+        $branches = $this->site->getAllBranches();
+
+        $this->form_validation->set_rules('ward_name', 'Ward Name', 'required');
+        $this->form_validation->set_rules('ward_code', 'Ward Code', 'required');
+
+        if ($this->form_validation->run() == true) {
+
+            $data = array(
+                'date' => $this->sma->fsd($this->input->post('date')),
+                'branch_id' => $this->input->post('branch_id'),
+                'ward_name' => $this->input->post('ward_name'),
+                'ward_code' => $this->input->post('ward_code'),
+                'org_type' => $this->input->post('org_type'),
+                'is_mess' => $this->input->post('is_mess'),
+                'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
+                'union_name' => $this->input->post('union_name'),
+                'is_under_institute' => $this->input->post('is_under_institute'),
+                'institution_parent_id' => $this->input->post('institution_parent_id'),
+                'institution_type_id' => $this->input->post('institution_type_id'),
+                'name_institution' => $this->input->post('name_institution'),
+                'worker_number' => $this->input->post('worker_number'),
+                'supporter_number' => $this->input->post('supporter_number'),
+                'ward_number' => $this->input->post('ward_number'),
+                'unit_number' => $this->input->post('unit_number'),
+                'is_ideal_ward' => $this->input->post('is_ideal_ward'),
+                'is_pending' => 2,
+                'note' => $this->input->post('note'),
+                'user_id' => $this->session->userdata('user_id'),
+            );
+
+            $ward_id = $this->site->insertData('ward', $data, 'id');
+
+            if ($this->input->post('is_ideal_ward') == 1) {
+                $data_log = array(
+                    'branch_id' => ($this->Owner || $this->Admin) ? $this->input->post('branch_id') : $this->session->userdata('branch_id'),
+                    'date' => date('Y-m-d'),
+                    'user_id' => $this->session->userdata('user_id'),
+                    'is_ideal_ward' => 1,
+                    'is_pending' => 1,
+                    'ward_id' => $ward_id
+                );
+
+                $this->site->insertData('ward_ideal_log', $data_log);
+            }
+
+            $this->session->set_flashdata('message', 'Waiting for approval by the central chairman.');
+
+            admin_redirect('organization/addward');
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+
+            $this->data['branches'] = $this->site->getAllBranches();
+
+            if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+                $this->data['branch_id'] = NULL;
+                $this->data['branch'] = NULL;
+            } else {
+                $this->data['branch_id'] = $this->session->userdata('branch_id');
+                $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+            }
+
+            $this->data['districts'] = $this->site->getAll('district');
+            $this->data['institutions'] = $this->organization_model->getAllInstitution(1);
+            $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
+
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('Ward')));
+            $meta = array('page_title' => lang('Ward'), 'bc' => $bc);
+            $this->page_construct('organization/addward', $meta, $this->data, 'leftmenu/organization');
+        }
+    }
+
+    function ward_pending($branch_id = NULL)
+    {
+        $this->sma->checkPermissions('index', TRUE);
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/ward_pending/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/ward_pending/' . $this->session->userdata('branch_id'));
+        }
+
+        $report_type = $this->report_type();
+        if ($report_type == false)
+            admin_redirect();
+
+        $this->data['report_info'] = $report_type;
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'ওয়ার্ড তালিকা'));
+        $meta = array('page_title' => 'ওয়ার্ড পেন্ডিং তালিকা', 'bc' => $bc);
+
+        $this->page_construct('organization/ward_pending', $meta, $this->data, 'leftmenu/organization');
+    }
+    function getListPendingWard($branch_id = NULL)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
+
+        $report_type = $this->report_type();
+        if ($report_type['is_current'] == 'annual')
+            $from = $report_type['info']->startdate_half;
+        else
+            $from = $report_type['start'];
+
+        $to = $report_type['end'];
+        $prev = $report_type['last_year'];
+
+        $accept = "<a href='#' class='tip po' title='<b>Accept Ward</b>' data-content=\"<p>"
+            . lang('r_u_sure') . "</p><a class='btn btn-danger' id='a__$1' href='" . admin_url('organization/wardaccept/$1') . "'>"
+            . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-check\"></i> "
+            . 'Accept' . "</a>";
+
+        $cancel = "<a href='#' class='tip po' title='<b>Cancel Ward</b>' data-content=\"<p>"
+            . lang('r_u_sure') . "</p><a class='btn btn-danger' id='a__$1' href='" . admin_url('organization/wardcancel/$1') . "'>"
+            . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i> "
+            . 'Cancel' . "</a>";
+
+        $action = '<div class="text-center"><div class="btn-group text-left">'
+            . '<button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">'
+            . lang('actions') . ' <span class="caret"></span></button> <ul class="dropdown-menu pull-right" role="menu"> <li>' . $accept . '</li>';
+
+        $action .= '<li class="divider"></li> <li>' . $cancel . '</li> </ul> </div></div>';
+
+        $this->load->library('datatables');
+
+
+        if ($branch_id) {
+            $this->datatables
+                ->select($this->db->dbprefix('ward') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('ward')}.ward_name, {$this->db->dbprefix('ward')}.org_type, member_ward_count( {$this->db->dbprefix('ward')}.branch_id, {$this->db->dbprefix('ward')}.id) as member_number, associate_ward_count( {$this->db->dbprefix('ward')}.branch_id, {$this->db->dbprefix('ward')}.id)  as associate_number, {$this->db->dbprefix('ward')}.worker_number, {$this->db->dbprefix('ward')}.supporter_number, {$this->db->dbprefix('ward')}.ward_number, {$this->db->dbprefix('ward')}.unit_number, {$this->db->dbprefix('ward')}.is_ideal_ward, {$this->db->dbprefix('ward')}.note, {$this->db->dbprefix('ward')}.in_out", FALSE)
+                ->join('branches as t1', 't1.id=ward.branch_id', 'left')
+                ->from('ward')
+                ->where('ward.branch_id', $branch_id);
+        } else {
+            $this->datatables
+                ->select($this->db->dbprefix('ward') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('ward')}.ward_name, {$this->db->dbprefix('ward')}.org_type, member_ward_count( {$this->db->dbprefix('ward')}.branch_id, {$this->db->dbprefix('ward')}.id) as member_number, associate_ward_count( {$this->db->dbprefix('ward')}.branch_id, {$this->db->dbprefix('ward')}.id)  as associate_number, {$this->db->dbprefix('ward')}.worker_number, {$this->db->dbprefix('ward')}.supporter_number, {$this->db->dbprefix('ward')}.ward_number, {$this->db->dbprefix('ward')}.unit_number, {$this->db->dbprefix('ward')}.is_ideal_ward, {$this->db->dbprefix('ward')}.note, {$this->db->dbprefix('ward')}.in_out", FALSE)
+                ->join('branches as t1', 't1.id=ward.branch_id', 'left')
+                ->from('ward');
+        }
+
+
+
+
+
+        $this->datatables->where('is_pending', 1);
+        $this->datatables->add_column("Actions", $action, "id");
+        echo $this->datatables->generate();
+    }
+
+    //////////////////////////////////////////////////////////////////
+    //////////////////////  ward end///////////////////////////
+    //////////////////////////////////////////////////////////////// 
+
+
+
+    //////////////////////////////////////////////////////////////////
+    //////////////////////  unitlist start ///////////////////////////
+    //////////////////////////////////////////////////////////////// 
+
+    function unitlist($branch_id = NULL)
+    {
+        $this->sma->checkPermissions('index', TRUE);
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/unitlist/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/unitlist/' . $this->session->userdata('branch_id'));
+        }
+        $report_type = $this->report_type();
+        if ($report_type == false)
+            admin_redirect();
+        $this->data['report_info'] = $report_type;
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+        // $this->sma->print_arrays($this->data['branch']);
+
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'ইউনিট তালিকা'));
+        $meta = array('page_title' => 'ইউনিট তালিকা', 'bc' => $bc);
+        $this->page_construct('organization/unitlist', $meta, $this->data, 'leftmenu/organization');
+    }
+
+    function getListunit($branch_id = NULL)
+    {
+        $this->sma->checkPermissions('index', TRUE);
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
+
+        $report_type = $this->report_type();
+
+        $edit_link = anchor('admin/organization/editunit/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+
+        $this->load->library('datatables');
+
+        if ($branch_id) {
+            $this->datatables
+                ->select($this->db->dbprefix('unit') . ".id , t1.name as branch_name, {$this->db->dbprefix('unit')}.unit_name, {$this->db->dbprefix('unit')}.unit_code, {$this->db->dbprefix('unit')}.org_type, 0 as member_number, 0 as associate_number, {$this->db->dbprefix('unit')}.worker_number, {$this->db->dbprefix('unit')}.supporter_number, {$this->db->dbprefix('unit')}.unit_number, {$this->db->dbprefix('unit')}.subunit_number, {$this->db->dbprefix('unit')}.is_ideal_unit, {$this->db->dbprefix('unit')}.note", FALSE)
+                ->join('branches as t1', 't1.id=unit.branch_id', 'left')
+                ->from('unit')->where('unit.branch_id', $branch_id);
+        } else {
+            $this->datatables
+                ->select($this->db->dbprefix('unit') . ".id , t1.name as branch_name, {$this->db->dbprefix('unit')}.unit_name, {$this->db->dbprefix('unit')}.unit_code, {$this->db->dbprefix('unit')}.org_type, 0 as member_number, 0 as associate_number, {$this->db->dbprefix('unit')}.worker_number, {$this->db->dbprefix('unit')}.supporter_number, {$this->db->dbprefix('unit')}.unit_number, {$this->db->dbprefix('unit')}.subunit_number, {$this->db->dbprefix('unit')}.is_ideal_unit, {$this->db->dbprefix('unit')}.note", FALSE)
+                ->join('branches as t1', 't1.id=unit.branch_id', 'left')
+                ->from('unit');
+        }
+
+        $this->datatables->where('((is_pending = 1 AND in_out = 2) OR (is_pending = 2 AND in_out = 1))');
+
+        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary\" title='" . 'Decrease' . "' href='" . admin_url('organization/unitdecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+        $this->datatables->add_column("Decrease", $decrease, "id");
+        $this->datatables->add_column("Actions", $edit_link, "id");
+        echo $this->datatables->generate();
+    }
+
+
+    function addunit($id = NULL)
+    {
+        $this->load->admin_model('organization_model');
+
+        $this->sma->checkPermissions('index', TRUE);
+        $this->load->helper('security');
+
+        $branches = $this->site->getAllBranches();
+
+        $this->form_validation->set_rules('unit_name', 'Unit Name', 'required');
+        $this->form_validation->set_rules('unit_code', 'Unit Code', 'required');
+
+        if ($this->form_validation->run() == true) {
+
+            $data = array(
+                'date' => $this->sma->fsd($this->input->post('date')),
+                'branch_id' => $this->input->post('branch_id'),
+                'unit_name' => $this->input->post('unit_name'),
+                'unit_code' => $this->input->post('unit_code'),
+                'org_type' => $this->input->post('org_type'),
+                'is_mess' => $this->input->post('is_mess'),
+                'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
+                'union_name' => $this->input->post('union_name'),
+                'is_under_institute' => $this->input->post('is_under_institute'),
+                'institution_parent_id' => $this->input->post('institution_parent_id'),
+                'institution_type_id' => $this->input->post('institution_type_id'),
+                'name_institution' => $this->input->post('name_institution'),
+                'worker_number' => $this->input->post('worker_number'),
+                'supporter_number' => $this->input->post('supporter_number'),
+                // 'ward_number' => $this->input->post('ward_number'),
+                'subunit_number' => $this->input->post('subunit_number'),
+                'is_ideal_unit' => $this->input->post('is_ideal_unit'),
+                'is_pending' => 2,
+                'note' => $this->input->post('note'),
+                'user_id' => $this->session->userdata('user_id'),
+            );
+
+            $unit_id = $this->site->insertData('unit', $data, 'id');
+
+            if ($this->input->post('is_ideal_unit') == 1) {
+                $data_log = array(
+                    'branch_id' => ($this->Owner || $this->Admin) ? $this->input->post('branch_id') : $this->session->userdata('branch_id'),
+                    'date' => date('Y-m-d'),
+                    'user_id' => $this->session->userdata('user_id'),
+                    'is_ideal_unit' => 1,
+                    'is_pending' => 1,
+                    'unit_id' => $unit_id
+                );
+
+                $this->site->insertData('unit_ideal_log', $data_log);
+            }
+
+            $this->session->set_flashdata('message', 'Waiting for approval by the central chairman.');
+
+            admin_redirect('organization/addunit');
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+
+            $this->data['branches'] = $this->site->getAllBranches();
+
+            if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+                $this->data['branch_id'] = NULL;
+                $this->data['branch'] = NULL;
+            } else {
+                $this->data['branch_id'] = $this->session->userdata('branch_id');
+                $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+            }
+
+            $this->data['districts'] = $this->site->getAll('district');
+            $this->data['institutions'] = $this->organization_model->getAllInstitution(1);
+            $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
+
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('Unit')));
+            $meta = array('page_title' => lang('Unit'), 'bc' => $bc);
+            $this->page_construct('organization/addunit', $meta, $this->data, 'leftmenu/organization');
+        }
+    }
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////
+    //////////////////////  unitlist end///////////////////////////
+    //////////////////////////////////////////////////////////////// 
+
+
+
+
+
+
+
+
 }

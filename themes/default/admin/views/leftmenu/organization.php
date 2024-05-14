@@ -157,9 +157,47 @@
                                                 <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা ঘাটতি তালিকা"; ?></span>
                                             </a>
                                         </li>
-  
+
                                     </ul>
                                 </li>
+
+
+
+                                <li class="mm_worker_decrease">
+                                    <a class="dropmenu" href="#">
+                                        <i class="fa fa-cog"></i><span class="text"> <?= 'ওয়ার্ড'; ?> </span>
+                                        <span class="chevron closed"></span>
+                                    </a>
+                                    <ul style="<?php echo ($this->uri->segment(2) == 'organization') ? 'display:block' : '' ?>">
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'wardlist')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/wardlist') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+
+
+                                    </ul>
+                                </li>
+
+                                <li class="mm_worker_decrease">
+                                    <a class="dropmenu" href="#">
+                                        <i class="fa fa-cog"></i><span class="text"> <?= 'উপশাখা '; ?> </span>
+                                        <span class="chevron closed"></span>
+                                    </a>
+                                    <ul style="<?php echo ($this->uri->segment(2) == 'organization') ? 'display:block' : '' ?>">
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'unitlist')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/unitlist') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "উপশাখা  তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+
 
 
 

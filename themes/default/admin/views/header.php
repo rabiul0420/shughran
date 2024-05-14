@@ -386,11 +386,11 @@
 
                                         <li class="dropdown tmp_hidden">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                                থানা <span class="caret"></span>
+                                                থানা111 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="<?= admin_url('organization/thanalist') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "থানা তালিকা"; ?></span>
+                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "থানা তালিকা111"; ?></span>
                                                     </a></li>
                                                 <li> <a href="<?= admin_url('organization/increaselist_thana') ?>">
                                                         <i class="fa fa-cogs"></i><span class="text"> <?= "থানা বৃদ্ধি তালিকা"; ?></span>
@@ -414,6 +414,17 @@
                                         </li>
 
 
+                                        <li class="dropdown tmp_hidden">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                ওয়ার্ড <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="<?= admin_url('organization/wardlist') ?>">
+                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড তালিকা"; ?></span>
+                                                    </a></li>                                              
+                                               
+                                            </ul>
+                                        </li>
 
 
 
