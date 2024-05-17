@@ -60,12 +60,38 @@ $vars = !empty($variants) ? array_map('addslashes', array_column($variants, 'nam
                             <?php echo form_input('date', '', 'class="form-control fixed_date" id="date" readonly required="required"'); ?>
                         </div>
                     </div>
+
+
                     <div class="form-group">
                         <?= lang("সাংগঠনিক উপশাখা নাম", "unit_name") ?>
                         <?= form_input('unit_name', (isset($_POST['unit_name']) ? $_POST['unit_name'] : ''), 'class="form-control" id="unit_name"  required="required" '); ?>
                     </div>
 
-                    
+
+
+                    <div class="form-group">
+                        <?= lang("সাংগঠনিক ওয়ার্ড/ইউনিয়নের নাম", "ward"); ?>
+                        <?php
+                        $wh[''] = lang('select') . ' ' . lang('ward');
+                        if ($this->Admin || $this->Owner)
+                            $flag = 1;
+                        else
+                            $flag = 2;
+                        foreach ($wards as $ward) {
+                            if ($flag == 1)
+                                $wh[$ward->id] = $ward->name;
+                            elseif ($ward->id == $this->session->userdata('ward_id'))
+                                $wh[$ward->id] = $ward->name;
+                        }
+                        echo form_dropdown('ward_id', $wh, (isset($_POST['ward_id']) ? $_POST['ward_id'] : ''), 'id="ward_id"  class="form-control select" style="width:100%;"  required="required"       ');
+                        ?>
+                    </div>
+
+
+
+
+
+
                     <div class="form-group">
                         <?= lang('ইউনিট কোড', 'unit_code'); ?>
                         <?php

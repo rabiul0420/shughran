@@ -1,41 +1,42 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+
 <style>
-    #PRData th:nth-child(2),
-    #PRData2 th:nth-child(2),
-    #PRData5 th:nth-child(2),
-    #PRData4 th:nth-child(2) {
+    #UposhakhaData th:nth-child(2),
+    #UposhakhaData2 th:nth-child(2),
+    #UposhakhaData5 th:nth-child(2),
+    #UposhakhaData4 th:nth-child(2) {
         width: 5% !important;
     }
 
-    #PRData th:nth-child(1),
-    #PRData2 th:nth-child(1),
-    #PRData5 th:nth-child(1),
-    #PRData4 th:nth-child(1) {
+    #UposhakhaData th:nth-child(1),
+    #UposhakhaData2 th:nth-child(1),
+    #UposhakhaData5 th:nth-child(1),
+    #UposhakhaData4 th:nth-child(1) {
         width: 5% !important;
     }
 
-    #PRData5 th:nth-child(13) {
+    #UposhakhaData5 th:nth-child(13) {
         width: 10% !important;
     }
 
-    #PRData5 th:nth-child(15) {
+    #UposhakhaData5 th:nth-child(15) {
         width: 7% !important;
     }
 </style>
 
 <script>
-    function unit_type(type) {
+    function uposhakha_type(type) {
         return type == 'Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠানিক';
     }
 
-    function yes_no(is_ideal_unit) {
-        return is_ideal_unit == 1 ? 'Yes' : 'No';
+    function yes_no(is_ideal_uposhakha) {
+        return is_ideal_uposhakha == 1 ? 'Yes' : 'No';
     }
 
-    var oTable3;
+    var oTableUposhakha;
 
     $(document).ready(function() {
-        oTable3 = $('#PRData5').dataTable({
+        oTableUposhakha = $('#UposhakhaData5').dataTable({
             "aaSorting": [
                 [2, "asc"],
                 [3, "asc"]
@@ -47,7 +48,7 @@
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
             'bProcessing': true,
             'bServerSide': true,
-            'sAjaxSource': '<?= admin_url('organization/getListunit' . ($branch_id ? '/' . $branch_id : '')) ?>',
+            'sAjaxSource': '<?= admin_url('organization/getListUposhakha' . ($branch_id ? '/' . $branch_id : '')) ?>',
             'fnServerData': function(sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -62,7 +63,7 @@
                 });
             },
             'fnRowCallback': function(nRow, aData, iDisplayIndex) {
-                var oSettings = oTable3.fnSettings();
+                var oSettings = oTableUposhakha.fnSettings();
                 nRow.id = aData[0];
                 $(nRow).attr("status", '1');
                 return nRow;
@@ -71,7 +72,7 @@
                 "bSortable": false,
                 "mRender": checkbox
             }, null, null, null, {
-                "mRender": unit_type
+                "mRender": uposhakha_type
             }, null, null, null, null, null, null, {
                 "mRender": yes_no
             }, null, {
@@ -98,31 +99,33 @@
 <?php if ($Owner || $GP['bulk_actions']) {
     echo admin_form_open('organization/organization_actions' . ($branch_id ? '/' . $branch_id : ''), 'id="action-form"');
 } ?>
+
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'ইউনিট তালিকা   ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
-
+        <h2 class="blue">
+            <i class="fa-fw fa fa-barcode"></i><?= 'উপশাখা তালিকা   ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
         </h2>
 
         <div class="box-icon">
             <ul class="btn-tasks">
                 <li class="dropdown">
-                    <a href="<?= admin_url('organization/addunit') ?>">
-                        <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' ইউনিট বৃদ্ধি করুন' ?></i>
+                    <a href="<?= admin_url('organization/add_uposhakha') ?>">
+                        <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' উপশাখা যোগ করুন' ?></i>
                     </a>
                 </li>
 
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("শাখা") ?>"></i></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("শাখা") ?>"></i>
+                        </a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('organization/unitlist') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
+                            <li><a href="<?= admin_url('organization/uposhakha_list') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('organization/unitlist/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('organization/uposhakha_list/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -131,31 +134,31 @@
             </ul>
         </div>
     </div>
+
     <div class="box-content">
         <div class="row">
             <div class="col-lg-12">
                 <p class="introtext hidden"><?= lang('list_results'); ?></p>
 
                 <div class="table-responsive">
-                    <table id="PRData5" class="table table-bordered table-condensed table-hover table-striped">
+                    <table id="UposhakhaData5" class="table table-bordered table-condensed table-hover table-striped">
                         <thead>
                             <tr class="primary">
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkth" type="checkbox" name="check" />
                                 </th>
-                                <th><?= 'শাখা'  ?></th>
-                                <th><?= 'ইউনিটের নাম' ?></th>
-                                <th><?= 'কোড'  ?></th>
+                                <th><?= 'শাখা' ?></th>
+                                <th><?= 'উপশাখার নাম' ?></th>
+                                <th><?= 'কোড' ?></th>
                                 <th><?= 'ধরন' ?></th>
                                 <th><?= 'সদস্য' ?></th>
-                                <th><?= 'সাথী ' ?></th>
-                                <th><?= 'কর্মী ' ?></th>
+                                <th><?= 'সাথী' ?></th>
+                                <th><?= 'কর্মী' ?></th>
                                 <th>সমর্থক </th>
-                                <th>ইউনিট </th>
+                                <th>ওয়ার্ড </th>
                                 <th>উপশাখা </th>
-                                <th>আদর্শ ইউনিট </th>
-
-                                <th><?= 'নোট'  ?></th>
+                                <th>আদর্শ ওয়ার্ড </th>
+                                <th><?= 'নোট' ?></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -193,6 +196,7 @@
         </div>
     </div>
 </div>
+
 <?php if ($Owner || $GP['bulk_actions']) { ?>
     <div style="display: none;">
         <input type="hidden" name="form_action" value="" id="form_action" />
