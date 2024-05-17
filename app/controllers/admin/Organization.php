@@ -4704,4 +4704,76 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         echo $this->datatables->generate();
     }
+
+
+
+
+
+    function institutiondetail($id)
+    {
+        $this->sma->checkPermissions();
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        }
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+        $this->data['institutions'] = $this->organization_model->getAllInstitution();
+
+        $where = " ";
+
+        if ($branch_id) {
+            $where = " branch = $branch_id AND ";
+            $this->data['detailinfo'] = $this->getEntryInfo($this->data['institutions'], $branch_id);
+        } else
+            $this->data['detailinfo'] = '';
+
+        $last_year =  date("Y", strtotime("-1 year"));
+        $report_type = $this->report_type();
+
+        $this->sma->print_arrays($report_type);
+
+        $this->data['org_summary'] = $this->getorg_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $report_type);
+
+
+        $this->data['org_summary_sma'] = $this->getorg_summary_prev('annual', $report_type['last_year'], $branch_id);
+
+        $this->data['nor_org'] = $this->get_no_org($branch_id);
+
+        $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
+
+
+
+        $this->data['institution_manpower_record'] = $this->site->query("SELECT   
+        SUM(CASE WHEN orgstatus_id = 2 OR orgstatus_id = 12 THEN 1 ELSE 0 END) associate ,  
+        SUM(CASE WHEN orgstatus_id = 1 THEN 1 ELSE 0 END ) member ,  institution_type_child
+        FROM `sma_manpower`  WHERE $where  `orgstatus_id` IN (1,2,12) GROUP BY `institution_type_child`");
+
+
+
+
+
+        //$this->sma->print_arrays($this->data['institution_manpower_record']);
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Organization'));
+        $meta = array('page_title' => 'Organization', 'bc' => $bc);
+        if ($branch_id) {
+            $this->page_construct2('organization/index_entry', $meta, $this->data, 'leftmenu/organization');
+        } else
+            $this->page_construct2('organization/index', $meta, $this->data, 'leftmenu/organization');
+    }
+
+
 }
