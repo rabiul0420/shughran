@@ -41,23 +41,58 @@ if ( ! function_exists('shop_form_open_multipart')) {
 
 
  
+// if ( ! function_exists('report_submit')) {
+// 	function report_submit($department_id, $submitinfo) {
+// 		 foreach($submitinfo as $key=>$value) {
+// 			  if($key=='department_'.$department_id)
+// 					return $value;
+// 		 }
+// 		 return 2;
+// 	}
+// }
+
+
+// if ( ! function_exists('report_submit_comment')) {
+// 	function report_submit_comment($department_id, $submitinfo) {
+// 		 foreach($submitinfo as $key=>$value) {
+// 			  if($key=='comment_'.$department_id)
+// 					return $value;
+// 		 }
+// 		 return '';
+// 	}
+// }
+
+
+
+
+ 
 if ( ! function_exists('report_submit')) {
-	function report_submit($department_id, $submitinfo) {
-		 foreach($submitinfo as $key=>$value) {
-			  if($key=='department_'.$department_id)
-					return $value;
+	function report_submit($branch_id, $submitinfo) {
+
+		 
+		 foreach($submitinfo as $value) {
+
+			 
+			  if($value['branch_id'] == $branch_id)
+					return  (object)$value;
 		 }
 		 return 2;
 	}
 }
 
 
-if ( ! function_exists('report_submit_comment')) {
-	function report_submit_comment($department_id, $submitinfo) {
-		 foreach($submitinfo as $key=>$value) {
-			  if($key=='comment_'.$department_id)
-					return $value;
-		 }
-		 return '';
-	}
-}
+// if ( ! function_exists('report_submit_comment')) {
+// 	function report_submit_comment($branch_id, $submitinfo) {
+// 		 foreach($submitinfo as $key=>$value) {
+// 			  if($value->branch_id==$branch_id)
+// 					return $value;
+// 		 }
+// 		 return '';
+// 	}
+// }
+
+
+
+
+
+ 

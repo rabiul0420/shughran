@@ -312,14 +312,14 @@ class Research extends MY_Controller
 
             $this->db->select('*');
             $this->db->where('branch_id',$branch_id);
-            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
  
             $query = $this->db->get('gobeshona_gobeshonay_agrohi');
             $this->data['gobeshona_gobeshonay_agrohi'] = $query;
 
             $this->db->select('*');
             $this->db->where('branch_id',$branch_id);
-            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
             $query = $this->db->get('gobeshona_gobeshonaroto_vai');
             $this->data['gobeshona_gobeshonaroto_vai'] = $query;

@@ -16,12 +16,12 @@
 				 
 if($report_info['is_current'] || $report_info['year'] == date('Y')) {
 	if($report_info['type']=='annual'){
-		echo anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষান্মাসিক '.$report_info['year']); 
-		echo  "&nbsp;|&nbsp;".anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : ''),'জুলাই-নভেম্বর\''.$report_info['year']); 
+		echo anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষাণ্মাসিক '.$report_info['year']); 
+		echo  "&nbsp;|&nbsp;".anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : ''),'জুন-নভেম্বর\''.$report_info['year']); 
 		echo "&nbsp;|&nbsp;";   echo anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
 	}
 	else{
-		 echo anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : ''),'ষান্মাসিক '.$report_info['year']); 
+		 echo anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : ''),'ষাণ্মাসিক '.$report_info['year']); 
 		echo  "&nbsp;|&nbsp;".anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['last_year'],'বার্ষিক '.$report_info['last_year']);
 		
 	}
@@ -34,7 +34,7 @@ else {
 	}
 	else{
 	  
-		echo   anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$report_info['year'],'ষান্মাসিক '.$report_info['year']);
+		echo   anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$report_info['year'],'ষাণ্মাসিক '.$report_info['year']);
 		
 	}
 
@@ -63,7 +63,7 @@ else {
 		for($i = date('Y')-1; $i>=2019; $i-- ){
 			echo   ' <li>'.anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$i,'বার্ষিক '.$i).' </li>';
 		
-		echo   ' <li>'.anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$i,'ষান্মাসিক '.$i).' </li>';
+		echo   ' <li>'.anchor('admin/dawat/mosque'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$i,'ষাণ্মাসিক '.$i).' </li>';
 		
 
 		}
@@ -148,7 +148,7 @@ font: 18px SolaimanLipi, sans-serif;
 <td colspan="3" ><?php $prev =  $lastyearmosque[0]['mosque_number']; if($report_info['prev_record'])  echo $prev; ?></td>
 <td colspan="3"><?php  if($report_info['prev_record'])  echo  $prev + $detailinfo['mosquebaseworkinfo']->work_increase_mosque - $detailinfo['mosquebaseworkinfo']->work_decrease_mosque; ?></td>
 
-<td colspan="3"><a href="#"  class="editable editable-click"   data-type="number" data-table="mosquebasework" data-pk="<?php echo $detailinfo['mosquebaseworkinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="work_increase_mosque" data-title="Enter"><?php echo $detailinfo['mosquebaseworkinfo']->work_increase_mosque;?></a></td>
+<td colspan="4"><a href="#"  class="editable editable-click"   data-type="number" data-table="mosquebasework" data-pk="<?php echo $detailinfo['mosquebaseworkinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="work_increase_mosque" data-title="Enter"><?php echo $detailinfo['mosquebaseworkinfo']->work_increase_mosque;?></a></td>
 <td colspan="3"><a href="#"  class="editable editable-click"   data-type="number" data-table="mosquebasework" data-pk="<?php echo $detailinfo['mosquebaseworkinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="work_decrease_mosque" data-title="Enter"><?php echo $detailinfo['mosquebaseworkinfo']->work_decrease_mosque;?></a></td>
 <td colspan="4"><a href="#"  class="editable editable-click"   data-type="number" data-table="mosquebasework" data-pk="<?php echo $detailinfo['mosquebaseworkinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="dars_quran" data-title="Enter"><?php echo $detailinfo['mosquebaseworkinfo']->dars_quran;?></a></td>
 <td colspan="3"><a href="#"  class="editable editable-click"   data-type="number" data-table="mosquebasework" data-pk="<?php echo $detailinfo['mosquebaseworkinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="dars_hadith" data-title="Enter"><?php echo $detailinfo['mosquebaseworkinfo']->dars_hadith;?></a></td>

@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group ">
                 <input type="radio" class="checkbox" name="scope" value="1"
                        id="customer" <?= $notification->scope == '1' ? 'checked="checked"' : ''; ?>/><label
                     for="customer" class="padding05"><?= lang('for_customers_only') ?></label>
@@ -57,7 +57,9 @@
     </div>
     <?php echo form_close(); ?>
 </div>
+
 <?= $modal_js ?>
+
 <script type="text/javascript" src="<?= $assets ?>js/custom.js"></script>
 <script type="text/javascript" charset="UTF-8">
     $.fn.datetimepicker.dates['sma'] = <?=$dp_lang?>;

@@ -230,9 +230,9 @@ class Dawat extends MY_Controller
             $this->excel->getActiveSheet()->SetCellValue('F8', 'গ্রুপ দাওয়াত');
             $this->excel->getActiveSheet()->SetCellValue('G8', 'দাওয়াতী গ্রুপ প্রেরন');
             $this->excel->getActiveSheet()->SetCellValue('H8', 'স্কুল দাওয়াতী দশক');
-            $this->excel->getActiveSheet()->SetCellValue('I8', 'মাদ্রাসা দাওয়াতী দশক');
-            $this->excel->getActiveSheet()->SetCellValue('J8', 'কলেজ দাওয়াতী দশক');
-            $this->excel->getActiveSheet()->SetCellValue('K8', 'বিশ্ববিদ্যালয় দাওয়াতী দশক');
+            $this->excel->getActiveSheet()->SetCellValue('I8', 'অনলাইন দাওয়াতি সপ্তাহ');
+            $this->excel->getActiveSheet()->SetCellValue('J8', 'উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি সপ্তাহ  ');
+            $this->excel->getActiveSheet()->SetCellValue('K8', 'বিশ্ববিদ্যালয় ও অনার্স কলেজ দাওয়াতি সপ্তাহ ');
             $this->excel->getActiveSheet()->SetCellValue('L8', 'দাওয়াতী পক্ষ/দশক');
             $this->excel->getActiveSheet()->SetCellValue('M8', 'চলো গ্রামে যাই');
             $this->excel->getActiveSheet()->SetCellValue('N8', 'টার্গেট');
@@ -955,11 +955,11 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
 
 
-            // মাদরাসা দাওয়াতী দশক রিপোর্ট
+            // অনলাইন দাওয়াতি সপ্তাহ  রিপোর্ট
 
             $this->excel->getActiveSheet()->getStyle("A17:R17")->applyFromArray($style);
             $this->excel->getActiveSheet()->mergeCells('A17:R17');
-            $this->excel->getActiveSheet()->SetCellValue('A17', '৪। মাদরাসা দাওয়াতী দশক রিপোর্ট');
+            $this->excel->getActiveSheet()->SetCellValue('A17', '৪। অনলাইন দাওয়াতি সপ্তাহ  রিপোর্ট');
             $this->excel->getActiveSheet()->getStyle('A17')->getFont()->setBold(true);
             $this->excel->getActiveSheet()->SetCellValue('A18', 'সমর্থক বৃদ্ধি');
             $this->excel->getActiveSheet()->SetCellValue('B18', 'বন্ধু বৃদ্ধি');
@@ -1022,11 +1022,11 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $this->excel->getActiveSheet()->SetCellValue('R20', $madrashainfo->nonmuslim_friend_increase);
             $this->excel->getActiveSheet()->SetCellValue('S20', $madrashainfo->ww_increase);
 
-            // ৫। কলেজ দাওয়াতী দশক রিপোর্ট   17 23 24 25         
+            // ৫। উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি সপ্তাহ   রিপোর্ট   17 23 24 25         
             $this->excel->getActiveSheet()->getStyle("A22:R22")->applyFromArray($style);
             $this->excel->getActiveSheet()->mergeCells('A22:R22');
             $this->excel->getActiveSheet()->getStyle('A22')->getFont()->setBold(true);
-            $this->excel->getActiveSheet()->SetCellValue('A22', '৫। কলেজ দাওয়াতী দশক রিপোর্ট');
+            $this->excel->getActiveSheet()->SetCellValue('A22', '৫। উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি সপ্তাহ   রিপোর্ট');
 
             $this->excel->getActiveSheet()->SetCellValue('A23', 'সমর্থক বৃদ্ধি');
             $this->excel->getActiveSheet()->SetCellValue('B23', 'বন্ধু বৃদ্ধি');
@@ -1161,10 +1161,10 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
             //    $this->sma->print_arrays($detailinfo);
 
-            // ৭। বিশ্ববিদ্যালয় দাওয়াতী দশক রিপোর্ট   32 33 34 35         
+            // ৭। বিশ্ববিদ্যালয় ও অনার্স কলেজ দাওয়াতি সপ্তাহ  রিপোর্ট   32 33 34 35         
             $this->excel->getActiveSheet()->getStyle("A32:R32")->applyFromArray($style);
             $this->excel->getActiveSheet()->mergeCells('A32:R32');
-            $this->excel->getActiveSheet()->SetCellValue('A32', '৭। বিশ্ববিদ্যালয় দাওয়াতী দশক রিপোর্ট');
+            $this->excel->getActiveSheet()->SetCellValue('A32', '৭। বিশ্ববিদ্যালয় ও অনার্স কলেজ দাওয়াতি সপ্তাহ  রিপোর্ট');
             $this->excel->getActiveSheet()->getStyle('A32')->getFont()->setBold(true);
             $this->excel->getActiveSheet()->SetCellValue('A33', 'সমর্থক বৃদ্ধি');
             $this->excel->getActiveSheet()->SetCellValue('B33', 'বন্ধু বৃদ্ধি');

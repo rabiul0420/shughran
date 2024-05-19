@@ -307,7 +307,7 @@ if (!empty($variants)) {
 
                         $tc[100] =  100;
 
-                        echo form_dropdown('thana_code', $tc, ($manpower->thana_code ? $manpower->thana_code : ''), 'id="thana_code"  class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('thana_code', $tc, (''), 'id="thana_code"  class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
@@ -418,16 +418,9 @@ if (!empty($variants)) {
         });
 
 
-
-
-
         var _URL = window.URL || window.webkitURL;
 
         var variants = <?= json_encode($vars); ?>;
-
-
-
-
 
 
     });

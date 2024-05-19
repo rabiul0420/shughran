@@ -8,7 +8,7 @@
      .manpower_link {
     cursor: pointer;
 }
-</style>
+</style> 
 <script>
     var oTable;
     $(document).ready(function () {
@@ -17,8 +17,6 @@
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
             'bProcessing': true, 'bServerSide': true,
-            
-			
 			
 			'sAjaxSource': '<?= admin_url('membercandidate/getIncreaseMembercandidate/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ? '?type='.$this->input->get('type') : '' ).( $this->input->get('year') ? '&year='.$this->input->get('year') : '' ) ) ?>',
 			
@@ -38,8 +36,14 @@
                 //if(aData[7] > aData[9]){ nRow.className = "product_link warning"; } else { nRow.className = "product_link"; }
                 return nRow;
             },
-            "aoColumns": [
-                {"bVisible": false},   null, null, <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,null,null,null
+            "aoColumns": [ 
+                {"bVisible": false},   null, null,
+                
+                <?php if($branch_id ) { echo '{"bVisible": false},'; } else { echo '{"bSortable": true},'; } ?> null,
+                
+                null,null,null     <?php if ($process->id == 15) { ?>
+                    ,null
+                <?php } ?>
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
@@ -48,9 +52,7 @@
             {column_number: 4, filter_default_label: "[<?='Oath';?>]", filter_type: "text", data: []},
             {column_number: 5, filter_default_label: "[<?='Session';?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?='Responsibility';?>]", filter_type: "text", data: []},
-            {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},
-            
-             
+            {column_number: 7, filter_default_label: "[<?='থানা কোড';?>]", filter_type: "text", data: []},  
             
             
         ], "footer");
@@ -78,12 +80,12 @@
 				 
 if($report_info['is_current'] || $report_info['year'] == date('Y')) {
     if($report_info['type']=='annual'){
-        echo anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).('type=half_yearly&year='.$report_info['year']),'ষান্মাসিক '.$report_info['year']); 
-        echo  "&nbsp;|&nbsp;".anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : ''),'জুলাই-নভেম্বর\''.$report_info['year']); 
+        echo anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).('type=half_yearly&year='.$report_info['year']),'ষাণ্মাসিক '.$report_info['year']); 
+        echo  "&nbsp;|&nbsp;".anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : ''),'জুন-নভেম্বর\''.$report_info['year']); 
         echo "&nbsp;|&nbsp;";   echo anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
     }
     else{
-         echo anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : ''),'ষান্মাসিক '.$report_info['year']); 
+         echo anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : ''),'ষাণ্মাসিক '.$report_info['year']); 
         echo  "&nbsp;|&nbsp;".anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=annual&year='.$report_info['last_year'],'বার্ষিক '.$report_info['last_year']);
         
     }
@@ -96,7 +98,7 @@ else {
     }
     else{
       
-        echo   anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=half_yearly&year='.$report_info['year'],'ষান্মাসিক '.$report_info['year']);
+        echo   anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=half_yearly&year='.$report_info['year'],'ষাণ্মাসিক '.$report_info['year']);
         
     }
 
@@ -124,7 +126,7 @@ else {
         
         for($i = date('Y')-1; $i>=2019; $i-- ){
         echo   ' <li>'.anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=annual&year='.$i,'বার্ষিক '.$i).' </li>';
-        echo   ' <li>'.anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=half_yearly&year='.$i,'ষান্মাসিক '.$i).' </li>';
+        echo   ' <li>'.anchor('admin/membercandidate/membercandidateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=half_yearly&year='.$i,'ষাণ্মাসিক '.$i).' </li>';
         
 
         }
@@ -184,6 +186,8 @@ else {
 							<th><?= 'সেশন' ?></th>
 							 <th><?= 'দায়িত্ব' ?></th>
 							  <th><?= 'থানা কোড' ?></th>
+                              <?php if($process->id == 15) {?> <th><?= "শাখা হতে" ?></th>  <?php } ?>
+
                                   </tr>
                         </thead>
                         <tbody>

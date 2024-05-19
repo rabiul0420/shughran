@@ -5,7 +5,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue">
-            <i class="fa-fw fa fa-barcode"></i><?='এ সেশনে ঘাটতিকৃত সাথী শাখার নাম ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+            <i class="fa-fw fa fa-barcode"></i><?='এ সেশনে ঘাটতিকৃত আদর্শ থানা শাখার নাম ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
         </h2>
 
         <div class="box-icon">
@@ -29,7 +29,7 @@
                     <?php } ?>
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                         <div class="form-group">
-                            <label for="sathi_shakhar_nam">সাথী শাখার নাম :</label>
+                            <label for="sathi_shakhar_nam">আদর্শ থানা শাখার নাম :</label>
                             <input type="text" class="form-control" value="<?php echo ($this->input->get('type') == 'edit') ? $other_e_sathi_shakha_ghatti['sathi_shakhar_nam'] : ''; ?>" id="sathi_shakhar_nam" name='sathi_shakhar_nam' required>
                         </div>
 

@@ -138,6 +138,9 @@ class MY_Controller extends CI_Controller
         $meta['error'] = isset($data['error']) ? $data['error'] : $this->session->flashdata('error');
         $meta['warning'] = isset($data['warning']) ? $data['warning'] : $this->session->flashdata('warning');
         $meta['info'] = $this->site->getNotifications();
+        $meta['support_ticket'] = $this->site->getTickets();
+
+        //$this->sma->print_arrays($meta['support_ticket']);
         $meta['events'] = $this->site->getUpcomingEvents();
         $meta['ip_address'] = $this->input->ip_address();
         $meta['Owner'] = $data['Owner'];
@@ -155,11 +158,14 @@ class MY_Controller extends CI_Controller
         // $meta['shop_payment_alerts'] = SHOP ? $this->site->get_shop_payment_alerts() : 0;
 
 
-        if($left_panel == 'leftmenu/left_panel'){
-        $meta['pending_list'] = $this->getlist();
-        $meta['manpowertransferout'] = $this->manpowertransferout();
-        $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
-        $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
+        if ($left_panel == 'leftmenu/left_panel') {
+            $meta['pending_list'] = $this->getlist();
+            $meta['manpowertransferout'] = $this->manpowertransferout();
+            $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
+            $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
+            $meta['manpowerstdout'] = $this->getstdpendinglist();
+            $meta['membercandidatepending'] = $this->getmembercandidatependinglist();
+            $meta['thanapendingcount'] = $this->getpendingthanacount();
         }
 
 
@@ -228,6 +234,49 @@ class MY_Controller extends CI_Controller
     }
 
 
+
+
+    function page_construct4($page, $meta = array(), $data = array(), $left_panel = 'leftmenu/left_panel')
+    {
+        $meta['message'] = isset($data['message']) ? $data['message'] : $this->session->flashdata('message');
+        $meta['error'] = isset($data['error']) ? $data['error'] : $this->session->flashdata('error');
+        $meta['warning'] = isset($data['warning']) ? $data['warning'] : $this->session->flashdata('warning');
+        $meta['info'] = $this->site->getNotifications();
+        $meta['events'] = $this->site->getUpcomingEvents();
+        $meta['ip_address'] = $this->input->ip_address();
+        $meta['Owner'] = $data['Owner'];
+        $meta['Admin'] = $data['Admin'];
+        $meta['Supplier'] = $data['Supplier'];
+        $meta['Customer'] = $data['Customer'];
+        $meta['Settings'] = $data['Settings'];
+        $meta['dateFormats'] = $data['dateFormats'];
+        $meta['assets'] = $data['assets'];
+        $meta['GP'] = $data['GP'];
+        $meta['reportdate'] = $data['reportdate'];
+        //$meta['qty_alert_num'] = $this->site->get_total_qty_alerts();
+        //$meta['exp_alert_num'] = $this->site->get_expiring_qty_alerts();
+        //$meta['shop_sale_alerts'] = SHOP ? $this->site->get_shop_sale_alerts() : 0;
+        // $meta['shop_payment_alerts'] = SHOP ? $this->site->get_shop_payment_alerts() : 0;
+
+
+        if ($left_panel == 'leftmenu/left_panel') {
+            $meta['pending_list'] = $this->getlist();
+            $meta['manpowertransferout'] = $this->manpowertransferout();
+            $meta['assocandidateworkerin'] = $this->assocandidateworkerin();
+            $meta['assocandidateworkerout'] = $this->assocandidateworkerout();
+        }
+
+
+
+        $this->load->view($this->theme . 'header', $meta);
+        $this->load->view($this->theme . $left_panel, $meta);
+        $this->load->view($this->theme . $page, $data);
+        $this->load->view($this->theme . 'footer4');
+    }
+
+
+
+
     function report_typeold()
     {
 
@@ -280,17 +329,18 @@ class MY_Controller extends CI_Controller
     {
 
 
-
+        
         $type = $this->input->get('type');  //half_yearly/annual
         $year = $this->input->get('year');
         // $is_current = false;
         $is_current = $this->input->get('type');
 
         // $this->sma->print_arrays($year);
-
+        
         if (!$year && !$type) {
 
-            $year = 2023; //date('Y');
+          
+            $year = date('Y');
 
 
 
@@ -312,7 +362,7 @@ class MY_Controller extends CI_Controller
                 return array('info' => $entrytimeinfo, 'last_half' => true, 'prev_record' => false, 'last_year' => $year - 1, 'is_current' => $is_current,  'type' => 'annual', 'start' => $entrytimeinfo->startdate_annual, 'end' => $entrytimeinfo->enddate_annual, 'year' => $year);
             }
         } else if ($year && $type) {
-
+           
             //$this->sma->print_arrays(222222);
 
             $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => $year), 'id desc', 1, 0);
@@ -486,9 +536,108 @@ class MY_Controller extends CI_Controller
 
 
 
+    function getstdpendinglist()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
+
+
+        if ($branch_id) {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower')}.id) as total_pending", FALSE)
+                ->from('manpower')->where('manpower.branch', $branch_id)->where('orgstatus_id', 1)->where('is_studentship_pending', 1);
+            $q = $this->db->get();
+        } else {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower')}.id) as total_pending", FALSE)
+                ->from('manpower')->where('orgstatus_id', 1)->where('is_studentship_pending', 1);
+            $q = $this->db->get();
+        }
+
+        if ($q->num_rows() > 0) {
+            $result =  $q->result();
+            return $result[0]->total_pending;
+        } else {
+            return 0;
+        }
+    }
+
+
+
+    function getpendingthanacount()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
 
 
 
 
 
+
+        if ($branch_id) {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('thana')}.id) as total_pending", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana')->where('thana.branch_id', $branch_id)->where('is_pending', 1);
+            $q = $this->db->get();
+        } else {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('thana')}.id) as total_pending", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana')->where('is_pending', 1);
+            $q = $this->db->get();
+        }
+
+        if ($q->num_rows() > 0) {
+            $result =  $q->result();
+            return $result[0]->total_pending;
+        } else {
+            return 0;
+        }
+    }
+
+
+    function getmembercandidatependinglist()
+    {
+
+        if ($this->Owner || $this->Admin) {
+
+            $branch_id = null;
+        } else {
+
+            $branch_id = $this->session->userdata('branch_id');
+        }
+
+
+        if ($branch_id) {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower')}.id) as total_pending", FALSE)
+                ->from('manpower')->where('manpower.branch', $branch_id)->where('orgstatus_id', 12)->where('is_studentship_pending', 1);
+            $q = $this->db->get();
+        } else {
+            $this->db
+                ->select("COUNT({$this->db->dbprefix('manpower')}.id) as total_pending", FALSE)
+                ->from('manpower')->where('orgstatus_id', 12)->where('is_studentship_pending', 1);
+            $q = $this->db->get();
+        }
+
+        if ($q->num_rows() > 0) {
+            $result =  $q->result();
+            return $result[0]->total_pending;
+        } else {
+            return 0;
+        }
+    }
 }

@@ -270,7 +270,7 @@ class Social extends MY_Controller
         
         $this->db->select('*');
         $this->db->where('branch_id', $branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
         $query = $this->db->get('social_welfare_shamajik_shong');
         $this->data['social_welfare_shamajik_shong'] = $query;

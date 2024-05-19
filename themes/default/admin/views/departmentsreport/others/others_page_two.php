@@ -22,12 +22,12 @@
 <?php
 if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
     if ($report_info['type'] == 'annual') {
-        echo anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষান্মাসিক ' . $report_info['year']);
-        echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : ''), 'জুলাই-নভেম্বর\'' . $report_info['year']);
+        echo anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষাণ্মাসিক ' . $report_info['year']);
+        echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : ''), 'ডিসেম্বর 2022 - নভেম্বর ' . $report_info['year']);
         echo "&nbsp;|&nbsp;";
         echo anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'X ' . $report_info['year']);
     } else {
-        echo anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : ''), 'ষান্মাসিক ' . $report_info['year']);
+        echo anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : ''), 'ষাণ্মাসিক ' . $report_info['year']);
         echo  "&nbsp;|&nbsp;" . anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
     }
 } else {
@@ -36,7 +36,7 @@ if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
         echo    anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
     } else {
 
-        echo   anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষান্মাসিক ' . $report_info['year']);
+        echo   anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষাণ্মাসিক ' . $report_info['year']);
     }
 }
 ?>
@@ -57,7 +57,7 @@ if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
 
         for ($i = date('Y') - 1; $i >= 2019; $i--) {
             echo   ' <li>' . anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
-            echo   ' <li>' . anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষান্মাসিক ' . $i) . ' </li>';
+            echo   ' <li>' . anchor('admin/departmentsreport/others-page-two' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
         }
         ?>
 
@@ -116,15 +116,15 @@ $(document).ready(function(){
                 <div class="tg-wrap">
                 <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
-                                <td class="tg-pwj7" colspan="5"><b>এ সেশনে বৃদ্ধিকৃত সাথী শাখার নাম</b></td>
+                                <td class="tg-pwj7" colspan="5"><b>এ সেশনে বৃদ্ধিকৃত আদর্শ থানা শাখার নাম</b></td>
                                 <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Other_এ সেশনে বৃদ্ধিকৃত সাথী শাখার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                    <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Other_এ সেশনে বৃদ্ধিকৃত আদর্শ থানা শাখার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">ক্রম</td>
                                 <td class="tg-pwj7" rowspan="2">শাখা আইডি</td>
-                                <td class="tg-pwj7" rowspan="2">সাথী শাখার নাম</td>
+                                <td class="tg-pwj7" rowspan="2">আদর্শ থানা শাখার নাম</td>
                                 <td class="tg-pwj7" colspan="3" >জনশক্তির র্বতমান সংখ্যা</td>
                                
                             </tr>
@@ -162,15 +162,15 @@ $(document).ready(function(){
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan="6"><b>এ সেশনে ঘাটতিকৃত সাথী শাখার নাম</b></td>
+                                <td class="tg-pwj7" colspan="6"><b>এ সেশনে ঘাটতিকৃত আদর্শ থানা শাখার নাম</b></td>
                                 <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Other_এ সেশনে ঘাটতিকৃত সাথী শাখার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                    <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Other_এ সেশনে ঘাটতিকৃত আদর্শ থানা শাখার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">ক্রম</td>
                                 <td class="tg-pwj7" rowspan="2">শাখা আইডি</td>
-                                <td class="tg-pwj7" rowspan="2">সাথী শাখার নাম</td>
+                                <td class="tg-pwj7" rowspan="2">আদর্শ থানা শাখার নাম</td>
                                 <td class="tg-pwj7" colspan="3" >জনশক্তির র্বতমান সংখ্যা</td>
                                 <td class="tg-pwj7" rowspan="2" >ঘাটতির কারণ</td>
                             </tr>

@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <?php echo lang('email', 'email'); ?>
                         <div class="controls">
-                            <input type="email" id="email" name="email" class="form-control" required="required"/>
+                            <input type="email" id="email" name="email" class="form-control" required="required" />
                             <?php /* echo form_input('email', '', 'class="form-control" id="email" required="required"'); */ ?>
                         </div>
                     </div>
@@ -72,25 +72,19 @@
 
 
                         <div class="row">
-                            <div class="col-md-6 col-sm-6"><label class="checkbox" for="active"><input type="radio"
-                                                                                                       name="status"
-                                                                                                       value="1"
-                                                                                                       id="active"
-                                                                                                       checked="checked"/> <?= lang('active') ?>
+                            <div class="col-md-6 col-sm-6"><label class="checkbox" for="active"><input type="radio" name="status" value="1" id="active" checked="checked" /> <?= lang('active') ?>
                                 </label></div>
-                            <div class="col-md-6 col-sm-6"><label class="checkbox" for="inactive"><input type="radio"
-                                                                                                         name="status"
-                                                                                                         value="0"
-                                                                                                         id="inactive"/> <?= lang('inactive') ?>
+                            <div class="col-md-6 col-sm-6"><label class="checkbox" for="inactive"><input type="radio" name="status" value="0" id="inactive" /> <?= lang('inactive') ?>
                                 </label></div>
                         </div>
 
                     </div>
 
-                    <div class="form-group"><strong><?= lang('notify_user') ?></strong><label class="checkbox"
-                                                                                              for="notify"><input
-                                type="checkbox" name="notify" value="1" id="notify"
-                                checked="checked"/> <?= lang('notify_user_by_email') ?></label></div>
+                    <div class="form-group"><strong><?= lang('notify_user') ?></strong>
+                    
+                    <label class="checkbox" for="notify">
+                        
+                    <input type="checkbox" name="notify" value="1" id="notify" checked="checked" /> <?= lang('notify_user_by_email') ?></label></div>
                     <div class="clearfix"></div>
 
 
@@ -106,4 +100,3 @@
     <?php echo form_close(); ?>
 </div>
 <?= $modal_js ?>
-

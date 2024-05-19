@@ -26,7 +26,7 @@
                             <table class="table table-bordered table-hover table-striped reports-table">
 
                                 <thead>
-                                <tr>
+                                <tr> 
                                     <th colspan="6"
                                         class="text-center"><?php echo $group->description . ' ( ' . $group->name . ' ) ' . $this->lang->line("group_permissions"); ?></th>
                                 </tr>

@@ -17,12 +17,12 @@
 
 			if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
 				if ($report_info['type'] == 'annual') {
-					echo anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষান্মাসিক ' . $report_info['year']);
-					echo  "&nbsp;|&nbsp;" . anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : ''), 'জুলাই-নভেম্বর\'' . $report_info['year']);
+					echo anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষাণ্মাসিক ' . $report_info['year']);
+					echo  "&nbsp;|&nbsp;" . anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : ''), 'জুন-নভেম্বর\'' . $report_info['year']);
 					echo "&nbsp;|&nbsp;";
 					echo anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
 				} else {
-					echo anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : ''), 'ষান্মাসিক ' . $report_info['year']);
+					echo anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : ''), 'ষাণ্মাসিক ' . $report_info['year']);
 					echo  "&nbsp;|&nbsp;" . anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
 				}
 			} else {
@@ -31,7 +31,7 @@
 					echo    anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
 				} else {
 
-					echo   anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষান্মাসিক ' . $report_info['year']);
+					echo   anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষাণ্মাসিক ' . $report_info['year']);
 				}
 			}
 
@@ -58,7 +58,7 @@
 					for ($i = date('Y') - 1; $i >= 2019; $i--) {
 						echo   ' <li>' . anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
 
-						echo   ' <li>' . anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষান্মাসিক ' . $i) . ' </li>';
+						echo   ' <li>' . anchor('admin/manpower' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
 					}
 					?>
 
@@ -340,7 +340,7 @@
 									if (isset($manpower_record[0])) {
 										$arr = $manpower_record[0];
 										$member_improvement_target = $arr['member_improvement_target'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										$member_improvement_target = 0;
 										$pk =  "";
@@ -456,7 +456,7 @@
 									if (isset($manpower_record[0])) {
 										$arr = $manpower_record[0];
 										$membercandidate_target = $arr['member_candidate_candidate_target'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										$membercandidate_target = 0;
 										$pk =  "";
@@ -464,7 +464,8 @@
 									?>
 
 									<?php if ($report_info['last_half'] == 1)
-										echo $membercandidate_target;
+									echo '';
+										// echo $membercandidate_target;
 									else { ?>
 										<a href="#" class="editable editable-click <?php if (!1) echo 'hidden' ?>" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="member_candidate_candidate_target" data-title="Enter"><?php echo $membercandidate_target; ?></a>
 									<?php } ?>
@@ -696,7 +697,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_improvement = $arr['associate_candidate_improvement'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$associate_candidate_improvement = 0;
 										$pk =  "";
@@ -719,7 +720,7 @@
 
 									if (isset($manpower_record[0])) {
 										$associate_candidate_improvement_target = $arr['associate_candidate_improvement_target'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										$associate_candidate_improvement_target = 0;
 										$pk =  "";
@@ -729,7 +730,8 @@
 									<?php
 
 									if ($report_info['last_half'] == 1)
-										echo $associate_candidate_improvement_target;
+									echo '';
+										// echo $associate_candidate_improvement_target;
 
 									else { ?>
 										<a href="#" class="editable editable-click <?php echo 1 ? ''   : 'hidden' ?>" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_improvement_target" data-title="Enter"><?php echo $associate_candidate_improvement_target; ?></a>
@@ -760,7 +762,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_endstd = $arr['associate_candidate_endstd'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$associate_candidate_endstd = 0;
 										$pk =  "";
@@ -782,7 +784,7 @@
  
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_cancel = $arr['associate_candidate_cancel'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$associate_candidate_cancel = 0;
 										$pk =  "";
@@ -800,7 +802,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_abroad_study = $arr['associate_candidate_abroad_study'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$associate_candidate_abroad_study = 0;
 										$pk =  "";
@@ -815,7 +817,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_abroad_job = $arr['associate_candidate_abroad_job'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$associate_candidate_abroad_job = 0;
 										$pk =  "";
@@ -832,7 +834,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_death = $arr['associate_candidate_death'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$associate_candidate_death = 0;
 										$pk =  "";
@@ -849,7 +851,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$associate_candidate_martyr = $arr['associate_candidate_martyr'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$associate_candidate_martyr = 0;
 										$pk =  "";
@@ -869,8 +871,8 @@
 									<?php
 
 									if (isset($manpower_record[0])) {
-										$associate_candidate_postpone = $arr['associate_candidate_postpone'];
-										$pk =  $arr['id'];
+										$associate_candidate_postpone = $arr['associate_candidate_postpone'] ?? '';
+										$pk =  $arr['id'] ?? '';
 									} else {
 									//	$associate_candidate_postpone = 0;
 										$pk =  "";
@@ -943,7 +945,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$worker_improvement = $arr['worker_improvement'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$worker_improvement = 0;
 										$pk =  "";
@@ -985,7 +987,7 @@
 								</td>
 								<td class="tg-0pky  type_7">
 									<?php
-									if (1)  echo ($worker_prev > 0) ? round(100 * $worker_improvement / $worker_prev, 2) : 0;;
+									if (1)  echo ($worker_prev > 0) ? round(100 * $worker_improvement / $worker_improvement_target, 2) : 0;;
 									?>
 
 								</td>
@@ -1005,7 +1007,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$worker_endstd = $arr['worker_endstd'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$worker_endstd = 0;
 										$pk =  "";
@@ -1030,7 +1032,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$worker_cancel = $arr['worker_cancel'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$worker_cancel = 0;
 										$pk =  "";
@@ -1061,7 +1063,7 @@
 
 									if (isset($manpower_record[0])) {
 										//$worker_demotion = $arr['worker_demotion'];
-										$pk =  $arr['id'];
+										$pk =  $arr['id'] ?? '';
 									} else {
 										//$worker_demotion = 0;
 										$pk =  "";

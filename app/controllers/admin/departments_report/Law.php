@@ -157,13 +157,13 @@ class Law extends MY_Controller
             $this->data['law_amader_bipokkhe_mamla'] = $query->first_row('array');
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
-            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
             $query = $this->db->get('law_shaja_shongkranto_mamla');
             $this->data['law_shaja_shongkranto_mamla'] = $query;
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
-            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
             $query = $this->db->get('law_khalash_inffo');
             $this->data['law_khalash_inffo'] = $query;
@@ -301,21 +301,21 @@ class Law extends MY_Controller
 
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
-            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
             $query = $this->db->get('law_amader_pokkhe_mamla');
             $this->data['law_amader_pokkhe_mamla'] = $query;
 
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
-            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
             $query = $this->db->get('law_gum_khun_hamla');
             $this->data['law_gum_khun_hamla'] = $query;
             
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
-            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
             $query = $this->db->get('law_shakhar_shongrokkhon');
             $this->data['law_shakhar_shongrokkhon'] = $query;

@@ -2371,8 +2371,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
 
 
-        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'সংগঠন Ghatti তালিকা'));
-        $meta = array('page_title' => ' সংগঠন Ghatti তালিকা', 'bc' => $bc);
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'সংগঠন ঘাটতি তালিকা'));
+        $meta = array('page_title' => ' সংগঠন ঘাটতি তালিকা', 'bc' => $bc);
         $this->page_construct('organization/institution_org_decrease', $meta, $this->data, 'leftmenu/organization');
     }
 

@@ -1,38 +1,51 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <style type="text/css" media="screen">
     #PRData td:nth-child(10) {
         text-align: center;
     }
-	
-	 
-     .manpower_link {
-    cursor: pointer;
-}
+
+
+    .manpower_link {
+        cursor: pointer;
+    }
 </style>
 <script>
     var oTable;
-    $(document).ready(function () {
+    $(document).ready(function() {
         oTable = $('#PRData').dataTable({
-            "aaSorting": [[2, "asc"], [3, "asc"]],
-            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
+            "aaSorting": [
+                [2, "asc"],
+                [3, "asc"]
+            ],
+            "aLengthMenu": [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "<?= lang('all') ?>"]
+            ],
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
-            'bProcessing': true, 'bServerSide': true,
-            
-			
-			'sAjaxSource': '<?= admin_url('associate/getIncreaseAssociate/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ? '?type='.$this->input->get('type') : '' ).( $this->input->get('year') ? '&year='.$this->input->get('year') : '' ) ) ?>',
-			
-            'fnServerData': function (sSource, aoData, fnCallback) {
+            'bProcessing': true,
+            'bServerSide': true,
+
+
+            'sAjaxSource': '<?= admin_url('associate/getIncreaseAssociate/' . $process->id . ($branch_id ? '/' . $branch_id : '') . ($this->input->get('type') ? '?type=' . $this->input->get('type') : '') . ($this->input->get('year') ? '&year=' . $this->input->get('year') : '')) ?>',
+
+            'fnServerData': function(sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
                     "value": "<?= $this->security->get_csrf_hash() ?>"
                 });
-                $.ajax({'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback});
+                $.ajax({
+                    'dataType': 'json',
+                    'type': 'POST',
+                    'url': sSource,
+                    'data': aoData,
+                    'success': fnCallback
+                });
             },
-            'fnRowCallback': function (nRow, aData, iDisplayIndex) {
+            'fnRowCallback': function(nRow, aData, iDisplayIndex) {
                 var oSettings = oTable.fnSettings();
                 nRow.id = aData[0];
-				$(nRow).attr("status",'1');
-				 
+                $(nRow).attr("status", '1');
+
                 nRow.className = "manpower_linkOLD";
                 //if(aData[7] > aData[9]){ nRow.className = "product_link warning"; } else { nRow.className = "product_link"; }
                 return nRow;
@@ -60,100 +73,91 @@
 
 
 <?php if ($Owner || $GP['bulk_actions']) {
-    echo admin_form_open('manpower/manpower_actions'.($branch_id ? '/'.$branch_id : ''), 'id="action-form"');
+    echo admin_form_open('manpower/manpower_actions' . ($branch_id ? '/' . $branch_id : ''), 'id="action-form"');
 } ?>
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'সাথী বৃদ্ধি: '.$process->process . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
-				
-			 
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সাথী বৃদ্ধি: ' . $process->process . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
 
 
-                <?php 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-				 
-if($report_info['is_current'] || $report_info['year'] == date('Y')) {
-    if($report_info['type']=='annual'){
-        echo anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).('type=half_yearly&year='.$report_info['year']),'ষান্মাসিক '.$report_info['year']); 
-        echo  "&nbsp;|&nbsp;".anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : ''),'জুলাই-নভেম্বর\''.$report_info['year']); 
-        echo "&nbsp;|&nbsp;";   echo anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
-    }
-    else{
-         echo anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : ''),'ষান্মাসিক '.$report_info['year']); 
-        echo  "&nbsp;|&nbsp;".anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=annual&year='.$report_info['last_year'],'বার্ষিক '.$report_info['last_year']);
-        
-    }
-}
 
-else {
+            <?php
 
-    if($report_info['type']=='annual'){
-         echo    anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
-    }
-    else{
-      
-        echo   anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=half_yearly&year='.$report_info['year'],'ষান্মাসিক '.$report_info['year']);
-        
-    }
 
-}
+            if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
+                if ($report_info['type'] == 'annual') {
+                    echo anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : '') . ($branch_id ? '&' : '?') . ('type=half_yearly&year=' . $report_info['year']), 'ষাণ্মাসিক ' . $report_info['year']);
+                    echo  "&nbsp;|&nbsp;" . anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : ''), 'জুন-নভেম্বর\'' . $report_info['year']);
+                    echo "&nbsp;|&nbsp;";
+                    echo anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : '') . ($branch_id ? '&' : '?') . 'type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
+                } else {
+                    echo anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : ''), 'ষাণ্মাসিক ' . $report_info['year']);
+                    echo  "&nbsp;|&nbsp;" . anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : '') . ($branch_id ? '&' : '?') . 'type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
+                }
+            } else {
+
+                if ($report_info['type'] == 'annual') {
+                    echo    anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : '') . ($branch_id ? '&' : '?') . 'type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
+                } else {
+
+                    echo   anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : '') . ($branch_id ? '&' : '?') . 'type=half_yearly&year=' . $report_info['year'], 'ষাণ্মাসিক ' . $report_info['year']);
+                }
+            }
 
 
 
-    ?>
-    &nbsp;&nbsp;
+            ?>
+            &nbsp;&nbsp;
 
 
 
-    <span class="dropdown">
+            <span class="dropdown">
 
-    <button class="btn btn-primary dropdown-toggle" type="button" id="archive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Archive
-        <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="archive">
-         
+                <button class="btn btn-primary dropdown-toggle" type="button" id="archive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Archive
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="archive">
 
-        <?php 
 
-        echo   ' <li>'.anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : ''),'বর্তমান ').' </li>';
-        
-        for($i = date('Y')-1; $i>=2019; $i-- ){
-        echo   ' <li>'.anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=annual&year='.$i,'বার্ষিক '.$i).' </li>';
-        echo   ' <li>'.anchor('admin/associate/associateincreaselist/'.$process->id.( $branch_id ? '?branch_id='.$branch_id : '').($branch_id ? '&' : '?' ).'type=half_yearly&year='.$i,'ষান্মাসিক '.$i).' </li>';
-        
+                    <?php
 
-        }
-        ?>
-     
-        </ul>
-     </span>
+                    echo   ' <li>' . anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : ''), 'বর্তমান ') . ' </li>';
 
- 
-      
-      
-      
-            </h2>
+                    for ($i = date('Y') - 1; $i >= 2019; $i--) {
+                        echo   ' <li>' . anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : '') . ($branch_id ? '&' : '?') . 'type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
+                        echo   ' <li>' . anchor('admin/associate/associateincreaselist/' . $process->id . ($branch_id ? '?branch_id=' . $branch_id : '') . ($branch_id ? '&' : '?') . 'type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
+                    }
+                    ?>
+
+                </ul>
+            </span>
+
+
+
+
+
+        </h2>
 
         <div class="box-icon">
             <ul class="btn-tasks">
-			
-				<li class="dropdown">
+
+                <li class="dropdown">
                     <a href="<?= admin_url('associate/add') ?>">
                         <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' সাথী বৃদ্ধি করুন' ?></i>
                     </a>
-                     
+
                 </li>
-				<li class="dropdown">
-                    <a href="<?= admin_url('associate/associateincreaseexport/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ?  '?type='.$this->input->get('type') : '').( $this->input->get('year') ?  '&year='.$this->input->get('year') : '')) ?>">
-                        <i class="icon fa fa-file-excel-o" data-placement="left" title="<?= lang("export_to_excel") ?>"><?= lang("export_to_excel")?></i>
+                <li class="dropdown">
+                    <a href="<?= admin_url('associate/associateincreaseexport/' . $process->id . ($branch_id ? '/' . $branch_id : '') . ($this->input->get('type') ?  '?type=' . $this->input->get('type') : '') . ($this->input->get('year') ?  '&year=' . $this->input->get('year') : '')) ?>">
+                        <i class="icon fa fa-file-excel-o" data-placement="left" title="<?= lang("export_to_excel") ?>"><?= lang("export_to_excel") ?></i>
                     </a>
-                     
+
                 </li>
-		 
-			
+
+
                 <!-- <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="icon fa fa-tasks tip" data-placement="left" title="<?= lang("actions") ?>"></i>
@@ -162,7 +166,7 @@ else {
                         
                          
                         <li>
-                            <a href="<?= admin_url('associate/associateincreaseexport/'.$process->id.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ?  '?type='.$this->input->get('type') : '')) ?>" id="excel_export" data-action="export_excel">
+                            <a href="<?= admin_url('associate/associateincreaseexport/' . $process->id . ($branch_id ? '/' . $branch_id : '') . ($this->input->get('type') ?  '?type=' . $this->input->get('type') : '')) ?>" id="excel_export" data-action="export_excel">
                                 <i class="fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>
                             </a> 
                         </li>
@@ -175,11 +179,11 @@ else {
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("warehouses") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('associate/associateincreaselist/'.$process->id) ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
+                            <li><a href="<?= admin_url('associate/associateincreaselist/' . $process->id) ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('associate/associateincreaselist/'.$process->id.'?branch_id=' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('associate/associateincreaselist/' . $process->id . '?branch_id=' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -190,7 +194,7 @@ else {
     </div>
     <div class="box-content">
         <div class="row">
-            <div class="col-lg-12">  
+            <div class="col-lg-12">
                 <p class="introtext hidden"><?= lang('list_results'); ?></p>
 
                 <div class="table-responsive">
@@ -213,24 +217,23 @@ else {
                                   </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td colspan="11" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
-                        </tr>
+                            <tr>
+                                <td colspan="11" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                            </tr>
                         </tbody>
 
                         <tfoot class="dtFilter">
-                        <tr class="active">
-                             <th></th>
-                             <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                            <tr class="active">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
@@ -240,7 +243,7 @@ else {
 </div>
 <?php if ($Owner || $GP['bulk_actions']) { ?>
     <div style="display: none;">
-        <input type="hidden" name="form_action" value="" id="form_action"/>
+        <input type="hidden" name="form_action" value="" id="form_action" />
         <?= form_submit('performAction', 'performAction', 'id="action-form-submit"') ?>
     </div>
     <?= form_close() ?>

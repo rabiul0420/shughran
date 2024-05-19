@@ -17,12 +17,12 @@
 				 
 if($report_info['is_current'] || $report_info['year'] == date('Y')) {
 	if($report_info['type']=='annual'){
-		echo anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষান্মাসিক '.$report_info['year']); 
-		echo  "&nbsp;|&nbsp;".anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : ''),'জুলাই-নভেম্বর\''.$report_info['year']); 
+		echo anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষাণ্মাসিক '.$report_info['year']); 
+		echo  "&nbsp;|&nbsp;".anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : ''),'জুন-নভেম্বর\''.$report_info['year']); 
 		echo "&nbsp;|&nbsp;";   echo anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
 	}
 	else{
-		 echo anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : ''),'ষান্মাসিক '.$report_info['year']); 
+		 echo anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : ''),'ষাণ্মাসিক '.$report_info['year']); 
 		echo  "&nbsp;|&nbsp;".anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['last_year'],'বার্ষিক '.$report_info['last_year']);
 		
 	}
@@ -35,7 +35,7 @@ else {
 	}
 	else{
 	  
-		echo   anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$report_info['year'],'ষান্মাসিক '.$report_info['year']);
+		echo   anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$report_info['year'],'ষাণ্মাসিক '.$report_info['year']);
 		
 	}
 
@@ -64,7 +64,7 @@ else {
 		for($i = date('Y')-1; $i>=2019; $i-- ){
 			echo   ' <li>'.anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$i,'বার্ষিক '.$i).' </li>';
 		
-		echo   ' <li>'.anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$i,'ষান্মাসিক '.$i).' </li>';
+		echo   ' <li>'.anchor('admin/training/library'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$i,'ষাণ্মাসিক '.$i).' </li>';
 		
 
 		}

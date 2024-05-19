@@ -15,12 +15,12 @@
 				 
 if($report_info['is_current'] || $report_info['year'] == date('Y')) {
 	if($report_info['type']=='annual'){
-		echo anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষান্মাসিক '.$report_info['year']); 
-		echo  "&nbsp;|&nbsp;".anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : ''),'জুলাই-নভেম্বর\''.$report_info['year']); 
+		echo anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').('?type=half_yearly&year='.$report_info['year']),'ষাণ্মাসিক '.$report_info['year']); 
+		echo  "&nbsp;|&nbsp;".anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : ''),'জুন-নভেম্বর\''.$report_info['year']); 
 		echo "&nbsp;|&nbsp;";   echo anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['year'],'বার্ষিক '.$report_info['year']);
 	}
 	else{
-		 echo anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : ''),'ষান্মাসিক '.$report_info['year']); 
+		 echo anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : ''),'ষাণ্মাসিক '.$report_info['year']); 
 		echo  "&nbsp;|&nbsp;".anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$report_info['last_year'],'বার্ষিক '.$report_info['last_year']);
 		
 	}
@@ -33,7 +33,7 @@ else {
 	}
 	else{
 	  
-		echo   anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$report_info['year'],'ষান্মাসিক '.$report_info['year']);
+		echo   anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$report_info['year'],'ষাণ্মাসিক '.$report_info['year']);
 		
 	}
 
@@ -62,7 +62,7 @@ else {
 		for($i = date('Y')-1; $i>=2019; $i-- ){
 			echo   ' <li>'.anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').'?type=annual&year='.$i,'বার্ষিক '.$i).' </li>';
 		
-		echo   ' <li>'.anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$i,'ষান্মাসিক '.$i).' </li>';
+		echo   ' <li>'.anchor('admin/dawat/detail'.( $branch_id ? '/'.$branch_id : '').'?type=half_yearly&year='.$i,'ষাণ্মাসিক '.$i).' </li>';
 		
 
 		}
@@ -186,12 +186,12 @@ font: 18px SolaimanLipi, sans-serif;
 
 
 
-<tr style="height: 18px;">
+<tr class="hidden" style="height: 18px;">
  
 <td style=" height: 18px; " colspan="19">৩। স্কুল দাওয়াতী দশক রিপোর্ট</td>
 
 </tr>
-<tr style="height: 36px;">
+<tr class="hidden" style="height: 36px;">
 <td style="height: 72px; " rowspan="2" width="44">সমর্থক বৃদ্ধি</td>
 <td style=" height: 72px; " rowspan="2" width="46">বন্ধু বৃদ্ধি</td>
 <td style=" height: 36px; " colspan="2" width="101">সাধারণ সভা</td>
@@ -210,13 +210,13 @@ font: 18px SolaimanLipi, sans-serif;
 <td style=" height: 72px; " rowspan="2" width="42">অমুসলিম বন্ধু বৃদ্ধি</td>
 <td style=" height: 72px; " rowspan="2" width="44">শুভাকাংখী বৃদ্ধি</td>
 </tr>
-<tr style="height: 36px;">
+<tr class="hidden" style="height: 36px;">
 <td style=" height: 36px; " width="53">সংখ্যা</td>
 <td style=" height: 36px; " width="48">গড় উপঃ</td>
 <td style=" height: 36px; " width="38">সংখ্যা</td>
 <td style=" height: 36px; " width="47">গড় উপঃ</td>
 </tr>
-<tr style="height: 18px;">
+<tr class="hidden" style="height: 18px;">
 <td style="height: 18px; " width="44"><a href="#"  class="editable editable-click"   data-type="number" data-table="school_dawat_report" data-pk="<?php echo $detailinfo['school_dawat_reportinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="supporter_increase" data-title="Enter"><?php echo $detailinfo['school_dawat_reportinfo']->supporter_increase;?></a></td>
 <td style=" height: 18px; " width="46"><a href="#"  class="editable editable-click"   data-type="number" data-table="school_dawat_report" data-pk="<?php echo $detailinfo['school_dawat_reportinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="friend_increase" data-title="Enter"><?php echo $detailinfo['school_dawat_reportinfo']->friend_increase;?></a></td>
 <td style=" height: 18px; " width="53"><a href="#"  class="editable editable-click"   data-type="number" data-table="school_dawat_report" data-pk="<?php echo $detailinfo['school_dawat_reportinfo']->id;?>" data-url="<?php echo admin_url('dawat/detailupdate');?>" data-name="number_general_gather" data-title="Enter"><?php echo $detailinfo['school_dawat_reportinfo']->number_general_gather;?></a></td>
@@ -252,7 +252,7 @@ font: 18px SolaimanLipi, sans-serif;
 
 <tr style="height: 18px;">
  
-<td style=" height: 18px; " colspan="19">৪। মাদরাসা দাওয়াতী দশক রিপোর্ট</td>
+<td style=" height: 18px; " colspan="19">৩। অনলাইন দাওয়াতি সপ্তাহ  রিপোর্ট</td>
  
 </tr>
 <tr style="height: 36px;">
@@ -320,7 +320,7 @@ font: 18px SolaimanLipi, sans-serif;
 
 <tr style="height: 18px;">
 
-<td style=" height: 18px; background-color: #fff;" colspan="19">৫। কলেজ দাওয়াতী দশক রিপোর্ট </td>
+<td style=" height: 18px; background-color: #fff;" colspan="19">৪। উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি সপ্তাহ   রিপোর্ট </td>
 
 </tr>
 <tr style="height: 36px;">
@@ -388,7 +388,7 @@ font: 18px SolaimanLipi, sans-serif;
  
 <tr style="height: 18px;">
 
-<td style=" height: 18px; " colspan="19">৬। দাওয়াতী পক্ষ/ দশক রিপোর্ট</td>
+<td style=" height: 18px; " colspan="19">৫। দাওয়াতী পক্ষ/ দশক রিপোর্ট</td>
 
 </tr>
 <tr style="height: 36px;">
@@ -450,7 +450,7 @@ font: 18px SolaimanLipi, sans-serif;
 
 <tr style="height: 18px;">
 
-<td style=" height: 18px; " colspan="19">৭। বিশ্ববিদ্যালয় দাওয়াতী দশক রিপোর্ট </td>
+<td style=" height: 18px; " colspan="19">৬। বিশ্ববিদ্যালয় ও অনার্স কলেজ দাওয়াতি সপ্তাহ  রিপোর্ট </td>
 
 </tr>
 <tr style="height: 36px;">
@@ -512,7 +512,7 @@ font: 18px SolaimanLipi, sans-serif;
  
 <tr style="height: 18px;">
 
-<td style=" height: 18px; " colspan="19">৮।  মাধ্যমিক (স্কুল ও মাদ্রাসা) দাওয়াতী দশক রিপোর্ট </td>
+<td style=" height: 18px; " colspan="19">৭।  মাধ্যমিক (স্কুল ও মাদ্রাসা) দাওয়াতী দশক রিপোর্ট </td>
 
 </tr>
  

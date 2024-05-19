@@ -210,14 +210,14 @@ class International extends MY_Controller
         
         $this->db->select('*');
         $this->db->where('branch_id',$branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
         $query = $this->db->get('international_bideshe_study');
         $this->data['international_bideshe_study'] = $query;
 
         
         $this->db->select('*');
         $this->db->where('branch_id',$branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
         $query = $this->db->get('international_language_interested');
         $this->data['international_language_interested'] = $query;
 
@@ -370,7 +370,7 @@ class International extends MY_Controller
 
         $this->db->select('*');
         $this->db->where('branch_id',$branch_id);
-        $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+        $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
         $query = $this->db->get('international_shabek_embassy');
         $this->data['international_shabek_embassy'] = $query;
 

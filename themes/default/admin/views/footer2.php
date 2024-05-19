@@ -2,6 +2,7 @@
 //var_dump($m);
 
 ?>
+
 <div class="clearfix"></div>
 <?= '</div></div></div></td></tr></table></div></div>'; ?>
 <div class="clearfix"></div>
@@ -125,13 +126,14 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                  success: function (response , config) {
                      
                     console.log(config.error);
+
                       var data = $.parseJSON(response);
                       if(data.flag==3)
                           location.reload();
                       else if(data.flag==1) {
                         // config.error.call(this, data.msg);
                          alert(data.msg);
-                         location.reload();
+                        // location.reload();
                       }
                   },
                  error: function (response) {
