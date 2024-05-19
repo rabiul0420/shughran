@@ -110,7 +110,7 @@
         <div class="box-icon">
             <ul class="btn-tasks">
                 <li class="dropdown">
-                    <a href="<?= admin_url('organization/add_uposhakha') ?>">
+                    <a href="<?= admin_url('organization/adduposhakha') ?>">
                         <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' উপশাখা যোগ করুন' ?></i>
                     </a>
                 </li>

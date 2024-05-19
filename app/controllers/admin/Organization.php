@@ -5004,7 +5004,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     }
     
     
-    function add_uposhakha($id = NULL)
+    function adduposhakha($id = NULL)
     {
         $this->load->admin_model('organization_model');
     
@@ -5012,9 +5012,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->load->helper('security');
     
         $branches = $this->site->getAllBranches();
-    
+        $wards = $this->site->getAllwards();    
         $this->form_validation->set_rules('uposhakha_name', 'Uposhakha Name', 'required');
         $this->form_validation->set_rules('uposhakha_code', 'Uposhakha Code', 'required');
+
+        // $this->sma->print_arrays($this->input->post());
+
     
         if ($this->form_validation->run() == true) {
     
@@ -5056,14 +5059,21 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     
                 $this->site->insertData('uposhakha_ideal_log', $data_log);
             }
-    
-            $this->session->set_flashdata('message', 'Waiting for approval by the central chairman.');
-    
+            
+            
+            $this->session->set_flashdata('message', 'Waiting for approval by the central chairman.');    
             admin_redirect('organization/adduposhakha');
+
+
         } else {
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
     
             $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['wards'] = $this->site->getAllwards();
+            $this->data['thanas'] = $this->site->getAllthanas();
+
+     
+
     
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
                 $this->data['branch_id'] = NULL;
@@ -5083,7 +5093,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
     }
     
-
+ 
 
 
     //////////////////////////////////////////////////////////////////
