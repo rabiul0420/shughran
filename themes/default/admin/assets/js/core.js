@@ -1116,6 +1116,13 @@ $(document).ready(function() {
         $('#myModal').modal('show');
        });
 	
+    
+       
+       $('body').on('click', '.institution_link td:not(:first-child, :last-child)', function() {
+        $('#myModal').modal({remote: site.base_url + 'organization/instituition_detail/' + $(this).parent('.institution_link').attr('id') + '/'+ $(this).parent('.institution_link').attr('status')});
+        $('#myModal').modal('show');
+       });
+       
 	
     $('body').on('click', '.worker_link td:not(:first-child,  :last-child)', function() {
         $('#myModal').modal({remote: site.base_url + 'worker/modal_view/' + $(this).parent('.worker_link').attr('id')});

@@ -43,15 +43,15 @@
                 nRow.id = aData[0];
 				$(nRow).attr("status",'1');
 				 
-               // nRow.className = "manpower_link";
+                 nRow.className = "institution_link";
                 //if(aData[7] > aData[9]){ nRow.className = "product_link warning"; } else { nRow.className = "product_link"; }
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},  null,  null, {"bSortable": false ,"bSearchable": false}, {"bSortable": false ,"bSearchable": false},  {"bSortable": false ,"bSearchable": false}, null,{"bSearchable": false ,"bSearchable": false},  {"bSearchable": false ,"bSearchable": false},  {"bSearchable": false}, {"bSearchable": false},  {"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},  {  "mRender": organization_info}, {"bSortable": false}
+                {"bSortable": false, "mRender": checkbox},  null,  null, {"bSortable": false ,"bSearchable": false}, {"bSortable": false ,"bSearchable": false},  {"bSortable": false ,"bSearchable": false}, null,    {"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},  {  "mRender": organization_info}, {"bSortable": false}
             ]
         }).fnSetFilteringDelay().dtFilter([
-
+            
             {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
             {column_number: 2, filter_default_label: "[<?=lang('name');?>]", filter_type: "text", data: []},
             {column_number: 3, filter_default_label: "[<?='Type';?>]", filter_type: "text", data: []},
@@ -136,10 +136,7 @@
 							<th><?= 'শাখা কোড ' ?></th>
                             <th><?= 'থানা কোড ' ?></th>
                             
-                            <th><?= 'সমর্থক সংগঠন পূর্ব' ?></th>
-                            <th><?= 'সমর্থক সংগঠন বর্তমান' ?></th>
-                            <th><?= 'সমর্থক সংগঠন বৃদ্ধি' ?></th>
-                            <th><?= 'সমর্থক সংগঠন ঘাটতি' ?></th>
+                             
 
                             <th><?= 'সমর্থক' ?></th>
                             <th><?= 'অন্যান্য ছাত্র সংগঠনের কর্মী ' ?></th>
@@ -171,10 +168,7 @@
                              <th></th>
                              <th></th>
                              <th></th>
-                             <th></th>
-                             <th></th>
-                             <th></th>
-                             <th></th>
+                             
                              <th></th>
                              <th></th>
                              <th></th>
