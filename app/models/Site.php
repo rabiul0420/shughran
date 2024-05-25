@@ -211,6 +211,28 @@ class Site extends CI_Model
         }
         return FALSE;
     }
+    public function getAllwards()
+    {
+        $q = $this->db->get('ward');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+    public function getAllthanas()
+    {
+        $q = $this->db->get('thana');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
 
     public function getBranchByID($id)
     {
@@ -734,6 +756,9 @@ $q = $this->db->get();
 
 
         if ($this->db->insert($table, $data)) {
+
+            echo $this->db->last_query();
+            exit;
 
             if ($return_id != NULL)
                 return $this->db->insert_id();

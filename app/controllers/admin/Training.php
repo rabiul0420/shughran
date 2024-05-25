@@ -899,10 +899,10 @@ FROM `sma_library_calculated` WHERE `report_type` = ? AND calculated_year = ? ",
 
 		 
 		if ($branch_id)
-			return $this->site->query_binding("SELECT  `v2_worker_increase_decrease`(?,?,?,?) current_manpower  ", array($start, $end, $branch_id, $prev));
+			return $this->site->query_binding("SELECT  `v2_worker_v3_increase_decrease`(?,?,?,?) current_manpower  ", array($start, $end, $branch_id, $prev));
 
 		else
-			return $this->site->query_binding("SELECT  `v2_worker_increase_decrease_all`(?,?,?) current_manpower  ", array($start, $end,  $prev));
+			return $this->site->query_binding("SELECT  `v2_worker_v3_increase_decrease_all`(?,?,?) current_manpower  ", array($start, $end,  $prev));
 	}
 
 

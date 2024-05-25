@@ -213,7 +213,7 @@ public function addstudentunionelection($data)
 	
 	public function addlibraryincreasedecrease($data)
     {
-        if ($this->db->insert('library_increase_decrease', $data)) {
+        if ($this->db->insert('library_v3_increase_decrease', $data)) {
             $product_id = $this->db->insert_id();
             return true;
         }

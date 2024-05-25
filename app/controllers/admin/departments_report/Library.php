@@ -376,17 +376,17 @@ function getLibraryIncreaseDecrease($branch_id = NULL)
         if ($branch_id) {
          
         $this->datatables
-                ->select($this->db->dbprefix('library_increase_decrease') . ".id as id,  thana_name,  {$this->db->dbprefix('branches')}.name as branch_name, increase_number,decrease_number,book_decrease,book_increase,report_type,report_year", FALSE)
-				->from('library_increase_decrease');
-		  $this->datatables->join('branches', 'branches.id=library_increase_decrease.branch_id', 'left')
+                ->select($this->db->dbprefix('library_v3_increase_decrease') . ".id as id,  thana_name,  {$this->db->dbprefix('branches')}.name as branch_name, increase_number,decrease_number,book_decrease,book_increase,report_type,report_year", FALSE)
+				->from('library_v3_increase_decrease');
+		  $this->datatables->join('branches', 'branches.id=library_v3_increase_decrease.branch_id', 'left')
                 ->where('branches.id', $branch_id); 
 		 
 		
 		} else {
            $this->datatables
-                ->select($this->db->dbprefix('library_increase_decrease') . ".id as id, thana_name,  {$this->db->dbprefix('branches')}.name as branch_name, increase_number,decrease_number,book_decrease,book_increase,report_type,report_year", FALSE)
-				->from('library_increase_decrease');
-		  $this->datatables->join('branches', 'branches.id=library_increase_decrease.branch_id', 'left') ; 
+                ->select($this->db->dbprefix('library_v3_increase_decrease') . ".id as id, thana_name,  {$this->db->dbprefix('branches')}.name as branch_name, increase_number,decrease_number,book_decrease,book_increase,report_type,report_year", FALSE)
+				->from('library_v3_increase_decrease');
+		  $this->datatables->join('branches', 'branches.id=library_v3_increase_decrease.branch_id', 'left') ; 
         }
 		
 		
