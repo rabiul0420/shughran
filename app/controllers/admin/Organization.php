@@ -2934,13 +2934,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->data['institution'] = $q->row();
         $this->data['title'] = 'Institution detail';
 
-        
+
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => $q->row()->institution_name));
         $meta = array('page_title' => $q->row()->institution_name, 'bc' => $bc);
         $this->page_construct('organization/view_detail', $meta, $this->data, 'leftmenu/organization');
-   
-   
-      //  $this->load->view($this->theme . 'organization/view', $this->data);
+
+
+        //  $this->load->view($this->theme . 'organization/view', $this->data);
     }
 
 
@@ -5097,27 +5097,27 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->data['branch_id'] = $this->session->userdata('branch_id');
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
-    
+
         // $this->sma->print_arrays($this->data['branch']);
-    
+
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Uposhakha List'));
         $meta = array('page_title' => 'Uposhakha List', 'bc' => $bc);
         $this->page_construct('organization/uposhakhalist', $meta, $this->data, 'leftmenu/organization');
     }
-    
+
     function getUposhakhaList($branch_id = NULL)
     {
         $this->sma->checkPermissions('index', TRUE);
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {
             $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
         }
-    
+
         $report_type = $this->report_type();
-    
+
         $edit_link = anchor('admin/organization/edituposhakha/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
-    
+
         $this->load->library('datatables');
-    
+
         if ($branch_id) {
             $this->datatables
                 ->select($this->db->dbprefix('uposhakha') . ".id , t1.name as branch_name, {$this->db->dbprefix('uposhakha')}.uposhakha_name, {$this->db->dbprefix('uposhakha')}.uposhakha_code, {$this->db->dbprefix('uposhakha')}.org_type, 0 as member_number, 0 as associate_number, {$this->db->dbprefix('uposhakha')}.worker_number, {$this->db->dbprefix('uposhakha')}.supporter_number, {$this->db->dbprefix('uposhakha')}.uposhakha_number, {$this->db->dbprefix('uposhakha')}.subunit_number, {$this->db->dbprefix('uposhakha')}.is_ideal_uposhakha, {$this->db->dbprefix('uposhakha')}.note", FALSE)
@@ -5129,30 +5129,30 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->join('branches as t1', 't1.id=uposhakha.branch_id', 'left')
                 ->from('uposhakha');
         }
-    
+
         $this->datatables->where('((is_pending = 1 AND in_out = 2) OR (is_pending = 2 AND in_out = 1))');
-    
+
         $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary\" title='" . 'Decrease' . "' href='" . admin_url('organization/uposhakhadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>Decrease <i class=\"fa fa-minus\"></i></a>";
         $this->datatables->add_column("Decrease", $decrease, "id");
         $this->datatables->add_column("Actions", $edit_link, "id");
         echo $this->datatables->generate();
     }
-    
-    
+
+
     function add_uposhakha($id = NULL)
     {
         $this->load->admin_model('organization_model');
-    
+
         $this->sma->checkPermissions('index', TRUE);
         $this->load->helper('security');
-    
+
         $branches = $this->site->getAllBranches();
-    
+
         $this->form_validation->set_rules('uposhakha_name', 'Uposhakha Name', 'required');
         $this->form_validation->set_rules('uposhakha_code', 'Uposhakha Code', 'required');
-    
+
         if ($this->form_validation->run() == true) {
-    
+
             $data = array(
                 'date' => $this->sma->fsd($this->input->post('date')),
                 'branch_id' => $this->input->post('branch_id'),
@@ -5176,9 +5176,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'note' => $this->input->post('note'),
                 'user_id' => $this->session->userdata('user_id'),
             );
-    
+
             $uposhakha_id = $this->site->insertData('uposhakha', $data, 'id');
-    
+
             if ($this->input->post('is_ideal_uposhakha') == 1) {
                 $data_log = array(
                     'branch_id' => ($this->Owner || $this->Admin) ? $this->input->post('branch_id') : $this->session->userdata('branch_id'),
@@ -5188,18 +5188,18 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                     'is_pending' => 1,
                     'uposhakha_id' => $uposhakha_id
                 );
-    
+
                 $this->site->insertData('uposhakha_ideal_log', $data_log);
             }
-    
+
             $this->session->set_flashdata('message', 'Waiting for approval by the central chairman.');
-    
+
             admin_redirect('organization/adduposhakha');
         } else {
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
-    
+
             $this->data['branches'] = $this->site->getAllBranches();
-    
+
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
                 $this->data['branch_id'] = NULL;
                 $this->data['branch'] = NULL;
@@ -5207,17 +5207,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
                 $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
             }
-    
+
             $this->data['districts'] = $this->site->getAll('district');
             $this->data['institutions'] = $this->organization_model->getAllInstitution(1);
             $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
-    
+
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('Uposhakha')));
             $meta = array('page_title' => lang('Uposhakha'), 'bc' => $bc);
             $this->page_construct('organization/adduposhakha', $meta, $this->data, 'leftmenu/organization');
         }
     }
-    
+
 
 
 
@@ -5229,15 +5229,27 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-function data_import(){
+    function data_import()
+    {
 
-   $union =  $this->site->query('select *from sma_district where level = 3');
- 
-   foreach($union as $row){
-    echo $row['id'].'<br/>';
-   }
+        $union =  $this->site->query('select *from sma_district where level = 3');
 
-}
+        foreach ($union as $row) {
+            for($i=1; $i<=11; $i++) {
+
+            $data = [
+                'zone_type' => 2,
+                'level' => 4,
+                'parent_id' =>  $row['id'],
+                'name' => 'Ward '.$i,
+                'priority' => $i,
+                'is_active' => 1
+            ];
 
 
+          //  $this->site->insertData('district', $data);
+           // echo "Name=>'', zone_type => 2, Level=>4, Parent_id => " . $row['id'] . '<br/>';
+        }
+        }
+    }
 }
