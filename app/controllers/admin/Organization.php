@@ -3462,11 +3462,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $branches = $this->site->getAllBranches();
 
         $this->form_validation->set_rules('thana_name', 'name', 'required');
-        $this->form_validation->set_rules('thana_code', 'code', 'required');
+        // $this->form_validation->set_rules('thana_code', 'code', 'required');
 
 
         if ($this->form_validation->run() == true) {
             //  $this->sma->print_arrays($originalDate);
+
+
+
+            // $this->sma->print_arrays($this->input->post());
+
+
 
             //new manpower
             $data = array(
@@ -3475,18 +3481,16 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'thana_name' => $this->input->post('thana_name'),
                 'thana_code' => $this->input->post('thana_code'),
                 'org_type' => $this->input->post('org_type'),
-                'is_mess' => $this->input->post('is_mess'),
+                'prosasonik_details' => $this->input->post('prosasonik_details'),
+                'ins_name' => $this->input->post('ins_name'),
                 'district' => $this->input->post('district'),
                 'upazila' => $this->input->post('upazila'),
-                'union_name' => $this->input->post('union_name'),
-                'ward_name' => $this->input->post('ward_name'),
-                'is_under_institute' => $this->input->post('is_under_institute'),
+                'union' => $this->input->post('union'),
+                'ward' => $this->input->post('ward'),
+                'educational_details' => $this->input->post('educational_details'),
                 'institution_parent_id' => $this->input->post('institution_parent_id'),
                 'institution_type_id' => $this->input->post('institution_type_id'),
                 'name_institution' => $this->input->post('name_institution'),
-
-                // 'member_number' => $this->input->post('member_number'),
-                // 'associate_number' => $this->input->post('associate_number'),
                 'worker_number' => $this->input->post('worker_number'),
                 'supporter_number' => $this->input->post('supporter_number'),
                 'ward_number' => $this->input->post('ward_number'),
@@ -3501,6 +3505,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
             $thana_id = $this->site->insertData('thana', $data, 'id');
+
+
+
+
+
+
 
             if ($this->input->post('is_ideal_thana') == 1) {  // will need while approve
                 $data_log = array(
@@ -5085,10 +5095,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-    public function get_upazilas($district_id = null)
+    public function getUpazilas()
     {
         $district_id = $this->input->get('district_id');
-
         if ($district_id && is_numeric($district_id)) {
             $upazilas = $this->db->where('parent_id', $district_id)->get('district')->result();
             echo json_encode($upazilas);
@@ -5096,6 +5105,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             echo json_encode([]);
         }
     }
+
+
+
+
 
     public function get_unions($upazila_id = null)
     {
@@ -5133,9 +5146,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($institution_type_id && is_numeric($institution_type_id)) {
 
-            $institutionlist = $this->db->where('institution_type_child', $institution_type_id  )->get('institutionlist')->result();
+            $institutionlist = $this->db->where('institution_type_child', $institution_type_id)->get('institutionlist')->result();
 
-            
+
 
 
             echo json_encode($institutionlist);

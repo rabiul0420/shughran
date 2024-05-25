@@ -69,7 +69,7 @@ if (!empty($variants)) {
 
                     <div class="form-group">
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_name") ?>
-                        <?= form_input('thana_name', (isset($_POST['thana_name']) ? $_POST['thana_name'] : ''), 'class="form-control" id="thana_name" required="required"'); ?>
+                        <?= form_input('thana_name', '', 'class="form-control" id="thana_name" required="required"'); ?>
                     </div>
 
 
@@ -81,7 +81,7 @@ if (!empty($variants)) {
                         foreach (['Residential' => 'আবাসিক', 'Institutional' => 'প্রাতিষ্ঠানিক', 'Departmental' => 'বিভাগীয়'] as $key => $type)
                             $wrt[$key] = $type;
 
-                        echo form_dropdown('org_type', $wrt, (isset($_POST['org_type']) ? $_POST['org_type'] : ''), 'id="org_type"   class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('org_type', $wrt,  '', 'id="org_type"   class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
@@ -95,7 +95,7 @@ if (!empty($variants)) {
                         foreach (['1' => 'প্রশাসনিক এলাকা ', '2' => 'মেস', '3' => 'হল/হোস্টেল', '4' => 'কোয়াটার'] as $key => $type)
                             $prosasonik_details[$key] = $type;
 
-                        echo form_dropdown('prosasonik_details', $prosasonik_details, (isset($_POST['prosasonik_details']) ? $_POST['prosasonik_details'] : ''), 'id="prosasonik_details"   class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('prosasonik_details', $prosasonik_details, '', 'id="prosasonik_details"   class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
@@ -116,7 +116,7 @@ if (!empty($variants)) {
                         foreach ($districts as $district) if ($district->parent_id == 0)
                             $dt[$district->id] = $district->name;
 
-                        echo form_dropdown('district', $dt, (isset($_POST['district']) ? $_POST['district'] : ''), 'id="district"  class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('district', $dt,  '', 'id="district"  class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
@@ -149,7 +149,7 @@ if (!empty($variants)) {
                         foreach (['1' => 'শিক্ষাপ্রতিষ্ঠান ', '2' => 'কোচিং/প্রাইভেট সেন্টার', '3' => 'ট্রেনিং সেন্টার'] as $key => $type)
                             $educational_details[$key] = $type;
 
-                        echo form_dropdown('educational_details', $educational_details, (isset($_POST['educational_details']) ? $_POST['educational_details'] : ''), 'id="educational_details"   class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('educational_details', $educational_details, '', 'id="educational_details"   class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
@@ -163,7 +163,7 @@ if (!empty($variants)) {
                             foreach ($institution_types as $institution_type) {
                                 $whp[$institution_type->id] = $institution_type->institution_type;
                             }
-                            echo form_dropdown('institution_parent_id', $whp, (isset($_POST['institution_parent_id']) ? $_POST['institution_parent_id'] : ''), 'id="institution_parent_id"  class="form-control skip" style="width:100%;" ');
+                            echo form_dropdown('institution_parent_id', $whp, '', 'id="institution_parent_id"  class="form-control skip" style="width:100%;" ');
                             ?>
                         </div>
 
@@ -253,7 +253,7 @@ if (!empty($variants)) {
 
 
 
-                        echo form_dropdown('branch_id', $wh, (isset($_POST['branch_id']) ? $_POST['branch_id'] : ''), 'id="branch_id"  class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
@@ -273,7 +273,7 @@ if (!empty($variants)) {
 
                     <div class="form-group all">
                         <?= lang("মন্তব্য", "note") ?>
-                        <?= form_textarea('note', (isset($_POST['note']) ? $_POST['note'] : ''), 'class="form-control" id="note"'); ?>
+                        <?= form_textarea('note', '', 'class="form-control" id="note"'); ?>
                     </div>
 
 
@@ -320,9 +320,10 @@ if (!empty($variants)) {
 
         $('#district').change(function() {
             var district_id = $(this).val();
+
             if (district_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/get_upazilas'); ?>",
+                    url: "<?php echo admin_url('organization/getUpazilas'); ?>",
                     method: "GET",
                     data: {
                         district_id: district_id
@@ -343,6 +344,7 @@ if (!empty($variants)) {
                 $('#upazila').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('upazila'); ?></option>");
             }
         });
+
 
         $('#upazila').change(function() {
             var upazila_id = $(this).val();
@@ -419,7 +421,7 @@ if (!empty($variants)) {
                     success: function(response) {
                         var options = "<option selected disabled><?= lang('select') . ' ' . lang('institution_name'); ?></option>";
                         $.each(response, function(index, institution) {
-                            options += "<option value='" + institution.id + "'>" + institution.name + "</option>";
+                            options += "<option value='" + institution.id + "'>" + institution.ins_name + "</option>";
                         });
                         $('#ins_name').empty().append(options);
                     },
