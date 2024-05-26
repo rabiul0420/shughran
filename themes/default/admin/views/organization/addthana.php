@@ -181,7 +181,7 @@ if (!empty($variants)) {
 
                         <div class="form-group">
                             <?= lang("প্রতিষ্ঠানের নাম", "ins_name"); ?>
-                            <select id="ins_name" name="ins_name" class="form-control">
+                            <select id="ins_name" name="institution_id" class="form-control">
                             </select>
                         </div>
                         <hr>

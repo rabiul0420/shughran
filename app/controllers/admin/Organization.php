@@ -3585,39 +3585,28 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function addthana($id = NULL)
     {
 
+        // $this->sma->print_arrays($id);
+
         $this->load->admin_model('organization_model');
-
-
         //   $this->sma->print_arrays(11111);
-
         $this->sma->checkPermissions('index', TRUE);
         $this->load->helper('security');
         // $this->load->admin_model('organization_model');
-
         $branches = $this->site->getAllBranches();
-
         $this->form_validation->set_rules('thana_name', 'name', 'required');
         // $this->form_validation->set_rules('thana_code', 'code', 'required');
-
-
         if ($this->form_validation->run() == true) {
             //  $this->sma->print_arrays($originalDate);
-
-
-
             // $this->sma->print_arrays($this->input->post());
-
-
-
             //new manpower
             $data = array(
                 'date' =>  $this->sma->fsd($this->input->post('date')),
                 'branch_id' => $this->input->post('branch_id'),
+                'thana_id' => $this->input->post('thana_id'),
                 'thana_name' => $this->input->post('thana_name'),
-                'thana_code' => $this->input->post('thana_code'),
                 'org_type' => $this->input->post('org_type'),
                 'prosasonik_details' => $this->input->post('prosasonik_details'),
-                'ins_name' => $this->input->post('ins_name'),
+                'institution_id' => $this->input->post('institution_id'),
                 'district' => $this->input->post('district'),
                 'upazila' => $this->input->post('upazila'),
                 'union' => $this->input->post('union'),
@@ -3625,12 +3614,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'educational_details' => $this->input->post('educational_details'),
                 'institution_parent_id' => $this->input->post('institution_parent_id'),
                 'institution_type_id' => $this->input->post('institution_type_id'),
-                'name_institution' => $this->input->post('name_institution'),
                 'worker_number' => $this->input->post('worker_number'),
                 'supporter_number' => $this->input->post('supporter_number'),
                 'ward_number' => $this->input->post('ward_number'),
                 'unit_number' => $this->input->post('unit_number'),
-                //'increase_in_current_session' => $this->input->post('increase_in_current_session'),
                 'is_ideal_thana' => $this->input->post('is_ideal_thana'),
                 'is_pending' => 1,
                 'note' => $this->input->post('note'),
@@ -3665,8 +3652,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->session->set_flashdata('message', 'কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
 
 
+            if ($id==1) {
+                admin_redirect('organization/addthana');
+            } elseif ($id==2) {
+                admin_redirect('organization/addthana/2');
+            }
+            // $this->sma->print_arrays(1111);
 
-            admin_redirect('organization/addthana');
+           
+
+
+
         } else {
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
 
@@ -3684,6 +3680,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             }
 
             $this->data['districts'] = $this->site->getAll('district');
+            $this->data['thanas'] = $this->site->getAll('thana');
 
             $this->data['institutions'] = $this->organization_model->getAllInstitution(1);
             // $this->data['institutiontype'] = $this->organization_model->getInstitutionType();
@@ -3692,7 +3689,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('থানা')));
             $meta = array('page_title' => lang('থানা '), 'bc' => $bc);
-            $this->page_construct('organization/addthana', $meta, $this->data, 'leftmenu/organization');
+
+
+            if ($id==1) {
+                $this->page_construct('organization/addthana', $meta, $this->data, 'leftmenu/organization');
+            } elseif ($id==2) {
+                $this->page_construct('organization/addward', $meta, $this->data, 'leftmenu/organization');
+            }
+            
+            // $this->page_construct('organization/addthana', $meta, $this->data, 'leftmenu/organization');
+
+
         }
     }
 
@@ -4896,84 +4903,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         echo $this->datatables->generate();
     }
 
-    function addward($id = NULL)
-    {
-        $this->load->admin_model('organization_model');
 
-        $this->sma->checkPermissions('index', TRUE);
-        $this->load->helper('security');
-
-        $branches = $this->site->getAllBranches();
-
-        $this->form_validation->set_rules('ward_name', 'Ward Name', 'required');
-        $this->form_validation->set_rules('ward_code', 'Ward Code', 'required');
-
-        if ($this->form_validation->run() == true) {
-
-            $data = array(
-                'date' => $this->sma->fsd($this->input->post('date')),
-                'branch_id' => $this->input->post('branch_id'),
-                'ward_name' => $this->input->post('ward_name'),
-                'ward_code' => $this->input->post('ward_code'),
-                'org_type' => $this->input->post('org_type'),
-                'is_mess' => $this->input->post('is_mess'),
-                'district' => $this->input->post('district'),
-                'upazila' => $this->input->post('upazila'),
-                'union_name' => $this->input->post('union_name'),
-                'is_under_institute' => $this->input->post('is_under_institute'),
-                'institution_parent_id' => $this->input->post('institution_parent_id'),
-                'institution_type_id' => $this->input->post('institution_type_id'),
-                'name_institution' => $this->input->post('name_institution'),
-                'worker_number' => $this->input->post('worker_number'),
-                'supporter_number' => $this->input->post('supporter_number'),
-                'ward_number' => $this->input->post('ward_number'),
-                'unit_number' => $this->input->post('unit_number'),
-                'is_ideal_ward' => $this->input->post('is_ideal_ward'),
-                'is_pending' => 2,
-                'note' => $this->input->post('note'),
-                'user_id' => $this->session->userdata('user_id'),
-            );
-
-            $ward_id = $this->site->insertData('ward', $data, 'id');
-
-            if ($this->input->post('is_ideal_ward') == 1) {
-                $data_log = array(
-                    'branch_id' => ($this->Owner || $this->Admin) ? $this->input->post('branch_id') : $this->session->userdata('branch_id'),
-                    'date' => date('Y-m-d'),
-                    'user_id' => $this->session->userdata('user_id'),
-                    'is_ideal_ward' => 1,
-                    'is_pending' => 1,
-                    'ward_id' => $ward_id
-                );
-
-                $this->site->insertData('ward_ideal_log', $data_log);
-            }
-
-            $this->session->set_flashdata('message', 'Waiting for approval by the central chairman.');
-
-            admin_redirect('organization/addward');
-        } else {
-            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
-
-            $this->data['branches'] = $this->site->getAllBranches();
-
-            if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
-                $this->data['branch_id'] = NULL;
-                $this->data['branch'] = NULL;
-            } else {
-                $this->data['branch_id'] = $this->session->userdata('branch_id');
-                $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
-            }
-
-            $this->data['districts'] = $this->site->getAll('district');
-            $this->data['institutions'] = $this->organization_model->getAllInstitution(1);
-            $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
-
-            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('Ward')));
-            $meta = array('page_title' => lang('Ward'), 'bc' => $bc);
-            $this->page_construct('organization/addward', $meta, $this->data, 'leftmenu/organization');
-        }
-    }
 
     function ward_pending($branch_id = NULL)
     {

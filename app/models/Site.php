@@ -755,10 +755,7 @@ $q = $this->db->get();
     {
 
 
-        if ($this->db->insert($table, $data)) {
-
-            echo $this->db->last_query();
-            exit;
+        if ($this->db->insert($table, $data)) {        
 
             if ($return_id != NULL)
                 return $this->db->insert_id();

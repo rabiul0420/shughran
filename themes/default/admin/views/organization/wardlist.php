@@ -109,7 +109,7 @@
         <div class="box-icon">
             <ul class="btn-tasks">
                 <li class="dropdown">
-                    <a href="<?= admin_url('organization/addward') ?>">
+                    <a href="<?= admin_url('organization/addthana/2') ?>">
                         <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' ওয়ার্ড বৃদ্ধি করুন' ?></i>
                     </a>
                 </li>
