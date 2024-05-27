@@ -37,6 +37,12 @@
 $vars = !empty($variants) ? array_map('addslashes', array_column($variants, 'name')) : array();
 ?>
 
+
+
+
+
+
+
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i class="fa-fw fa fa-plus"></i><?= 'উপশাখা '; ?></h2>
@@ -48,7 +54,7 @@ $vars = !empty($variants) ? array_map('addslashes', array_column($variants, 'nam
                 <?php
                 // Opening the form with attributes
                 $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
-                echo admin_form_open_multipart("organization/adduposhakha", $attrib);
+                echo admin_form_open_multipart("organization/addthana/3", $attrib);
                 ?>
 
 
@@ -221,57 +227,76 @@ $vars = !empty($variants) ? array_map('addslashes', array_column($variants, 'nam
 
 
 
-
-
-                
-
                 <div class="col-md-6">
                     <div class="form-group">
+                        <?= lang('সদস্য', 'member_number'); ?>
+                        <?= form_input('member_number', set_value('member_number', '0'), 'class="form-control tip" id="member_number"'); ?>
+                    </div>
+                    <div class="form-group">
+                        <?= lang('সাথী', 'partner_number'); ?>
+                        <?= form_input('partner_number', set_value('partner_number', '0'), 'class="form-control tip" id="partner_number"'); ?>
+                    </div>
+                    <div class="form-group">
                         <?= lang('কর্মী', 'worker_number'); ?>
-                        <?= form_input('worker_number', set_value('worker_number', '0'), 'class="form-control tip" id="worker_number"  '); ?>
+                        <?= form_input('worker_number', set_value('worker_number', '0'), 'class="form-control tip" id="worker_number"'); ?>
                     </div>
                     <div class="form-group">
                         <?= lang('সমর্থক সংখ্যা', 'supporter_number'); ?>
-                        <?= form_input('supporter_number', set_value('supporter_number', '0'), 'class="form-control tip" id="supporter_number"  '); ?>
+                        <?= form_input('supporter_number', set_value('supporter_number', '0'), 'class="form-control tip" id="supporter_number"'); ?>
                     </div>
+                    <div class="form-group">
+                        <?= lang('সেট-আপ আছে কি না?', 'is_setup_exists'); ?>
+
+                        <?php
+                        foreach ([1 => 'Yes', 0 => 'No'] as $key => $type)
+                            $is_stup[$key] = $type;
+                        echo form_dropdown('is_setup_exists', $is_stup, (isset($_POST['is_setup_exists']) ? $_POST['is_setup_exists'] : ''), 'id="is_setup_exists"   class="form-control select" style="width:100%;" ');
+                        ?>
 
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <?= lang("শাখা", "branch"); ?>
-                            <?php
-                            // Dropdown for selecting a branch
-                            $wh[''] = lang('select') . ' ' . lang('branch');
-                            if ($this->Admin || $this->Owner)
-                                $flag = 1;
-                            else
-                                $flag = 2;
-                            foreach ($branches as $branch) {
-                                if ($flag == 1)
-                                    $wh[$branch->id] = $branch->name;
-                                elseif ($branch->id == $this->session->userdata('branch_id'))
-                                    $wh[$branch->id] = $branch->name;
-                            }
-                            echo form_dropdown('branch_id', $wh, (isset($_POST['branch_id']) ? $_POST['branch_id'] : ''), 'id="branch_id"  class="form-control select" style="width:100%;"  required="required"       ');
-                            ?>
-                        </div>
                     </div>
-
-
-
-
-
-
-                    <!-- test -->
-                   
-
-
-
-
-
+                    <div class="form-group">
+                        <?= lang('কোন মানের উপশাখা', 'branch_type'); ?>
+                        <?= form_input('branch_type', '', 'class="form-control tip" id="branch_type"'); ?>
+                    </div>
+                    <div class="form-group">
+                        <?= lang('উপশাখা রেজিস্ট্রার খাতা আছে কি না?', 'is_branch_registrar_account'); ?>
+                        <?php
+                        foreach ([1 => 'Yes', 0 => 'No'] as $key => $type)
+                            $is_registrar[$key] = $type;
+                        echo form_dropdown('is_setup_exists', $is_registrar, (isset($_POST['is_setup_exists']) ? $_POST['is_setup_exists'] : ''), 'id="is_setup_exists"   class="form-control select" style="width:100%;" ');
+                        ?>
+                    </div>
+                    <div class="form-group">
+                        <?= lang('কর্মী সিলেবাসের বই আছে কি না?', 'is_worker_syllabus_book'); ?>
+                        <?php
+                        foreach ([1 => 'Yes', 0 => 'No'] as $key => $type)
+                            $is_worker_syll[$key] = $type;
+                        echo form_dropdown('is_setup_exists', $is_worker_syll, (isset($_POST['is_setup_exists']) ? $_POST['is_setup_exists'] : ''), 'id="is_setup_exists"   class="form-control select" style="width:100%;" ');
+                        ?>
+                    </div>
                 </div>
 
-                <!-- Form inputs for note -->
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <?= lang("শাখা", "branch"); ?>
+                        <?php
+                        // Dropdown for selecting a branch
+                        $wh[''] = lang('select') . ' ' . lang('branch');
+                        $flag = ($this->Admin || $this->Owner) ? 1 : 2;
+                        foreach ($branches as $branch) {
+                            if ($flag == 1 || $branch->id == $this->session->userdata('branch_id')) {
+                                $wh[$branch->id] = $branch->name;
+                            }
+                        }
+                        echo form_dropdown('branch_id', $wh, (isset($_POST['branch_id']) ? $_POST['branch_id'] : ''), 'id="branch_id" class="form-control select" style="width:100%;" required="required"');
+                        ?>
+                    </div>
+                </div>
+
+
+
                 <div class="col-md-6">
                     <div class="form-group all">
                         <?= lang("মন্তব্য", "note") ?>
@@ -279,7 +304,6 @@ $vars = !empty($variants) ? array_map('addslashes', array_column($variants, 'nam
                     </div>
                 </div>
 
-                <!-- Form submission button -->
                 <div class="col-md-6">
                     <div class="form-group">
                         <?php echo form_submit('add_transfer', 'Save', 'class="btn btn-primary"'); ?>
@@ -293,6 +317,15 @@ $vars = !empty($variants) ? array_map('addslashes', array_column($variants, 'nam
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 <script type="text/javascript">
     $(document).ready(function() {
