@@ -422,8 +422,8 @@ function getWorker($branch_id = NULL)
 				'foreign_country' => $this->input->post('foreign_country'),
 				'foreign_address' => $this->input->post('foreign_address'),
 				'how_death' => $this->input->post('how_death'),
-				'myr_serial' => $this->input->post('myr_serial')
-				 
+				'myr_serial' => $this->input->post('myr_serial'),
+                'orgstatus_id' => $this->input->post('orgstatus_id')
                 );
 			$worker_id = $this->site->insertData('worker_decrease',$data,'id'); 
 			
@@ -860,7 +860,7 @@ function getWorker($branch_id = NULL)
 
 
 
-    function report_type()
+    function report_type_own()
     {
 
         $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => date('Y')), 'id desc', 1, 0);
