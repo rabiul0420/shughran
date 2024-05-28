@@ -938,7 +938,7 @@ class Others extends MY_Controller
 
 		$this->data['organizationinfo_summary_prev'] = $this->getorganizationinfo_summary_prev('annual', $report_type_get['last_year'], $branch_id);
 
-		$this->data['unit_v3_increase_decrease'] = $this->unit_v3_increase_decrease($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+		$this->data['unit_increase_decrease'] = $this->unit_v3_increase_decrease($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
 
 
