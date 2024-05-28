@@ -69,11 +69,29 @@
                 class="fa-fw fa fa-barcode"></i><?= 'কর্মী  ঘাটতি : '.$process->process . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
 				
 			 
-            
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+      
+
      
      &nbsp;&nbsp;
      <span class="dropdown hidden">
- 
+
+     <button class="btn btn-primary dropdown-toggle" type="button" id="archive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Archive
+         <span class="caret"></span>
+         </button>
+         <ul class="dropdown-menu" aria-labelledby="archive">
+         <li><a href="#">Annual 2020</a></li>
+         <li><a href="#">Half Yearly 2020</a></li>
+         <li><a href="#">Annual 2019</a></li>
+         <li><a href="#">Half Yearly 2019</a></li>
+         
+         </ul>
+
+
+
+        </h2>
         <div class="box-icon">
             <ul class="btn-tasks">
 			 <li>
