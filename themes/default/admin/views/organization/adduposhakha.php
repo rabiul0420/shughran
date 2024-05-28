@@ -73,17 +73,6 @@ if (!empty($variants)) {
                     </div>
 
                     <div class="form-group">
-                        <?= lang("সাংগঠনিক ওয়ার্ড/ইউনিয়নের নাম", "ward_id"); ?>
-                        <?php
-                        $dt[''] = lang('select') . ' ' . lang('থানা');
-                        foreach ($wards as $ward)
-                            $dt[$ward->id] = $ward->thana_name;
-
-                        echo form_dropdown('ward_id', $dt,  '', 'id="ward_id"  class="form-control select" style="width:100%;" ');
-                        ?>
-                    </div>
-
-                    <div class="form-group">
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_id"); ?>
                         <?php
                         $dt[''] = lang('select') . ' ' . lang('থানা');
@@ -93,6 +82,14 @@ if (!empty($variants)) {
                         echo form_dropdown('thana_id', $dt,  '', 'id="thana_id"  class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
+
+
+                    <div class="form-group">
+                        <?= lang("সাংগঠনিক ওয়ার্ড/ইউনিয়নের নাম", "ward_id"); ?>
+                        <select id="ward_id" name="ward_id" class="form-control"> </select>
+
+                    </div>
+
 
                     <div class="form-group">
                         <?= lang("সংগঠনের ধরন", "org_type"); ?>
@@ -132,7 +129,7 @@ if (!empty($variants)) {
                     </div>
 
                     <div class="form-group">
-                        <?= lang("উপজেলা/উপশাখা", "upazila"); ?>
+                        <?= lang("উপজেলা/ওয়ার্ড", "upazila"); ?>
                         <select id="upazila" name="upazila" class="form-control">
                         </select>
 
@@ -145,7 +142,7 @@ if (!empty($variants)) {
                     </div>
 
                     <div class="form-group">
-                        <?= lang("সিটি/ পৌরসভা /ইউনিয়নের উপশাখা", "ward_name") ?>
+                        <?= lang("সিটি/ পৌরসভা /ইউনিয়নের ওয়ার্ড", "ward_name") ?>
                         <select id="ward_name" name="ward_name" class="form-control">
                         </select>
                     </div>
@@ -180,13 +177,7 @@ if (!empty($variants)) {
 
                         <div class="form-group">
                             <label for="institution_type_id">সাব ক্যাটাগরি </label>
-                            <select id="institution_type_id" name="institution_type_id" class="form-control skip">
-                                <option value="">--</option>
-                                <?php
-                                foreach ($institutions as $institution) {
-                                    echo '<option value="' . $institution->id . '" data-chained="' . $institution->type_id . '">' . $institution->institution_type . '</option>';
-                                }
-                                ?>
+                            <select id="institution_type_id" name="institution_type_id" class="form-control ">
                             </select>
                         </div>
 
@@ -225,7 +216,7 @@ if (!empty($variants)) {
 
 
                     <div class="form-group">
-                        <?= lang('আদর্শ উপশাখা?', 'is_ideal_thana'); ?>
+                        <?= lang('আদর্শ ওয়ার্ড?', 'is_ideal_thana'); ?>
 
                         <div class="radio">
                             <input type="radio" class="checkbox" name="is_ideal_thana" value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
@@ -312,17 +303,37 @@ if (!empty($variants)) {
 
 
 
-
-
-
-
-
-
-
-
 <script type="text/javascript">
     $(document).ready(function() {
 
+
+
+        $('#thana_id').change(function() {
+            var thana_id = $(this).val();
+
+            if (thana_id) {
+                $.ajax({
+                    url: "<?php echo admin_url('organization/getWardList'); ?>",
+                    method: "GET",
+                    data: {
+                        thana_id: thana_id
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        var options = "<option selected disabled><?= lang('select') . ' ' . lang('ward'); ?></option>";
+                        $.each(response, function(index, wards) {
+                            options += "<option value='" + wards.id + "'>" + wards.thana_name + "</option>";
+                        });
+                        $('#ward_id').empty().append(options);
+                    },
+                    error: function() {
+                        console.log("Error fetching wards!");
+                    }
+                });
+            } else {
+                $('#ward_id').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('ward'); ?></option>");
+            }
+        });
 
 
         $('#district').change(function() {
@@ -410,73 +421,8 @@ if (!empty($variants)) {
 
 
 
-        $('#institution_type_id').change(function() {
-            var institution_type_id = $(this).val();
 
 
-            // alert(institution_type_id);
 
-
-            if (institution_type_id) {
-                $.ajax({
-                    url: "<?php echo admin_url('organization/get_institutionlist'); ?>",
-                    method: "GET",
-                    data: {
-                        institution_type_id: institution_type_id
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        var options = "<option selected disabled><?= lang('select') . ' ' . lang('institution_name'); ?></option>";
-                        $.each(response, function(index, institution) {
-                            options += "<option value='" + institution.id + "'>" + institution.ins_name + "</option>";
-                        });
-                        $('#ins_name').empty().append(options);
-                    },
-                    error: function() {
-                        console.log("Error fetching institutions!");
-                    }
-                });
-            } else {
-                $('#ins_name').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('institution_name'); ?></option>");
-            }
-        });
-
-
-        $('#org_type').change(function() {
-            var selectedValue = $(this).val();
-
-            if (selectedValue === 'Institutional') {
-                $('.show_when_Institutional').show();
-                $('.show_when_Residential').hide();
-                $('#union_name').attr('required', false);
-            } else if (selectedValue === 'Residential') {
-                $('#union_name').attr('required', true);
-                $('.show_when_Residential').show();
-                $('.show_when_Institutional').hide();
-            } else {
-                $('.show_when_Institutional').hide();
-                $('.show_when_Residential').hide();
-            }
-        });
-
-        $('#org_type').trigger('change');
-
-        $("#institution_type_id").chained("#institution_parent_id");
-
-        $('form[data-toggle="validator"]').bootstrapValidator({
-            excluded: [':disabled']
-        });
-
-        var audio_success = new Audio('<?= base_url('assets/sounds/sound2.mp3'); ?>');
-        var audio_error = new Audio('<?= base_url('assets/sounds/sound3.mp3'); ?>');
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-Token': $('meta[name="token"]').attr('content')
-            }
-        });
-
-        var _URL = window.URL || window.webkitURL;
-        var variants = <?= json_encode($vars); ?>;
     });
 </script>

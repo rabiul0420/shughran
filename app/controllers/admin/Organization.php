@@ -3623,10 +3623,6 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-
-
-
-
             if ($this->input->post('is_ideal_thana') == 1) {  // will need while approve
                 $data_log = array(
                     'branch_id' => ($this->Owner || $this->Admin) ? $this->input->post('branch_id') : $this->session->userdata('branch_id'),
@@ -3670,7 +3666,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             }
 
             $this->data['districts'] = $this->site->getAll('district');
-            $this->data['thanas'] = $this->site->getAll('thana');
+            $this->data['thanas'] = $this->site->getAllThana();
 
             $this->data['institutions'] = $this->organization_model->getAllInstitution(1);
             // $this->data['institutiontype'] = $this->organization_model->getInstitutionType();
@@ -3692,6 +3688,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
     }
 
+
+    public function getWardList($thana_id = null)
+    {
+        $thana_id = $this->input->get('thana_id');
+        if ($thana_id && is_numeric($thana_id)) {
+            $wards = $this->db->where('parent_id', $thana_id)->get('thana')->result();
+            echo json_encode($wards);
+        } else {
+            echo json_encode([]);
+        }
+    }
 
 
 
@@ -3777,6 +3784,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
     function getListthana($branch_id = NULL)
     {
+
+
+
 
         $this->sma->checkPermissions('index', TRUE);
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {

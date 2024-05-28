@@ -211,9 +211,9 @@ class Site extends CI_Model
         }
         return FALSE;
     }
-    public function getAllwards()
+    public function getAllwards($thana_id)
     {
-        $q = $this->db->get('ward');
+        $q = $this->db->get_where('thana', array('parent_id' => $thana_id));
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -835,6 +835,45 @@ $q = $this->db->get();
             $this->db->order_by('priority', 'Desc');
 
         $q = $this->db->get($table);
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
+
+
+
+
+    public function getAllThana($branch=null)
+    {
+
+
+        if ($table == 'responsibilities')
+            $this->db->order_by('priority', 'Desc');
+
+        $q = $this->db->get('thana');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
+
+    public function getAllWard($branch=null)
+    {
+
+
+        if ($table == 'responsibilities')
+            $this->db->order_by('priority', 'Desc');
+
+        $q = $this->db->get('thana');
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;

@@ -72,7 +72,7 @@ if (!empty($variants)) {
                         <?= form_input('thana_name', '', 'class="form-control" id="thana_name" required="required"'); ?>
                     </div>
 
-
+ 
 
                     <div class="form-group">
                         <?= lang("সংগঠনের ধরন", "org_type"); ?>
