@@ -20,7 +20,7 @@ class Auth extends MY_Controller
     {
 
 		
-     exit();
+    // exit();
 
 
 $array = array(
