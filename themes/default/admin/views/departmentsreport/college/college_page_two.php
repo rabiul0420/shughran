@@ -7,7 +7,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'কলেজ বিভাগ - পেইজ ০২ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'কলেজ বিভাগ - পেইজ ০১ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
                 
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -155,7 +155,7 @@ $(document).ready(function(){
                     
                     <table class="tg table table-header-rotated" id="testTable1">
                           <tr>
-                            <td class="tg-pwj7" colspan="11"><b>কলেজ সংগঠন</b></td>
+                            <td class="tg-pwj7" colspan="11"><b>জনশক্তি ও দাওয়াত :</b></td>
                             <td class="tg-pwj7" colspan="3">
                                 <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'College_কলেজ সংগঠন.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>
@@ -647,7 +647,7 @@ $(document).ready(function(){
                                  <?php echo $kriti_stu_pre = $college_akorshon_program['kriti_stu_pre'] ?>
                                 </td>
                                 <td class="tg-0pky  type_10">
-                                ক্রিয়েটিভিটি সার্চপ্রোগ্রাম
+                                ক্রিয়েটিভিটি সার্চ প্রোগ্রাম
                                 </td>
                                 <td class="tg-0pky  type_11">
                                  <?php echo $creative_search_program_num = $college_akorshon_program['creative_search_program_num'] ?>

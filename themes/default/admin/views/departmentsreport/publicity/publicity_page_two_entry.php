@@ -197,7 +197,7 @@
                                 <td class="tg-pwj7" colspan="3">ধরণ</td>
                                 <td class="tg-pwj7">মোট সংখ্যা </td>
                                 <td class="tg-pwj7">শাখা সভাপতি/সেক্রেটারির যোগাযোগ </td>
-                                <td class="tg-pwj7">সম্পাদকের যোগাযোগ </td>
+                                <td class="tg-pwj7">শাখার প্রচার সম্পাদকের যোগাযোগ</td>
 
                             </tr>
                             <?php

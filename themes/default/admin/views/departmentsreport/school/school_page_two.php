@@ -542,7 +542,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1"> সিঙ্গেল ডিজিট</td>
+                                <td class="tg-y698 type_1"> মেধাবি সংবর্ধনা</td>
 
                                 <td class="tg-0pky">
                                     <?php echo $single_digit_num = $school_reception['single_digit_num'] ?>

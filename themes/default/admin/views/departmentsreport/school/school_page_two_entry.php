@@ -511,7 +511,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
 
-                                <td class="tg-y698 type_1"> সিঙ্গেল ডিজিট</td>
+                                <td class="tg-y698 type_1"> মেধাবি সংবর্ধনা</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_reception" 
                                         data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="single_digit_num" data-title="Enter">

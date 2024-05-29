@@ -226,7 +226,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">প্রোগ্রাম</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7">পূর্বের সংখ্যা </td>
                                 <td class="tg-pwj7">বর্তমান সংখ্যা</td>
                             </tr>
@@ -301,17 +301,8 @@ $(document).ready(function(){
                                     <?php echo $deyalika_pres = $school_bitoron['deyalika_pres'] ?>
                                 </td>
                             </tr>
-                            <tr>
+                           
 
-                                <td class="tg-y698 type_1">ছড়া পাতা</td>
-
-                                <td class="tg-0pky">
-                                    <?php echo $chora_pata_prev = $school_bitoron['chora_pata_prev'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo $chora_pata_pres = $school_bitoron['chora_pata_pres'] ?>
-                                </td>
-                            </tr>
                             <tr>
 
                                 <td class="tg-y698 type_1"> পরীক্ষার রুটিন</td>
@@ -674,7 +665,8 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1">ব্যবসায়</td>
+
+                                <td class="tg-y698 type_1">বাণিজ্য</td>
                                 <td class="tg-0pky">
                                     <?php 
                                         echo $shodossho_c_mot_examine = $school_ssc_result['shodossho_c_mot_examine'] ; 
@@ -842,7 +834,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1">ব্যবসায়</td>
+                                <td class="tg-y698 type_1">বাণিজ্য</td>
                                 <td class="tg-0pky">
                                     <?php 
                                         echo $sathi_c_mot_examine = $school_ssc_result['sathi_c_mot_examine']; 
@@ -1026,7 +1018,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1">ব্যবসায়</td>
+                                <td class="tg-y698 type_1">বাণিজ্য</td>
                                 <td class="tg-0pky">
                                     <?php 
                                         echo $kormi_c_mot_examine = $school_ssc_result['kormi_c_mot_examine']; 
@@ -1214,7 +1206,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1">ব্যবসায়</td>
+                                <td class="tg-y698 type_1">বাণিজ্য</td>
                                 <td class="tg-0pky">
                                     <?php 
                                         echo $shomorthok_c_mot_examine = $school_ssc_result['shomorthok_c_mot_examine']; 

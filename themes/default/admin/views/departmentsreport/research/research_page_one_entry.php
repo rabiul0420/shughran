@@ -357,7 +357,7 @@ $(document).ready(function(){
                                 </td>                            
                             </tr>
                             <tr>
-                                <td class="tg-y698"> ভিজুয়াল ক্লাস </td>
+                                <td class="tg-y698">ভিজ্যুয়াল ক্লাস </td>
                                 <td class="tg-0pky  type_5"> 
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                         data-table="gobeshona_regular_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
@@ -377,7 +377,7 @@ $(document).ready(function(){
                                 </td>                          
                             </tr>
                             <tr>
-                                <td class="tg-y698">মিলন মেলা </td>
+                                <td class="tg-y698">মিলনমেলা </td>
                                 <td class="tg-0pky  type_5"> 
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                         data-table="gobeshona_regular_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 

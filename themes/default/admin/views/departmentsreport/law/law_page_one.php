@@ -253,7 +253,8 @@ $(document).ready(function(){
 
 
                             <tr>
-                                <td class="tg-y698 type_1">  <?php echo$report_info['year']-1 ; ?>  পর্যন্ত</td>
+                                <!-- <td class="tg-y698 type_1">  <?php echo$report_info['year']-1 ; ?>  পর্যন্ত</td> -->
+                                <td class="tg-y698 type_1">  ২০২৩ পর্যন্ত</td>
                                 <td class="tg-0pky  type_1">
                                 <?php echo $t1_total_mamla = $law_amader_bipokkhe_mamla['t1_total_css']+$law_amader_bipokkhe_mamla['t1_total_todontadhin_mamla']; ?>
                                 </td>
@@ -302,7 +303,8 @@ $(document).ready(function(){
 
 
                             <tr>
-                                <td class="tg-y698">শুধু    <?php echo$report_info['year'] ; ?>   </td>
+                                <!-- <td class="tg-y698">শুধু    <?php echo$report_info['year'] ; ?>   </td> -->
+                                <td class="tg-y698"> শুধু ২০২৪  </td>
                                 <td class="tg-0pky  type_1">
                                 <?php echo $t2_total_mamla = $law_amader_bipokkhe_mamla['t2_total_css']+$law_amader_bipokkhe_mamla['t2_total_todontadhin_mamla']; ?>                                
                                 </td>
@@ -453,7 +455,7 @@ $(document).ready(function(){
                         </table>
                         <table  class="tg table table-header-rotated" id="testTable3">
                         <tr>
-                            <td class="tg-pwj7" colspan="5"><b>খালাস-সংক্রান্ত তথ্য (2009-<?php echo $report_info['year']; ?>) :  মোট খালাসপ্রাপ্ত মামলা সংখ্যা= </b></td>
+                            <td class="tg-pwj7" colspan="5"><b>খালাস-সংক্রান্ত তথ্য (২০১০-২০২৪) :  মোট খালাসপ্রাপ্ত মামলা সংখ্যা= </b></td>
                             <td class="tg-pwj7" colspan="2">
                                     <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Law_খালাস-সংক্রান্ত তথ্য.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>

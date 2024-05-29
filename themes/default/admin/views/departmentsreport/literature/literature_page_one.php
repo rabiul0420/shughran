@@ -237,7 +237,7 @@
                     <div class="tg-wrap">
                         <table class="tg table table-header-rotated" id="testTable1">
                         <tr>
-                            <td class="tg-pwj7" colspan="9"><b> পত্রিকা ও গ্রাহক সংক্রান্ত </b></td>
+                            <td class="tg-pwj7" colspan="9"><b> পত্রিকার গ্রাহক বৃদ্ধি :</b></td>
                             <td class="tg-pwj7" colspan="7">
                                 <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Literature_পত্রিকার গ্রাহক বৃদ্ধি_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>
@@ -254,8 +254,8 @@
                             <td class="tg-pwj7" colspan="5">মাসিক সংখ্যা </td>
                             <td class="tg-pwj7" colspan="3">বার্ষিক সংখ্যা  </td>
 
-                            <td class="tg-pwj7" rowspan="2"><div><span>পূর্ব </span></div></td>
-                            <td class="tg-pwj7" rowspan="2"><div><span>বর্তমান </span></div></td>
+                            <td class="tg-pwj7" rowspan="2"><div><span>পূর্ব সংখ্যা</span></div></td>
+                            <td class="tg-pwj7" rowspan="2"><div><span>বর্তমান সংখ্যা</span></div></td>
                             <td class="tg-pwj7" rowspan="2"><div><span>বৃদ্ধির <br>টার্গেট </span></div></td>
                             <td class="tg-pwj7" rowspan="2"><div><span>বৃদ্ধি </span></div></td>
                             <td class="tg-pwj7" rowspan="2"><div><span>ঘাটতি </span></div></td>
@@ -263,7 +263,7 @@
                         </tr>
 
                         <tr>
-                        <td class="tg-pwj7"><div><span>পূর্ব </span></div></td>
+                        <td class="tg-pwj7"><div><span>পূর্ব  </span></div></td>
                         <td class="tg-pwj7"><div><span>বর্তমান </span></div></td>
                         <td class="tg-pwj7"><div><span>বৃদ্ধির <br>টার্গেট </span></div></td>
                         <td class="tg-pwj7"><div><span>বৃদ্ধি </span></div></td>

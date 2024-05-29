@@ -382,19 +382,19 @@
                                 <span class="chevron closed"></span>
                             </a>
                             <ul>
-                                <li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='college-page-one')?'active':'' ?>" >
+                              <!--   <li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='college-page-one')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/college-page-one') ?>">
                                         <i class="fa fa-cogs"></i><span class="text">পেইজ ০১</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='college-page-two')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/college-page-two') ?>">
-                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০২ </span>
+                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০১ </span>
                                     </a>
                                 </li>
 								<li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='college-page-three')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/college-page-three') ?>">
-                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০৩</span>
+                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০২</span>
                                     </a>
                                 </li>
                             </ul>
@@ -485,34 +485,34 @@
                                         <i class="fa fa-cogs"></i><span class="text">পেইজ ০১</span>
                                     </a>
                                 </li>
-                                <li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='others-page-two')?'active':'' ?>" >
+                               <!--  <li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='others-page-two')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/others-page-two') ?>">
                                         <i class="fa fa-cogs"></i><span class="text">পেইজ ০২</span>
                                     </a>
-                                </li>
-								<li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='others-page-three')?'active':'' ?>" >
+                                </li> -->
+								<!-- <li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='others-page-three')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/others-page-three') ?>">
                                         <i class="fa fa-cogs"></i><span class="text">পেইজ ০৩</span>
                                     </a>
-                                </li>
+                                </li> -->
 								<li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='others-page-four')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/others-page-four') ?>">
-                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০৪</span>
+                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০২</span>
                                     </a>
                                 </li>
 								<li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='others-page-five')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/others-page-five') ?>">
-                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০৫</span>
+                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০৩</span>
                                     </a>
                                 </li>
                             <li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='others-page-six')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/others-page-six') ?>">
-                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০৬</span>
+                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০৪</span>
                                     </a>
                                 </li>
 								<li id="mm_manpower_index" class="<?php echo ($this->uri->segment(3)=='others-page-seven')?'active':'' ?>" >
                                     <a href="<?= admin_url('departmentsreport/others-page-seven') ?>">
-                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০৭</span>
+                                        <i class="fa fa-cogs"></i><span class="text">পেইজ ০৫</span>
                                     </a>
                                 </li>
                             

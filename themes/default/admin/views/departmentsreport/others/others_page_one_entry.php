@@ -207,229 +207,57 @@ $(document).ready(function(){
                            
                             </tr>
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable2">
+                        <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
-                                <td class="tg-pwj7" colspan="4"><b>এ সেশনে বৃদ্ধিকৃত ওয়ার্ড/ ইউনিয়নের নাম</b></td>
-                                <td class="tg-pwj7">
-                                    <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Other_এ সেশনে বৃদ্ধিকৃত ওয়ার্ড/ ইউনিয়নের নাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <td class="tg-pwj7" colspan="3"><b>উপশাখা মজবুতিকরণ সংক্রান্ত</b>
                                 </td>
-                                <td class="tg-pwj7">
-                                <a style="text-decoration:none;" href=<?php echo admin_url('departmentsreport/add-other-e-briddhi-ward/'. $branch_id) ?> ><i class="fa fa-plus-square" aria-hidden="true"></i> তথ্য যুক্ত করুন</a>
+                                <td class="tg-pwj7" colspan="">
+                                    <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Other_উপশাখা মজবুতিকরণ সংক্রান্তম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
+                 
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan="2">ক্রম</td>
-                                <td class="tg-pwj7" rowspan="2">ওয়ার্ড/ ইউনিয়নের নাম</td>
-                                <td class="tg-pwj7" colspan="3" >জনশক্তির বর্তমান সংখ্যা</td>
-                                <td class="tg-pwj7 " rowspan="2"><div><span> Actions </span></div></td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="">সদস্য		</td>
-                                <td class="tg-pwj7" colspan="">সাথী</td>
-                                <td class="tg-pwj7" colspan="">কর্মী</td>
-                            </tr>
-                            <?php 
-                                $i=0;
-                            foreach($other_e_briddhi_ward->result_array() as $row) 
-                                    {
-                                    $i++;
-                                ?>
-
-                                <tr>
-                                    <td class="tg-0pky type_1"><?php echo $i?>	</td>
-                                 
-                                    <td class="tg-0pky type_1"><?php echo $row['ward_name'] ?>	</td>
-                                    <td class="tg-0pky  type_2">
-                                    <?php echo $row['shodossho'] ?>      
-                                    </td>
-
-                                    <td class="tg-0pky  type_3">
-                                    <?php echo $row['sathi'] ?>      
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['kormi'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_1">
-                                    <button class='btn btn-info'>
-                                    <a class='action_class' href=<?php echo admin_url('departmentsreport/add-other-e-briddhi-ward/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
-                                    </button>
-                                    <button  class='btn btn-danger' id='<?php echo "delete@other_e_briddhi_ward@".$row['ward_name']."@".$row['id'] ?>'>Delete</button>
-                                    </td>
-                                
-                                </tr>
-
-                        <?php } ?>
-                        </table>
-                        <table class="tg table table-header-rotated" id="testTable3">
-                            <tr>
-                                <td class="tg-pwj7" colspan="5"><b>এ সেশনে ঘাটতিকৃত ওয়ার্ড/ইউনিয়নের নাম</b></td>
-                                <td class="tg-pwj7">
-                                    <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Other_এ সেশনে ঘাটতিকৃত ওয়ার্ড/ইউনিয়নের নাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                                </td>
-                                <td class="tg-pwj7">
-                                <a style="text-decoration:none;" href=<?php echo admin_url('departmentsreport/add-other-e-ghatti-ward/'. $branch_id) ?> ><i class="fa fa-plus-square" aria-hidden="true"></i> তথ্য যুক্ত করুন</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="2">ক্রম</td>
-                                
-                                <td class="tg-pwj7" rowspan="2">ওয়ার্ড/ ইউনিয়নের নাম</td>
-                                <td class="tg-pwj7" colspan="3" >জনশক্তির বর্তমান সংখ্যা</td>
-                                <td class="tg-pwj7" rowspan="2" >ঘাটতির কারণ</td>
-                                <td class="tg-pwj7 " rowspan="2" ><div><span> Actions </span></div></td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="">সদস্য		</td>
-                                <td class="tg-pwj7" colspan="">সাথী</td>
-                                <td class="tg-pwj7" colspan="">কর্মী</td>
-                            </tr>
-                            <?php 
-                                $i=0;
-                            foreach($other_e_ghatti_ward->result_array() as $row) 
-                                    {
-                                    $i++;
-                                ?>
-
-                                <tr>
-                                    <td class="tg-0pky type_1"><?php echo $i?>	</td>
-                          
-                                    <td class="tg-0pky type_1"><?php echo $row['ward_name'] ?>	</td>
-                                    <td class="tg-0pky  type_2">
-                                    <?php echo $row['shodossho'] ?>      
-                                    </td>
-
-                                    <td class="tg-0pky  type_3">
-                                    <?php echo $row['sathi'] ?>      
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['kormi'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['ghattir_karon'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_1">
-                                    <button class='btn btn-info'>
-                                    <a class='action_class' href=<?php echo admin_url('departmentsreport/add-other-e-ghatti-ward/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
-                                    </button>
-                                    <button  class='btn btn-danger' id='<?php echo "delete@other_e_ghatti_ward@".$row['ward_name']."@".$row['id'] ?>'>Delete</button>
-                                    </td>
-                                
-                                </tr>
-
-                        <?php } ?>
-                        </table>
-                        <table class="tg table table-header-rotated" id="testTable4">
-                            <tr>
-                                <td class="tg-pwj7" colspan="4"><b>এ সেশনে বৃদ্ধিকৃত থানার নাম</b></td>
-                                <td class="tg-pwj7">
-                                    <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Other_এ সেশনে বৃদ্ধিকৃত থানার নাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                                </td>
-                                <td class="tg-pwj7">
-                                <a style="text-decoration:none;" href=<?php echo admin_url('departmentsreport/add-other-e-briddhi-thana/'. $branch_id) ?> ><i class="fa fa-plus-square" aria-hidden="true"></i> তথ্য যুক্ত করুন</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="2">ক্রম</td>
-                      
-                                <td class="tg-pwj7" rowspan="2">থানার নাম</td>
-                                <td class="tg-pwj7" colspan="3" >জনশক্তির বর্তমান সংখ্যা</td>
-                                <td class="tg-pwj7 " rowspan="2" ><div><span> Actions </span></div></td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="">সদস্য		</td>
-                                <td class="tg-pwj7" colspan="">সাথী</td>
-                                <td class="tg-pwj7" colspan="">কর্মী</td>
-                            </tr>
-                            <?php 
-                                $i=0;
-                            foreach($other_e_briddhi_thana->result_array() as $row) 
-                                    {
-                                    $i++;
-                                ?>
-
-                                <tr>
-                                    <td class="tg-0pky type_1"><?php echo $i?>	</td>
-                                    
-                                    <td class="tg-0pky type_1"><?php echo $row['thana_name'] ?>	</td>
-                                    <td class="tg-0pky  type_2">
-                                    <?php echo $row['shodossho'] ?>      
-                                    </td>
-
-                                    <td class="tg-0pky  type_3">
-                                    <?php echo $row['sathi'] ?>      
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['kormi'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_1">
-                                    <button class='btn btn-info'>
-                                    <a class='action_class' href=<?php echo admin_url('departmentsreport/add-other-e-briddhi-thana/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
-                                    </button>
-                                    <button  class='btn btn-danger' id='<?php echo "delete@other_e_briddhi_thana@".$row['thana_name']."@".$row['id'] ?>'>Delete</button>
-                                    </td>
-                                
-                                </tr>
-
-                        <?php } ?>
-                        </table>
-                        <table class="tg table table-header-rotated" id="testTable5">
-                            <tr>
-                                <td class="tg-pwj7" colspan="5"><b>এ সেশনে ঘাটতিকৃত থানার নাম</b></td>
-                                <td class="tg-pwj7">
-                                    <a href="#" id='table_5' onclick="doit('xlsx','testTable5','<?php echo 'Other_এ সেশনে ঘাটতিকৃত থানার নাম_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                                </td>
-                                <td class="tg-pwj7">
-                                <a style="text-decoration:none;" href=<?php echo admin_url('departmentsreport/add-other-e-ghatti-thana/'. $branch_id) ?> ><i class="fa fa-plus-square" aria-hidden="true"></i> তথ্য যুক্ত করুন</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="2">ক্রম</td>
+                                <td class="tg-pwj7" rowspan="">মোট উপশাখা সংখ্যা </td>
+                                <td class="tg-pwj7" rowspan="">বর্তমান সক্রিয় উপশাখা</td>
+                                <td class="tg-pwj7" rowspan="">দুর্বল উপশাখার মধ্যে এ বছর সক্রিয় হয়েছে কতটি </td>
+                                <td class="tg-pwj7" colspan="" >উপশাখা এখনো দুর্বল আছে কতটি</td>
                                
-                                <td class="tg-pwj7" rowspan="2">থানার নাম</td>
-                                <td class="tg-pwj7" colspan="3" >জনশক্তির বর্তমান সংখ্যা</td>
-                                <td class="tg-pwj7" rowspan="2" >ঘাটতির কারণ</td>
-                                <td class="tg-pwj7 " rowspan="2" ><div><span> Actions </span></div></td>
                             </tr>
+                            
+                            <?php
+                                $pk = (isset($other_uposhakha_mojbuti['id']))?$other_uposhakha_mojbuti['id']:'';
+                            ?>
+
                             <tr>
-                                <td class="tg-pwj7" colspan="">সদস্য		</td>
-                                <td class="tg-pwj7" colspan="">সাথী</td>
-                                <td class="tg-pwj7" colspan="">কর্মী</td>
+                                <td class="tg-0pky  type_2">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="other_uposhakha_mojbuti" 
+                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="total_uposakha" data-title="Enter">
+                                        <?php echo $total_uposakha =  (isset($other_uposhakha_mojbuti['total_uposakha'])) ? $other_uposhakha_mojbuti['total_uposakha'] : 0; ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="other_uposhakha_mojbuti" 
+                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="bortoman_shokriyo" data-title="Enter">
+                                        <?php echo $bortoman_shokriyo =  (isset($other_uposhakha_mojbuti['bortoman_shokriyo'])) ? $other_uposhakha_mojbuti['bortoman_shokriyo'] : 0; ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="other_uposhakha_mojbuti" 
+                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="durbol_shokriyou_hoyeche" data-title="Enter">
+                                        <?php echo $durbol_shokriyou_hoyeche =  (isset($other_uposhakha_mojbuti['durbol_shokriyou_hoyeche'])) ? $other_uposhakha_mojbuti['durbol_shokriyou_hoyeche'] : 0; ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="other_uposhakha_mojbuti" 
+                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="durbol_ache" data-title="Enter">
+                                        <?php echo $durbol_ache =  (isset($other_uposhakha_mojbuti['durbol_ache'])) ? $other_uposhakha_mojbuti['durbol_ache'] : 0; ?>
+                                    </a>
+                                </td>
+                              
                             </tr>
-                            <?php 
-                                $i=0;
-                            foreach($other_e_ghatti_thana->result_array() as $row) 
-                                    {
-                                    $i++;
-                                ?>
-
-                                <tr>
-                                    <td class="tg-0pky type_1"><?php echo $i?>	</td>
-                                  
-                                    <td class="tg-0pky type_1"><?php echo $row['thana_name'] ?>	</td>
-                                    <td class="tg-0pky  type_2">
-                                    <?php echo $row['shodossho'] ?>      
-                                    </td>
-
-                                    <td class="tg-0pky  type_3">
-                                    <?php echo $row['sathi'] ?>      
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['kormi'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['ghattir_karon'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_1">
-                                    <button class='btn btn-info'>
-                                    <a class='action_class' href=<?php echo admin_url('departmentsreport/add-other-e-ghatti-thana/'. $row['branch_id'].'?type=edit&id='. $row['id']) ?>>Edit</a>
-                                    </button>
-                                    <button  class='btn btn-danger' id='<?php echo "delete@other_e_ghatti_thana@".$row['thana_name']."@".$row['id'] ?>'>Delete</button>
-                                    </td>
-                                
-                                </tr>
-
-                        <?php } ?>
+                        
                         </table>
+                       
                     </div>
                 </div>
             </div>

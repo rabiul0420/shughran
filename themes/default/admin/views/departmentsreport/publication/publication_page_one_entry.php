@@ -1272,7 +1272,7 @@ $pk = (isset($publication_kendro_hote_prokashona['id'])) ? $publication_kendro_h
                                                </tr>
                             <tr>
                                 <td class="tg-y698 type_1">
-                                একপাতা ক্যালেন্ডার (বড়ো)
+                                একপাতা ক্যালেন্ডার (বড়)
                                 </td>
                                    <td class="tg-0pky">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"

@@ -1192,7 +1192,7 @@ $(document).ready(function(){
 
                             </tr>
 
-                            <td class="tg-y698">সঙ্গীত শিল্পী  </td>
+                            <td class="tg-y698">সংগীতশিল্পী  </td>
                             <td class="tg-0pky  type_1">
 								<a href="#" class="editable editable-click" data-id="" data-idname=""
                                        data-type="number" data-table="culture_output_report" data-pk="<?php echo $pk ?>"
@@ -1248,7 +1248,7 @@ $(document).ready(function(){
 										<?php echo $video_editor=  (isset( $culture_output_report['video_editor']))?$culture_output_report['video_editor']:0; ?></a>
                             </td>
 
-                            <td class="tg-y698">মেকআপ ম্যান   </td>
+                            <td class="tg-y698">মেকআপম্যান   </td>
                             <td class="tg-0pky  type_1">
 								<a href="#" class="editable editable-click" data-id="" data-idname=""
                                        data-type="number" data-table="culture_output_report" data-pk="<?php echo $pk ?>"

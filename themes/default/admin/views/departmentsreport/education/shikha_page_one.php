@@ -268,7 +268,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan="2">আইডিয়াল হোমের ধরন</td>
+                                <td class="tg-pwj7" rowspan="2">একাডেমিক হোমের ধরন</td>
                                 <td class="tg-pwj7" colspan="4" style="text-align:center">হোম সংখ্যা </td>
                                 <td class="tg-pwj7" colspan="4" style="text-align:center">ছাত্র সংখ্যা </td>
                             </tr>
@@ -723,7 +723,7 @@
 
                             <tr>
                                 <td class="tg-pwj7">প্রোগ্রামের ধরন</td>
-                                <td class="tg-pwj7">সংখ্যা </td>
+                                <td class="tg-pwj7">কত জনকে </td>
                                 <td class="tg-pwj7">টাকা (পরিমাণ)</td>
 
                             </tr>

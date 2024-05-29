@@ -405,7 +405,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="2" >শাখার পোর্টাল আছে কনিা?</td>
+                                <td class="tg-pwj7" colspan="2" >শাখার পোর্টাল আছে কিনা?</td>
                                 <td class="tg-pwj7" colspan="2">নিবন্ধনকৃত কিনা?</td>
                                 <td class="tg-pwj7" rowspan="2">নিয়োজিত জনশক্তি সংখ্যা </td>
                                 <td class="tg-pwj7" rowspan="2">পোস্টকৃত নিউজ সংখ্যা </td>
@@ -440,7 +440,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" colspan="2" >পোর্টালের ফেসবুক পেজ আছে কিনা? </td>
-                                <td class="tg-pwj7" colspan="2">ভেরিফাইড কনিা?</td>
+                                <td class="tg-pwj7" colspan="2">ভেরিফাইড কিনা?</td>
                                 <td class="tg-pwj7" rowspan="2">লাইক সংখ্যা</td>
                                 <td class="tg-pwj7" rowspan="2">ফলোয়ার সংখ্যা</td>
                             </tr>
@@ -472,8 +472,8 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                              <tr>
-                                <td class="tg-pwj7" colspan="2" >পোর্টালের ইউটিউব চ্যানলে আছে কনিা?</td>
-                                <td class="tg-pwj7" colspan="2">ভেরিফাইড কনিা?</td>
+                                <td class="tg-pwj7" colspan="2" >পোর্টালের ইউটিউব চ্যানলে আছে কিনা?</td>
+                                <td class="tg-pwj7" colspan="2">ভেরিফাইড কিনা?</td>
                                 <td class="tg-pwj7" rowspan='2' colspan="2">সাবস্ক্রাইবার সংখ্যা</td>
                             </tr>
                             <tr>

@@ -7,7 +7,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'কলেজ বিভাগ - পেইজ ০৩ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'কলেজ বিভাগ - পেইজ ০২ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
                 
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -407,7 +407,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7" rowspan="2">ভর্তিচ্ছু জনশক্তিদের মান</td>
                                 <td class="tg-pwj7 " rowspan="2"><div><span>ভর্তিচ্ছু জনশক্তিদের সংখ্যা</span></div></td>
                                 <td class="tg-pwj7 " rowspan="2"><div><span> শাখার পক্ষ থেকে ভর্তিচ্ছু যতজনকে নিয়মিত তত্ত্বাবধায়ন করা হয়েছে </span></div></td>
-                                <td class="tg-pwj7 " rowspan="2"><div><span> ভর্তিচ্ছু জনশক্তিদের অবস্থানরত এলাকা,শাখা বা কোচিংয়ের দায়িত্বশীলদের পক্ষ থেকে যতজনকে নিয়মিত তত্ত্বাবধায়ন করা হয়েছে </span></div></td>
+                                <td class="tg-pwj7 " rowspan="2"><div><span> জনশক্তিদের অবস্থানরত শাখা বা কোচিংয়ের পক্ষ থেকে যতজনকে নিয়মিত তত্ত্বাবধান করা হয়েছে </span></div></td>
                                 <td class="tg-pwj7" colspan="2"> মেডিকেল </td>
                                 <td class="tg-pwj7" colspan="2">ইঞ্জিনিয়ারিং </td>
                                 <td class="tg-pwj7" colspan="2">বিশ্ববিদ্যালয়   </td>
@@ -416,15 +416,14 @@ $(document).ready(function(){
 
                             <tr>
                                
-                                <td class="tg-pwj7 "><div><span>ভর্তির চেষ্টা করছেন</span></div></td>
+                               <td class="tg-pwj7 "><div><span>ভর্তিচ্ছু</span></div></td>
                                 <td class="tg-pwj7 "><div><span>চান্স পেয়েছেন </span></div></td>
-                                <td class="tg-pwj7 "><div><span>ভর্তির চেষ্টা করছেন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভর্তিচ্ছু </span></div></td>
                                 <td class="tg-pwj7 "><div><span>চান্স পেয়েছেন </span></div></td>
-                                <td class="tg-pwj7 "><div><span>ভর্তির চেষ্টা করছেন</span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভর্তিচ্ছু</span></div></td>
                                 <td class="tg-pwj7 "><div><span>চান্স পেয়েছেন </span></div></td>
-                                <td class="tg-pwj7 "><div><span>ভর্তির চেষ্টা করছেন</span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভর্তিচ্ছু</span></div></td>
                                 <td class="tg-pwj7 "><div><span>চান্স পেয়েছেন </span></div></td>
-                                
                                
                             </tr>
 

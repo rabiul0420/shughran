@@ -716,9 +716,9 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">প্রোগ্রাম</td>
-                                <td class="tg-pwj7">সংখ্যা</td>
-                                <td class="tg-pwj7">উপস্থিতি</td>
+                                <td class="tg-pwj7">ধরন</td>
+                                <td class="tg-pwj7">প্রোগ্রামের সংখ্যা</td>
+                                <td class="tg-pwj7">মোট উপস্থিতি</td>
                                 <td class="tg-pwj7">গড়</td>
                             </tr>
 
@@ -830,60 +830,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7">গড়</td>
                             </tr>
 
-                            <tr>
-                                <td class="tg-y698 type_1" rowspan='2'> ৮ম শ্রেণিতে অধ্যয়নরত ছাত্রদের নিয়ে সামিট (কেন্দ্র)</td>
-                                <td class="tg-y698 type_1"> জনশক্তি</td>
-
-                                <td class="tg-0pky">
-                                    <?php echo $eight_stu_center_manpower_num = $school_summit['eight_stu_center_manpower_num'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo $eight_stu_center_manpower_pre = $school_summit['eight_stu_center_manpower_pre'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo  ($eight_stu_center_manpower_pre!=0 && $eight_stu_center_manpower_num!=0 )?$eight_stu_center_manpower_pre / $eight_stu_center_manpower_num:0 ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-y698 type_1"> সাধারণ</td>
-
-                                <td class="tg-0pky">
-                                    <?php echo $eight_stu_center_general_num = $school_summit['eight_stu_center_general_num'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo $eight_stu_center_general_pre = $school_summit['eight_stu_center_general_pre'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo  ($eight_stu_center_general_pre!=0 && $eight_stu_center_general_num!=0 )?$eight_stu_center_general_pre / $eight_stu_center_general_num:0 ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-y698 type_1" rowspan='2'> ৮ম শ্রেণিতে অধ্যয়নরত ছাত্রদের নিয়ে সামিট (শাখা)</td>
-                                <td class="tg-y698 type_1"> জনশক্তি</td>
-
-                                <td class="tg-0pky">
-                                    <?php echo $eight_stu_shakha_manpower_num = $school_summit['eight_stu_shakha_manpower_num'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo $eight_stu_shakha_manpower_pre = $school_summit['eight_stu_shakha_manpower_pre'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo  ($eight_stu_shakha_manpower_pre!=0 && $eight_stu_shakha_manpower_num!=0 )?$eight_stu_shakha_manpower_pre / $eight_stu_shakha_manpower_num:0 ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-y698 type_1"> সাধারণ</td>
-
-                                <td class="tg-0pky">
-                                    <?php echo $eight_stu_shakha_general_num = $school_summit['eight_stu_shakha_general_num'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo $eight_stu_shakha_general_pre = $school_summit['eight_stu_shakha_general_pre'] ?>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo  ($eight_stu_shakha_general_pre!=0 && $eight_stu_shakha_general_num!=0 )?$eight_stu_shakha_general_pre / $eight_stu_shakha_general_num:0 ?>
-                                </td>
-                            </tr>
+                           
                             <tr>
                                 <td class="tg-y698 type_1" rowspan='2'> ৯ম ও ১০ম শ্রেণিতে অধ্যয়নরত ছাত্রদের নিয়ে সামিট (কেন্দ্র)</td>
                                 <td class="tg-y698 type_1"> জনশক্তি</td>
