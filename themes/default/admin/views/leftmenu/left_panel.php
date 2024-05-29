@@ -19,14 +19,14 @@
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('mancomminglist') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">জনশক্তি আগমন পেন্ডিং লিস্ট <?= isset($pending_list) ? '(' . $pending_list . ')' : '' ?></span>
+                                        <span class="text">জনশক্তি আগমন পেন্ডিং তালিকা <?= isset($pending_list) ? '(' . $pending_list . ')' : '' ?></span>
                                     </a>
                                 </li>
 
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('mantransferlist') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">জনশক্তি স্থানান্তর পেন্ডিং লিস্ট <?= isset($manpowertransferout) ? '(' . $manpowertransferout . ')' : '' ?></span>
+                                        <span class="text">জনশক্তি স্থানান্তর পেন্ডিং তালিকা <?= isset($manpowertransferout) ? '(' . $manpowertransferout . ')' : '' ?></span>
                                     </a>
                                 </li>
 

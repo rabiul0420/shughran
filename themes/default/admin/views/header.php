@@ -205,8 +205,8 @@
 
                         <?php if ($support_ticket) { ?>
                             <li class="dropdown hidden-sm">
-                                <a class="btn tip" title="<?= lang('notifications') ?>" data-placement="bottom" href="<?= admin_url('support') ?>">
-                                    <i class="fa fa-info-circle"></i>
+                                <a class="btn tip" title="<?= lang('Support Inbox') ?>" data-placement="bottom" href="<?= admin_url('support') ?>">
+                                    <i class="fa fa-comments-o"></i>
                                     <span class="number blightOrange black"><?= $support_ticket->total ?></span>
                                 </a>
 
@@ -486,7 +486,7 @@
                             ?>
                             <li class="">
                                 <a class="btn tip" title="<?= lang('notifications') ?>" data-placement="bottom" href="<?= admin_url('support') ?>">
-                                    সহায়িকা
+                                Support Inbox
                                     <span class="number blightOrange black"><?= $support_ticket->total ?></span>
                                 </a>
                             </li>

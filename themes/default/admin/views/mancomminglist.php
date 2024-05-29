@@ -234,7 +234,7 @@ function row_status($x)
         } ?>
         <div class="box">
             <div class="box-header">
-                <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'জনশক্তি আগমন পেন্ডিং লিস্ট' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'জনশক্তি আগমন পেন্ডিং তালিকা' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
                 </h2>
 
                 <div class="box-icon">
