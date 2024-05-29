@@ -136,19 +136,22 @@ if (!empty($variants)) {
                     </div>
 
                     <div class="form-group">
-                        <?= lang("পৌরসভা /ইউনিয়ন", "union_name") ?>
-                        <select id="union_name" name="union_name" class="form-control">
+                        <?= lang("পৌরসভা /ইউনিয়ন", "union") ?>
+                        <select id="union" name="union" class="form-control">
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <?= lang("সিটি/ পৌরসভা /ইউনিয়নের ওয়ার্ড", "ward_name") ?>
-                        <select id="ward_name" name="ward_name" class="form-control">
+                        <?= lang("সিটি/ পৌরসভা /ইউনিয়নের ওয়ার্ড", "ward") ?>
+                        <select id="ward" name="ward" class="form-control">
                         </select>
                     </div>
 
 
+                </div>
 
+
+                <div class="col-md-6">
 
 
                     <div class="form-group">
@@ -160,7 +163,6 @@ if (!empty($variants)) {
                         echo form_dropdown('educational_details', $educational_details, '', 'id="educational_details"   class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
-
 
 
                     <div class="">
@@ -176,20 +178,21 @@ if (!empty($variants)) {
                         </div>
 
                         <div class="form-group">
-                            <label for="institution_type_id">সাব ক্যাটাগরি </label>
-                            <select id="institution_type_id" name="institution_type_id" class="form-control ">
+                            <label for="sub_category">সাব ক্যাটাগরি </label>
+                            <select id="sub_category" name="sub_category" class="form-control ">
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <?= lang("প্রতিষ্ঠানের নাম", "ins_name"); ?>
-                            <select id="ins_name" name="institution_id" class="form-control">
+                            <?= lang("প্রতিষ্ঠানের নাম", "institutionlist"); ?>
+                            <select id="institutionlist" name="institution_id" class="form-control">
                             </select>
                         </div>
+
+
+                        
                         <hr>
                     </div>
-
-
 
 
                     <div class="form-group">
@@ -201,37 +204,31 @@ if (!empty($variants)) {
                         <?= form_input('supporter_number', set_value('supporter_number', '0'), 'class="form-control tip" id="supporter_number"  '); ?>
                     </div>
 
-
-                </div>
-
-
-                <div class="col-md-6">
-
-
-
                     <div class="form-group">
-                        <?= lang('উপশাখা সংখ্যা', 'unit_number'); ?>
-                        <?= form_input('unit_number', set_value('unit_number', '0'), 'class="form-control tip" id="unit_number"  '); ?>
-                    </div>
-
-
-                    <div class="form-group">
-                        <?= lang('আদর্শ ওয়ার্ড?', 'is_ideal_thana'); ?>
+                        <?= lang('সেট-আপ আছে কি না?', 'is_setup'); ?>
 
                         <div class="radio">
-                            <input type="radio" class="checkbox" name="is_ideal_thana" value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
+                            <input type="radio" class="checkbox" name="is_setup" value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
                             <label class="padding05"><?= 'হ্যাঁ' ?></label>
                         </div>
 
                         <div class="radio">
-                            <input type="radio" class="checkbox" name="is_ideal_thana" value="2" <?= 2 ? 'checked="checked"' : ''; ?>>
+                            <input type="radio" class="checkbox" name="is_setup" value="2" <?= 2 ? 'checked="checked"' : ''; ?>>
                             <label class="padding05"><?= 'না ' ?></label>
 
                         </div>
                     </div>
 
 
+                    <div class="form-group">
+                        <?= lang("কোন মানের উপশাখা", "unit_category"); ?>
+                        <?php
+                        foreach (['Strong' => 'মজবুত ', 'Weak' => 'দূর্বল', 'Inactive' => 'নিষ্ক্রিয়'] as $key => $type)
+                            $unit_category[$key] = $type;
 
+                        echo form_dropdown('unit_category', $unit_category, '', 'id="unit_category"   class="form-control select" style="width:100%;" ');
+                        ?>
+                    </div>
 
 
                     <div class="form-group">
@@ -375,25 +372,25 @@ if (!empty($variants)) {
                     },
                     dataType: 'json',
                     success: function(response) {
-                        var options = "<option selected disabled><?= lang('select') . ' ' . lang('union_name'); ?></option>";
+                        var options = "<option selected disabled><?= lang('select') . ' ' . lang('union'); ?></option>";
                         $.each(response, function(index, union) {
                             options += "<option value='" + union.id + "'>" + union.name + "</option>";
                         });
-                        $('#union_name').empty().append(options);
+                        $('#union').empty().append(options);
                     },
                     error: function() {
                         console.log("Error fetching unions!");
                     }
                 });
             } else {
-                $('#union_name').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('union_name'); ?></option>");
+                $('#union').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('union'); ?></option>");
             }
         });
 
 
 
 
-        $('#union_name').change(function() {
+        $('#union').change(function() {
             var union_id = $(this).val();
             if (union_id) {
                 $.ajax({
@@ -404,20 +401,81 @@ if (!empty($variants)) {
                     },
                     dataType: 'json',
                     success: function(response) {
-                        var options = "<option selected disabled><?= lang('select') . ' ' . lang('ward_name'); ?></option>";
+                        var options = "<option selected disabled><?= lang('select') . ' ' . lang('ward'); ?></option>";
                         $.each(response, function(index, ward) {
                             options += "<option value='" + ward.id + "'>" + ward.name + "</option>";
                         });
-                        $('#ward_name').empty().append(options);
+                        $('#ward').empty().append(options);
                     },
                     error: function() {
                         console.log("Error fetching wards!");
                     }
                 });
             } else {
-                $('#ward_name').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('ward_name'); ?></option>");
+                $('#ward').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('ward'); ?></option>");
             }
         });
+
+
+
+        $('#institution_parent_id').change(function() {
+            var institution_parent_id = $(this).val();
+            if (institution_parent_id) {
+                $.ajax({
+                    url: "<?php echo admin_url('organization/get_sub_categoryList'); ?>",
+                    method: "GET",
+                    data: {
+                        institution_parent_id: institution_parent_id
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        var options = "<option selected disabled><?= lang('select') . ' ' . lang('sub_category'); ?></option>";
+                        $.each(response, function(index, sub_category) {
+                            options += "<option value='" + sub_category.id + "'>" + sub_category.institution_type + "</option>";
+                        });
+                        $('#sub_category').empty().append(options);
+                    },
+                    error: function() {
+                        console.log("Error fetching sub_categorys!");
+                    }
+                });
+            } else {
+                $('#sub_category').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('sub_category'); ?></option>");
+            }
+        });
+
+
+
+        $('#sub_category').change(function() {
+            var sub_category = $(this).val();
+
+            // alert(sub_category);
+
+
+            if (sub_category) {
+                $.ajax({
+                    url: "<?php echo admin_url('organization/get_institutionlist'); ?>",
+                    method: "GET",
+                    data: {
+                        sub_category: sub_category
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        var options = "<option selected disabled><?= lang('select') . ' ' . lang('sub_category'); ?></option>";
+                        $.each(response, function(index, institutionlist) {
+                            options += "<option value='" + institutionlist.id + "'>" + institutionlist.ins_name + "</option>";
+                        });
+                        $('#institutionlist').empty().append(options);
+                    },
+                    error: function() {
+                        console.log("Error fetching institutionlists!");
+                    }
+                });
+            } else {
+                $('#institutionlist').empty().append("<option selected disabled><?= lang('select') . ' ' . lang('institutionlist'); ?></option>");
+            }
+        });
+
 
 
 

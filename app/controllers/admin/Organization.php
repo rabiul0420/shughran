@@ -3591,11 +3591,19 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->load->helper('security');
         $branches = $this->site->getAllBranches();
         $this->form_validation->set_rules('thana_name', 'name', 'required');
+
+
+        // $this->sma->print_arrays($this->input->post());
+
+
+
+
         if ($this->form_validation->run() == true) {
             $data = array(
                 'date' =>  $this->sma->fsd($this->input->post('date')),
                 'branch_id' => $this->input->post('branch_id'),
                 'parent_id' => $this->input->post('thana_id'),
+                'sub_category' => $this->input->post('sub_category'),
                 'thana_name' => $this->input->post('thana_name'),
                 'org_type' => $this->input->post('org_type'),
                 'prosasonik_details' => $this->input->post('prosasonik_details'),
@@ -3612,8 +3620,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'ward_number' => $this->input->post('ward_number'),
                 'unit_number' => $this->input->post('unit_number'),
                 'is_ideal_thana' => $this->input->post('is_ideal_thana'),
-                'is_pending' => 1,
+                'is_pending' => 2,
                 'note' => $this->input->post('note'),
+                'is_setup' => $this->input->post('is_setup'),
+                'unit_category' => $this->input->post('unit_category'),
                 'user_id' => $this->session->userdata('user_id'),
 
             );
@@ -3688,6 +3698,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
     }
 
+
+    public function get_sub_categoryList($institution_parent_id = null)
+    {
+        $institution_parent_id = $this->input->get('institution_parent_id');
+        if ($institution_parent_id && is_numeric($institution_parent_id)) {
+            $sub_category = $this->db->where('type_id', $institution_parent_id)->get('institution')->result();
+            echo json_encode($sub_category);
+        } else {
+            echo json_encode([]);
+        }
+    }
 
     public function getWardList($thana_id = null)
     {
@@ -5113,18 +5134,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
     }
 
-    public function get_institutionlist($institution_type_id = null)
+    public function get_institutionlist($sub_category = null)
     {
 
-        // echo $institution_type_id;
-        // exit;
 
+        $sub_category = $this->input->get('sub_category');
 
-        $institution_type_id = $this->input->get('institution_type_id');
+        if ($sub_category && is_numeric($sub_category)) {
 
-        if ($institution_type_id && is_numeric($institution_type_id)) {
-
-            $institutionlist = $this->db->where('institution_type_child', $institution_type_id)->get('institutionlist')->result();
+            $institutionlist = $this->db->where('institution_type_child', $sub_category)->get('institutionlist')->result();
 
 
 

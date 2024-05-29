@@ -203,6 +203,8 @@
                             </li>
                         <?php } ?>
 
+                        
+
                         <?php if ($support_ticket) { ?>
                             <li class="dropdown hidden-sm">
                                 <a class="btn tip" title="<?= lang('Support Inbox') ?>" data-placement="bottom" href="<?= admin_url('support') ?>">
@@ -377,55 +379,19 @@
                                         <li class="tmp_hidden"><a href="<?= admin_url('others/administration'); ?>" class="line-height-lg">প্রশাসনিক বিবরণ</a></li>
 
                                         <li class="tmp_hidden"><a href="<?= admin_url('others/administrationbutorg'); ?>" class="line-height-lg">যে সব এলাকায় সংগঠন নেই </a></li>
+
+
                                         <li class="tmp_hidden"><a href="<?= admin_url('others/organizationinfo'); ?>" class="line-height-lg">সাংগঠনিক বিবরণ</a></li>
 
 
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/thanalist'); ?>" class="line-height-lg">থানা তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/ideal_thana'); ?>" class="line-height-lg">আদর্শ থানা তালিকা</a></li>
 
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/wardlist'); ?>" class="line-height-lg">ওয়ার্ড তালিকা</a></li>
 
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/uposhakhalist'); ?>" class="line-height-lg"> উপশাখা তালিকা</a></li>
 
-
-                                        <li class="dropdown tmp_hidden">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                                থানা111 <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="<?= admin_url('organization/thanalist') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "থানা তালিকা111"; ?></span>
-                                                    </a></li>
-                                                <li> <a href="<?= admin_url('organization/increaselist_thana') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "থানা বৃদ্ধি তালিকা"; ?></span>
-                                                    </a></li>
-                                                <li> <a href="<?= admin_url('organization/decreaselist_thana') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "থানা ঘাটতি তালিকা"; ?></span>
-                                                    </a></li>
-                                                <li> <a href="<?= admin_url('organization/thana_pending') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "থানা পেন্ডিং তালিকা"; ?></span>
-                                                    </a></li>
-                                                <li> <a href="<?= admin_url('organization/ideal_thana') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা তালিকা"; ?></span>
-                                                    </a></li>
-                                                <li> <a href="<?= admin_url('organization/increaselist_ideal_thana') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা বৃদ্ধি তালিকা"; ?></span>
-                                                    </a></li>
-                                                <li> <a href="<?= admin_url('organization/decreaselist_ideal_thana') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা ঘাটতি তালিকা"; ?></span>
-                                                    </a></li>
-                                            </ul>
-                                        </li>
-
-
-                                        <li class="dropdown tmp_hidden">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                                ওয়ার্ড <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="<?= admin_url('organization/wardlist') ?>">
-                                                        <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড তালিকা"; ?></span>
-                                                    </a></li>                                              
-                                               
-                                            </ul>
-                                        </li>
-
+                       
 
 
 
