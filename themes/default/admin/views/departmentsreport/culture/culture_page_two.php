@@ -933,7 +933,7 @@ $(document).ready(function(){
                    
                    </tr>
                    <tr>
-                       <td class="tg-y698">কিরাত কর্মশালা  </td>
+                       <td class="tg-y698">ক্বিরাআত কর্মশালা  </td>
                        <td class="tg-0pky  type_1">
                        <?php echo $kirat_workshop_num = $culture_workshop['kirat_workshop_num'] ?>
                        </td>

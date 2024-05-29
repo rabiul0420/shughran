@@ -5,7 +5,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue">
-            <i class="fa-fw fa fa-barcode"></i><?= 'অন্যান্য - পেইজ ০৪ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+            <i class="fa-fw fa fa-barcode"></i><?= 'অন্যান্য - পেইজ ০২ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php
@@ -171,25 +171,9 @@ $(document).ready(function(){
                                 </td>
                               
                             </tr>
+                            
                             <tr>
                                 <td class="tg-pwj7" colspan="">৫.</td>
-                                <td class="tg-pwj7" colspan="">মাদরাসা দাওয়াতি  দশক</td>
-                                <td class="tg-0pky  type_2">
-                                    <a href="#" class="editable editable-click" id="madrasah_dawat_d_hoyeche" data-idname="" data-type="select" data-table="other_shopta_doshok_pokkho_palon" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate2/'.$branch_id); ?>" data-name="madrasah_dawat_d_hoyeche@other_shopta_doshok_pokkho_palon" data-title="Online দাওয়াতি দশক হয়েছে কিনা?">
-                                       
-                                    </a>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="text" data-table="other_shopta_doshok_pokkho_palon" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="madrasah_dawat_d_karon" data-title="Enter">
-                                        <?php echo $madrasah_dawat_d_karon =  (isset($other_shopta_doshok_pokkho_palon['madrasah_dawat_d_karon'])) ? $other_shopta_doshok_pokkho_palon['madrasah_dawat_d_karon'] : 0; ?>
-                                    </a>
-                                </td>
-                               
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="">৬.</td>
                                 <td class="tg-pwj7" colspan="">উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি দশক</td>
                                 <td class="tg-0pky  type_2">
                                     <a href="#" class="editable editable-click" id="diploma_dawat_d_hoyeche" data-idname="" data-type="select" data-table="other_shopta_doshok_pokkho_palon" 
@@ -206,7 +190,7 @@ $(document).ready(function(){
                    
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="">৭.</td>
+                                <td class="tg-pwj7" colspan="">৬.</td>
                                 <td class="tg-pwj7" colspan="">সাংস্কৃতিক দাওয়াতি সপ্তাহ</td>
                                 <td class="tg-0pky  type_2">
                                     <a href="#" class="editable editable-click" id="culture_dawat_w_hoyeche" data-idname="" data-type="select" data-table="other_shopta_doshok_pokkho_palon" 
@@ -223,7 +207,7 @@ $(document).ready(function(){
 
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="">৮.</td>
+                                <td class="tg-pwj7" colspan="">৭.</td>
                                 <td class="tg-pwj7" colspan="">সাধারণ দাওয়াতি পক্ষ</td>
                                 <td class="tg-0pky  type_2">
                                     <a href="#" class="editable editable-click" id="shadharon_dawat_p_hoyeche" data-idname="" data-type="select" data-table="other_shopta_doshok_pokkho_palon" 
@@ -240,7 +224,7 @@ $(document).ready(function(){
 
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="">৯.</td>
+                                <td class="tg-pwj7" colspan="">৮.</td>
                                 <td class="tg-pwj7" colspan="">অন্যান্য ধর্মাবলম্বী দাওয়াতি সপ্তাহ</td>
                                 <td class="tg-0pky  type_2">
                                     <a href="#" class="editable editable-click" id="onno_dhormo_dawat_w_hoyeche" data-idname="" data-type="select" data-table="other_shopta_doshok_pokkho_palon" 

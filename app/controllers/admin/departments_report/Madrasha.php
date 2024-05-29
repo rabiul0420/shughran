@@ -285,6 +285,8 @@ class Madrasha extends MY_Controller
         $this->db->select_sum('cha_pre');
         $this->db->select_sum('other_num');
         $this->db->select_sum('other_pre');
+        $this->db->select_sum('sadaron_gan_pre');
+        $this->db->select_sum('sadaron_gan_num');
         if ($branch_id)
         $this->db->where('branch_id', $branch_id);
     $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');

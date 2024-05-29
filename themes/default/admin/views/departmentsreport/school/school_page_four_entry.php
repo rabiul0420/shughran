@@ -97,7 +97,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7">প্রোগ্রাম</td>
+                                <td class="tg-pwj7">ধরন</td>
                                 <td class="tg-pwj7">পূর্বের সংখ্যা </td>
                                 <td class="tg-pwj7">বর্তমান সংখ্যা</td>
                             </tr>
@@ -210,23 +210,7 @@ $(document).ready(function(){
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-
-                                <td class="tg-y698 type_1">ছড়া পাতা</td>
-
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_bitoron" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="chora_pata_prev" data-title="Enter">
-                                        <?php echo $chora_pata_prev =  (isset($school_bitoron['chora_pata_prev'])) ? $school_bitoron['chora_pata_prev'] : 0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_bitoron" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="chora_pata_pres" data-title="Enter">
-                                        <?php echo $chora_pata_pres =  (isset($school_bitoron['chora_pata_pres'])) ? $school_bitoron['chora_pata_pres'] : 0 ?>
-                                    </a>
-                                </td>
-                            </tr>
+                            
                             <tr>
 
                                 <td class="tg-y698 type_1"> পরীক্ষার রুটিন</td>
@@ -688,7 +672,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1">ব্যবসায়</td>
+                                <td class="tg-y698 type_1">বাণিজ্য</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_ssc_result" 
                                         data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shodossho_c_mot_examine" data-title="Enter">
@@ -856,7 +840,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1">ব্যবসায়</td>
+                                <td class="tg-y698 type_1">বাণিজ্য</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_ssc_result" 
                                         data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="sathi_c_mot_examine" data-title="Enter">
@@ -1024,7 +1008,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1">ব্যবসায়</td>
+                                <td class="tg-y698 type_1">বাণিজ্য</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_ssc_result" 
                                         data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="kormi_c_mot_examine" data-title="Enter">
@@ -1195,7 +1179,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1">ব্যবসায়</td>
+                                <td class="tg-y698 type_1">বাণিজ্য</td>
                                 <td class="tg-0pky">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_ssc_result" 
                                         data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="shomorthok_c_mot_examine" data-title="Enter">

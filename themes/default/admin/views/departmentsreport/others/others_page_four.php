@@ -16,7 +16,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'অন্যান্য - পেইজ ০৪ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'অন্যান্য - পেইজ ০২ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
                 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php
@@ -175,19 +175,9 @@ $(document).ready(function(){
                                 </td>
           
                             </tr>
+                           
                             <tr>
                                 <td class="tg-pwj7" colspan="">৫.</td>
-                                <td class="tg-pwj7" colspan="">মাদরাসা দাওয়াতি  দশক</td>
-                                 <td class="tg-0pky type_1">
-                                    <?php echo $madrasah_dawat_d_hoyeche = $other_shopta_doshok_pokkho_palon['madrasah_dawat_d_hoyeche'] ?>
-                                </td>
-                                <td class="tg-0pky type_1">
-                                    <?php echo ($row_other_shopta_doshok_pokkho_palon - $other_shopta_doshok_pokkho_palon['madrasah_dawat_d_hoyeche']) ?>
-                                </td>
-      
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="">৬.</td>
                                 <td class="tg-pwj7" colspan="">উচ্চমাধ্যমিক ও ডিপ্লোমা দাওয়াতি দশক</td>
                                  <td class="tg-0pky type_1">
                                     <?php echo $diploma_dawat_d_hoyeche = $other_shopta_doshok_pokkho_palon['diploma_dawat_d_hoyeche'] ?>
@@ -198,7 +188,7 @@ $(document).ready(function(){
  
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="">৭.</td>
+                                <td class="tg-pwj7" colspan="">৬.</td>
                                 <td class="tg-pwj7" colspan="">সাংস্কৃতিক দাওয়াতি সপ্তাহ</td>
                                  <td class="tg-0pky type_1">
                                     <?php echo $culture_dawat_w_hoyeche = $other_shopta_doshok_pokkho_palon['culture_dawat_w_hoyeche'] ?>
@@ -209,7 +199,7 @@ $(document).ready(function(){
  
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="">৮.</td>
+                                <td class="tg-pwj7" colspan="">৭.</td>
                                 <td class="tg-pwj7" colspan="">সাধারণ দাওয়াতি পক্ষ</td>
                                  <td class="tg-0pky type_1">
                                     <?php echo $shadharon_dawat_p_hoyeche = $other_shopta_doshok_pokkho_palon['shadharon_dawat_p_hoyeche'] ?>
@@ -220,7 +210,7 @@ $(document).ready(function(){
 
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="">৯.</td>
+                                <td class="tg-pwj7" colspan="">৮.</td>
                                 <td class="tg-pwj7" colspan="">অন্যান্য ধর্মাবলম্বী দাওয়াতি সপ্তাহ</td>
                                  <td class="tg-0pky type_1">
                                     <?php echo $onno_dhormo_dawat_w_hoyeche = $other_shopta_doshok_pokkho_palon['onno_dhormo_dawat_w_hoyeche'] ?>

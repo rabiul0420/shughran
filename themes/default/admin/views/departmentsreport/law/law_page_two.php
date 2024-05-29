@@ -232,8 +232,12 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                            
-                                <td class="tg-pwj7" colspan="5"  style="text-align:center;">শুধু  <?php echo$report_info['year'] ; ?>  সালে গ্রেফতার  </td>
-                                <td class="tg-pwj7" colspan="5" style="text-align:center;"> <?php echo$report_info['year'] -1; ?>  পর্যন্ত গ্রেফতার  </td>
+                                <!-- <td class="tg-pwj7" colspan="5"  style="text-align:center;">শুধু  <?php echo$report_info['year'] ; ?>  সালে গ্রেফতার  </td>
+                                <td class="tg-pwj7" colspan="5" style="text-align:center;"> <?php echo$report_info['year'] -1; ?>  পর্যন্ত গ্রেফতার  </td> -->
+                                
+                                <td class="tg-pwj7" colspan="5"  style="text-align:center;">শুধু ২০২৪ সালে গ্রেফতার </td>
+                                <td class="tg-pwj7" colspan="5" style="text-align:center;">২০২৩ পর্যন্ত গ্রেফতার </td>
+                                
                                 <td class="tg-pwj7" colspan="5" style="text-align:center;">বর্তমান কারাগারে  </td>
                                 
                             </tr>

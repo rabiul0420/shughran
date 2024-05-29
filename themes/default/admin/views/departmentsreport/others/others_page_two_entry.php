@@ -88,6 +88,7 @@ $(document).ready(function(){
                 <p class="introtext">
                 <div class="table-responsive">
                     <div class="tg-wrap">
+<<<<<<< HEAD
                     <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
                                 <td class="tg-pwj7" colspan="5"><b>এ সেশনে বৃদ্ধিকৃত আদর্শ থানা শাখার নাম</b></td>
@@ -258,6 +259,9 @@ $(document).ready(function(){
                         <?php } ?>
                         
                         </table>
+=======
+                   
+>>>>>>> 01cca3c7f7c5c749e2110f4a1b137e85ad10ceb7
                     </div>
                 </div>
             </div>

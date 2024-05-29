@@ -101,6 +101,11 @@ if (!empty($variants)) {
 
 
 
+                        <div class="form-group">
+                            <?= lang("প্রতিষ্ঠানের নাম", "dist"); ?>
+                            <?= form_input('ward_number', '', 'class="form-control tip" id="ward_number" required="required" '); ?>
+                        </div>
+                        <hr>
 
 
 

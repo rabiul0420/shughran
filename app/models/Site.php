@@ -888,7 +888,10 @@ $q = $this->db->get();
 
 
 
+    function update($table, $field1, $field2, $where)
+    {
 
+        $this->db->set($field1, $field2, FALSE);
 
     function check_confirm($branch_id, $date)
     {

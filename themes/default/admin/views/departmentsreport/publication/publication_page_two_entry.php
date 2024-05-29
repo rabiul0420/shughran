@@ -347,7 +347,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>                                                     
                                 <td class="tg-y698 type_1">
-                                মোট ব্যায় 
+                                মোট ব্যয় 
                                 </td>
                                  <td class="tg-0pky" > 
                                         <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 

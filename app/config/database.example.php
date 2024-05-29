@@ -73,8 +73,8 @@ $db['default'] = array(
 	
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
-	'database' => 'report',
+	'password' => 'root',
+	'database' => 'sushovito_reporting_db_v2',
 	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'sma_',

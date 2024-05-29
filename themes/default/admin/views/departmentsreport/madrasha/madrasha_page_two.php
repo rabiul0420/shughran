@@ -168,7 +168,7 @@ $(document).ready(function(){
                             </tr>
 
                           <tr>
-                                <td class="tg-y698 type_1"> আয়াত-হাদিস মুখস্থ প্রতিযোগিত</td>
+                                <td class="tg-y698 type_1"> আয়াত-হাদিস মুখস্থ প্রতিযোগিতা</td>
                                 <td class="tg-0pky  type_1">
                                 <?php echo $ayat_proti_num=$madrasah_dawat_program_1['ayat_proti_num'] ?>
                                 </td>
@@ -397,12 +397,23 @@ $(document).ready(function(){
                                 </td>
                                 
 
+                            </tr>  
+                            <tr>
+                                <td class="tg-y698">সাধারণ জ্ঞানের আসর</td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $sadaron_gan_num=$madrasah_dawat_program_1['sadaron_gan_num'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <?php echo $sadaron_gan_pre=$madrasah_dawat_program_1['sadaron_gan_pre'] ?>
+                                </td>
+                                
+
                             </tr>    
 
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan='2'><b>প্রশিক্ষণমূলক প্রোগ্রাম (আলিয়া)</b></td>
+                                <td class="tg-pwj7" colspan='2'><b>প্রোগ্রাম :</b></td>
                                 <td class="tg-pwj7">
                                     <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Madrasha_প্রশিক্ষণমূলক প্রোগ্রাম (আলিয়া).xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -525,16 +536,7 @@ $(document).ready(function(){
 
                                
                             </tr>
-                            <tr>
-                                <td class="tg-y698">আলোচনা চক্র </td>
-                                <td class="tg-0pky  type_1">
-                                <?php echo $alochona_num=$madrasah_proshikkhon_program['alochona_num'] ?>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                <?php echo $alochona_pre=$madrasah_proshikkhon_program['alochona_pre'] ?>
-                                </td>
-
-                            </tr>
+                           
                         
 
                         </table>

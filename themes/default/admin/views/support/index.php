@@ -400,7 +400,11 @@
             <div class="col-lg-12">
 
                 <div class="row">
+<<<<<<< HEAD
                     <!-- BEGIN NAV TICKETs -->
+=======
+                    <!-- BEGIN NAV TICKET -->
+>>>>>>> 01cca3c7f7c5c749e2110f4a1b137e85ad10ceb7
                     <div class="col-md-3">
                         <div class="grid support">
                             <div class="grid-body">

@@ -206,195 +206,37 @@ $(document).ready(function(){
                            
                             </tr>
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable2">
+                        <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
-                                <td class="tg-pwj7" colspan="5"><b>এ সেশনে বৃদ্ধিকৃত ওয়ার্ড/ ইউনিয়নের নাম</b></td>
-                                <td class="tg-pwj7">
-                                    <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Other_এ সেশনে বৃদ্ধিকৃত ওয়ার্ড/ ইউনিয়নের নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <td class="tg-pwj7" colspan="3"><b>উপশাখা মজবুতিকরণ সংক্রান্ত</b>
+                                </td>
+                                <td class="tg-pwj7" colspan="">
+                                    <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Other_উপশাখা মজবুতিকরণ সংক্রান্ত.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" rowspan="2">ক্রম</td>
-                                <td class="tg-pwj7" rowspan="2">শাখা আইডি</td>
-                                <td class="tg-pwj7" rowspan="2">ওয়ার্ড/ ইউনিয়নের নাম</td>
-                                <td class="tg-pwj7" colspan="3" >জনশক্তির বর্তমান সংখ্যা</td>
+                                <td class="tg-pwj7" rowspan="">মোট উপশাখা সংখ্যা </td>
+                                <td class="tg-pwj7" rowspan="">বর্তমান সক্রিয় উপশাখা</td>
+                                <td class="tg-pwj7" rowspan="">দুর্বল উপশাখার মধ্যে এ বছর সক্রিয় হয়েছে কতটি </td>
+                                <td class="tg-pwj7" colspan="" >উপশাখা এখনো দুর্বল আছে কতটি</td>
                                
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="">সদস্য		</td>
-                                <td class="tg-pwj7" colspan="">সাথী</td>
-                                <td class="tg-pwj7" colspan="">কর্মী</td>
-                            </tr>
-                            <?php 
-                                $i=0;
-                            foreach($other_e_briddhi_ward->result_array() as $row) 
-                                    {
-                                    $i++;
-                                ?>
-
-                                <tr>
-                                    <td class="tg-0pky type_1"><?php echo $i?>	</td>
-                                    <td class="tg-0pky type_1"><?php echo $row['branch_id'] ?>	</td>
-                                    <td class="tg-0pky type_1"><?php echo $row['ward_name'] ?>	</td>
-                                    <td class="tg-0pky  type_2">
-                                    <?php echo $row['shodossho'] ?>      
-                                    </td>
-
-                                    <td class="tg-0pky  type_3">
-                                    <?php echo $row['sathi'] ?>      
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['kormi'] ?>       
-                                    </td>
-            
-                                
-                                </tr>
-
-                        <?php } ?>
-                        </table>
-                        <table class="tg table table-header-rotated" id="testTable3">
-                            <tr>
-                                <td class="tg-pwj7" colspan="6"><b>এ সেশনে ঘাটতিকৃত ওয়ার্ড/ইউনিয়নের নাম</b></td>
-                                <td class="tg-pwj7">
-                                    <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Other_এ সেশনে ঘাটতিকৃত ওয়ার্ড/ইউনিয়নের নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <td class="tg-0pky type_1">
+                                    <?php echo $total_uposakha = $other_uposhakha_mojbuti['total_uposakha'] ?>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="2">ক্রম</td>
-                                <td class="tg-pwj7" rowspan="2">শাখা আইডি</td>
-                                <td class="tg-pwj7" rowspan="2">ওয়ার্ড/ ইউনিয়নের নাম</td>
-                                <td class="tg-pwj7" colspan="3" >জনশক্তির বর্তমান সংখ্যা</td>
-                                <td class="tg-pwj7" rowspan="2" >ঘাটতির কারণ</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="">সদস্য		</td>
-                                <td class="tg-pwj7" colspan="">সাথী</td>
-                                <td class="tg-pwj7" colspan="">কর্মী</td>
-                            </tr>
-                            <?php 
-                                $i=0;
-                            foreach($other_e_ghatti_ward->result_array() as $row) 
-                                    {
-                                    $i++;
-                                ?>
-
-                                <tr>
-                                    <td class="tg-0pky type_1"><?php echo $i?>	</td>
-                                    <td class="tg-0pky type_1"><?php echo $row['branch_id'] ?>	</td>
-                                    <td class="tg-0pky type_1"><?php echo $row['ward_name'] ?>	</td>
-                                    <td class="tg-0pky  type_2">
-                                    <?php echo $row['shodossho'] ?>      
-                                    </td>
-
-                                    <td class="tg-0pky  type_3">
-                                    <?php echo $row['sathi'] ?>      
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['kormi'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['ghattir_karon'] ?>       
-                                    </td>
-            
-                                
-                                </tr>
-
-                        <?php } ?>
-                        </table>
-                        <table class="tg table table-header-rotated" id="testTable4">
-                            <tr>
-                                <td class="tg-pwj7" colspan="5"><b>এ সেশনে বৃদ্ধিকৃত থানার নাম</b></td>
-                                <td class="tg-pwj7">
-                                    <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Other_এ সেশনে বৃদ্ধিকৃত থানার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <td class="tg-0pky type_1">
+                                    <?php echo $bortoman_shokriyo = $other_uposhakha_mojbuti['bortoman_shokriyo'] ?>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="2">ক্রম</td>
-                                <td class="tg-pwj7" rowspan="2">শাখা আইডি</td>
-                                <td class="tg-pwj7" rowspan="2">থানার নাম</td>
-                                <td class="tg-pwj7" colspan="3" >জনশক্তির বর্তমান সংখ্যা</td>
-                               
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="">সদস্য		</td>
-                                <td class="tg-pwj7" colspan="">সাথী</td>
-                                <td class="tg-pwj7" colspan="">কর্মী</td>
-                            </tr>
-                            <?php 
-                                $i=0;
-                            foreach($other_e_briddhi_thana->result_array() as $row) 
-                                    {
-                                    $i++;
-                                ?>
-
-                                <tr>
-                                    <td class="tg-0pky type_1"><?php echo $i?>	</td>
-                                    <td class="tg-0pky type_1"><?php echo $row['branch_id'] ?>	</td>
-                                    <td class="tg-0pky type_1"><?php echo $row['thana_name'] ?>	</td>
-                                    <td class="tg-0pky  type_2">
-                                    <?php echo $row['shodossho'] ?>      
-                                    </td>
-
-                                    <td class="tg-0pky  type_3">
-                                    <?php echo $row['sathi'] ?>      
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['kormi'] ?>       
-                                    </td>
-                                   
-                                
-                                </tr>
-
-                        <?php } ?>
-                        </table>
-                        <table class="tg table table-header-rotated" id="testTable5">
-                            <tr>
-                                <td class="tg-pwj7" colspan="6"><b>এ সেশনে ঘাটতিকৃত থানার নাম</b></td>
-                                <td class="tg-pwj7">
-                                    <a href="#" id='table_5' onclick="doit('xlsx','testTable5','<?php echo 'Other_এ সেশনে ঘাটতিকৃত থানার নাম.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
+                                <td class="tg-0pky type_1">
+                                    <?php echo $durbol_shokriyou_hoyeche = $other_uposhakha_mojbuti['durbol_shokriyou_hoyeche'] ?>
                                 </td>
+                                <td class="tg-0pky type_1">
+                                    <?php echo $durbol_ache = $other_uposhakha_mojbuti['durbol_ache'] ?>
+                                </td>
+                              
                             </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan="2">ক্রম</td>
-                                <td class="tg-pwj7" rowspan="2">শাখা আইডি</td>
-                                <td class="tg-pwj7" rowspan="2">থানার নাম</td>
-                                <td class="tg-pwj7" colspan="3" >জনশক্তির বর্তমান সংখ্যা</td>
-                                <td class="tg-pwj7" rowspan="2" >ঘাটতির কারণ</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="">সদস্য		</td>
-                                <td class="tg-pwj7" colspan="">সাথী</td>
-                                <td class="tg-pwj7" colspan="">কর্মী</td>
-                            </tr>
-                            <?php 
-                                $i=0;
-                            foreach($other_e_ghatti_thana->result_array() as $row) 
-                                    {
-                                    $i++;
-                                ?>
-
-                                <tr>
-                                    <td class="tg-0pky type_1"><?php echo $i?>	</td>
-                                    <td class="tg-0pky type_1"><?php echo $row['branch_id'] ?>	</td>
-                                    <td class="tg-0pky type_1"><?php echo $row['thana_name'] ?>	</td>
-                                    <td class="tg-0pky  type_2">
-                                    <?php echo $row['shodossho'] ?>      
-                                    </td>
-
-                                    <td class="tg-0pky  type_3">
-                                    <?php echo $row['sathi'] ?>      
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['kormi'] ?>       
-                                    </td>
-                                    <td class="tg-0pky  type_4">
-                                    <?php echo $row['ghattir_karon'] ?>       
-                                    </td>
-            
-                                
-                                </tr>
-
-                        <?php } ?>
+                        
                         </table>
                         
                 </div>

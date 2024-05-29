@@ -313,7 +313,7 @@
 
                         <table class="tg table table-header-rotated" id="বায়োডাটা">
                             <tr>
-                                <td class="tg-pwj7" colspan='2'><b>জনশক্তির বায়োডাটা কালেকশন ও পর্যালোচনা হয়েছে? </b></td>
+                                <td class="tg-pwj7" colspan='2'><b>জনশক্তির বায়োডাটা সংগ্রহ ও পর্যালোচনা সংক্রান্ত : </b></td>
                                 <td class="tg-pwj7" colspan="1">
                                     <a href="#" id='বায়োডাটা' onclick="doit('xlsx','বায়োডাটা','<?php echo 'জনশক্তির বায়োডাটা কালেকশন ও পর্যালোচনা হয়েছে?_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
@@ -391,7 +391,7 @@
                             <tr>
 
                                 <td class="tg-y698 type_1" rowspan="2">মান</td>
-                                <td class="tg-y698 type_1" colspan="5">এই সেশনে বিদায়ী জনশক্তিদের তথ্য</td>
+                                <td class="tg-y698 type_1" colspan="5">এই ষাণ্মাসিকে বিদায়ী জনশক্তিদের তথ্য</td>
 
                             </tr>
                             <tr>
@@ -685,7 +685,7 @@
 
                         <table class="tg table table-header-rotated" id="কোচিং">
                             <tr>
-                                <td class="tg-pwj7" colspan="3"><b>শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য </b></td>
+                                <td class="tg-pwj7" colspan="3"><b>শাখা নিয়ন্ত্রিত প্রফেশনাল কোচিং সংক্রান্ত তথ্য :	</b></td>
                                 <td class="tg-pwj7" colspan="">
                                     <a href="#" id='কোচিং' onclick="doit('xlsx','কোচিং','<?php echo 'Education_শাখা নিয়ন্ত্রিত কোচিং সংক্রান্ত তথ্য_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
@@ -726,7 +726,7 @@
 
                         <table class="tg table table-header-rotated" id="মোটিভেশনাল প্রোগ্রাম">
                             <tr>
-                                <td class="tg-pwj7" colspan='2'><b>মোটিভেশনাল প্রোগ্রাম (প্রফেশনাল ও একাডেমিক) </b></td>
+                                <td class="tg-pwj7" colspan='2'><b>মোটিভেশনাল প্রোগ্রাম (প্রফেশনাল): </b></td>
                                 <td class="tg-pwj7" colspan="">
                                     <a href="#" id='table_1' onclick="doit('xlsx','মোটিভেশনাল প্রোগ্রাম','<?php echo 'Education_মোটিভেশনাল প্রোগ্রাম (প্রফেশনাল ও একাডেমিক)_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
@@ -1155,10 +1155,10 @@
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan='2'>মান</td>
-                                <td class="tg-pwj7" colspan="5">৪৫ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৪ তম জনসেবা তথ্য </td>
-                                <td class="tg-pwj7" colspan="5">৪১ তম জনসেবা তথ্য </td>
-                                <td class="tg-pwj7" colspan="5"> ৪৩ তম জনসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">৪৫ তম জনসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">৪৬ তম জনসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5"> ৪৭ তম জনসেবা তথ্য </td>
 
                             </tr>
 
@@ -1673,7 +1673,8 @@
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">মান</td>
                                 <td class="tg-pwj7" colspan="5">১৭ তম মানবসেবা তথ্য </td>
-                                <td class="tg-pwj7" colspan="5">১৬ তম মানবসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">১৮ তম মানবসেবা তথ্য  </td>
+
 
                             </tr>
 
@@ -2714,7 +2715,7 @@
 
                             </tr>
                             <tr>
-                                <td class="tg-y698 type_1"> বেসিক কম্পিউটার কোর্স </td>
+                                <td class="tg-y698 type_1"> ব্যাসিক কম্পিউটার কোর্স </td>
 
                                 <td class="tg-0pky type_1">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manob_babostapona_dokkhota_prosikkhon" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="computer_course_shakha" data-title="Enter"><?php echo $computer_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['computer_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_course_shakha'] : 0 ?>

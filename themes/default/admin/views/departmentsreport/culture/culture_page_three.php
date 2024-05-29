@@ -807,7 +807,7 @@ $(document).ready(function(){
 
                        </tr>
 
-                       <td class="tg-y698">সঙ্গীত শিল্পী  </td>
+                       <td class="tg-y698">সংগীতশিল্পী  </td>
                        <td class="tg-0pky  type_1">
                        <?php echo $shongit_shilpi = $culture_output_report['shongit_shilpi'] ?>
                        </td>
@@ -839,7 +839,7 @@ $(document).ready(function(){
                        <?php echo $video_editor = $culture_output_report['video_editor'] ?>
                        </td>
 
-                       <td class="tg-y698">মেকআপ ম্যান   </td>
+                       <td class="tg-y698"> মেকআপম্যান  </td>
                        <td class="tg-0pky  type_1">
                        <?php echo $makeupman = $culture_output_report['makeupman'] ?>
                        </td>
