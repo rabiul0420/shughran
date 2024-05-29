@@ -3803,6 +3803,48 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     }
 
 
+    function getListward($branch_id = NULL)
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            // $user = $this->site->getUser();
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
+        $report_type = $this->report_type();
+
+        // $this->sma->print_arrays($report_type);
+        // exit();
+        $edit_link = anchor('admin/organization/editthana/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+        //
+        $this->load->library('datatables');
+
+        if ($branch_id) {
+            $this->datatables
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type, v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, v3_associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana')->where('thana.branch_id', $branch_id);
+        } else {
+            $this->datatables
+                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code) as member_number, v3_associate_thana_count(  {$this->db->dbprefix('thana')}.branch_id, thana_code )  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
+                ->from('thana');
+        }
+
+        $this->datatables->where('((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ');
+
+        // is_pending => 2
+        //  $start = $report_type['start'];
+        //  $end = $report_type['end'];
+
+        // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
+        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/thanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+        $this->datatables->add_column("Decrease", $decrease, "id");
+        $this->datatables->add_column("Actions", $edit_link, "id");
+
+        //$this->datatables->unset_column("manpower_id");
+        echo $this->datatables->generate();
+    }
     function getListthana($branch_id = NULL)
     {
 
@@ -4889,39 +4931,6 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->page_construct('organization/wardlist', $meta, $this->data, 'leftmenu/organization');
     }
 
-
-    function getListward($branch_id = NULL)
-    {
-        $this->sma->checkPermissions('index', TRUE);
-        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
-            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
-        }
-
-        $report_type = $this->report_type();
-
-        $edit_link = anchor('admin/organization/editward/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
-
-        $this->load->library('datatables');
-
-        if ($branch_id) {
-            $this->datatables
-                ->select($this->db->dbprefix('ward') . ".id , t1.name as branch_name, {$this->db->dbprefix('ward')}.ward_name, {$this->db->dbprefix('ward')}.ward_code, {$this->db->dbprefix('ward')}.org_type, 0 as member_number, 0 as associate_number, {$this->db->dbprefix('ward')}.worker_number, {$this->db->dbprefix('ward')}.supporter_number, {$this->db->dbprefix('ward')}.ward_number, {$this->db->dbprefix('ward')}.unit_number, {$this->db->dbprefix('ward')}.is_ideal_ward, {$this->db->dbprefix('ward')}.note", FALSE)
-                ->join('branches as t1', 't1.id=ward.branch_id', 'left')
-                ->from('ward')->where('ward.branch_id', $branch_id);
-        } else {
-            $this->datatables
-                ->select($this->db->dbprefix('ward') . ".id , t1.name as branch_name, {$this->db->dbprefix('ward')}.ward_name, {$this->db->dbprefix('ward')}.ward_code, {$this->db->dbprefix('ward')}.org_type, 0 as member_number, 0 as associate_number, {$this->db->dbprefix('ward')}.worker_number, {$this->db->dbprefix('ward')}.supporter_number, {$this->db->dbprefix('ward')}.ward_number, {$this->db->dbprefix('ward')}.unit_number, {$this->db->dbprefix('ward')}.is_ideal_ward, {$this->db->dbprefix('ward')}.note", FALSE)
-                ->join('branches as t1', 't1.id=ward.branch_id', 'left')
-                ->from('ward');
-        }
-
-        $this->datatables->where('((is_pending = 1 AND in_out = 2) OR (is_pending = 2 AND in_out = 1))');
-
-        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary\" title='" . 'Decrease' . "' href='" . admin_url('organization/warddecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
-        $this->datatables->add_column("Decrease", $decrease, "id");
-        $this->datatables->add_column("Actions", $edit_link, "id");
-        echo $this->datatables->generate();
-    }
 
 
 
