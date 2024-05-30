@@ -888,11 +888,7 @@ class Site extends CI_Model
 
 
 
-    function update($table, $field1, $field2, $where)
-    {
-
-        $this->db->set($field1, $field2, FALSE);
-
+   
         function check_confirm($branch_id, $date)
         {
 
@@ -930,8 +926,7 @@ class Site extends CI_Model
         }
 
 
-
-
+ 
 
 
         function update($table, $field1, $field2, $where)
@@ -942,5 +937,5 @@ class Site extends CI_Model
             $this->db->where($where);
             $this->db->update($table);
         }
-    }
+     
 }
