@@ -70,13 +70,22 @@
             "aoColumns": [{
                 "bSortable": false,
                 "mRender": checkbox
-            }, null, null, null, {
+            }, null, null, null, 
+            
+            {
                 "mRender": ward_type
-            }, null, null, null, null, null, null, {
-                "mRender": yes_no
-            }, null, {
+            },
+            
+            null, null, null, null, null, null,  null, null,  null, 
+            
+            
+            {
                 "bSortable": false
-            }, {
+            }, 
+            {
+                "bSortable": false
+            }, 
+            {
                 "bSortable": false
             }]
         }).fnSetFilteringDelay().dtFilter([{
@@ -143,19 +152,20 @@
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkth" type="checkbox" name="check" />
                                 </th>
-                                <th><?= 'শাখা'  ?></th>
+                                <th><?= 'শাখা' ?></th>
                                 <th><?= 'ওয়ার্ডের নাম' ?></th>
-                                <th><?= 'কোড'  ?></th>
-                                <th><?= 'ধরন' ?></th>
-                                <th><?= 'সদস্য' ?></th>
-                                <th><?= 'সাথী ' ?></th>
-                                <th><?= 'কর্মী ' ?></th>
-                                <th>সমর্থক </th>
-                                <th>ওয়ার্ড </th>
-                                <th>উপশাখা </th>
-                                <th>আদর্শ ওয়ার্ড </th>
-
-                                <th><?= 'নোট'  ?></th>
+                                <th><?= 'থানা কোড' ?></th>
+                                <th><?= 'প্রতিষ্ঠানের ধরন' ?></th>
+                                <th><?= 'জেলা' ?></th>
+                                <th><?= 'উপজেলা' ?></th>
+                                <th><?= 'ইউনিয়ন' ?></th>
+                                <th><?= 'ওয়ার্ড' ?></th>
+                                <th><?= 'বিভাগ' ?></th>
+                                <th><?= 'উপ বিভাগ' ?></th>
+                                <th><?= 'প্রতিষ্ঠান' ?></th>
+                                <th><?= 'কর্মচারী সংখ্যা' ?></th>
+                                <th><?= 'সহকারী সংখ্যা' ?></th>
+                                <th><?= 'মন্তব্য' ?></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -171,6 +181,8 @@
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkft" type="checkbox" name="check" />
                                 </th>
+                                <th></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
