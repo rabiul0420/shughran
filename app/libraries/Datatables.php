@@ -432,21 +432,25 @@ class Datatables
             $this->ci->db->like($val[0], $val[1], $val[2]);
 
             
-            
+          
+
             if (strlen($this->distinct) > 0) {
                 $this->ci->db->distinct($this->distinct);
                 $this->ci->db->select($this->columns);
                 
             }
             else if (is_array($this->columns) && in_array( "id",$this->columns)) {
+                 
                 
-                if(in_array($this->table , array('manpower','thana_log','thana_ideal_log','thana','institution_organization','institutionlist','confirmreport','users','manpower_transfer_assoworker','manpower_transfer','administration_without_org','associate',  'postpone' ,'associatelog','memberlog','membercandidatelog','institution_without_org')))
+               
+                if(in_array($this->table , array('thana','manpower','thana_log','thana_ideal_log', 'institution_organization','institutionlist','confirmreport','users','manpower_transfer_assoworker','manpower_transfer','administration_without_org','associate',  'postpone' ,'associatelog','memberlog','membercandidatelog','institution_without_org'))) 
                     $this->ci->db->select($this->table.'.id');
                 else 
                     $this->ci->db->select('id');
                     
             }
             else {
+               
              //   if($this->table == 'associate' || $this->table == 'member' || $this->table == 'member_candidate' )
                 $this->ci->db->select($this->table.'.id');
            // else 
