@@ -889,6 +889,8 @@ class Others extends MY_Controller
 
 
 
+		// $this->sma->print_arrays($this->data['report_info']);
+
 
 		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
 		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
@@ -962,14 +964,14 @@ class Others extends MY_Controller
 	function current_thana($branch_id = null)
 	{
 
-		 
+
 		if ($branch_id)
 			$result =  $this->site->query_binding("SELECT count(id) current_thana from sma_thana WHERE  ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND branch_id = ?  ", array($branch_id));
 		else
 			$result =  $this->site->query("SELECT count(id) current_thana from sma_thana WHERE ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
 
 
-			 
+
 		return isset($result[0]['current_thana']) ? $result[0]['current_thana'] : 0;
 	}
 
@@ -979,17 +981,17 @@ class Others extends MY_Controller
 	function current_ideal_thana($branch_id = null)
 	{
 
-		 
+
 		if ($branch_id)
 			$result =  $this->site->query_binding("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND  branch_id = ?  ", array($branch_id));
 		else
 			$result =  $this->site->query("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
 
 
-			 
+
 		return isset($result[0]['current_ideal_thana']) ? $result[0]['current_ideal_thana'] : 0;
 	}
-	
+
 
 
 
