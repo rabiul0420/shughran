@@ -238,7 +238,7 @@ function row_status($x)
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h2 class="blue"><i class="fa-fw fa fa-tasks"></i> <?= 'জনশক্তি স্থানান্তর পেন্ডিং লিস্ট' ?></h2>
+                    <h2 class="blue"><i class="fa-fw fa fa-tasks"></i> <?= 'জনশক্তি স্থানান্তর পেন্ডিং তালিকা' ?></h2>
                 </div>
                 <div class="box-content">
                     <div class="row">

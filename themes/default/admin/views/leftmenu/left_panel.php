@@ -19,14 +19,14 @@
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('mancomminglist') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">জনশক্তি আগমন পেন্ডিং লিস্ট <?= isset($pending_list) ? '(' . $pending_list . ')' : '' ?></span>
+                                        <span class="text">জনশক্তি আগমন পেন্ডিং তালিকা <?= isset($pending_list) ? '(' . $pending_list . ')' : '' ?></span>
                                     </a>
                                 </li>
 
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('mantransferlist') ?>">
                                         <i class="fa fa-dashboard"></i>
-                                        <span class="text">জনশক্তি স্থানান্তর পেন্ডিং লিস্ট <?= isset($manpowertransferout) ? '(' . $manpowertransferout . ')' : '' ?></span>
+                                        <span class="text">জনশক্তি স্থানান্তর পেন্ডিং তালিকা <?= isset($manpowertransferout) ? '(' . $manpowertransferout . ')' : '' ?></span>
                                     </a>
                                 </li>
 
@@ -41,6 +41,20 @@
                                     <a href="<?= admin_url('membercandidatepending') ?>">
                                         <i class="fa fa-dashboard"></i>
                                         <span class="text">সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা  <?= isset($membercandidatepending) ? '(' . $membercandidatepending . ')' : '' ?></span>
+                                    </a>
+                                </li>
+
+                                <li class="mm_transfer">
+                                    <a href="<?= admin_url('memberpending') ?>">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span class="text">সদস্য ঘাটতি পেন্ডিং তালিকা  <?=isset($manpowerstdout) ? '('.$manpowerstdout.')': ''?></span>
+                                    </a>
+                                </li>
+
+                                <li class="mm_transfer">
+                                    <a href="<?= admin_url('membercandidatepending') ?>">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span class="text">সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা  <?=isset($membercandidatepending) ? '('.$membercandidatepending.')': ''?></span>
                                     </a>
                                 </li>
 
@@ -346,9 +360,8 @@
                                 ?>
                                             <div class="alert alert-info">
                                                 <a href="#" id="<?= $n->id ?>" class="close hideComment external" data-dismiss="alert">&times;</a>
-                                                <?= $n->comment;
-                                                echo 111; ?>
-
+                                                <?= $n->comment; ?>
+                                                
                                             </div>
                                 <?php }
                                     }

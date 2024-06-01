@@ -35,10 +35,15 @@
                     </div>
                     <?php }?>
 
-
+                    <div class="form-group">
+                        <?php echo lang('শিরোনাম', 'ticket_caption'); ?>
+                        <div class="controls">
+                            <?php echo form_input('ticket_caption', '', 'class="form-control" id="ticket_caption" required="required"'); ?>
+                        </div>
+                    </div>
 
                     <div class="form-group">
-                        <?php echo lang('Menu', 'page'); ?>
+                        <?php echo lang('Topic', 'page'); ?>
                         <div class="controls">
 
 
@@ -63,7 +68,7 @@
 
 
                     <div class="form-group">
-                        <?= lang("Department", "department"); ?>
+                        <?= lang("Section Name", "department"); ?>
                         <?php
                         $dept[''] = lang('select') . ' ' . lang('department');
                         foreach ($departments as $department) {
@@ -81,12 +86,7 @@
                         ?>
                     </div>
 
-                    <div class="form-group">
-                        <?php echo lang('শিরোনাম', 'ticket_caption'); ?>
-                        <div class="controls">
-                            <?php echo form_input('ticket_caption', '', 'class="form-control" id="ticket_caption" required="required"'); ?>
-                        </div>
-                    </div>
+           
 
                     <div class="form-group">
                         <?= lang("সমস্যা এবং কি ধরণের সমাধান চান লিখুন ", "note"); ?>

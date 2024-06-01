@@ -450,7 +450,7 @@ $(document).ready(function(){
                             </td>
                             </tr>				
                             <tr>
-                                <td class="tg-pwj7" >পরিসংখ্যান</td>
+                                <td class="tg-pwj7" >বিবরণ</td>
                                 <td class="tg-pwj7" >শিক্ষক</td>
                                 <td class="tg-pwj7" >কর্মকর্তা   </td>
                                 <td class="tg-pwj7" >কর্মচারী </td>

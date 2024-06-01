@@ -97,9 +97,24 @@ $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_
     
     if ($branch_id)
     $this->db->where('branch_id', $branch_id);
-$this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
     $this->data['foundation_motorcycle'] = $this->db->get('foundation_motorcycle')->first_row('array');
+ 
+    if( $this->data['foundation_motorcycle']==null){
+        $this->db->select_sum('s_g');
+        $this->db->select_sum('s_h');
+        $this->db->select_sum('s_k');
+        $this->db->select_sum('s_l');
+        $this->db->select_sum('t_g');
+        $this->db->select_sum('t_h');
+        $this->db->select_sum('t_k');
+        $this->db->select_sum('t_l');
+        $this->db->where('branch_id', $branch_id);
+        $this->db->where('date between "2023-06-18" and "2023-12-15" ');
+    
+        $this->data['foundation_motorcycle'] = $this->db->get('foundation_motorcycle')->first_row('array'); 
+    } 
 
 
 
@@ -158,28 +173,28 @@ else{  // current session for data entry
 
     $this->db->select('*');
     $this->db->where('branch_id',$branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+    $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
     $query = $this->db->get('foundation_foundation_info');
     $this->data['foundation_foundation_info'] = $query;
 
     $this->db->select('*');
     $this->db->where('branch_id',$branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+    $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
     $query = $this->db->get('foundation_jomi_shongkranto');
     $this->data['foundation_jomi_shongkranto'] = $query;
 
     $this->db->select('*');
     $this->db->where('branch_id',$branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+    $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
     $query = $this->db->get('foundation_flat_shongkranto');
     $this->data['foundation_flat_shongkranto'] = $query;
 
     $this->db->select('*');
     $this->db->where('branch_id',$branch_id);
-    $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+    $this->db->where('date BETWEEN "2023-06-18" and "' . $report_type['end'] . '"');
 
     $query = $this->db->get('foundation_others');
     $this->data['foundation_others'] = $query;

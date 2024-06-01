@@ -14,7 +14,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'অন্যান্য - পেইজ ০৬ '  . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'অন্যান্য - পেইজ ০৪ '  . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
                 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php
@@ -150,6 +150,7 @@ $(document).ready(function(){
                         <?php } ?>
                 </table>
 
+                
                   
                 </div>
             </div>

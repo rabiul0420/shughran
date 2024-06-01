@@ -809,7 +809,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>                                                     
                                 <td class="tg-y698 type_1">
-                                একপাতা ক্যালেন্ডার (বড়ো)
+                                একপাতা ক্যালেন্ডার (বড়)
                                  </td>
                                     <td class="tg-0pky  type_10">
                                 <?php echo $nobo_proka_1_page_cal_big_num = $publication_kendro_hote_prokashona['nobo_proka_1_page_cal_big_num'] ?>

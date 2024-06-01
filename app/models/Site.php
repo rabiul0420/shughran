@@ -211,9 +211,9 @@ class Site extends CI_Model
         }
         return FALSE;
     }
-    public function getAllwards()
+    public function getAllwards($thana_id)
     {
-        $q = $this->db->get('ward');
+        $q = $this->db->get_where('thana', array('parent_id' => $thana_id));
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -366,7 +366,7 @@ class Site extends CI_Model
 
         // echo 222;
         // exit();
-        
+
         return '<script type="text/javascript">' . file_get_contents($this->data['assets'] . 'js/modal.js?v=2') . '</script>';
     }
 
@@ -501,22 +501,22 @@ class Site extends CI_Model
     public function getNotifications()
     {
         $branch_id = $this->session->userdata('branch_id');
-$date = date('Y-m-d H:i:s', time());
+        $date = date('Y-m-d H:i:s', time());
 
-$this->db->select('sma_notifications.*');
-$this->db->from('sma_branch_notifications');
-$this->db->join('sma_notifications', 'sma_notifications.id = sma_branch_notifications.notification_id');
-$this->db->where("sma_notifications.from_date <=", $date);
-$this->db->where("sma_notifications.till_date >=", $date);
+        $this->db->select('sma_notifications.*');
+        $this->db->from('sma_branch_notifications');
+        $this->db->join('sma_notifications', 'sma_notifications.id = sma_branch_notifications.notification_id');
+        $this->db->where("sma_notifications.from_date <=", $date);
+        $this->db->where("sma_notifications.till_date >=", $date);
 
-if (!$this->Owner) {
-    $branch_id = $this->session->userdata('branch_id');
-    $this->db->where('sma_branch_notifications.branch_id', $branch_id);
-}
-$this->db->group_by('sma_notifications.id');
-// echo $this->db->get_compiled_select();
-$q = $this->db->get();
-// $this->sma->print_arrays( $this->db->last_query());
+        if (!$this->Owner) {
+            $branch_id = $this->session->userdata('branch_id');
+            $this->db->where('sma_branch_notifications.branch_id', $branch_id);
+        }
+        $this->db->group_by('sma_notifications.id');
+        // echo $this->db->get_compiled_select();
+        $q = $this->db->get();
+        // $this->sma->print_arrays( $this->db->last_query());
 
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
@@ -757,9 +757,6 @@ $q = $this->db->get();
 
         if ($this->db->insert($table, $data)) {
 
-            echo $this->db->last_query();
-            exit;
-
             if ($return_id != NULL)
                 return $this->db->insert_id();
             return true;
@@ -851,43 +848,39 @@ $q = $this->db->get();
 
 
 
-
-
-
-    function check_confirm($branch_id, $date)
+    public function getAllThana($branch = null)
     {
 
-        $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => date('Y', strtotime($date))), 'id desc', 1, 0);
 
-        $current_date = strtotime($date);
+        if ($table == 'responsibilities')
+            $this->db->order_by('priority', 'Desc');
 
-        $annual_start = strtotime($entrytimeinfo->startdate_annual);
-        $annual_end = strtotime($entrytimeinfo->enddate_annual);
-
-        $half_start = strtotime($entrytimeinfo->startdate_half);
-        $half_end = strtotime($entrytimeinfo->enddate_half);
-
-        $type =  ($current_date  >= $half_start && $current_date <= $half_end) ? 'half_yearly' : 'annual';
-
-        $year = $entrytimeinfo->year;
-
-
-        $confirm = $this->site->getOneRecord('confirmreport', '*', array('branch_id' => $branch_id, 'year' => $entrytimeinfo->year, 'report_type' => $type), 'id desc', 1, 0);
-        //var_dump($confirm);
-
-        if ($confirm == false)
-            return true;
-        else
-            return false;
+        $q = $this->db->get('thana');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
     }
 
 
-    function allmembernumber($branch = null)
+    public function getAllWard($branch = null)
     {
-        if ($branch)
-            return $this->getOneRecord('member', 'COUNT(id) as member', array('branch' => $branch, 'is_member_now' => 1));
-        else
-            return $this->getOneRecord('member', 'COUNT(id) as member', array('is_member_now' => 1));
+
+
+        if ($table == 'responsibilities')
+            $this->db->order_by('priority', 'Desc');
+
+        $q = $this->db->get('thana');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
     }
 
 
@@ -900,7 +893,54 @@ $q = $this->db->get();
 
         $this->db->set($field1, $field2, FALSE);
 
-        $this->db->where($where);
-        $this->db->update($table);
+        function check_confirm($branch_id, $date)
+        {
+
+            $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => date('Y', strtotime($date))), 'id desc', 1, 0);
+
+            $current_date = strtotime($date);
+
+            $annual_start = strtotime($entrytimeinfo->startdate_annual);
+            $annual_end = strtotime($entrytimeinfo->enddate_annual);
+
+            $half_start = strtotime($entrytimeinfo->startdate_half);
+            $half_end = strtotime($entrytimeinfo->enddate_half);
+
+            $type =  ($current_date  >= $half_start && $current_date <= $half_end) ? 'half_yearly' : 'annual';
+
+            $year = $entrytimeinfo->year;
+
+
+            $confirm = $this->site->getOneRecord('confirmreport', '*', array('branch_id' => $branch_id, 'year' => $entrytimeinfo->year, 'report_type' => $type), 'id desc', 1, 0);
+            //var_dump($confirm);
+
+            if ($confirm == false)
+                return true;
+            else
+                return false;
+        }
+
+
+        function allmembernumber($branch = null)
+        {
+            if ($branch)
+                return $this->getOneRecord('member', 'COUNT(id) as member', array('branch' => $branch, 'is_member_now' => 1));
+            else
+                return $this->getOneRecord('member', 'COUNT(id) as member', array('is_member_now' => 1));
+        }
+
+
+
+
+
+
+        function update($table, $field1, $field2, $where)
+        {
+
+            $this->db->set($field1, $field2, FALSE);
+
+            $this->db->where($where);
+            $this->db->update($table);
+        }
     }
 }

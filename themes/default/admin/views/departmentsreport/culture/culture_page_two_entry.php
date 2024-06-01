@@ -1341,7 +1341,7 @@ $(document).ready(function(){
 
                             </tr>
                             <tr>
-                                <td class="tg-y698">কিরাত কর্মশালা  </td>
+                                <td class="tg-y698">ক্বিরাআত কর্মশালা </td>
                                 <td class="tg-0pky  type_1">
 									<a href="#" class="editable editable-click" data-id="" data-idname=""
                                        data-type="number" data-table="culture_workshop" data-pk="<?php echo $pk ?>"

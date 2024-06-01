@@ -301,7 +301,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>                                                     
                                 <td class="tg-y698 type_1">
-                                মোট ব্যায় 
+                                মোট ব্যয় 
                                 </td>
                                  <td class="tg-0pky  type_10">
                                 <?php echo $pro_hote_total_bay_amount = $publication_ay_bey['pro_hote_total_bay_amount'] ?>

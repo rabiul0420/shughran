@@ -606,7 +606,7 @@ $(document).ready(function(){
                         </table>
                         <table  class="tg table table-header-rotated" id="testTable3">
                         <tr>
-                            <td class="tg-pwj7" colspan="4"><b>খালাস-সংক্রান্ত তথ্য (2009-<?php echo $report_info['year']; ?>) :  মোট খালাসপ্রাপ্ত মামলা সংখ্যা= </b></td>
+                            <td class="tg-pwj7" colspan="4"><b>খালাস-সংক্রান্ত তথ্য (২০১০-২০২৪) :  মোট খালাসপ্রাপ্ত মামলা সংখ্যা= </b></td>
                             <td class="tg-pwj7" colspan="2">
                                     <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Law_খালাস-সংক্রান্ত তথ্য_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>

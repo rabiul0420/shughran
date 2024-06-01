@@ -1506,7 +1506,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
         if ($branch_id) {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,{$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, district_upazila({$this->db->dbprefix('manpower')}.upazila) as upazila_name", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,{$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, v3_district_upazila({$this->db->dbprefix('manpower')}.upazila) as upazila_name", FALSE)
                 ->from('member');
             $this->datatables->join('manpower', 'manpower.id=member.manpower_id', 'left')
                 ->where('member.is_member_now', 1);
@@ -1516,7 +1516,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,{$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code , district_upazila({$this->db->dbprefix('manpower')}.upazila) as upazila_name ", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  membercode,{$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.member_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code , v3_district_upazila({$this->db->dbprefix('manpower')}.upazila) as upazila_name ", FALSE)
                 ->from('member');
             $this->datatables->join('manpower', 'manpower.id=member.manpower_id', 'left')
                 ->where('member.is_member_now', 1);

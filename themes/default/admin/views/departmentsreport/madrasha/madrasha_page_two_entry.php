@@ -92,7 +92,7 @@ $(document).ready(function(){
                     <div class="tg-wrap">
                     <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
-                            <td class="tg-pwj7" colspan='2'><b>দাওয়াতি প্রোগ্রাম (আলিয়া)</b></td>
+                            <td class="tg-pwj7" colspan='2'><b>দাওয়াতি প্রোগ্রাম </b></td>
                             <td class="tg-pwj7">
                                     <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Madrasha_দাওয়াতি প্রোগ্রাম (আলিয়া)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -107,7 +107,7 @@ $(document).ready(function(){
                             $pk = (isset($madrasah_dawat_program_1['id']))?$madrasah_dawat_program_1['id']:'';
                             ?>
                           <tr>
-                                <td class="tg-y698 type_1"> আয়াত-হাদিস মুখস্থ প্রতিযোগিত</td>
+                                <td class="tg-y698 type_1"> আয়াত-হাদিস মুখস্থ প্রতিযোগিতা</td>
                                 <td class="tg-0pky  type_2">
                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" data-table="madrasah_dawat_program_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" data-name="ayat_proti_num" data-title="Enter"><?php echo $ayat_proti_num=  (isset( $madrasah_dawat_program_1['ayat_proti_num']))? $madrasah_dawat_program_1['ayat_proti_num']:'' ?></a>
                                 </td>
@@ -314,12 +314,21 @@ $(document).ready(function(){
                                 <td class="tg-0pky  type_2">
                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" data-table="madrasah_dawat_program_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" data-name="other_pre" data-title="Enter"><?php echo $other_pre=  (isset( $madrasah_dawat_program_1['other_pre']))? $madrasah_dawat_program_1['other_pre']:'' ?></a>
                                 </td>
-                            </tr>    
+                            </tr> 
+                            <tr>
+                                <td class="tg-y698">সাধারণ জ্ঞানের আসর</td>
+                                <td class="tg-0pky  type_2">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" data-table="madrasah_dawat_program_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" data-name="sadaron_gan_num" data-title="Enter"><?php echo $sadaron_gan_num=  (isset( $madrasah_dawat_program_1['sadaron_gan_num']))? $madrasah_dawat_program_1['sadaron_gan_num']:'' ?></a>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" data-table="madrasah_dawat_program_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" data-name="sadaron_gan_pre" data-title="Enter"><?php echo $sadaron_gan_pre=  (isset( $madrasah_dawat_program_1['sadaron_gan_pre']))? $madrasah_dawat_program_1['sadaron_gan_pre']:'' ?></a>
+                                </td>
+                            </tr>     
 
                         </table>
                         <table class="tg table table-header-rotated" id="testTable2">
                             <tr>
-                                <td class="tg-pwj7" colspan='2'><b>প্রশিক্ষণমূলক প্রোগ্রাম (আলিয়া)</b></td>
+                                <td class="tg-pwj7" colspan='2'><b>প্রোগ্রাম :</b></td>
                                 <td class="tg-pwj7">
                                     <a href="#" id='table_2' onclick="doit('xlsx','testTable2','<?php echo 'Madrasha_প্রশিক্ষণমূলক প্রোগ্রাম (আলিয়া)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -429,15 +438,7 @@ $(document).ready(function(){
                                 <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" data-table="madrasah_proshikkhon_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" data-name="shamoshtik_pre" data-title="Enter"><?php echo $shamoshtik_pre=  (isset( $madrasah_proshikkhon_program['shamoshtik_pre']))? $madrasah_proshikkhon_program['shamoshtik_pre']:'' ?></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="tg-y698">আলোচনা চক্র </td>
-                                <td class="tg-0pky  type_2">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" data-table="madrasah_proshikkhon_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" data-name="alochona_num" data-title="Enter"><?php echo $alochona_num=  (isset( $madrasah_proshikkhon_program['alochona_num']))? $madrasah_proshikkhon_program['alochona_num']:'' ?></a>
-                                </td>
-                                <td class="tg-0pky  type_2">
-                                <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" data-table="madrasah_proshikkhon_program" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" data-name="alochona_pre" data-title="Enter"><?php echo $alochona_pre=  (isset( $madrasah_proshikkhon_program['alochona_pre']))? $madrasah_proshikkhon_program['alochona_pre']:'' ?></a>
-                                </td>
-                            </tr>
+                            
                         </table>
                   
                     </div>

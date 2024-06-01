@@ -817,7 +817,7 @@ class Associate extends MY_Controller
         if ($branch_id) {
 
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, district_upazila({$this->db->dbprefix('manpower')}.upazila) as upazila_name", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, v2_district_upazila({$this->db->dbprefix('manpower')}.upazila) as upazila_name", FALSE)
                 ->from('associate');
             $this->datatables->join('manpower', 'manpower.id=associate.manpower_id', 'left')
                 ->where('associate.is_associate_now', 1);
@@ -826,7 +826,7 @@ class Associate extends MY_Controller
             $this->datatables->join('responsibilities', 'manpower.responsibility_id=responsibilities.id', 'left');
         } else {
             $this->datatables
-                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, district_upazila({$this->db->dbprefix('manpower')}.upazila) as upazila_name", FALSE)
+                ->select($this->db->dbprefix('manpower') . ".id as manpowerid,  associatecode,   {$this->db->dbprefix('manpower')}.name, {$this->db->dbprefix('branches')}.name as branch_name, {$this->db->dbprefix('manpower')}.associate_oath_date as oath_date,sessionyear,  {$this->db->dbprefix('responsibilities')}.responsibility as responsibility,thana_code, v2_district_upazila({$this->db->dbprefix('manpower')}.upazila) as upazila_name", FALSE)
                 ->from('associate');
             $this->datatables->join('manpower', 'manpower.id=associate.manpower_id', 'left')
                 ->where('associate.is_associate_now', 1);

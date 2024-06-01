@@ -5,7 +5,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue">
-            <i class="fa-fw fa fa-barcode"></i><?= 'অন্যান্য - পেইজ ০৭ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+            <i class="fa-fw fa fa-barcode"></i><?= 'অন্যান্য - পেইজ ০৫ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php

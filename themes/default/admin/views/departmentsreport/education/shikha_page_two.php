@@ -509,7 +509,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7">স্তর</td>
                                 <td class="tg-pwj7"> কোচিংয়ের নাম</td>
                                 <td class="tg-pwj7">ব্যাচ সংখ্যা </td>
-                                <td class="tg-pwj7"> ছাত্র সংখ্যা</td>
+                                <td class="tg-pwj7"> শিক্ষার্থী সংখ্যা</td>
 
                             </tr>
 
