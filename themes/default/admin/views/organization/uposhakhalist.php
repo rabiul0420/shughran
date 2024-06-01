@@ -26,7 +26,16 @@
 
 <script>
     function uposhakha_type(type) {
-        return type == 'Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠানিক';
+
+        if (type == 'Residential') {
+            return 'আবাসিক';
+        } else if (type == 'Institutional') {
+            return 'প্রাতিষ্ঠানিক';
+        } else {
+            return 'বিভাগীয়';
+        }
+
+
     }
 
     function yes_no(is_ideal_uposhakha) {
@@ -69,17 +78,33 @@
                 return nRow;
             },
             "aoColumns": [{
-                "bSortable": false,
-                "mRender": checkbox
-            }, null, null, null, {
-                "mRender": uposhakha_type
-            }, null, null, null, null, null, null, {
-                "mRender": yes_no
-            }, null, {
-                "bSortable": false
-            }, {
-                "bSortable": false
-            }]
+                    "bSortable": false,
+                    "mRender": checkbox
+                }, null, null, null, {
+                    "mRender": uposhakha_type
+                }, null, null, null, null, null, null, null, null,
+
+                null,
+                {
+                    "bSortable": false
+                },
+                {
+                    "mRender": yes_no
+                },
+
+                {
+                    "bSortable": false
+                },
+                {
+                    "bSortable": false
+                },
+                {
+                    "bSortable": false
+                },
+                {
+                    "bSortable": false
+                }
+            ]
         }).fnSetFilteringDelay().dtFilter([{
                 column_number: 1,
                 filter_default_label: "[<?= 'শাখা'; ?>]",
@@ -91,7 +116,79 @@
                 filter_default_label: "[<?= 'নাম'; ?>]",
                 filter_type: "text",
                 data: []
-            }
+            },
+            {
+                column_number: 3,
+                filter_default_label: "[<?= 'থানা '; ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 4,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 5,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 6,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 7,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 8,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 9,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 10,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 11,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 12,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 13,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 14,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 15,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            }, {
+                column_number: 16,
+                filter_default_label: "search",
+                filter_type: "text",
+                data: []
+            },
         ], "footer");
     });
 </script>
@@ -148,17 +245,23 @@
                                     <input class="checkbox checkth" type="checkbox" name="check" />
                                 </th>
                                 <th><?= 'শাখা' ?></th>
+
                                 <th><?= 'উপশাখার নাম' ?></th>
-                                <th><?= 'কোড' ?></th>
                                 <th><?= 'ধরন' ?></th>
-                                <th><?= 'সদস্য' ?></th>
-                                <th><?= 'সাথী' ?></th>
+                                <th><?= 'সাংগঠনিক থানা' ?></th>
+                                <th><?= 'সাংগঠনিক ওয়ার্ড' ?></th>
+                                <th><?= 'জেলা' ?></th>
+                                <th><?= 'উপজেলা' ?></th>
+                                <th><?= 'ইউনিয়ন' ?></th>
+                                <th><?= 'ওয়ার্ড' ?></th>
+                                <th><?= 'ক্যাটাগরি' ?></th>
+                                <th><?= 'সাব ক্যাটাগরি' ?></th>
+                                <th><?= 'প্রতিষ্ঠান' ?></th>
                                 <th><?= 'কর্মী' ?></th>
-                                <th>সমর্থক </th>
-                                <th>ওয়ার্ড </th>
-                                <th>উপশাখা </th>
-                                <th>আদর্শ ওয়ার্ড </th>
-                                <th><?= 'নোট' ?></th>
+                                <th><?= 'সমর্থক' ?></th>
+                                <th><?= 'সেট-আপ' ?></th>
+                                <th><?= 'মান' ?></th>
+                                <th><?= 'মন্তব্য' ?></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -174,6 +277,11 @@
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkft" type="checkbox" name="check" />
                                 </th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

@@ -3658,16 +3658,19 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-            $this->session->set_flashdata('message', 'কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
 
 
-            if ($id == 1)
+
+            if ($id == 1) {
+                $this->session->set_flashdata('message', 'কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
                 admin_redirect('organization/addthana');
-            elseif ($id == 2)
+            } elseif ($id == 2) {
+                $this->session->set_flashdata('message', 'Ward Successfully Added.');
                 admin_redirect('organization/addthana/2');
-            elseif ($id == 3)
+            } elseif ($id == 3) {
+                $this->session->set_flashdata('message', 'Unit Successfully Added.');
                 admin_redirect('organization/addthana/3');
-            else
+            } else
                 admin_redirect('organization/addthana');
         } else {
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
@@ -3693,18 +3696,31 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
 
 
-            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('থানা')));
-            $meta = array('page_title' => lang('থানা '), 'bc' => $bc);
 
 
-            if ($id == 1)
+            if ($id == 1) {
+
+                $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('থানা')));
+                $meta = array('page_title' => lang('থানা '), 'bc' => $bc);
+
+
                 $this->page_construct('organization/addthana', $meta, $this->data, 'leftmenu/organization');
-            elseif ($id == 2)
+            } elseif ($id == 2) {
+
+                $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('ওয়ার্ড')));
+                $meta = array('page_title' => lang('ওয়ার্ড '), 'bc' => $bc);
+
                 $this->page_construct('organization/addward', $meta, $this->data, 'leftmenu/organization');
-            elseif ($id == 3)
+            } elseif ($id == 3) {
+                $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('উপশাখা')));
+                $meta = array('page_title' => lang('উপশাখা '), 'bc' => $bc);
                 $this->page_construct('organization/adduposhakha', $meta, $this->data, 'leftmenu/organization');
-            else
-                $this->page_construct('organization/addthana', $meta, $this->data, 'leftmenu/organization');
+            } else {
+
+                $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('সমর্থক সংগঠন')));
+                $meta = array('page_title' => lang('সমর্থক সংগঠন '), 'bc' => $bc);
+                $this->page_construct('organization/addsupporter', $meta, $this->data, 'leftmenu/organization');
+            }
         }
     }
 
@@ -3832,49 +3848,42 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         // $this->sma->print_arrays($report_type);
         // exit();
-        $edit_link = anchor('admin/organization/editthana/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+        $edit_link = anchor('#', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
         //
         $this->load->library('datatables');
 
+        // ->join('sma_thana AS th1', 'th1.id = sma_thana.parent_id', 'left')
 
-        //SELECT sma_thana.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name, sma_thana.thana_code, sma_thana.org_type, 
-        // d1.`name` AS district, d3.`name` AS  upazila, d4.`name` AS  `union`, d5.`name` AS  `ward`, i1.`institution_type` AS category, i2.`institution_type` AS `sub_category`, i3.`ins_name` AS institute, worker_number, supporter_number, worker_number, supporter_number, ward_number, unit_number, is_ideal_thana, sma_thana.note FROM `sma_thana` 
-        // LEFT JOIN `sma_branches` AS `t1` ON `t1`.`id`=`sma_thana`.`branch_id` 
-        // LEFT JOIN `sma_district` AS d1 ON d1.`id`=`sma_thana`.`district`
-        // LEFT JOIN `sma_district` AS  d3  ON d3.`id`=`sma_thana`.`upazila`
-        // LEFT JOIN `sma_district` AS  d4  ON d4.`id`=`sma_thana`.`union`
-        // LEFT JOIN `sma_district` AS  d5  ON d5.`id`=`sma_thana`.`ward`
-        // LEFT JOIN `sma_institution` AS i1 ON i1.`id` = sma_thana.`institution_parent_id`
-        // LEFT JOIN `sma_institution` AS i2 ON i2.`id` = sma_thana.`sub_category`
-        // LEFT JOIN `sma_institutionlist` AS i3 ON i3.`id` = sma_thana.institution_id
-        // WHERE `sma_thana`.`level` = 2 
-        // AND `sma_thana`.`branch_id` = '1' 
-        // ORDER BY `branch_name` ASC LIMIT 25
-
-
+        // th1.thana_name AS parent_thana_name,
 
 
         if ($branch_id) {
-           
-            $this->datatables->select($this->db->dbprefix('thana') .'.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name, sma_thana.thana_code, sma_thana.org_type, d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE) ->from('thana') ->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left') ->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left') ->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left') ->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left') ->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left') ->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left') ->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left') ->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left') ->where('thana.level', 2) ->where('thana.branch_id', $branch_id);
+
+            $this->datatables->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name, th1.thana_name AS parent_thana_name, sma_thana.org_type, d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')
+                ->join('sma_thana AS th1', 'th1.id = sma_thana.parent_id', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->where('thana.level', 2)->where('thana.branch_id', $branch_id);
         } else {
-            $this->datatables->select($this->db->dbprefix('thana') .'.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name, sma_thana.thana_code, sma_thana.org_type, d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE) ->from('thana') ->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left') ->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left') ->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left') ->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left') ->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left') ->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left') ->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left') ->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left') ->where('thana.level', 2);
+            $this->datatables->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name, sma_thana.thana_code, sma_thana.org_type, d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->where('thana.level', 2);
         }
 
         // $this->datatables->where('((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ');
- 
+
         // is_pending => 2
         //  $start = $report_type['start'];
         //  $end = $report_type['end'];
 
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/thanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('#') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+
+
         $this->datatables->add_column("Decrease", $decrease, "id");
         $this->datatables->add_column("Actions", $edit_link, "id");
 
         //$this->datatables->unset_column("manpower_id");
         echo $this->datatables->generate();
     }
+
+
+
     function getListthana($branch_id = NULL)
     {
 
@@ -5232,51 +5241,60 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-
-
-
-    public function getListUposhakha()
+    function getListUposhakha($branch_id = NULL)
     {
-
-
-
-
 
         $this->sma->checkPermissions('index', TRUE);
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            // $user = $this->site->getUser();
             $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
         }
-
-
-
         $report_type = $this->report_type();
 
         // $this->sma->print_arrays($report_type);
         // exit();
-
-
-
         $edit_link = anchor('admin/organization/editthana/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
-
         //
-
         $this->load->library('datatables');
 
+
+        //SELECT sma_thana.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name, sma_thana.thana_code, sma_thana.org_type, 
+        // d1.`name` AS district, d3.`name` AS  upazila, d4.`name` AS  `union`, d5.`name` AS  `ward`, i1.`institution_type` AS category, i2.`institution_type` AS `sub_category`, i3.`ins_name` AS institute, worker_number, supporter_number, worker_number, supporter_number, ward_number, unit_number, is_ideal_thana, sma_thana.note FROM `sma_thana` 
+        // LEFT JOIN `sma_branches` AS `t1` ON `t1`.`id`=`sma_thana`.`branch_id` 
+        // LEFT JOIN `sma_district` AS d1 ON d1.`id`=`sma_thana`.`district`
+        // LEFT JOIN `sma_district` AS  d3  ON d3.`id`=`sma_thana`.`upazila`
+        // LEFT JOIN `sma_district` AS  d4  ON d4.`id`=`sma_thana`.`union`
+        // LEFT JOIN `sma_district` AS  d5  ON d5.`id`=`sma_thana`.`ward`
+        // LEFT JOIN `sma_institution` AS i1 ON i1.`id` = sma_thana.`institution_parent_id`
+        // LEFT JOIN `sma_institution` AS i2 ON i2.`id` = sma_thana.`sub_category`
+        // LEFT JOIN `sma_institutionlist` AS i3 ON i3.`id` = sma_thana.institution_id
+        // WHERE `sma_thana`.`level` = 2 
+        // AND `sma_thana`.`branch_id` = '1' 
+        // ORDER BY `branch_name` ASC LIMIT 25
+
+
+
+
         if ($branch_id) {
-            $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name ,   thana_code, org_type, 
-                
-                worker_number,supporter_number, {$this->db->dbprefix('thana')}.note", FALSE)
-                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
-                ->from('thana')->where('thana.branch_id1', $branch_id);
+
+            $this->datatables->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS upothakha_name,  sma_thana.org_type, th1.thana_name AS parent_thana_name,th2.thana_name AS parent_ward_name,  d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, sma_thana.worker_number,  sma_thana.supporter_number,
+            sma_thana.is_setup,
+            sma_thana.unit_category,
+            sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')
+                ->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')
+                ->join('sma_thana AS th1', 'th1.id = sma_thana.parent_id', 'left')
+                ->join('sma_thana AS th2', 'th2.id = sma_thana.ward_id', 'left')
+                ->where('thana.level', 3)
+
+                // LEFT JOIN sma_thana AS th2 ON th2.id = sma_thana.`ward_id` 
+
+                // th2.thana_name AS parent_ward_name,
+                ->where('thana.branch_id', $branch_id);
         } else {
-            $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   thana_code, org_type,v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code) as member_number, v3_associate_thana_count(  {$this->db->dbprefix('thana')}.branch_id, thana_code )  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
-                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
-                ->from('thana');
+            $this->datatables->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name, sma_thana.thana_code, sma_thana.org_type, d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->where('thana.level', 3);
         }
 
-        $this->datatables->where('((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ');
+        // $this->datatables->where('((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ');
 
         // is_pending => 2
         //  $start = $report_type['start'];
@@ -5284,6 +5302,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
         $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/thanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+        // $this->datatables->add_column("Decrease", $decrease, "id");
+        // $this->datatables->add_column("Actions", $edit_link, "id");
+
         $this->datatables->add_column("Decrease", $decrease, "id");
         $this->datatables->add_column("Actions", $edit_link, "id");
 

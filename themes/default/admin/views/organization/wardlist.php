@@ -68,26 +68,27 @@
                 return nRow;
             },
             "aoColumns": [{
-                "bSortable": false,
-                "mRender": checkbox
-            }, null, null, null, 
-            
-            {
-                "mRender": ward_type
-            },
-            
-            null, null, null, null, null, null,  null, null,  null, 
-            
-            
-            {
-                "bSortable": false
-            }, 
-            {
-                "bSortable": false
-            }, 
-            {
-                "bSortable": false
-            }]
+                    "bSortable": false,
+                    "mRender": checkbox
+                }, null, null, null,
+
+                {
+                    "mRender": ward_type
+                },
+
+                null, null, null, null, null, null, null, null, null,
+
+
+                {
+                    "bSortable": false
+                },
+                {
+                    "bSortable": false
+                },
+                {
+                    "bSortable": false
+                }
+            ]
         }).fnSetFilteringDelay().dtFilter([{
                 column_number: 1,
                 filter_default_label: "[<?= 'শাখা'; ?>]",
@@ -154,7 +155,7 @@
                                 </th>
                                 <th><?= 'শাখা' ?></th>
                                 <th><?= 'ওয়ার্ডের নাম' ?></th>
-                                <th><?= 'থানা কোড' ?></th>
+                                <th><?= 'সাংগঠনিক থানা' ?></th>
                                 <th><?= 'প্রতিষ্ঠানের ধরন' ?></th>
                                 <th><?= 'জেলা' ?></th>
                                 <th><?= 'উপজেলা' ?></th>
@@ -163,8 +164,8 @@
                                 <th><?= 'বিভাগ' ?></th>
                                 <th><?= 'উপ বিভাগ' ?></th>
                                 <th><?= 'প্রতিষ্ঠান' ?></th>
-                                <th><?= 'কর্মচারী সংখ্যা' ?></th>
-                                <th><?= 'সহকারী সংখ্যা' ?></th>
+                                <th><?= 'কর্মী' ?></th>
+                                <th><?= 'সমর্থক' ?></th>
                                 <th><?= 'মন্তব্য' ?></th>
                                 <th></th>
                                 <th></th>
