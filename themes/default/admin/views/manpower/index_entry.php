@@ -809,7 +809,7 @@
 									}
 									?>
 
-									<a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_abroad_study" data-title="Enter"><?php echo $associate_candidate_abroad_study; ?></a>
+									<!-- <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_abroad_study" data-title="Enter"><?php echo $associate_candidate_abroad_study; ?></a> -->
 
 								</td>
 								<td class="tg-0pky  ">
@@ -824,7 +824,7 @@
 									}
 									?>
 
-									<a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_abroad_job" data-title="Enter"><?php echo $associate_candidate_abroad_job; ?></a>
+									<!-- <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_abroad_job" data-title="Enter"><?php echo $associate_candidate_abroad_job; ?></a> -->
 
 
 
@@ -841,7 +841,7 @@
 									}
 									?>
 
-									<a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_death" data-title="Enter"><?php echo $associate_candidate_death; ?></a>
+									<!-- <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_death" data-title="Enter"><?php echo $associate_candidate_death; ?></a> -->
 
 
 
@@ -858,7 +858,7 @@
 									}
 									?>
 
-									<a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_martyr" data-title="Enter"><?php echo $associate_candidate_martyr; ?></a>
+									<!-- <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_martyr" data-title="Enter"><?php echo $associate_candidate_martyr; ?></a> -->
 
 
 
