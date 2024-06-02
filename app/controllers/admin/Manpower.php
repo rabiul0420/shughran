@@ -1991,7 +1991,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-                $this->data['districts'] = $this->site->getAll('district');
+                $this->data['districts'] = $this->site->getDistrict();
                 $this->data['responsibilities'] = $this->site->getAll('responsibilities');
                 $this->data['countries'] = $this->site->getAll('countries');
                 $this->data['targets'] = $this->site->getAll('profession_target');
@@ -2445,7 +2445,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-            $this->data['districts'] = $this->site->getAll('district');
+            $this->data['districts'] = $this->site->getDistrict();
             $this->data['responsibilities'] = $this->site->getAll('responsibilities');
             $this->data['targets'] = $this->site->getAll('profession_target');
             $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
@@ -5011,7 +5011,7 @@ FROM `sma_manpower_output` where   date BETWEEN ? AND ? ", array($report_start, 
                 // $sheet = $excel->getActiveSheet()->toArray(null,true,true,true);
 
 
-                $districts = $this->site->getAll('district');
+                $districts = $this->site->getDistrict();
                 $responsibilities = $this->site->getAll('responsibilities');
                 $countries = $this->site->getAll('countries');
                 $targets = $this->site->getAll('profession_target');

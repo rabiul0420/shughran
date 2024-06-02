@@ -20,6 +20,9 @@
         padding: 2px;
         text-align: center;
     }
+    .select2-selection.required {
+   background-color: yellow !important;
+}
 </style>
 
 <style>
@@ -56,7 +59,7 @@ if (!empty($variants)) {
 
                 <?php
                 $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
-                echo admin_form_open_multipart("organization/addthana/1", $attrib)
+                echo admin_form_open_multipart("organization/addthana/".$branch_id."/1", $attrib)
                 ?>
 
                 <div class="col-md-6">
@@ -66,6 +69,24 @@ if (!empty($variants)) {
                             <?php echo form_input('date', '01/01/2015', 'class="form-control date" id="date" readonly required="required"'); ?>
                         </div>
                     </div>
+
+
+                    <div class="form-group all">
+                            <?= lang('থানা কোড', 'thana_code'); ?>
+
+
+                            <?php $tc = array();
+                            $tc[''] =  'থানা কোড';
+                            for ($i = 1; $i <= 60; $i++) {
+                                $tc[$i] =  $i;
+                            }
+
+                            $tc[100] =  100;
+
+                            echo form_dropdown('thana_code', $tc, (''), 'id="thana_code"  class="form-control select" required="required" style="width:100%;" ');
+                            ?>
+                        </div>
+
 
                     <div class="form-group">
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_name") ?>

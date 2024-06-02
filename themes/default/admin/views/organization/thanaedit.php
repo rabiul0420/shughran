@@ -75,14 +75,7 @@
                 <div class="col-md-6 col-sm-6">
 
 
-                    <div class="form-group">
-                        <?= lang('সাংগঠনিক ওয়ার্ড সংখ্যা', 'ward_number'); ?>
-                        <?= form_input('ward_number', set_value('ward_number', $thana->ward_number), 'class="form-control tip" id="ward_number" required="required" '); ?>
-                    </div>
-                    <div class="form-group">
-                        <?= lang('উপশাখা সংখ্যা', 'unit_number'); ?>
-                        <?= form_input('unit_number', set_value('unit_number', $thana->unit_number), 'class="form-control tip" id="unit_number" required="required" '); ?>
-                    </div>
+                   
 
 
  

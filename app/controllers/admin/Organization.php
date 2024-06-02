@@ -3582,8 +3582,27 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-    function addthana($id = NULL)
+    function addthana($branch_id = null, $id = null)
     {
+
+
+        //thana_code
+
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/addthana/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/addthana/' . $this->session->userdata('branch_id'));
+        }
+
+        if($branch_id == NULL   && ($this->Owner || $this->Admin) ){
+            admin_redirect('organization/thanalist' ); 
+        }
+
+        if($id == NULL ){
+            admin_redirect('organization/thanalist' ); 
+        }
+        
 
 
         $this->load->admin_model('organization_model');
@@ -3591,6 +3610,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->load->helper('security');
         $branches = $this->site->getAllBranches();
         $this->form_validation->set_rules('thana_name', 'name', 'required');
+        $this->form_validation->set_rules('thana_code', 'thana_code', 'required');
+        $this->form_validation->set_rules('branch_id', 'branch', 'required');
 
 
         // $this->sma->print_arrays($this->input->post());
@@ -3599,12 +3620,18 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         if ($this->form_validation->run() == true) {
+
+       
+
             $data = array(
                 'date' =>  $this->sma->fsd($this->input->post('date')),
                 'branch_id' => $this->input->post('branch_id'),
-                'parent_id' => $this->input->post('thana_id'),
+                'parent_id' => $this->input->post('thana_id'),  // need to delete
+                'org_thana_id' => $this->input->post('thana_id'),
+                'org_ward_id' => $this->input->post('ward_id'),
                 'sub_category' => $this->input->post('sub_category'),
                 'thana_name' => $this->input->post('thana_name'),
+                'thana_code' => $this->input->post('thana_code'),
                 'org_type' => $this->input->post('org_type'),
                 'prosasonik_details' => $this->input->post('prosasonik_details'),
                 'institution_id' => $this->input->post('institution_id'),
@@ -3664,17 +3691,21 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
             if ($id == 1) {
-                $this->session->set_flashdata('message', 'কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
-                admin_redirect('organization/addthana');
+                $this->session->set_flashdata('message', 'থানা যুক্ত হয়েছে। কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
+                admin_redirect('organization/addthana/' . $branch_id.'/1');
             } elseif ($id == 2) {
                 $this->session->set_flashdata('message', 'Ward Successfully Added.');
-                admin_redirect('organization/addthana/2');
+                admin_redirect('organization/addthana/' . $branch_id . '/2');
             } elseif ($id == 3) {
                 $this->session->set_flashdata('message', 'Unit Successfully Added.');
-                admin_redirect('organization/addthana/3');
-            } else
-                admin_redirect('organization/addthana');
-        } else {
+                admin_redirect('organization/addthana/' . $branch_id . '/3');
+            }
+        } 
+        
+        
+        else {
+
+           
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
 
 
@@ -3682,8 +3713,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
-                $this->data['branch_id'] = NULL;
-                $this->data['branch'] =   NULL;
+                $this->data['branch_id'] = $branch_id;
+                $this->data['branch'] =   $this->site->getBranchByID($branch_id);
             } else {
 
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
@@ -3694,7 +3725,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
             if ($this->Owner || $this->Admin)
-                $this->data['thanas'] = null;
+                $this->data['thanas'] = $this->site->getThanaByBranch($branch_id);
             else
                 $this->data['thanas'] = $this->site->getThanaByBranch($this->session->userdata('branch_id'));
 
@@ -3913,18 +3944,33 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $this->load->library('datatables');
 
-        if ($branch_id) {
-            $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   $this->db->dbprefix('thana') .thana_code,$this->db->dbprefix('thana') . org_type, d1.name AS district, d3.name AS upazila, d4.name AS unions, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, $this->db->dbprefix('thana') .thana_code ) as member_number, v3_associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, $this->db->dbprefix('thana') .thana_code)  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
-                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
-                ->from('thana')->where('thana.branch_id', $branch_id);
-        } else {
-            $this->datatables
-                ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   $this->db->dbprefix('thana') .thana_code, $this->db->dbprefix('thana') .org_type,v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, $this->db->dbprefix('thana') .thana_code) as member_number, v3_associate_thana_count(  {$this->db->dbprefix('thana')}.branch_id, $this->db->dbprefix('thana') .thana_code )  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
+       
 
-                ->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')
-                ->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_thana AS th1', 'th1.id = sma_thana.parent_id', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')
-                ->from('thana');
+
+        if ($branch_id) {
+
+
+            $this->datatables
+            ->select($this->db->dbprefix('thana') . ".`id` as id,sma_branches.code,`thana_name`,`thana_code`,`org_type`,`worker_number`,`supporter_number`, 
+            v3_ward_or_unit_in_thana(2,{$this->db->dbprefix('thana')}.id) ward, v3_ward_or_unit_in_thana(3,{$this->db->dbprefix('thana')}.id) unit ,
+            
+            v3_member_thana_count(branch_id,thana_code) `member`, v3_associate_thana_count(branch_id,thana_code) associate,
+            
+          `is_ideal_thana`",false)
+            ->join('branches', 'branches.id=thana.branch_id', 'left')
+            ->from('thana')->where('thana.branch_id', $branch_id)->where('`level`',1);
+ 
+        } else {
+            
+            $this->datatables
+            ->select($this->db->dbprefix('thana') . ".`id` as id,sma_branches.code,`thana_name`,`thana_code`,`org_type`,`worker_number`,`supporter_number`, 
+            v3_ward_or_unit_in_thana(2,{$this->db->dbprefix('thana')}.id) ward, v3_ward_or_unit_in_thana(3,{$this->db->dbprefix('thana')}.id) unit ,
+            
+            v3_member_thana_count(branch_id,thana_code) `member`, v3_associate_thana_count(branch_id,thana_code) associate,
+            
+          `is_ideal_thana`",false)
+            ->join('branches', 'branches.id=thana.branch_id', 'left')
+            ->from('thana')->where('`level`',1);
         }
 
         $this->datatables->where('((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ');
@@ -4409,8 +4455,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 // 'associate_number' => $this->input->post('associate_number'),
                 'worker_number' => $this->input->post('worker_number'),
                 'supporter_number' => $this->input->post('supporter_number'),
-                'ward_number' => $this->input->post('ward_number'),
-                'unit_number' => $this->input->post('unit_number'),
+                //'ward_number' => $this->input->post('ward_number'),
+                //'unit_number' => $this->input->post('unit_number'),
                 // 'increase_in_current_session' => $this->input->post('increase_in_current_session'),
                 'note' => $this->input->post('note'),
 

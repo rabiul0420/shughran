@@ -38,6 +38,9 @@ class Organization_model extends CI_Model
 
 
     
+
+
+    
     public function getInstitutionType()
     {
        // $q = $this->db->get('institution');
