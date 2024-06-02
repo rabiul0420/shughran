@@ -3656,6 +3656,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             );
 
+
+
+
             if ($id == 1) {
                 $data['is_pending'] = 1;
                 $data['level'] = 1;
@@ -3670,6 +3673,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $thana_id = $this->site->insertData('thana', $data, 'id');
 
+           
 
 
             if ($this->input->post('is_ideal_thana') == 1) {  // will need while approve
@@ -4329,8 +4333,14 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'date' => date('Y-m-d'),
                 'user_id' => $this->session->userdata('user_id'),
                 'thana_id' => $thana_id,
-                'in_out' => 1
+                'in_out' => 1,
+                'note' => $thana_info->note,
+                'org_thana_id' => $thana_info->org_thana_id,
+                'org_ward_id' => $thana_info->org_ward_id,
+                'level' => $thana_info->level
             );
+
+            
 
 
 
