@@ -852,8 +852,8 @@ class Site extends CI_Model
     {
 
 
-        if ($table == 'responsibilities')
-            $this->db->order_by('priority', 'Desc');
+        // if ($table == 'responsibilities')
+        //     $this->db->order_by('priority', 'Desc');
 
         $q = $this->db->get('thana');
         if ($q->num_rows() > 0) {

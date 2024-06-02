@@ -286,6 +286,7 @@ $(document).ready(function() {
     $('select:not(.skip), .select').select2({minimumResultsForSearch: 7});
     
      
+    $('#ward').select2({minimumResultsForSearch: 7, allowClear: true,placeholder: 'Select a ward'});
     
     
     $('#customer, #rcustomer, .ssr-customer').select2({
