@@ -85,11 +85,7 @@ if (!empty($variants)) {
                         ?>
                     </div>
 
-
-                    <!-- for আবাসিক -->
-
-
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental">
                         <?= lang("প্রশাসনিক বিবরন", "prosasonik_details"); ?>
                         <?php
                         foreach (['1' => 'প্রশাসনিক এলাকা ', '2' => 'মেস', '3' => 'হল/হোস্টেল', '4' => 'কোয়াটার'] as $key => $type)
@@ -101,11 +97,11 @@ if (!empty($variants)) {
 
 
 
-                        <div class="form-group">
-                            <?= lang("প্রতিষ্ঠানের নাম", "dist"); ?>
-                            <?= form_input('ward_number', '', 'class="form-control tip" id="ward_number" required="required" '); ?>
-                        </div>
-                        <hr>
+                    <div class="form-group">
+                        <?= lang("প্রতিষ্ঠানের নাম", "dist"); ?>
+                        <?= form_input('ward_number', '', 'class="form-control tip" id="ward_number" required="required" '); ?>
+                    </div>
+                    <hr>
 
 
 
@@ -306,6 +302,20 @@ if (!empty($variants)) {
 
 <script type="text/javascript">
     $(document).ready(function() {
+
+
+
+        $('#org_type').change(function() {
+            if ($(this).val() === 'Departmental') {
+                $('.hide_for_departmental').hide();
+            } else {
+                $('.hide_for_departmental').show();
+            }
+        });
+
+
+
+
 
 
 
