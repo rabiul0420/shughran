@@ -3690,8 +3690,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
             }
 
-            $this->data['districts'] = $this->site->getAll('district');
-            $this->data['thanas'] = $this->site->getAllThana();
+            $this->data['districts'] = $this->site->getDistrict();
+
+
+            if ($this->Owner || $this->Admin)
+                $this->data['thanas'] = null;
+            else
+                $this->data['thanas'] = $this->site->getThanaByBranch($this->session->userdata('branch_id'));
+
+
 
             $this->data['institutions'] = $this->organization_model->getAllInstitution(1);
             // $this->data['institutiontype'] = $this->organization_model->getInstitutionType();
@@ -3909,7 +3916,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         if ($branch_id) {
             $this->datatables
                 ->select($this->db->dbprefix('thana') . ".id as id, t1.name as branch_name, {$this->db->dbprefix('thana')}.thana_name,   $this->db->dbprefix('thana') .thana_code,$this->db->dbprefix('thana') . org_type, d1.name AS district, d3.name AS upazila, d4.name AS unions, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, $this->db->dbprefix('thana') .thana_code ) as member_number, v3_associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, $this->db->dbprefix('thana') .thana_code)  as associate_number,worker_number,supporter_number,ward_number,unit_number,is_ideal_thana,   {$this->db->dbprefix('thana')}.note", FALSE)
-                ->join('branches as t1', 't1.id=thana.branch_id1', 'left')
+                ->join('branches as t1', 't1.id=thana.branch_id', 'left')
                 ->from('thana')->where('thana.branch_id', $branch_id);
         } else {
             $this->datatables
