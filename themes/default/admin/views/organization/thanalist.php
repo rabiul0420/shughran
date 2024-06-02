@@ -88,7 +88,7 @@ oTable3 = $('#PRData5').dataTable({
             <ul class="btn-tasks">
 			
               <li class="dropdown">
-                    <a href="<?= admin_url('organization/addthana') ?>">
+                    <a href="<?= admin_url('organization/addthana/1') ?>">
                         <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' থানা বৃদ্ধি করুন' ?></i>
                     </a>
                      

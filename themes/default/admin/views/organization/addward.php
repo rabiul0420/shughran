@@ -76,7 +76,7 @@ if (!empty($variants)) {
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_id"); ?>
                         <?php
                         $dt[''] = lang('select') . ' ' . lang('থানা');
-                        foreach ($thanas as $thana) 
+                        foreach ($thanas as $thana)
                             $dt[$thana->id] = $thana->thana_name;
 
                         echo form_dropdown('thana_id', $dt,  '', 'id="thana_id"  class="form-control select" style="width:100%;" ');
@@ -98,7 +98,7 @@ if (!empty($variants)) {
                     <!-- for আবাসিক -->
 
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental hide_for_Institutional">
                         <?= lang("প্রশাসনিক বিবরন", "prosasonik_details"); ?>
                         <?php
                         foreach (['1' => 'প্রশাসনিক এলাকা ', '2' => 'মেস', '3' => 'হল/হোস্টেল', '4' => 'কোয়াটার'] as $key => $type)
@@ -109,7 +109,7 @@ if (!empty($variants)) {
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental hide_for_Institutional">
                         <?= lang("জেলা", "district"); ?>
                         <?php
                         $dt[''] = lang('select') . ' ' . lang('district');
@@ -120,20 +120,20 @@ if (!empty($variants)) {
                         ?>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental hide_for_Institutional">
                         <?= lang("উপজেলা/ওয়ার্ড", "upazila"); ?>
                         <select id="upazila" name="upazila" class="form-control">
                         </select>
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental hide_for_Institutional">
                         <?= lang("পৌরসভা /ইউনিয়ন", "union") ?>
                         <select id="union" name="union" class="form-control">
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental hide_for_Institutional">
                         <?= lang("সিটি/ পৌরসভা /ইউনিয়নের ওয়ার্ড", "ward") ?>
                         <select id="ward" name="ward" class="form-control">
                         </select>
@@ -143,7 +143,7 @@ if (!empty($variants)) {
 
 
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental">
                         <?= lang("শিক্ষাপ্রতিষ্ঠানের বিবরন", "educational_details"); ?>
                         <?php
                         foreach (['1' => 'শিক্ষাপ্রতিষ্ঠান ', '2' => 'কোচিং/প্রাইভেট সেন্টার', '3' => 'ট্রেনিং সেন্টার'] as $key => $type)
@@ -155,7 +155,7 @@ if (!empty($variants)) {
 
 
 
-                    <div class="">
+                    <div class="hide_for_departmental">
                         <div class="form-group">
                             <label for="institution_parent_id">ক্যাটাগরি </label>
                             <?php
@@ -180,7 +180,7 @@ if (!empty($variants)) {
                         </div>
 
 
-                        
+
                         <hr>
                     </div>
 
@@ -284,6 +284,20 @@ if (!empty($variants)) {
 
 <script type="text/javascript">
     $(document).ready(function() {
+
+
+
+        $('#org_type').change(function() {
+            $('.hide_for_departmental').show();
+            $('.hide_for_Institutional').show();
+            if ($(this).val() === 'Departmental') {
+                $('.hide_for_departmental').hide();
+            } else if ($(this).val() === 'Institutional') {
+                $('.hide_for_Institutional').hide();
+            }
+        });
+
+
 
 
 
