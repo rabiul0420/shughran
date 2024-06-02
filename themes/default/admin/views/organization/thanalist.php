@@ -12,7 +12,7 @@
 
     function thana_type(type){
 
-        return type=='Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠানিক';
+        return type=='Residential' ? 'আবাসিক' : (  type=='Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
     }
 
     function yes_no(is_ideal_thana){
