@@ -20,20 +20,19 @@
             <div class="row">
                 <div class="col-md-12">
 
-
-
-                <?php if($this->Owner || $this->Admin) {?>
-                    <div class="form-group">
-                        <?= lang("শাখা", "branch_id"); ?>
-                        <?php
-                        $wh[''] = lang('select') . ' ' . lang('branch');
-                        foreach ($branches as $branch) {
-                            $wh[$branch->id] = $branch->name;
-                        }
-                        echo form_dropdown('branch_id', $wh, (isset($_POST['branch_id']) ? $_POST['branch_id'] : ''), 'id="branch_id" required="required" class="form-control select" style="width:100%;" ');
-                        ?>
-                    </div>
-                    <?php }?>
+                    <?php if ($this->Owner || $this->Admin) { ?>
+                        <div class="form-group">
+                            <?= lang("শাখা", "branch_id"); ?>
+                            <?php
+                            $wh[''] = lang('select') . ' ' . lang('branch');
+                            foreach ($branches as $branch) {
+                                $wh[$branch->id] = $branch->name;
+                            }
+                            
+                            echo form_dropdown('branch_id', $wh, (isset($_POST['branch_id']) ? $_POST['branch_id'] : ''), 'id="branch_id" required="required" class="form-control select" style="width:100%;" ');
+                            ?>
+                        </div>
+                    <?php } ?>
 
                     <div class="form-group">
                         <?php echo lang('শিরোনাম', 'ticket_caption'); ?>
@@ -86,7 +85,7 @@
                         ?>
                     </div>
 
-           
+
 
                     <div class="form-group">
                         <?= lang("সমস্যা এবং কি ধরণের সমাধান চান লিখুন ", "note"); ?>
@@ -102,6 +101,9 @@
     <?php echo form_close(); ?>
 </div>
 <?= $modal_js ?>
+
+
+
 
 
 <script>

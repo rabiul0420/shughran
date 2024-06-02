@@ -80,9 +80,9 @@
             "aoColumns": [{
                     "bSortable": false,
                     "mRender": checkbox
-                }, null, null, null, {
+                }, null, null, {
                     "mRender": uposhakha_type
-                }, null, null, null, null, null, null, null, null,
+                }, null, null, null, null, null, null, null, null, null,
 
                 null,
                 {
