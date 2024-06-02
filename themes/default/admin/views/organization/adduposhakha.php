@@ -63,7 +63,7 @@ if (!empty($variants)) {
                     <div class="form-group">
                         <?php echo lang('বৃদ্ধির তারিখ', 'date'); ?>
                         <div class="controls">
-                            <?php echo form_input('date', '', 'class="form-control fixed_date" id="date" readonly required="required"'); ?>
+                            <?php echo form_input('date', '01/01/2015', 'class="form-control date" id="date" readonly required="required"'); ?>
                         </div>
                     </div>
 
@@ -79,14 +79,14 @@ if (!empty($variants)) {
                         foreach ($thanas as $thana)
                             $dt[$thana->id] = $thana->thana_name;
 
-                        echo form_dropdown('thana_id', $dt,  '', 'id="thana_id"  class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('thana_id', $dt,  '', 'id="thana_id"  class="form-control select" style="width:100%;" required="required" ');
                         ?>
                     </div>
 
 
                     <div class="form-group">
                         <?= lang("সাংগঠনিক ওয়ার্ড/ইউনিয়নের নাম", "ward_id"); ?>
-                        <select id="ward_id" name="ward_id" class="form-control"> </select>
+                        <select id="ward_id" name="ward_id" class="form-control" required="required" > </select>
 
                     </div>
 
@@ -98,7 +98,7 @@ if (!empty($variants)) {
                         foreach (['Residential' => 'আবাসিক', 'Institutional' => 'প্রাতিষ্ঠানিক', 'Departmental' => 'বিভাগীয়'] as $key => $type)
                             $wrt[$key] = $type;
 
-                        echo form_dropdown('org_type', $wrt,  '', 'id="org_type"   class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('org_type', $wrt,  '', 'id="org_type"   class="form-control select" style="width:100%;" required="required" ');
                         ?>
                     </div>
 
@@ -193,19 +193,33 @@ if (!empty($variants)) {
 
 
                     <div class="form-group">
-                        <?= lang('কর্মী', 'worker_number'); ?>
-                        <?= form_input('worker_number', set_value('worker_number', '0'), 'class="form-control tip" id="worker_number"  '); ?>
+                        <?= lang('সদস্য সংখ্যা', 'member_number'); ?>
+                        <?= form_input('member_number', set_value('member_number', '0'), 'class="form-control tip" id="member_number" required="required"  '); ?>
+                    </div>
+                    <div class="form-group">
+                        <?= lang('সাথী সংখ্যা', 'associate_number'); ?>
+                        <?= form_input('associate_number', set_value('associate_number', '0'), 'class="form-control tip" id="associate_number" required="required"  '); ?>
+                    </div>
+
+
+                    <div class="form-group">
+                        <?= lang('কর্মী সংখ্যা', 'worker_number'); ?>
+                        <?= form_input('worker_number', set_value('worker_number', ''), 'class="form-control tip" id="worker_number" required="required" '); ?>
                     </div>
                     <div class="form-group">
                         <?= lang('সমর্থক সংখ্যা', 'supporter_number'); ?>
-                        <?= form_input('supporter_number', set_value('supporter_number', '0'), 'class="form-control tip" id="supporter_number"  '); ?>
+                        <?= form_input('supporter_number', set_value('supporter_number', ''), 'class="form-control tip" id="supporter_number" required="required"  '); ?>
                     </div>
+
+
+
+
 
                     <div class="form-group">
                         <?= lang('সেট-আপ আছে কি না?', 'is_setup'); ?>
 
                         <div class="radio">
-                            <input type="radio" class="checkbox" name="is_setup" value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
+                            <input type="radio" class="checkbox" name="is_setup"  value="1" <?= 1 ? 'checked="checked"' : ''; ?> />
                             <label class="padding05"><?= 'হ্যাঁ' ?></label>
                         </div>
 
@@ -228,26 +242,25 @@ if (!empty($variants)) {
                     </div>
 
 
-                    <div class="form-group">
-                        <?= lang("শাখা", "branch"); ?>
-                        <?php
-                        $wh[''] = lang('select') . ' ' . lang('branch');
-                        if ($this->Admin || $this->Owner)
-                            $flag = 1;
-                        else
-                            $flag = 2;
-                        foreach ($branches as $branch) {
-                            if ($flag == 1)
-                                $wh[$branch->id] = $branch->name;
-                            elseif ($branch->id == $this->session->userdata('branch_id'))
-                                $wh[$branch->id] = $branch->name;
-                        }
+                                            <div class="form-group">
+                            <?= lang("শাখা", "branch"); ?>
+                            <?php
+                            $wh[''] = lang('select') . ' ' . lang('branch');
+                            if ($this->Admin || $this->Owner)
+                                $flag = 1;
+                            else
+                                $flag = 2;
+                            foreach ($branches as $branch) {
+                                if ($flag == 1)
+                                    $wh[$branch->id] = $branch->name;
+                                elseif ($branch->id == $this->session->userdata('branch_id'))
+                                    $wh[$branch->id] = $branch->name;
+                            }
 
+                            echo form_dropdown('branch_id', $wh, '', 'id="branch_id" class="form-control select" style="width:100%;" required="required"');
+                            ?>
+                        </div>
 
-
-                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" style="width:100%;" ');
-                        ?>
-                    </div>
 
 
 

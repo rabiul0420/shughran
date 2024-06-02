@@ -63,7 +63,7 @@ if (!empty($variants)) {
                     <div class="form-group">
                         <?php echo lang('বৃদ্ধির তারিখ', 'date'); ?>
                         <div class="controls">
-                            <?php echo form_input('date', '', 'class="form-control fixed_date" id="date" readonly required="required"'); ?>
+                            <?php echo form_input('date', '01/01/2015', 'class="form-control date" id="date" readonly required="required"'); ?>
                         </div>
                     </div>
 
@@ -231,7 +231,7 @@ if (!empty($variants)) {
 
 
 
-                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" style="width:100%;"  required="required" ');
                         ?>
                     </div>
 

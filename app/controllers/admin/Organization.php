@@ -3615,6 +3615,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'educational_details' => $this->input->post('educational_details'),
                 'institution_parent_id' => $this->input->post('institution_parent_id'),
                 'institution_type_id' => $this->input->post('institution_type_id'),
+                'member_number' => $this->input->post('member_number'),
+                'associate_number' => $this->input->post('associate_number'),
                 'worker_number' => $this->input->post('worker_number'),
                 'supporter_number' => $this->input->post('supporter_number'),
                 'ward_number' => $this->input->post('ward_number'),
