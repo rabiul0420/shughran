@@ -56,7 +56,7 @@ if (!empty($variants)) {
 
                 <?php
                 $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
-                echo admin_form_open_multipart("organization/addthana/3", $attrib)
+                echo admin_form_open_multipart("organization/addthana/".$branch_id."/3", $attrib)
                 ?>
 
                 <div class="col-md-6">
@@ -117,11 +117,11 @@ if (!empty($variants)) {
                     <div class="form-group hide_for_departmental hide_for_Institutional">
                         <?= lang("জেলা", "district"); ?>
                         <?php
-                        $dt[''] = lang('select') . ' ' . lang('district');
+                        $dist[''] = lang('select') . ' ' . lang('district');
                         foreach ($districts as $district) if ($district->parent_id == 0)
-                            $dt[$district->id] = $district->name;
+                            $dist[$district->id] = $district->name;
 
-                        echo form_dropdown('district', $dt,  '', 'id="district"  class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('district', $dist,  '', 'id="district"  class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
@@ -257,7 +257,7 @@ if (!empty($variants)) {
                                     $wh[$branch->id] = $branch->name;
                             }
 
-                            echo form_dropdown('branch_id', $wh, '', 'id="branch_id" class="form-control select" style="width:100%;" required="required"');
+                            echo form_dropdown('branch_id', $wh, $branch_id, 'id="branch_id" class="form-control select" style="width:100%;" required="required"');
                             ?>
                         </div>
 
@@ -487,7 +487,8 @@ if (!empty($variants)) {
                     url: "<?php echo admin_url('organization/get_institutionlist'); ?>",
                     method: "GET",
                     data: {
-                        sub_category: sub_category
+                        sub_category: sub_category,
+                        branch_id: '<?=$branch_id?>'
                     },
                     dataType: 'json',
                     success: function(response) {

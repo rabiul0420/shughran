@@ -3705,7 +3705,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->session->set_flashdata('message', 'ওয়ার্ড যুক্ত হয়েছে।');
                 admin_redirect('organization/addthana/' . $branch_id . '/2');
             } elseif ($id == 3) {
-                $this->session->set_flashdata('message', 'Unit Successfully Added.');
+                $this->session->set_flashdata('message', 'উপশাখা যুক্ত হয়েছে।');
                 admin_redirect('organization/addthana/' . $branch_id . '/3');
             }
         } else {
@@ -4647,6 +4647,115 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     }
     
 
+    
+    function edituposhakha($id = NULL)
+    {
+
+
+        $this->sma->checkPermissions('index', TRUE);
+
+
+
+        if ($this->input->get('id')) {
+            $id = $this->input->get('id');
+        }
+
+        $uposhakha_details = $this->site->getByID('thana', 'id', $id);
+
+
+        $this->form_validation->set_rules('thana_name', 'name', 'required');
+
+
+
+        if ($this->form_validation->run() == true) {
+            $data = array(
+                'branch_id' => $this->input->post('branch_id'),
+                'thana_name' => $this->input->post('thana_name'),
+                'thana_code' => $this->input->post('thana_code'),
+                // 'org_type' => $this->input->post('org_type'),
+
+                'member_number' => $this->input->post('member_number'),
+                'associate_number' => $this->input->post('associate_number'),
+                'worker_number' => $this->input->post('worker_number'),
+                'supporter_number' => $this->input->post('supporter_number'),
+                //'ward_number' => $this->input->post('ward_number'),
+                //'unit_number' => $this->input->post('unit_number'),
+                // 'increase_in_current_session' => $this->input->post('increase_in_current_session'),
+                'note' => $this->input->post('note'),
+
+                'update_by' => $this->session->userdata('user_id'),
+                'update_at' => date("Y-m-d H:i:s"),
+                'note' => $this->input->post('note')
+            );
+            if ($this->Owner || $this->Admin) {
+                $data['date'] = $this->sma->fsd($this->input->post('date'));
+            }
+
+
+
+            $datalog = array();
+
+            if ($this->Owner || $this->Admin) {
+                $datalog['date'] = $this->sma->fsd($this->input->post('date'));
+            }
+        } elseif ($this->input->post('edit_ward')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect('organization/uposhakhalist'.($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
+        }
+
+        if ($this->form_validation->run() == true && $this->site->updateData('thana', $data, array('id' => $id))) {
+
+            if ($this->Owner || $this->Admin) {
+                $this->site->updateData('thana_log', $datalog, array('thana_id' => $id, 'in_out' => 1));
+            }
+
+            $this->session->set_flashdata('message', 'Updated successfully');
+             
+            admin_redirect('organization/uposhakhalist'.($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
+        } else {
+
+
+
+
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $this->data['modal_js'] = $this->site->modal_js();
+
+            $this->data['uposhakha'] = $uposhakha_details;
+
+
+            $this->data['branches'] = $this->site->getAllBranches();
+
+            if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+
+                $this->data['branch_id'] = NULL;
+                $this->data['branch'] =   NULL;
+            } else {
+
+                $this->data['branch_id'] = $this->session->userdata('branch_id');
+                $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+            }
+
+
+            $this->load->view($this->theme . 'organization/uposhakhaedit', $this->data);
+        }
+    }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function editidealinfo($id = NULL)
     {
 
@@ -5442,7 +5551,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         // $this->sma->print_arrays($report_type);
         // exit();
-        $edit_link = anchor('#', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+        $edit_link = anchor('admin/organization/edituposhakha/$1', '<i class="fa fa-edit"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
         //
         $this->load->library('datatables');
 
@@ -5461,7 +5570,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         //  $end = $report_type['end'];
 
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
-        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('#') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
+        $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/thanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
         // $this->datatables->add_column("Decrease", $decrease, "id");
         // $this->datatables->add_column("Actions", $edit_link, "id");
 
