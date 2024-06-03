@@ -486,7 +486,8 @@ if (!empty($variants)) {
                     url: "<?php echo admin_url('organization/get_institutionlist'); ?>",
                     method: "GET",
                     data: {
-                        sub_category: sub_category
+                        sub_category: sub_category,
+                        branch_id: '<?=$branch_id?>'
                     },
                     dataType: 'json',
                     success: function(response) {
