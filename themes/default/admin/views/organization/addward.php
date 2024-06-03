@@ -56,14 +56,14 @@ if (!empty($variants)) {
 
                 <?php
                 $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
-                echo admin_form_open_multipart("organization/addthana/2", $attrib)
+                echo admin_form_open_multipart("organization/addthana/".$branch_id."/2", $attrib)
                 ?>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <?php echo lang('বৃদ্ধির তারিখ', 'date'); ?>
                         <div class="controls">
-                            <?php echo form_input('date', '01/01/2015', 'class="form-control date " id="date"  readonly required="required"'); ?>
+                            <?php echo form_input('date', '', 'class="form-control fixed_date" id="date"  readonly required="required"'); ?>
                         </div>
                     </div>
 
@@ -112,16 +112,20 @@ if (!empty($variants)) {
                     <div class="form-group hide_for_departmental hide_for_Institutional">
                         <?= lang("জেলা", "district"); ?>
                         <?php
-                        $dt[''] = lang('select') . ' ' . lang('district');
-                        foreach ($districts as $district) if ($district->parent_id == 0)
-                            $dt[$district->id] = $district->name;
 
-                        echo form_dropdown('district', $dt,  '', 'id="district"  class="form-control select" style="width:100%;" ');
+                       
+                        $dist[''] = lang('select') . ' ' . lang('district');
+                        foreach ($districts as $district) if ($district->parent_id == 0)
+                            $dist[$district->id] = $district->name;
+
+                        echo form_dropdown('district', $dist,  '', 'id="district"  class="form-control select" style="width:100%;" ');
+                        
+                         
                         ?>
                     </div>
 
                     <div class="form-group hide_for_departmental hide_for_Institutional">
-                        <?= lang("উপজেলা/ওয়ার্ড", "upazila"); ?>
+                        <?= lang("উপজেলা/থানা", "upazila"); ?>
                         <select id="upazila" name="upazila" class="form-control">
                         </select>
 
@@ -231,7 +235,7 @@ if (!empty($variants)) {
                                 $wh[$branch->id] = $branch->name;
                         }
 
-                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" style="width:100%;"   required="required" ');
+                        echo form_dropdown('branch_id', $wh, $branch_id, 'id="branch_id"  class="form-control select" style="width:100%;"   required="required" ');
                         ?>
                     </div>
 
@@ -308,7 +312,7 @@ if (!empty($variants)) {
 
 
 
-        $('#thana_id').change(function() {
+        $('#thana_id_tauhid').change(function() {
             var thana_id = $(this).val();
 
             if (thana_id) {

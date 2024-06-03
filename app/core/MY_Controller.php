@@ -168,7 +168,7 @@ class MY_Controller extends CI_Controller
             $meta['thanapendingcount'] = $this->getpendingthanacount();
         }
 
-
+       // $this->sma->print_arrays($data);
 
         $this->load->view($this->theme . 'header', $meta);
         $this->load->view($this->theme . $left_panel, $meta);

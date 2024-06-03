@@ -25,8 +25,10 @@
 
 <script>
     function ward_type(type) {
-        return type == 'Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠানিক';
+
+        return type == 'Residential' ? 'আবাসিক' : (type == 'Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
     }
+
 
     function yes_no(is_ideal_ward) {
         return is_ideal_ward == 1 ? 'Yes' : 'No';
@@ -48,6 +50,7 @@
             'bProcessing': true,
             'bServerSide': true,
             'sAjaxSource': '<?= admin_url('organization/getListward' . ($branch_id ? '/' . $branch_id : '')) ?>',
+            
             'fnServerData': function(sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -119,11 +122,14 @@
 
         <div class="box-icon">
             <ul class="btn-tasks">
+
+            <?php if($branch_id != null) {?>
                 <li class="dropdown">
-                    <a href="<?= admin_url('organization/addthana/2') ?>">
+                    <a href="<?= admin_url('organization/addthana/'.$branch_id.'/2') ?>">
                         <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' ওয়ার্ড বৃদ্ধি করুন' ?></i>
                     </a>
                 </li>
+                <?php } ?>
 
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">

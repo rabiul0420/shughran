@@ -252,7 +252,7 @@ if (!empty($variants)) {
 
 
 
-                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" style="width:100%;"  required="required" ');
+                        echo form_dropdown('branch_id', $wh, $branch_id, 'id="branch_id"  class="form-control select" style="width:100%;"  required="required" ');
                         ?>
                     </div>
 
@@ -334,7 +334,7 @@ if (!empty($variants)) {
 
 
 
-        $('#thana_id').change(function() {
+        $('#thana_id_tauhid').change(function() {
             var thana_id = $(this).val();
 
             if (thana_id) {
