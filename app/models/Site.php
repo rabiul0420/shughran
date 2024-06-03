@@ -873,7 +873,22 @@ class Site extends CI_Model
         return FALSE;
     }
 
-
+    public function getUpozilla($parent_id = null)
+    {
+ 
+        //$this->db->order_by('priority', 'Desc');
+        $this->db->where('level',2);
+        if( $parent_id !=null)
+        $this->db->where('parent_id',$parent_id);
+        $q = $this->db->get('district');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
 
 
 

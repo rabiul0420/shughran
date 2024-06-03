@@ -734,6 +734,9 @@ $this->site->updateData('memberlog', $datalog , array('manpower_id'=>$id, 'branc
             $this->data['manpower'] = $manpower;
 			
 		   $this->data['districts'] = $this->site->getDistrict();
+           $this->data['upozillas'] = $this->site->getUpozilla();
+           
+
 		   $this->data['responsibilities'] = $this->site->getAll('responsibilities');
 			$this->data['countries'] = $this->site->getAll('countries');
 			$this->data['targets'] = $this->site->getAll('profession_target');
