@@ -1411,14 +1411,14 @@ class Others extends MY_Controller
 		if ($branch_id) {
 
 			$this->datatables
-				->select($this->db->dbprefix('administrative_area') . ".id as areaid,    {$this->db->dbprefix('branches')}.name as branch_name,  v3_district_upazila(district_id) district_name,v3_district_upazila(thana_upazila_id) thana_name,v3_district_upazila(pourashava_union_id) pourashava_union_name,v3_district_upazila(ward_id) ward_name", FALSE)
+				->select($this->db->dbprefix('administrative_area') . ".id as areaid,    {$this->db->dbprefix('branches')}.name as branch_name,  v3_district_upazila(district_id) ,v3_district_upazila(thana_upazila_id) ,v3_district_upazila(pourashava_union_id) ,v3_district_upazila(ward_id) ", FALSE)
 				->from('administrative_area');
 
 			$this->datatables->join('branches', 'branches.id=administrative_area.branch_id', 'left')
 				->where('branches.id', $branch_id);
 		} else {
 			$this->datatables
-				->select($this->db->dbprefix('administrative_area') . ".id as areaid,    {$this->db->dbprefix('branches')}.name as branch_name,  v3_district_upazila(district_id) district_name,v3_district_upazila(thana_upazila_id) thana_name,v3_district_upazila(pourashava_union_id) pourashava_union_name,v3_district_upazila(ward_id) ward_name", FALSE)
+				->select($this->db->dbprefix('administrative_area') . ".id as areaid,    {$this->db->dbprefix('branches')}.name as branch_name,  v3_district_upazila(district_id) ,v3_district_upazila(thana_upazila_id) ,v3_district_upazila(pourashava_union_id) ,v3_district_upazila(ward_id) ", FALSE)
 				->from('administrative_area');
 
 			$this->datatables->join('branches', 'branches.id=administrative_area.branch_id', 'left');

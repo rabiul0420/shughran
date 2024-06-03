@@ -40,7 +40,7 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},   null,{"bSortable": false}, {"bSortable": false}, {"bSortable": false},  {"bSortable": false},   {"bSortable": false}
+                {"bSortable": false, "mRender": checkbox},   null,null, null, null, null,   {"bSortable": false}
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('date');?>]", filter_type: "text", data: []},
