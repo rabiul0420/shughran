@@ -143,7 +143,7 @@ if (!empty($variants)) {
 
 
 
-                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" required style="width:100%;" ');
+                        echo form_dropdown('branch_id', $wh, $branch_id, 'id="branch_id"  class="form-control select" required style="width:100%;" ');
                         ?>
                     </div>
 
