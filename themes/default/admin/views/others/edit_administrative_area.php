@@ -45,28 +45,28 @@ if (!empty($variants)) {
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-plus"></i><?= 'প্রশাসনিক এলাকা'; ?></h2>
+        <h2 class="blue"><i class="fa-fw fa fa-plus"></i><?= 'প্রশাসনিক এলাকা তথ্য সম্পাদনা'; ?></h2>
     </div>
     <div class="box-content">
         <div class="row">
 
             <div class="col-lg-12">
-            <p class="introtext"><?= 'এখানে আপনার শাখার অন্তর্গত এলাকা গুলো ( পৌরসভা /ইউনিয়ন এবং ওয়ার্ড   ) যুক্ত করবেন।  '; ?></p>
+                <p class="introtext"><?= 'এখানে আপনার শাখার অন্তর্গত এলাকা গুলো ( পৌরসভা /ইউনিয়ন এবং ওয়ার্ড   ) যুক্ত করবেন।  '; ?></p>
 
-               
+
 
                 <?php
                 $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
-                echo admin_form_open_multipart("others/add_administrative_area", $attrib)
-                ?>
+                echo admin_form_open_multipart("others/areaedit/" . $administrativearea->id, $attrib); ?>
+
 
                 <div class="col-md-6">
-                      
+
 
                     <!-- for আবাসিক -->
 
 
-                     
+
 
 
 
@@ -80,27 +80,51 @@ if (!empty($variants)) {
                         foreach ($districts as $district) if ($district->parent_id == 0)
                             $dt[$district->id] = $district->name;
 
-                        echo form_dropdown('district', $dt,  '', ' id="district" required class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('district', $dt,  $administrativearea->district_id, 'id="district"  class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
                     <div class="form-group">
                         <?= lang("উপজেলা/থানা", "upazila"); ?>
-                        <select id="upazila" required name="upazila" class="form-control">
+                        <select id="upazila" name="upazila" class="form-control">
+                             
+
+                            <?php foreach ($thanas as $row) {
+                                if ($administrativearea->thana_upazila_id == $row->id)
+                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                                else
+                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                            } ?>
+
                         </select>
 
                     </div>
 
                     <div class="form-group">
-                        <?= lang("পৌরসভা /ইউনিয়ন", "union") ?>
-                        <select id="union" required name="union" class="form-control">
+                        <?= lang("পৌরসভা / ইউনিয়ন", "union") ?>
+                        <select id="union" name="union" class="form-control">
+                            
+
+                            <?php foreach ($unions as $row) {
+                                if ($administrativearea->pourashava_union_id == $row->id)
+                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                                else
+                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                            } ?>
+
                         </select>
                     </div>
 
                     <div class="form-group">
                         <?= lang("সিটি/ পৌরসভা /ইউনিয়নের ওয়ার্ড", "ward") ?>
-                        <select id="ward" name="ward" class="form-control skip" required>
+                        <select id="ward" name="ward" class="form-control skip">
                             
+                            <?php foreach ($wards as $row) {
+                                if ($administrativearea->ward_id == $row->id)
+                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                                else
+                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                            } ?>
                         </select>
                     </div>
 
@@ -108,11 +132,11 @@ if (!empty($variants)) {
 
 
 
-                     
 
- 
 
- 
+
+
+
 
                 </div>
 
@@ -122,7 +146,7 @@ if (!empty($variants)) {
 
 
 
- 
+
 
 
 
@@ -143,7 +167,7 @@ if (!empty($variants)) {
 
 
 
-                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" required style="width:100%;" ');
+                        echo form_dropdown('branch_id', $wh, $administrativearea->branch_id, 'id="branch_id"  class="form-control select" required style="width:100%;" ');
                         ?>
                     </div>
 
@@ -155,7 +179,7 @@ if (!empty($variants)) {
                 </div>
 
 
-                
+
 
 
                 <div class="col-md-6">
@@ -166,7 +190,7 @@ if (!empty($variants)) {
 
 
                     <div class="form-group">
-                        <?php echo form_submit('add_add_administrative_area', 'Save', 'class="btn btn-primary"'); ?>
+                        <?php echo form_submit('edit_administrative_area', 'Save', 'class="btn btn-primary"'); ?>
                     </div>
 
                 </div>
@@ -305,9 +329,9 @@ if (!empty($variants)) {
         });
 
 
- 
 
- 
+
+
 
 
 

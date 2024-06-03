@@ -857,13 +857,12 @@ class Site extends CI_Model
         }
         return FALSE;
     }
-    public function getDistrict()
+    public function getDistrict($level=1, $parent_id = 0)
     {
-
-
-      
+ 
         //$this->db->order_by('priority', 'Desc');
-        $this->db->where('level','1');
+        $this->db->where('level',$level);
+        $this->db->where('parent_id',$parent_id);
         $q = $this->db->get('district');
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {

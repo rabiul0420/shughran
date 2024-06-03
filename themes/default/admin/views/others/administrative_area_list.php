@@ -40,7 +40,7 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},   null, null,{"bSortable": false}, {"bSortable": false}, {"bSortable": false},  {"bSortable": false},   {"bSortable": false}
+                {"bSortable": false, "mRender": checkbox},   null,{"bSortable": false}, {"bSortable": false}, {"bSortable": false},  {"bSortable": false},   {"bSortable": false}
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('date');?>]", filter_type: "text", data: []},
@@ -106,8 +106,6 @@
                             <th style=" text-align: center;">
                                 <input class="checkbox checkth" type="checkbox" name="check"/>
                             </th>
-                             <th><?= lang("date") ?></th>
-                          
                             
 							<th><?= "শাখা" ?></th>
 							<th><?= 'জেলা' ?></th>
@@ -122,7 +120,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td colspan="8" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                            <td colspan="7" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                         </tr>
                         </tbody>
 
@@ -131,7 +129,7 @@
                             <th style="min-width:30px; width: 30px; text-align: center;">
                                 <input class="checkbox checkft" type="checkbox" name="check"/>
                             </th>
-                             <th></th>
+                             
                             <th></th>
                             <th></th>
                             <th></th>

@@ -1315,7 +1315,6 @@ class Others extends MY_Controller
 
 
 		$this->page_construct('others/administrative_area', $meta, $this->data, 'leftmenu/organization');
-	
 	}
 
 
@@ -1378,10 +1377,14 @@ class Others extends MY_Controller
 
 		$this->sma->checkPermissions('index', TRUE);
 
-		if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+		if ((!$this->Owner || !$this->Admin)) {  // && !$branch_id
 			$user = $this->site->getUser();
 			$branch_id = $user->branch_id;
 		}
+
+
+
+
 		$delete_link = "<a href='#' class='tip po' title='<b>" . $this->lang->line("delete_area") . "</b>' data-content=\"<p>"
 			. lang('r_u_sure') . "</p><a class='btn btn-danger po-delete1' id='a__$1' href='" . admin_url('others/areadelete/$1') . "'>"
 			. lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i> "
@@ -1391,7 +1394,7 @@ class Others extends MY_Controller
 			. '<button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">'
 			. lang('actions') . ' <span class="caret"></span></button>
         <ul class="dropdown-menu pull-right" role="menu">
-             <li><a href="' . admin_url('others/areaedit/$1') . '"><i class="fa fa-edit"></i> ' . lang('edit_area') . '</a></li>';
+             <li><a   href="' . admin_url('others/areaedit/$1') . '"><i class="fa fa-edit"></i> ' . lang('edit_area') . '</a></li>';
 
 		$action .= '<li class="divider"></li>
             <li>' . $delete_link . '</li>
@@ -1408,14 +1411,14 @@ class Others extends MY_Controller
 		if ($branch_id) {
 
 			$this->datatables
-				->select($this->db->dbprefix('administrative_area') . ".id as areaid, date,   {$this->db->dbprefix('branches')}.name as branch_name,  v3_district_upazila(district_id) district_name,v3_district_upazila(thana_upazila_id) thana_name,v3_district_upazila(pourashava_union_id) pourashava_union_name,v3_district_upazila(ward_id) ward_name", FALSE)
+				->select($this->db->dbprefix('administrative_area') . ".id as areaid,    {$this->db->dbprefix('branches')}.name as branch_name,  v3_district_upazila(district_id) district_name,v3_district_upazila(thana_upazila_id) thana_name,v3_district_upazila(pourashava_union_id) pourashava_union_name,v3_district_upazila(ward_id) ward_name", FALSE)
 				->from('administrative_area');
 
 			$this->datatables->join('branches', 'branches.id=administrative_area.branch_id', 'left')
 				->where('branches.id', $branch_id);
 		} else {
 			$this->datatables
-				->select($this->db->dbprefix('administrative_area') . ".id as areaid, date,   {$this->db->dbprefix('branches')}.name as branch_name,  v3_district_upazila(district_id) district_name,v3_district_upazila(thana_upazila_id) thana_name,v3_district_upazila(pourashava_union_id) pourashava_union_name,v3_district_upazila(ward_id) ward_name", FALSE)
+				->select($this->db->dbprefix('administrative_area') . ".id as areaid,    {$this->db->dbprefix('branches')}.name as branch_name,  v3_district_upazila(district_id) district_name,v3_district_upazila(thana_upazila_id) thana_name,v3_district_upazila(pourashava_union_id) pourashava_union_name,v3_district_upazila(ward_id) ward_name", FALSE)
 				->from('administrative_area');
 
 			$this->datatables->join('branches', 'branches.id=administrative_area.branch_id', 'left');
@@ -1432,73 +1435,75 @@ class Others extends MY_Controller
 
 
 	function add_administrative_area()
-    {
+	{
 
 
-        $this->load->admin_model('organization_model');
-        $this->sma->checkPermissions('index', TRUE);
-        $this->load->helper('security');
-        $branches = $this->site->getAllBranches();
+		$this->load->admin_model('organization_model');
+		$this->sma->checkPermissions('index', TRUE);
+		$this->load->helper('security');
+		$branches = $this->site->getAllBranches();
 
-        $this->form_validation->set_rules('district', 'district', 'required');
-        $this->form_validation->set_rules('branch_id', 'branch', 'required');
-
-
-        // $this->sma->print_arrays($this->input->post());
-
-
+		$this->form_validation->set_rules('district', 'district', 'required');
+		$this->form_validation->set_rules('upazila', 'upazila/thana', 'required');
+		$this->form_validation->set_rules('union', 'union/pouroshova', 'required');
+		$this->form_validation->set_rules('ward', 'ward', 'required');
+		$this->form_validation->set_rules('branch_id', 'branch', 'required');
 
 
-        if ($this->form_validation->run() == true) {
-            $data = array(
-                'date' =>  $this->sma->fsd($this->input->post('date')),
-                'branch_id' => $this->input->post('branch_id'),
+		// $this->sma->print_arrays($this->input->post());
+
+
+
+
+		if ($this->form_validation->run() == true) {
+			$data = array(
+				// 'date' =>  $this->sma->fsd($this->input->post('date')),
+				'branch_id' => $this->input->post('branch_id'),
 				'district_id' => $this->input->post('district'),
-                'thana_upazila_id' => $this->input->post('upazila'),
-                'pourashava_union_id' => $this->input->post('union'),
-                'ward_id' => $this->input->post('ward'),
+				'thana_upazila_id' => $this->input->post('upazila'),
+				'pourashava_union_id' => $this->input->post('union'),
+				'ward_id' => $this->input->post('ward'),
 				'user_id' => $this->session->userdata('user_id'),
 
-            );
+			);
 
-            
+
 			//$this->sma->print_arrays($data);
 
 
-           		$this->site->insertData('administrative_area', $data, 'id');
+			$this->site->insertData('administrative_area', $data, 'id');
 
 
 
-                $this->session->set_flashdata('message', 'Area Successfully Added.');
-                admin_redirect('others/administrative_area_list');
-            
-        } else {
-            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+			$this->session->set_flashdata('message', 'Area Successfully Added.');
+			admin_redirect('others/administrative_area_list');
+		} else {
+			$this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
 
 
-            $this->data['branches'] = $this->site->getAllBranches();
+			$this->data['branches'] = $this->site->getAllBranches();
 
-            if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+			if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
-                $this->data['branch_id'] = NULL;
-                $this->data['branch'] =   NULL;
-            } else {
+				$this->data['branch_id'] = NULL;
+				$this->data['branch'] =   NULL;
+			} else {
 
-                $this->data['branch_id'] = $this->session->userdata('branch_id');
-                $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
-            }
-
-            $this->data['districts'] = $this->site->getAll('district');
-            
-
-             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('প্রশাসনিক এলাকা')));
-                $meta = array('page_title' => lang('প্রশাসনিক এলাকা '), 'bc' => $bc);
+				$this->data['branch_id'] = $this->session->userdata('branch_id');
+				$this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+			}
 
 
-            $this->page_construct('others/add_administrative_area', $meta, $this->data, 'leftmenu/organization');
-              
-        }
-    }
+			$this->data['districts'] = $this->site->getDistrict();
+
+
+			$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('প্রশাসনিক এলাকা')));
+			$meta = array('page_title' => lang('প্রশাসনিক এলাকা '), 'bc' => $bc);
+
+
+			$this->page_construct('others/add_administrative_area', $meta, $this->data, 'leftmenu/organization');
+		}
+	}
 
 
 
@@ -2061,6 +2066,135 @@ class Others extends MY_Controller
 			}
 			$this->session->set_flashdata('message', 'Area Deleted');
 			admin_redirect('welcome');
+		}
+	}
+
+
+	function areadelete($id = NULL)
+	{
+
+		$this->sma->checkPermissions('index', TRUE);
+
+
+		if (!($this->Owner || $this->Admin))
+			$where =  array('id' => $id, 'branch_id' => $this->session->userdata('branch_id'));
+
+		else if ($this->Owner || $this->Admin)
+			$where =  array('id' => $id);
+
+
+
+		if ($this->input->get('id')) {
+			$id = $this->input->get('id');
+		}
+
+		if ($this->site->delete('administrative_area', $where)) {
+			if ($this->input->is_ajax_request()) {
+				$this->sma->send_json(array('error' => 0, 'msg' => 'Area Deleted'));
+			}
+			$this->session->set_flashdata('message', 'Area Deleted');
+			admin_redirect('others/administrative_area_list' . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
+		}
+	}
+
+
+
+	function areaedit($id = NULL)
+	{
+
+
+		$this->sma->checkPermissions('index', TRUE);
+
+
+
+		if ($this->input->get('id')) {
+			$id = $this->input->get('id');
+		}
+
+		$administrativearea = $this->site->getByID('administrative_area', 'id', $id);
+
+		if ($this->Owner || $this->Admin) {
+			$branch_id = $this->input->post('branch_id');
+			$where = array('id' => $id);
+
+		}
+
+		else {
+			$branch_id = $this->session->userdata('branch_id');
+			$where = array('id' => $id, 'branch_id' => $branch_id);
+
+		}
+
+
+		$this->form_validation->set_rules('district', 'district', 'required');
+		$this->form_validation->set_rules('upazila', 'upazila/thana', 'required');
+		$this->form_validation->set_rules('union', 'union/pouroshova', 'required');
+		$this->form_validation->set_rules('ward', 'ward', 'required');
+		$this->form_validation->set_rules('branch_id', 'branch', 'required');
+
+
+
+		if ($this->form_validation->run() == true) {
+			$data = array(
+
+
+				'branch_id' => $this->input->post('branch_id'),
+				'district_id' => $this->input->post('district'),
+				'thana_upazila_id' => $this->input->post('upazila'),
+				'pourashava_union_id' => $this->input->post('union'),
+				'ward_id' => $this->input->post('ward')
+			);
+
+			
+		} elseif ($this->input->post('edit_administrative_area')) {
+			$this->session->set_flashdata('error', validation_errors());
+			admin_redirect('others/administrative_area_list' . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
+		}
+
+		if ($this->form_validation->run() == true && $this->site->updateData('administrative_area', $data, $where)) {
+			 
+			$this->session->set_flashdata('message', 'Updated successfully');
+			admin_redirect("others/administrative_area_list" . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
+		} else {
+
+
+
+
+			$this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+			//$this->data['modal_js'] = $this->site->modal_js();
+
+			$this->data['administrativearea'] = $administrativearea;
+
+			$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+			if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+				$this->data['branches'] = $this->site->getAllBranches();
+				$this->data['branch_id'] = $branch_id;
+				$this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+			} else {
+				$this->data['branches'] = NULL;
+				$this->data['branch_id'] = $this->session->userdata('branch_id');
+				$this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+			}
+
+
+			$this->data['districts'] = $this->site->getDistrict();
+			$selected_thana = $this->site->getByID('district', 'id', $administrativearea->thana_upazila_id);
+			$this->data['thanas'] = $this->site->getDistrict(2, $selected_thana->parent_id);
+			$selected_union = $this->site->getByID('district', 'id', $administrativearea->pourashava_union_id);
+			$this->data['unions'] = $this->site->getDistrict(3, $selected_union->parent_id);
+			$selected_ward = $this->site->getByID('district', 'id', $administrativearea->ward_id);
+
+			if ($selected_ward)
+				$this->data['wards'] = $this->site->getDistrict(4, $selected_ward->parent_id);
+			else
+				$this->data['wards'] = $this->site->getDistrict(4, $selected_union->id);
+
+			// $this->sma->print_arrays($this->data['wards']);
+
+
+			$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Area Edit'));
+			$meta = array('page_title' => 'Area Edit', 'bc' => $bc);
+			$this->page_construct('others/edit_administrative_area', $meta, $this->data, 'leftmenu/organization');
 		}
 	}
 }
