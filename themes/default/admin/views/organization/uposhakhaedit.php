@@ -40,7 +40,7 @@
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_id"); ?>
                         <?php
 
-                        echo  'DM'.$thana->org_thana_id.'DM';
+                        echo  'DM'.$uposhakha->org_thana_id.'DM';
                         $dt[''] = lang('select') . ' ' . lang('থানা');
                         foreach ($thanas as $thana_item)
                             $dt[$thana_item->id] = $thana_item->thana_name;
