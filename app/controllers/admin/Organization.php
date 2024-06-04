@@ -3972,22 +3972,16 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".`id` as id,sma_branches.code,`thana_name`,`thana_code`,`org_type`,`worker_number`,`supporter_number`, 
+                ->select($this->db->dbprefix('thana') . ".`id` as id,sma_branches.code,`thana_name`,`thana_code`,`org_type`,v3_member_thana_count(branch_id,thana_code) `member`, v3_associate_thana_count(branch_id,thana_code) associate,`worker_number`,`supporter_number`, 
             v3_ward_or_unit_in_thana(2,{$this->db->dbprefix('thana')}.id) ward, v3_ward_or_unit_in_thana(3,{$this->db->dbprefix('thana')}.id) unit ,
-            
-            v3_member_thana_count(branch_id,thana_code) `member`, v3_associate_thana_count(branch_id,thana_code) associate,
-            
-          `is_ideal_thana`", false)
+             `is_ideal_thana`", false)
                 ->join('branches', 'branches.id=thana.branch_id', 'left')
                 ->from('thana')->where('thana.branch_id', $branch_id)->where('`level`', 1);
         } else {
 
             $this->datatables
-                ->select($this->db->dbprefix('thana') . ".`id` as id,sma_branches.code,`thana_name`,`thana_code`,`org_type`,`worker_number`,`supporter_number`, 
-            v3_ward_or_unit_in_thana(2,{$this->db->dbprefix('thana')}.id) ward, v3_ward_or_unit_in_thana(3,{$this->db->dbprefix('thana')}.id) unit ,
-            
-            v3_member_thana_count(branch_id,thana_code) `member`, v3_associate_thana_count(branch_id,thana_code) associate,
-            
+                ->select($this->db->dbprefix('thana') . ".`id` as id,sma_branches.code,`thana_name`,`thana_code`,`org_type`,v3_member_thana_count(branch_id,thana_code) `member`, v3_associate_thana_count(branch_id,thana_code) associate,`worker_number`,`supporter_number`, 
+            v3_ward_or_unit_in_thana(2,{$this->db->dbprefix('thana')}.id) ward, v3_ward_or_unit_in_thana(3,{$this->db->dbprefix('thana')}.id) unit , 
           `is_ideal_thana`", false)
                 ->join('branches', 'branches.id=thana.branch_id', 'left')
                 ->from('thana')->where('`level`', 1);

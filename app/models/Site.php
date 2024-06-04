@@ -234,9 +234,11 @@ class Site extends CI_Model
         return FALSE;
     }
 
-    public function getThanaByBranch($branch_id)
+    public function getThanaByBranch($branch_id, $level=1)
     {
         $this->db->where('branch_id',$branch_id);
+        $this->db->where('level',$level);
+        
         $q = $this->db->get('thana');
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
