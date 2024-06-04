@@ -688,7 +688,7 @@
         var audio_success = new Audio('<?= $assets ?>sounds/sound2.mp3');
         var audio_error = new Audio('<?= $assets ?>sounds/sound3.mp3');
 
-        // var associatelog = '<?php echo  json_encode($associatelog); ?>';
+        // var associatelog = '<?php //echo  json_encode($associatelog); ?>';
 
 
         $.ajaxSetup({
