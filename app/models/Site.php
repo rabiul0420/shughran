@@ -838,7 +838,17 @@ class Site extends CI_Model
     }
 
 
+    function deleteward($table, $where)
+    {
+        $this->db->where($where);
 
+        $this->db->delete($table);
+        if ($this->db->affected_rows() > 0) {
+
+            return TRUE;
+        }
+        return FALSE;
+    }
 
 
     public function getAll($table)

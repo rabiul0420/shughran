@@ -3922,8 +3922,14 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         // $this->datatables->where('DATE(process_date) BETWEEN "' . $start . '" and "' . $end . '"');
         $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/thanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
 
+        $delete_link = "<a href='#' class='tip po' title='<b>" . $this->lang->line("delete_product") . "</b>' data-content=\"<p>"
+            . lang('r_u_sure') . "</p><a class='btn btn-danger po-delete1_bk' id='a__$1' href='" . admin_url('organization/deleteward/$1') . "'>"
+            . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i> "
+            . lang('delete_ward') . "</a>";
+
 
         $this->datatables->add_column("Decrease", $decrease, "id");
+        $this->datatables->add_column("Delete", $delete_link, "id");
         $this->datatables->add_column("Actions", $edit_link, "id");
 
         //$this->datatables->unset_column("manpower_id");
@@ -4740,8 +4746,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->data['modal_js'] = $this->site->modal_js();
 
             $this->data['uposhakha'] = $uposhakha_details;
- 
-             if ($this->Owner || $this->Admin)
+
+            if ($this->Owner || $this->Admin)
                 $this->data['thanas'] = $this->site->getThanaByBranch($uposhakha_details->branch_id);
             else
                 $this->data['thanas'] = $this->site->getThanaByBranch($this->session->userdata('branch_id'));
@@ -5597,11 +5603,73 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $decrease = "<a class=\"tip btn btn-default btn-xs btn-primary \" title='" . 'Decrease' . "' href='" . admin_url('organization/thanadecrease/$1') . "' data-toggle='modal' data-target='#myModal'>ঘাটতি <i class=\"fa fa-minus\"></i></a>";
         // $this->datatables->add_column("Decrease", $decrease, "id");
         // $this->datatables->add_column("Actions", $edit_link, "id");
+        $delete_link = "<a href='#' class='tip po' title='<b>" . $this->lang->line("delete_uposhakha") . "</b>' data-content=\"<p>"
+            . lang('r_u_sure') . "</p><a class='btn btn-danger po-delete1_bk' id='a__$1' href='" . admin_url('organization/deleteuposhakha/$1') . "'>"
+            . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i> "
+            . lang('delete_uposhakha') . "</a>";
 
         $this->datatables->add_column("Decrease", $decrease, "id");
+        $this->datatables->add_column("Delete", $delete_link, "id");
         $this->datatables->add_column("Actions", $edit_link, "id");
 
         //$this->datatables->unset_column("manpower_id");
         echo $this->datatables->generate();
     }
+
+
+    function deleteuposhakha($id = NULL)
+    {
+        $this->sma->checkPermissions(NULL, TRUE);
+
+        if ($this->input->get('id')) {
+            $id = $this->input->get('id');
+        }
+
+        if (($this->Admin || $this->Owner)  &&  $this->site->delete('thana', array('id' => $id))) {
+            if ($this->input->is_ajax_request()) {
+                $this->sma->send_json(array('error' => 0, 'msg' => lang("uposhakha_deleted")));
+            }
+            $this->session->set_flashdata('message', lang('uposhakha_deleted'));
+            admin_redirect('organization/uposhakhalist');
+        } else if ($this->site->delete('thana', array('id' => $id, 'branch_id' => $this->session->userdata('branch_id')))) {
+            if ($this->input->is_ajax_request()) {
+                $this->sma->send_json(array('error' => 0, 'msg' => lang("uposhakha_deleted")));
+            }
+            $this->session->set_flashdata('message', lang('uposhakha_deleted'));
+            admin_redirect('organization/uposhakhalist/'.$this->session->userdata('branch_id'));
+        }
+    }
+
+
+    function deleteward($id = NULL)
+    {
+        $this->sma->checkPermissions(NULL, TRUE);
+
+        if ($this->input->get('id')) {
+            $id = $this->input->get('id');
+        }
+
+        if (($this->Admin || $this->Owner)  &&  $this->site->delete('thana', array('id' => $id))) {
+            $this->site->delete('thana', array('org_ward_id' => $id));
+
+            if ($this->input->is_ajax_request()) {
+                $this->sma->send_json(array('error' => 0, 'msg' => lang("ward_deleted")));
+            }
+            $this->session->set_flashdata('message', lang('ward_deleted'));
+            admin_redirect('organization/wardlist');
+        } else if ($this->site->delete('thana', array('id' => $id, 'branch_id' => $this->session->userdata('branch_id')))) {
+            
+            $this->site->delete('thana', array('org_ward_id' => $id, 'branch_id' => $this->session->userdata('branch_id')));
+
+
+            if ($this->input->is_ajax_request()) {
+                $this->sma->send_json(array('error' => 0, 'msg' => lang("ward_deleted")));
+            }
+            $this->session->set_flashdata('message', lang('ward_deleted'));
+            admin_redirect('organization/wardlist/'.$this->session->userdata('branch_id'));
+        }
+    }
+
+
+     
 }

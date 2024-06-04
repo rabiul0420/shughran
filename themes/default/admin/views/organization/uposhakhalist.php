@@ -103,6 +103,9 @@
                 },
                 {
                     "bSortable": false
+                },
+                {
+                    "bSortable": false
                 }
             ]
         }).fnSetFilteringDelay().dtFilter([{
@@ -267,11 +270,12 @@
                                 <th><?= 'মন্তব্য' ?></th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="14" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                <td colspan="15" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                             </tr>
                         </tbody>
 
@@ -280,6 +284,7 @@
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkft" type="checkbox" name="check" />
                                 </th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
