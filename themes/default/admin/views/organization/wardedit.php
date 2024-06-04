@@ -54,6 +54,22 @@
 
 
                     <div class="form-group">
+                        <?= lang("সংগঠনের ধরন", "org_type"); ?>
+                        <?php
+                        $wrt[''] = lang('select') . ' ' . lang('organization_type');
+                        foreach (['Residential' => 'আবাসিক', 'Institutional' => 'প্রাতিষ্ঠানিক', 'Departmental' => 'বিভাগীয়'] as $key => $type)
+                            $wrt[$key] = $type;
+
+                        echo form_dropdown('org_type', $wrt,  $thana->org_type, 'id="org_type"   class="form-control select" style="width:100%;" ');
+                        ?>
+                    </div>
+
+
+
+
+
+
+                    <div class="form-group">
                         <?= lang('সদস্য সংখ্যা', 'member_number'); ?>
                         <?= form_input('member_number', set_value('member_number', $thana->member_number), 'class="form-control tip" id="member_number" required="required" '); ?>
                     </div>

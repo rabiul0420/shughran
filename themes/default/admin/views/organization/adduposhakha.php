@@ -343,7 +343,8 @@ if (!empty($variants)) {
                     url: "<?php echo admin_url('organization/getWardList'); ?>",
                     method: "GET",
                     data: {
-                        thana_id: thana_id
+                        thana_id: thana_id,
+                        branch_id: '<?=$branch_id?>'
                     },
                     dataType: 'json',
                     success: function(response) {

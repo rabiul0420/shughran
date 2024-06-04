@@ -541,10 +541,20 @@ if($report_info['prev_record'])  echo $membercandidate_target;
 	$associate_candidate_endstd = sum_manpower($manpower_record,   'associate_candidate_endstd');
 	$associate_candidate_transfer = sum_manpower($manpower_record,   'associate_candidate_transfer');
 	$associate_candidate_cancel = sum_manpower($manpower_record,   'associate_candidate_cancel');
-	$associate_candidate_study_abroad = sum_manpower($manpower_record,  'associate_candidate_abroad_study');
-	$associate_candidate_job_abroad = sum_manpower($manpower_record,   'associate_candidate_abroad_job');
-	$associate_candidate_death = sum_manpower($manpower_record,  'associate_candidate_death');
-	$associate_candidate_martyr = sum_manpower($manpower_record,   'associate_candidate_martyr');
+
+
+	// $associate_candidate_study_abroad = sum_manpower($manpower_record,  'associate_candidate_abroad_study');
+	// $associate_candidate_job_abroad = sum_manpower($manpower_record,   'associate_candidate_abroad_job');
+	// $associate_candidate_death = sum_manpower($manpower_record,  'associate_candidate_death');
+	// $associate_candidate_martyr = sum_manpower($manpower_record,   'associate_candidate_martyr');
+
+	$associate_candidate_study_abroad = (!$assocandidatelog) ? 0 : calculate($assocandidatelog, 11,2, 'worker_number');
+	$associate_candidate_job_abroad = (!$assocandidatelog) ? 0 : calculate($assocandidatelog, 14,2, 'worker_number');
+	$associate_candidate_death = (!$assocandidatelog) ? 0 : calculate($assocandidatelog, 9,2, 'worker_number');
+	$associate_candidate_martyr = (!$assocandidatelog) ? 0 : calculate($assocandidatelog, 10,2, 'worker_number');
+	
+
+
 	$associate_candidate_demotion = sum_manpower($manpower_record,   'associate_candidate_demotion');
 	$associate_candidate_improvement_d = $associate_improvement;
 	$total_associate_candidate_decrease = $associate_candidate_improvement_d + $associate_candidate_endstd  + $associate_candidate_transfer  + $associate_candidate_cancel  + $associate_candidate_study_abroad + $associate_candidate_job_abroad + $associate_candidate_death + $associate_candidate_martyr + $associate_candidate_demotion;
@@ -558,9 +568,7 @@ if($report_info['prev_record'])  echo $membercandidate_target;
   
   
   
-  
-  
-  
+   
    <tr>
     <td class="tg-y698">সাথী প্রার্থী</td>
     <td class="tg-0pky"><?php  if($report_info['prev_record']) echo $associate_candidate_prev;?></td>

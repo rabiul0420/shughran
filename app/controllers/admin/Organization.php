@@ -3792,8 +3792,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     public function getWardList($thana_id = null)
     {
         $thana_id = $this->input->get('thana_id');
+        $branch_id = $this->input->get('branch_id');
         if ($thana_id && is_numeric($thana_id)) {
-            $wards = $this->db->where('parent_id', $thana_id)->get('thana')->result();
+
+            if ($branch_id)
+                $wards = $this->db->where('parent_id', $thana_id)->where('branch_id', $branch_id)->get('thana')->result();
+            else
+                $wards = $this->db->where('parent_id', $thana_id)->get('thana')->result();
+
+
             echo json_encode($wards);
         } else {
             echo json_encode([]);
@@ -4488,7 +4495,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'branch_id' => $this->input->post('branch_id'),
                 'thana_name' => $this->input->post('thana_name'),
                 'thana_code' => $this->input->post('thana_code'),
-                // 'org_type' => $this->input->post('org_type'),
+                'org_type' => $this->input->post('org_type'),
 
                 //'member_number' => $this->input->post('member_number'),
                 // 'associate_number' => $this->input->post('associate_number'),
@@ -4585,7 +4592,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'org_thana_id' => $this->input->post('thana_id'),
                 //$data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level'=>1), 'id DESC', 1, 0);
                 'thana_code' => $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0),
-                // 'org_type' => $this->input->post('org_type'),
+                'org_type' => $this->input->post('org_type'),
 
                 'member_number' => $this->input->post('member_number'),
                 'associate_number' => $this->input->post('associate_number'),
@@ -4688,10 +4695,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'thana_name' => $this->input->post('thana_name'),
                 'thana_code' => $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0),
                 'org_thana_id' => $this->input->post('thana_id'),
+                'org_ward_id' => $this->input->post('ward_id'),
+                
                 //'thana_code' => $this->input->post('thana_code'),
                 // $data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level'=>1), 'id DESC', 1, 0);
                 //pore 
-                // 'org_type' => $this->input->post('org_type'),
+                'org_type' => $this->input->post('org_type'),
 
                 'member_number' => $this->input->post('member_number'),
                 'associate_number' => $this->input->post('associate_number'),
@@ -4741,10 +4750,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $this->data['uposhakha'] = $uposhakha_details;
 
-            if ($this->Owner || $this->Admin)
+          //  echo $uposhakha_details->org_thana_id.'DMMMMM';
+
+
+            if ($this->Owner || $this->Admin){
                 $this->data['thanas'] = $this->site->getThanaByBranch($uposhakha_details->branch_id);
-            else
+                $this->data['wards'] = $this->site->getAllwards($uposhakha_details->org_thana_id, 2);
+            }
+            else {
                 $this->data['thanas'] = $this->site->getThanaByBranch($this->session->userdata('branch_id'));
+                $this->data['wards'] = $this->site->getAllwards($uposhakha_details->org_thana_id,2);
+            }
 
 
             $this->data['branches'] = $this->site->getAllBranches();
@@ -5613,7 +5629,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
     function deleteuposhakha($id = NULL)
     {
-        $this->sma->checkPermissions(NULL, TRUE);
+        $this->sma->checkPermissions('index', TRUE);
 
         if ($this->input->get('id')) {
             $id = $this->input->get('id');
@@ -5630,14 +5646,14 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->sma->send_json(array('error' => 0, 'msg' => lang("uposhakha_deleted")));
             }
             $this->session->set_flashdata('message', lang('uposhakha_deleted'));
-            admin_redirect('organization/uposhakhalist/'.$this->session->userdata('branch_id'));
+            admin_redirect('organization/uposhakhalist/' . $this->session->userdata('branch_id'));
         }
     }
 
 
     function deleteward($id = NULL)
     {
-        $this->sma->checkPermissions(NULL, TRUE);
+        $this->sma->checkPermissions('index', TRUE);
 
         if ($this->input->get('id')) {
             $id = $this->input->get('id');
@@ -5652,7 +5668,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->session->set_flashdata('message', lang('ward_deleted'));
             admin_redirect('organization/wardlist');
         } else if ($this->site->delete('thana', array('id' => $id, 'branch_id' => $this->session->userdata('branch_id')))) {
-            
+
             $this->site->delete('thana', array('org_ward_id' => $id, 'branch_id' => $this->session->userdata('branch_id')));
 
 
@@ -5660,10 +5676,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->sma->send_json(array('error' => 0, 'msg' => lang("ward_deleted")));
             }
             $this->session->set_flashdata('message', lang('ward_deleted'));
-            admin_redirect('organization/wardlist/'.$this->session->userdata('branch_id'));
+            admin_redirect('organization/wardlist/' . $this->session->userdata('branch_id'));
         }
     }
-
-
-     
 }
