@@ -36,23 +36,20 @@
                     <?php } ?>
 
                      
-                    <div class="form-group all">
-                        <?= lang('থানা কোড', 'thana_code'); ?>
+                     
 
+                    <div class="form-group">
+                        <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_id"); ?>
+                        <?php
 
-                        <?php $tc = array();
-                        $tc[''] =  'থানা কোড';
-                        for ($i = 1; $i <= 60; $i++) {
-                            $tc[$i] =  $i;
-                        }
+                        echo  'DM'.$thana->org_thana_id.'DM';
+                        $dt[''] = lang('select') . ' ' . lang('থানা');
+                        foreach ($thanas as $thana_item)
+                            $dt[$thana_item->id] = $thana_item->thana_name;
 
-                        $tc[100] =  100;
-
-                        echo form_dropdown('thana_code', $tc, ($thana->thana_code ? $thana->thana_code : ''), 'id="thana_code"  class="form-control select" required="required" style="width:100%;" ');
+                        echo form_dropdown('thana_id', $dt,  array($thana->org_thana_id) , 'id="thana_id"  class="form-control select" style="width:100%;" required="required" ');
                         ?>
                     </div>
-
-
                      
 
 
