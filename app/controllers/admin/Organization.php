@@ -4577,7 +4577,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = array(
                 'branch_id' => $this->input->post('branch_id'),
                 'thana_name' => $this->input->post('thana_name'),
-                //'thana_code' => $this->input->post('thana_code'),
+                 'thana_code' => $this->input->post('thana_code'),
                 // 'org_type' => $this->input->post('org_type'),
 
                 'member_number' => $this->input->post('member_number'),
