@@ -144,7 +144,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">সমর্থক
-                                    <?php $total_sup = $dawat_personal_n_group[0]['personal_dawat_supporter'] + $dawat_personal_n_group[0]['group_dawat_supporter'] + $dawatgroupsend[0]['supporter_increase'] +  $madrasha_dawat_report[0]['supporter_increase'] + $college_dawat_report[0]['supporter_increase'] + $university_dawat_report[0]['supporter_increase'] + $fortnight_dawat_report[0]['supporter_increase'] + $letgotovillage[0]['supporter_increase']+ $secondary_dawat_report[0]['supporter_increase'];
+                                    <?php $total_sup = $dawat_personal_n_group[0]['personal_dawat_supporter'] + $dawat_personal_n_group[0]['group_dawat_supporter'] + $dawatgroupsend[0]['supporter_increase'] +  $madrasha_dawat_report[0]['supporter_increase'] + $college_dawat_report[0]['supporter_increase'] + $university_dawat_report[0]['supporter_increase'] + $fortnight_dawat_report[0]['supporter_increase'] + $letgotovillage[0]['supporter_increase'] + $secondary_dawat_report[0]['supporter_increase'] + $madrasha_dawat_report[0]['supporter_increase'];
                                     ?>
                                 </td>
                                 <td colspan="3"><?php if ($report_info['prev_record'])  echo $lastyeardawat[0]['supporter']; ?></td>
@@ -173,6 +173,8 @@
                                 <td colspan="2"><?php echo $fortnight_dawat_report[0]['supporter_increase']; ?></td>
                                 <td colspan="2"><?php echo $letgotovillage[0]['supporter_increase']; ?></td>
                                 <td><?php echo $secondary_dawat_report[0]['supporter_increase']; ?></td>
+                                <td><?php echo $madrasha_dawat_report[0]['supporter_increase']; ?></td>
+                                
                                 <td><?php
                                     //3:2:1
                                     //$target = $lastyeardawat[0]['member'] * 12 +  $lastyeardawat[0]['associate'] *10+   $lastyeardawat[0]['worker'] *5 ;	
@@ -199,7 +201,7 @@
 
                             <tr>
                                 <td colspan="2">বন্ধু
-                                    <?php $total_friend = $dawat_personal_n_group[0]['personal_dawat_friend'] + $dawat_personal_n_group[0]['group_dawat_friend'] + $dawatgroupsend[0]['friend_increase'] +  $madrasha_dawat_report[0]['friend_increase'] + $college_dawat_report[0]['friend_increase'] + $university_dawat_report[0]['friend_increase'] + $fortnight_dawat_report[0]['friend_increase'] + $letgotovillage[0]['friend_increase']+ $secondary_dawat_report[0]['friend_increase'];
+                                    <?php $total_friend = $dawat_personal_n_group[0]['personal_dawat_friend'] + $dawat_personal_n_group[0]['group_dawat_friend'] + $dawatgroupsend[0]['friend_increase'] +  $madrasha_dawat_report[0]['friend_increase'] + $college_dawat_report[0]['friend_increase'] + $university_dawat_report[0]['friend_increase'] + $fortnight_dawat_report[0]['friend_increase'] + $letgotovillage[0]['friend_increase']+ $secondary_dawat_report[0]['friend_increase']+$secondary_dawat_report[0]['madrasha_dawat_report'];
                                     ?>
                                 </td>
                                 <td colspan="3"><?php if ($report_info['prev_record'])  echo $lastyeardawat[0]['friend']; ?></td>
@@ -225,6 +227,7 @@
                                 <td colspan="2"><?php echo $fortnight_dawat_report[0]['friend_increase']; ?></td>
                                 <td colspan="2"><?php echo $letgotovillage[0]['friend_increase']; ?></td>
                                 <td><?php echo $secondary_dawat_report[0]['friend_increase']; ?></td>
+                                <td><?php echo $madrasha_dawat_report[0]['friend_increase']; ?></td>
                                 <td>
                                     <?php
                                     //3:2:1
@@ -247,7 +250,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">অমুসলিম সমর্থক
-                                    <?php $total_non_sup = $dawat_summary[0]['personal_dawat_non_sup'] + $dawat_summary[0]['group_dawat_non_sup'] + $dawatgroupsend[0]['nonmuslim_supporter_increase']  + $madrasha_dawat_report[0]['nonmuslim_supporter_increase'] + $college_dawat_report[0]['nonmuslim_supporter_increase'] + $university_dawat_report[0]['nonmuslim_supporter_increase'] + $fortnight_dawat_report[0]['nonmuslim_supporter_increase'] + $dawat_summary[0]['letvillage_non_sup']+ $secondary_dawat_report[0]['nonmuslim_supporter_increase'] ;
+                                    <?php $total_non_sup = $dawat_summary[0]['personal_dawat_non_sup'] + $dawat_summary[0]['group_dawat_non_sup'] + $dawatgroupsend[0]['nonmuslim_supporter_increase']  + $madrasha_dawat_report[0]['nonmuslim_supporter_increase'] + $college_dawat_report[0]['nonmuslim_supporter_increase'] + $university_dawat_report[0]['nonmuslim_supporter_increase'] + $fortnight_dawat_report[0]['nonmuslim_supporter_increase'] + $dawat_summary[0]['letvillage_non_sup']+ $secondary_dawat_report[0]['nonmuslim_supporter_increase'] + $madrasha_dawat_report[0]['nonmuslim_supporter_increase'] ;
                                     ?>
                                 </td>
 
@@ -277,7 +280,9 @@
                                 <td colspan="2"><a href="#" class="editable editable-click" data-type="number" data-table="dawat_summary" data-pk="<?php echo $detailinfo['dawat_summaryinfo']->id; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="letvillage_non_sup" data-title="Enter"><?php echo $dawat_summary[0]['letvillage_non_sup']; ?></a></td>
 
                                 <td><?php echo $secondary_dawat_report[0]['nonmuslim_supporter_increase']; ?></td>
+                                <td><?php echo $madrasha_dawat_report[0]['nonmuslim_supporter_increase']; ?></td>
                                 
+                               
                                 <td><a href="#" class="editable editable-click" data-type="number" data-table="dawat_summary" data-pk="<?php echo $detailinfo['dawat_summaryinfo']->id; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="non_supporter_target" data-title="Enter"><?php echo $dawat_summary[0]['non_supporter_target']; ?></a></td>
 
 
@@ -290,7 +295,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">অমুসলিম বন্ধু
-                                    <?php $total_non_friend = $dawat_summary[0]['personal_dawat_non_friend'] + $dawat_summary[0]['group_dawat_non_friend'] + $dawatgroupsend[0]['nonmuslim_friend_increase']  + $madrasha_dawat_report[0]['nonmuslim_friend_increase'] + $college_dawat_report[0]['nonmuslim_friend_increase'] + $university_dawat_report[0]['nonmuslim_friend_increase'] + $fortnight_dawat_report[0]['nonmuslim_friend_increase'] + $dawat_summary[0]['letvillage_non_friend']+ $secondary_dawat_report[0]['nonmuslim_friend_increase'] ;
+                                    <?php $total_non_friend = $dawat_summary[0]['personal_dawat_non_friend'] + $dawat_summary[0]['group_dawat_non_friend'] + $dawatgroupsend[0]['nonmuslim_friend_increase']  + $madrasha_dawat_report[0]['nonmuslim_friend_increase'] + $college_dawat_report[0]['nonmuslim_friend_increase'] + $university_dawat_report[0]['nonmuslim_friend_increase'] + $fortnight_dawat_report[0]['nonmuslim_friend_increase'] + $dawat_summary[0]['letvillage_non_friend']+ $secondary_dawat_report[0]['nonmuslim_friend_increase'] + $madrasha_dawat_report[0]['nonmuslim_friend_increase'] ;
                                     ?>
                                 </td>
                                 <td colspan="3"><?php if ($report_info['prev_record'])  echo $lastyeardawat[0]['non_muslim_friend']; ?></td>
@@ -317,6 +322,7 @@
                                 <td colspan="2"><a href="#" class="editable editable-click" data-type="number" data-table="dawat_summary" data-pk="<?php echo $detailinfo['dawat_summaryinfo']->id; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="letvillage_non_friend" data-title="Enter"><?php echo $dawat_summary[0]['letvillage_non_friend']; ?></a></td>
 
                                 <td><?php echo $secondary_dawat_report[0]['nonmuslim_friend_increase']; ?></td>
+                                <td><?php echo $madrasha_dawat_report[0]['nonmuslim_friend_increase']; ?></td>
 
                                 <td><a href="#" class="editable editable-click" data-type="number" data-table="dawat_summary" data-pk="<?php echo $detailinfo['dawat_summaryinfo']->id; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="non_friend_target" data-title="Enter"><?php echo $dawat_summary[0]['non_friend_target']; ?></a></td>
 
@@ -330,7 +336,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">শুভাকাঙ্খী
-                                    <?php $total_ww = $dawat_summary[0]['personal_dawat_ww'] + $dawat_summary[0]['group_dawat_ww'] + $dawatgroupsend[0]['ww_increase'] + $madrasha_dawat_report[0]['ww_increase'] + $college_dawat_report[0]['ww_increase'] + $university_dawat_report[0]['ww_increase'] + $fortnight_dawat_report[0]['ww_increase'] + $letgotovillage[0]['ww_increase']+$secondary_dawat_report[0]['ww_increase'];
+                                    <?php $total_ww = $dawat_summary[0]['personal_dawat_ww'] + $dawat_summary[0]['group_dawat_ww'] + $dawatgroupsend[0]['ww_increase'] + $madrasha_dawat_report[0]['ww_increase'] + $college_dawat_report[0]['ww_increase'] + $university_dawat_report[0]['ww_increase'] + $fortnight_dawat_report[0]['ww_increase'] + $letgotovillage[0]['ww_increase']+$secondary_dawat_report[0]['ww_increase'] + $madrasha_dawat_report[0]['ww_increase'];
                                     ?>
                                 </td>
                                 <td colspan="3"><?php if ($report_info['prev_record'])  echo $lastyeardawat[0]['wellwisher']; ?></td>
@@ -355,6 +361,7 @@
                                 <td colspan="2"><?php echo $letgotovillage[0]['ww_increase']; ?></td>
 
                                 <td><?php echo $secondary_dawat_report[0]['ww_increase']; ?></td>
+                                <td><?php echo $madrasha_dawat_report[0]['ww_increase']; ?></td>
 
                                 <td><a href="#" class="editable editable-click " data-type="number" data-table="dawat_summary" data-pk="<?php echo $detailinfo['dawat_summaryinfo']->id; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="ww_target" data-title="Enter"><?php echo $dawat_summary[0]['ww_target']; ?></a></td>
 

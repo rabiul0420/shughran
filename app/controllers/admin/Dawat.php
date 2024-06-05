@@ -1398,6 +1398,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
             $madrashainfo = $this->site->getOneRecord('madrasha_dawat_report', '*', array('report_type' =>  $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
+
+           // $this->sma->print_arrays($madrashainfo );
             if (!$madrashainfo) {
                 $this->site->insertData('madrasha_dawat_report', array('branch_id' => $branch_id, 'report_type' =>  $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
             }

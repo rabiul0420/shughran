@@ -148,10 +148,10 @@ if (!empty($variants)) {
                 </div>
 
 
-                <div class="col-md-6 hide_for_departmental">
+                <div class="col-md-6">
 
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental">
                         <?= lang("শিক্ষাপ্রতিষ্ঠানের বিবরন", "educational_details"); ?>
                         <?php
                         foreach (['1' => 'শিক্ষাপ্রতিষ্ঠান ', '2' => 'কোচিং/প্রাইভেট সেন্টার', '3' => 'ট্রেনিং সেন্টার'] as $key => $type)
@@ -162,7 +162,7 @@ if (!empty($variants)) {
                     </div>
 
 
-                    <div class="">
+                    <div class="hide_for_departmental">
                         <div class="form-group">
                             <label for="institution_parent_id">ক্যাটাগরি </label>
                             <?php
@@ -231,7 +231,7 @@ if (!empty($variants)) {
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental">
                         <?= lang("কোন মানের উপশাখা", "unit_category"); ?>
                         <?php
                         foreach (['Strong' => 'মজবুত ', 'Weak' => 'দূর্বল', 'Inactive' => 'নিষ্ক্রিয়'] as $key => $type)
