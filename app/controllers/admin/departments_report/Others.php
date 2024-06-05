@@ -79,6 +79,19 @@ class Others extends MY_Controller
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
 
+            $this->db->select_sum('total_uposakha');
+            $this->db->select_sum('bortoman_shokriyo');
+            $this->db->select_sum('durbol_shokriyou_hoyeche	');
+            $this->db->select_sum('durbol_ache');
+            if ($branch_id)
+                $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+            $this->data['other_uposhakha_mojbuti'] = $this->db->get('other_uposhakha_mojbuti')->first_row('array');
+
+
+
+
+
             $this->db->select_sum('shod_shomabesh_num');
             $this->db->select_sum('shod_shomabesh_pre');
             $this->db->select_sum('sathi_shomabesh_num');
@@ -122,6 +135,17 @@ class Others extends MY_Controller
             $this->db->order_by('branch_id');
             $this->data['other_e_ghatti_thana'] = $this->db->get('other_e_ghatti_thana');
         } else {
+
+            $this->db->select('*');
+            $this->db->where('branch_id', $branch_id);
+            $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
+
+            $query = $this->db->get('other_uposhakha_mojbuti');
+            $this->data['other_uposhakha_mojbuti'] = $query->first_row('array');;
+
+
+            
+
             $this->db->select('*');
             $this->db->where('branch_id', $branch_id);
             if ($branch_id)
@@ -786,6 +810,8 @@ class Others extends MY_Controller
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
             $this->data['other_uposhakha_mojbuti'] = $this->db->get('other_uposhakha_mojbuti')->first_row('array');
+
+
 
             $this->db->select('*');
             if ($branch_id)
