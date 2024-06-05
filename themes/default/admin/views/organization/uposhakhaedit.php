@@ -60,7 +60,7 @@
                         foreach ($wards as $ward_item)
                             $dtward[$ward_item->id] = $ward_item->thana_name;
 
-                        echo form_dropdown('ward_id', $dtward,  array($uposhakha->org_ward_id), 'id="ward_id"  class="form-control select" style="width:100%;" required="required" ');
+                        echo form_dropdown('ward_id', $dtward,  array($uposhakha->org_ward_id), 'id="ward_id"  class="form-control select" style="width:100%;"   ');
                         ?>
 
 
