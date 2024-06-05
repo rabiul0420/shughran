@@ -550,7 +550,7 @@ $(document).ready(function(){
                                 $pk = (isset($school_ssc_result['id']))?$school_ssc_result['id']:'';
                             ?>
                              <?php 
-                                $total_s_biggan = $total_s_manobik = $total_s_bebsa = 0; 
+                                $total_s_biggan = $total_s_manobik = $total_s_bebsa = $total_kormi_bebsa = $total_kormi_manobik = $total_kormi_biggan = 0; 
                                 $total_sathi_biggan = $total_sathi_manobik = $total_sathi_bebsa = 0; 
                                 $total_shomorthok_biggan = $total_shomorthok_manobik = $total_shomorthok_bebsa = 0; 
                                 $total_somorthok_biggan = $total_somorthok_manobik = $total_somorthok_bebsa = 0; 
