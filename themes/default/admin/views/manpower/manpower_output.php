@@ -29,8 +29,8 @@
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সকল জনশক্তির আউটপুট ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')';
-                                                            $branch_code = $branch->code; ?>
+        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সকল জনশক্তির আউটপুট ' . ' (' . (isset($branch_id) ? $branch->name : 'সকল শাখা') . ')';
+                                                            $branch_code = $branch->code? $branch->code : ''; ?>
 
 
 

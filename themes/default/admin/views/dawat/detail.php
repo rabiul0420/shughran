@@ -582,6 +582,71 @@ font: 18px SolaimanLipi, sans-serif;
 <td style="height: 18px; " ><?php  echo sum_detail($secondary_dawat_report,'nonmuslim_friend_increase'); ?></td>
 <td style="height: 18px; " ><?php  echo sum_detail($secondary_dawat_report,'ww_increase'); ?></td>
 </tr>
+
+
+
+
+
+<tr style="height: 18px;">
+
+
+
+<td style="height: 18px; " colspan="19">৮। কওমি ও হাফেজি মাদরাসা দাওয়াতি সপ্তাহ</td>
+
+</tr>
+<tr style="height: 36px;">
+<td style="height: 72px; " rowspan="2" width="44">সমর্থক বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="46">বন্ধু বৃদ্ধি</td>
+<td style="height: 36px; " colspan="2" width="101">সাধারণ সভা</td>
+<td style="height: 36px; " colspan="2" width="85">অন্যান্য বৈঠক</td>
+<td style="height: 72px; " rowspan="2" width="50">দাওয়াতী কার্ড, বুকলেট</td>
+<td style="height: 72px; " rowspan="2" width="48">পরিচিতি বিতরণ</td>
+<td style="height: 72px; " rowspan="2" width="46">কিশোর পত্রিকা বাংলা</td>
+<td style="height: 72px; " rowspan="2" width="54">গ্রাহক বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="51">কিশোর পত্রিকা ইংরেজী</td>
+<td style="height: 72px; " rowspan="2" width="52">গ্রাহক বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="40">ছাত্র সংবাদ বিতরণ</td>
+<td style="height: 72px; " rowspan="2" width="45">গ্রাহক বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="52">প্রেরিত গ্রুপ</td>
+<td style="height: 72px; " rowspan="2" width="47">সমর্থক সংগঠন বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="36">অমুসলিম সমর্থক বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="42">অমুসলিম বন্ধু বৃদ্ধি</td>
+<td style="height: 72px; " rowspan="2" width="44">শুভাকাংখী বৃদ্ধি</td>
+</tr>
+<tr style="height: 36px;">
+<td style="height: 36px; " width="53">সংখ্যা</td>
+<td style="height: 36px; " width="48">গড় উপঃ</td>
+<td style="height: 36px; " width="38">সংখ্যা</td>
+<td style="height: 36px; " width="47">গড় উপঃ</td>
+</tr>
+
+
+
+<tr style="height: 18px;">
+<td style="height: 18px; ">
+<?php  $madrasha_dawat_report =   isset($detailinfo['madrasha_dawat_reportinfo']) ? $detailinfo['madrasha_dawat_reportinfo'] : NULL ; ?>
+ <?php  echo sum_detail($madrasha_dawat_report,'supporter_increase'); ?>
+</td>
+<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'friend_increase'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'number_general_gather'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'avg_presence'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'number_other_meeting'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'other_avg'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'card_booklet'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'porichiti'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'kishore'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'kishore_client_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'kishore_eng'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'kishore_eng_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'chhatrasongbad'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'chhatrasongbad_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'group_sent'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'supporter_org_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'nonmuslim_supporter_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'nonmuslim_friend_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'ww_increase'); ?></td>
+</tr>
+
 </tbody>
 </table>	
 
