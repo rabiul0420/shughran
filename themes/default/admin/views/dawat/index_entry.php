@@ -201,7 +201,7 @@
 
                             <tr>
                                 <td colspan="2">বন্ধু
-                                    <?php $total_friend = $dawat_personal_n_group[0]['personal_dawat_friend'] + $dawat_personal_n_group[0]['group_dawat_friend'] + $dawatgroupsend[0]['friend_increase'] +  $madrasha_dawat_report[0]['friend_increase'] + $college_dawat_report[0]['friend_increase'] + $university_dawat_report[0]['friend_increase'] + $fortnight_dawat_report[0]['friend_increase'] + $letgotovillage[0]['friend_increase']+ $secondary_dawat_report[0]['friend_increase']+$secondary_dawat_report[0]['madrasha_dawat_report'];
+                                    <?php $total_friend = $dawat_personal_n_group[0]['personal_dawat_friend'] + $dawat_personal_n_group[0]['group_dawat_friend'] + $dawatgroupsend[0]['friend_increase'] +  $madrasha_dawat_report[0]['friend_increase'] + $college_dawat_report[0]['friend_increase'] + $university_dawat_report[0]['friend_increase'] + $fortnight_dawat_report[0]['friend_increase'] + $letgotovillage[0]['friend_increase']+ $secondary_dawat_report[0]['friend_increase']+$madrasha_dawat_report[0]['friend_increase'];
                                     ?>
                                 </td>
                                 <td colspan="3"><?php if ($report_info['prev_record'])  echo $lastyeardawat[0]['friend']; ?></td>
