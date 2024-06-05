@@ -80,6 +80,7 @@ class Dawat extends MY_Controller
         $this->data['dawatgroupsend'] = $this->getdawatgroupsendSum($report_type, $report_start, $report_end, $branch_id);
         $this->data['school_dawat_report'] = $this->getschool_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $this->data['madrasha_dawat_report'] = $this->getmadrasha_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        
         $this->data['online_dawat_report'] = $this->getonline_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         
         $this->data['college_dawat_report'] = $this->getcollege_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
