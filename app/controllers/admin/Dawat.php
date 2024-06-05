@@ -1377,6 +1377,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
         $param = array($report_start, $report_end);
         $madrasha_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_madrasha_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
+        $online_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_online_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
+        
         $dawatgroupsendinfo = $this->site->query_binding("SELECT * FROM sma_dawatgroupsend WHERE  date BETWEEN ? AND ? ", $param);
         $letgotovillageinfo = $this->site->query_binding("SELECT * FROM sma_letgotovillage WHERE  date BETWEEN ? AND ? ", $param);
         $school_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_school_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
@@ -1391,6 +1393,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
         return  array(
             "madrasha_dawat_reportinfo" => $madrasha_dawat_reportinfo,
+            "online_dawat_reportinfo" => $online_dawat_reportinfo,
             "dawatgroupsendinfo" => $dawatgroupsendinfo,
             "letgotovillageinfo" => $letgotovillageinfo,
             "school_dawat_reportinfo" => $school_dawat_reportinfo,
