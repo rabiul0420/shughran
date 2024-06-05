@@ -4788,11 +4788,13 @@ FROM `sma_manpower`  WHERE $where institution_type IS NOT NULL AND `orgstatus_id
         //  $this->sma->print_arrays( $this->data['detailinfo']['increase_outputinfo']);
 
 
-        if ($branch_id)
-            $this->page_construct('manpower/manpower_output_entry', $meta, $this->data, 'leftmenu/manpower');
-        else
-            $this->page_construct('manpower/manpower_output', $meta, $this->data, 'leftmenu/manpower');
-    }
+    //     if ($branch_id)
+    //         $this->page_construct('manpower/manpower_output_entry', $meta, $this->data, 'leftmenu/manpower');
+    //     else
+    //         $this->page_construct('manpower/manpower_output', $meta, $this->data, 'leftmenu/manpower');
+    //
+
+}
 
 
 

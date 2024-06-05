@@ -684,10 +684,10 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         //$this->data['m'] = 'manpowersummary';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Dawat Detail'));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
-        // if ($branch_id)
-        //     $this->page_construct('dawat/detail_entry', $meta, $this->data, 'leftmenu/dawat');
-        // else
-        //     $this->page_construct('dawat/detail', $meta, $this->data, 'leftmenu/dawat');
+        if ($branch_id)
+            $this->page_construct('dawat/detail_entry', $meta, $this->data, 'leftmenu/dawat');
+        else
+            $this->page_construct('dawat/detail', $meta, $this->data, 'leftmenu/dawat');
     }
 
     function detail_export($branch_id)
