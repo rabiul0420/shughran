@@ -57,6 +57,8 @@
 
                         echo  'DM' . $uposhakha->org_ward_id . 'DM';
                         $dtward[''] = lang('select') . ' ' . lang('সাংগঠনিক ওয়ার্ড');
+                       
+                       if($wards)
                         foreach ($wards as $ward_item)
                             $dtward[$ward_item->id] = $ward_item->thana_name;
 
