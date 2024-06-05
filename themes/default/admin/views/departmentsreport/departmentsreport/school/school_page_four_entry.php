@@ -48,7 +48,7 @@
                             <?php
                                 $pk = (isset($school_jsc_result['id']))?$school_jsc_result['id']:'';
                             ?>
-                             <?php $total_mot_examine = $total_mem_gpa_5 = $total_mem_a_grade = $total_mem_a_minus = $total_mem_b_grade = $total_mem_c_grade = $total_mem_d_grade = $total_sodosso = $total_all = 0;  ?>
+                             <?php $total_mot_examine = $total_mem_gpa_5 = $total_mem_a_grade = $total_mem_a_minus = $total_mem_b_grade = $total_mem_c_grade = $total_mem_d_grade = $total_sodosso = $total_all = $total_manobik = 0;  ?>
                             <tr>
                                 <td class="tg-y698 type_1">১</td>
                                 <td class="tg-y698 type_1">সদস্য</td>
