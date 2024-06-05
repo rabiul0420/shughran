@@ -4721,6 +4721,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         SUM(`science`) science,
         SUM(`business`) business,
         SUM(`arts`) arts,
+
         institution_type
         FROM `sma_manpower`  WHERE $where institution_type IS NOT NULL AND `orgstatus_id` IN (1,2,12) GROUP BY `institution_type` ");
 
