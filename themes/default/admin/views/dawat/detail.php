@@ -329,27 +329,27 @@ font: 18px SolaimanLipi, sans-serif;
 </tr>
 <tr style="height: 18px;">
 <td style="height: 18px; ">
-<?php  $madrasha_dawat_report =   isset($detailinfo['madrasha_dawat_reportinfo']) ? $detailinfo['madrasha_dawat_reportinfo'] : NULL ; ?>
- <?php  echo sum_detail($madrasha_dawat_report,'supporter_increase'); ?>
+<?php  $online_dawat_report =   isset($detailinfo['online_dawat_reportinfo']) ? $detailinfo['online_dawat_reportinfo'] : NULL ; ?>
+ <?php  echo sum_detail($online_dawat_report,'supporter_increase'); ?>
 </td>
-<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'friend_increase'); ?></td>
-<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'number_general_gather'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'avg_presence'); ?></td>
-<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'number_other_meeting'); ?></td>
-<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'other_avg'); ?></td>
-<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'card_booklet'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'porichiti'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'kishore'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'kishore_client_increase'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'kishore_eng'); ?></td>
-<td style="height: 18px; "><?php  echo sum_detail($madrasha_dawat_report,'kishore_eng_increase'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'chhatrasongbad'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'chhatrasongbad_increase'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'group_sent'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'supporter_org_increase'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'nonmuslim_supporter_increase'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'nonmuslim_friend_increase'); ?></td>
-<td style="height: 18px; " ><?php  echo sum_detail($madrasha_dawat_report,'ww_increase'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($online_dawat_report,'friend_increase'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($online_dawat_report,'number_general_gather'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'avg_presence'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($online_dawat_report,'number_other_meeting'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($online_dawat_report,'other_avg'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($online_dawat_report,'card_booklet'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'porichiti'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'kishore'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'kishore_client_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'kishore_eng'); ?></td>
+<td style="height: 18px; "><?php  echo sum_detail($online_dawat_report,'kishore_eng_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'chhatrasongbad'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'chhatrasongbad_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'group_sent'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'supporter_org_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'nonmuslim_supporter_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'nonmuslim_friend_increase'); ?></td>
+<td style="height: 18px; " ><?php  echo sum_detail($online_dawat_report,'ww_increase'); ?></td>
 
 </tr>
 <tr style="height: 18px;">
