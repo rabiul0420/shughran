@@ -44,19 +44,9 @@
                                     </a>
                                 </li>
 
-                                <li class="mm_transfer">
-                                    <a href="<?= admin_url('memberpending') ?>">
-                                        <i class="fa fa-dashboard"></i>
-                                        <span class="text">সদস্য ঘাটতি পেন্ডিং তালিকা  <?=isset($manpowerstdout) ? '('.$manpowerstdout.')': ''?></span>
-                                    </a>
-                                </li>
+                               
 
-                                <li class="mm_transfer">
-                                    <a href="<?= admin_url('membercandidatepending') ?>">
-                                        <i class="fa fa-dashboard"></i>
-                                        <span class="text">সদস্যপ্রার্থী ঘাটতি পেন্ডিং তালিকা  <?=isset($membercandidatepending) ? '('.$membercandidatepending.')': ''?></span>
-                                    </a>
-                                </li>
+                                
 
                                 <li class="mm_transfer">
                                     <a href="<?= admin_url('manpowertransfer/add') ?>">

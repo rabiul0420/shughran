@@ -12,7 +12,7 @@
 
     function thana_type(type){
 
-        return type=='Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠানিক';
+        return type=='Residential' ? 'আবাসিক' : (  type=='Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
     }
 
     function yes_no(is_ideal_thana){
@@ -50,7 +50,7 @@ oTable3 = $('#PRData5').dataTable({
         return nRow;
     },
     "aoColumns": [
-        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, null, null, {  "mRender": yes_no}, null ,{"bSortable": false},{"bSortable": false}
+        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, null, null, {  "mRender": yes_no}, {"bSortable": false},{"bSortable": false}
     ]
 }).fnSetFilteringDelay().dtFilter([
     {column_number: 1, filter_default_label: "[<?='শাখা';?>]", filter_type: "text", data: []},
@@ -87,13 +87,15 @@ oTable3 = $('#PRData5').dataTable({
         <div class="box-icon">
             <ul class="btn-tasks">
 			
+
+            <?php if($branch_id != null) {?>
               <li class="dropdown">
-                    <a href="<?= admin_url('organization/addthana/1') ?>">
+                    <a href="<?= admin_url('organization/addthana/'.$branch_id.'/1') ?>">
                         <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' থানা বৃদ্ধি করুন' ?></i>
                     </a>
                      
                 </li>
-		 
+                <?php } ?>
 			
 			 
                
@@ -138,7 +140,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th>উপশাখা  </th>
                             <th>আদর্শ থানা </th>
                             
-                            <th><?= 'নোট'  ?></th>
+                            
                             <th></th>
                             <th></th>
                         </tr>
@@ -166,7 +168,7 @@ oTable3 = $('#PRData5').dataTable({
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
+                           
                             <th></th>
                     </table>
                 </div>

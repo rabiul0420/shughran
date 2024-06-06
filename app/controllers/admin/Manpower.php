@@ -163,6 +163,7 @@ class Manpower extends MY_Controller
         $this->data['membercandidatelog'] = $this->manPowerLog('membercandidatelog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
         $this->data['assolog'] = $this->manPowerLog('assolog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
         $this->data['workerlog'] = $this->manPowerLog('workerlog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
+        $this->data['assocandidatelog'] = $this->manPowerLog('assocandidatelog', $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info);
 
         $this->data['manpower_record'] = $this->getmanpower_summary($report_type['is_current'], $report_type['start'], $report_type['end'], $branch_id, $cal_type, $report_info, $report_type['last_half']);
 
@@ -179,7 +180,7 @@ class Manpower extends MY_Controller
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
 
 
-        //    $this->sma->print_arrays( $this->data['manpower_record']); 
+       // $this->sma->print_arrays( $this->data['assocandidatelog']); 
 
 
 
@@ -242,6 +243,19 @@ class Manpower extends MY_Controller
                     $this->db->where('branch_id', $branch_id);
                 $q = $this->db->get();
                 break;
+
+             case 'assocandidatelog':
+                    $this->db
+                        ->select("COUNT(id) as worker_number,process_id,in_out  ", FALSE)
+                        ->from('worker_decrease');
+                    $this->db->where('date BETWEEN "' . $start . '" and "' . $end . '"');
+                    $this->db->where('orgstatus_id',13);
+                    $this->db->group_by('in_out, process_id');
+                    if ($branch_id)
+                        $this->db->where('branch_id', $branch_id);
+                    $q = $this->db->get();
+                    break;
+
         }
 
         if ($q->num_rows() > 0) {
@@ -1991,7 +2005,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-                $this->data['districts'] = $this->site->getAll('district');
+                $this->data['districts'] = $this->site->getDistrict();
                 $this->data['responsibilities'] = $this->site->getAll('responsibilities');
                 $this->data['countries'] = $this->site->getAll('countries');
                 $this->data['targets'] = $this->site->getAll('profession_target');
@@ -2445,7 +2459,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
 
 
 
-            $this->data['districts'] = $this->site->getAll('district');
+            $this->data['districts'] = $this->site->getDistrict();
             $this->data['responsibilities'] = $this->site->getAll('responsibilities');
             $this->data['targets'] = $this->site->getAll('profession_target');
             $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
@@ -4707,6 +4721,7 @@ from sma_manpower_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array(
         SUM(`science`) science,
         SUM(`business`) business,
         SUM(`arts`) arts,
+
         institution_type
         FROM `sma_manpower`  WHERE $where institution_type IS NOT NULL AND `orgstatus_id` IN (1,2,12) GROUP BY `institution_type` ");
 
@@ -5011,7 +5026,7 @@ FROM `sma_manpower_output` where   date BETWEEN ? AND ? ", array($report_start, 
                 // $sheet = $excel->getActiveSheet()->toArray(null,true,true,true);
 
 
-                $districts = $this->site->getAll('district');
+                $districts = $this->site->getDistrictnUpozilla();
                 $responsibilities = $this->site->getAll('responsibilities');
                 $countries = $this->site->getAll('countries');
                 $targets = $this->site->getAll('profession_target');

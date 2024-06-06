@@ -56,7 +56,7 @@ if (!empty($variants)) {
 
                 <?php
                 $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
-                echo admin_form_open_multipart("organization/addthana/3", $attrib)
+                echo admin_form_open_multipart("organization/addthana/".$branch_id."/3", $attrib)
                 ?>
 
                 <div class="col-md-6">
@@ -117,11 +117,11 @@ if (!empty($variants)) {
                     <div class="form-group hide_for_departmental hide_for_Institutional">
                         <?= lang("জেলা", "district"); ?>
                         <?php
-                        $dt[''] = lang('select') . ' ' . lang('district');
+                        $dist[''] = lang('select') . ' ' . lang('district');
                         foreach ($districts as $district) if ($district->parent_id == 0)
-                            $dt[$district->id] = $district->name;
+                            $dist[$district->id] = $district->name;
 
-                        echo form_dropdown('district', $dt,  '', 'id="district"  class="form-control select" style="width:100%;" ');
+                        echo form_dropdown('district', $dist,  '', 'id="district"  class="form-control select" style="width:100%;" ');
                         ?>
                     </div>
 
@@ -148,10 +148,10 @@ if (!empty($variants)) {
                 </div>
 
 
-                <div class="col-md-6 hide_for_departmental">
+                <div class="col-md-6">
 
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental">
                         <?= lang("শিক্ষাপ্রতিষ্ঠানের বিবরন", "educational_details"); ?>
                         <?php
                         foreach (['1' => 'শিক্ষাপ্রতিষ্ঠান ', '2' => 'কোচিং/প্রাইভেট সেন্টার', '3' => 'ট্রেনিং সেন্টার'] as $key => $type)
@@ -162,7 +162,7 @@ if (!empty($variants)) {
                     </div>
 
 
-                    <div class="">
+                    <div class="hide_for_departmental">
                         <div class="form-group">
                             <label for="institution_parent_id">ক্যাটাগরি </label>
                             <?php
@@ -231,7 +231,7 @@ if (!empty($variants)) {
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group hide_for_departmental">
                         <?= lang("কোন মানের উপশাখা", "unit_category"); ?>
                         <?php
                         foreach (['Strong' => 'মজবুত ', 'Weak' => 'দূর্বল', 'Inactive' => 'নিষ্ক্রিয়'] as $key => $type)
@@ -257,7 +257,7 @@ if (!empty($variants)) {
                                     $wh[$branch->id] = $branch->name;
                             }
 
-                            echo form_dropdown('branch_id', $wh, '', 'id="branch_id" class="form-control select" style="width:100%;" required="required"');
+                            echo form_dropdown('branch_id', $wh, $branch_id, 'id="branch_id" class="form-control select" style="width:100%;" required="required"');
                             ?>
                         </div>
 
@@ -343,7 +343,8 @@ if (!empty($variants)) {
                     url: "<?php echo admin_url('organization/getWardList'); ?>",
                     method: "GET",
                     data: {
-                        thana_id: thana_id
+                        thana_id: thana_id,
+                        branch_id: '<?=$branch_id?>'
                     },
                     dataType: 'json',
                     success: function(response) {
@@ -487,7 +488,8 @@ if (!empty($variants)) {
                     url: "<?php echo admin_url('organization/get_institutionlist'); ?>",
                     method: "GET",
                     data: {
-                        sub_category: sub_category
+                        sub_category: sub_category,
+                        branch_id: '<?=$branch_id?>'
                     },
                     dataType: 'json',
                     success: function(response) {

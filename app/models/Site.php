@@ -211,9 +211,17 @@ class Site extends CI_Model
         }
         return FALSE;
     }
-    public function getAllwards($thana_id)
+    public function getAllwards($thana_id, $level = null)
     {
-        $q = $this->db->get_where('thana', array('parent_id' => $thana_id));
+
+
+        if ($level)
+            $q = $this->db->get_where('thana', array('parent_id' => $thana_id,'level'=>$level));
+        else
+            $q = $this->db->get_where('thana', array('parent_id' => $thana_id));
+
+
+
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -233,6 +241,22 @@ class Site extends CI_Model
         }
         return FALSE;
     }
+
+    public function getThanaByBranch($branch_id, $level = 1)
+    {
+        $this->db->where('branch_id', $branch_id);
+        $this->db->where('level', $level);
+
+        $q = $this->db->get('thana');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
 
     public function getBranchByID($id)
     {
@@ -824,7 +848,17 @@ class Site extends CI_Model
     }
 
 
+    function deleteward($table, $where)
+    {
+        $this->db->where($where);
 
+        $this->db->delete($table);
+        if ($this->db->affected_rows() > 0) {
+
+            return TRUE;
+        }
+        return FALSE;
+    }
 
 
     public function getAll($table)
@@ -843,17 +877,63 @@ class Site extends CI_Model
         }
         return FALSE;
     }
+    public function getDistrict($level = 1, $parent_id = 0)
+    {
+
+        //$this->db->order_by('priority', 'Desc');
+        $this->db->where('level', $level);
+        $this->db->where('parent_id', $parent_id);
+        $q = $this->db->get('district');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
+    public function getUpozilla($parent_id = null)
+    {
+
+        //$this->db->order_by('priority', 'Desc');
+        $this->db->where('level', 2);
+        if ($parent_id != null)
+            $this->db->where('parent_id', $parent_id);
+        $q = $this->db->get('district');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
+    public function getDistrictnUpozilla()
+    {
+
+        //$this->db->order_by('priority', 'Desc');
+        $this->db->where('level <=', 2);
+
+        $q = $this->db->get('district');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
 
 
 
-
-
-    public function getAllThana($branch = null)
+    public function getAllThana($branch = null) //org thana
     {
 
 
-        if ($table == 'responsibilities')
-            $this->db->order_by('priority', 'Desc');
+        // if ($table == 'responsibilities')
+        //     $this->db->order_by('priority', 'Desc');
 
         $q = $this->db->get('thana');
         if ($q->num_rows() > 0) {
@@ -888,54 +968,53 @@ class Site extends CI_Model
 
 
 
-   
-        function check_confirm($branch_id, $date)
-        {
 
-            $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => date('Y', strtotime($date))), 'id desc', 1, 0);
+    function check_confirm($branch_id, $date)
+    {
 
-            $current_date = strtotime($date);
+        $entrytimeinfo = $this->site->getOneRecord('entry_settings', '*', array('year' => date('Y', strtotime($date))), 'id desc', 1, 0);
 
-            $annual_start = strtotime($entrytimeinfo->startdate_annual);
-            $annual_end = strtotime($entrytimeinfo->enddate_annual);
+        $current_date = strtotime($date);
 
-            $half_start = strtotime($entrytimeinfo->startdate_half);
-            $half_end = strtotime($entrytimeinfo->enddate_half);
+        $annual_start = strtotime($entrytimeinfo->startdate_annual);
+        $annual_end = strtotime($entrytimeinfo->enddate_annual);
 
-            $type =  ($current_date  >= $half_start && $current_date <= $half_end) ? 'half_yearly' : 'annual';
+        $half_start = strtotime($entrytimeinfo->startdate_half);
+        $half_end = strtotime($entrytimeinfo->enddate_half);
 
-            $year = $entrytimeinfo->year;
+        $type =  ($current_date  >= $half_start && $current_date <= $half_end) ? 'half_yearly' : 'annual';
 
-
-            $confirm = $this->site->getOneRecord('confirmreport', '*', array('branch_id' => $branch_id, 'year' => $entrytimeinfo->year, 'report_type' => $type), 'id desc', 1, 0);
-            //var_dump($confirm);
-
-            if ($confirm == false)
-                return true;
-            else
-                return false;
-        }
+        $year = $entrytimeinfo->year;
 
 
-        function allmembernumber($branch = null)
-        {
-            if ($branch)
-                return $this->getOneRecord('member', 'COUNT(id) as member', array('branch' => $branch, 'is_member_now' => 1));
-            else
-                return $this->getOneRecord('member', 'COUNT(id) as member', array('is_member_now' => 1));
-        }
+        $confirm = $this->site->getOneRecord('confirmreport', '*', array('branch_id' => $branch_id, 'year' => $entrytimeinfo->year, 'report_type' => $type), 'id desc', 1, 0);
+        //var_dump($confirm);
+
+        if ($confirm == false)
+            return true;
+        else
+            return false;
+    }
 
 
- 
+    function allmembernumber($branch = null)
+    {
+        if ($branch)
+            return $this->getOneRecord('member', 'COUNT(id) as member', array('branch' => $branch, 'is_member_now' => 1));
+        else
+            return $this->getOneRecord('member', 'COUNT(id) as member', array('is_member_now' => 1));
+    }
 
 
-        function update($table, $field1, $field2, $where)
-        {
 
-            $this->db->set($field1, $field2, FALSE);
 
-            $this->db->where($where);
-            $this->db->update($table);
-        }
-     
+
+    function update($table, $field1, $field2, $where)
+    {
+
+        $this->db->set($field1, $field2, FALSE);
+
+        $this->db->where($where);
+        $this->db->update($table);
+    }
 }

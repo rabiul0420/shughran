@@ -103,6 +103,9 @@
                 },
                 {
                     "bSortable": false
+                },
+                {
+                    "bSortable": false
                 }
             ]
         }).fnSetFilteringDelay().dtFilter([{
@@ -206,11 +209,14 @@
 
         <div class="box-icon">
             <ul class="btn-tasks">
+
+            <?php if($branch_id != null) {?>
                 <li class="dropdown">
-                    <a href="<?= admin_url('organization/addthana/3') ?>">
+                    <a href="<?= admin_url('organization/addthana/'.$branch_id.'/3') ?>">
                         <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' উপশাখা যোগ করুন' ?></i>
                     </a>
                 </li>
+                <?php } ?>
 
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
@@ -218,11 +224,11 @@
                             <i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("শাখা") ?>"></i>
                         </a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('organization/uposhakha_list') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
+                            <li><a href="<?= admin_url('organization/uposhakhalist') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('organization/uposhakha_list/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('organization/uposhakhalist/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -264,11 +270,12 @@
                                 <th><?= 'মন্তব্য' ?></th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="14" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                <td colspan="15" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                             </tr>
                         </tbody>
 
@@ -277,6 +284,7 @@
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkft" type="checkbox" name="check" />
                                 </th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

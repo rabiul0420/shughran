@@ -283,9 +283,16 @@ $(document).ready(function() {
     cssStyle();
 
 
-    $('select:not(.skip), .select').select2({minimumResultsForSearch: 7});
+    $('select:not(.skip), .select').select2({
+        minimumResultsForSearch: 7,
+        containerCssClass: function(e) { 
+            return $(e).attr('required') ? 'required' : '';
+          }
     
-     
+    });
+    
+    
+    $('#ward').select2({minimumResultsForSearch: 7, allowClear: true,placeholder: 'Select a ward'});
     
     
     $('#customer, #rcustomer, .ssr-customer').select2({

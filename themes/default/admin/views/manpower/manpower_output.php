@@ -29,8 +29,8 @@
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সকল জনশক্তির আউটপুট ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')';
-                                                            $branch_code = $branch->code; ?>
+        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সকল জনশক্তির আউটপুট ' . ' (' . (isset($branch_id) ? $branch->name : 'সকল শাখা') . ')';
+                                                            $branch_code = isset($branch->code) ? $branch->code : ''; ?>
 
 
 
@@ -289,7 +289,7 @@
                                 <td colspan="2"><?php echo $row ?  $row['hsc_alim'] : 0; ?></td>
 
                                 <td><?php echo $row ?  $row['department_position']  : 0; ?></td>
-                                <td> <?php echo $row ?  $row['position_private']  : 0; ?></td>
+                                <td> <?php echo $row ?  $row['department_position_private']  : 0; ?></td>
                                 <td><?php echo $row ?  $row['influential']  : 0; ?></td>
                                 <td colspan="2"><?php echo $row ?  $row['hc_science']  : 0; ?></td>
                                 <td colspan="3"><?php echo $row ?  $row['madrasha']  : 0; ?></td>

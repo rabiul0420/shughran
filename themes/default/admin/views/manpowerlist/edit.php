@@ -186,7 +186,7 @@
 
 
 
-
+ 
                         <div class="form-group all">
                             <?= lang("উপজেলা/থানা", "upazila"); ?>
 
@@ -194,12 +194,12 @@
                                 <option value="">--</option>
                                 <?php
 
-                                foreach ($districts as $district) if ($district->parent_id != 0) {
-                                    if ($manpower->upazila == $district->id)
-                                        echo '<option selected  value="' . $district->id . '" data-chained="' . $district->parent_id . '">' . $district->name . '</option>';
+                                foreach ($upozillas as $upozilla) if ($upozilla->parent_id != 0) {
+                                    if ($manpower->upazila == $upozilla->id)
+                                        echo '<option selected  value="' . $upozilla->id . '" data-chained="' . $upozilla->parent_id . '">' . $upozilla->name . '</option>';
                                     else
 
-                                        echo '<option  value="' . $district->id . '" data-chained="' . $district->parent_id . '">' . $district->name . '</option>';
+                                        echo '<option  value="' . $upozilla->id . '" data-chained="' . $upozilla->parent_id . '">' . $upozilla->name . '</option>';
                                 }
 
 
@@ -688,7 +688,7 @@
         var audio_success = new Audio('<?= $assets ?>sounds/sound2.mp3');
         var audio_error = new Audio('<?= $assets ?>sounds/sound3.mp3');
 
-        // var associatelog = '<?php echo  json_encode($associatelog); ?>';
+        // var associatelog = '<?php //echo  json_encode($associatelog); ?>';
 
 
         $.ajaxSetup({

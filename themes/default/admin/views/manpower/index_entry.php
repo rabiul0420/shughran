@@ -658,10 +658,18 @@
 							
 							$associate_candidate_cancel = sum_manpower($manpower_record,   'associate_candidate_cancel');
 							 
-							$associate_candidate_abroad_study = sum_manpower($manpower_record,  'associate_candidate_abroad_study');
-							$associate_candidate_abroad_job = sum_manpower($manpower_record,   'associate_candidate_abroad_job');
-							$associate_candidate_death = sum_manpower($manpower_record,  'associate_candidate_death');
-							$associate_candidate_martyr = sum_manpower($manpower_record,   'associate_candidate_martyr');
+							// $associate_candidate_abroad_study = sum_manpower($manpower_record,  'associate_candidate_abroad_study');
+							// $associate_candidate_abroad_job = sum_manpower($manpower_record,   'associate_candidate_abroad_job');
+							// $associate_candidate_death = sum_manpower($manpower_record,  'associate_candidate_death');
+							// $associate_candidate_martyr = sum_manpower($manpower_record,   'associate_candidate_martyr');
+
+							$associate_candidate_abroad_study = (!$assocandidatelog) ? 0 : calculate($assocandidatelog, 11,2, 'worker_number');
+							$associate_candidate_abroad_job = (!$assocandidatelog) ? 0 : calculate($assocandidatelog, 14,2, 'worker_number');
+							$associate_candidate_death = (!$assocandidatelog) ? 0 : calculate($assocandidatelog, 9,2, 'worker_number');
+							$associate_candidate_martyr = (!$assocandidatelog) ? 0 : calculate($assocandidatelog, 10,2, 'worker_number');
+							
+						
+
 							$associate_candidate_demotion = sum_manpower($manpower_record,   'associate_candidate_demotion');
 							$associate_candidate_improvement_d = $associate_improvement;
 							$total_associate_candidate_decrease = $associate_candidate_improvement_d + $associate_candidate_endstd  + $associate_candidate_transfer  + $associate_candidate_cancel  + $associate_candidate_abroad_study + $associate_candidate_abroad_job + $associate_candidate_death + $associate_candidate_martyr + $associate_candidate_demotion;
@@ -809,7 +817,7 @@
 									}
 									?>
 
-									<!-- <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_abroad_study" data-title="Enter"><?php echo $associate_candidate_abroad_study; ?></a> -->
+									<?php echo $associate_candidate_abroad_study; ?>
 
 								</td>
 								<td class="tg-0pky  ">
@@ -824,7 +832,7 @@
 									}
 									?>
 
-									<!-- <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_abroad_job" data-title="Enter"><?php echo $associate_candidate_abroad_job; ?></a> -->
+									<?php echo $associate_candidate_abroad_job; ?>
 
 
 
@@ -841,7 +849,7 @@
 									}
 									?>
 
-									<!-- <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_death" data-title="Enter"><?php echo $associate_candidate_death; ?></a> -->
+									<?php echo $associate_candidate_death; ?>
 
 
 
@@ -858,7 +866,7 @@
 									}
 									?>
 
-									<!-- <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="manpower_record" data-pk="<?php echo $pk; ?>" data-url="<?php echo admin_url('manpower/detailupdate'); ?>" data-name="associate_candidate_martyr" data-title="Enter"><?php echo $associate_candidate_martyr; ?></a> -->
+									<?php echo $associate_candidate_martyr; ?>
 
 
 
@@ -987,7 +995,7 @@
 								</td>
 								<td class="tg-0pky  type_7">
 									<?php
-									if (1)  echo ($worker_prev > 0) ? round(100 * $worker_improvement / $worker_improvement_target, 2) : 0;;
+									if (1)  echo ($worker_prev > 0 && $worker_improvement_target > 0) ? round(100 * $worker_improvement / $worker_improvement_target, 2) : 0;;
 									?>
 
 								</td>

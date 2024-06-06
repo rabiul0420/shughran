@@ -25,8 +25,10 @@
 
 <script>
     function ward_type(type) {
-        return type == 'Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠানিক';
+
+        return type == 'Residential' ? 'আবাসিক' : (type == 'Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
     }
+
 
     function yes_no(is_ideal_ward) {
         return is_ideal_ward == 1 ? 'Yes' : 'No';
@@ -48,6 +50,7 @@
             'bProcessing': true,
             'bServerSide': true,
             'sAjaxSource': '<?= admin_url('organization/getListward' . ($branch_id ? '/' . $branch_id : '')) ?>',
+            
             'fnServerData': function(sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -89,6 +92,10 @@
                 {
                     "bSortable": false
                 }
+                ,
+                {
+                    "bSortable": false
+                }
             ]
         }).fnSetFilteringDelay().dtFilter([{
                 column_number: 1,
@@ -119,11 +126,14 @@
 
         <div class="box-icon">
             <ul class="btn-tasks">
+
+            <?php if($branch_id != null) {?>
                 <li class="dropdown">
-                    <a href="<?= admin_url('organization/addthana/2') ?>">
+                    <a href="<?= admin_url('organization/addthana/'.$branch_id.'/2') ?>">
                         <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' ওয়ার্ড বৃদ্ধি করুন' ?></i>
                     </a>
                 </li>
+                <?php } ?>
 
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
@@ -156,7 +166,7 @@
                                 </th>
                                 <th><?= 'শাখা' ?></th>
                                 <th><?= 'ওয়ার্ডের নাম' ?></th>
-                                <th><?= 'প্রতিষ্ঠানের ধরন' ?></th>
+                                <th><?= 'সংগঠনের ধরন' ?></th>
                                 <th><?= 'সাংগঠনিক থানা' ?></th>
                                 <th><?= 'জেলা' ?></th>
                                 <th><?= 'উপজেলা' ?></th>
@@ -168,13 +178,15 @@
                                 <th><?= 'কর্মী' ?></th>
                                 <th><?= 'সমর্থক' ?></th>
                                 <th><?= 'মন্তব্য' ?></th>
+                                
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="14" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                <td colspan="15" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                             </tr>
                         </tbody>
 
@@ -183,6 +195,7 @@
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkft" type="checkbox" name="check" />
                                 </th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

@@ -326,13 +326,13 @@ $institution_row = institution_row($institution->id, $institution_number);
  
 //var_dump($institution_row );
  if($report_info['last_half'] != 1)
-echo $institution_row==null ? 0 :  $institution_row['prev_institution'];
+echo $institution_row == null || !is_array($institution_row) ? 0 :  $institution_row['prev_institution'];
 ?> 
 
 </td>
-<td class="type_2"> <?php if($report_info['last_half'] != 1) echo $institution_row==null ? 0 :  $institution_row['prev_institution']+$institution_row['increase']-$institution_row['decrease']; ?></td>
-<td class="type_3"><?php  echo $institution_row==null ? 0 : $institution_row['increase'];?></td>
-<td class="type_4"><?php  echo $institution_row==null ? 0 : $institution_row['decrease'];?></td>
+<td class="type_2"> <?php if($report_info['last_half'] != 1) echo $institution_row==null  || !is_array($institution_row) ? 0 :  $institution_row['prev_institution']+$institution_row['increase']-$institution_row['decrease']; ?></td>
+<td class="type_3"><?php  echo $institution_row==null  || !is_array($institution_row) ? 0 : $institution_row['increase'];?></td>
+<td class="type_4"><?php  echo $institution_row==null  || !is_array($institution_row) ? 0 : $institution_row['decrease'];?></td>
 
 
 <td class="type_5">

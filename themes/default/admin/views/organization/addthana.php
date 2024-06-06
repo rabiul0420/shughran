@@ -20,6 +20,9 @@
         padding: 2px;
         text-align: center;
     }
+    .select2-selection.required {
+   background-color: yellow !important;
+}
 </style>
 
 <style>
@@ -56,16 +59,34 @@ if (!empty($variants)) {
 
                 <?php
                 $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
-                echo admin_form_open_multipart("organization/addthana/1", $attrib)
+                echo admin_form_open_multipart("organization/addthana/".$branch_id."/1", $attrib)
                 ?>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <?php echo lang('বৃদ্ধির তারিখ', 'date'); ?>
                         <div class="controls">
-                            <?php echo form_input('date', '01/01/2015', 'class="form-control date" id="date" readonly required="required"'); ?>
+                            <?php echo form_input('date', '', 'class="form-control fixed_date" id="date" readonly required="required"'); ?>
                         </div>
                     </div>
+
+
+                    <div class="form-group all">
+                            <?= lang('থানা কোড', 'thana_code'); ?>
+
+
+                            <?php $tc = array();
+                            $tc[''] =  'থানা কোড';
+                            for ($i = 1; $i <= 60; $i++) {
+                                $tc[$i] =  $i;
+                            }
+
+                            $tc[100] =  100;
+
+                            echo form_dropdown('thana_code', $tc, (''), 'id="thana_code"  class="form-control select" required="required" style="width:100%;" ');
+                            ?>
+                        </div>
+
 
                     <div class="form-group">
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_name") ?>
@@ -231,7 +252,7 @@ if (!empty($variants)) {
 
 
 
-                        echo form_dropdown('branch_id', $wh, '', 'id="branch_id"  class="form-control select" style="width:100%;"  required="required" ');
+                        echo form_dropdown('branch_id', $wh, $branch_id, 'id="branch_id"  class="form-control select" style="width:100%;"  required="required" ');
                         ?>
                     </div>
 
@@ -313,7 +334,7 @@ if (!empty($variants)) {
 
 
 
-        $('#thana_id').change(function() {
+        $('#thana_id_tauhid').change(function() {
             var thana_id = $(this).val();
 
             if (thana_id) {
@@ -465,7 +486,8 @@ if (!empty($variants)) {
                     url: "<?php echo admin_url('organization/get_institutionlist'); ?>",
                     method: "GET",
                     data: {
-                        sub_category: sub_category
+                        sub_category: sub_category,
+                        branch_id: '<?=$branch_id?>'
                     },
                     dataType: 'json',
                     success: function(response) {

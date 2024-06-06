@@ -80,6 +80,9 @@ class Dawat extends MY_Controller
         $this->data['dawatgroupsend'] = $this->getdawatgroupsendSum($report_type, $report_start, $report_end, $branch_id);
         $this->data['school_dawat_report'] = $this->getschool_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $this->data['madrasha_dawat_report'] = $this->getmadrasha_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        
+        $this->data['online_dawat_report'] = $this->getonline_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        
         $this->data['college_dawat_report'] = $this->getcollege_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $this->data['university_dawat_report'] = $this->getuniversity_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $this->data['fortnight_dawat_report'] = $this->getfortnight_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
@@ -170,6 +173,8 @@ class Dawat extends MY_Controller
         $dawatgroupsend = $this->getdawatgroupsendSum($report_type, $report_start, $report_end, $branch_id);
         $school_dawat_report = $this->getschool_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $madrasha_dawat_report = $this->getmadrasha_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        $online_dawat_report = $this->getonline_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
+        
         $college_dawat_report = $this->getcollege_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $university_dawat_report = $this->getuniversity_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
         $fortnight_dawat_report = $this->getfortnight_dawat_reportSum($report_type, $report_start, $report_end, $branch_id);
@@ -547,6 +552,25 @@ from sma_madrasha_dawat_report where  date BETWEEN ? AND ? ", array($start_date,
 
 
 
+    function getonline_dawat_reportSum($report_type, $start_date, $end_date, $branch_id = NULL)
+    {
+
+        if ($branch_id)
+            $result =  $this->site->query_binding("SELECT 
+SUM(`supporter_increase`) as supporter_increase, SUM(`friend_increase`) as friend_increase , SUM(`number_general_gather`) as number_general_gather, SUM(`avg_presence`) as avg_presence, SUM(`number_other_meeting`) as number_other_meeting, SUM(`other_avg`) as other_avg, SUM(`card_booklet`) as card_booklet, SUM(`porichiti`) as porichiti, SUM(`kishore`) as kishore, SUM(`kishore_client_increase`) as kishore_client_increase, SUM(`kishore_eng`) as kishore_eng, SUM(`kishore_eng_increase`) as kishore_eng_increase, SUM(`chhatrasongbad`) as chhatrasongbad, SUM(`chhatrasongbad_increase`) as chhatrasongbad_increase, SUM(`group_sent`) as group_sent, SUM(`supporter_org_increase`) as supporter_org_increase, SUM(`nonmuslim_supporter_increase`) as nonmuslim_supporter_increase, SUM(`nonmuslim_friend_increase`) as nonmuslim_friend_increase, SUM(`ww_increase`) as  ww_increase 
+from sma_online_dawat_report where  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+
+        else
+            $result =  $this->site->query_binding("SELECT  
+SUM(`supporter_increase`) as supporter_increase, SUM(`friend_increase`) as friend_increase , SUM(`number_general_gather`) as number_general_gather, SUM(`avg_presence`) as avg_presence, SUM(`number_other_meeting`) as number_other_meeting, SUM(`other_avg`) as other_avg, SUM(`card_booklet`) as card_booklet, SUM(`porichiti`) as porichiti, SUM(`kishore`) as kishore, SUM(`kishore_client_increase`) as kishore_client_increase, SUM(`kishore_eng`) as kishore_eng, SUM(`kishore_eng_increase`) as kishore_eng_increase, SUM(`chhatrasongbad`) as chhatrasongbad, SUM(`chhatrasongbad_increase`) as chhatrasongbad_increase, SUM(`group_sent`) as group_sent, SUM(`supporter_org_increase`) as supporter_org_increase, SUM(`nonmuslim_supporter_increase`) as nonmuslim_supporter_increase, SUM(`nonmuslim_friend_increase`) as nonmuslim_friend_increase, SUM(`ww_increase`) as  ww_increase 
+from sma_online_dawat_report where  date BETWEEN ? AND ? ", array($start_date, $end_date));
+
+
+
+        return $result;
+    }
+
+    
     function getcollege_dawat_reportSum($report_type, $start_date, $end_date, $branch_id = NULL)
     {
 
@@ -1354,6 +1378,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
         $param = array($report_start, $report_end);
         $madrasha_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_madrasha_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
+        $online_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_online_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
+        
         $dawatgroupsendinfo = $this->site->query_binding("SELECT * FROM sma_dawatgroupsend WHERE  date BETWEEN ? AND ? ", $param);
         $letgotovillageinfo = $this->site->query_binding("SELECT * FROM sma_letgotovillage WHERE  date BETWEEN ? AND ? ", $param);
         $school_dawat_reportinfo = $this->site->query_binding("SELECT * FROM sma_school_dawat_report WHERE  date BETWEEN ? AND ? ", $param);
@@ -1368,6 +1394,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
         return  array(
             "madrasha_dawat_reportinfo" => $madrasha_dawat_reportinfo,
+            "online_dawat_reportinfo" => $online_dawat_reportinfo,
             "dawatgroupsendinfo" => $dawatgroupsendinfo,
             "letgotovillageinfo" => $letgotovillageinfo,
             "school_dawat_reportinfo" => $school_dawat_reportinfo,
@@ -1398,9 +1425,21 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
             $madrashainfo = $this->site->getOneRecord('madrasha_dawat_report', '*', array('report_type' =>  $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
+
+           // $this->sma->print_arrays($madrashainfo );
             if (!$madrashainfo) {
                 $this->site->insertData('madrasha_dawat_report', array('branch_id' => $branch_id, 'report_type' =>  $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
             }
+
+
+            $onlineinfo = $this->site->getOneRecord('online_dawat_report', '*', array('report_type' =>  $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+
+            // $this->sma->print_arrays($onlineinfo );
+             if (!$onlineinfo) {
+                 $this->site->insertData('madrasha_dawat_report', array('branch_id' => $branch_id, 'report_type' =>  $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+             }
+
 
 
             $dawatgroupsendinfo = $this->site->getOneRecord('dawatgroupsend', '*', array('report_type' =>  $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
@@ -1463,6 +1502,10 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $end = $report_end;
 
             $madrashainfo = $this->site->getOneRecord('madrasha_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
+            
+            $onlineinfo = $this->site->getOneRecord('online_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
+            
+            
             $dawatgroupsendinfo = $this->site->getOneRecord('dawatgroupsend', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $letgotovillageinfo = $this->site->getOneRecord('letgotovillage', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $school_dawat_reportinfo = $this->site->getOneRecord('school_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
@@ -1473,15 +1516,28 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
         } else if ($report_type && $report_type  == 'annual') {
 
             $param = array($branch_id, $report_start, $report_end);
+            
+            
             $result = $this->site->query_binding("SELECT * FROM sma_madrasha_dawat_report WHERE  branch_id = ? AND date BETWEEN ? AND ? ", $param);
-
-
             $final = array();
             array_walk_recursive($result, function ($item, $key) use (&$final) {
                 $final[$key] = isset($final[$key]) ?  $item + $final[$key] : $item;
             });
             $madrashainfo = (object)$final;
             $madrashainfo->id = 999999999999;
+
+
+
+            $result = $this->site->query_binding("SELECT * FROM sma_online_dawat_report WHERE  branch_id = ? AND date BETWEEN ? AND ? ", $param);
+            $final = array();
+            array_walk_recursive($result, function ($item, $key) use (&$final) {
+                $final[$key] = isset($final[$key]) ?  $item + $final[$key] : $item;
+            });
+            $onlineinfo = (object)$final;
+            $onlineinfo->id = 999999999999;
+
+
+
 
 
             $result = $this->site->query_binding("SELECT * FROM sma_dawatgroupsend WHERE  branch_id = ? AND date BETWEEN ? AND ? ", $param);
@@ -1561,6 +1617,8 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
             $end = $report_end;
 
             $madrashainfo = $this->site->getOneRecord('madrasha_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
+            $onlineinfo = $this->site->getOneRecord('online_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
+            
             $dawatgroupsendinfo = $this->site->getOneRecord('dawatgroupsend', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $letgotovillageinfo = $this->site->getOneRecord('letgotovillage', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
             $school_dawat_reportinfo = $this->site->getOneRecord('school_dawat_report', '*', array('branch_id' => $branch_id, 'date <= ' => $end, 'date >= ' => $start), 'id desc', 1, 0);
@@ -1580,6 +1638,7 @@ SUM(`number_went`) as number_went,SUM(`worker_communication`) as worker_communic
 
         return array(
             'madrashainfo' => $madrashainfo,
+            'onlineinfo' => $onlineinfo,
             'dawatgroupsendinfo' => $dawatgroupsendinfo,
             'letgotovillageinfo' => $letgotovillageinfo,
             'school_dawat_reportinfo' => $school_dawat_reportinfo,

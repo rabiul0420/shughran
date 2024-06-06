@@ -4,10 +4,10 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">&times;</i>
             </button>
-            <h4 class="modal-title" id="myModalLabel"><?php echo 'EDIT Thana'; ?></h4>
+            <h4 class="modal-title" id="myModalLabel"><?php echo 'EDIT Ward'; ?></h4>
         </div>
         <?php $attrib = array('data-toggle' => 'validator', 'role' => 'form');
-        echo admin_form_open_multipart("organization/editthana/" . $thana->id, $attrib); ?>
+        echo admin_form_open_multipart("organization/editward/" . $thana->id, $attrib); ?>
         <div class="modal-body">
             <p><?= lang('enter_info'); ?></p>
 
@@ -21,7 +21,7 @@
 
                     <div class="form-group">
 
-                        <label for="thana_name">সাংগঠনিক থানার নাম</label>
+                        <label for="thana_name">সাংগঠনিক ওয়ার্ডের  নাম</label>
                         <?php echo form_input('thana_name', $thana->thana_name, 'class="form-control" required="required" id="thana_name"'); ?>
                     </div>
 
@@ -35,22 +35,22 @@
                     </div>
                     <?php } ?>
 
-                    <div class="form-group all">
-                        <?= lang('থানা কোড', 'thana_code'); ?>
+                     
+                     
 
+                    <div class="form-group">
+                        <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_id"); ?>
+                        <?php
 
-                        <?php $tc = array();
-                        $tc[''] =  'থানা কোড';
-                        for ($i = 1; $i <= 60; $i++) {
-                            $tc[$i] =  $i;
-                        }
+                        echo  'DM'.$thana->org_thana_id.'DM';
+                        $dt[''] = lang('select') . ' ' . lang('থানা');
+                        foreach ($thanas as $thana_item)
+                            $dt[$thana_item->id] = $thana_item->thana_name;
 
-                        $tc[100] =  100;
-
-                        echo form_dropdown('thana_code', $tc, ($thana->thana_code ? $thana->thana_code : ''), 'id="thana_code"  class="form-control select" required="required" style="width:100%;" ');
+                        echo form_dropdown('thana_id', $dt,  array($thana->org_thana_id) , 'id="thana_id"  class="form-control select" style="width:100%;" required="required" ');
                         ?>
                     </div>
-
+                     
 
 
                     <div class="form-group">
@@ -65,6 +65,18 @@
                     </div>
 
 
+
+
+
+
+                    <div class="form-group">
+                        <?= lang('সদস্য সংখ্যা', 'member_number'); ?>
+                        <?= form_input('member_number', set_value('member_number', $thana->member_number), 'class="form-control tip" id="member_number" required="required" '); ?>
+                    </div>
+                    <div class="form-group">
+                        <?= lang('সাথী সংখ্যা', 'associate_number'); ?>
+                        <?= form_input('associate_number', set_value('associate_number', $thana->associate_number), 'class="form-control tip" id="associate_number"  required="required" '); ?>
+                    </div>
 
                      
                     <div class="form-group">
@@ -141,7 +153,7 @@
 
         </div>
         <div class="modal-footer">
-            <?php echo form_submit('edit_thana', 'Submit', 'class="btn btn-primary"'); ?>
+            <?php echo form_submit('edit_ward', 'Submit', 'class="btn btn-primary"'); ?>
         </div>
     </div>
     <?php echo form_close(); ?>
