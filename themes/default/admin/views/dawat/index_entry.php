@@ -169,7 +169,7 @@
                                     <?php echo $dawat_personal_n_group[0]['group_dawat_supporter']; ?>
                                 </td>
                                 <td><?php echo $dawatgroupsend[0]['supporter_increase']; ?></td>
-                                <td><?php echo $madrasha_dawat_report[0]['supporter_increase']; ?></td>
+                                <td><?php echo $online_dawat_report[0]['supporter_increase']; ?></td>
                                 <td><?php echo $college_dawat_report[0]['supporter_increase']; ?></td>
                                 <td><?php echo $university_dawat_report[0]['supporter_increase']; ?></td>
                                 <td colspan="2"><?php echo $fortnight_dawat_report[0]['supporter_increase']; ?></td>

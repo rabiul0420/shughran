@@ -924,26 +924,16 @@ class Others extends MY_Controller
 
 		// $this->sma->print_arrays($report_type_get);
 
-		$this->data['thanainfo_summary'] = $this->getthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
-		$this->data['idealthanainfo_summary'] = $this->getidealthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+		//$this->data['thanainfo_summary'] = $this->getthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+		//$this->data['idealthanainfo_summary'] = $this->getidealthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
-		$this->data['current_thana'] = $this->current_thana($branch_id);
-		$this->data['current_ideal_thana'] = $this->current_ideal_thana($branch_id);
+		//$this->data['current_thana'] = $this->current_thana($branch_id);
+		//$this->data['current_ideal_thana'] = $this->current_ideal_thana($branch_id);
 		//$this->sma->print_arrays($this->data['current_ideal_thana']);
 		$this->data['organizationinfo_summary'] = $this->getorganizationinfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+ 		$this->data['organizationinfo_summary_prev'] = $this->getorganizationinfo_summary_prev('annual', $report_type_get['last_year'], $branch_id);
 
-
-
-
-
-
-
-		$this->data['organizationinfo_summary_prev'] = $this->getorganizationinfo_summary_prev('annual', $report_type_get['last_year'], $branch_id);
-
-		$this->data['unit_increase_decrease'] = $this->unit_increase_decrease($report_type, $report_start, $report_end, $branch_id, $report_type_get);
-
-
-
+		//$this->data['unit_increase_decrease'] = $this->unit_increase_decrease($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
 
 
@@ -951,12 +941,13 @@ class Others extends MY_Controller
 		$meta = array('page_title' => 'organization info', 'bc' => $bc);
 
 
-		if ($branch_id) {
-
-
+		if ($branch_id)  
 			$this->page_construct('others/organizationinfo_entry', $meta, $this->data, 'leftmenu/organization');
-		} else
+		else
 			$this->page_construct('others/organizationinfo', $meta, $this->data, 'leftmenu/organization');
+	
+	
+	
 	}
 
 
@@ -1065,7 +1056,7 @@ class Others extends MY_Controller
 
 			if (!$organizationinfo_recordinfo) {
 
-				foreach ($organizationinfos as $organizationinfo)
+				foreach ($organizationinfos as $organizationinfo) if($organizationinfo->id> 4) 
 					$this->site->insertData('organizationinfo_record', array('organizationinfo_id' => $organizationinfo->id, 'branch_id' => $branch_id, 'report_type' => $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
 			}
 		}
