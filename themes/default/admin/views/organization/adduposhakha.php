@@ -242,7 +242,7 @@ if (!empty($variants)) {
                     </div>
 
 
-                                            <div class="form-group">
+                        <div class="form-group">
                             <?= lang("শাখা", "branch"); ?>
                             <?php
                             $wh[''] = lang('select') . ' ' . lang('branch');
