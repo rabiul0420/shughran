@@ -274,6 +274,8 @@
                                     <td colspan="2"><?php echo $increase; ?></td>
                                     <td colspan="2"><?php echo $decrease; ?></td>
 
+                                    
+
 
                                     <td><?php if ($report_info['prev_record'])   echo $prev2; ?></td>
                                     <td colspan="2"><?php if ($report_info['prev_record'])   echo $prev2 + $increase2 - $decrease2; ?></td>
