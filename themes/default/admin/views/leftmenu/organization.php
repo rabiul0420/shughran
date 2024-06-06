@@ -147,6 +147,63 @@
                                                 <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা ঘাটতি তালিকা"; ?></span>
                                             </a>
                                         </li>
+
+
+                                        <li class="divider"></li>
+
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'wardlist')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/wardlist') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'ward_increase')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/increaselist_ward') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড বৃদ্ধি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'ward_decrease')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/decreaselist_ward') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড ঘাটতি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'uposhakhalist')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/uposhakhalist') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "উপশাখা তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'uposhakha_increase')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/increaselist_uposhakha') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "উপশাখা বৃদ্ধি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'uposhakha_decrease')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/decreaselist_uposhakha') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "উপশাখা ঘাটতি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
                                     </ul>
                                 </li>

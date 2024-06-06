@@ -232,7 +232,7 @@
 
                                         $prev =  sum_orginfo($organizationinfo_summary_prev, 'institutional', $organizationinfo->id);
                                         $prev2 =  sum_orginfo($organizationinfo_summary_prev, 'residential', $organizationinfo->id);
-                                        $prev2 =  sum_orginfo($organizationinfo_summary_prev, 'departmental', $organizationinfo->id);
+                                        $prev3 =  sum_orginfo($organizationinfo_summary_prev, 'departmental', $organizationinfo->id);
 
  
                                         $increase = $idealthanainfo_summary[0]['institutional_increase'];
