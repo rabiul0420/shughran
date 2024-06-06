@@ -223,7 +223,7 @@
                                 <td colspan="2"><?php echo $dawat_personal_n_group[0]['group_dawat_friend']; ?></td>
 
                                 <td><?php echo $dawatgroupsend[0]['friend_increase']; ?></td>
-                                <td><?php echo $madrasha_dawat_report[0]['friend_increase']; ?></td>
+                                <td><?php echo $online_dawat_report[0]['friend_increase']; ?></td>
                                 <td><?php echo $college_dawat_report[0]['friend_increase']; ?></td>
                                 <td><?php echo $university_dawat_report[0]['friend_increase']; ?></td>
                                 <td colspan="2"><?php echo $fortnight_dawat_report[0]['friend_increase']; ?></td>
@@ -275,7 +275,7 @@
                                 <td colspan="2"><a href="#" class="editable editable-click" data-type="number" data-table="dawat_summary" data-pk="<?php echo $detailinfo['dawat_summaryinfo']->id; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="group_dawat_non_sup" data-title="Enter"><?php echo $dawat_summary[0]['group_dawat_non_sup']; ?></a></td>
 
                                 <td><?php echo $dawatgroupsend[0]['nonmuslim_supporter_increase']; ?></td>
-                                <td><?php echo $madrasha_dawat_report[0]['nonmuslim_supporter_increase']; ?></td>
+                                <td><?php echo $online_dawat_report[0]['nonmuslim_supporter_increase']; ?></td>
                                 <td><?php echo $college_dawat_report[0]['nonmuslim_supporter_increase']; ?></td>
                                 <td><?php echo $university_dawat_report[0]['nonmuslim_supporter_increase']; ?></td>
                                 <td colspan="2"><?php echo $fortnight_dawat_report[0]['nonmuslim_supporter_increase']; ?></td>
@@ -317,7 +317,7 @@
                                 <td colspan="2"><a href="#" class="editable editable-click" data-type="number" data-table="dawat_summary" data-pk="<?php echo $detailinfo['dawat_summaryinfo']->id; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="group_dawat_non_friend" data-title="Enter"><?php echo $dawat_summary[0]['group_dawat_non_friend']; ?></a></td>
 
                                 <td><?php echo $dawatgroupsend[0]['nonmuslim_friend_increase']; ?></td>
-                                <td><?php echo $madrasha_dawat_report[0]['nonmuslim_friend_increase']; ?></td>
+                                <td><?php echo $online_dawat_report[0]['nonmuslim_friend_increase']; ?></td>
                                 <td><?php echo $college_dawat_report[0]['nonmuslim_friend_increase']; ?></td>
                                 <td><?php echo $university_dawat_report[0]['nonmuslim_friend_increase']; ?></td>
                                 <td colspan="2"><?php echo $fortnight_dawat_report[0]['nonmuslim_friend_increase']; ?></td>
@@ -356,7 +356,7 @@
                                 <td colspan="2"><a href="#" class="editable editable-click" data-type="number" data-table="dawat_summary" data-pk="<?php echo $detailinfo['dawat_summaryinfo']->id; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="group_dawat_ww" data-title="Enter"><?php echo $dawat_summary[0]['group_dawat_ww']; ?></a></td>
 
                                 <td><?php echo $dawatgroupsend[0]['ww_increase']; ?></td>
-                                <td><?php echo $madrasha_dawat_report[0]['ww_increase']; ?></td>
+                                <td><?php echo $online_dawat_report[0]['ww_increase']; ?></td>
                                 <td><?php echo $college_dawat_report[0]['ww_increase']; ?></td>
                                 <td><?php echo $university_dawat_report[0]['ww_increase']; ?></td>
                                 <td colspan="2"><?php echo $fortnight_dawat_report[0]['ww_increase']; ?></td>

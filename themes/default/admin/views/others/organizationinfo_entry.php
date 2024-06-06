@@ -146,48 +146,102 @@
                                 <td>ঘাটতি</td>
                             </tr>
 
-                            <?php foreach ($organizationinfos as $organizationinfo) { ?>
+
+                            <?php foreach ($organizationinfos as $organizationinfo)  if ($organizationinfo->id <= 4 && $organizationinfo->id != 2) { ?>
                                 <tr>
                                     <td colspan="2"><?php echo $organizationinfo->organizationinfo_name ?></td>
                                     <td>
                                         <?php
 
-                                        if ($organizationinfo->id != 1 && $organizationinfo->id != 2) {
-                                            $row_info = record_row($organizationinfo_summary, 'organizationinfo_id', $organizationinfo->id);
+                                        $level = $organizationinfo->id;
+                                        $prev =     sum_record($organizationinfo_summary_prev, 'institutional', $organizationinfo->id, 'organizationinfo_id');
+                                        $prev2 =  sum_record($organizationinfo_summary_prev, 'residential', $organizationinfo->id, 'organizationinfo_id');
+                                        $prev3 =  sum_record($organizationinfo_summary_prev, 'departmental', $organizationinfo->id, 'organizationinfo_id');
+
+                                        $increase = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Institutional', 'in_out' => 1, 'level' => $level], 'org_count');
+                                        $decrease = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Institutional', 'in_out' => 2, 'level' => $level], 'org_count');
+                                        $increase2 = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Residential', 'in_out' => 1, 'level' => $level], 'org_count');
+                                        $decrease2 = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Residential', 'in_out' => 2, 'level' => $level], 'org_count');
+                                        $increase3 = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Departmental', 'in_out' => 1, 'level' => $level], 'org_count');
+                                        $decrease3 = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Departmental', 'in_out' => 2, 'level' => $level], 'org_count');
+
+
+
+                                        //echo $prev;
+                                        if ($report_info['prev_record']) {
+                                            // $is_equal = '';
+
+                                            // if ($organizationinfo->id == 1)
+                                            //     $is_equal = ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 != $current_thana) ? 'red' : '';
+
+                                            // else if ($organizationinfo->id == 2)
+                                            //     $is_equal = ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 != $current_ideal_thana) ? 'red' : '';
+
+                                            //    echo '<span style="color:' . $is_equal . '">' . ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2) . '</span>';
+                                            echo  $prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 + $prev3 + $increase3 - $decrease3;
                                         }
 
 
-                                        //$prev =  sum_org($organizationinfo_summary_prev,'institutional',$organizationinfo->id); 
-                                        //$prev2 =  sum_org($organizationinfo_summary_prev,'residential',$organizationinfo->id); 
+                                        ?>
+                                    </td>
+
+
+
+                                    <td colspan="2"><?php echo $increase  + $increase2 + $increase3; ?></td>
+                                    <td><?php echo $decrease  + $decrease2 + $decrease3; ?></td>
+                                    <td><?php if ($report_info['prev_record'])    echo $prev; ?></td>
+                                    <td><?php if ($report_info['prev_record'])    echo $prev + $increase - $decrease; ?></td>
+                                    <td colspan="2"><?php echo $increase; ?></td>
+                                    <td colspan="2"><?php echo $decrease; ?></td>
+
+
+                                    <td><?php if ($report_info['prev_record'])   echo $prev2; ?></td>
+                                    <td colspan="2"><?php if ($report_info['prev_record'])   echo $prev2 + $increase2 - $decrease2; ?></td>
+
+
+                                    <td><?= $increase2 ?></td>
+                                    <td><?= $decrease2 ?></td>
+
+
+
+
+                                    <!-- bivagiyo -->
+
+                                    <td><?php if ($report_info['prev_record'])   echo $prev3; ?></td>
+
+
+                                    <td colspan="2"><?php if ($report_info['prev_record'])   echo $prev3 + $increase3 - $decrease3; ?></td>
+
+
+                                    <td><?= $increase3 ?></td>
+                                    <td><?= $decrease3 ?></td>
+
+                                </tr>
+                            <?php } ?>
+
+
+
+
+
+
+                            <?php foreach ($organizationinfos as $organizationinfo)  if ($organizationinfo->id == 2) { ?>
+                                <tr>
+                                    <td colspan="2"><?php echo $organizationinfo->organizationinfo_name ?></td>
+                                    <td>
+                                        <?php
 
                                         $prev =  sum_orginfo($organizationinfo_summary_prev, 'institutional', $organizationinfo->id);
                                         $prev2 =  sum_orginfo($organizationinfo_summary_prev, 'residential', $organizationinfo->id);
+                                        $prev2 =  sum_orginfo($organizationinfo_summary_prev, 'departmental', $organizationinfo->id);
 
+ 
+                                        $increase = $idealthanainfo_summary[0]['institutional_increase'];
+                                        $decrease = $idealthanainfo_summary[0]['institutional_decrease'];
+                                        $increase2 = $idealthanainfo_summary[0]['residential_increase'];
+                                        $decrease2 = $idealthanainfo_summary[0]['residential_decrease'];
+                                        $increase3 = $idealthanainfo_summary[0]['departmental_increase'];
+                                        $decrease3 = $idealthanainfo_summary[0]['departmental_decrease'];
 
-
-                                        if ($organizationinfo->id == 1) {
-                                            $increase = $thanainfo_summary[0]['institutional_increase'];
-                                            $decrease = $thanainfo_summary[0]['institutional_decrease'];
-                                            $increase2 = $thanainfo_summary[0]['residential_increase'];
-                                            $decrease2 = $thanainfo_summary[0]['residential_decrease'];
-                                        } else if ($organizationinfo->id == 2) {
-
-
-                                            $increase = $idealthanainfo_summary[0]['institutional_increase'];
-                                            $decrease = $idealthanainfo_summary[0]['institutional_decrease'];
-                                            $increase2 = $idealthanainfo_summary[0]['residential_increase'];
-                                            $decrease2 = $idealthanainfo_summary[0]['residential_decrease'];
-                                        } else if ($organizationinfo->id == 4) {
-                                            $increase = isset($unit_increase_decrease[0]['unit_increase']) ? $unit_increase_decrease[0]['unit_increase'] : 0;
-                                            $decrease = isset($unit_increase_decrease[0]['unit_decrease']) ? $unit_increase_decrease[0]['unit_decrease'] : 0;
-                                            $increase2 = $row_info['residential_increase'];
-                                            $decrease2 = $row_info['residential_decrease'];
-                                        } else {
-                                            $increase = $row_info['institutional_increase'];
-                                            $decrease = $row_info['institutional_decrease'];
-                                            $increase2 = $row_info['residential_increase'];
-                                            $decrease2 = $row_info['residential_decrease'];
-                                        }
 
 
 
@@ -201,13 +255,88 @@
                                         if ($report_info['prev_record']) {
                                             $is_equal = '';
 
-                                            if ($organizationinfo->id == 1)
-                                                $is_equal = ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 != $current_thana) ? 'red' : '';
 
-                                            else if ($organizationinfo->id == 2)
-                                                $is_equal = ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 != $current_ideal_thana) ? 'red' : '';
+                                            $is_equal = ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2+  $prev3 + $increase3 - $decrease3 != $current_ideal_thana) ? 'red' : '';
 
-                                            echo '<span style="color:' . $is_equal . '">' . ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2) . '</span>';
+                                            echo '<span style="color:' . $is_equal . '">' . ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2+ $prev3 + $increase3 - $decrease3) . '</span>';
+                                        }
+
+
+                                        ?>
+                                    </td>
+
+
+                                    <td colspan="2"><?php echo $increase  + $increase2+ $increase3; ?></td>
+                                    <td><?php echo $decrease  + $decrease2+ $decrease3; ?></td>
+
+                                    <td><?php if ($report_info['prev_record'])    echo $prev; ?></td>
+                                    <td><?php if ($report_info['prev_record'])    echo $prev + $increase - $decrease; ?></td>
+                                    <td colspan="2"><?php echo $increase; ?></td>
+                                    <td colspan="2"><?php echo $decrease; ?></td>
+
+
+                                    <td><?php if ($report_info['prev_record'])   echo $prev2; ?></td>
+                                    <td colspan="2"><?php if ($report_info['prev_record'])   echo $prev2 + $increase2 - $decrease2; ?></td>
+                                    <td><?= $increase2 ?></td>
+                                    <td><?= $decrease2 ?></td>
+
+
+
+
+                                    <!-- bivagiyo -->
+                                    <td><?php if ($report_info['prev_record'])   echo $prev3; ?></td>
+                                    <td colspan="2"><?php if ($report_info['prev_record'])   echo $prev3 + $increase3 - $decrease3; ?></td>
+                                    <td><?= $increase3 ?></td>
+                                    <td><?= $decrease3 ?></td>
+
+                                </tr>
+                            <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+                            <?php foreach ($organizationinfos as $organizationinfo)  if ($organizationinfo->id > 4) { ?>
+                                <tr>
+                                    <td colspan="2"><?php echo $organizationinfo->organizationinfo_name ?></td>
+                                    <td>
+                                        <?php
+
+
+                                        $row_info = record_row($organizationinfo_summary, 'organizationinfo_id', $organizationinfo->id);
+                                        $prev =  sum_orginfo($organizationinfo_summary_prev, 'institutional', $organizationinfo->id);
+                                        $prev2 =  sum_orginfo($organizationinfo_summary_prev, 'residential', $organizationinfo->id);
+                                        $prev3 =  sum_orginfo($organizationinfo_summary_prev, 'departmental', $organizationinfo->id);
+
+
+                                        $increase = $row_info['institutional_increase'];
+                                        $decrease = $row_info['institutional_decrease'];
+                                        $increase2 = $row_info['residential_increase'];
+                                        $decrease2 = $row_info['residential_decrease'];
+                                        $increase3 = $row_info['departmental_increase'];
+                                        $decrease3 = $row_info['departmental_decrease'];
+
+
+                                        //echo $prev;
+                                        if ($report_info['prev_record']) {
+                                            // $is_equal = '';
+
+                                            // if ($organizationinfo->id == 1)
+                                            //     $is_equal = ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 != $current_thana) ? 'red' : '';
+
+                                            // else if ($organizationinfo->id == 2)
+                                            //     $is_equal = ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 != $current_ideal_thana) ? 'red' : '';
+
+                                            // echo '<span style="color:' . $is_equal . '">' . ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2) . '</span>';
+
+                                            echo $prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 + $prev3 + $increase3 - $decrease3;
                                         }
 
 
@@ -216,76 +345,67 @@
 
 
 
-                                    <td colspan="2"><?php echo $increase  + $increase2; ?></td>
-                                    <td><?php echo $decrease  + $decrease2; ?></td>
+                                    <td colspan="2"><?php echo $increase  + $increase2 + $increase3; ?></td>
+                                    <td><?php echo $decrease  + $decrease2 + $decrease3; ?></td>
                                     <td><?php if ($report_info['prev_record'])    echo $prev; ?></td>
                                     <td><?php if ($report_info['prev_record'])    echo $prev + $increase - $decrease; ?></td>
+                                    <td colspan="2">
+                                        <a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="institutional_increase" data-title="Enter"><?php echo $row_info['institutional_increase']; ?></a>
+                                    </td>
+                                    <td colspan="2">
+                                        <a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="institutional_decrease" data-title="Enter"><?php echo $row_info['institutional_decrease']; ?></a>
+                                    </td>
 
 
-                                    <?php if ($organizationinfo->id == 1 || $organizationinfo->id == 2) { ?>
 
-                                        <td colspan="2"><?php echo $increase; ?></td>
-                                        <td colspan="2"><?php echo $decrease; ?></td>
-                                    <?php  } else if ($organizationinfo->id == 4) { ?>
-
-                                        <td colspan="2"><?php echo $increase; ?></td>
-                                        <td colspan="2"><?php echo $decrease; ?></td>
-                                    <?php  } else { ?>
-
-                                        <td colspan="2">
-                                            <a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="institutional_increase" data-title="Enter"><?php echo $row_info['institutional_increase']; ?></a>
-                                        </td>
-                                        <td colspan="2">
-                                            <a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="institutional_decrease" data-title="Enter"><?php echo $row_info['institutional_decrease']; ?></a>
-                                        </td>
-
-
-                                    <?php  }  ?>
 
                                     <td><?php if ($report_info['prev_record'])   echo $prev2; ?></td>
                                     <td colspan="2"><?php if ($report_info['prev_record'])   echo $prev2 + $increase2 - $decrease2; ?></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="residential_increase" data-title="Enter"><?php echo $row_info['residential_increase']; ?></a>
+                                    </td>
+                                    <td><a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="residential_decrease" data-title="Enter"><?php echo $row_info['residential_decrease']; ?></a>
+                                    </td>
 
-
-
-                                    <?php if ($organizationinfo->id == 1 || $organizationinfo->id == 2) { ?>
-                                        <td><?= $increase2 ?></td>
-                                        <td><?= $decrease2 ?></td>
-                                    <?php  } else { ?>
-
-                                        <td><a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="residential_increase" data-title="Enter"><?php echo $row_info['residential_increase']; ?></a>
-                                        </td>
-                                        <td><a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="residential_decrease" data-title="Enter"><?php echo $row_info['residential_decrease']; ?></a>
-                                        </td>
-                                    <?php  } ?>
 
 
 
                                     <!-- bivagiyo -->
+                                    <td><?php if ($report_info['prev_record'])   echo $prev3; ?></td>
+                                    <td colspan="2"><?php if ($report_info['prev_record'])   echo $prev3 + $increase3 - $decrease3; ?></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="departmental_increase" data-title="Enter"><?php echo $row_info['departmental_increase']; ?></a>
+                                    </td>
+                                    <td><a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="departmental_decrease" data-title="Enter"><?php echo $row_info['departmental_decrease']; ?></a>
+                                    </td>
 
-
-
-
-                                    <td><?php if ($report_info['prev_record'])   echo $prev2; ?></td>
-
-
-                                    <td colspan="2"><?php if ($report_info['prev_record'])   echo $prev2 + $increase2 - $decrease2; ?></td>
-
-
-                                    <?php if ($organizationinfo->id == 1 || $organizationinfo->id == 2) { ?>
-                                        <td><?= $increase2 ?></td>
-                                        <td><?= $decrease2 ?></td>
-                                    <?php  } else { ?>
-
-                                        <td><a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="residential_increase" data-title="Enter"><?php echo $row_info['residential_increase']; ?></a>
-                                        </td>
-                                        <td><a href="#" class="editable editable-click" data-type="number" data-table="organizationinfo_record" data-pk="<?php echo $row_info['id']; ?>" data-url="<?php echo admin_url('organization/detailupdate'); ?>" data-name="residential_decrease" data-title="Enter"><?php echo $row_info['residential_decrease']; ?></a>
-                                        </td>
-                                    <?php  } ?>
 
 
 
                                 </tr>
                             <?php } ?>
+
+
+
+
+
+
+
+
+
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </tbody>
                     </table>
 
