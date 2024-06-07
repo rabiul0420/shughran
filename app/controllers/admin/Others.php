@@ -1025,10 +1025,14 @@ class Others extends MY_Controller
 	//	select  count(id),  org_type,in_out,`level` from `sma_thana` where is_pending = 2 group by org_type, in_out, `level`
  
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT count(id) org_count , org_type,in_out,`level`  from sma_thana WHERE   branch_id = ? AND date BETWEEN ? AND ? group by org_type, in_out, `level`", array($branch_id, $start_date, $end_date));
-
+			$result =  $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
+			FROM sma_thana_log LEFT JOIN sma_thana ON sma_thana.id = sma_thana_log.thana_id
+			 WHERE  branch_id = ? AND sma_thana_log.`date` BETWEEN ? AND ?  GROUP BY org_type, sma_thana_log.in_out, sma_thana_log.`level`", array($branch_id, $start_date, $end_date));
+			
 		else
-			$result =  $this->site->query_binding("SELECT  count(id) org_count , org_type,in_out,`level`  from sma_thana WHERE   date BETWEEN ? AND ? group by org_type, in_out, `level` ", array($start_date, $end_date));
+			$result =  $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
+			FROM sma_thana_log LEFT JOIN sma_thana ON sma_thana.id = sma_thana_log.thana_id
+			 WHERE sma_thana_log.`date` BETWEEN ? AND ?  GROUP BY org_type, sma_thana_log.in_out, sma_thana_log.`level`", array($start_date, $end_date));
  
 		return $result;
 	}
