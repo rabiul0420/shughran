@@ -1027,7 +1027,7 @@ class Others extends MY_Controller
 		if ($branch_id)
 			$result =  $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
 			FROM sma_thana_log LEFT JOIN sma_thana ON sma_thana.id = sma_thana_log.thana_id
-			 WHERE  branch_id = ? AND sma_thana_log.`date` BETWEEN ? AND ?  GROUP BY org_type, sma_thana_log.in_out, sma_thana_log.`level`", array($branch_id, $start_date, $end_date));
+			 WHERE  sma_thana.branch_id = ? AND sma_thana_log.`date` BETWEEN ? AND ?  GROUP BY org_type, sma_thana_log.in_out, sma_thana_log.`level`", array($branch_id, $start_date, $end_date));
 			
 		else
 			$result =  $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
