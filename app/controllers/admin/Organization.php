@@ -6097,24 +6097,23 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function data_import()
     {
 
-        $ward =  $this->site->query('SELECT `date`,branch_id,id,org_thana_id FROM `sma_thana` WHERE `level` = 2 AND id NOT IN ( SELECT group_concat(thana_id) FROM `sma_thana_log` WHERE `level` = 2)
-
-');
+        $ward =  $this->site->query('select  sma_thana.id  , sma_thana.org_ward_id, sma_thana.level from sma_thana left join sma_thana_log on sma_thana_log.thana_id = sma_thana.id where  sma_thana.org_ward_id is not null AND  sma_thana_log.org_ward_id is null  AND sma_thana_log.`level` = 3 AND is_new =1 limit ');
 
         foreach ($ward as $row) {
 
             
             $data = [
-                'date' => $row['date'],
-                'level' => 2,
-                'branch_id' =>  $row['branch_id'],
-                'thana_id' =>  $row['id'],
-                'org_thana_id' =>  $row['org_thana_id'],
-                'in_out' => 1,
-                'is_new'=>1
+                //'date' => $row['date'],
+                //'level' => 2,
+                //'branch_id' =>  $row['branch_id'],
+                //'thana_id' =>  $row['id'],
+                //'org_thana_id' =>  $row['org_thana_id'],
+                'org_ward_id' =>  $row['org_ward_id']
+               // 'in_out' => 1,
+                //'is_new'=>1
             ];
 
-            
+            $this->site->updateData('thana_log', $data, array('thana_id' =>$row['id'], 'level'=> 3));
             //  $this->site->insertData('thana_log', $data);
             // echo "Name=>'', zone_type => 2, Level=>4, Parent_id => " . $row['id'] . '<br/>';
 
