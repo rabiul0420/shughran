@@ -187,6 +187,14 @@
 
 
 
+                                                <li id="system_settings_zones">
+                                                    <a href="<?= admin_url('system_settings/zones') ?>">
+                                                        <i class="fa fa-folder-open"></i><span class="text"> <?= lang('zones'); ?></span>
+                                                    </a>
+                                                </li>
+
+
+
                                                 <li id="system_settings_categories">
                                                     <a href="<?= admin_url('system_settings/categories') ?>">
                                                         <i class="fa fa-folder-open"></i><span class="text"> <?= lang('categories'); ?></span>

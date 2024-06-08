@@ -3811,9 +3811,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         if ($thana_id && is_numeric($thana_id)) {
 
             if ($branch_id)
-                $wards = $this->db->where('parent_id', $thana_id)->where('branch_id', $branch_id)->get('thana')->result();
+                $wards = $this->db->where('org_thana_id', $thana_id)->where('level', 2)->where('branch_id', $branch_id)->get('thana')->result();
             else
-                $wards = $this->db->where('parent_id', $thana_id)->get('thana')->result();
+                $wards = $this->db->where('org_thana_id', $thana_id)->where('level', 2)->get('thana')->result();
 
 
             echo json_encode($wards);
