@@ -6097,7 +6097,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function data_import()
     {
 
-        $uposhakha =  $this->site->query('SELECT `date`,branch_id,id FROM `sma_thana` WHERE `level` = 2 AND id NOT IN ( SELECT group_concat(thana_id) FROM `sma_thana_log` WHERE `level` = 2)
+        $uposhakha =  $this->site->query('SELECT `date`,branch_id,id,org_thana_id FROM `sma_thana` WHERE `level` = 3 AND id NOT IN ( SELECT group_concat(thana_id) FROM `sma_thana_log` WHERE `level` = 3)
 
 ');
 
@@ -6106,10 +6106,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             
             $data = [
                 'date' => $row['date'],
-                'level' => 2,
+                'level' => 3,
                 'branch_id' =>  $row['branch_id'],
                 'thana_id' =>  $row['id'],
-                //'thana_id' =>  $row['branch_id'],
+                'org_thana_id' =>  $row['org_thana_id'],
                 'in_out' => 1,
                 'is_new'=>1
             ];
