@@ -6115,7 +6115,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             ];
 
             
-              $this->site->insertData('thana_log', $data);
+            //  $this->site->insertData('thana_log', $data);
             // echo "Name=>'', zone_type => 2, Level=>4, Parent_id => " . $row['id'] . '<br/>';
 
         }
