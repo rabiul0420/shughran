@@ -6097,7 +6097,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function data_import()
     {
 
-        $ward =  $this->site->query('select  sma_thana.id  , sma_thana.org_ward_id, sma_thana.level from sma_thana left join sma_thana_log on sma_thana_log.thana_id = sma_thana.id where  sma_thana.org_ward_id is not null AND  sma_thana_log.org_ward_id is null  AND sma_thana_log.`level` = 3 AND is_new =1 limit ');
+        $ward =  $this->site->query('select  sma_thana.id  , sma_thana.org_ward_id, sma_thana.level from sma_thana left join sma_thana_log on sma_thana_log.thana_id = sma_thana.id where  sma_thana.org_ward_id is not null AND  sma_thana_log.org_ward_id is null  AND sma_thana_log.`level` = 3 AND is_new =1 limit 1000');
 
         foreach ($ward as $row) {
 
