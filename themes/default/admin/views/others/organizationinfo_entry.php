@@ -153,7 +153,7 @@
                                     <td>
                                         <?php
 
-                                        $level = $organizationinfo->id;
+                                        $level = $organizationinfo->level;
                                         $prev =     sum_record($organizationinfo_summary_prev, 'institutional', $organizationinfo->id, 'organizationinfo_id');
                                         $prev2 =  sum_record($organizationinfo_summary_prev, 'residential', $organizationinfo->id, 'organizationinfo_id');
                                         $prev3 =  sum_record($organizationinfo_summary_prev, 'departmental', $organizationinfo->id, 'organizationinfo_id');
