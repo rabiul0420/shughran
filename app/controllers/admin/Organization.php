@@ -6097,7 +6097,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function data_import()
     {
 
-        $uposhakha =  $this->site->query('SELECT COUNT(id) FROM `sma_thana` WHERE `level` = 2 AND id NOT IN ( SELECT thana_id FROM `sma_thana_log` WHERE `level` = 2
+        $uposhakha =  $this->site->query('SELECT * FROM `sma_thana` WHERE `level` = 2 AND id NOT IN ( SELECT thana_id FROM `sma_thana_log` WHERE `level` = 2
 )');
 
         foreach ($uposhakha as $row) {
