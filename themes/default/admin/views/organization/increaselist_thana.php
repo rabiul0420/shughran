@@ -174,7 +174,7 @@
                         <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>
                     </a>
                 </li>
-
+ 
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("warehouses") ?>"></i></a>

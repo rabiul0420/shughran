@@ -106,7 +106,7 @@ oTable3 = $('#PRData5').dataTable({
 			
 			                 
                 <li>	
-                            <a href="<?= admin_url('organization/thanaexport/'.($branch_id ? '/'.$branch_id : '')) ?>" id="excel_export" data-action="export_excel">	
+                            <a href="<?= admin_url('organization/thanaexport'.($branch_id ? '/'.$branch_id : '')) ?>" id="excel_export" data-action="export_excel">	
                                 <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>	
                             </a> 	
                 </li>
