@@ -4727,7 +4727,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 //'unit_number' => $this->input->post('unit_number'),
                 // 'increase_in_current_session' => $this->input->post('increase_in_current_session'),
                 'note' => $this->input->post('note'),
-
+                'unit_category' => $this->input->post('unit_category'),
                 'update_by' => $this->session->userdata('user_id'),
                 'update_at' => date("Y-m-d H:i:s"),
                 'note' => $this->input->post('note')
@@ -6101,7 +6101,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         foreach ($ward as $row) {
 
-            
+
             $data = [
                 //'date' => $row['date'],
                 //'level' => 2,
@@ -6109,30 +6109,31 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 //'thana_id' =>  $row['id'],
                 //'org_thana_id' =>  $row['org_thana_id'],
                 'org_ward_id' =>  $row['org_ward_id']
-               // 'in_out' => 1,
+                // 'in_out' => 1,
                 //'is_new'=>1
             ];
 
-          //  $this->site->updateData('thana_log', $data, array('thana_id' =>$row['id'], 'level'=> 3));
+            //  $this->site->updateData('thana_log', $data, array('thana_id' =>$row['id'], 'level'=> 3));
             //  $this->site->insertData('thana_log', $data);
             // echo "Name=>'', zone_type => 2, Level=>4, Parent_id => " . $row['id'] . '<br/>';
 
         }
 
-       // $this->sma->print_arrays($data);
+        // $this->sma->print_arrays($data);
     }
 
 
-    function thana_type($type){
+    function thana_type($type)
+    {
 
-        return $type=='Residential' ? 'আবাসিক' : (  $type=='Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
+        return $type == 'Residential' ? 'আবাসিক' : ($type == 'Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
     }
 
 
 
-///////////////////////////////////////////////////////////////
-//////////////////Export///////////////////////////////////////
-/////////////////////////////////////////////////////////////// 
+    ///////////////////////////////////////////////////////////////
+    //////////////////Export///////////////////////////////////////
+    /////////////////////////////////////////////////////////////// 
 
     function thanaexport($branch_id = NULL)
     {
@@ -6140,14 +6141,14 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $this->sma->checkPermissions('index', TRUE);
- 
+
 
 
         if ((!$this->Owner || !$this->Admin) && !$branch_id) {
             // $user = $this->site->getUser();
             $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
         }
- 
+
         $report_type = $this->report_type();
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
@@ -6169,10 +6170,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->join('branches', 'branches.id=thana.branch_id', 'left')
                 ->from('thana')->where('`level`', 1)->where('`is_current`', 1);
         }
- 
 
-        
- 
+
+
+
 
 
 
@@ -6195,9 +6196,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
 
-            										
 
-            
+
+
             $this->excel->getActiveSheet()->setTitle('থানা তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'শাখা');
             $this->excel->getActiveSheet()->SetCellValue('B1', 'থানার নাম');
@@ -6212,7 +6213,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('I1', 'ওয়ার্ড');
             $this->excel->getActiveSheet()->SetCellValue('J1', 'উপশাখা');
 
-            $this->excel->getActiveSheet()->SetCellValue('K1', 'আদর্শ থানা'); 
+            $this->excel->getActiveSheet()->SetCellValue('K1', 'আদর্শ থানা');
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -6229,8 +6230,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->supporter_number);
                 $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->ward);
                 $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->unit);
-                $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->is_ideal_thana ==1 ?  'Yes' : 'No');
-                 
+                $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->is_ideal_thana == 1 ?  'Yes' : 'No');
+
                 $row++;
             }
             //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
@@ -6242,7 +6243,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
             $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
 
- 
+
             $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
             $this->excel->getActiveSheet()->getStyle('C2:K' . $row)->getAlignment()->setWrapText(true);
 
@@ -6254,5 +6255,4 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->session->set_flashdata('error', lang('nothing_found'));
         redirect($_SERVER["HTTP_REFERER"]);
     }
-
 }
