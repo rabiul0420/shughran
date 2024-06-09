@@ -95,10 +95,24 @@ oTable3 = $('#PRData5').dataTable({
                     </a>
                      
                 </li>
+
+
+              
+
+
+
+                
                 <?php } ?>
 			
-			 
-               
+			                 
+                <li>	
+                            <a href="<?= admin_url('organization/thanaexport/'.($branch_id ? '/'.$branch_id : '')) ?>" id="excel_export" data-action="export_excel">	
+                                <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>	
+                            </a> 	
+                </li>
+
+
+
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("শাখা") ?>"></i></a>
