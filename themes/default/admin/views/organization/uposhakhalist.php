@@ -217,6 +217,11 @@
                     </a>
                 </li>
                 <?php } ?>
+                <li>	
+                            <a href="<?= admin_url('organization/uposhakhaexport'.($branch_id ? '/'.$branch_id : '')) ?>" id="excel_export" data-action="export_excel">	
+                                <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>	
+                            </a> 	
+                </li>
 
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">

@@ -14,11 +14,11 @@
     $(document).ready(function() {
 
 
-        function thana_type(type){
+        function thana_type(type) {
 
-            return type=='Residential' ? 'আবাসিক' : (  type=='Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
-   
-}
+            return type == 'Residential' ? 'আবাসিক' : (type == 'Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
+
+        }
 
 
         oTable = $('#PRData').dataTable({
@@ -36,7 +36,7 @@
 
             'sAjaxSource': '<?= admin_url('organization/getListUposhakhaDecrease'  . ($branch_id ? '/' . $branch_id : '') . ($this->input->get('type') ? '?type=' . $this->input->get('type') : '') . ($this->input->get('year') ? '&year=' . $this->input->get('year') : '')) ?>',
 
-            
+
             'fnServerData': function(sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -60,16 +60,33 @@
                 return nRow;
             },
             "aoColumns": [
-                   null, null, null,  null, {  "mRender": thana_type},null,null,null,null,null
+                null, null, null, null, {
+                    "mRender": thana_type
+                },
+                null, null, null, null, null
             ]
-        }).fnSetFilteringDelay().dtFilter([
-            {column_number: 0, filter_default_label: "[<?=lang('name');?>]", filter_type: "text", data: []},
-            {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
-            {column_number: 2, filter_default_label: "[<?='branch';?>]", filter_type: "text", data: []},
-             
-             
-            
-            
+        }).fnSetFilteringDelay().dtFilter([{
+                column_number: 0,
+                filter_default_label: "[<?= lang('name'); ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 1,
+                filter_default_label: "[<?= lang('code'); ?>]",
+                filter_type: "text",
+                data: []
+            },
+            {
+                column_number: 2,
+                filter_default_label: "[<?= 'branch'; ?>]",
+                filter_type: "text",
+                data: []
+            },
+
+
+
+
         ], "footer");
 
     });
@@ -149,17 +166,21 @@
         <div class="box-icon">
             <ul class="btn-tasks">
 
-                 
-                
 
 
-                
+                <li>
+                    <a href="<?= admin_url('organization/uposhakhadecreaseexport' . ($branch_id ? '/' . $branch_id : '') . ($this->input->get('type') ?  '?type=' . $this->input->get('type') : '') . ($this->input->get('year') ?  '&year=' . $this->input->get('year') : '')) ?>" id="excel_export" data-action="export_excel">
+                        <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>
+                    </a>
+                </li>
+
+
 
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip" data-placement="left" title="<?= lang("warehouses") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('organization/decreaselist_ward' ) ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
+                            <li><a href="<?= admin_url('organization/decreaselist_ward') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
@@ -180,21 +201,21 @@
                 <div class="table-responsive">
                     <table id="PRData" class="table table-bordered table-condensed table-hover table-striped">
                         <thead>
-                        <tr class="primary">
-                             <th>উপশাখার নাম</th>
-                            <th><?= 'থানা' ?></th>
-                            <th><?= 'ওয়ার্ড' ?></th>
-                            
-                            
-							<th><?= "শাখা" ?></th>
-                            <th><?= 'ধরন' ?></th>
-                            <th><?= 'তারিখ' ?></th>
-                            <th><?= 'সদস্য' ?></th>
-                            <th><?= 'সাথী ' ?></th>
-                            <th><?= 'কর্মী ' ?></th>
-                            <th>সমর্থক </th>
-                         
-                            
+                            <tr class="primary">
+                                <th>উপশাখার নাম</th>
+                                <th><?= 'থানা' ?></th>
+                                <th><?= 'ওয়ার্ড' ?></th>
+
+
+                                <th><?= "শাখা" ?></th>
+                                <th><?= 'ধরন' ?></th>
+                                <th><?= 'তারিখ' ?></th>
+                                <th><?= 'সদস্য' ?></th>
+                                <th><?= 'সাথী ' ?></th>
+                                <th><?= 'কর্মী ' ?></th>
+                                <th>সমর্থক </th>
+
+
                         </thead>
                         <tbody>
                             <tr>
@@ -214,7 +235,7 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                               
+
                             </tr>
                         </tfoot>
                     </table>
