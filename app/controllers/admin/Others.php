@@ -924,39 +924,30 @@ class Others extends MY_Controller
 
 		// $this->sma->print_arrays($report_type_get);
 
-		$this->data['thanainfo_summary'] = $this->getthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+		//$this->data['thanainfo_summary'] = $this->getthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 		$this->data['idealthanainfo_summary'] = $this->getidealthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
-		$this->data['current_thana'] = $this->current_thana($branch_id);
+		//$this->data['current_thana'] = $this->current_thana($branch_id);
 		$this->data['current_ideal_thana'] = $this->current_ideal_thana($branch_id);
 		//$this->sma->print_arrays($this->data['current_ideal_thana']);
 		$this->data['organizationinfo_summary'] = $this->getorganizationinfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+ 		$this->data['organizationinfo_summary_prev'] = $this->getorganizationinfo_summary_prev('annual', $report_type_get['last_year'], $branch_id);
 
+		//$this->data['unit_increase_decrease'] = $this->unit_increase_decrease($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+		$this->data['org_thana_ward_unit'] = $this->org_thana_ward_unit($report_start, $report_end, $branch_id);
 
-
-
-
-
-
-		$this->data['organizationinfo_summary_prev'] = $this->getorganizationinfo_summary_prev('annual', $report_type_get['last_year'], $branch_id);
-
-		$this->data['unit_increase_decrease'] = $this->unit_increase_decrease($report_type, $report_start, $report_end, $branch_id, $report_type_get);
-
-
-
-
-
-
+		//$this->sma->print_arrays($this->data['org_thana_ward_unit']);
 		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Organization Info'));
 		$meta = array('page_title' => 'organization info', 'bc' => $bc);
 
 
-		if ($branch_id) {
-
-
+		if ($branch_id)  
 			$this->page_construct('others/organizationinfo_entry', $meta, $this->data, 'leftmenu/organization');
-		} else
+		else
 			$this->page_construct('others/organizationinfo', $meta, $this->data, 'leftmenu/organization');
+	
+	
+	
 	}
 
 
@@ -1029,6 +1020,24 @@ class Others extends MY_Controller
 
 
 
+	function org_thana_ward_unit($start_date, $end_date, $branch_id = NULL)
+	{
+	//	select  count(id),  org_type,in_out,`level` from `sma_thana` where is_pending = 2 group by org_type, in_out, `level`
+ 
+		if ($branch_id)
+			$result =  $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
+			FROM sma_thana_log LEFT JOIN sma_thana ON sma_thana.id = sma_thana_log.thana_id
+			 WHERE  sma_thana.branch_id = ? AND sma_thana_log.`date` BETWEEN ? AND ?  GROUP BY org_type, sma_thana_log.in_out, sma_thana_log.`level`", array($branch_id, $start_date, $end_date));
+			
+		else
+			$result =  $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
+			FROM sma_thana_log LEFT JOIN sma_thana ON sma_thana.id = sma_thana_log.thana_id
+			 WHERE sma_thana_log.`date` BETWEEN ? AND ?  GROUP BY org_type, sma_thana_log.in_out, sma_thana_log.`level`", array($start_date, $end_date));
+ 
+		return $result;
+	}
+
+	
 
 
 	function getorganizationinfo_summary_prev($report_type, $year, $branch_id = NULL)
@@ -1065,7 +1074,7 @@ class Others extends MY_Controller
 
 			if (!$organizationinfo_recordinfo) {
 
-				foreach ($organizationinfos as $organizationinfo)
+				foreach ($organizationinfos as $organizationinfo) if($organizationinfo->id> 4) 
 					$this->site->insertData('organizationinfo_record', array('organizationinfo_id' => $organizationinfo->id, 'branch_id' => $branch_id, 'report_type' => $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
 			}
 		}
@@ -1161,8 +1170,10 @@ class Others extends MY_Controller
 			$result =  $this->site->query_binding("select 
 			SUM( case WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_increase, 
 			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_increase, 
+			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Departmental' THEN 1 ELSE 0 END ) departmental_increase,
 			SUM( case WHEN sma_thana_ideal_log.in_out = 2 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_decrease, 
-			SUM( CASE WHEN sma_thana_ideal_log.in_out = 2 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_decrease 
+			SUM( CASE WHEN sma_thana_ideal_log.in_out = 2 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_decrease,
+			SUM( CASE WHEN sma_thana_ideal_log.in_out = 2 AND sma_thana.org_type = 'Departmental' THEN 1 ELSE 0 END ) departmental_decrease 
 			
 			from `sma_thana_ideal_log` left join `sma_thana` on sma_thana.id = sma_thana_ideal_log.thana_id 
 			where sma_thana.is_pending = 2 AND sma_thana_ideal_log.is_pending = 2  
@@ -1171,9 +1182,11 @@ class Others extends MY_Controller
 
 			$result =  $this->site->query_binding("select 
 			SUM( case WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_increase, 
-			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_increase, 
+			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_increase,
+			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Departmental' THEN 1 ELSE 0 END ) departmental_increase, 
 			SUM( case WHEN sma_thana_ideal_log.in_out = 2 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_decrease, 
-			SUM( CASE WHEN sma_thana_ideal_log.in_out = 2 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_decrease 
+			SUM( CASE WHEN sma_thana_ideal_log.in_out = 2 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_decrease, 
+			SUM( CASE WHEN sma_thana_ideal_log.in_out = 2 AND sma_thana.org_type = 'Departmental' THEN 1 ELSE 0 END ) departmental_decrease
 			
 			from `sma_thana_ideal_log` left join `sma_thana` on sma_thana.id = sma_thana_ideal_log.thana_id 
 			where sma_thana.is_pending = 2 AND sma_thana_ideal_log.is_pending = 2  

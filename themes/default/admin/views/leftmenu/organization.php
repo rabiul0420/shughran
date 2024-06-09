@@ -94,6 +94,119 @@
                                             </a>
                                         </li>
 
+                                    </ul>
+                                </li>
+
+
+                                <li class="mm_worker_decrease">
+                                    <a class="dropmenu" href="#">
+                                        <i class="fa fa-cog"></i><span class="text"> <?= 'থানা'; ?> </span>
+                                        <span class="chevron closed"></span>
+                                    </a>
+                                    <ul style="<?php echo ($this->uri->segment(2) == 'organization') ? 'display:block' : '' ?>">
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thanalist')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/thanalist') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thana_increase')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/increaselist_thana') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা বৃদ্ধি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thana_decrease')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/decreaselist_thana') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা ঘাটতি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'thana_pending')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/thana_pending') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "থানা পেন্ডিং তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'ideal_thana')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/ideal_thana') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'increaselist_ideal_thana')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/increaselist_ideal_thana') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা বৃদ্ধি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'decreaselist_ideal_thana')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/decreaselist_ideal_thana') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "আদর্শ থানা ঘাটতি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+
+                                        <li class="divider"></li>
+
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'wardlist')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/wardlist') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'ward_increase')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/increaselist_ward') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড বৃদ্ধি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'ward_decrease')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/decreaselist_ward') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "ওয়ার্ড ঘাটতি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'uposhakhalist')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/uposhakhalist') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "উপশাখা তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'uposhakha_increase')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/increaselist_uposhakha') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "উপশাখা বৃদ্ধি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+                                        <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == 'uposhakha_decrease')) ? 'active' : '' ?>">
+                                            <a href="<?= admin_url('organization/decreaselist_uposhakha') ?>">
+                                                <i class="fa fa-cogs"></i><span class="text"> <?= "উপশাখা ঘাটতি তালিকা"; ?></span>
+                                            </a>
+                                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+                                    </ul>
+                                </li>
 
 
 

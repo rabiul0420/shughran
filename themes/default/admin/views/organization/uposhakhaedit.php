@@ -83,6 +83,16 @@
                         ?>
                     </div>
 
+                    <div class="form-group hide_for_departmental">
+                        <?= lang("কোন মানের উপশাখা", "unit_category"); ?>
+                        <?php
+                        foreach (['Strong' => 'মজবুত ', 'Weak' => 'দূর্বল', 'Inactive' => 'নিষ্ক্রিয়'] as $key => $type)
+                            $unit_category[$key] = $type;
+
+                        echo form_dropdown('unit_category', $unit_category, $uposhakha->unit_category, 'id="unit_category"   class="form-control select" style="width:100%;" ');
+                        ?>
+                    </div>
+
 
 
                     <div class="form-group">

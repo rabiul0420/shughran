@@ -304,4 +304,20 @@ if(! function_exists('institution_row')) {
 
 
 
-
+if(! function_exists('getValueByMultipleKeys')) {
+function getValueByMultipleKeys($array, $conditions, $targetKey) {
+    foreach ($array as $item) {
+        $match = true;
+        foreach ($conditions as $key => $value) {
+            if (!isset($item[$key]) || $item[$key] != $value) {
+                $match = false;
+                break;
+            }
+        }
+        if ($match) {
+            return isset($item[$targetKey]) ? $item[$targetKey] : null;
+        }
+    }
+    return null; // Return null if no match found
+}
+}
