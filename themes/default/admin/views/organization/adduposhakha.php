@@ -146,7 +146,7 @@ if (!empty($variants)) {
 
 
                 </div>
-
+ 
 
                 <div class="col-md-6">
 
