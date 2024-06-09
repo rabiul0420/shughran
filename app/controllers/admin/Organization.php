@@ -6255,4 +6255,284 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->session->set_flashdata('error', lang('nothing_found'));
         redirect($_SERVER["HTTP_REFERER"]);
     }
+
+
+    function thanaincreaseexport($branch_id = NULL)
+    {
+
+
+
+        $this->sma->checkPermissions('index', TRUE);
+
+
+
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            // $user = $this->site->getUser();
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
+
+        $report_type = $this->report_type();
+
+        $type =  $this->input->get('type');
+
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+
+
+
+
+        $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+
+         
+
+
+        if ($branch_id) {
+
+            $this->db
+                ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,  v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, v3_associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_log');
+            $this->db->join('thana', 'thana.id=thana_log.thana_id', 'left');
+
+            $this->db->join('branches', 'branches.id=thana_log.branch_id', 'left')
+                ->where('branches.id', $branch_id);
+            $this->db->where('thana.level', 1);
+            $this->db->where('thana_log.in_out', 1);
+        } else {
+            $this->db
+                ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,   v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, v3_associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_log');
+            $this->db->join('thana', 'thana.id=thana_log.thana_id', 'left');
+
+            $this->db->join('branches', 'branches.id=thana_log.branch_id', 'left');
+            $this->db->where('thana.level', 1);
+            $this->db->where('thana_log.in_out', 1);
+        }
+ 
+
+        $this->db->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
+
+
+
+
+
+
+
+        $q = $this->db->get();
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+        } else {
+            $data = NULL;
+        }
+
+       //  $this->sma->print_arrays($data);
+
+
+        if (!empty($data)) {
+
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+
+           
+
+            $this->excel->getActiveSheet()->setTitle('থানা বৃদ্ধি তালিকা');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'থানা নাম');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'থানা কোড');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'শাখা');
+            $this->excel->getActiveSheet()->SetCellValue('D1', 'ধরন');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'তারিখ');
+
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'সদস্য');
+
+            $this->excel->getActiveSheet()->SetCellValue('G1', 'সাথী');
+
+            $this->excel->getActiveSheet()->SetCellValue('H1', 'কর্মী');
+            $this->excel->getActiveSheet()->SetCellValue('I1', 'সমর্থক');
+            $this->excel->getActiveSheet()->SetCellValue('J1', 'ওয়ার্ড');
+            $this->excel->getActiveSheet()->SetCellValue('K1', 'উপশাখা');
+
+        
+            //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
+            // ,`non_muslim_student`,`total_student_number`,   is_organization
+            // prev, current_supporter_organization
+            // branch_name increase decrease
+            $row = 2;
+            foreach ($data as $data_row) {
+                $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->thana_name);
+                $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->thana_code);
+                $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row->branch_name);
+                $this->excel->getActiveSheet()->SetCellValue('D' . $row, $this->thana_type($data_row->org_type));
+                $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->date);
+                $this->excel->getActiveSheet()->SetCellValue('F' . $row, $data_row->member_number);
+
+                $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->associate_number);
+                $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->worker_number);
+                $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->supporter_number);
+                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->ward_number);
+                $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->unit_number);
+               
+                $row++;
+            }
+            //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
+            //    ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(50);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+
+
+            $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+            $this->excel->getActiveSheet()->getStyle('C2:K' . $row)->getAlignment()->setWrapText(true);
+
+            $filename = 'org_thana_increase_list_branch_' . ($branch_id ? $branch->name : 'all') . '_' . date("Y_m");
+
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+        $this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+    function thanadecreaseexport($branch_id = NULL)
+    {
+
+
+
+        $this->sma->checkPermissions('index', TRUE);
+
+
+
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            // $user = $this->site->getUser();
+            $branch_id = $this->session->userdata('branch_id'); //$user->branch_id;
+        }
+
+        $report_type = $this->report_type();
+
+        $type =  $this->input->get('type');
+
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+
+
+
+
+        $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+
+         
+
+
+        if ($branch_id) {
+
+            $this->db
+                ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,  v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, v3_associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_log');
+            $this->db->join('thana', 'thana.id=thana_log.thana_id', 'left');
+
+            $this->db->join('branches', 'branches.id=thana_log.branch_id', 'left')
+                ->where('branches.id', $branch_id);
+            $this->db->where('thana.level', 1);
+            $this->db->where('thana_log.in_out', 2);
+        } else {
+            $this->db
+                ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,   v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, v3_associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
+                ->from('thana_log');
+            $this->db->join('thana', 'thana.id=thana_log.thana_id', 'left');
+
+            $this->db->join('branches', 'branches.id=thana_log.branch_id', 'left');
+            $this->db->where('thana.level', 1);
+            $this->db->where('thana_log.in_out', 2);
+        }
+
+ 
+
+        $this->db->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
+
+
+
+
+
+
+
+        $q = $this->db->get();
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+        } else {
+            $data = NULL;
+        }
+
+         //$this->sma->print_arrays($data);
+
+
+        if (!empty($data)) {
+
+            $this->load->library('excel');
+            $this->excel->setActiveSheetIndex(0);
+
+           
+
+            $this->excel->getActiveSheet()->setTitle('থানা ঘাটতি  তালিকা');
+            $this->excel->getActiveSheet()->SetCellValue('A1', 'থানা নাম');
+            $this->excel->getActiveSheet()->SetCellValue('B1', 'থানা কোড');
+            $this->excel->getActiveSheet()->SetCellValue('C1', 'শাখা');
+            $this->excel->getActiveSheet()->SetCellValue('D1', 'ধরন');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'তারিখ');
+
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'সদস্য');
+
+            $this->excel->getActiveSheet()->SetCellValue('G1', 'সাথী');
+
+            $this->excel->getActiveSheet()->SetCellValue('H1', 'কর্মী');
+            $this->excel->getActiveSheet()->SetCellValue('I1', 'সমর্থক');
+            $this->excel->getActiveSheet()->SetCellValue('J1', 'ওয়ার্ড');
+            $this->excel->getActiveSheet()->SetCellValue('K1', 'উপশাখা');
+
+        
+            //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
+            // ,`non_muslim_student`,`total_student_number`,   is_organization
+            // prev, current_supporter_organization
+            // branch_name increase decrease
+            $row = 2;
+            foreach ($data as $data_row) {
+                $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->thana_name);
+                $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->thana_code);
+                $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row->branch_name);
+                $this->excel->getActiveSheet()->SetCellValue('D' . $row, $this->thana_type($data_row->org_type));
+                $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->date);
+                $this->excel->getActiveSheet()->SetCellValue('F' . $row, $data_row->member_number);
+
+                $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->associate_number);
+                $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->worker_number);
+                $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->supporter_number);
+                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->ward_number);
+                $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->unit_number);
+               
+                $row++;
+            }
+            //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
+            //    ->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+
+
+            $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
+            $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(50);
+            $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+            $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+
+
+            $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+            $this->excel->getActiveSheet()->getStyle('C2:K' . $row)->getAlignment()->setWrapText(true);
+
+            $filename = 'org_thana_decrease_list_branch_' . ($branch_id ? $branch->name : 'all') . '_' . date("Y_m");
+
+            $this->load->helper('excel');
+            create_excel($this->excel, $filename);
+        }
+        $this->session->set_flashdata('error', lang('nothing_found'));
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
 }

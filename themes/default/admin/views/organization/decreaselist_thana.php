@@ -150,7 +150,11 @@ return type=='Residential' ? 'আবাসিক' : 'প্রাতিষ্ঠ
 
                  
                 
-
+            <li>
+                    <a href="<?= admin_url('organization/thanadecreaseexport/' . ($branch_id ? '/' . $branch_id : '') . ($this->input->get('type') ?  '?type=' . $this->input->get('type') : '') . ($this->input->get('year') ?  '&year=' . $this->input->get('year') : '')) ?>" id="excel_export" data-action="export_excel">
+                        <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>
+                    </a>
+                </li>
 
                 
 
