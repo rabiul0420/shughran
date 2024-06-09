@@ -4490,11 +4490,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
     function editthana($id = NULL)
     {
-
-
         $this->sma->checkPermissions('index', TRUE);
-
-
 
         if ($this->input->get('id')) {
             $id = $this->input->get('id');
@@ -4502,9 +4498,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $thana_details = $this->site->getByID('thana', 'id', $id);
 
-
         $this->form_validation->set_rules('thana_name', 'name', 'required');
-
 
 
         if ($this->form_validation->run() == true) {
@@ -4790,6 +4784,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
                 $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
             }
+
+
+
+            $this->data['districts'] = $this->site->getDistrict();
 
 
             $this->load->view($this->theme . 'organization/uposhakhaedit', $this->data);

@@ -207,14 +207,10 @@ if (!empty($variants)) {
                     </div>
 
 
-                </div>
+                </div> 
 
 
                 <div class="col-md-6">
-
-
-
-
 
                     <div class="form-group">
                         <?= lang('আদর্শ থানা?', 'is_ideal_thana'); ?>
@@ -230,8 +226,6 @@ if (!empty($variants)) {
 
                         </div>
                     </div>
-
-
 
 
 

@@ -33,7 +33,7 @@
                             <?php echo form_input('date',  $this->sma->hrsd($thana->date), 'class="form-control fixed_date_bk tmp_date" id="date" readonly required="required"'); ?>
                         </div>
                     </div>
-                    <?php } ?>
+                    <?php } ?> 
 
                     <div class="form-group all">
                         <?= lang('থানা কোড', 'thana_code'); ?>
