@@ -486,6 +486,133 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
     });
 </script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+
+<script>
+    function demo_create() {
+        var ref = $('#jstree_demo').jstree(true),
+            sel = ref.get_selected();
+        if (!sel.length) {
+            return false;
+        }
+        sel = sel[0];
+        sel = ref.create_node(sel, {
+            "type": "file"
+        });
+        if (sel) {
+            ref.edit(sel);
+        }
+    };
+
+    function demo_rename() {
+        var ref = $('#jstree_demo').jstree(true),
+            sel = ref.get_selected();
+        if (!sel.length) {
+            return false;
+        }
+        sel = sel[0];
+        ref.edit(sel);
+    };
+
+    function demo_delete() {
+        var ref = $('#jstree_demo').jstree(true),
+            sel = ref.get_selected();
+        if (!sel.length) {
+            return false;
+        }
+        ref.delete_node(sel);
+    };
+    $(document).ready(function() {
+
+
+        var to = false;
+        $('#demo_q').keyup(function() {
+            if (to) {
+                clearTimeout(to);
+            }
+            to = setTimeout(function() {
+                var v = $('#demo_q').val();
+                $('#jstree_demo').jstree(true).search(v);
+            }, 250);
+        });
+
+        $('#jstree_demo')
+            .jstree({
+                "core": {
+                    "animation": 0,
+                    "check_callback": true,
+                    'force_text': true,
+                    "themes": {
+                        "stripes": true
+                    },
+                    'data': {
+                        'url': function(node) {
+                            return node.id === '#' ? '<?= admin_url('system_settings/getZones'); ?>' : '<?= admin_url('system_settings/getZones'); ?>';
+                        },
+                        'data': function(node) {
+                            return {
+                                'id': node.id
+                            };
+                        }
+                    }
+                },
+                "types": {
+                    "#": {
+                        "max_children": 1,
+                        "max_depth": 4,
+                        "valid_children": ["root"]
+                    },
+                    "root": {
+                        "icon": '<?= base_url(); ?>' + "assets/tree_icon.png",
+                        "valid_children": ["default"]
+                    },
+                    "default": {
+                        "valid_children": ["default", "file"]
+                    },
+                    "file": {
+                        "icon": "glyphicon glyphicon-file",
+                        "valid_children": []
+                    }
+                },
+                "plugins": ["contextmenu", "dnd", "search", "state", "types", "wholerow"]
+            });
+
+
+
+        $('#jstree_demo').bind("rename_node.jstree", function(e, data) {
+
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: '<?=admin_url('system_settings/update_zone')?>',
+                data: {
+                    "operation": "rename_node",
+                    "id": data.node.id,
+                    "title": data.text,
+                     "<?= $this->security->get_csrf_token_name() ?>":"<?= $this->security->get_csrf_hash() ?>"
+                },
+                success: function(r) {
+                    console.log(r);
+                    if (1) {  //!r.error
+                        $('#jstree_demo').jstree(true).refresh()
+                        alert('It works fine. ');
+                    }
+                }
+            });
+
+
+
+
+        });
+
+
+
+    });
+</script>
 </body>
 
 </html>

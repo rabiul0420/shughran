@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class system_settings extends MY_Controller
 {
@@ -34,7 +34,7 @@ class system_settings extends MY_Controller
         $this->form_validation->set_rules('timezone', lang('timezone'), 'trim|required');
         $this->form_validation->set_rules('mmode', lang('maintenance_mode'), 'trim|required');
         //$this->form_validation->set_rules('logo', lang('logo'), 'trim');
-         $this->form_validation->set_rules('currency', lang('default_currency'), 'trim|required');
+        $this->form_validation->set_rules('currency', lang('default_currency'), 'trim|required');
         $this->form_validation->set_rules('email', lang('default_email'), 'trim|required');
         $this->form_validation->set_rules('language', lang('language'), 'trim|required');
         $this->form_validation->set_rules('theme', lang('theme'), 'trim|required');
@@ -60,7 +60,7 @@ class system_settings extends MY_Controller
 
             $language = $this->input->post('language');
 
-            if ((file_exists(APPPATH.'language'.DIRECTORY_SEPARATOR.$language.DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'sma_lang.php') && is_dir(APPPATH.DIRECTORY_SEPARATOR.'language'.DIRECTORY_SEPARATOR.$language)) || $language == 'english') {
+            if ((file_exists(APPPATH . 'language' . DIRECTORY_SEPARATOR . $language . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'sma_lang.php') && is_dir(APPPATH . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR . $language)) || $language == 'english') {
                 $lang = $language;
             } else {
                 $this->session->set_flashdata('error', lang('language_x_found'));
@@ -68,18 +68,19 @@ class system_settings extends MY_Controller
                 $lang = 'english';
             }
 
-             
-            $data = array('site_name' => DEMO ? 'Stock Manager Advance' : $this->input->post('site_name'),
+
+            $data = array(
+                'site_name' => DEMO ? 'Stock Manager Advance' : $this->input->post('site_name'),
                 'rows_per_page' => $this->input->post('rows_per_page'),
                 'dateformat' => $this->input->post('dateformat'),
                 'timezone' => DEMO ? 'Asia/Kuala_Lumpur' : $this->input->post('timezone'),
                 'mmode' => trim($this->input->post('mmode')),
-                 // 'reg_ver' => $this->input->post('reg_ver'),
+                // 'reg_ver' => $this->input->post('reg_ver'),
                 // 'allow_reg' => $this->input->post('allow_reg'),
                 // 'reg_notification' => $this->input->post('reg_notification'),
-                 'default_email' => DEMO ? 'noreply@sma.tecdiary.my' : $this->input->post('email'),
+                'default_email' => DEMO ? 'noreply@sma.tecdiary.my' : $this->input->post('email'),
                 'language' => $lang,
-                 'theme' => trim($this->input->post('theme')),
+                'theme' => trim($this->input->post('theme')),
                 'reference_format' => $this->input->post('reference_format'),
                 'attributes' => $this->input->post('attributes'),
                 'restrict_calendar' => $this->input->post('restrict_calendar'),
@@ -98,12 +99,12 @@ class system_settings extends MY_Controller
                 'invoice_view' => $this->input->post('invoice_view'),
                 'rtl' => $this->input->post('rtl'),
                 'each_spent' => $this->input->post('each_spent') ? $this->input->post('each_spent') : NULL,
-                 'each_sale' => $this->input->post('each_sale') ? $this->input->post('each_sale') : NULL,
+                'each_sale' => $this->input->post('each_sale') ? $this->input->post('each_sale') : NULL,
                 'sac' => $this->input->post('sac'),
                 'qty_decimals' => $this->input->post('qty_decimals'),
-                 'symbol' => $this->input->post('symbol'),
+                'symbol' => $this->input->post('symbol'),
                 'disable_editing' => $this->input->post('disable_editing'),
-                  
+
                 'pdf_lib' => $this->input->post('pdf_lib'),
                 'state' => $this->input->post('state'),
             );
@@ -113,8 +114,8 @@ class system_settings extends MY_Controller
         }
 
         if ($this->form_validation->run() == true && $this->settings_model->updateSetting($data)) {
-            if ( ! DEMO && TIMEZONE != $data['timezone']) {
-                if ( ! $this->write_index($data['timezone'])) {
+            if (!DEMO && TIMEZONE != $data['timezone']) {
+                if (!$this->write_index($data['timezone'])) {
                     $this->session->set_flashdata('error', lang('setting_updated_timezone_failed'));
                     admin_redirect('system_settings');
                 }
@@ -128,17 +129,17 @@ class system_settings extends MY_Controller
             $this->data['settings'] = $this->settings_model->getSettings();
             $this->data['currencies'] = $this->settings_model->getAllCurrencies();
             $this->data['date_formats'] = $this->settings_model->getDateFormats();
-             
-			$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('system_settings')));
+
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('system_settings')));
             $meta = array('page_title' => lang('system_settings'), 'bc' => $bc);
             $this->page_construct('settings/index', $meta, $this->data);
         }
     }
 
-   
+
     function change_logo()
     {
-        
+
         $this->load->helper('security');
         $this->form_validation->set_rules('site_logo', lang("site_logo"), 'xss_clean');
         $this->form_validation->set_rules('login_logo', lang("login_logo"), 'xss_clean');
@@ -184,11 +185,10 @@ class system_settings extends MY_Controller
                 $this->db->update('settings', array('logo2' => $login_logo), array('setting_id' => 1));
             }
 
-             
+
 
             $this->session->set_flashdata('message', lang('logo_uploaded'));
             redirect($_SERVER["HTTP_REFERER"]);
-
         } elseif ($this->input->post('upload_logo')) {
             $this->session->set_flashdata('error', validation_errors());
             redirect($_SERVER["HTTP_REFERER"]);
@@ -242,7 +242,7 @@ class system_settings extends MY_Controller
             $fields = array('version' => $this->Settings->version, 'code' => $this->Settings->purchase_code, 'username' => $this->Settings->envato_username, 'site' => base_url());
             $this->load->helper('update');
             $protocol = is_https() ? 'https://' : 'http://';
-            $updates = get_remote_contents($protocol.'api.tecdiary.com/v1/update/', $fields);
+            $updates = get_remote_contents($protocol . 'api.tecdiary.com/v1/update/', $fields);
             $this->data['updates'] = json_decode($updates);
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('updates')));
             $meta = array('page_title' => lang('updates'), 'bc' => $bc);
@@ -288,7 +288,8 @@ class system_settings extends MY_Controller
         }
         $this->data['files'] = glob('./files/backups/*.zip', GLOB_BRACE);
         $this->data['dbs'] = glob('./files/backups/*.txt', GLOB_BRACE);
-        krsort($this->data['files']); krsort($this->data['dbs']);
+        krsort($this->data['files']);
+        krsort($this->data['dbs']);
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('backups')));
         $meta = array('page_title' => lang('backups'), 'bc' => $bc);
         $this->page_construct('settings/backups', $meta, $this->data);
@@ -310,7 +311,7 @@ class system_settings extends MY_Controller
             'filename' => 'sma_db_backup.sql'
         );
         $back = $this->dbutil->backup($prefs);
-        $backup =& $back;
+        $backup = &$back;
         $db_name = 'db-backup-on-' . date("Y-m-d-H-i-s") . '.txt';
         $save = './files/backups/' . $db_name;
         $this->load->helper('file');
@@ -479,7 +480,6 @@ class system_settings extends MY_Controller
         if ($this->form_validation->run() == TRUE && ($new_group_id = $this->settings_model->addGroup($data))) {
             $this->session->set_flashdata('message', lang('group_added'));
             admin_redirect("system_settings/permissions/" . $new_group_id);
-
         } else {
 
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
@@ -572,8 +572,8 @@ class system_settings extends MY_Controller
                 'transfer-index' => $this->input->post('transfer-index'),
                 'transfer-edit' => $this->input->post('transfer-edit'),
                 'transfer-add' => $this->input->post('transfer-add'),
-				'transfer-pdf' => $this->input->post('transfer-pdf'),
-				
+                'transfer-pdf' => $this->input->post('transfer-pdf'),
+
                 'organization-index' => $this->input->post('organization-index'),
                 'organization-add' => $this->input->post('organization-add'),
                 'organization-delete' => $this->input->post('organization-delete'),
@@ -584,38 +584,38 @@ class system_settings extends MY_Controller
                 'dawat-add' => $this->input->post('dawat-add'),
                 'dawat-delete' => $this->input->post('dawat-delete'),
                 'dawat-pdf' => $this->input->post('dawat-pdf'),
-				
+
                 'branch-index' => $this->input->post('branch-index'),
                 'branch-edit' => $this->input->post('branch-edit'),
                 'branch-add' => $this->input->post('branch-add'),
                 'branch-delete' => $this->input->post('branch-delete'),
                 'branch-pdf' => $this->input->post('branch-pdf'),
-                 
-				'training-index' => $this->input->post('training-index'),
-				'training-edit' => $this->input->post('training-edit'),
-				'training-add' => $this->input->post('training-add'),
-				'training-delete' => $this->input->post('training-delete'),
 
-				'confirmreport-index' => $this->input->post('confirmreport-index'),
-				'guest-index' => $this->input->post('guest-index'),
-				'bm-index' => $this->input->post('bm-index'),
-				'highersyllabus-index' => $this->input->post('highersyllabus-index'),
-				'others-index' => $this->input->post('others-index'),
-				'associate-index' => $this->input->post('associate-index'),
-				'membercandidate-index' => $this->input->post('membercandidate-index'),
-				'worker-index' => $this->input->post('worker-index'),
-				'manpowertransfer-index' => $this->input->post('manpowertransfer-index'),
-				'manpowerlist-index' => $this->input->post('manpowerlist-index'),
+                'training-index' => $this->input->post('training-index'),
+                'training-edit' => $this->input->post('training-edit'),
+                'training-add' => $this->input->post('training-add'),
+                'training-delete' => $this->input->post('training-delete'),
+
+                'confirmreport-index' => $this->input->post('confirmreport-index'),
+                'guest-index' => $this->input->post('guest-index'),
+                'bm-index' => $this->input->post('bm-index'),
+                'highersyllabus-index' => $this->input->post('highersyllabus-index'),
+                'others-index' => $this->input->post('others-index'),
+                'associate-index' => $this->input->post('associate-index'),
+                'membercandidate-index' => $this->input->post('membercandidate-index'),
+                'worker-index' => $this->input->post('worker-index'),
+                'manpowertransfer-index' => $this->input->post('manpowertransfer-index'),
+                'manpowerlist-index' => $this->input->post('manpowerlist-index'),
             );
 
-            
+
 
             //$this->sma->print_arrays($data);
         }
 
 
         if ($this->form_validation->run() == true && $this->settings_model->updatePermissions($id, $data)) {
-			
+
             $this->session->set_flashdata('message', lang("group_permissions_updated"));
             redirect($_SERVER["HTTP_REFERER"]);
         } else {
@@ -693,7 +693,8 @@ class system_settings extends MY_Controller
         $this->form_validation->set_rules('rate', lang("exchange_rate"), 'required|numeric');
 
         if ($this->form_validation->run() == true) {
-            $data = array('code' => $this->input->post('code'),
+            $data = array(
+                'code' => $this->input->post('code'),
                 'name' => $this->input->post('name'),
                 'rate' => $this->input->post('rate'),
                 'symbol' => $this->input->post('symbol'),
@@ -728,7 +729,8 @@ class system_settings extends MY_Controller
 
         if ($this->form_validation->run() == true) {
 
-            $data = array('code' => $this->input->post('code'),
+            $data = array(
+                'code' => $this->input->post('code'),
                 'name' => $this->input->post('name'),
                 'rate' => $this->input->post('rate'),
                 'symbol' => $this->input->post('symbol'),
@@ -821,7 +823,7 @@ class system_settings extends MY_Controller
     function getCategories()
     {
 
-        $print_barcode = anchor('admin/products/print_barcodes/?category=$1', '<i class="fa fa-print"></i>', 'title="'.lang('print_barcodes').'" class="tip"');
+        $print_barcode = anchor('admin/products/print_barcodes/?category=$1', '<i class="fa fa-print"></i>', 'title="' . lang('print_barcodes') . '" class="tip"');
 
         $this->load->library('datatables');
         $this->datatables
@@ -829,7 +831,7 @@ class system_settings extends MY_Controller
             ->from("categories")
             ->join("categories c", 'c.id=categories.parent_id', 'left')
             ->group_by('categories.id')
-            ->add_column("Actions", "<div class=\"text-center\">".$print_barcode." <a href='" . admin_url('system_settings/edit_category/$1') . "' data-toggle='modal' data-target='#myModal' class='tip' title='" . lang("edit_category") . "'><i class=\"fa fa-edit\"></i></a> <a href='#' class='tip po' title='<b>" . lang("delete_category") . "</b>' data-content=\"<p>" . lang('r_u_sure') . "</p><a class='btn btn-danger po-delete' href='" . admin_url('system_settings/delete_category/$1') . "'>" . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i></a></div>", "id");
+            ->add_column("Actions", "<div class=\"text-center\">" . $print_barcode . " <a href='" . admin_url('system_settings/edit_category/$1') . "' data-toggle='modal' data-target='#myModal' class='tip' title='" . lang("edit_category") . "'><i class=\"fa fa-edit\"></i></a> <a href='#' class='tip po' title='<b>" . lang("delete_category") . "</b>' data-content=\"<p>" . lang('r_u_sure') . "</p><a class='btn btn-danger po-delete' href='" . admin_url('system_settings/delete_category/$1') . "'>" . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i></a></div>", "id");
 
         echo $this->datatables->generate();
     }
@@ -851,7 +853,7 @@ class system_settings extends MY_Controller
                 'slug' => $this->input->post('slug'),
                 'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('parent'),
-                );
+            );
 
             if ($_FILES['userfile']['size'] > 0) {
                 $this->load->library('upload');
@@ -902,7 +904,6 @@ class system_settings extends MY_Controller
                 $this->image_lib->clear();
                 $config = NULL;
             }
-
         } elseif ($this->input->post('add_category')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/categories");
@@ -917,7 +918,6 @@ class system_settings extends MY_Controller
             $this->data['categories'] = $this->settings_model->getParentCategories();
             $this->data['modal_js'] = $this->site->modal_js();
             $this->load->view($this->theme . 'settings/add_category', $this->data);
-
         }
     }
 
@@ -945,7 +945,7 @@ class system_settings extends MY_Controller
                 'slug' => $this->input->post('slug'),
                 'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('parent'),
-                );
+            );
 
             if ($_FILES['userfile']['size'] > 0) {
                 $this->load->library('upload');
@@ -996,7 +996,6 @@ class system_settings extends MY_Controller
                 $this->image_lib->clear();
                 $config = NULL;
             }
-
         } elseif ($this->input->post('edit_category')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/categories");
@@ -1012,7 +1011,6 @@ class system_settings extends MY_Controller
             $this->data['categories'] = $this->settings_model->getParentCategories();
             $this->data['modal_js'] = $this->site->modal_js();
             $this->load->view($this->theme . 'settings/edit_category', $this->data);
-
         }
     }
 
@@ -1086,22 +1084,22 @@ class system_settings extends MY_Controller
         }
     }
 
-     
 
-    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   function departments()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function departments()
     {
 
         $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
@@ -1113,7 +1111,7 @@ class system_settings extends MY_Controller
     function getDepartments()
     {
 
-       
+
         $this->load->library('datatables');
         $this->datatables
             ->select("{$this->db->dbprefix('departments')}.id as id, {$this->db->dbprefix('departments')}.image, {$this->db->dbprefix('departments')}.code, {$this->db->dbprefix('departments')}.name, {$this->db->dbprefix('departments')}.slug, c.name as parent", FALSE)
@@ -1142,7 +1140,7 @@ class system_settings extends MY_Controller
                 'slug' => $this->input->post('slug'),
                 'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('parent'),
-                );
+            );
 
             if ($_FILES['userfile']['size'] > 0) {
                 $this->load->library('upload');
@@ -1193,7 +1191,6 @@ class system_settings extends MY_Controller
                 $this->image_lib->clear();
                 $config = NULL;
             }
-
         } elseif ($this->input->post('add_department')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/departments");
@@ -1208,7 +1205,6 @@ class system_settings extends MY_Controller
             $this->data['departments'] = $this->settings_model->getParentDepartments();
             $this->data['modal_js'] = $this->site->modal_js();
             $this->load->view($this->theme . 'settings/add_department', $this->data);
-
         }
     }
 
@@ -1236,7 +1232,7 @@ class system_settings extends MY_Controller
                 'slug' => $this->input->post('slug'),
                 'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('parent'),
-                );
+            );
 
             if ($_FILES['userfile']['size'] > 0) {
                 $this->load->library('upload');
@@ -1287,7 +1283,6 @@ class system_settings extends MY_Controller
                 $this->image_lib->clear();
                 $config = NULL;
             }
-
         } elseif ($this->input->post('edit_department')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/departments");
@@ -1303,7 +1298,6 @@ class system_settings extends MY_Controller
             $this->data['departments'] = $this->settings_model->getParentDepartments();
             $this->data['modal_js'] = $this->site->modal_js();
             $this->load->view($this->theme . 'settings/edit_department', $this->data);
-
         }
     }
 
@@ -1377,20 +1371,20 @@ class system_settings extends MY_Controller
         }
     }
 
-     
 
-    
-   
-   
-   
-   
-   
-   
-   
-  
-   
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
 
     function variants()
     {
@@ -1504,7 +1498,6 @@ class system_settings extends MY_Controller
                 'name' => $this->input->post('name'),
                 'code' => $this->input->post('code'),
             );
-
         } elseif ($this->input->post('add_expense_category')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/expense_categories");
@@ -1535,7 +1528,6 @@ class system_settings extends MY_Controller
                 'code' => $this->input->post('code'),
                 'name' => $this->input->post('name')
             );
-
         } elseif ($this->input->post('edit_expense_category')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/expense_categories");
@@ -1661,7 +1653,7 @@ class system_settings extends MY_Controller
                             $category['parent_id'] = $pcategory->id;
                         }
                         if ($c = $this->settings_model->getCategoryByCode($code)) {
-                            $updated .= '<p>'.lang('category_updated').' ('.$code.')</p>';
+                            $updated .= '<p>' . lang('category_updated') . ' (' . $code . ')</p>';
                             $this->settings_model->updateCategory($c->id, $category);
                         } else {
                             if ($category['parent_id']) {
@@ -1678,7 +1670,7 @@ class system_settings extends MY_Controller
         }
 
         if ($this->form_validation->run() == true && $this->settings_model->addCategories($categories, $subcategories)) {
-            $this->session->set_flashdata('message', lang("categories_added").$updated);
+            $this->session->set_flashdata('message', lang("categories_added") . $updated);
             admin_redirect('system_settings/categories');
         } else {
             if ((isset($categories) && empty($categories)) || (isset($subcategories) && empty($subcategories))) {
@@ -1691,14 +1683,14 @@ class system_settings extends MY_Controller
             }
 
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
-            $this->data['userfile'] = array('name' => 'userfile',
+            $this->data['userfile'] = array(
+                'name' => 'userfile',
                 'id' => 'userfile',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('userfile')
             );
             $this->data['modal_js'] = $this->site->modal_js();
-            $this->load->view($this->theme.'settings/import_categories', $this->data);
-
+            $this->load->view($this->theme . 'settings/import_categories', $this->data);
         }
     }
 
@@ -1744,14 +1736,14 @@ class system_settings extends MY_Controller
 
                 $rw = 2;
                 foreach ($final as $csv_ct) {
-                    if ( ! $this->settings_model->getSubcategoryByCode(trim($csv_ct['code']))) {
+                    if (!$this->settings_model->getSubcategoryByCode(trim($csv_ct['code']))) {
                         if ($parent_actegory = $this->settings_model->getCategoryByCode(trim($csv_ct['category_code']))) {
                             $data[] = array(
                                 'code' => trim($csv_ct['code']),
                                 'name' => trim($csv_ct['name']),
                                 'image' => trim($csv_ct['image']),
                                 'category_id' => $parent_actegory->id,
-                                );
+                            );
                         } else {
                             $this->session->set_flashdata('error', lang("check_category_code") . " (" . $csv_ct['category_code'] . "). " . lang("category_code_x_exist") . " " . lang("line_no") . " " . $rw);
                             admin_redirect("system_settings/categories");
@@ -1770,14 +1762,14 @@ class system_settings extends MY_Controller
         } else {
 
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
-            $this->data['userfile'] = array('name' => 'userfile',
+            $this->data['userfile'] = array(
+                'name' => 'userfile',
                 'id' => 'userfile',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('userfile')
             );
             $this->data['modal_js'] = $this->site->modal_js();
-            $this->load->view($this->theme.'settings/import_subcategories', $this->data);
-
+            $this->load->view($this->theme . 'settings/import_subcategories', $this->data);
         }
     }
 
@@ -1822,11 +1814,11 @@ class system_settings extends MY_Controller
                 }
 
                 foreach ($final as $csv_ct) {
-                    if ( ! $this->settings_model->getExpenseCategoryByCode(trim($csv_ct['code']))) {
+                    if (!$this->settings_model->getExpenseCategoryByCode(trim($csv_ct['code']))) {
                         $data[] = array(
                             'code' => trim($csv_ct['code']),
                             'name' => trim($csv_ct['name']),
-                            );
+                        );
                     }
                 }
             }
@@ -1840,14 +1832,14 @@ class system_settings extends MY_Controller
         } else {
 
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
-            $this->data['userfile'] = array('name' => 'userfile',
+            $this->data['userfile'] = array(
+                'name' => 'userfile',
                 'id' => 'userfile',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('userfile')
             );
             $this->data['modal_js'] = $this->site->modal_js();
-            $this->load->view($this->theme.'settings/import_expense_categories', $this->data);
-
+            $this->load->view($this->theme . 'settings/import_expense_categories', $this->data);
         }
     }
 
@@ -1893,8 +1885,7 @@ class system_settings extends MY_Controller
                 'base_unit' => $this->input->post('base_unit') ? $this->input->post('base_unit') : NULL,
                 'operator' => $this->input->post('base_unit') ? $this->input->post('operator') : NULL,
                 'operation_value' => $this->input->post('operation_value') ? $this->input->post('operation_value') : NULL,
-                );
-
+            );
         } elseif ($this->input->post('add_unit')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/units");
@@ -1909,7 +1900,6 @@ class system_settings extends MY_Controller
             $this->data['base_units'] = $this->site->getAllBaseUnits();
             $this->data['modal_js'] = $this->site->modal_js();
             $this->load->view($this->theme . 'settings/add_unit', $this->data);
-
         }
     }
 
@@ -1935,8 +1925,7 @@ class system_settings extends MY_Controller
                 'base_unit' => $this->input->post('base_unit') ? $this->input->post('base_unit') : NULL,
                 'operator' => $this->input->post('base_unit') ? $this->input->post('operator') : NULL,
                 'operation_value' => $this->input->post('operation_value') ? $this->input->post('operation_value') : NULL,
-                );
-
+            );
         } elseif ($this->input->post('edit_unit')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/units");
@@ -1952,7 +1941,6 @@ class system_settings extends MY_Controller
             $this->data['unit'] = $unit_details;
             $this->data['base_units'] = $this->site->getAllBaseUnits();
             $this->load->view($this->theme . 'settings/edit_unit', $this->data);
-
         }
     }
 
@@ -2022,23 +2010,23 @@ class system_settings extends MY_Controller
         }
     }
 
-     
 
-     
 
-     
 
-     
 
-     
-    
- 
 
-    
 
-     
 
-    
+
+
+
+
+
+
+
+
+
+
 
     function brands()
     {
@@ -2074,7 +2062,7 @@ class system_settings extends MY_Controller
                 'code' => $this->input->post('code'),
                 'slug' => $this->input->post('slug'),
                 'description' => $this->input->post('description'),
-                );
+            );
 
             if ($_FILES['userfile']['size'] > 0) {
                 $this->load->library('upload');
@@ -2108,7 +2096,6 @@ class system_settings extends MY_Controller
                 }
                 $this->image_lib->clear();
             }
-
         } elseif ($this->input->post('add_brand')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/brands");
@@ -2122,7 +2109,6 @@ class system_settings extends MY_Controller
             $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
             $this->data['modal_js'] = $this->site->modal_js();
             $this->load->view($this->theme . 'settings/add_brand', $this->data);
-
         }
     }
 
@@ -2147,7 +2133,7 @@ class system_settings extends MY_Controller
                 'code' => $this->input->post('code'),
                 'slug' => $this->input->post('slug'),
                 'description' => $this->input->post('description'),
-                );
+            );
 
             if ($_FILES['userfile']['size'] > 0) {
                 $this->load->library('upload');
@@ -2181,7 +2167,6 @@ class system_settings extends MY_Controller
                 }
                 $this->image_lib->clear();
             }
-
         } elseif ($this->input->post('edit_brand')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("system_settings/brands");
@@ -2196,7 +2181,6 @@ class system_settings extends MY_Controller
             $this->data['modal_js'] = $this->site->modal_js();
             $this->data['brand'] = $brand_details;
             $this->load->view($this->theme . 'settings/edit_brand', $this->data);
-
         }
     }
 
@@ -2253,12 +2237,12 @@ class system_settings extends MY_Controller
                 }
 
                 foreach ($final as $csv_ct) {
-                    if ( ! $this->settings_model->getBrandByName(trim($csv_ct['name']))) {
+                    if (!$this->settings_model->getBrandByName(trim($csv_ct['name']))) {
                         $data[] = array(
                             'code' => trim($csv_ct['code']),
                             'name' => trim($csv_ct['name']),
                             'image' => trim($csv_ct['image']),
-                            );
+                        );
                     }
                 }
             }
@@ -2272,14 +2256,14 @@ class system_settings extends MY_Controller
         } else {
 
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
-            $this->data['userfile'] = array('name' => 'userfile',
+            $this->data['userfile'] = array(
+                'name' => 'userfile',
                 'id' => 'userfile',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('userfile')
             );
             $this->data['modal_js'] = $this->site->modal_js();
-            $this->load->view($this->theme.'settings/import_brands', $this->data);
-
+            $this->load->view($this->theme . 'settings/import_brands', $this->data);
         }
     }
 
@@ -2333,14 +2317,14 @@ class system_settings extends MY_Controller
         }
     }
 
-	
-	
-	
-	
-	
-	
-	
-	function branches()
+
+
+
+
+
+
+
+    function branches()
     {
 
         $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
@@ -2412,12 +2396,13 @@ class system_settings extends MY_Controller
             } else {
                 $map = NULL;
             }
-            $data = array('code' => $this->input->post('code'),
+            $data = array(
+                'code' => $this->input->post('code'),
                 'name' => $this->input->post('name'),
                 'phone' => $this->input->post('phone'),
                 'email' => $this->input->post('email'),
                 'address' => $this->input->post('address'),
-                
+
                 'map' => $map,
             );
         } elseif ($this->input->post('add_branch')) {
@@ -2430,7 +2415,7 @@ class system_settings extends MY_Controller
             admin_redirect("system_settings/branches");
         } else {
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
-           // $this->data['price_groups'] = $this->settings_model->getAllPriceGroups();
+            // $this->data['price_groups'] = $this->settings_model->getAllPriceGroups();
             $this->data['modal_js'] = $this->site->modal_js();
             $this->load->view($this->theme . 'settings/add_branch', $this->data);
         }
@@ -2448,11 +2433,12 @@ class system_settings extends MY_Controller
         $this->form_validation->set_rules('map', lang("map_image"), 'xss_clean');
 
         if ($this->form_validation->run() == true) {
-            $data = array('code' => $this->input->post('code'),
+            $data = array(
+                'code' => $this->input->post('code'),
                 'name' => $this->input->post('name'),
                 'phone' => $this->input->post('phone'),
                 'email' => $this->input->post('email'),
-                'address' => $this->input->post('address') 
+                'address' => $this->input->post('address')
             );
 
             if ($_FILES['userfile']['size'] > 0) {
@@ -2550,7 +2536,7 @@ class system_settings extends MY_Controller
                         $this->excel->getActiveSheet()->SetCellValue('A' . $row, $wh->code);
                         $this->excel->getActiveSheet()->SetCellValue('B' . $row, $wh->name);
                         $this->excel->getActiveSheet()->SetCellValue('C' . $row, $wh->address);
-                       // $this->excel->getActiveSheet()->SetCellValue('D' . $row, $wh->city);
+                        // $this->excel->getActiveSheet()->SetCellValue('D' . $row, $wh->city);
                         $row++;
                     }
                     $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
@@ -2571,12 +2557,332 @@ class system_settings extends MY_Controller
             redirect($_SERVER["HTTP_REFERER"]);
         }
     }
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function zones()
+    {
+
+        $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('system_settings'), 'page' => lang('system_settings')), array('link' => '#', 'page' => lang('zones')));
+        $meta = array('page_title' => lang('zones'), 'bc' => $bc);
+        $this->page_construct('settings/zones', $meta, $this->data);
+    }
+
+    // function getZones()
+    // {
+
+    //     $print_barcode = anchor('admin/products/print_barcodes/?category=$1', '<i class="fa fa-print"></i>', 'title="'.lang('print_barcodes').'" class="tip"');
+
+    //     $this->load->library('datatables');
+    //     $this->datatables
+    //         ->select("id, name,  slug, c.name as parent", FALSE)
+    //         ->from("district") 
+    //         ->add_column("Actions", "<div class=\"text-center\"> <a href='" . admin_url('system_settings/edit_category/$1') . "' data-toggle='modal' data-target='#myModal' class='tip' title='" . lang("edit_category") . "'><i class=\"fa fa-edit\"></i></a> <a href='#' class='tip po' title='<b>" . lang("delete_category") . "</b>' data-content=\"<p>" . lang('r_u_sure') . "</p><a class='btn btn-danger po-delete' href='" . admin_url('system_settings/delete_category/$1') . "'>" . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i></a></div>", "id");
+
+    //     echo $this->datatables->generate();
+    // }
+
+
+    function getZones()
+    {
+        header('Content-Type: application/json');
+         
+        $id = $this->input->get('id');        
+        if ($id == null)
+              $this->db->select("id,name,level")->from("district")->where('level', 1);
+        else if ($id != null)
+              $this->db->select("id,name,level")->from("district")->where('parent_id', $id);
+
+
+            $q = $this->db->get();
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $row) {
+                $data[] =    ['id'=>$row->id, 'text'=>$row->name, 'children'=>$row->level==4 ? false : true, 'type'=> ($row->level < 4 ? 'root' : 'file') ]; // $row;  type
+            }
+            echo  json_encode($data,true);
+        }
+        return FALSE;
+    }
+
+
+    function add_zone()
+    {
+
+        $this->load->helper('security');
+        $this->form_validation->set_rules('code', lang("category_code"), 'trim|is_unique[categories.code]|required');
+        $this->form_validation->set_rules('name', lang("name"), 'required|min_length[3]');
+        $this->form_validation->set_rules('slug', lang("slug"), 'required|is_unique[categories.slug]|alpha_dash');
+        $this->form_validation->set_rules('userfile', lang("category_image"), 'xss_clean');
+        $this->form_validation->set_rules('description', lang("description"), 'trim|required');
+
+        if ($this->form_validation->run() == true) {
+            $data = array(
+                'name' => $this->input->post('name'),
+                'code' => $this->input->post('code'),
+                'slug' => $this->input->post('slug'),
+                'description' => $this->input->post('description'),
+                'parent_id' => $this->input->post('parent'),
+            );
+
+            if ($_FILES['userfile']['size'] > 0) {
+                $this->load->library('upload');
+                $config['upload_path'] = $this->upload_path;
+                $config['allowed_types'] = $this->image_types;
+                $config['max_size'] = $this->allowed_file_size;
+                $config['max_width'] = $this->Settings->iwidth;
+                $config['max_height'] = $this->Settings->iheight;
+                $config['overwrite'] = FALSE;
+                $config['encrypt_name'] = TRUE;
+                $config['max_filename'] = 25;
+                $this->upload->initialize($config);
+                if (!$this->upload->do_upload()) {
+                    $error = $this->upload->display_errors();
+                    $this->session->set_flashdata('error', $error);
+                    redirect($_SERVER["HTTP_REFERER"]);
+                }
+                $photo = $this->upload->file_name;
+                $data['image'] = $photo;
+                $this->load->library('image_lib');
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = $this->upload_path . $photo;
+                $config['new_image'] = $this->thumbs_path . $photo;
+                $config['maintain_ratio'] = TRUE;
+                $config['width'] = $this->Settings->twidth;
+                $config['height'] = $this->Settings->theight;
+                $this->image_lib->clear();
+                $this->image_lib->initialize($config);
+                if (!$this->image_lib->resize()) {
+                    echo $this->image_lib->display_errors();
+                }
+                if ($this->Settings->watermark) {
+                    $this->image_lib->clear();
+                    $wm['source_image'] = $this->upload_path . $photo;
+                    $wm['wm_text'] = 'Copyright ' . date('Y') . ' - ' . $this->Settings->site_name;
+                    $wm['wm_type'] = 'text';
+                    $wm['wm_font_path'] = 'system/fonts/texb.ttf';
+                    $wm['quality'] = '100';
+                    $wm['wm_font_size'] = '16';
+                    $wm['wm_font_color'] = '999999';
+                    $wm['wm_shadow_color'] = 'CCCCCC';
+                    $wm['wm_vrt_alignment'] = 'top';
+                    $wm['wm_hor_alignment'] = 'left';
+                    $wm['wm_padding'] = '10';
+                    $this->image_lib->initialize($wm);
+                    $this->image_lib->watermark();
+                }
+                $this->image_lib->clear();
+                $config = NULL;
+            }
+        } elseif ($this->input->post('add_category')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect("system_settings/categories");
+        }
+
+        if ($this->form_validation->run() == true && $this->settings_model->addCategory($data)) {
+            $this->session->set_flashdata('message', lang("category_added"));
+            admin_redirect("system_settings/categories");
+        } else {
+
+            $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+            $this->data['categories'] = $this->settings_model->getParentCategories();
+            $this->data['modal_js'] = $this->site->modal_js();
+            $this->load->view($this->theme . 'settings/add_zone', $this->data);
+        }
+    }
+
+    function edit_zone($id = NULL)
+    {
+        $this->load->helper('security');
+        $this->form_validation->set_rules('code', lang("category_code"), 'trim|required');
+        $pr_details = $this->settings_model->getCategoryByID($id);
+        if ($this->input->post('code') != $pr_details->code) {
+            $this->form_validation->set_rules('code', lang("category_code"), 'required|is_unique[categories.code]');
+        }
+        $this->form_validation->set_rules('slug', lang("slug"), 'required|alpha_dash');
+        if ($this->input->post('slug') != $pr_details->slug) {
+            $this->form_validation->set_rules('slug', lang("slug"), 'required|alpha_dash|is_unique[categories.slug]');
+        }
+        $this->form_validation->set_rules('name', lang("category_name"), 'required|min_length[3]');
+        $this->form_validation->set_rules('userfile', lang("category_image"), 'xss_clean');
+        $this->form_validation->set_rules('description', lang("description"), 'trim|required');
+
+        if ($this->form_validation->run() == true) {
+
+            $data = array(
+                'name' => $this->input->post('name'),
+                'code' => $this->input->post('code'),
+                'slug' => $this->input->post('slug'),
+                'description' => $this->input->post('description'),
+                'parent_id' => $this->input->post('parent'),
+            );
+
+            if ($_FILES['userfile']['size'] > 0) {
+                $this->load->library('upload');
+                $config['upload_path'] = $this->upload_path;
+                $config['allowed_types'] = $this->image_types;
+                $config['max_size'] = $this->allowed_file_size;
+                $config['max_width'] = $this->Settings->iwidth;
+                $config['max_height'] = $this->Settings->iheight;
+                $config['overwrite'] = FALSE;
+                $config['encrypt_name'] = TRUE;
+                $config['max_filename'] = 25;
+                $this->upload->initialize($config);
+                if (!$this->upload->do_upload()) {
+                    $error = $this->upload->display_errors();
+                    $this->session->set_flashdata('error', $error);
+                    redirect($_SERVER["HTTP_REFERER"]);
+                }
+                $photo = $this->upload->file_name;
+                $data['image'] = $photo;
+                $this->load->library('image_lib');
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = $this->upload_path . $photo;
+                $config['new_image'] = $this->thumbs_path . $photo;
+                $config['maintain_ratio'] = TRUE;
+                $config['width'] = $this->Settings->twidth;
+                $config['height'] = $this->Settings->theight;
+                $this->image_lib->clear();
+                $this->image_lib->initialize($config);
+                if (!$this->image_lib->resize()) {
+                    echo $this->image_lib->display_errors();
+                }
+                if ($this->Settings->watermark) {
+                    $this->image_lib->clear();
+                    $wm['source_image'] = $this->upload_path . $photo;
+                    $wm['wm_text'] = 'Copyright ' . date('Y') . ' - ' . $this->Settings->site_name;
+                    $wm['wm_type'] = 'text';
+                    $wm['wm_font_path'] = 'system/fonts/texb.ttf';
+                    $wm['quality'] = '100';
+                    $wm['wm_font_size'] = '16';
+                    $wm['wm_font_color'] = '999999';
+                    $wm['wm_shadow_color'] = 'CCCCCC';
+                    $wm['wm_vrt_alignment'] = 'top';
+                    $wm['wm_hor_alignment'] = 'left';
+                    $wm['wm_padding'] = '10';
+                    $this->image_lib->initialize($wm);
+                    $this->image_lib->watermark();
+                }
+                $this->image_lib->clear();
+                $config = NULL;
+            }
+        } elseif ($this->input->post('edit_category')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect("system_settings/categories");
+        }
+
+        if ($this->form_validation->run() == true && $this->settings_model->updateCategory($id, $data)) {
+            $this->session->set_flashdata('message', lang("category_updated"));
+            admin_redirect("system_settings/categories");
+        } else {
+
+            $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+            $this->data['category'] = $this->settings_model->getCategoryByID($id);
+            $this->data['categories'] = $this->settings_model->getParentCategories();
+            $this->data['modal_js'] = $this->site->modal_js();
+            $this->load->view($this->theme . 'settings/edit_zone', $this->data);
+        }
+    }
+
+    function delete_zone($id = NULL)
+    {
+
+        if ($this->site->getSubCategories($id)) {
+            $this->sma->send_json(array('error' => 1, 'msg' => lang("category_has_subcategory")));
+        }
+
+        if ($this->settings_model->deleteCategory($id)) {
+            $this->sma->send_json(array('error' => 0, 'msg' => lang("category_deleted")));
+        }
+    }
+
+
+
+    function update_zone($id = NULL)
+    {
+        
+        if ($this->db->update('district', array('name' => $_POST['title']), array('id' => $_POST['id']))) { 
+            header('Content-Type: application/json');
+            $this->sma->send_json(array('error' => 0, 'msg' => lang("zone_updated")));
+        }else  { 
+            header('Content-Type: application/json');
+            $this->sma->send_json(array('error' => 1, 'msg' => lang("Problem")));
+        }
+    }
+
+
+    function zone_actions()
+    {
+
+        $this->form_validation->set_rules('form_action', lang("form_action"), 'required');
+
+        if ($this->form_validation->run() == true) {
+
+            if (!empty($_POST['val'])) {
+                if ($this->input->post('form_action') == 'delete') {
+                    foreach ($_POST['val'] as $id) {
+                        $this->settings_model->deleteCategory($id);
+                    }
+                    $this->session->set_flashdata('message', lang("categories_deleted"));
+                    redirect($_SERVER["HTTP_REFERER"]);
+                }
+
+                if ($this->input->post('form_action') == 'export_excel') {
+
+                    $this->load->library('excel');
+                    $this->excel->setActiveSheetIndex(0);
+                    $this->excel->getActiveSheet()->setTitle(lang('categories'));
+                    $this->excel->getActiveSheet()->SetCellValue('A1', lang('code'));
+                    $this->excel->getActiveSheet()->SetCellValue('B1', lang('name'));
+                    $this->excel->getActiveSheet()->SetCellValue('C1', lang('image'));
+                    $this->excel->getActiveSheet()->SetCellValue('D1', lang('parent_actegory'));
+
+                    $row = 2;
+                    foreach ($_POST['val'] as $id) {
+                        $sc = $this->settings_model->getCategoryByID($id);
+                        $parent_actegory = '';
+                        if ($sc->parent_id) {
+                            $pc = $this->settings_model->getCategoryByID($sc->parent_id);
+                            $parent_actegory = $pc->code;
+                        }
+                        $this->excel->getActiveSheet()->SetCellValue('A' . $row, $sc->code);
+                        $this->excel->getActiveSheet()->SetCellValue('B' . $row, $sc->name);
+                        $this->excel->getActiveSheet()->SetCellValue('C' . $row, $sc->image);
+                        $this->excel->getActiveSheet()->SetCellValue('D' . $row, $parent_actegory);
+                        $row++;
+                    }
+
+                    $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+                    $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+                    $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+                    $filename = 'categories_' . date('Y_m_d_H_i_s');
+                    $this->load->helper('excel');
+                    create_excel($this->excel, $filename);
+                }
+            } else {
+                $this->session->set_flashdata('error', lang("no_record_selected"));
+                redirect($_SERVER["HTTP_REFERER"]);
+            }
+        } else {
+            $this->session->set_flashdata('error', validation_errors());
+            redirect($_SERVER["HTTP_REFERER"]);
+        }
+    }
 }
