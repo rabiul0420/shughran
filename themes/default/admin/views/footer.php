@@ -553,12 +553,33 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                         'url': function(node) {
                             return node.id === '#' ? '<?= admin_url('system_settings/getZones'); ?>' : '<?= admin_url('system_settings/getZones'); ?>';
                         },
+
+                        // "success": function(data) {
+                        //     // Modify the text fields in your data here
+                        //     data.forEach(function(node) {
+                        //         node.text = $('<div>').html(node.text).text(); // Parse and set HTML content
+                        //     });
+                        //     return data;
+                        // },
+
+
+                        // "dataType": "json",
                         'data': function(node) {
                             return {
                                 'id': node.id
                             };
                         }
-                    }
+                    },
+                    'escape': false,
+                    'force_text': true,
+
+                    // ,
+                    // 'template': function(node) {
+
+                    //     return `<span>${node.text}</span> 
+                    // <button class="btn btn-sm btn-primary edit-btn" data-id="${node.id}">Edit</button> 
+                    // <button class="btn btn-sm btn-danger delete-btn" data-id="${node.id}">Delete</button>`;
+                    // }
                 },
                 "types": {
                     "#": {
@@ -578,8 +599,21 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                         "valid_children": []
                     }
                 },
+
                 "plugins": ["contextmenu", "dnd", "search", "state", "types", "wholerow"]
             });
+
+        //     .on("ready.jstree", function(e, data) {
+        //         $('#jstree_demo').jstree().get_json('#', {
+        //             'flat': true
+        //         }).forEach(function(node) {
+        //             var nodeElement = $('#' + node.id + '_anchor');
+        //             nodeElement.append(`
+        //     <button class="btn btn-sm btn-primary edit-btn" data-id="${node.id}" style="margin-left: 10px;">Edit</button>
+        //     <button class="btn btn-sm btn-danger delete-btn" data-id="${node.id}" style="margin-left: 5px;">Delete</button>
+        // `);
+        //         });
+        //     });
 
 
 
@@ -588,16 +622,16 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
             console.log(data);
             $.ajax({
                 type: "POST",
-                url: '<?=admin_url('system_settings/update_zone')?>',
+                url: '<?= admin_url('system_settings/update_zone') ?>',
                 data: {
                     "operation": "rename_node",
                     "id": data.node.id,
                     "title": data.text,
-                     "<?= $this->security->get_csrf_token_name() ?>":"<?= $this->security->get_csrf_hash() ?>"
+                    "<?= $this->security->get_csrf_token_name() ?>": "<?= $this->security->get_csrf_hash() ?>"
                 },
                 success: function(r) {
                     console.log(r);
-                    if (1) {  //!r.error
+                    if (1) { //!r.error
                         $('#jstree_demo').jstree(true).refresh()
                         alert('It works fine. ');
                     }

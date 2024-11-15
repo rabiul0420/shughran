@@ -17,6 +17,26 @@ class Settings_model extends CI_Model
         return false;
     }
 
+    
+
+    public function updateZone($id, $data = array())
+    {
+        $this->db->where('id', $id);
+        if ($this->db->update('district', $data)) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public function addZone($data)
+    {
+        if ($this->db->insert('district', $data)) {
+            return true;
+        }
+        return false;
+    }
+
     public function updateLoginLogo($photo)
     {
         $logo = array('logo2' => $photo);
@@ -396,6 +416,13 @@ class Settings_model extends CI_Model
     public function deleteCategory($id)
     {
         if ($this->db->delete("categories", array('id' => $id))) {
+            return true;
+        }
+        return FALSE;
+    }
+    public function deleteZone($id)
+    {
+        if ($this->db->delete("district", array('id' => $id))) {
             return true;
         }
         return FALSE;

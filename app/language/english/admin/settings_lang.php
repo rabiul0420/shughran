@@ -390,3 +390,5 @@ $lang['indian_gst']                      = "Indian GST";
 $lang['biz_state']                       = "Business State";
 $lang['not_recommended']                 = "Not Recommended";
 $lang['data_x_categories']               = "CSV data is not belong to any category or is not formatted as per instructions.";
+$lang['zone_tree']                          = "Zone (Tree)";
+$lang['zone']                               = "Zone";

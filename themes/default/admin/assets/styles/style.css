@@ -1755,6 +1755,11 @@ legend.scheduler-border {
 /* Listing page tables
 =============================================================== */
 #GCData th, #QUData th { width: 15%; }
+#ZoneData th { width: 10%; }
+#ZoneData td:nth-child(1) { width: 4%; }
+
+
+
 #SLData th { width: 13%; }
 #POData th, #TOData th { width: 15%; }
 #POSData th, #DOData th { width: 14%; }

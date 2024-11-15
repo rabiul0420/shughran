@@ -55,7 +55,7 @@ class Organization extends MY_Controller
         } else
             $this->data['detailinfo'] = '';
 
-        $last_year =  date("Y", strtotime("-1 year"));
+        $last_year = date("Y", strtotime("-1 year"));
         $report_type = $this->report_type();
 
         $this->sma->print_arrays($report_type);
@@ -94,10 +94,9 @@ class Organization extends MY_Controller
     {
 
         if ($branch_id)
-            $result =  $this->site->query_binding("SELECT COUNT(id) as total, institution_type_id from sma_institution_without_org WHERE   branch_id = ?  GROUP BY institution_type_id ", array($branch_id));
-
+            $result = $this->site->query_binding("SELECT COUNT(id) as total, institution_type_id from sma_institution_without_org WHERE   branch_id = ?  GROUP BY institution_type_id ", array($branch_id));
         else
-            $result =  $this->site->query("SELECT COUNT(id) as total, institution_type_id from sma_institution_without_org GROUP BY institution_type_id");
+            $result = $this->site->query("SELECT COUNT(id) as total, institution_type_id from sma_institution_without_org GROUP BY institution_type_id");
 
 
         return $result;
@@ -499,7 +498,6 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
             if ($report_type == 'half_yearly' || $last_half)
 
                 $increase_outputinfo = $this->site->query_binding('SELECT worker,institution_type_id,id from sma_organization_record  where branch_id = ? AND date BETWEEN ? AND ?', array($branch_id, $start_date, $end_date));
-
             else if ($report_type == 'annual') {
 
                 $increase_outputinfo = $this->site->query_binding('SELECT SUM(worker) worker,institution_type_id,id from sma_organization_record  where branch_id = ? AND date BETWEEN ? AND ? GROUP BY institution_type_id,id', array($branch_id, $reportinfo['info']->startdate_annual, $reportinfo['info']->enddate_annual));
@@ -514,7 +512,6 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
             if ($report_type == 'half_yearly' || $last_half)
 
                 $increase_outputinfo = $this->site->query_binding('SELECT worker,institution_type_id,id from sma_organization_record   where   date BETWEEN ? AND ?', array($start_date, $end_date));
-
             else if ($report_type == 'annual')
                 $increase_outputinfo = $this->site->query_binding('SELECT SUM(worker) worker,institution_type_id,id from sma_organization_record   where   date BETWEEN ? AND ? GROUP BY institution_type_id,id', array($reportinfo['info']->startdate_annual, $reportinfo['info']->enddate_annual));
         }
@@ -525,7 +522,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
     function getorg_summary2($report_type, $start_date, $end_date, $branch_id = NULL, $reportinfo = null)
     {
 
-        $report_info =  $reportinfo['info'];
+        $report_info = $reportinfo['info'];
 
 
 
@@ -533,7 +530,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
 
             $start = $report_info->startdate_half;
             $end = $report_info->enddate_annual;
-        } else  if ($this->input->get('type') && ($this->input->get('type') == 'half_yearly')) {
+        } else if ($this->input->get('type') && ($this->input->get('type') == 'half_yearly')) {
 
             $start = $report_info->startdate_half;
             $end = $report_info->enddate_half;
@@ -550,7 +547,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
         if ($branch_id) {
 
             if ($this->input->get('type') && ($this->input->get('type') == 'annual')) {
-                $result =  $this->site->query_binding(" SELECT  `institution_type_id`,
+                $result = $this->site->query_binding(" SELECT  `institution_type_id`,
     SUM(`institution_increase`) institution_increase,
     SUM(`institution_decrease`) institution_decrease,
     SUM(`orgnization_increase`) orgnization_increase,
@@ -566,7 +563,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
     WHERE branch_id = ? AND date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($branch_id, $start, $end));
 
                 // last half
-                $result2 =  $this->site->query_binding(" SELECT  `institution_type_id`,
+                $result2 = $this->site->query_binding(" SELECT  `institution_type_id`,
     SUM(`thana_org`) thana_org,
      SUM(`ward_org`) ward_org,
     SUM(`unit_org`) unit_org,
@@ -588,7 +585,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
 
                 $merged = array_replace_recursive($result, $result2);
 
-                $increase_outputinfo  = $merged;
+                $increase_outputinfo = $merged;
 
 
 
@@ -602,7 +599,7 @@ SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institutio
         } else {
 
             if ($this->input->get('type') && ($this->input->get('type') == 'annual')) {
-                $result =  $this->site->query_binding("SELECT  `institution_type_id`,
+                $result = $this->site->query_binding("SELECT  `institution_type_id`,
 SUM(`institution_increase`) institution_increase,
 SUM(`institution_decrease`) institution_decrease,
 SUM(`orgnization_increase`) orgnization_increase,
@@ -624,7 +621,7 @@ SUM(`female_std_supporter`) female_std_supporter,
 SUM(`non_mus_std`) non_mus_std,
 SUM(`total_std`) total_std , sum(id) as id  FROM sma_organization_record 
 WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end));
-                $increase_outputinfo =  $result;
+                $increase_outputinfo = $result;
                 //$increase_outputinfo->id = 999999999999;
 
             } else {
@@ -646,10 +643,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     {
 
         if ($branch_id)
-            $result =  $this->site->query_binding("SELECT * from sma_organization_record_calculated WHERE `report_type` = ? AND branch_id = ? AND  calculated_year = ? ", array($report_type, $branch_id, $year));
-
+            $result = $this->site->query_binding("SELECT * from sma_organization_record_calculated WHERE `report_type` = ? AND branch_id = ? AND  calculated_year = ? ", array($report_type, $branch_id, $year));
         else
-            $result =  $this->site->query_binding("SELECT * from sma_organization_record_calculated WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $year));
+            $result = $this->site->query_binding("SELECT * from sma_organization_record_calculated WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $year));
 
 
         return $result;
@@ -933,8 +929,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->view($this->theme . 'organization/pending', $this->data);
         } else {
 
-            $unit  = $this->site->query("SELECT *            
-            FROM " . $this->db->dbprefix('institution_unit') . "  WHERE   date  BETWEEN '" . $report_type['start'] . "' AND '" . $report_type['end']  . "' AND  institution_id = $id ");
+            $unit = $this->site->query("SELECT *            
+            FROM " . $this->db->dbprefix('institution_unit') . "  WHERE   date  BETWEEN '" . $report_type['start'] . "' AND '" . $report_type['end'] . "' AND  institution_id = $id ");
 
 
             $this->form_validation->set_rules('date', 'date', 'required');
@@ -957,16 +953,16 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 if (isset($unit['0']['id']))
                     $this->site->updateData('institution_unit', $data, array('id' => $unit['0']['id']));
                 else {
-                    $data['user_id'] =   $this->session->userdata('user_id');
+                    $data['user_id'] = $this->session->userdata('user_id');
 
-                    $data['institution_id'] =   $id;
-                    $data['branch_id'] =    $institution_details->branch_id;
+                    $data['institution_id'] = $id;
+                    $data['branch_id'] = $institution_details->branch_id;
 
                     $this->site->insertData('institution_unit', $data);
                 }
 
 
-                $current_number = $institution_details->current_unit + $this->input->post('unit_increase') - $this->input->post('unit_decrease')  - (count($unit) > 0 ? $unit['0']['unit_increase'] :  0) + (count($unit) > 0 ? $unit['0']['unit_decrease'] : 0);
+                $current_number = $institution_details->current_unit + $this->input->post('unit_increase') - $this->input->post('unit_decrease') - (count($unit) > 0 ? $unit['0']['unit_increase'] : 0) + (count($unit) > 0 ? $unit['0']['unit_decrease'] : 0);
                 $this->site->updateData('institutionlist', array('current_unit' => $current_number), array('id' => $id));
 
 
@@ -1015,8 +1011,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->view($this->theme . 'organization/pending', $this->data);
         } else {
 
-            $supporterorganization  = $this->site->query("SELECT *            
-            FROM " . $this->db->dbprefix('institution_supporter_organization') . "  WHERE   date  BETWEEN '" . $report_type['start'] . "' AND '" . $report_type['end']  . "' AND  institution_id = $id ");
+            $supporterorganization = $this->site->query("SELECT *            
+            FROM " . $this->db->dbprefix('institution_supporter_organization') . "  WHERE   date  BETWEEN '" . $report_type['start'] . "' AND '" . $report_type['end'] . "' AND  institution_id = $id ");
 
 
             $this->form_validation->set_rules('date', 'date', 'required');
@@ -1037,23 +1033,23 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             if ($this->form_validation->run() == true) {
 
-                $current_number = $institution_details->current_supporter_organization + $this->input->post('supporter_org_increase') - $this->input->post('supporter_org_decrease')  - (count($supporterorganization) > 0 ? $supporterorganization['0']['supporter_org_increase'] :  0) + (count($supporterorganization) > 0 ? $supporterorganization['0']['supporter_org_decrease'] : 0);
+                $current_number = $institution_details->current_supporter_organization + $this->input->post('supporter_org_increase') - $this->input->post('supporter_org_decrease') - (count($supporterorganization) > 0 ? $supporterorganization['0']['supporter_org_increase'] : 0) + (count($supporterorganization) > 0 ? $supporterorganization['0']['supporter_org_decrease'] : 0);
 
 
 
                 if (isset($supporterorganization['0']['id']))
                     $this->site->updateData('institution_supporter_organization', $data, array('id' => $supporterorganization['0']['id']));
                 else {
-                    $data['user_id'] =   $this->session->userdata('user_id');
+                    $data['user_id'] = $this->session->userdata('user_id');
 
-                    $data['institution_id'] =   $id;
-                    $data['branch_id'] =    $institution_details->branch_id;
+                    $data['institution_id'] = $id;
+                    $data['branch_id'] = $institution_details->branch_id;
 
-                    if ($current_number == 0 &&  $institution_details->current_supporter_organization > 0) {
+                    if ($current_number == 0 && $institution_details->current_supporter_organization > 0) {
                         $data['change_type'] = 2;
                         $data['current_supporter_org'] = $current_number;
                         $data['is_organization'] = $institution_details->is_organization;
-                    } elseif ($current_number > 0 &&  $institution_details->current_supporter_organization == 0) {
+                    } elseif ($current_number > 0 && $institution_details->current_supporter_organization == 0) {
                         $data['change_type'] = 1;
                         $data['current_supporter_org'] = $current_number;
                         $data['is_organization'] = $institution_details->is_organization;
@@ -1064,7 +1060,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 }
 
 
-                $current_number = $institution_details->current_supporter_organization + $this->input->post('supporter_org_increase') - $this->input->post('supporter_org_decrease')  - (count($supporterorganization) > 0 ? $supporterorganization['0']['supporter_org_increase'] :  0) + (count($supporterorganization) > 0 ? $supporterorganization['0']['supporter_org_decrease'] : 0);
+                $current_number = $institution_details->current_supporter_organization + $this->input->post('supporter_org_increase') - $this->input->post('supporter_org_decrease') - (count($supporterorganization) > 0 ? $supporterorganization['0']['supporter_org_increase'] : 0) + (count($supporterorganization) > 0 ? $supporterorganization['0']['supporter_org_decrease'] : 0);
                 $this->site->updateData('institutionlist', array('current_supporter_organization' => $current_number), array('id' => $id));
 
 
@@ -1425,13 +1421,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $end = $report_type['end'];
         $year = $report_type['year'];
         $cal_type = $report_type['type'];
-        $report_info =  $report_type['info'];
+        $report_info = $report_type['info'];
 
         if ($report_type['is_current'] != false) {
             if ($cal_type == 'half_yearly') {
                 $organization_recordinfo = $this->site->getOneRecord('organization_record', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $end, 'date > ' => $start), 'id desc', 1, 0);
 
-                if (!$organization_recordinfo &&   (time() >= strtotime($start)   &&  time() <= strtotime($end))) {
+                if (!$organization_recordinfo && (time() >= strtotime($start) && time() <= strtotime($end))) {
 
                     foreach ($institutions as $institution)
                         $this->site->insertData('organization_record', array('institution_type_id' => $institution->id, 'branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
@@ -1499,12 +1495,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($this->form_validation->run() == true) {
 
-            $branch =  $this->site->getBranchByID($branch_id);
+            $branch = $this->site->getBranchByID($branch_id);
 
 
             //  $institution_code = sprintf('%03d', $branch->code);
 
-            $institution_code =  sprintf('%03d', $branch->code) . sprintf('%05d', $branch->last_institution_code + 1);
+            $institution_code = sprintf('%03d', $branch->code) . sprintf('%05d', $branch->last_institution_code + 1);
 
 
             $data = array(
@@ -1685,7 +1681,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         // $this->sma->print_arrays($organization_history,$supporter_organization_history);
 
-        if ($institution_details->is_organization == 1  || $institution_details->current_unit != 0) {
+        if ($institution_details->is_organization == 1 || $institution_details->current_unit != 0) {
 
             $this->data['modal_js'] = $this->site->modal_js();
             $this->data['msg'] = 'This institution already has record(s).';
@@ -1835,10 +1831,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         if (!($this->Owner || $this->Admin))
-            $where =  array('id' => $id, 'branch_id' => $this->session->userdata('branch_id'));
-
+            $where = array('id' => $id, 'branch_id' => $this->session->userdata('branch_id'));
         else if ($this->Owner || $this->Admin)
-            $where =  array('id' => $id);
+            $where = array('id' => $id);
 
 
 
@@ -1873,7 +1868,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->data['manpower'] = $pr_details;
         if ($status == 1) {
             $this->data['member'] = $this->manpower_model->getMemberByID($id);
-            $this->data['status'] =  'Member';
+            $this->data['status'] = 'Member';
         }
         $this->load->view($this->theme . 'manpower/modal_view', $this->data);
     }
@@ -2159,12 +2154,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
                 // $res = ( $rule1 ? true : $rule2 ? true : false )
 
-                $this->excel->getActiveSheet()->SetCellValue('R' . $row, ($data_row->org_type == 'unit' ? 'উপশাখা' : ($data_row->org_type == 'ward' ? 'ওয়ার্ড' : ($data_row->org_type == 'thana' ? 'থানা' : ($data_row->org_type == 'branch' ? 'শাখা'  : 'নেই')))));
+                $this->excel->getActiveSheet()->SetCellValue('R' . $row, ($data_row->org_type == 'unit' ? 'উপশাখা' : ($data_row->org_type == 'ward' ? 'ওয়ার্ড' : ($data_row->org_type == 'thana' ? 'থানা' : ($data_row->org_type == 'branch' ? 'শাখা' : 'নেই')))));
 
                 $this->excel->getActiveSheet()->SetCellValue('S' . $row, $data_row->in_current_session == 1 ? 'Increase' : ($data_row->in_current_session == 2 ? 'Decrease' : ''));
                 //$this->excel->getActiveSheet()->SetCellValue('R' . $row, $data_row->in_current_session);
                 $this->excel->getActiveSheet()->SetCellValue('T' . $row, $data_row->notes);
-                $this->excel->getActiveSheet()->SetCellValue('U' . $row, strtotime($data_row->date) > strtotime($start) &&  strtotime($data_row->date) < strtotime($end) ? 'Current' : 'not in current');
+                $this->excel->getActiveSheet()->SetCellValue('U' . $row, strtotime($data_row->date) > strtotime($start) && strtotime($data_row->date) < strtotime($end) ? 'Current' : 'not in current');
                 //$this->excel->getActiveSheet()->SetCellValue('T' . $row, $data_row->date); 
 
                 $this->excel->getActiveSheet()->SetCellValue('V' . $row, $data_row->current_unit);
@@ -2435,7 +2430,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $view_link = anchor('admin/organization/instituition_detail/$1', '<i class="fa fa-info"></i> ' . lang('view'), 'data-toggle="modal" data-target="#myModal"');
 
 
-        $this->datatables->add_column("View",  $view_link, "institution_id");
+        $this->datatables->add_column("View", $view_link, "institution_id");
 
         $this->datatables->unset_column("institution_id");
 
@@ -2566,7 +2561,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $view_link = anchor('admin/organization/instituition_detail/$1', '<i class="fa fa-info"></i> ' . lang('view'), 'data-toggle="modal" data-target="#myModal"');
 
 
-        $this->datatables->add_column("View",  $view_link, "institution_id");
+        $this->datatables->add_column("View", $view_link, "institution_id");
 
         $this->datatables->unset_column("institution_id");
 
@@ -2656,7 +2651,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $this->datatables->add_column("Edit", $edit_link, "id");
-        $this->datatables->add_column("View",  $view_link, "id");
+        $this->datatables->add_column("View", $view_link, "id");
 
 
 
@@ -2689,13 +2684,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         if ($type == 'half_yearly') {
-            $start =  $report_type['info']->startdate_half;
+            $start = $report_type['info']->startdate_half;
             $end = $report_type['info']->enddate_half;
         } elseif ($type == 'annual') {
-            $start =  $report_type['info']->startdate_half;
+            $start = $report_type['info']->startdate_half;
             $end = $report_type['info']->enddate_annual;
         } else {
-            $start =  $report_type['info']->startdate_annual;
+            $start = $report_type['info']->startdate_annual;
             $end = $report_type['info']->enddate_annual;
         }
 
@@ -3034,13 +3029,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         if ($type == 'half_yearly') {
-            $start =  $report_type['info']->startdate_half;
+            $start = $report_type['info']->startdate_half;
             $end = $report_type['info']->enddate_half;
         } elseif ($type == 'annual') {
-            $start =  $report_type['info']->startdate_half;
+            $start = $report_type['info']->startdate_half;
             $end = $report_type['info']->enddate_annual;
         } else {
-            $start =  $report_type['info']->startdate_annual;
+            $start = $report_type['info']->startdate_annual;
             $end = $report_type['info']->enddate_annual;
         }
 
@@ -3155,13 +3150,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         if ($type == 'half_yearly') {
-            $start =  $report_type['info']->startdate_half;
+            $start = $report_type['info']->startdate_half;
             $end = $report_type['info']->enddate_half;
         } elseif ($type == 'annual') {
-            $start =  $report_type['info']->startdate_half;
+            $start = $report_type['info']->startdate_half;
             $end = $report_type['info']->enddate_annual;
         } else {
-            $start =  $report_type['info']->startdate_annual;
+            $start = $report_type['info']->startdate_annual;
             $end = $report_type['info']->enddate_annual;
         }
 
@@ -3303,7 +3298,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             //     ( COALESCE(SUM(unit_increase) ,0)  -  COALESCE(SUM(unit_decrease),0) ) unit_total
             //    FROM `sma_institution_organization`  WHERE institution_id = $id ");
 
-            $organization_info =   $this->site->query("SELECT   
+            $organization_info = $this->site->query("SELECT   
             * FROM " . $this->db->dbprefix('institution_organization') . "  WHERE org_change_type = 1 AND institution_id = $id order by id desc");
 
             if ($institution_details->current_unit > 0) {
@@ -3369,8 +3364,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         if ($this->form_validation->run() == true) {
             $data = array(
                 'institution_id' => $id,
-                'branch_id' =>  $institution_details->branch_id,
-                'date' =>   $this->sma->fsd($this->input->post('date')),
+                'branch_id' => $institution_details->branch_id,
+                'date' => $this->sma->fsd($this->input->post('date')),
                 'user_id' => $this->session->userdata('user_id'),
                 'org_change_type' => 1,
                 'notes' => $this->input->post('notes'),
@@ -3386,11 +3381,11 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             admin_redirect('organization/institutionbutorg');
         }
 
-        if ($this->form_validation->run() == true &&  ($insert_id = $this->site->insertData('institution_organization', $data, 'id'))) {
+        if ($this->form_validation->run() == true && ($insert_id = $this->site->insertData('institution_organization', $data, 'id'))) {
 
             $unit_data = array(
                 'institution_id' => $id,
-                'date' =>   $this->sma->fsd($this->input->post('date')),
+                'date' => $this->sma->fsd($this->input->post('date')),
                 'branch_id' => $institution_details->branch_id,
                 'unit_increase' => $this->input->post('unit_increase'),
                 'unit_decrease' => 0,
@@ -3595,7 +3590,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             admin_redirect('organization/addthana/' . $this->session->userdata('branch_id'));
         }
 
-        if ($branch_id == NULL   && ($this->Owner || $this->Admin)) {
+        if ($branch_id == NULL && ($this->Owner || $this->Admin)) {
             //admin_redirect('organization/thanalist');
             redirect($_SERVER["HTTP_REFERER"]);
         }
@@ -3622,13 +3617,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-
         if ($this->form_validation->run() == true) {
 
 
 
             $data = array(
-                'date' =>  $this->sma->fsd($this->input->post('date')),
+                'date' => $this->sma->fsd($this->input->post('date')),
                 'branch_id' => $this->input->post('branch_id'),
                 'parent_id' => $this->input->post('thana_id'),  // need to delete
                 'org_thana_id' => $this->input->post('thana_id'),
@@ -3638,6 +3632,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'thana_code' => $this->input->post('thana_code'),
                 'org_type' => $this->input->post('org_type'),
                 'prosasonik_details' => $this->input->post('prosasonik_details'),
+                'is_attached' => $this->input->post('is_attached'),
                 'institution_id' => $this->input->post('institution_id'),
                 'district' => $this->input->post('district'),
                 'upazila' => $this->input->post('upazila'),
@@ -3653,6 +3648,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'ward_number' => $this->input->post('ward_number'),
                 'unit_number' => $this->input->post('unit_number'),
                 'is_ideal_thana' => $this->input->post('is_ideal_thana'),
+                'supporter_organization' => $this->input->post('supporter_organization'),
                 'note' => $this->input->post('note'),
                 'is_setup' => $this->input->post('is_setup'),
                 'unit_category' => $this->input->post('unit_category'),
@@ -3660,6 +3656,108 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 'is_current' => ($id == 1 ? 2 : 1)
 
             );
+
+
+
+            //org_type == 'Residential'  prosasonik_details==1,2,3,4  is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+            //org_type == 'Residential'  prosasonik_details==3 
+            //institution_parent_id  sub_category  institution_id
+
+            //org_type == 'Residential'  prosasonik_details==2,3,4  is_attached !=1 
+            //district  upazila  union ward
+
+
+
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 1) {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
+                }
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 2) {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
+                }
+                unset($data['district'], $data['upazila'], $data['union'], $data['ward']);
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 3) {
+
+                unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
+                unset($data['is_attached'], $data['district'], $data['upazila'], $data['union'], $data['ward']);
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 4) {
+                if ($this->input->post('is_attached') == 1) {
+
+                } else {
+
+                    unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
+                }
+                unset($data['district'], $data['upazila'], $data['union'], $data['ward']);
+            }
+
+
+
+
+
+
+            //org_type == 'Institutional'  prosasonik_details == 5,6,7
+            //district  upazila  union ward
+
+
+            //org_type == 'Institutional'  prosasonik_details == 6     is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+
+
+
+
+
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 5) {
+                unset($data['is_attached'], $data['district'], $data['upazila'], $data['union'], $data['ward']);
+            }
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 6) {
+
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
+                }
+                unset($data['district'], $data['upazila'], $data['union'], $data['ward']);
+            }
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 7) {
+
+                unset($data['is_attached'], $data['district'], $data['upazila'], $data['union'], $data['ward']);
+            }
+
+
+
+            //org_type == 'Departmental'    is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+            //org_type == 'Departmental'  
+            //prosasonik_details  district  upazila  union ward
+
+
+            if ($this->input->post('org_type') == 'Departmental') {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
+                }
+
+                unset($data['prosasonik_details'], $data['district'], $data['upazila'], $data['union'], $data['ward']);
+            }
+
+            //  institution_parent_id sub_category  institution_id
+
 
 
             //$this->sma->print_arrays($data);
@@ -3684,7 +3782,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
             if ($id == 2 || $id == 3) {
-                $thana_log  = array(
+                $thana_log = array(
                     'branch_id' => $this->input->post('branch_id'),
                     'date' => $this->sma->fsd($this->input->post('date')),
                     'org_thana_id' => $this->input->post('thana_id'),
@@ -3738,7 +3836,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
                 $this->data['branch_id'] = $branch_id;
-                $this->data['branch'] =   $this->site->getBranchByID($branch_id);
+                $this->data['branch'] = $this->site->getBranchByID($branch_id);
             } else {
 
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
@@ -3848,7 +3946,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             //new manpower
             $data = array(
-                'date' =>  $this->sma->fsd($this->input->post('date')),
+                'date' => $this->sma->fsd($this->input->post('date')),
                 'branch_id' => ($this->Owner || $this->Admin) ? $this->input->post('branch_id') : $this->session->userdata('branch_id'),
                 'thana_id' => $this->input->post('thana_id'),
                 'is_pending' => 2,
@@ -3875,7 +3973,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
                 $this->data['branch_id'] = $id;
-                $this->data['branch'] =   $this->site->getBranchByID($id);
+                $this->data['branch'] = $this->site->getBranchByID($id);
             } else {
 
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
@@ -4136,7 +4234,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $date = $this->sma->fld($this->input->post('date') . ' 00:00:00');
 
-            $thana_data  = array(
+            $thana_data = array(
                 'is_pending' => ($thana_info->level == 1 ? 1 : 2),
                 'in_out' => 2, //($thana_info->level == 1 ? 2 : 1),
                 'note' => $note,
@@ -4146,7 +4244,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-            $thana_log  = array(
+            $thana_log = array(
                 'branch_id' => $branch_id,
                 'date' => $date,
                 'thana_id' => $thana_id,
@@ -4165,15 +4263,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             if ($thana_info->level == 1)
 
                 admin_redirect("organization/thanalist" . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
-            else  if ($thana_info->level == 1)
+            else if ($thana_info->level == 1)
 
                 admin_redirect("organization/wardlist" . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
-            else  if ($thana_info->level == 1)
+            else if ($thana_info->level == 1)
                 admin_redirect("organization/uposhakhalist" . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
         }
 
 
-        if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) &&  $this->site->insertData('thana_log', $thana_log)) {
+        if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) && $this->site->insertData('thana_log', $thana_log)) {
 
             if ($thana_info->level == 1) {
                 $this->session->set_flashdata('message', 'কেন্দ্রীয় সভাপতির অনুমোদনের জন্য অপেক্ষা করুন।');
@@ -4239,13 +4337,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $date = $this->sma->fld($this->input->post('date') . ' 00:00:00');
 
-            $thana_data  = array(
+            $thana_data = array(
                 'note' => $note,
                 'update_at' => date('Y-m-d H:i:s'),
                 'is_ideal_thana' => 2
             );
 
-            $ideal_log  = array(
+            $ideal_log = array(
                 'branch_id' => $branch_id,
                 'date' => $date,
                 'thana_id' => $thana_id,
@@ -4262,7 +4360,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             admin_redirect('organization/ideal_thana/' . $thana_info->branch_id);
         }
 
-        if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) &&  $this->site->insertData('thana_ideal_log', $ideal_log)) {
+        if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) && $this->site->insertData('thana_ideal_log', $ideal_log)) {
 
             $this->session->set_flashdata('message', 'Saved successfully.');
             admin_redirect("organization/ideal_thana/" . $thana_info->branch_id);
@@ -4399,7 +4497,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->site->updateData('thana', array('is_pending' => 2, 'is_current' => $thana_info->in_out == 2 ? 2 : 1), array('id' => $thana_id));
 
             if ($thana_info->in_out == 1)
-                $this->site->updateData('thana_ideal_log', array('is_pending' => 2,  'date' => date('Y-m-d')), array('thana_id' => $thana_id));
+                $this->site->updateData('thana_ideal_log', array('is_pending' => 2, 'date' => date('Y-m-d')), array('thana_id' => $thana_id));
             if ($thana_info->in_out == 1)
                 $this->site->insertData('thana_log', $thana_log);
 
@@ -4488,7 +4586,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     }
 
 
-    function editthana($id = NULL)
+    function editthana($id = NULL, $type_id = null)
     {
 
 
@@ -4509,35 +4607,241 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($this->form_validation->run() == true) {
             $data = array(
-                'branch_id' => $this->input->post('branch_id'),
-                'thana_name' => $this->input->post('thana_name'),
-                'thana_code' => $this->input->post('thana_code'),
-                'org_type' => $this->input->post('org_type'),
+                'branch_id' => $this->input->post('branch_id'),  //all time.
 
-                //'member_number' => $this->input->post('member_number'),
-                // 'associate_number' => $this->input->post('associate_number'),
+                'parent_id' => $this->input->post('thana_id'),  // need to delete
+                'org_thana_id' => $this->input->post('thana_id'),
+                'org_ward_id' => $this->input->post('ward_id'),
+                'sub_category' => $this->input->post('sub_category'),
+                'thana_name' => $this->input->post('thana_name'),  //all time.
+                'thana_code' => $this->input->post('thana_code'),  //all time.
+                'org_type' => $this->input->post('org_type'),   //all time.
+                'prosasonik_details' => $this->input->post('prosasonik_details'),
+                'is_attached' => $this->input->post('is_attached'),
+                'institution_id' => $this->input->post('institution_id'),
+                'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
+                'union' => $this->input->post('union'),
+                'ward' => $this->input->post('ward'),
+                'educational_details' => $this->input->post('educational_details'),
+                'institution_parent_id' => $this->input->post('institution_parent_id'),
+                'institution_type_id' => $this->input->post('institution_type_id'),
+                'member_number' => $this->input->post('member_number'),
+                'associate_number' => $this->input->post('associate_number'),
                 'worker_number' => $this->input->post('worker_number'),
                 'supporter_number' => $this->input->post('supporter_number'),
-                //'ward_number' => $this->input->post('ward_number'),
-                //'unit_number' => $this->input->post('unit_number'),
-                // 'increase_in_current_session' => $this->input->post('increase_in_current_session'),
-                'note' => $this->input->post('note'),
+                'supporter_organization' => $this->input->post('supporter_organization'),
+                'supporter_organization' => $this->input->post('supporter_organization'),
+                'note' => $this->input->post('note'), //all time.
+                'update_by' => $this->session->userdata('user_id'), //all time.
+                'update_at' => date("Y-m-d H:i:s"), //all time.
+                'ward_number' => $this->input->post('ward_number'),
+                'unit_number' => $this->input->post('unit_number'),
 
-                'update_by' => $this->session->userdata('user_id'),
-                'update_at' => date("Y-m-d H:i:s"),
-                'note' => $this->input->post('note')
+
+
             );
-            if ($this->Owner || $this->Admin) {
+
+
+
+
+
+
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 1) {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 2) {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 3) {
+
+                $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 4) {
+                if ($this->input->post('is_attached') == 1) {
+
+                } else {
+
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+
+
+
+
+
+            //org_type == 'Institutional'  prosasonik_details == 5,6,7
+            //district  upazila  union ward
+
+
+            //org_type == 'Institutional'  prosasonik_details == 6     is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+
+
+
+
+
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 5) {
+
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+
+            }
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 6) {
+
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+
+            }
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 7) {
+
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+
+
+            //org_type == 'Departmental'    is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+            //org_type == 'Departmental'  
+            //prosasonik_details  district  upazila  union ward
+
+
+            if ($this->input->post('org_type') == 'Departmental') {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+
+                $data['prosasonik_details'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+            //  institution_parent_id sub_category  institution_id
+
+
+            // if ($this->input->post('org_type') == 'Departmental') {
+            //     //done
+            //     $data['district'] = null;
+            //     $data['upazila'] = null;
+            //     $data['union'] = null;
+            //     $data['ward'] = null;
+            //     $data['educational_details'] = null;
+            //     $data['institution_parent_id'] = null;
+            //     $data['prosasonik_details'] = null;
+            //     $data['institution_id'] = null;
+            //     $data['sub_category'] = null;
+
+            // } else if ($this->input->post('org_type') == 'Institutional') {
+            //     //educational_details
+            //     //institution_parent_id 
+            //     //sub_category
+            //     //institution_id 
+            //     $data['educational_details'] = $this->input->post('educational_details');
+            //     $data['institution_parent_id'] = $this->input->post('institution_parent_id');
+            //     $data['institution_id'] = $this->input->post('institution_id');
+            //     $data['sub_category'] = $this->input->post('sub_category');
+
+            //     $data['district'] = null;//
+            //     $data['upazila'] = null;//
+            //     $data['union'] = null;//
+            //     $data['ward'] = null;       //         
+            //     $data['prosasonik_details'] = null;//
+
+
+            // } else if ($this->input->post('org_type') == 'Residential') {
+
+
+
+            //     $data['district'] = $this->input->post('district');//
+            //     $data['upazila'] = $this->input->post('upazila');///
+            //     $data['union'] = $this->input->post('union');//
+            //     $data['ward'] = $this->input->post('ward');//
+            //     $data['educational_details'] = $this->input->post('educational_details'); //
+            //     $data['institution_parent_id'] = $this->input->post('institution_parent_id');//
+            //     $data['prosasonik_details'] = $this->input->post('prosasonik_details'); //
+            //     $data['institution_id'] = $this->input->post('institution_id');//
+            //     $data['sub_category'] = $this->input->post('sub_category');//
+
+            // }
+
+
+
+
+
+
+            if ($type_id == 1) {
+
+                $data['level'] = 1;
+            } elseif ($type_id == 2) {
+
+                $data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0);
+
+                $data['level'] = 2;
+            } elseif ($type_id == 3) {
+                $data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0);
+                $data['level'] = 3;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $thana_log = array();
+
+            if (1 || $this->Owner || $this->Admin) {  //apatoto
                 $data['date'] = $this->sma->fsd($this->input->post('date'));
+                $thana_log['date'] = $this->sma->fsd($this->input->post('date'));
             }
 
 
 
-            $datalog = array();
-
-            if ($this->Owner || $this->Admin) {
-                $datalog['date'] = $this->sma->fsd($this->input->post('date'));
+            if ($type_id == 2 || $type_id == 3) {
+                $thana_log = array(
+                    'branch_id' => $this->input->post('branch_id'),
+                    'org_thana_id' => $this->input->post('thana_id'),
+                    'org_ward_id' => $this->input->post('ward_id'),
+                    'thana_id' => $id,   //thana ward uposhakha
+                    'note' => $this->input->post('note'),
+                    //'in_out' => 1,
+                    'level' => $type_id,
+                    // 'user_id' => $this->session->userdata('user_id')
+                );
+                //  $thana_id = $this->site->insertData('thana_log', $thana_log, 'id');
             }
+
+
+
+            //  $this->sma->print_arrays($data,$thana_log);
+
         } elseif ($this->input->post('edit_thana')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect('organization/thanalist');
@@ -4545,8 +4849,11 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         if ($this->form_validation->run() == true && $this->site->updateData('thana', $data, array('id' => $id))) {
 
-            if ($this->Owner || $this->Admin) {
-                $this->site->updateData('thana_log', $datalog, array('thana_id' => $id, 'in_out' => 1));
+
+
+
+            if (1 || $this->Owner || $this->Admin) {
+                $this->site->updateData('thana_log', $thana_log, array('thana_id' => $id, 'in_out' => 1));
             }
 
             $this->session->set_flashdata('message', 'Updated successfully');
@@ -4561,13 +4868,43 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $this->data['thana'] = $thana_details;
 
+            $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
+
+
+
+            //$zone = $this->site->getByID('district', 'id', $thana_details->district);
+
+            // $this->sma->print_arrays($thana_details);
+
+            //top level list
+            $this->data['districts'] = $this->site->getDistrict();
+
+            //2nd level list
+            //$this->data['second_level'] = $zone->parent_second_level != null ? $this->site->getByID('district','id',$zone->parent_second_level) : null;
+
+            // $second_level = $thana_details->upazila != null ? $this->site->getByID('district','id',$thana_details->upazila) : null;
+            $this->data['second_level'] = $thana_details->upazila != null ? $this->site->getList('district', '*', ['parent_top_level' => $thana_details->district, 'level' => 2]) : null;
+            // $this->data['second_level'] = 
+            //3rd level list
+            //$this->data['third_level'] = $zone->parent_third_level != null ? $this->site->getByID('district','id',$zone->parent_third_level) : null;
+            $this->data['third_level'] = $thana_details->union != null ? $this->site->getList('district', '*', ['parent_second_level' => $thana_details->upazila, 'level' => 3]) : null;
+
+            //4th level list
+            //$this->data['third_level'] = $zone->parent_third_level != null ? $this->site->getByID('district','id',$zone->parent_third_level) : null;
+            $this->data['fourth_level'] = $thana_details->ward != null ? $this->site->getList('district', '*', ['parent_third_level' => $thana_details->union, 'level' => 4]) : null;
+
+            $this->data['sub_category'] = $thana_details->institution_parent_id != null ? $this->db->where('type_id', $thana_details->institution_parent_id)->get('institution')->result() : null;
+
+
+            $this->data['institutionlist'] = $thana_details->sub_category ? $this->db->where('institution_type_child', $thana_details->sub_category)->where('branch_id', $thana_details->branch_id)->get('institutionlist')->result() : null;
+
 
             $this->data['branches'] = $this->site->getAllBranches();
 
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
-                $this->data['branch_id'] = NULL;
-                $this->data['branch'] =   NULL;
+                $this->data['branch_id'] = $thana_details->$branch_id;
+                $this->data['branch'] = $this->site->getBranchByID($thana_details->$branch_id);
             } else {
 
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
@@ -4582,7 +4919,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-    function editward($id = NULL)
+    function editward($id = NULl, $type_id = null)
     {
 
 
@@ -4602,39 +4939,180 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         if ($this->form_validation->run() == true) {
-            $data = array(
-                'branch_id' => $this->input->post('branch_id'),
-                'thana_name' => $this->input->post('thana_name'),
-                //'thana_code' => $this->input->post('thana_code'),
-                'org_thana_id' => $this->input->post('thana_id'),
-                //$data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level'=>1), 'id DESC', 1, 0);
-                'thana_code' => $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0),
-                'org_type' => $this->input->post('org_type'),
 
+
+
+
+
+
+
+
+            $data = array(
+                'branch_id' => $this->input->post('branch_id'),  //all time.
+
+                //'parent_id' => $this->input->post('thana_id'),  // need to delete
+                'org_thana_id' => $this->input->post('thana_id'),
+                'org_ward_id' => $this->input->post('ward_id'),
+                'sub_category' => $this->input->post('sub_category'),
+                'thana_name' => $this->input->post('thana_name'),  //all time.
+                'thana_code' => $this->input->post('thana_code'),  //all time.
+                'org_type' => $this->input->post('org_type'),   //all time.
+                'prosasonik_details' => $this->input->post('prosasonik_details'),
+                'is_attached' => $this->input->post('is_attached'),
+                'institution_id' => $this->input->post('institution_id'),
+                'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
+                'union' => $this->input->post('union'),
+                'ward' => $this->input->post('ward'),
+                'educational_details' => $this->input->post('educational_details'),
+                'institution_parent_id' => $this->input->post('institution_parent_id'),
+                'institution_type_id' => $this->input->post('institution_type_id'),
                 'member_number' => $this->input->post('member_number'),
                 'associate_number' => $this->input->post('associate_number'),
                 'worker_number' => $this->input->post('worker_number'),
                 'supporter_number' => $this->input->post('supporter_number'),
-                //'ward_number' => $this->input->post('ward_number'),
-                //'unit_number' => $this->input->post('unit_number'),
-                // 'increase_in_current_session' => $this->input->post('increase_in_current_session'),
-                'note' => $this->input->post('note'),
+                'supporter_organization' => $this->input->post('supporter_organization'),
 
-                'update_by' => $this->session->userdata('user_id'),
-                'update_at' => date("Y-m-d H:i:s"),
-                'note' => $this->input->post('note')
+                'note' => $this->input->post('note'), //all time.
+                'update_by' => $this->session->userdata('user_id'), //all time.
+                'update_at' => date("Y-m-d H:i:s"), //all time.
+                'ward_number' => $this->input->post('ward_number'),
+                'unit_number' => $this->input->post('unit_number'),
+
+
+
             );
-            if ($this->Owner || $this->Admin) {
+
+
+
+
+
+
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 1) {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 2) {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 3) {
+
+                $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 4) {
+                if ($this->input->post('is_attached') == 1) {
+
+                } else {
+
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+
+
+
+
+
+            //org_type == 'Institutional'  prosasonik_details == 5,6,7
+            //district  upazila  union ward
+
+
+            //org_type == 'Institutional'  prosasonik_details == 6     is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+
+
+
+
+
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 5) {
+
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+
+            }
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 6) {
+
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+
+            }
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 7) {
+
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+
+
+            //org_type == 'Departmental'    is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+            //org_type == 'Departmental'  
+            //prosasonik_details  district  upazila  union ward
+
+
+            if ($this->input->post('org_type') == 'Departmental') {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+
+                $data['prosasonik_details'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+
+
+
+
+
+
+
+            if ($type_id == 1) {
+
+                $data['level'] = 1;
+            } elseif ($type_id == 2) {
+
+                $data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0);
+
+                $data['level'] = 2;
+            } elseif ($type_id == 3) {
+                $data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0);
+                $data['level'] = 3;
+            }
+
+
+            if (1 || $this->Owner || $this->Admin) {
                 $data['date'] = $this->sma->fsd($this->input->post('date'));
             }
 
 
 
+
             $datalog = array();
 
-            if ($this->Owner || $this->Admin) {
+            if (1 || $this->Owner || $this->Admin) {
                 $datalog['date'] = $this->sma->fsd($this->input->post('date'));
             }
+            $datalog['org_thana_id'] = $this->input->post('thana_id');
+            $datalog['org_ward_id'] = $this->input->post('ward_id');
         } elseif ($this->input->post('edit_ward')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect('organization/wardlist' . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
@@ -4659,6 +5137,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $this->data['thana'] = $thana_details;
 
+            $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
+
 
             if ($this->Owner || $this->Admin)
                 $this->data['thanas'] = $this->site->getThanaByBranch($thana_details->branch_id);
@@ -4672,13 +5152,40 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
-                $this->data['branch_id'] = NULL;
-                $this->data['branch'] =   NULL;
+                $this->data['branch_id'] = $thana_details->$branch_id;
+                $this->data['branch'] = $this->site->getBranchByID($thana_details->$branch_id);
             } else {
 
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
                 $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
             }
+
+
+
+
+            //top level list
+            $this->data['districts'] = $this->site->getDistrict();
+
+            //2nd level list
+            //$this->data['second_level'] = $zone->parent_second_level != null ? $this->site->getByID('district','id',$zone->parent_second_level) : null;
+
+            // $second_level = $thana_details->upazila != null ? $this->site->getByID('district','id',$thana_details->upazila) : null;
+            $this->data['second_level'] = $thana_details->upazila != null ? $this->site->getList('district', '*', ['parent_top_level' => $thana_details->district, 'level' => 2]) : null;
+            // $this->data['second_level'] = 
+            //3rd level list
+            //$this->data['third_level'] = $zone->parent_third_level != null ? $this->site->getByID('district','id',$zone->parent_third_level) : null;
+            $this->data['third_level'] = $thana_details->union != null ? $this->site->getList('district', '*', ['parent_second_level' => $thana_details->upazila, 'level' => 3]) : null;
+
+            //4th level list
+            //$this->data['third_level'] = $zone->parent_third_level != null ? $this->site->getByID('district','id',$zone->parent_third_level) : null;
+            $this->data['fourth_level'] = $thana_details->ward != null ? $this->site->getList('district', '*', ['parent_third_level' => $thana_details->union, 'level' => 4]) : null;
+
+            $this->data['sub_category'] = $thana_details->institution_parent_id != null ? $this->db->where('type_id', $thana_details->institution_parent_id)->get('institution')->result() : null;
+
+
+            $this->data['institutionlist'] = $thana_details->sub_category ? $this->db->where('institution_type_child', $thana_details->sub_category)->where('branch_id', $thana_details->branch_id)->get('institutionlist')->result() : null;
+
+
 
 
             $this->load->view($this->theme . 'organization/wardedit', $this->data);
@@ -4687,7 +5194,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-    function edituposhakha($id = NULL)
+    function edituposhakha($id = NULL, $type_id = null)
     {
 
 
@@ -4707,32 +5214,157 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         if ($this->form_validation->run() == true) {
+
+
+
             $data = array(
-                'branch_id' => $this->input->post('branch_id'),
-                'thana_name' => $this->input->post('thana_name'),
-                'thana_code' => $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0),
+                'branch_id' => $this->input->post('branch_id'),  //all time.
+
+                //'parent_id' => $this->input->post('thana_id'),  // need to delete
                 'org_thana_id' => $this->input->post('thana_id'),
                 'org_ward_id' => $this->input->post('ward_id'),
-
-                //'thana_code' => $this->input->post('thana_code'),
-                // $data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level'=>1), 'id DESC', 1, 0);
-                //pore 
-                'org_type' => $this->input->post('org_type'),
-
+                'sub_category' => $this->input->post('sub_category'),
+                'thana_name' => $this->input->post('thana_name'),  //all time.
+                'thana_code' => $this->input->post('thana_code'),  //all time.
+                'org_type' => $this->input->post('org_type'),   //all time.
+                'prosasonik_details' => $this->input->post('prosasonik_details'),
+                'is_attached' => $this->input->post('is_attached'),
+                'institution_id' => $this->input->post('institution_id'),
+                'district' => $this->input->post('district'),
+                'upazila' => $this->input->post('upazila'),
+                'union' => $this->input->post('union'),
+                'ward' => $this->input->post('ward'),
+                //'educational_details' => $this->input->post('educational_details'),
+                'institution_parent_id' => $this->input->post('institution_parent_id'),
+                'institution_type_id' => $this->input->post('institution_type_id'),
                 'member_number' => $this->input->post('member_number'),
                 'associate_number' => $this->input->post('associate_number'),
                 'worker_number' => $this->input->post('worker_number'),
                 'supporter_number' => $this->input->post('supporter_number'),
-                //'ward_number' => $this->input->post('ward_number'),
-                //'unit_number' => $this->input->post('unit_number'),
-                // 'increase_in_current_session' => $this->input->post('increase_in_current_session'),
-                'note' => $this->input->post('note'),
-                'unit_category' => $this->input->post('unit_category'),
-                'update_by' => $this->session->userdata('user_id'),
-                'update_at' => date("Y-m-d H:i:s"),
-                'note' => $this->input->post('note')
+                'supporter_organization' => $this->input->post('supporter_organization'),
+
+                'note' => $this->input->post('note'), //all time.
+                'update_by' => $this->session->userdata('user_id'), //all time.
+                'update_at' => date("Y-m-d H:i:s"), //all time.
+                'ward_number' => $this->input->post('ward_number'),
+                'unit_number' => $this->input->post('unit_number'),
+
+
+
             );
-            if ($this->Owner || $this->Admin) {
+
+
+
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 1) {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 2) {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 3) {
+
+                $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+            if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 4) {
+                if ($this->input->post('is_attached') == 1) {
+
+                } else {
+
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+
+
+
+
+
+            //org_type == 'Institutional'  prosasonik_details == 5,6,7
+            //district  upazila  union ward
+
+
+            //org_type == 'Institutional'  prosasonik_details == 6     is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+
+
+
+
+
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 5) {
+
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+
+            }
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 6) {
+
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+
+                }
+                $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+
+            }
+
+            if ($this->input->post('org_type') == 'Institutional' && $this->input->post('prosasonik_details') == 7) {
+
+                $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+
+
+            //org_type == 'Departmental'    is_attached !=1 
+            //institution_parent_id  sub_category  institution_id
+
+            //org_type == 'Departmental'  
+            //prosasonik_details  district  upazila  union ward
+
+
+            if ($this->input->post('org_type') == 'Departmental') {
+                if ($this->input->post('is_attached') == 1) {
+                } else {
+                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+                }
+
+                $data['prosasonik_details'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
+            }
+
+
+
+
+
+
+
+            if ($type_id == 1) {
+
+                $data['level'] = 1;
+            } elseif ($type_id == 2) {
+
+                $data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0);
+
+                $data['level'] = 2;
+            } elseif ($type_id == 3) {
+                $data['thana_code'] = $this->site->getcolumn('thana', 'thana_code', array('id' => $this->input->post('thana_id'), 'level' => 1), 'id DESC', 1, 0);
+                $data['level'] = 3;
+            }
+
+            if (1 || $this->Owner || $this->Admin) {
                 $data['date'] = $this->sma->fsd($this->input->post('date'));
             }
 
@@ -4740,9 +5372,12 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $datalog = array();
 
-            if ($this->Owner || $this->Admin) {
+            if (1 || $this->Owner || $this->Admin) {
                 $datalog['date'] = $this->sma->fsd($this->input->post('date'));
+
             }
+            $datalog['org_thana_id'] = $this->input->post('thana_id');
+            $datalog['org_ward_id'] = $this->input->post('ward_id');
         } elseif ($this->input->post('edit_ward')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect('organization/uposhakhalist' . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
@@ -4783,13 +5418,41 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
-                $this->data['branch_id'] = NULL;
-                $this->data['branch'] =   NULL;
+                $this->data['branch_id'] = $thana_details->$branch_id;
+                $this->data['branch'] = $this->site->getBranchByID($thana_details->$branch_id);
             } else {
 
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
                 $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
             }
+
+
+
+
+            $this->data['institution_types'] = $this->organization_model->getAllInstitution(2);
+
+            //top level list
+            $this->data['districts'] = $this->site->getDistrict();
+
+            //2nd level list
+            //$this->data['second_level'] = $zone->parent_second_level != null ? $this->site->getByID('district','id',$zone->parent_second_level) : null;
+
+            // $second_level = $thana_details->upazila != null ? $this->site->getByID('district','id',$thana_details->upazila) : null;
+            $this->data['second_level'] = $uposhakha_details->upazila != null ? $this->site->getList('district', '*', ['parent_top_level' => $uposhakha_details->district, 'level' => 2]) : null;
+            // $this->data['second_level'] = 
+            //3rd level list
+            //$this->data['third_level'] = $zone->parent_third_level != null ? $this->site->getByID('district','id',$zone->parent_third_level) : null;
+            $this->data['third_level'] = $uposhakha_details->union != null ? $this->site->getList('district', '*', ['parent_second_level' => $uposhakha_details->upazila, 'level' => 3]) : null;
+
+            //4th level list
+            //$this->data['third_level'] = $zone->parent_third_level != null ? $this->site->getByID('district','id',$zone->parent_third_level) : null;
+            $this->data['fourth_level'] = $uposhakha_details->ward != null ? $this->site->getList('district', '*', ['parent_third_level' => $uposhakha_details->union, 'level' => 4]) : null;
+
+            $this->data['sub_category'] = $uposhakha_details->institution_parent_id != null ? $this->db->where('type_id', $uposhakha_details->institution_parent_id)->get('institution')->result() : null;
+
+
+            $this->data['institutionlist'] = $uposhakha_details->sub_category ? $this->db->where('institution_type_child', $uposhakha_details->sub_category)->where('branch_id', $uposhakha_details->branch_id)->get('institutionlist')->result() : null;
+
 
 
             $this->load->view($this->theme . 'organization/uposhakhaedit', $this->data);
@@ -4926,7 +5589,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
@@ -5030,7 +5693,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
@@ -5135,7 +5798,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
@@ -5238,7 +5901,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
@@ -5440,17 +6103,17 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             admin_redirect('organization/uposhakhalist/' . $this->session->userdata('branch_id'));
         }
 
-       
+
         $report_type = $this->report_type();
-       // $this->sma->print_arrays($report_type);
-         
-       // exit();
+        // $this->sma->print_arrays($report_type);
+
+        // exit();
 
         if ($report_type == false)
             admin_redirect();
 
 
-            
+
         $this->data['report_info'] = $report_type;
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
@@ -5638,7 +6301,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $id = $this->input->get('id');
         }
 
-        if (($this->Admin || $this->Owner)  &&  $this->site->delete('thana', array('id' => $id))) {
+        if (($this->Admin || $this->Owner) && $this->site->delete('thana', array('id' => $id))) {
             if ($this->input->is_ajax_request()) {
                 $this->sma->send_json(array('error' => 0, 'msg' => lang("uposhakha_deleted")));
             }
@@ -5662,7 +6325,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $id = $this->input->get('id');
         }
 
-        if (($this->Admin || $this->Owner)  &&  $this->site->delete('thana', array('id' => $id))) {
+        if (($this->Admin || $this->Owner) && $this->site->delete('thana', array('id' => $id))) {
             $this->site->delete('thana', array('org_ward_id' => $id));
             $this->site->delete('thana_log', array('thana_id' => $id));
 
@@ -5770,7 +6433,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
@@ -5866,7 +6529,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
@@ -5969,7 +6632,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
@@ -6066,7 +6729,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $user = $this->site->getUser();
             $branch_id = $user->branch_id;
         }
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
         $report_type = $this->report_type();
 
         $this->load->library('datatables');
@@ -6107,7 +6770,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     function data_import()
     {
 
-        $ward =  $this->site->query('select  sma_thana.id  , sma_thana.org_ward_id, sma_thana.level from sma_thana left join sma_thana_log on sma_thana_log.thana_id = sma_thana.id where  sma_thana.org_ward_id is not null AND  sma_thana_log.org_ward_id is null  AND sma_thana_log.`level` = 3 AND is_new =1 limit 1000');
+        $ward = $this->site->query('select  sma_thana.id  , sma_thana.org_ward_id, sma_thana.level from sma_thana left join sma_thana_log on sma_thana_log.thana_id = sma_thana.id where  sma_thana.org_ward_id is not null AND  sma_thana_log.org_ward_id is null  AND sma_thana_log.`level` = 3 AND is_new =1 limit 1000');
 
         foreach ($ward as $row) {
 
@@ -6118,7 +6781,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 //'branch_id' =>  $row['branch_id'],
                 //'thana_id' =>  $row['id'],
                 //'org_thana_id' =>  $row['org_thana_id'],
-                'org_ward_id' =>  $row['org_ward_id']
+                'org_ward_id' => $row['org_ward_id']
                 // 'in_out' => 1,
                 //'is_new'=>1
             ];
@@ -6240,7 +6903,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->supporter_number);
                 $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->ward);
                 $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->unit);
-                $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->is_ideal_thana == 1 ?  'Yes' : 'No');
+                $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->is_ideal_thana == 1 ? 'Yes' : 'No');
 
                 $row++;
             }
@@ -6283,7 +6946,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
 
         $start = $report_type['start'];
         $end = $report_type['end'];
@@ -6293,7 +6956,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
 
 
         if ($branch_id) {
@@ -6317,7 +6980,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->db->where('thana.level', 1);
             $this->db->where('thana_log.in_out', 1);
         }
- 
+
 
         $this->db->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
 
@@ -6336,7 +6999,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-       //  $this->sma->print_arrays($data);
+        //  $this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -6344,7 +7007,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
 
-           
+
 
             $this->excel->getActiveSheet()->setTitle('থানা বৃদ্ধি তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'থানা নাম');
@@ -6362,7 +7025,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('J1', 'ওয়ার্ড');
             $this->excel->getActiveSheet()->SetCellValue('K1', 'উপশাখা');
 
-        
+
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -6381,7 +7044,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->supporter_number);
                 $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->ward_number);
                 $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->unit_number);
-               
+
                 $row++;
             }
             //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
@@ -6422,7 +7085,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
 
         $start = $report_type['start'];
         $end = $report_type['end'];
@@ -6432,7 +7095,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
 
 
         if ($branch_id) {
@@ -6457,7 +7120,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->db->where('thana_log.in_out', 2);
         }
 
- 
+
 
         $this->db->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
 
@@ -6476,7 +7139,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-         //$this->sma->print_arrays($data);
+        //$this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -6484,7 +7147,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
 
-           
+
 
             $this->excel->getActiveSheet()->setTitle('থানা ঘাটতি  তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'থানা নাম');
@@ -6502,7 +7165,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('J1', 'ওয়ার্ড');
             $this->excel->getActiveSheet()->SetCellValue('K1', 'উপশাখা');
 
-        
+
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -6521,7 +7184,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->supporter_number);
                 $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->ward_number);
                 $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->unit_number);
-               
+
                 $row++;
             }
             //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
@@ -6564,7 +7227,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $report_type = $this->report_type();
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
         if ($branch_id) {
 
             $this->db->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name,sma_thana.org_type, th1.thana_name AS parent_thana_name,  d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_thana AS th1', 'th1.id = sma_thana.org_thana_id', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->where('thana.level', 2)->where('thana.is_current', 1)->where('thana.branch_id', $branch_id);
@@ -6574,7 +7237,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         //$this->datatables->where(" (  {$this->db->dbprefix('thana')}.is_pending = 2 AND  {$this->db->dbprefix('thana')}.in_out = 1) ");
         $this->db->where('thana.is_current', 1);
 
- 
+
 
 
         $q = $this->db->get();
@@ -6586,7 +7249,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-       // $this->sma->print_arrays($data);
+        // $this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -6596,7 +7259,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-            										
+
 
             $this->excel->getActiveSheet()->setTitle('ওয়ার্ড তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'শাখা');
@@ -6677,7 +7340,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
 
         $start = $report_type['start'];
         $end = $report_type['end'];
@@ -6687,7 +7350,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
         if ($branch_id) {
 
             $this->db
@@ -6705,9 +7368,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
         $this->db->where('thana.level', 2);
         $this->db->where('thana_log.in_out', 1);
- 
+
         $this->db->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
- 
+
 
 
         $q = $this->db->get();
@@ -6727,9 +7390,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
 
-        
 
-	//	 	 	 	 	 	 
+
+            //	 	 	 	 	 	 
             $this->excel->getActiveSheet()->setTitle('ওয়ার্ড বৃদ্ধি তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'ওয়ার্ড নাম');
             $this->excel->getActiveSheet()->SetCellValue('B1', 'থানা');
@@ -6742,9 +7405,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('G1', 'সাথী');
 
             $this->excel->getActiveSheet()->SetCellValue('H1', 'কর্মী');
-            $this->excel->getActiveSheet()->SetCellValue('I1', 'সমর্থক'); 
+            $this->excel->getActiveSheet()->SetCellValue('I1', 'সমর্থক');
 
-        
+
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -6759,7 +7422,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('F' . $row, $data_row->member_number);
                 $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->associate_number);
                 $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->worker_number);
-                $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->supporter_number);                
+                $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->supporter_number);
                 $row++;
             }
             //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
@@ -6802,7 +7465,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
 
         $start = $report_type['start'];
         $end = $report_type['end'];
@@ -6812,7 +7475,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
         if ($branch_id) {
 
             $this->db
@@ -6830,9 +7493,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
         $this->db->where('thana.level', 2);
         $this->db->where('thana_log.in_out', 2);
- 
+
         $this->db->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
- 
+
 
 
         $q = $this->db->get();
@@ -6852,9 +7515,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
 
-        
 
-	//	 	 	 	 	 	 
+
+            //	 	 	 	 	 	 
             $this->excel->getActiveSheet()->setTitle('ওয়ার্ড ঘাটতি  তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'ওয়ার্ড নাম');
             $this->excel->getActiveSheet()->SetCellValue('B1', 'থানা');
@@ -6867,9 +7530,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('G1', 'সাথী');
 
             $this->excel->getActiveSheet()->SetCellValue('H1', 'কর্মী');
-            $this->excel->getActiveSheet()->SetCellValue('I1', 'সমর্থক'); 
+            $this->excel->getActiveSheet()->SetCellValue('I1', 'সমর্থক');
 
-        
+
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -6884,7 +7547,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('F' . $row, $data_row->member_number);
                 $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->associate_number);
                 $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->worker_number);
-                $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->supporter_number);                
+                $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->supporter_number);
                 $row++;
             }
             //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
@@ -6927,7 +7590,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $report_type = $this->report_type();
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
         if ($branch_id) {
 
             $this->db->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS upothakha_name,  sma_thana.org_type, th1.thana_name AS parent_thana_name,th2.thana_name AS parent_ward_name,  d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.ins_name AS institute, sma_thana.worker_number,  sma_thana.supporter_number, sma_thana.is_setup, sma_thana.unit_category, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->join('sma_thana AS th1', 'th1.id = sma_thana.org_thana_id', 'left')->join('sma_thana AS th2', 'th2.id = sma_thana.org_ward_id', 'left')->where('thana.level', 3)->where('thana.is_current', 1)->where('thana.branch_id', $branch_id);
@@ -6936,7 +7599,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
         $this->db->where('thana.is_current', 1);
 
- 
+
 
 
         $q = $this->db->get();
@@ -6948,7 +7611,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-       // $this->sma->print_arrays($data);
+        // $this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -6958,7 +7621,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-              													
+
 
             $this->excel->getActiveSheet()->setTitle('উপশাখা তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'শাখা');
@@ -6981,7 +7644,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('N1', 'সমর্থক');
             $this->excel->getActiveSheet()->SetCellValue('O1', 'সেট-আপ');
             $this->excel->getActiveSheet()->SetCellValue('P1', 'মান');
- 
+
             $this->excel->getActiveSheet()->SetCellValue('Q1', 'মন্তব্য');
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
@@ -6998,13 +7661,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->upazila);
                 $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->union);
                 $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->ward);
-                
+
                 $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->category);
                 $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->sub_category);
                 $this->excel->getActiveSheet()->SetCellValue('L' . $row, $data_row->institute);
                 $this->excel->getActiveSheet()->SetCellValue('M' . $row, $data_row->worker_number);
                 $this->excel->getActiveSheet()->SetCellValue('N' . $row, $data_row->supporter_number);
-                $this->excel->getActiveSheet()->SetCellValue('O' . $row, $data_row->is_setup == 1? 'Yes': 'No');
+                $this->excel->getActiveSheet()->SetCellValue('O' . $row, $data_row->is_setup == 1 ? 'Yes' : 'No');
                 $this->excel->getActiveSheet()->SetCellValue('P' . $row, $data_row->unit_category);
                 $this->excel->getActiveSheet()->SetCellValue('Q' . $row, $data_row->note);
 
@@ -7048,7 +7711,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
 
         $start = $report_type['start'];
         $end = $report_type['end'];
@@ -7058,7 +7721,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
         if ($branch_id) {
 
             $this->db
@@ -7078,7 +7741,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->db->where('thana_log.in_out', 1);
 
         $this->db->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
- 
+
 
 
         $q = $this->db->get();
@@ -7090,7 +7753,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-      //  $this->sma->print_arrays($data);
+        //  $this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -7098,8 +7761,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
 
-           
-	//	 	 	 	 	 	 
+
+            //	 	 	 	 	 	 
             $this->excel->getActiveSheet()->setTitle('উপশাখা বৃদ্ধি তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'উপশাখার নাম');
             $this->excel->getActiveSheet()->SetCellValue('B1', 'থানা');
@@ -7113,9 +7776,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('H1', 'সাথী');
 
             $this->excel->getActiveSheet()->SetCellValue('I1', 'কর্মী');
-            $this->excel->getActiveSheet()->SetCellValue('J1', 'সমর্থক'); 
+            $this->excel->getActiveSheet()->SetCellValue('J1', 'সমর্থক');
 
-        
+
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -7132,11 +7795,11 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->member_number);
                 $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->associate_number);
                 $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->worker_number);
-                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->supporter_number);                
+                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->supporter_number);
                 $row++;
             }
-            
-          
+
+
 
             $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
             $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(50);
@@ -7157,7 +7820,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
     }
 
 
-    
+
     function uposhakhadecreaseexport($branch_id = NULL)
     {
 
@@ -7174,7 +7837,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $report_type = $this->report_type();
 
-        $type =  $this->input->get('type');
+        $type = $this->input->get('type');
 
         $start = $report_type['start'];
         $end = $report_type['end'];
@@ -7184,7 +7847,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
-         
+
         if ($branch_id) {
 
             $this->db
@@ -7204,7 +7867,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->db->where('thana_log.in_out', 2);
 
         $this->db->where("DATE({$this->db->dbprefix('thana_log')}.date) BETWEEN '" . $start . "' and '" . $end . "'");
- 
+
 
 
         $q = $this->db->get();
@@ -7216,7 +7879,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-      //  $this->sma->print_arrays($data);
+        //  $this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -7224,8 +7887,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
 
-           
-	//	 	 	 	 	 	 
+
+            //	 	 	 	 	 	 
             $this->excel->getActiveSheet()->setTitle('উপশাখা ঘাটতি তালিকা');
             $this->excel->getActiveSheet()->SetCellValue('A1', 'উপশাখার নাম');
             $this->excel->getActiveSheet()->SetCellValue('B1', 'থানা');
@@ -7239,9 +7902,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->SetCellValue('H1', 'সাথী');
 
             $this->excel->getActiveSheet()->SetCellValue('I1', 'কর্মী');
-            $this->excel->getActiveSheet()->SetCellValue('J1', 'সমর্থক'); 
+            $this->excel->getActiveSheet()->SetCellValue('J1', 'সমর্থক');
 
-        
+
             //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
             // ,`non_muslim_student`,`total_student_number`,   is_organization
             // prev, current_supporter_organization
@@ -7258,11 +7921,11 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->member_number);
                 $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->associate_number);
                 $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->worker_number);
-                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->supporter_number);                
+                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->supporter_number);
                 $row++;
             }
-            
-          
+
+
 
             $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
             $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(50);
@@ -7281,5 +7944,4 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $this->session->set_flashdata('error', lang('nothing_found'));
         redirect($_SERVER["HTTP_REFERER"]);
     }
-    
 }

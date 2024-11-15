@@ -15,7 +15,7 @@ class Welcome extends MY_Controller
         if ($this->Customer || $this->Supplier) {
             redirect('/');
         }
-
+        $this->lang->admin_load('sma', $this->Settings->user_language);
         $this->load->library('form_validation');
         $this->load->admin_model('db_model');
     }

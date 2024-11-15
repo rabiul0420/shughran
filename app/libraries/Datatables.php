@@ -443,7 +443,7 @@ class Datatables
                  
                 
                
-                if(in_array($this->table , array('thana','manpower','thana_log','thana_ideal_log', 'institution_organization','institutionlist','confirmreport','users','manpower_transfer_assoworker','manpower_transfer','administration_without_org','associate',  'postpone' ,'associatelog','memberlog','membercandidatelog','institution_without_org'))) 
+                if(in_array($this->table , array('categories','departments','thana','manpower','thana_log','thana_ideal_log', 'institution_organization','institutionlist','confirmreport','users','manpower_transfer_assoworker','manpower_transfer','administration_without_org','associate',  'postpone' ,'associatelog','memberlog','membercandidatelog','institution_without_org'))) 
                     $this->ci->db->select($this->table.'.id');
                 else 
                     $this->ci->db->select('id');
@@ -463,7 +463,7 @@ class Datatables
 
         $query = $this->ci->db->get($this->table, NULL, NULL, FALSE);
 
-       // echo $this->ci->db->last_query();
+        //echo $this->ci->db->last_query();
         return $query->num_rows();
     }
 

@@ -333,6 +333,27 @@
 
                                     </ul>
                                 </li>
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    প্রশাসনিক বিবরণ<span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                    <li><a href="<?= admin_url('administrativedetail/district'); ?>" class="line-height-lg">জেলা </a></li>
+                                        <li><a href="<?= admin_url('administrativedetail/thana'); ?>" class="line-height-lg">সিটি থানা </a></li>
+                                        <li><a href="<?= admin_url('administrativedetail/upazila'); ?>" class="line-height-lg">উপজেলা </a></li>
+                                        <li><a href="<?= admin_url('administrativedetail/pourosova'); ?>" class="line-height-lg">পৌরসভা </a></li>
+                                        <li><a href="<?= admin_url('administrativedetail/union'); ?>" class="line-height-lg">ইউনিয়ন </a></li>
+                                        <li><a href="<?= admin_url('administrativedetail/cityward'); ?>" class="line-height-lg">সিটি ওয়ার্ড </a></li>
+                                        <li><a href="<?= admin_url('administrativedetail/pouroward'); ?>" class="line-height-lg">পৌর ওয়ার্ড  </a></li>
+                                        <li><a href="<?= admin_url('administrativedetail/unionward'); ?>" class="line-height-lg">ইউনিয়ন ওয়ার্ড  </a></li>
+                                           
+
+                                    </ul>
+                                </li>
+
+
                                 <li class="tmp_hidden"><a href="<?= admin_url('others/program'); ?>">সভাসমূহ</a></li>
                                 <li class="dropdown tmp_hidden">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

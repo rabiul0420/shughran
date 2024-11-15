@@ -2402,6 +2402,11 @@ class Associate extends MY_Controller
             $this->db->where($this->db->dbprefix('branches') . ".id", $branch);
 
         $q = $this->db->get();
+
+
+
+        
+
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;

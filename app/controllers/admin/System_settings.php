@@ -2048,6 +2048,40 @@ class system_settings extends MY_Controller
         echo $this->datatables->generate();
     }
 
+    function getZonesList()
+    {
+
+        //v=1&district=1&upazila=146
+
+        $district = $this->input->get('district') ? $this->input->get('district') : NULL;
+        $upazila = $this->input->get('upazila') ? $this->input->get('upazila') : NULL;
+        $union = $this->input->get('union') ? $this->input->get('union') : NULL;
+        $ward = $this->input->get('ward') ? $this->input->get('ward') : NULL;
+
+
+        $this->load->library('datatables');
+        $this->datatables
+            ->select("id,  id as code, name, level, zone_type as city, v3_district_upazila(parent_top_level), v3_district_upazila(parent_second_level), v3_district_upazila(parent_third_level)")
+            ->from("district")
+            ->add_column("Actions", "<div class=\"text-center\"><a href='" . admin_url('system_settings/edit_zone/$1') . "'    class='tip' title='" . lang("edit_zone") . "'><i class=\"fa fa-edit\"></i></a> <a href='#' class='tip po' title='<b>" . lang("delete_zone") . "</b>' data-content=\"<p>" . lang('r_u_sure') . "</p><a class='btn btn-danger po-delete' href='" . admin_url('system_settings/delete_zone/$1') . "'>" . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i></a></div>", "id");
+
+
+
+        // if ($ward) {
+        //     $this->datatables->where("id", $ward);
+        // } else
+        if ($union) {
+            $this->datatables->where("parent_third_level", $union);
+        } elseif ($upazila) {
+            $this->datatables->where("parent_second_level", $upazila);
+        } elseif ($district) {
+            $this->datatables->where("parent_top_level", $district);
+        }
+
+
+        echo $this->datatables->generate();
+    }
+
     function add_brand()
     {
 
@@ -2577,6 +2611,18 @@ class system_settings extends MY_Controller
 
 
 
+    function zones_list()
+    {
+
+        $this->data['districts'] = $this->site->getDistrict();
+        $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('system_settings'), 'page' => lang('system_settings')), array('link' => '#', 'page' => lang('zones')));
+        $meta = array('page_title' => lang('zones'), 'bc' => $bc);
+        $this->page_construct('settings/zones_list', $meta, $this->data);
+    }
+
+
+
     function zones()
     {
 
@@ -2604,20 +2650,20 @@ class system_settings extends MY_Controller
     function getZones()
     {
         header('Content-Type: application/json');
-         
-        $id = $this->input->get('id');        
+
+        $id = $this->input->get('id');
         if ($id == null)
-              $this->db->select("id,name,level")->from("district")->where('level', 1);
+            $this->db->select("id,name,level")->from("district")->where('level', 1);
         else if ($id != null)
-              $this->db->select("id,name,level")->from("district")->where('parent_id', $id);
+            $this->db->select("id,name,level")->from("district")->where('parent_id', $id);
 
 
-            $q = $this->db->get();
+        $q = $this->db->get();
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
-                $data[] =    ['id'=>$row->id, 'text'=>$row->name, 'children'=>$row->level==4 ? false : true, 'type'=> ($row->level < 4 ? 'root' : 'file') ]; // $row;  type
+                $data[] =    ['id' => $row->id, 'text' => $row->name, 'children' => $row->level == 4 ? false : true, 'type' => ($row->level < 4 ? 'root' : 'file')]; // $row;  type
             }
-            echo  json_encode($data,true);
+            echo  json_encode($data, true);
         }
         return FALSE;
     }
@@ -2627,189 +2673,134 @@ class system_settings extends MY_Controller
     {
 
         $this->load->helper('security');
-        $this->form_validation->set_rules('code', lang("category_code"), 'trim|is_unique[categories.code]|required');
-        $this->form_validation->set_rules('name', lang("name"), 'required|min_length[3]');
-        $this->form_validation->set_rules('slug', lang("slug"), 'required|is_unique[categories.slug]|alpha_dash');
-        $this->form_validation->set_rules('userfile', lang("category_image"), 'xss_clean');
-        $this->form_validation->set_rules('description', lang("description"), 'trim|required');
+
+
+        $this->form_validation->set_rules('zone_name', lang("zone_name"), 'trim|required');
+    
 
         if ($this->form_validation->run() == true) {
             $data = array(
-                'name' => $this->input->post('name'),
-                'code' => $this->input->post('code'),
-                'slug' => $this->input->post('slug'),
-                'description' => $this->input->post('description'),
-                'parent_id' => $this->input->post('parent'),
+                'name' => $this->input->post('zone_name'),
+                'zone_type' =>  $this->input->post('zone_type') ? 1 : 2,
+                'is_active' => $this->input->post('status') ? $this->input->post('status') : 0,
+                'parent_top_level' => $this->input->post('district') ? $this->input->post('district') : null,
+                'parent_second_level' => $this->input->post('upazila') ? $this->input->post('upazila') : null,
+                'parent_third_level' => $this->input->post('union') ? $this->input->post('union') : null
             );
 
-            if ($_FILES['userfile']['size'] > 0) {
-                $this->load->library('upload');
-                $config['upload_path'] = $this->upload_path;
-                $config['allowed_types'] = $this->image_types;
-                $config['max_size'] = $this->allowed_file_size;
-                $config['max_width'] = $this->Settings->iwidth;
-                $config['max_height'] = $this->Settings->iheight;
-                $config['overwrite'] = FALSE;
-                $config['encrypt_name'] = TRUE;
-                $config['max_filename'] = 25;
-                $this->upload->initialize($config);
-                if (!$this->upload->do_upload()) {
-                    $error = $this->upload->display_errors();
-                    $this->session->set_flashdata('error', $error);
-                    redirect($_SERVER["HTTP_REFERER"]);
-                }
-                $photo = $this->upload->file_name;
-                $data['image'] = $photo;
-                $this->load->library('image_lib');
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = $this->upload_path . $photo;
-                $config['new_image'] = $this->thumbs_path . $photo;
-                $config['maintain_ratio'] = TRUE;
-                $config['width'] = $this->Settings->twidth;
-                $config['height'] = $this->Settings->theight;
-                $this->image_lib->clear();
-                $this->image_lib->initialize($config);
-                if (!$this->image_lib->resize()) {
-                    echo $this->image_lib->display_errors();
-                }
-                if ($this->Settings->watermark) {
-                    $this->image_lib->clear();
-                    $wm['source_image'] = $this->upload_path . $photo;
-                    $wm['wm_text'] = 'Copyright ' . date('Y') . ' - ' . $this->Settings->site_name;
-                    $wm['wm_type'] = 'text';
-                    $wm['wm_font_path'] = 'system/fonts/texb.ttf';
-                    $wm['quality'] = '100';
-                    $wm['wm_font_size'] = '16';
-                    $wm['wm_font_color'] = '999999';
-                    $wm['wm_shadow_color'] = 'CCCCCC';
-                    $wm['wm_vrt_alignment'] = 'top';
-                    $wm['wm_hor_alignment'] = 'left';
-                    $wm['wm_padding'] = '10';
-                    $this->image_lib->initialize($wm);
-                    $this->image_lib->watermark();
-                }
-                $this->image_lib->clear();
-                $config = NULL;
+            if ($this->input->post('union')) {
+                $data['parent_id'] = $this->input->post('union');
+                $data['level'] = 4;
+            } else if ($this->input->post('upazila')) {
+                $data['parent_id'] = $this->input->post('upazila');
+                $data['level'] = 3;
+            } else if ($this->input->post('district')) {
+                $data['parent_id'] = $this->input->post('district');
+                $data['level'] = 2;
+            } else {
+                $data['level'] = 1;
             }
-        } elseif ($this->input->post('add_category')) {
+
+
+        } elseif ($this->input->post('add_zone')) {
             $this->session->set_flashdata('error', validation_errors());
-            admin_redirect("system_settings/categories");
+            admin_redirect("system_settings/zones_list");
         }
 
-        if ($this->form_validation->run() == true && $this->settings_model->addCategory($data)) {
-            $this->session->set_flashdata('message', lang("category_added"));
-            admin_redirect("system_settings/categories");
+        if ($this->form_validation->run() == true && $this->settings_model->addZone($data)) {
+            $this->session->set_flashdata('message', lang("zone_added"));
+            admin_redirect("system_settings/zones_list");
         } else {
 
             $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
-            $this->data['categories'] = $this->settings_model->getParentCategories();
-            $this->data['modal_js'] = $this->site->modal_js();
-            $this->load->view($this->theme . 'settings/add_zone', $this->data);
+            
+            $this->data['districts'] = $this->site->getDistrict();
+  
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('system_settings/zones_list'), 'page' => lang('zone_list')), array('link' => '#', 'page' => lang('add_page')));
+            $meta = array('page_title' => lang('add_page'), 'bc' => $bc);
+            $this->page_construct('settings/add_zone', $meta, $this->data);
+            
         }
     }
 
     function edit_zone($id = NULL)
     {
         $this->load->helper('security');
-        $this->form_validation->set_rules('code', lang("category_code"), 'trim|required');
-        $pr_details = $this->settings_model->getCategoryByID($id);
-        if ($this->input->post('code') != $pr_details->code) {
-            $this->form_validation->set_rules('code', lang("category_code"), 'required|is_unique[categories.code]');
-        }
-        $this->form_validation->set_rules('slug', lang("slug"), 'required|alpha_dash');
-        if ($this->input->post('slug') != $pr_details->slug) {
-            $this->form_validation->set_rules('slug', lang("slug"), 'required|alpha_dash|is_unique[categories.slug]');
-        }
-        $this->form_validation->set_rules('name', lang("category_name"), 'required|min_length[3]');
-        $this->form_validation->set_rules('userfile', lang("category_image"), 'xss_clean');
-        $this->form_validation->set_rules('description', lang("description"), 'trim|required');
+       
+
+        $zone = $this->site->getByID('district', 'id', $id);
+
+
+        $this->form_validation->set_rules('zone_name', lang("zone_name"), 'required|min_length[3]');
 
         if ($this->form_validation->run() == true) {
 
             $data = array(
-                'name' => $this->input->post('name'),
-                'code' => $this->input->post('code'),
-                'slug' => $this->input->post('slug'),
-                'description' => $this->input->post('description'),
-                'parent_id' => $this->input->post('parent'),
+                'name' => $this->input->post('zone_name'),
+                'zone_type' =>  $this->input->post('zone_type') ? 1 : 2,
+                'is_active' => $this->input->post('status') ? $this->input->post('status') : 0,
+                'parent_top_level' => $this->input->post('district') ? $this->input->post('district') : null,
+                'parent_second_level' => $this->input->post('upazila') ? $this->input->post('upazila') : null,
+                'parent_third_level' => $this->input->post('union') ? $this->input->post('union') : null
             );
 
-            if ($_FILES['userfile']['size'] > 0) {
-                $this->load->library('upload');
-                $config['upload_path'] = $this->upload_path;
-                $config['allowed_types'] = $this->image_types;
-                $config['max_size'] = $this->allowed_file_size;
-                $config['max_width'] = $this->Settings->iwidth;
-                $config['max_height'] = $this->Settings->iheight;
-                $config['overwrite'] = FALSE;
-                $config['encrypt_name'] = TRUE;
-                $config['max_filename'] = 25;
-                $this->upload->initialize($config);
-                if (!$this->upload->do_upload()) {
-                    $error = $this->upload->display_errors();
-                    $this->session->set_flashdata('error', $error);
-                    redirect($_SERVER["HTTP_REFERER"]);
-                }
-                $photo = $this->upload->file_name;
-                $data['image'] = $photo;
-                $this->load->library('image_lib');
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = $this->upload_path . $photo;
-                $config['new_image'] = $this->thumbs_path . $photo;
-                $config['maintain_ratio'] = TRUE;
-                $config['width'] = $this->Settings->twidth;
-                $config['height'] = $this->Settings->theight;
-                $this->image_lib->clear();
-                $this->image_lib->initialize($config);
-                if (!$this->image_lib->resize()) {
-                    echo $this->image_lib->display_errors();
-                }
-                if ($this->Settings->watermark) {
-                    $this->image_lib->clear();
-                    $wm['source_image'] = $this->upload_path . $photo;
-                    $wm['wm_text'] = 'Copyright ' . date('Y') . ' - ' . $this->Settings->site_name;
-                    $wm['wm_type'] = 'text';
-                    $wm['wm_font_path'] = 'system/fonts/texb.ttf';
-                    $wm['quality'] = '100';
-                    $wm['wm_font_size'] = '16';
-                    $wm['wm_font_color'] = '999999';
-                    $wm['wm_shadow_color'] = 'CCCCCC';
-                    $wm['wm_vrt_alignment'] = 'top';
-                    $wm['wm_hor_alignment'] = 'left';
-                    $wm['wm_padding'] = '10';
-                    $this->image_lib->initialize($wm);
-                    $this->image_lib->watermark();
-                }
-                $this->image_lib->clear();
-                $config = NULL;
+            if ($this->input->post('union')) {
+                $data['parent_id'] = $this->input->post('union');
+                $data['level'] = 4;
+            } else if ($this->input->post('upazila')) {
+                $data['parent_id'] = $this->input->post('upazila');
+                $data['level'] = 3;
+            } else if ($this->input->post('district')) {
+                $data['parent_id'] = $this->input->post('district');
+                $data['level'] = 2;
+            } else {
+                $data['level'] = 1;
             }
-        } elseif ($this->input->post('edit_category')) {
+        } elseif ($this->input->post('edit_zone')) {
             $this->session->set_flashdata('error', validation_errors());
-            admin_redirect("system_settings/categories");
+            admin_redirect("system_settings/zones_list");
         }
 
-        if ($this->form_validation->run() == true && $this->settings_model->updateCategory($id, $data)) {
-            $this->session->set_flashdata('message', lang("category_updated"));
-            admin_redirect("system_settings/categories");
+        //$this->sma->print_arrays($data,$id);
+
+        if ($this->form_validation->run() == true && $this->settings_model->updateZone($id, $data)) {
+            $this->session->set_flashdata('message', lang("zone_updated"));
+            admin_redirect("system_settings/zones_list");
         } else {
 
+
+
             $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
-            $this->data['category'] = $this->settings_model->getCategoryByID($id);
-            $this->data['categories'] = $this->settings_model->getParentCategories();
-            $this->data['modal_js'] = $this->site->modal_js();
-            $this->load->view($this->theme . 'settings/edit_zone', $this->data);
+
+
+            // $this->data['top_level'] = $zone->parent_top_level != null ? $this->site->getByID('district','id',$zone->parent_top_level) : null;
+            $this->data['zone'] = $zone;
+            //top level list
+            $this->data['districts'] = $this->site->getDistrict();
+
+            //2nd level list
+            //$this->data['second_level'] = $zone->parent_second_level != null ? $this->site->getByID('district','id',$zone->parent_second_level) : null;
+            $this->data['second_level'] =  $zone->parent_top_level != null ? $this->site->getList('district', '*', ['parent_id' => $zone->parent_top_level, 'level' => 2]) : null;
+
+            //3rd level list
+            //$this->data['third_level'] = $zone->parent_third_level != null ? $this->site->getByID('district','id',$zone->parent_third_level) : null;
+            $this->data['third_level'] = $zone->parent_second_level != null ? $this->site->getList('district', '*', ['parent_id' => $zone->parent_second_level, 'level' => 3]) : null;
+
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('pages'), 'page' => lang('pages')), array('link' => '#', 'page' => lang('edit_page')));
+            $meta = array('page_title' => lang('edit_page'), 'bc' => $bc);
+            $this->page_construct('settings/edit_zone', $meta, $this->data);
         }
     }
 
     function delete_zone($id = NULL)
     {
 
-        if ($this->site->getSubCategories($id)) {
-            $this->sma->send_json(array('error' => 1, 'msg' => lang("category_has_subcategory")));
+        if ($this->site->getSubZones($id)) {
+            $this->sma->send_json(array('error' => 1, 'msg' => lang("category_has_zone")));
         }
 
-        if ($this->settings_model->deleteCategory($id)) {
-            $this->sma->send_json(array('error' => 0, 'msg' => lang("category_deleted")));
+        if ($this->settings_model->deleteZone($id)) {
+            $this->sma->send_json(array('error' => 0, 'msg' => lang("zone_deleted")));
         }
     }
 
@@ -2817,11 +2808,11 @@ class system_settings extends MY_Controller
 
     function update_zone($id = NULL)
     {
-        
-        if ($this->db->update('district', array('name' => $_POST['title']), array('id' => $_POST['id']))) { 
+
+        if ($this->db->update('district', array('name' => $_POST['title']), array('id' => $_POST['id']))) {
             header('Content-Type: application/json');
             $this->sma->send_json(array('error' => 0, 'msg' => lang("zone_updated")));
-        }else  { 
+        } else {
             header('Content-Type: application/json');
             $this->sma->send_json(array('error' => 1, 'msg' => lang("Problem")));
         }

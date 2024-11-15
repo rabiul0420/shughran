@@ -293,6 +293,26 @@ class Site extends CI_Model
         return FALSE;
     }
 
+
+    public function getSubZones($id)
+    {
+        $this->db->where('parent_top_level', $id);
+        $this->db->or_where('parent_second_level', $id);
+        $this->db->or_where('parent_third_level', $id);
+
+
+        $q = $this->db->get("district");
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
+
+
     public function getCategoryByID($id)
     {
         $q = $this->db->get_where('categories', array('id' => $id), 1);
