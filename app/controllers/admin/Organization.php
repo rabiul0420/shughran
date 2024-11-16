@@ -1471,9 +1471,6 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
     }
 
-
-
-
     /* ------------------------------------------------------- */
 
     function addinstitution($branch_id = NULL)

@@ -13,12 +13,12 @@ class Others extends MY_Controller
 
         $this->departmentuser = false;
 
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 32) {
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 45) {
             admin_redirect('welcome');
         }
         $this->sma->checkPermissions('index', TRUE, 'departmentsreport');
 
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 32) {  //Others
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 45) {  //Others
             $this->departmentuser = true;
         }
 

@@ -267,6 +267,16 @@ class Site extends CI_Model
         return FALSE;
     }
 
+    // serial 
+    public function getAllSerial($id)
+    {
+        $q = $this->db->get_where('serial_reports', array('branch_id' => $id));
+        if ($q->num_rows() > 0) {
+            return $q->row();
+        }
+        return FALSE;
+    }
+
     public function getAllCategories()
     {
         $this->db->where('parent_id', NULL)->or_where('parent_id', 0)->order_by('name');

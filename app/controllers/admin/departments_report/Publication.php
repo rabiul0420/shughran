@@ -13,12 +13,12 @@ class Publication extends MY_Controller
 
         $this->departmentuser = false;
 
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 9) {
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 13) {
             admin_redirect('welcome');
         }
         $this->sma->checkPermissions('index', true, 'departmentsreport');
 
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 9) { //
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 13) { //
             $this->departmentuser = true;
         }
 

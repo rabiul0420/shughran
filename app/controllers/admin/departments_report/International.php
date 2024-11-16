@@ -22,7 +22,16 @@ class International extends MY_Controller
 			$this->departmentuser = true; 
 		}
 		
+  
+        $this->data['department_id'] = 10; 
+        $branch_id = $this->session->userdata('branch_id');         
+
+        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=>'annual','branch_id'=> $branch_id, 'dept_id'=>10), 'id desc', 1, 0);
 		
+        $this->load->helper('serial_form_helper'); // serial form load 
+        // Load the URL helper in CodeIgniter (if not already autoloaded)
+        $this->load->helper('url');     
+
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');
 		$this->load->helper('report');
@@ -62,6 +71,7 @@ class International extends MY_Controller
 
 		
         $report_type = $this->report_type();
+     
         if ($report_type == false)
             admin_redirect();
         $this->data['report_info'] = $report_type;
@@ -70,7 +80,7 @@ class International extends MY_Controller
             $report_type['start'] = $report_type['info']->startdate_annual;
             $report_type['end'] = $report_type['info']->enddate_annual;
         }
-
+     
         if ((!$branch_id)  || ($branch_id && $report_type['is_current'] == false)) {
 
         $this->db->select_sum('cgps_number');
@@ -226,7 +236,7 @@ class International extends MY_Controller
 		$this->data['m'] = 'international';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
-        
+       
 		if($branch_id)
 		$this->page_construct('departmentsreport/international/international_page_one_entry', $meta, $this->data,'leftmenu/departmentsreport');
         else

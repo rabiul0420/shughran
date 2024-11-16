@@ -6,8 +6,9 @@
 
 <div class="box">
     <div class="box-header">
+        
         <h2 class="blue">
-            <i class="fa-fw fa fa-barcode"></i><?= 'সাহিত্য বিভাগ - পেইজ ০১' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+            <i class="fa-fw fa fa-barcode"></i><?= 'সাহিত্য বিভাগ- পেইজ ০১' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -37,7 +38,7 @@
 			<span class="dropdown">
 
 				<button class="btn btn-primary dropdown-toggle" type="button" id="archive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Archive
+					Archive 
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="archive">
@@ -81,15 +82,19 @@
                 <li>
                     <a id='export_all_table'><i class="icon fa fa-file-excel-o"></i> <?= lang('Export_all_table') ?> </a>
                 </li>
+
+           
             </ul>
         </div>
     </div>
+    
     <div class="box-content">
         <div class="row">
-            <div class="col-lg-12">
-                <p class="introtext"><?php // lang('list_results'); 
-                                        ?></p>
 
+            <div class="col-lg-12">
+            
+                <p class="introtext"><?php // lang('list_results');   ?></p>
+           
 
                 <script>
                     $(document).ready(function() {

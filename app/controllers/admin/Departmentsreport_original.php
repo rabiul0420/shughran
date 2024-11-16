@@ -10,9 +10,6 @@ class Departmentsreport extends MY_Controller
             $this->session->set_userdata('requested_page', $this->uri->uri_string());
             $this->sma->md('login');
         }
-        
-        $this->load->helper('serial_form_helper'); // serial form load 
-
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');
 		$this->load->helper('report');
@@ -24,30 +21,26 @@ class Departmentsreport extends MY_Controller
         $this->digital_file_types = 'zip|psd|ai|rar|pdf|doc|docx|xls|xlsx|ppt|pptx|gif|jpg|jpeg|png|tif|txt';
         $this->allowed_file_size = '1024';
         $this->popup_attributes = array('width' => '900', 'height' => '600', 'window_name' => 'sma_popup', 'menubar' => 'yes', 'scrollbars' => 'yes', 'status' => 'no', 'resizable' => 'yes', 'screenx' => '0', 'screeny' => '0');
-
-        // load session library 
-        $this->load->library('session');
     }
 
 function index(){
 
 
 
-    if (!($this->Owner || $this->Admin)) {
-    // $this->sma->print_arrays("৩ ডিসেম্বর সকাল ১০ টা থেকে বিভাগীয় রিপোর্ট গ্রহণ শুরু হবে । নির্ধারিত সময়ে প্রবেশ করুন। ");
-    }
+if (!($this->Owner || $this->Admin)) {
+   // $this->sma->print_arrays("৩ ডিসেম্বর সকাল ১০ টা থেকে বিভাগীয় রিপোর্ট গ্রহণ শুরু হবে । নির্ধারিত সময়ে প্রবেশ করুন। ");
+}
     
 
 
 
 	   $this->sma->checkPermissions();
-	    //$this->sma->print_arrays($';
+	//$this->sma->print_arrays($';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('departmentsreport'), 'bc' => $bc);
         
 		$this->page_construct('departmentsreport/departmentsreport', $meta, $this->data,'leftmenu/departmentsreport');
-
-}
+		}
 
 
     function potrikar_grahok_briddi($branch_id = NULL)

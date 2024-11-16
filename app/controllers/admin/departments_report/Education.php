@@ -22,6 +22,19 @@ class Education extends MY_Controller
             $this->departmentuser = true;
         }
 
+        $this->data['department_id'] = 11;
+        $branch_id = $this->session->userdata('branch_id');        
+
+        $report_type = $this->report_type();
+        //   print_r($report_type['type']);
+        
+        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=> $report_type['type'],'branch_id'=> $branch_id, 'dept_id'=>11), 'id desc', 1, 0);
+        
+
+        $this->load->helper('serial_form_helper'); // serial form load 
+        // Load the URL helper in CodeIgniter (if not already autoloaded)
+        $this->load->helper('url');     
+
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');
         $this->load->helper('report');
@@ -62,7 +75,7 @@ class Education extends MY_Controller
         }
 
 
-        $report_type = $this->report_type();
+        $report_type = $this->report_type();       
         if ($report_type == false)
             admin_redirect();
         $this->data['report_info'] = $report_type;
