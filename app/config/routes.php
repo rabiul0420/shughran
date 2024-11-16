@@ -462,9 +462,15 @@ $route['admin/departmentsreport/eknojore-requirement/(:num)'] = 'admin/departmen
 $route['admin/departmentsreport/chatrokollan-bivag'] = 'admin/departments_report/Chatrokollan/chatrokollan_bivag';
 $route['admin/departmentsreport/chatrokollan-bivag/(:num)'] = 'admin/departments_report/Chatrokollan/chatrokollan_bivag/$1';
 
+//serial department
+
+$route['admin/departmentsreport/serials'] = 'admin/departments_report/serials/serials_entry';
+$route['admin/departmentsreport/allserial'] = 'admin/departments_report/allserial/all_serials';
+
 //manobadhikar songothon
 
 $route['admin/departmentsreport/manobadhikar-bivag'] = 'admin/departments_report/Manobadhikar/manobadhikar_bivag';
+
 $route['admin/departmentsreport/manobadhikar-bivag/(:num)'] = 'admin/departments_report/Manobadhikar/manobadhikar_bivag/$1';
 
 $route['admin/departmentsreport/manobadhikar-songothon-protistha'] = 'admin/departments_report/Manobadhikar/manobadhikar_songothon_protistha';

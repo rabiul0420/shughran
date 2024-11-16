@@ -89,17 +89,167 @@ $(document).ready(function(){
     .serialbtn{
         display:flex;justify-content:right;
     }
+    .custom-select{
+        width: 100px;   
+        color:black;
+    }
+    .modal-width{
+        width: 100%;
+        padding:0 15px;
+    }
+
 </style>
 
     <div class="box-content">
         <div class="row">
 
+<!-- =========== Report serial code ============ -->
 
-<!-- ====== Report serial code ======= -->
  
-<?php  render_dept_report_serial_form($branch_id, $report_info,$department_id, $serial_info,$this->Owner,$this->Admin); ?>
 
-<!-- ====== /. Report serial code ===== -->
+<div class="col-md-12">
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th scope="row" width="50" rowspan="2" class="serialTxt">সাহিত্য বিভাগের রিপোর্ট পূরণ করা শেষ হলে বিভাগকে রিপোর্ট চেক করার জন্য সিরিয়াল দিন</th>
+      <td rowspan="2" width="60">Mark</td>
+      <td width="60">চেক</td>
+      <td width="60">ছাড়পত্র</td>
+    </tr>
+    <tr>
+      <td scope="row"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row" class="serialTxt">বিভাগীয় রিভিউ</th>
+      <td colspan="4"></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="col-md-12">
+
+
+
+<?php $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'id' => 'add_institute');
+        
+        echo admin_form_open_multipart("serialcontroller/literatureserial/" . $branch_id, $attrib); ?>
+
+ 
+        <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <div class="form-group">
+
+                    <label for="" class="serialTxt">সাহিত্য বিভাগের রিপোর্ট পূরণ করা শেষ হলে বিভাগকে রিপোর্ট চেক করার জন্য সিরিয়াল দিন  </label>
+                    </div>
+
+                </div>
+
+                <input type="hidden" value="<?php echo $branch_id; ?>" name="branch_id" />
+                <input type="hidden" value="5" name="dept_id" />
+                <input type="hidden" value="<?=$report_info['type']?>" name="report_type" />
+
+                 
+                <div class="col-md-2 col-sm-2">
+
+                    <div class="form-group serialbtn">
+
+                    <?php  echo form_submit('serialForcheck', 'সিরিয়াল', 'class=" btn btn-primary"'); ?>
+                    
+
+                    </div>
+                </div>
+            </div>       
+        </div>
+      
+    
+    <?php echo form_close(); ?>
+    </div>
+
+<!-- =========== /. Report checking code ============ -->
+
+
+
+
+<!-- =========== checking code  for Department ============ -->
+<div class="modal-dialog modal-lg modal-width">
+    <div class="modal-content">
+             
+        <input type="hidden" name="branch_id" value="<?php echo $branch_id; ?>" />
+
+        <div class="modal-body">
+            <p class="hidden"><?= lang('enter_info'); ?></p>
+
+               <div class="row">                
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label for="check" class="serialTxt">চেক</label>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="check" id="inlineRadio1" value="option1">
+                            <label class="form-check-label" for="inlineRadio1">চেক করা হয়েছে</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="check" id="inlineRadio2" value="option2">
+                            <label class="form-check-label" for="inlineRadio2">চেক করা হয়নি</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label for="" class="serialTxt">ছাড়পত্র</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="charpotro" id="inlineRadio3" value="option1">
+                            <label class="form-check-label" for="inlineRadio3">Completed</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="charpotro" id="inlineRadio4" value="option2">
+                            <label class="form-check-label" for="inlineRadio4">Not complete</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" >
+                        <?= lang("বিভাগীয় রিভিউ", "dept_review"); ?>
+                        <?php echo form_textarea('dept_review', '', 'class="form-control" id="dept_review" style="max-height: 50px;"'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <?php echo form_submit('serialreport', 'Submit', 'class="btn btn-primary"'); ?>
+        </div>
+
+        <?php echo form_close(); ?>
+    </div>
+</div>
+<!-- =========== /.  Report checking code  for Department ============ -->
+
+
+
+
+
+
+
+
 
 
              <div class="col-lg-12">

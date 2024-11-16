@@ -13,12 +13,12 @@ class Poriklpona extends MY_Controller
 
         $this->departmentuser = false;
 		
-		if(   $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id')!=29) {
+		if(   $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id')!=20) {
 			admin_redirect('welcome');
 		}
 		 $this->sma->checkPermissions('index', TRUE,'departmentsreport');
 		 
-		 if(  $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id') ==29) {  //literature
+		 if(  $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id') ==20) {  //literature
 			$this->departmentuser = true; 
 		}
 		

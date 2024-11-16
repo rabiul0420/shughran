@@ -168,7 +168,7 @@ class MY_Controller extends CI_Controller
             $meta['thanapendingcount'] = $this->getpendingthanacount();
         }
 
-       // $this->sma->print_arrays($data);
+        // $this->sma->print_arrays($data);
 
         $this->load->view($this->theme . 'header', $meta);
         $this->load->view($this->theme . $left_panel, $meta);
@@ -330,8 +330,8 @@ class MY_Controller extends CI_Controller
     function report_type()
     {
 
-
         
+
         $type = $this->input->get('type');  //half_yearly/annual
         $year = $this->input->get('year');
         // $is_current = false;

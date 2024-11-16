@@ -84,6 +84,9 @@
     </style>
     <div class="box-content">
         <div class="row">
+        
+        <?php render_dept_report_serial_form($branch_id, $report_info); ?>
+
             <div class="col-lg-12">
                 <p class="introtext">
                 <div class="table-responsive">

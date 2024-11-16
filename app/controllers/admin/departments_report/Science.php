@@ -21,6 +21,8 @@ class Science extends MY_Controller
         if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 17) {  //Science
             $this->departmentuser = true;
         }
+        
+        $this->load->helper('serial_form_helper'); // serial form load 
 
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');
@@ -219,10 +221,13 @@ class Science extends MY_Controller
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('manpower'), 'bc' => $bc);
 
-        if ($branch_id)
+        if ($branch_id){
+            $this->data['departments'] = $this->site->getAllDepartments();
             $this->page_construct('departmentsreport/science/science_page_one_entry', $meta, $this->data, 'leftmenu/departmentsreport');
-        else
+        }else{
+            $this->data['departments'] = $this->site->getAllDepartments();
             $this->page_construct('departmentsreport/science/science_page_one', $meta, $this->data, 'leftmenu/departmentsreport');
+        }
     }
 
     function science_page_two($branch_id = NULL)

@@ -13,12 +13,12 @@ class Manpower extends MY_Controller
 
         $this->departmentuser = false;
 		
-		if(   $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id')!=24) {
+		if(   $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id')!=12) {
 			admin_redirect('welcome');
 		}
 		 $this->sma->checkPermissions('index', TRUE,'departmentsreport');
 		 
-		 if(  $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id') ==24) {  //literature
+		 if(  $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id') ==12) {  //literature
 			$this->departmentuser = true; 
 		}
 		

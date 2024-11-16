@@ -13,6 +13,13 @@ class Literature extends MY_Controller
 
         $this->departmentuser = false;
 
+        $branch_id = $this->session->userdata('branch_id');
+        $this->data['department_id'] = 5;        
+
+        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=>'annual','branch_id'=> $branch_id, 'dept_id'=>5), 'id desc', 1, 0);
+
+
+
         if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 5) {
             admin_redirect('welcome');
         }
@@ -22,6 +29,9 @@ class Literature extends MY_Controller
             $this->departmentuser = true;
         }
 
+        $this->load->helper('serial_form_helper'); // serial form load 
+        // Load the URL helper in CodeIgniter (if not already autoloaded)
+        $this->load->helper('url');     
 
 
         $this->lang->admin_load('manpower', $this->Settings->user_language);
@@ -39,6 +49,8 @@ class Literature extends MY_Controller
 
     function literature_page_one($branch_id = NULL)
     {
+
+
         //$this->sma->checkPermissions();
 
         // $this->sma->print_arrays($this->input->get());
@@ -68,15 +80,22 @@ class Literature extends MY_Controller
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
+        // $departments = $this->site->getAllDepartments();
+        
+        // $this->sma->print_arrays($this->data);
 
         $report_type = $this->report_type();
 
+        
         // print_r($report_type);
 
         if ($report_type == false)
             admin_redirect();
 
         $this->data['report_info'] = $report_type;
+
+
+        // $this->sma->print_arrays($report_type);
 
 
         if ($report_type['type'] == 'annual' && $report_type['year'] == '2022') {
@@ -194,6 +213,8 @@ class Literature extends MY_Controller
 
             if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
+
+                
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
 
             $this->data['potrikar_grahok_briddhi'] = $this->db->get('literature_potrikar_grahok_briddhi')->first_row('array');
@@ -261,13 +282,25 @@ class Literature extends MY_Controller
             $this->data['sahitto_somporkito_dawati_program'] = $query->first_row('array');
         }
         $this->data['m'] = 'literature';
+       
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => 'Literature', 'bc' => $bc);
 
-        if ($branch_id)
+        // $this->sma->print_arrays($this->data);
+
+      
+       
+        if ($branch_id){
+            
+        
             $this->page_construct('departmentsreport/literature/literature_page_one_entry', $meta, $this->data, 'leftmenu/departmentsreport');
-        else
+        }else{
+           
+        
             $this->page_construct('departmentsreport/literature/literature_page_one', $meta, $this->data, 'leftmenu/departmentsreport');
+        }
+
+
     }
 
     function literature_page_two($branch_id = NULL)
