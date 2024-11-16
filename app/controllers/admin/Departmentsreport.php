@@ -34,6 +34,21 @@ if (!($this->Owner || $this->Admin)) {
 
 
 
+if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8  || !$this->session->userdata('branch_id')) {
+    $this->data['branches'] = $this->site->getAllBranches();
+    $this->data['branch_id'] = $branch_id;
+    $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+} else {
+    $this->data['branches'] = NULL;
+    $this->data['branch_id'] = $this->session->userdata('branch_id');
+    $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+}
+
+
+
+
+
+
 	   $this->sma->checkPermissions();
 	//$this->sma->print_arrays($';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));

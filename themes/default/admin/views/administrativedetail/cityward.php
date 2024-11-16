@@ -39,12 +39,12 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip"
                                 data-placement="left" title="<?= lang("all_branches") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('administrativedetail/district') ?>"><i class="fa fa-building-o"></i>
+                            <li><a href="<?= admin_url('administrativedetail/cityward') ?>"><i class="fa fa-building-o"></i>
                                     <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('administrativedetail/district/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('administrativedetail/cityward/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
