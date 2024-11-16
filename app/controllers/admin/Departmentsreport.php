@@ -53,9 +53,94 @@ if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8  |
 
 
 
-
+     
 
 	   $this->sma->checkPermissions();
+
+       $report_type = $this->report_type();
+
+       
+      
+     
+
+
+      //$this->sma->print_arrays($report_type);
+
+      $type =  $report_type['type'];
+      $year = $report_type['year'];
+      $branch_id = $this->input->get('branch_id');
+
+       $string = " SELECT *  FROM sma_serial_reports  where
+        report_year = $year   AND report_type = '".$type."' ";
+
+
+
+
+
+       if($this->session->userdata('group_id') == 8 ){       
+
+        $this->data['departments'] = $this->site->getAllDepartments($this->session->userdata('department_id'));
+
+        $string =  $string . ' AND dept_id = '.$this->session->userdata('department_id') ;
+
+        if($branch_id) 
+        $string =  $string . ' AND branch_id = '.$branch_id ;
+
+         $string =  $string . ' order by created_at asc';
+
+        $this->data['serial_records'] = $this->site->query($string );
+
+
+        if($branch_id)
+        $this->data['branch_list'] =  $this->site->getAllBranches($branch_id);
+
+        else 
+        $this->data['branch_list'] = $this->data['branches'];
+
+
+
+
+       }else if($this->Owner || $this->Admin ){
+        
+        $this->data['departments'] = $this->site->getAllDepartments(null, null,1);
+
+        $this->data['serial_records'] = null;
+        $this->data['branch_list'] = null;
+
+
+
+        if($branch_id) {
+        $string =  $string . ' AND  branch_id = '.$branch_id ;
+
+        $string =  $string . ' order by created_at asc';
+        $this->data['serial_records'] = $this->site->query($string );
+        $this->data['branch_list'] =  $this->site->getAllBranches($branch_id);
+
+        }
+
+        
+       }
+
+     //  $this->data['serial_records'] = $this->site->query($string );
+       // echo $string;
+
+      
+     //  $this->sma->print_arrays($this->data['serial_records']);
+
+
+
+
+
+    //    select d.`name`, s.*   from `sma_serial_reports` s left join `sma_departments`  d 
+    //    on  s.dept_id = d.id 
+    //    where d.for_serial = 1 AND report_year = 2024 and report_type = 'annual' and s.dept_id = 10
+
+
+
+
+$this->data['branch_id'] = $branch_id;
+
+
 	    //$this->sma->print_arrays($';
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('departmentsreport')));
         $meta = array('page_title' => lang('departmentsreport'), 'bc' => $bc);

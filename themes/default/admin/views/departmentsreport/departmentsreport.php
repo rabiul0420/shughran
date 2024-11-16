@@ -18,12 +18,12 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip"
                                 data-placement="left" title="<?= lang("all_branches") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('administrativedetail/thana') ?>"><i class="fa fa-building-o"></i>
+                            <li><a href="<?= admin_url('departmentsreport') ?>"><i class="fa fa-building-o"></i>
                                     <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('administrativedetail/thana/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('departmentsreport?branch_id=' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -42,27 +42,38 @@
 
                     <thead>
                         <tr>
-                            <th>Branch</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th width="5%">Branch</th>
+                            <th width="20%">Department</th>
+                            <th>is serial</th>
+                            <th>is_checked</th>
+                            <th>is_reportok</th>
+                            <th  width="60%">dept_review</th>
+
                         </tr>
                     </thead>
-<tbody>
-    <tr>
-        <td>1</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        
-    </tr>
-</tbody>
+                    <tbody>
+
+                        <?php    foreach ($branch_list as $row)     { 
+                            
+                            foreach($departments as $dept){
+                             $record =   serial_info($row->id,$dept->id, $serial_records );
+                         // var_dump( $record);
+                           
+                           ?>
+                            <tr>
+                                <td><?= $row->name ?></td>
+                                <td><?= $dept->name ?></td>
+                                <td><?=isset($record['is_checked']) ?  '<span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>' : '<span class="label label-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>'?></td>
+                                
+                                <td><?=isset($record['is_checked']) && $record['is_checked']=='YES'  ?  '<span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>' : '<span class="label label-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>'?></td>
+                                <td><?=isset($record['is_reportok']) && $record['is_reportok']=='OK'  ?  '<span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>' : '<span class="label label-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>'?></td>
+                                <td><?=isset($record['dept_review']) ? $record['dept_review'] : ''?></td>
+                                <td></td>
+
+
+                            </tr>
+                        <?php } } ?>
+                    </tbody>
 
 
                 </table>

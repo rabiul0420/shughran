@@ -200,9 +200,18 @@ class Site extends CI_Model
         return FALSE;
     }
 
-    public function getAllBranches()
+    public function getAllBranches($id =null)
     {
-        $q = $this->db->get('branches');
+
+ 
+
+        if ($id != null)
+        $this->db->where('id', $id);
+   
+
+    $q = $this->db->get("branches");
+
+ 
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -211,6 +220,10 @@ class Site extends CI_Model
         }
         return FALSE;
     }
+
+
+
+
     public function getAllwards($thana_id, $level = null)
     {
 
@@ -335,12 +348,14 @@ class Site extends CI_Model
 
 
 
-    public function getAllDepartments($id = null, $report_submit = null)
+    public function getAllDepartments($id = null, $report_submit = null, $serial = null)
     {
         if ($id != null)
             $this->db->where('id', $id);
         else if ($report_submit)
             $this->db->where('is_submit', 1);
+        else if ($serial)
+            $this->db->where('for_serial', 1);
         else
             $this->db->where('parent_id', NULL)->or_where('parent_id', 0)->order_by('name');
 

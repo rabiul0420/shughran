@@ -321,3 +321,29 @@ function getValueByMultipleKeys($array, $conditions, $targetKey) {
     return null; // Return null if no match found
 }
 }
+
+
+
+
+
+
+
+if(! function_exists('serial_info')) {
+	function serial_info($branch_id,  $department_id,$serial_records) {
+
+ 
+
+		foreach($serial_records as $row) {
+
+			 	if($row['dept_id'] == $department_id && $row['branch_id'] ==$branch_id )
+					return $row;
+ 
+
+
+		}
+		 
+		return false; // Return null if no match found
+	}
+	}
+
+ 
