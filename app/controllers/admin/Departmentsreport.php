@@ -119,7 +119,27 @@ if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8  |
         }
 
         
+       }else {       
+
+        $this->data['departments'] = $this->site->getAllDepartments(null, null,1);
+        
+        $string =  $string . ' AND branch_id = '.$this->session->userdata('branch_id') ;
+
+         $string =  $string . ' order by created_at asc';
+
+        $this->data['serial_records'] = $this->site->query($string );
+ 
+        $this->data['branch_list'] =  $this->site->getAllBranches($this->session->userdata('branch_id'));
+        $branch_id = $this->session->userdata('branch_id');
+
        }
+
+
+
+
+
+
+
 
      //  $this->data['serial_records'] = $this->site->query($string );
        // echo $string;
