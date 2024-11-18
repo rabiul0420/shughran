@@ -19,7 +19,7 @@
                             </a>
                         </li>
 						
-                        <?php if(!$owner || !$admin): ?>
+                        <?php if(!$Owner || !$Admin): ?>
 
 						<li id="mm_dept_serial" class="<?php echo ($this->uri->segment(3)=='allserial')?'active':'' ?>">
                             <a  href="<?= admin_url('departmentsreport/allserial') ?>">

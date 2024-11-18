@@ -53,7 +53,7 @@
                     </thead>
                     <tbody>
 
-                        <?php    foreach ($branch_list as $row)     { 
+                        <?php if($branch_list)   foreach ($branch_list as $row)     { 
                             
                             foreach($departments as $dept){
                              $record =   serial_info($row->id,$dept->id, $serial_records );
