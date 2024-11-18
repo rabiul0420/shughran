@@ -55,7 +55,7 @@ if (!empty($variants)) {
                 <p class="introtext hidden"><?php echo lang('enter_info'); ?></p>
 
                 <?php
-                $attrib = array('data-toggle' => 'validator', 'role' => 'form', 'autocomplete' => 'off');
+                $attrib = array('data-toggle' => 'validator', 'id'=>'form-submit', 'role' => 'form', 'autocomplete' => 'off');
                 echo admin_form_open_multipart("organization/addthana/" . $branch_id . "/2", $attrib)
                     ?>
 
@@ -104,7 +104,7 @@ if (!empty($variants)) {
                     <div class="form-group organization_subtype_section">
                         <?= lang("সংগঠনের উপধরন", "prosasonik_details"); ?>
                         <?php
-                        foreach (['1' => 'প্রশাসনিক এলাকা ', '2' => 'মেস', '3' => 'হল/হোস্টেল', '4' => 'কোয়াটার', '5' => 'শিক্ষাপ্রতিষ্ঠান ', '6' => 'কোচিং/প্রাইভেট সেন্টার', '7' => 'ট্রেনিং সেন্টার'] as $key => $type)
+                        foreach ([''=>'select','1' => 'প্রশাসনিক এলাকা ', '2' => 'মেস', '3' => 'হল/হোস্টেল', '4' => 'কোয়াটার', '5' => 'শিক্ষাপ্রতিষ্ঠান ', '6' => 'কোচিং/প্রাইভেট সেন্টার', '7' => 'ট্রেনিং সেন্টার'] as $key => $type)
                             $prosasonik_details[$key] = $type;
 
                         echo form_dropdown('prosasonik_details', $prosasonik_details, '', 'id="organization_subtype"   class="form-control select" style="width:100%;" ');
@@ -324,6 +324,9 @@ if (!empty($variants)) {
                 $('.institution_parent_section').hide();
                 $('.sub_category_section').hide();
                 $('.institution_section').hide();
+                $('#institution_parent_id').removeAttr('required');
+                $('#sub_category').removeAttr('required');
+                $('#institutionlist').removeAttr('required');
 
             } else if ($(this).val() === 'Institutional') {
 
@@ -337,6 +340,10 @@ if (!empty($variants)) {
                 $('.institution_parent_section').show();
                 $('.sub_category_section').show();
                 $('.institution_section').show();
+
+                $('#institution_parent_id').attr('required', 'required');
+                $('#sub_category').attr('required', 'required');
+                $('#institutionlist').attr('required', 'required');
 
 
                 $('select[name="prosasonik_details"] option[value="1"], ' +
@@ -360,7 +367,7 @@ if (!empty($variants)) {
 
 
             } else if ($(this).val() === 'Residential') {
-                if ($('#organization_subtype').val() == 1 || $('#organization_subtype').val() == 2 || $('#organization_subtype').val() == 4 || $('#organization_subtype').val() == 6 || $('#organization_subtype').val() == 7)
+                if ( $('#organization_subtype').val() == 2 || $('#organization_subtype').val() == 4 || $('#organization_subtype').val() == 6 || $('#organization_subtype').val() == 7)
                     $('.is_attached_section').show();
                 else
                     $('.is_attached_section').hide();
@@ -369,6 +376,10 @@ if (!empty($variants)) {
                 $('.institution_parent_section').show();
                 $('.sub_category_section').show();
                 $('.institution_section').show();
+
+                $('#institution_parent_id').attr('required', 'required');
+                $('#sub_category').attr('required', 'required');
+                $('#institutionlist').attr('required', 'required');
 
                 $('select[name="prosasonik_details"] option[value="1"], select[name="prosasonik_details"] option[value="2"], select[name="prosasonik_details"] option[value="3"], select[name="prosasonik_details"] option[value="4"]').prop('disabled', false);
                 $('select[name="prosasonik_details"] option[value="5"], select[name="prosasonik_details"] option[value="6"], select[name="prosasonik_details"] option[value="7"]').prop('disabled', true);
@@ -390,10 +401,16 @@ if (!empty($variants)) {
                 $('.institution_parent_section').show();
                 $('.sub_category_section').show();
                 $('.institution_section').show();
+                $('#institution_parent_id').attr('required', 'required');
+                $('#sub_category').attr('required', 'required');
+                $('#institutionlist').attr('required', 'required');
             } else {
                 $('.institution_parent_section').hide();
                 $('.sub_category_section').hide();
                 $('.institution_section').hide();
+                $('#institution_parent_id').removeAttr('required');
+                $('#sub_category').removeAttr('required');
+                $('#institutionlist').removeAttr('required');
             }
         });
 
@@ -405,10 +422,13 @@ if (!empty($variants)) {
             $('input[name="is_attached"][value="2"]').iCheck('check');
 
             if ($(this).val() === '1') {
-                $('.is_attached_section').show();
+                $('.is_attached_section').hide();
                 $('.institution_parent_section').hide();
                 $('.sub_category_section').hide();
                 $('.institution_section').hide();
+                $('#institution_parent_id').removeAttr('required');
+                $('#sub_category').removeAttr('required');
+                $('#institutionlist').removeAttr('required');
 
                 $('.district_section').show();
                 $('.thana_section').show();
@@ -420,6 +440,9 @@ if (!empty($variants)) {
                 $('.institution_parent_section').hide();
                 $('.sub_category_section').hide();
                 $('.institution_section').hide();
+                $('#institution_parent_id').removeAttr('required');
+                $('#sub_category').removeAttr('required');
+                $('#institutionlist').removeAttr('required');
 
                 $('.district_section').hide();
                 $('.thana_section').hide();
@@ -427,9 +450,12 @@ if (!empty($variants)) {
                 $('.ward_section').hide();
             } else if ($(this).val() === '3') {
                 $('.is_attached_section').hide();
-                $('.institution_parent_section').hide();
-                $('.sub_category_section').hide();
-                $('.institution_section').hide();
+                $('.institution_parent_section').show();
+                $('.sub_category_section').show();
+                $('.institution_section').show();
+                $('#institution_parent_id').attr('required', 'required');
+                $('#sub_category').attr('required', 'required');
+                $('#institutionlist').attr('required', 'required');
 
                 $('.district_section').hide();
                 $('.thana_section').hide();
@@ -440,6 +466,9 @@ if (!empty($variants)) {
                 $('.institution_parent_section').hide();
                 $('.sub_category_section').hide();
                 $('.institution_section').hide();
+                $('#institution_parent_id').removeAttr('required');
+                $('#sub_category').removeAttr('required');
+                $('#institutionlist').removeAttr('required');
 
                 $('.district_section').hide();
                 $('.thana_section').hide();
@@ -453,6 +482,12 @@ if (!empty($variants)) {
                 $('.sub_category_section').show();
                 $('.institution_section').show();
 
+                $('#institution_parent_id').attr('required', 'required');
+                $('#sub_category').attr('required', 'required');
+                $('#institutionlist').attr('required', 'required');
+
+
+
                 $('.district_section').hide();
                 $('.thana_section').hide();
                 $('.union_section').hide();
@@ -462,6 +497,9 @@ if (!empty($variants)) {
                 $('.institution_parent_section').hide();
                 $('.sub_category_section').hide();
                 $('.institution_section').hide();
+                $('#institution_parent_id').removeAttr('required');
+                $('#sub_category').removeAttr('required');
+                $('#institutionlist').removeAttr('required');
 
                 $('.district_section').hide();
                 $('.thana_section').hide();
@@ -474,6 +512,23 @@ if (!empty($variants)) {
         });
 
 
+
+
+        $('#form-submit').on('submit', function(e) {
+   
+
+   if (!this.checkValidity()) {         
+       e.preventDefault();
+
+       let invalidSelect = $(this).find(':invalid.select2-hidden-accessible');
+       if (invalidSelect.length) {
+           invalidSelect.select2('open'); // Open the Select2 dropdown
+       }
+
+
+
+   }
+});
 
 
         $('#thana_id_tauhid').change(function () {

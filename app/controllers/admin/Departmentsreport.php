@@ -38,6 +38,7 @@ function index(){
     }
     
 
+    $branch_id = $this->input->get('branch_id');
 
 
 if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8  || !$this->session->userdata('branch_id')) {

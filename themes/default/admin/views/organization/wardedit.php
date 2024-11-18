@@ -393,7 +393,7 @@
 
 
             } else if ($(this).val() === 'Residential') {
-                if ($('#organization_subtype').val() == 1 || $('#organization_subtype').val() == 2 || $('#organization_subtype').val() == 4 || $('#organization_subtype').val() == 6 || $('#organization_subtype').val() == 7)
+                if ( $('#organization_subtype').val() == 2 || $('#organization_subtype').val() == 4 || $('#organization_subtype').val() == 6 || $('#organization_subtype').val() == 7)
                     $('.is_attached_section').show();
                 else
                     $('.is_attached_section').hide();
@@ -444,7 +444,7 @@
             // $('input[name="is_attached"][value="2"]').iCheck('check');
 
             if ($(this).val() === '1') {
-                $('.is_attached_section').show();
+                $('.is_attached_section').hide();
                 $('.institution_parent_section').hide();
                 $('.sub_category_section').hide();
                 $('.institution_section').hide();
@@ -466,9 +466,9 @@
                 $('.ward_section').hide();
             } else if ($(this).val() === '3') {
                 $('.is_attached_section').hide();
-                $('.institution_parent_section').hide();
-                $('.sub_category_section').hide();
-                $('.institution_section').hide();
+                $('.institution_parent_section').show();
+                $('.sub_category_section').show();
+                $('.institution_section').show();
 
                 $('.district_section').hide();
                 $('.thana_section').hide();
