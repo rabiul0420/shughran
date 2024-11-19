@@ -12,6 +12,21 @@
                             </a>
                         </li>
 
+
+						<li id="mm_dept_serial" class="<?php echo ($this->uri->segment(3)=='serials')?'active':'' ?>">
+                            <a  href="<?= admin_url('departmentsreport/serials') ?>">
+                                <i class="fa fa-cog"></i><span class="text"> বিভাগীয় সিরিয়াল</span>
+                            </a>
+                        </li>
+						
+                        <?php if(!$Owner || !$Admin): ?>
+
+						<li id="mm_dept_serial" class="<?php echo ($this->uri->segment(3)=='allserial')?'active':'' ?>">
+                            <a  href="<?= admin_url('departmentsreport/allserial') ?>">
+                                <i class="fa fa-cog"></i><span class="text"> সকল বিভাগীয় সিরিয়াল</span>
+                            </a>
+                        </li>
+						<?php endif ?>
                         
 						 <li class="mm_literature">
                             <a class="dropmenu" href="#">
@@ -33,7 +48,6 @@
                             </ul>
                         </li>
 						
-                        
 
 						 <li class="mm_education">
                             <a class="dropmenu" href="#">

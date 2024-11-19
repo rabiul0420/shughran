@@ -436,7 +436,7 @@ class Site extends CI_Model
         // echo 222;
         // exit();
 
-        return '<script type="text/javascript">' . file_get_contents($this->data['assets'] . 'js/modal.js?v=2') . '</script>';
+        return '<script type="text/javascript">' . file_get_contents($this->data['assets'] . 'js/modal.js?v=3') . '</script>';
     }
 
     public function getReference($field)

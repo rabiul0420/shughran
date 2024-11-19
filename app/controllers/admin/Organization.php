@@ -3669,10 +3669,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
             if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 1) {
-                if ($this->input->post('is_attached') == 1) {
-                } else {
-                    unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
-                }
+                
+                unset($data['is_attached'],$data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
+
             }
 
             if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 2) {
@@ -3685,9 +3684,10 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 3) {
 
-                unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
+              //  unset($data['institution_parent_id'], $data['sub_category'], $data['institution_id']);
                 unset($data['is_attached'], $data['district'], $data['upazila'], $data['union'], $data['ward']);
             }
+            
 
             if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 4) {
                 if ($this->input->post('is_attached') == 1) {
@@ -4643,13 +4643,15 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
+ 
 
+           
 
             if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 1) {
-                if ($this->input->post('is_attached') == 1) {
-                } else {
-                    $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
-                }
+               
+
+                $data['is_attached'] =  $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+
             }
 
             if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 2) {
@@ -4662,7 +4664,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             if ($this->input->post('org_type') == 'Residential' && $this->input->post('prosasonik_details') == 3) {
 
-                $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
+              //  $data['institution_parent_id'] = $data['sub_category'] = $data['institution_id'] = null;
                 $data['is_attached'] = $data['district'] = $data['upazila'] = $data['union'] = $data['ward'] = null;
             }
 
