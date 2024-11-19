@@ -41,28 +41,19 @@ function index(){
     $branch_id = $this->input->get('branch_id');
 
 
-if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8  || !$this->session->userdata('branch_id')) {
-    $this->data['branches'] = $this->site->getAllBranches();
-    $this->data['branch_id'] = $branch_id;
-    $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
-} else {
-    $this->data['branches'] = NULL;
-    $this->data['branch_id'] = $this->session->userdata('branch_id');
-    $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
-}
+    if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8  || !$this->session->userdata('branch_id')) {
+        $this->data['branches'] = $this->site->getAllBranches();
+        $this->data['branch_id'] = $branch_id;
+        $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+    } else {
+        $this->data['branches'] = NULL;
+        $this->data['branch_id'] = $this->session->userdata('branch_id');
+        $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+    }
 
-
-
-
-     
-
-	   $this->sma->checkPermissions();
+       $this->sma->checkPermissions();
 
        $report_type = $this->report_type();
-
-       
-      
-     
 
 
       //$this->sma->print_arrays($report_type);
@@ -80,58 +71,55 @@ if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8  |
 
        if($this->session->userdata('group_id') == 8 ){       
 
-        $this->data['departments'] = $this->site->getAllDepartments($this->session->userdata('department_id'));
+            $this->data['departments'] = $this->site->getAllDepartments($this->session->userdata('department_id'));
 
-        $string =  $string . ' AND dept_id = '.$this->session->userdata('department_id') ;
+            $string =  $string . ' AND dept_id = '.$this->session->userdata('department_id') ;
 
-        if($branch_id) 
-        $string =  $string . ' AND branch_id = '.$branch_id ;
+            if($branch_id) 
+            $string =  $string . ' AND branch_id = '.$branch_id ;
 
-         $string =  $string . ' order by created_at asc';
+            $string =  $string . ' order by created_at asc';
 
-        $this->data['serial_records'] = $this->site->query($string );
-
-
-        if($branch_id)
-        $this->data['branch_list'] =  $this->site->getAllBranches($branch_id);
-
-        else 
-        $this->data['branch_list'] = $this->data['branches'];
+            $this->data['serial_records'] = $this->site->query($string );
 
 
+            if($branch_id)
+            $this->data['branch_list'] =  $this->site->getAllBranches($branch_id);
 
+            else 
+            $this->data['branch_list'] = $this->data['branches'];
 
        }else if($this->Owner || $this->Admin ){
-        
-        $this->data['departments'] = $this->site->getAllDepartments(null, null,1);
+            
+            $this->data['departments'] = $this->site->getAllDepartments(null, null,1);
 
-        $this->data['serial_records'] = null;
-        $this->data['branch_list'] = null;
+            $this->data['serial_records'] = null;
+            
+            $this->data['branch_list'] = null;
 
 
 
-        if($branch_id) {
-        $string =  $string . ' AND  branch_id = '.$branch_id ;
+            if($branch_id) {
+            $string =  $string . ' AND  branch_id = '.$branch_id ;
 
-        $string =  $string . ' order by created_at asc';
-        $this->data['serial_records'] = $this->site->query($string );
-        $this->data['branch_list'] =  $this->site->getAllBranches($branch_id);
-
-        }
+            $string =  $string . ' order by created_at asc';
+            $this->data['serial_records'] = $this->site->query($string );
+            $this->data['branch_list'] =  $this->site->getAllBranches($branch_id);
+            }
 
         
        }else {       
 
-        $this->data['departments'] = $this->site->getAllDepartments(null, null,1);
-        
-        $string =  $string . ' AND branch_id = '.$this->session->userdata('branch_id') ;
+            $this->data['departments'] = $this->site->getAllDepartments(null, null,1);
+            
+            $string =  $string . ' AND branch_id = '.$this->session->userdata('branch_id') ;
 
-         $string =  $string . ' order by created_at asc';
+            $string =  $string . ' order by created_at asc';
 
-        $this->data['serial_records'] = $this->site->query($string );
- 
-        $this->data['branch_list'] =  $this->site->getAllBranches($this->session->userdata('branch_id'));
-        $branch_id = $this->session->userdata('branch_id');
+            $this->data['serial_records'] = $this->site->query($string );
+    
+            $this->data['branch_list'] =  $this->site->getAllBranches($this->session->userdata('branch_id'));
+            $branch_id = $this->session->userdata('branch_id');
 
        }
 
@@ -159,7 +147,7 @@ if ($this->Owner || $this->Admin || $this->session->userdata('group_id') == 8  |
 
 
 
-$this->data['branch_id'] = $branch_id;
+    $this->data['branch_id'] = $branch_id;
 
 
 	    //$this->sma->print_arrays($';

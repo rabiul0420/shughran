@@ -19,19 +19,7 @@ class SerialController extends MY_Controller
         $this->load->library('form_validation');
         $this->load->helper('report');
         $this->load->admin_model('organization_model');
-
-        $this->digital_upload_path = 'files/';
-        $this->upload_path = 'assets/uploads/';
-        $this->thumbs_path = 'assets/uploads/thumbs/';
-        $this->image_types = 'gif|jpg|jpeg|png|tif';
-        $this->digital_file_types = 'zip|psd|ai|rar|pdf|doc|docx|xls|xlsx|ppt|pptx|gif|jpg|jpeg|png|tif|txt';
-        $this->allowed_file_size = '1024';
-        $this->popup_attributes = array('width' => '900', 'height' => '600', 'window_name' => 'sma_popup', 'menubar' => 'yes', 'scrollbars' => 'yes', 'status' => 'no', 'resizable' => 'yes', 'screenx' => '0', 'screeny' => '0');
-    }
-
-
-
-
+ }
 
     /* ----------- serial ---------------- */
 
@@ -43,7 +31,6 @@ class SerialController extends MY_Controller
         $this->form_validation->set_rules('report_type', 'Report Type', 'required');      
 
         if ($this->form_validation->run() == true) {
-
             
                 $data = array(
                     'branch_id' => $this->input->post('branch_id'),
@@ -159,7 +146,7 @@ class SerialController extends MY_Controller
 
     }
 
-    /* -----------serial ---------------- */
+    /* ----------- /. sent serial ---------------- */
   
 
 
@@ -169,16 +156,14 @@ class SerialController extends MY_Controller
 
         // Set validation rules for the fields you want to update
         $this->form_validation->set_rules('is_checked', 'Check Status', 'required');
-        $this->form_validation->set_rules('is_charpotro', 'Charpotro Status', 'required');
+        $this->form_validation->set_rules('is_reportok', 'Report Status', 'required');
         $this->form_validation->set_rules('dept_review', 'Department Review', 'trim');
-
-
 
         if($this->form_validation->run() == TRUE){
             // Prepare data for updating the record
             $data = [
                 'is_checked'   => $this->input->post('is_checked'),
-                'is_charpotro' => $this->input->post('is_charpotro'),
+                'is_reportok' => $this->input->post('is_reportok'),
                 'dept_review'  => $this->input->post('dept_review')
             ];
             
@@ -301,26 +286,6 @@ class SerialController extends MY_Controller
         }
     }
 
-
-
-
-    /* -----------serial ---------------- */
+    /* -----------/. update serial ---------------- */
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

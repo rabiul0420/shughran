@@ -23,14 +23,16 @@ class International extends MY_Controller
 		}
 		
   
-        $this->data['department_id'] = 10; 
-        $branch_id = $this->session->userdata('branch_id');         
+        $report_type = $this->report_type();
+        $this->data['department_id'] = 10;         
+        $branch_id = $this->session->userdata('branch_id');
+        $branch_id = $this->input->get('branch_id');                 
 
-        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=>'annual','branch_id'=> $branch_id, 'dept_id'=>10), 'id desc', 1, 0);
-		
+        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=> $report_type['type'],'branch_id'=> 2, 'dept_id'=>10), 'id desc', 1, 0);
         $this->load->helper('serial_form_helper'); // serial form load 
         // Load the URL helper in CodeIgniter (if not already autoloaded)
-        $this->load->helper('url');     
+
+               // print_r($this->data['serial_info']); 
 
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');

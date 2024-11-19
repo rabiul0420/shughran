@@ -10,7 +10,6 @@ class Literature extends MY_Controller
             $this->session->set_userdata('requested_page', $this->uri->uri_string());
             $this->sma->md('login');
         }
-
         $this->departmentuser = false;
 
         if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 5) {
@@ -21,6 +20,13 @@ class Literature extends MY_Controller
         if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 5) {  //literature
             $this->departmentuser = true;
         }
+    
+        $report_type = $this->report_type();
+        $this->data['department_id'] = 5; // Literature department id
+              
+        $branch_id = $this->session->userdata('branch_id');
+        $branch_id = $this->input->get('branch_id');
+             
 
     
         $report_type = $this->report_type();
@@ -33,7 +39,10 @@ class Literature extends MY_Controller
         // Load the serial_form_helper helper in CodeIgniter (if not already autoloaded)
         $this->load->helper('serial_form_helper'); 
 
+        // Load the serial_form_helper helper in CodeIgniter (if not already autoloaded)
+        $this->load->helper('serial_form_helper'); 
 
+        
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');
         $this->load->helper('report');
@@ -54,7 +63,8 @@ class Literature extends MY_Controller
         //$this->sma->checkPermissions();
 
         // $this->sma->print_arrays($this->input->get());
-
+      
+        
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin || $this->departmentuser) && ($this->session->userdata('branch_id') != $branch_id)) {
             $this->session->set_flashdata('warning', lang('access_denied'));
@@ -290,13 +300,9 @@ class Literature extends MY_Controller
 
       
        
-        if ($branch_id){
-            
-        
+        if ($branch_id ){
             $this->page_construct('departmentsreport/literature/literature_page_one_entry', $meta, $this->data, 'leftmenu/departmentsreport');
         }else{
-           
-        
             $this->page_construct('departmentsreport/literature/literature_page_one', $meta, $this->data, 'leftmenu/departmentsreport');
         }
 
