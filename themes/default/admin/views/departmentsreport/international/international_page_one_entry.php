@@ -82,11 +82,12 @@ $(document).ready(function(){
 </style>
     <div class="box-content">
         <div class="row">
-            <!-- ====== Report serial code ======= -->
  
-            <?php  render_dept_report_serial_form($branch_id, $report_info,$department_id, $serial_info,$this->Owner,$this->Admin); ?>
+<!-- ====== Report serial code ======= -->
  
- <!-- ====== /. Report serial code ===== -->
+<?php  render_dept_report_serial_form($branch_id, $report_info,$department_id, $serial_info,$this->Owner,$this->Admin,$this->departmentuser); ?>
+
+<!-- ====== /. Report serial code ===== -->
             <div class="col-lg-12">
                 <p class="introtext">
                 <div class="table-responsive">

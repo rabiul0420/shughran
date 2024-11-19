@@ -83,12 +83,6 @@ $(document).ready(function(){
     #export_all_table{
         cursor: pointer;
     }
-    .serialTxt{
-        font-size:16px;
-    }
-    .serialbtn{
-        display:flex;justify-content:right;
-    }
 </style>
 
     <div class="box-content">
@@ -97,7 +91,7 @@ $(document).ready(function(){
 
 <!-- ====== Report serial code ======= -->
  
-<?php  render_dept_report_serial_form($branch_id, $report_info,$department_id, $serial_info,$this->Owner,$this->Admin); ?>
+<?php  render_dept_report_serial_form($branch_id, $report_info,$department_id, $serial_info,$this->Owner,$this->Admin,$this->departmentuser); ?>
 
 <!-- ====== /. Report serial code ===== -->
 
