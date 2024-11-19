@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-
-
 <link href="<?= $assets ?>plugins/xedit/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
 <div class="box">
     <div class="box-header">
@@ -38,38 +38,40 @@
             <div class="col-lg-12">
 
 
-                <table class="table table-bordered">
-
-                    <thead>
+            <table id="example1" class="display table-bordered" style="width:100%">
+            <thead style="background-color:#428BCA;color:white;text-align: center;">
                         <tr>
-                            <th width="5%">Branch</th>
-                            <th width="20%">Department</th>
-                            <th>is serial</th>
-                            <th>is_checked</th>
-                            <th>is_reportok</th>
-                            <th  width="60%">dept_review</th>
+                            <th width="4%">
+                            <?= $this->session->userdata('group_id') == 8 ? শাখা : ক্রম ?> 
+                           
+                            </th>
+                            <th width="20%">বিভাগ</th>
+                            <th width="8%">সিরিয়াল দেয়া হয়েছে?</th>
+                            <th width="8%">রিপোর্ট চেক ?</th>
+                            <th width="8%">রিপোর্ট ওকে?</th>
+                            <th width="50%">বিভাগীয় রিভিউ</th>
+
 
                         </tr>
                     </thead>
                     <tbody>
 
                         <?php if($branch_list)   foreach ($branch_list as $row)     { 
-                            
-                            foreach($departments as $dept){
+                             $i = 0;
+                             foreach($departments as $dept){
+                             $i++;
                              $record =   serial_info($row->id,$dept->id, $serial_records );
                          // var_dump( $record);
                            
                            ?>
                             <tr>
-                                <td><?= $row->name ?></td>
+                                <td><?= $this->session->userdata('group_id') == 8 ? $row->name : $i; ?></td>
                                 <td><?= $dept->name ?></td>
                                 <td><?=isset($record['is_checked']) ?  '<span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>' : '<span class="label label-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>'?></td>
                                 
                                 <td><?=isset($record['is_checked']) && $record['is_checked']=='YES'  ?  '<span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>' : '<span class="label label-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>'?></td>
                                 <td><?=isset($record['is_reportok']) && $record['is_reportok']=='OK'  ?  '<span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>' : '<span class="label label-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>'?></td>
                                 <td><?=isset($record['dept_review']) ? $record['dept_review'] : ''?></td>
-                                <td></td>
-
 
                             </tr>
                         <?php } } ?>
@@ -83,3 +85,12 @@
         </div>
     </div>
 </div>
+
+<script>
+      
+    new DataTable('#example1', {
+    order: [[3, 'asc']],
+    pageLength: 50
+    });      
+   
+</script>

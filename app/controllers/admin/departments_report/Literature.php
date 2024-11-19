@@ -13,13 +13,6 @@ class Literature extends MY_Controller
 
         $this->departmentuser = false;
 
-        $branch_id = $this->session->userdata('branch_id');
-        $this->data['department_id'] = 5;        
-
-        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=>'annual','branch_id'=> $branch_id, 'dept_id'=>5), 'id desc', 1, 0);
-
-
-
         if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 5) {
             admin_redirect('welcome');
         }
@@ -29,9 +22,16 @@ class Literature extends MY_Controller
             $this->departmentuser = true;
         }
 
-        $this->load->helper('serial_form_helper'); // serial form load 
-        // Load the URL helper in CodeIgniter (if not already autoloaded)
-        $this->load->helper('url');     
+    
+        $report_type = $this->report_type();
+        $this->data['department_id'] = 5; // Literature department id
+              
+        $branch_id = $this->session->userdata('branch_id');             
+
+        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=> $report_type['type'],'branch_id'=> $branch_id , 'dept_id'=>5), 'id desc', 1, 0);
+       
+        // Load the serial_form_helper helper in CodeIgniter (if not already autoloaded)
+        $this->load->helper('serial_form_helper'); 
 
 
         $this->lang->admin_load('manpower', $this->Settings->user_language);
