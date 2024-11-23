@@ -2,12 +2,12 @@
 function render_dept_report_serial_form($branch_id, $report_info,$department_id, $serial_info, $is_owner, $is_admin,$is_departmentuser) {
   
     // print_r($is_departmentuser);
-    // print_r($serial_info->dept_review);
+    print_r($serial_info->dept_review);
     // print_r($department_id);
     // echo $report_info['type'];
   
     ?>
-
+  
   <div class="col-md-12" <?php if($is_owner || $is_admin || $is_departmentuser){ echo "style='display:none;'";}?> >
 
     <table class="table table-bordered">
@@ -21,7 +21,7 @@ function render_dept_report_serial_form($branch_id, $report_info,$department_id,
                     <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
                     <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
                     <td rowspan="2" style="width: 100px;">
-                        <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id || (int) $is_departmentuser === 1): ?>
+                        <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id): ?>
                             সিরিয়াল দেওয়া হয়েছে।
                         <?php else: ?>
                             <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">সিরিয়াল দিন</button>
@@ -53,7 +53,7 @@ function render_dept_report_serial_form($branch_id, $report_info,$department_id,
 
 
 
-<?php  if($is_owner || $is_admin || $is_departmentuser): ?>
+<?php if($is_owner || $is_admin || $is_departmentuser): ?>
 
 <?php 
     echo form_open_multipart(base_url("index.php/admin/serialcontroller/updateserial/" . $branch_id)); 
@@ -62,6 +62,7 @@ function render_dept_report_serial_form($branch_id, $report_info,$department_id,
 <!-- Hidden Inputs -->
 <input type="hidden" value="<?php echo $branch_id; ?>" name="branch_id" />
 <input type="hidden" value="<?php echo $department_id; ?>" name="dept_id" />
+
 
     <!-- Check Field -->
     <div class="col-md-3 col-sm-3">
@@ -105,6 +106,7 @@ function render_dept_report_serial_form($branch_id, $report_info,$department_id,
                 <?php if(empty($serial_info->dept_review)){echo 'N/A';}else{ echo $serial_info->dept_review;}
                 // print_r($report_info);
                 // print_r($serial_info);
+                print_r($serial_info->dept_review);
                 ?>
             </textarea>
         </div>
@@ -129,6 +131,6 @@ function render_dept_report_serial_form($branch_id, $report_info,$department_id,
     </style>
 
 
-<?php  endif ?>
+<?php endif ?>
 
 <?php } ?>
