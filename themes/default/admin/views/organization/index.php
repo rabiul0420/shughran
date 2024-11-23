@@ -183,8 +183,6 @@
 
 
 
-
-
                             <?php foreach ($institutions as $institution)
                                 if ($institution->type_id == $institution_type->id) { ?>
                                     <tr>
@@ -205,27 +203,92 @@
                                             <?php if ($report_info['last_half'] != 1)
                                                 echo $institution_row == null ? 0 : $institution_row['prev_institution'] + $institution_row['increase'] - $institution_row['decrease']; ?>
                                         </td>
-                                        <td class="type_3"><?php echo $institution_row == null ? 0 : $institution_row['increase']; ?>
+                                        <td class="type_3">
+                                            <?php echo $institution_row == null ? 0 : $institution_row['increase']; ?>
                                         </td>
-                                        <td class="type_4"><?php echo $institution_row == null ? 0 : $institution_row['decrease']; ?>
+                                        <td class="type_4">
+                                            <?php echo $institution_row == null ? 0 : $institution_row['decrease']; ?>
                                         </td>
 
 
 
-                                       
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
+
+                                        <td class="type_5">
+                                            <?php
+                                            $prev_w = sum_org($org_summary_sma, 'worker', $institution->id);
+                                            echo $prev_w;
+                                            ?>
+                                        </td>
+                                        <td class="type_6">
+                                            <?php $worker = sum_org($org_summary, 'worker', $institution->id);
+                                            //echo $worker;
+                                            echo 'Pending';
+                                            ?>
+
+                                        </td>
+                                        <td class="type_7"><?php
+                                        $prev_a = sum_org($org_summary_sma, 'associate', $institution->id);
+                                        echo $prev_a;
+                                        ?></td>
+                                        <td class="type_8">
+
+                                            <?php
+                                            $associate = sum_institution($institution_manpower_record, 'associate', $institution->id);
+                                            echo $associate;
+                                            ?>
+
+                                        </td>
+                                        <td class="type_9"><?php
+                                        $prev_m = sum_org($org_summary_sma, 'member', $institution->id);
+                                        echo $prev_m;
+                                        ?></td>
+                                        <td class="type_10">
+
+                                            <?php
+                                            $member = sum_institution($institution_manpower_record, 'member', $institution->id);
+                                            echo $member;
+                                            ?>
+                                        </td>
+                                        <td class="type_11">
+                                            <?php
+                                            echo $prev_m + $prev_a + $prev_w;
+                                            ?>
+                                        </td>
+                                        <td class="type_12">
+                                            <?php
+                                            echo $member + $associate + $worker;
+                                            ?>
+                                        </td>
+
+                                        <?php
+                                        $institutioninfo = institution_row($institution->id, $institution_info);
+                                        //$organizationinfo = institution_row($institution->id, $organization_info);
+                                        // $supporterorgbutorginfo = institution_row($institution->id, $supporter_org_but_org_info);
+                            
+                                        //var_dump($institution_row );
+                            
+                                        ?>
+
+
+
+                                        <td class="type_13">
+                                            <?php echo $institutioninfo == null ? 0 : $institutioninfo['supporter']; ?>
+                                        </td>
+                                        <td class="type_14">
+                                            <?php echo $institutioninfo == null ? 0 : $institutioninfo['other_org_worker']; ?>
+                                        </td>
+                                        <td class="type_15">
+                                            <?php echo $institutioninfo == null ? 0 : $institutioninfo['total_female_student']; ?>
+                                        </td>
+                                        <td class="type_16">
+                                        <?php echo $institutioninfo == null ? 0 : $institutioninfo['female_student_supporter']; ?>
+                                        </td>
+                                        <td class="type_17">
+                                        <?php echo $institutioninfo == null ? 0 : $institutioninfo['non_muslim_student']; ?>
+                                        </td>
+                                        <td class="type_18">
+                                        <?php echo $institutioninfo == null ? 0 : $institutioninfo['total_student_number']; ?>
+                                        </td>
 
                                     </tr>
                                 <?php } ?>
@@ -241,45 +304,14 @@
                         <?php } ?>
 
 
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
 
                         <tr>
-                            <td>Total</td>
-                            <td class="total_<?php echo $i; ?>">&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
+                        <td>Total</td>
+                        <?php for($i=1;$i<=18;$i++) {?>
+                        <td class="total_<?php echo $i;?>"><?php echo $i;?></td>
+                        <?php }?>
+                        
+                         
                     </tbody>
                 </table>
 

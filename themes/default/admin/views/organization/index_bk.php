@@ -274,8 +274,7 @@ if($report_info['last_half'] != 1)
 $institutioninfo = institution_row($institution->id, $institution_info);
 $organizationinfo = institution_row($institution->id, $organization_info);
 $supporterorgbutorginfo = institution_row($institution->id, $supporter_org_but_org_info);
-
-
+ 
 //var_dump($institution_row );
 
 ?> 
@@ -338,7 +337,8 @@ if($report_info['last_half'] != 1)
 <?php 
 $prev_w =  sum_org($org_summary_sma,'worker',$institution->id); 
 echo $prev_w;
-?></td>
+?>
+</td>
 
 <td class="type_23">
     
@@ -359,7 +359,8 @@ echo $prev_w;
 $prev_a =  sum_org($org_summary_sma,'associate',$institution->id); 
 echo $prev_a;
 ?></td>
-<td class="type_25"><?php $associate = sum_institution($institution_manpower_record,'associate',$institution->id); echo $associate;?></td>
+<td class="type_25">
+    <?php $associate = sum_institution($institution_manpower_record,'associate',$institution->id); echo $associate;?></td>
 
 <td class="type_26">
 <?php 

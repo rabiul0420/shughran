@@ -26,8 +26,25 @@
 <script>
     function ward_type(type) {
 
-        return type == 'Residential' ? 'আবাসিক' : (type == 'Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
+        return type == 'Residential' ? 'আবাসিক' : (type == 'Institutional' ? 'প্রাতিষ্ঠানিক' : ( type == 'Departmental' ?   'বিভাগীয়' : ''  ));
     }
+
+
+    function ward_subtype(type) {
+        let subtype =  {
+            '1':'প্রশাসনিক এলাকা',
+            '2':'মেস',
+            '3':'হল/হোস্টেল',
+            '4':'কোয়াটার',
+            '5':'শিক্ষাপ্রতিষ্ঠান',
+            '6':'কোচিং/প্রাইভেট সেন্টার',
+            '7':'ট্রেনিং সেন্টার'
+        };
+
+        return subtype[type] ? subtype[type] : '';
+    }
+ 
+
 
 
     function yes_no(is_ideal_ward) {
@@ -78,7 +95,13 @@
                 {
                     "mRender": ward_type
                 },
+                {
+                    "mRender": ward_subtype
+                },
+
+
                 null,
+                
 
                 null, null, null, null, null, null, null, null, null,
 
@@ -173,6 +196,7 @@
                                 <th><?= 'শাখা' ?></th>
                                 <th><?= 'ওয়ার্ডের নাম' ?></th>
                                 <th><?= 'সংগঠনের ধরন' ?></th>
+                                <th><?= 'সংগঠনের উপধরন' ?></th>
                                 <th><?= 'সাংগঠনিক থানা' ?></th>
                                 <th><?= 'জেলা' ?></th>
                                 <th><?= 'উপজেলা' ?></th>
@@ -192,7 +216,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="15" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                <td colspan="16" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                             </tr>
                         </tbody>
 
@@ -201,6 +225,7 @@
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkft" type="checkbox" name="check" />
                                 </th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
