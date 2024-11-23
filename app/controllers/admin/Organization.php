@@ -4786,8 +4786,8 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
             if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
-                $this->data['branch_id'] = $thana_details->$branch_id;
-                $this->data['branch'] = $this->site->getBranchByID($thana_details->$branch_id);
+                $this->data['branch_id'] = $thana_details->branch_id;
+                $this->data['branch'] = $this->site->getBranchByID($thana_details->branch_id);
             } else {
 
                 $this->data['branch_id'] = $this->session->userdata('branch_id');
