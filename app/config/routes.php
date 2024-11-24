@@ -297,8 +297,8 @@ $route['admin/departmentsreport/it-bivag'] = 'admin/departments_report/It/it_biv
 $route['admin/departmentsreport/it-bivag/(:num)'] = 'admin/departments_report/It/it_bivag/$1';
 
 //SM
-$route['admin/departmentsreport/it-bivag_sm'] = 'admin/departments_report/It/it_bivag_sm';
-$route['admin/departmentsreport/it-bivag_sm/(:num)'] = 'admin/departments_report/It/it_bivag_sm/$1';
+$route['admin/departmentsreport/it-bivag_sm'] = 'admin/departments_report/Socialmedia/it_bivag_sm';
+$route['admin/departmentsreport/it-bivag_sm/(:num)'] = 'admin/departments_report/Socialmedia/it_bivag_sm/$1';
 
 //sports
 

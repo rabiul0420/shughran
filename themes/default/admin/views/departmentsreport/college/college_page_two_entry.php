@@ -82,6 +82,13 @@ $(document).ready(function(){
 </style>
     <div class="box-content">
         <div class="row">
+<!-- ====== Report serial code ======= --> 
+<?php 
+// This function renders a department report form with serial number information
+// based on the branch, report, department, and user roles provided.
+render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial_info, $this->Owner, $this->Admin, $this->departmentuser); 
+?>
+<!-- ====== /. Report serial code ===== -->
             <div class="col-lg-12">
                 <p class="introtext">
                 <div class="table-responsive">

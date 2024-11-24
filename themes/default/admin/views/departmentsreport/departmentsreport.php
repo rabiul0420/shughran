@@ -43,15 +43,12 @@
                         <tr>
                             <th width="4%">
                             <?= $this->session->userdata('group_id') == 8 ? শাখা : ক্রম ?> 
-                           
                             </th>
                             <th width="20%">বিভাগ</th>
                             <th width="8%">সিরিয়াল দেয়া হয়েছে?</th>
                             <th width="8%">রিপোর্ট চেক ?</th>
                             <th width="8%">রিপোর্ট ওকে?</th>
                             <th width="50%">বিভাগীয় রিভিউ</th>
-
-
                         </tr>
                     </thead>
                     <tbody>

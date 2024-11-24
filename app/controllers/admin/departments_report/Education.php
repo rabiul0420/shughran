@@ -21,19 +21,24 @@ class Education extends MY_Controller
         if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 11) {  //literature
             $this->departmentuser = true;
         }
-
-        $this->data['department_id'] = 11;
-        $branch_id = $this->session->userdata('branch_id');        
-
+              
+        // Retrieve the report type using the report_type method
         $report_type = $this->report_type();
-        //   print_r($report_type['type']);
-        
-        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=> $report_type['type'],'branch_id'=> $branch_id, 'dept_id'=>11), 'id desc', 1, 0);
-        
 
-        $this->load->helper('serial_form_helper'); // serial form load 
-        // Load the URL helper in CodeIgniter (if not already autoloaded)
-        $this->load->helper('url');     
+        // Set the department id  to 11
+        $this->data['department_id'] = 11;
+
+        // Check user roles to determine the branch ID source
+        if ($this->Owner || $this->Admin || $this->departmentuser) {
+            // If the user is an Owner, Admin, or a department user, get the branch ID from the URI segment (4th segment)
+            $branch_id = $this->uri->segment(4);
+        } else {
+            // For other users, get the branch ID from the session data
+            $branch_id = $this->session->userdata('branch_id');
+        }
+        // Retrieve a single record from the 'serial_reports' table based on specific conditions
+        // Conditions: The current year, the report type, branch ID, and department ID  11)
+        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=> $report_type['type'],'branch_id'=> $branch_id , 'dept_id'=>11), 'id desc', 1, 0);
 
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');

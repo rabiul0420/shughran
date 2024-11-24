@@ -21,7 +21,7 @@ class SerialController extends MY_Controller
         $this->load->admin_model('organization_model');
  }
 
-    /* ----------- serial ---------------- */
+    /* -----------sent serial ---------------- */
 
     function sentserial($branch_id = NULL)
     {
@@ -95,7 +95,7 @@ class SerialController extends MY_Controller
                     // poriklpona-bivag department code = 20              
                   admin_redirect("departmentsreport/poriklpona-bivag/" . $branch_id);
                 }elseif($result && $dept_id == 21){ 
-                    // international department code = 21              
+                    // college department code = 21              
                     admin_redirect("departmentsreport/college-page-two/" . $branch_id);
                 }elseif($result && $dept_id == 22){ 
                     // research department code = 22              
@@ -150,7 +150,7 @@ class SerialController extends MY_Controller
   
 
 
-    /* -----------updated serial  ---------------- */
+    /* -----------updated serial with comment  ---------------- */
  
     public function updateSerial($branch_id= NULL) {
 
@@ -177,7 +177,7 @@ class SerialController extends MY_Controller
 
             // Call the update function in the model and pass the data and branch_id
             $up_result = $this->site->updateData('serial_reports', $data, $where);
-            $this->session->set_flashdata('success', 'Record updated successfully');
+            $this->session->set_flashdata('message', 'Message updated successfully');
             if ($up_result) {
    
                 if($up_result && $dept_id == 5){
@@ -229,7 +229,7 @@ class SerialController extends MY_Controller
                     // poriklpona-bivag department code = 20              
                   admin_redirect("departmentsreport/poriklpona-bivag/" . $branch_id);
                 }elseif($up_result && $dept_id == 21){ 
-                    // international department code = 21              
+                    // college department code = 21              
                     admin_redirect("departmentsreport/college-page-two/" . $branch_id);
                 }elseif($up_result && $dept_id == 22){ 
                     // research department code = 22              

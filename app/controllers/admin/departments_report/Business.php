@@ -13,23 +13,34 @@ class Business extends MY_Controller
 
         $this->departmentuser = false;
 
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 29) {
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 44) {
             admin_redirect('welcome');
         }
         $this->sma->checkPermissions('index', true, 'departmentsreport');
 
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 29) { //literature
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 44) { //Business
             $this->departmentuser = true;
         }
 
-        
-        $this->data['department_id'] ='' ;        
+     
+        // Retrieve the report type using the report_type method
+        $report_type = $this->report_type();
 
-        $this->data['serial_info'] =$this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=>'annual', 'dept_id'=>5), 'id desc', 1, 0);
+        // Set the department id  to 44
+        $this->data['department_id'] = 44;
 
-        $this->load->helper('serial_form_helper'); // serial form load 
-        // Load the URL helper in CodeIgniter (if not already autoloaded)
-        $this->load->helper('url');     
+        // Check user roles to determine the branch ID source
+        if ($this->Owner || $this->Admin || $this->departmentuser) {
+            // If the user is an Owner, Admin, or a department user, get the branch ID from the URI segment (4th segment)
+            $branch_id = $this->uri->segment(4);
+        } else {
+            // For other users, get the branch ID from the session data
+            $branch_id = $this->session->userdata('branch_id');
+        }
+        // Retrieve a single record from the 'serial_reports' table based on specific conditions
+        // Conditions: The current year, the report type, branch ID, and department ID  44)
+        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=> $report_type['type'],'branch_id'=> $branch_id , 'dept_id'=>44), 'id desc', 1, 0);
+            
 
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');
