@@ -12,22 +12,6 @@
                             </a>
                         </li>
 
-
-						<li id="mm_dept_serial" class="<?php echo ($this->uri->segment(3)=='serials')?'active':'' ?>">
-                            <a  href="<?= admin_url('departmentsreport/serials') ?>">
-                                <i class="fa fa-cog"></i><span class="text"> বিভাগীয় সিরিয়াল</span>
-                            </a>
-                        </li>
-						
-                        <?php if(!$Owner || !$Admin): ?>
-
-						<li id="mm_dept_serial" class="<?php echo ($this->uri->segment(3)=='allserial')?'active':'' ?>">
-                            <a  href="<?= admin_url('departmentsreport/allserial') ?>">
-                                <i class="fa fa-cog"></i><span class="text"> সকল বিভাগীয় সিরিয়াল</span>
-                            </a>
-                        </li>
-						<?php endif ?>
-                        
 						 <li class="mm_literature">
                             <a class="dropmenu" href="#">
                                 <i class="fa fa-cog"></i><span class="text">সাহিত্য বিভাগ</span>
@@ -99,16 +83,22 @@
                        </li>
 					   <li class="mm_it">
                             <a href="<?= admin_url('departmentsreport/it-bivag') ?>">
-                                <i class="fa fa-cog"></i><span class="text">তথ্যপ্রযুক্তি বিভাগ</span>
-                               
+                                <i class="fa fa-cog"></i><span class="text">তথ্যপ্রযুক্তি বিভাগ</span>                               
                             </a>
                         </li>
+
+
+
+
                         <li class="mm_sm">
                             <a href="<?= admin_url('departmentsreport/it-bivag_sm') ?>">
                                 <i class="fa fa-cog"></i><span class="text">সোশ্যাল মিডিয়া বিভাগ</span>
                                
                             </a>
                         </li>
+
+
+                        
 						<li class="mm_library">
                             <a  href="<?= admin_url('departmentsreport/pathagar-bivag') ?>">
                                 <i class="fa fa-cog"></i><span class="text">পাঠাগার  বিভাগ</span>

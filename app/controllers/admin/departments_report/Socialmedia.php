@@ -1,8 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class It extends MY_Controller
+class Socialmedia extends MY_Controller
 {
-
     function __construct()
     {
         parent::__construct();
@@ -13,20 +12,20 @@ class It extends MY_Controller
 
         $this->departmentuser = false;
 		
-		if(   $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id')!=29) {
+		if(   $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id')!=43) {
 			admin_redirect('welcome');
 		}
 		 $this->sma->checkPermissions('index', TRUE,'departmentsreport');
 		 
-		 if(  $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id') ==29) {  //literature
+		 if(  $this->session->userdata('group_id')== 8 && $this->session->userdata('department_id') ==43) {  //Social Media
 			$this->departmentuser = true; 
 		}
-      
+		
         // Retrieve the report type using the report_type method
         $report_type = $this->report_type();
-		
-        // Set the department id to 29
-        $this->data['department_id'] = 29;
+         
+        // Set the department id to 43
+        $this->data['department_id'] = 43;
 
         // Check user roles to determine the branch ID source
         if ($this->Owner || $this->Admin || $this->departmentuser) {
@@ -37,8 +36,8 @@ class It extends MY_Controller
             $branch_id = $this->session->userdata('branch_id');
         }
         // Retrieve a single record from the 'serial_reports' table based on specific conditions
-        // Conditions: The current year, the report type, branch ID, and department ID (29)
-        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=> $report_type['type'],'branch_id'=> $branch_id , 'dept_id'=>29), 'id desc', 1, 0);
+        // Conditions: The current year, the report type, branch ID, and department ID (43)
+        $this->data['serial_info'] = $this->site->getOneRecord('serial_reports', '*', array('report_year' => date('Y'), 'report_type'=> $report_type['type'],'branch_id'=> $branch_id , 'dept_id'=>43), 'id desc', 1, 0);
      
         $this->lang->admin_load('manpower', $this->Settings->user_language);
         $this->load->library('form_validation');
