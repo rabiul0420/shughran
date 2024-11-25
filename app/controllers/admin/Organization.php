@@ -268,6 +268,7 @@ class Organization extends MY_Controller
         }
 
 
+        $this->data['report_info'] = $report_type;
         $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
 
         $this->data['institutions'] = $this->organization_model->getAllInstitution();
