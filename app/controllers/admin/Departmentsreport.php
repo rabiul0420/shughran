@@ -78,6 +78,7 @@ function index(){
             if($branch_id) 
             $string =  $string . ' AND branch_id = '.$branch_id ;
 
+            // $string =  $string . ' order by created_at desc';
             $string =  $string . ' order by created_at asc';
 
             $this->data['serial_records'] = $this->site->query($string );
@@ -89,7 +90,7 @@ function index(){
             else 
             $this->data['branch_list'] = $this->data['branches'];
 
-       }else if($this->Owner || $this->Admin ){
+       }elseif($this->Owner || $this->Admin ){
             
             $this->data['departments'] = $this->site->getAllDepartments(null, null,1);
 
@@ -106,7 +107,6 @@ function index(){
             $this->data['serial_records'] = $this->site->query($string );
             $this->data['branch_list'] =  $this->site->getAllBranches($branch_id);
             }
-
         
        }else {       
 
