@@ -175,6 +175,117 @@ class Organization extends MY_Controller
 
 
 
+    function institutional($branch_id = NULL)
+    {
+
+        $this->sma->checkPermissions();
+        if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+            admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        }
+
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+
+        if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+            $this->data['branches'] = $this->site->getAllBranches();
+            $this->data['branch_id'] = $branch_id;
+            $this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        } else {
+            $this->data['branches'] = NULL;
+            $this->data['branch_id'] = $this->session->userdata('branch_id');
+            $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+        }
+
+
+
+        // $this->data['institutions'] = $this->organization_model->getAllInstitution();
+
+
+
+
+        $report_type = $this->report_type();
+
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+
+        $prev = $report_type['last_year'];
+
+
+        $this->data['org_summary_sma'] = $this->getorg_summary_prev('annual', $prev, $branch_id);
+
+
+        //$this->sma->print_arrays( $this->data['org_summary_sma']);
+
+
+        $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
+
+        $this->data['institutions'] = $this->organization_model->getAllInstitution();
+        // $this->sma->print_arrays( $this->data['institutiontype']);
+
+        if ($branch_id) {
+            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  v3_prev_institution(institution_type_child, " . $prev . ", " . $branch_id . ") prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
+            institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution
+           FROM `sma_institutionlist`
+           WHERE `date` BETWEEN '" . $start . "' AND '" . $end . "' AND branch_id = " . $branch_id . "
+           GROUP BY institution_type_child 
+           
+           UNION ALL 
+           
+           SELECT     
+            institution_type_child,  0 increase_institution, COUNT(`id`) decrease_institution
+           FROM `sma_institutionlist`
+           WHERE `close_date` BETWEEN '" . $start . "' AND '" . $end . "' AND branch_id = " . $branch_id . " 
+           GROUP BY institution_type_child 
+           
+           UNION ALL 
+      
+      SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution FROM `sma_institution` WHERE  `type` = 1 GROUP BY id 
+      
+           
+           ) a GROUP BY institution_type_child ,prev_institution");
+        } else {
+            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  v3_prev_institution(institution_type_child, " . $prev . ", -1) prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
+            institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution
+           FROM `sma_institutionlist`
+           WHERE `date` BETWEEN '" . $start . "' AND '" . $end . "' 
+           GROUP BY institution_type_child 
+           
+           UNION ALL 
+           
+           SELECT     
+            institution_type_child,  0 increase_institution, COUNT(`id`) decrease_institution
+           FROM `sma_institutionlist`
+           WHERE `close_date` BETWEEN '" . $start . "' AND '" . $end . "' 
+           GROUP BY institution_type_child 
+           
+           UNION ALL 
+    
+    SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution FROM `sma_institution` WHERE  `type` = 1 GROUP BY id 
+           ) a GROUP BY institution_type_child ,prev_institution");
+
+        }
+
+
+        $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
+
+        $this->data['institutions'] = $this->organization_model->getAllInstitution();
+
+        /// $this->sma->print_arrays($this->data['org_summary']);
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Organization'));
+        $meta = array('page_title' => 'Organization', 'bc' => $bc);
+        // if ($branch_id) {
+        //     $this->page_construct2('organization/index_entry', $meta, $this->data, 'leftmenu/organization');
+        // } else
+
+        $this->page_construct('organization/institutional', $meta, $this->data, 'leftmenu/organization');
+
+
+
+
+    }
+
 
     function index($branch_id = NULL)
     {
@@ -224,7 +335,7 @@ class Organization extends MY_Controller
         $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
 
         $this->data['institutions'] = $this->organization_model->getAllInstitution();
-       // $this->sma->print_arrays( $this->data['institutiontype']);
+        // $this->sma->print_arrays( $this->data['institutiontype']);
 
         if ($branch_id) {
 
@@ -251,7 +362,7 @@ class Organization extends MY_Controller
 
 
 
-           $this->data['institution_info'] = $this->site->query("SELECT     
+            $this->data['institution_info'] = $this->site->query("SELECT     
            institution_type_child , 
           SUM( total_student_number ) total_student_number, 
           SUM( supporter) supporter,           
@@ -288,7 +399,7 @@ class Organization extends MY_Controller
                ) a GROUP BY institution_type_child ,prev_institution");
 
 
-               $this->data['institution_info'] = $this->site->query("SELECT     
+            $this->data['institution_info'] = $this->site->query("SELECT     
            institution_type_child , 
           SUM( total_student_number ) total_student_number, 
           SUM( supporter) supporter,           
@@ -319,21 +430,21 @@ class Organization extends MY_Controller
 
 
 
-      // $this->data['org_summary'] = $this->getorg_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $report_type);
+        // $this->data['org_summary'] = $this->getorg_summary($report_type['type'], $report_type['start'], $report_type['end'], $branch_id, $report_type);
 
 
 
 
 
-     //current member & associate
+        //current member & associate
 
-      $where = " ";
+        $where = " ";
 
-      if ($branch_id) {
-          $where = " branch = $branch_id AND ";
-      }
+        if ($branch_id) {
+            $where = " branch = $branch_id AND ";
+        }
 
-      $this->data['institution_manpower_record'] = $this->site->query("SELECT   
+        $this->data['institution_manpower_record'] = $this->site->query("SELECT   
       SUM(CASE WHEN orgstatus_id = 2 OR orgstatus_id = 12 THEN 1 ELSE 0 END) associate ,  
       SUM(CASE WHEN orgstatus_id = 1 THEN 1 ELSE 0 END ) `member` ,  institution_type_child
       FROM `sma_manpower`  WHERE $where  `orgstatus_id` IN (1,2,12) GROUP BY `institution_type_child`");
@@ -354,8 +465,10 @@ class Organization extends MY_Controller
         // if ($branch_id) {
         //     $this->page_construct2('organization/index_entry', $meta, $this->data, 'leftmenu/organization');
         // } else
-        
-        $this->page_construct2('organization/index', $meta, $this->data, 'leftmenu/organization');
+
+        $this->page_construct('organization/index', $meta, $this->data, 'leftmenu/organization');
+
+
     }
 
     function getorg_summary($report_type, $start_date, $end_date, $branch_id = NULL, $reportinfo = null)
