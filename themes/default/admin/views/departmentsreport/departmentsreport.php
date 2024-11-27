@@ -85,7 +85,7 @@
 <script>
       
     new DataTable('#example1', {
-    order: [[3, 'asc']],
+    order: [[6, 'asc']],
     pageLength: 50
     });      
    
