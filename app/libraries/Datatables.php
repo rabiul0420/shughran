@@ -345,7 +345,7 @@ class Datatables
     private function get_display_result()
     {
         $rt = $this->ci->db->get($this->table);
-    // echo $this->ci->db->last_query();
+     // echo $this->ci->db->last_query();
 		return $rt;
     }
 

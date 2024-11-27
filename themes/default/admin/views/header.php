@@ -366,14 +366,37 @@
                                         <li class=""><a href="<?= admin_url('dawat/detail'); ?>">বিস্তারিত দাওয়াত </a></li>
                                     </ul>
                                 </li>
+
+
+ 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    প্রাতিষ্ঠানিক বিবরণ <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?= admin_url('organization/institutional'); ?>" class="line-height-lg">প্রাতিষ্ঠানিক সংগঠন একনজরে </a></li>
+                                        <li><a href="<?= admin_url('organization'); ?>" class="line-height-lg">প্রাতিষ্ঠানিক শিক্ষার্থী একনজরে
+                                        </a></li>
+                                        <li><a href="<?= admin_url('organization/institutionlist'); ?>" class="line-height-lg">প্রতিষ্ঠান তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/institutionwithorg'); ?>" class="line-height-lg">যে সব প্রতিষ্ঠানে সংগঠন আছে </a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrationbutorg'); ?>" class="line-height-lg">যে সব এলাকায় সংগঠন নেই </a></li>
+
+                                      
+                                
+                                    </ul>
+                                </li>
+                                
+
+
+
+
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         সংগঠন <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?= admin_url('organization'); ?>" class="line-height-lg">একনজরে </a></li>
-                                        <li><a href="<?= admin_url('organization/institutionlist'); ?>" class="line-height-lg">প্রতিষ্ঠান তালিকা</a></li>
-
+                                       
 
                                         <li class="tmp_hidden"><a href="<?= admin_url('organization/institutionbutorg'); ?>" class="line-height-lg"> <?= "যে সব প্রতিষ্ঠানে সংগঠন নেই "; ?></a></li>
                                        
@@ -386,8 +409,7 @@
                                         <li class="tmp_hidden"><hr class="divider" /></li>
 
 
-                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrationbutorg'); ?>" class="line-height-lg">যে সব এলাকায় সংগঠন নেই </a></li>
-
+                                       
 
                                         <li class="tmp_hidden"><a href="<?= admin_url('others/organizationinfo'); ?>" class="line-height-lg">সাংগঠনিক বিবরণ</a></li>
 

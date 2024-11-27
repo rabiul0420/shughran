@@ -12,7 +12,22 @@
 
     function thana_type(type){
 
-        return type=='Residential' ? 'আবাসিক' : (  type=='Institutional' ? 'প্রাতিষ্ঠানিক' : 'বিভাগীয়');
+        return '';
+    }
+
+
+    function subtype(type) {
+        let subtype = {
+            '1': 'প্রশাসনিক এলাকা',
+            '2': 'মেস',
+            '3': 'হল/হোস্টেল',
+            '4': 'কোয়াটার',
+            '5': 'শিক্ষাপ্রতিষ্ঠান',
+            '6': 'কোচিং/প্রাইভেট সেন্টার',
+            '7': 'ট্রেনিং সেন্টার'
+        };
+
+        return subtype[type] ? subtype[type] : '';
     }
 
     function yes_no(is_ideal_thana){
@@ -50,7 +65,7 @@ oTable3 = $('#PRData5').dataTable({
         return nRow;
     },
     "aoColumns": [
-        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type}, null, null, null, null, null, null, {  "mRender": yes_no}, {"bSortable": false},{"bSortable": false}
+        {"bSortable": false, "mRender": checkbox},   null, null,null, {  "mRender": thana_type},  {  "mRender": subtype}, null, null, null,  null, null,null, null, null,  null, null,null,  null,null, null,  {"bSortable": false},{"bSortable": false}
     ]
 }).fnSetFilteringDelay().dtFilter([
     {column_number: 1, filter_default_label: "[<?='শাখা';?>]", filter_type: "text", data: []},
@@ -146,14 +161,21 @@ oTable3 = $('#PRData5').dataTable({
                             <th><?= 'থানার নাম' ?></th>
                             <th><?= 'কোড'  ?></th>
                             <th><?= 'ধরন' ?></th>
+                            <th><?= 'উপধরন' ?></th>
+                            <th><?= 'জেলা' ?></th>
+                                <th><?= 'উপজেলা' ?></th>
+                                <th><?= 'ইউনিয়ন' ?></th>
+                                <th><?= 'ওয়ার্ড' ?></th>
+                                <th><?= 'ক্যাটাগরি' ?></th>
+                                <th><?= 'সাব ক্যাটাগরি' ?></th>
+                                <th><?= 'প্রতিষ্ঠান' ?></th>
                             <th><?= 'সদস্য' ?></th>
                             <th><?= 'সাথী ' ?></th>
                             <th><?= 'কর্মী ' ?></th>
                             <th>সমর্থক </th>
                             <th>ওয়ার্ড  </th>
                             <th>উপশাখা  </th>
-                            <th>আদর্শ থানা </th>
-                            
+                            <th>আদর্শ থানা </th>                            
                             
                             <th></th>
                             <th></th>
@@ -161,7 +183,7 @@ oTable3 = $('#PRData5').dataTable({
                         </thead>
                         <tbody>
                         <tr>
-                            <td colspan="14" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                            <td colspan="22" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                         </tr>
                         </tbody>
 
@@ -170,20 +192,11 @@ oTable3 = $('#PRData5').dataTable({
                             <th style="min-width:30px; width: 30px; text-align: center;">
                                 <input class="checkbox checkft" type="checkbox" name="check"/>
                             </th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <?php for($i=1; $i<=21; $i++) echo '<td></td>'; ?>
+                            
+                             
                            
-                            <th></th>
+                           
                     </table>
                 </div>
             </div>

@@ -56,6 +56,8 @@ class Literature extends MY_Controller
     {
 
 
+      
+
         //$this->sma->checkPermissions();
 
         // $this->sma->print_arrays($this->input->get());

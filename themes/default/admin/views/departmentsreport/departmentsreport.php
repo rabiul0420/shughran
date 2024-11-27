@@ -54,7 +54,7 @@
                     </thead>
                     <tbody>
 
-                        <?php    foreach ($branch_list as $row)     { 
+                        <?php  if($branch_list)  foreach ($branch_list as $row)     { 
                             $i = 0;
                             foreach($departments as $dept){
                                 $i++;

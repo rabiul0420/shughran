@@ -395,14 +395,14 @@ select.form-control optgroup {
 select.form-control option {
     padding: 5px 8px;
 }
-.table th, .table td { vertical-align: middle !important; }
+/* .table th, .table td { vertical-align: middle !important; }
 .table > thead:first-child > tr:first-child > th, .table > thead:first-child > tr:first-child > td, .table-striped thead tr.primary:nth-child(odd) th {
     background-color: #428BCA;
     color: white;
     border-color: #357EBD;
     border-top: 1px solid #357EBD;
     text-align: center;
-}
+} */
 .table-responsive { margin-bottom: 0; }
 .table-responsive .form-inline select.form-control {
     width: auto;
