@@ -841,22 +841,30 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_active', 1)
                 ->where('institutionlist.is_organization', 1);
         } else {
-            $this->datatables
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name,  {$this->db->dbprefix('institutionlist')}.org_type as org_type,t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,    v3_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev, current_unit, v3_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1,-1) increase, v3_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, -1) decrease", FALSE)
-                ->from('institutionlist');
-            $this->datatables->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
-            $this->datatables->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
+ 
 
-            $this->datatables->join('branches', 'branches.id=institutionlist.branch_id', 'left')
-                ->where('institutionlist.is_active', 1)
-                ->where('institutionlist.is_organization', 1);
+
+            $this->datatables
+                //->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name,  {$this->db->dbprefix('institutionlist')}.org_type as org_type,t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,    v3_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',2," . $branch_id . ") prev, current_unit, v3_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1,-1) increase, v3_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, -1) decrease", FALSE)
+                ->select( "sma_institutionlist_with_org.id as id , sma_institutionlist_with_org.code as code,  sma_institutionlist_with_org.institution_name, 0 as org_type,t1.institution_type as plname,
+                 t2.institution_type as rcname,  
+                 {$this->db->dbprefix('branches')}.name as branch_name,   
+                  v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,  v3_current_orgstatus( sma_institutionlist_with_org.id) as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
+                 0 as empty_decrease
+                  ", FALSE)
+                ->from('institutionlist_with_org');
+            $this->datatables->join('institution t1', 'sma_institutionlist_with_org.institution_type=t1.id', 'left');
+            $this->datatables->join('institution t2', 'sma_institutionlist_with_org.institution_type_child=t2.id', 'left');
+
+            $this->datatables->join('branches', 'branches.id=sma_institutionlist_with_org.branch_id', 'left');
+               
         }
 
 
 
 
 
-        $edit_link = anchor('admin/organization/editinstitution/$1', '<i class="fa fa-pencil"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
+      //  $edit_link = anchor('admin/organization/editinstitution/$1', '<i class="fa fa-pencil"></i> ' . lang('edit'), 'data-toggle="modal" data-target="#myModal"');
 
 
 
@@ -865,7 +873,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         //$supporter_organization = anchor('admin/organization/supporterorganization/$1', '<i class="fa fa-info"></i> ' . lang('supporter organization'),'data-toggle="modal" data-target="#myModal"');
 
-        $unit = anchor('admin/organization/unit/$1', '<i class="fa fa-info"></i> ' . lang('উপশাখা'), 'data-toggle="modal" data-target="#myModal"');
+      //  $unit = anchor('admin/organization/unit/$1', '<i class="fa fa-info"></i> ' . lang('উপশাখা'), 'data-toggle="modal" data-target="#myModal"');
 
 
         $action = '<div class="text-center"><div class="btn-group text-left">'
@@ -875,14 +883,14 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
         $action .= '<li class="divider"></li>
 
-<li>' . $edit_link . '</li>
+ 
 <li>' . $decrease_link . '</li>
-<li>' . $unit . '</li>
+ 
 </ul>
 </div></div>';
 
 
-        $this->datatables->add_column("Decrease", $action, "id"); //$edit_link
+       $this->datatables->add_column("Action",  $action, "id"); //$edit_link
 
 
 

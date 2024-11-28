@@ -18,14 +18,59 @@
 </style>
 <script>
     function institution_type(int_type){
- 
-
- 
-
+  
 
  return int_type == 'branch' ? 'শাখা' : (   int_type == 'thana' ? 'থানা' : (   int_type == 'ward' ? 'ওয়ার্ড' : (  int_type == 'unit' ? 'উপশাখা' :  '' ) )    )   ;
 
     }
+
+
+    function org_status(data, row, meta){
+  //console.log(row[9]);
+         
+         const parts = row[8].split("_");
+
+         let result;
+
+
+      //   console.log(parts);
+if (parseInt(parts[0]) > 0) {
+    result = "Thana";
+} else if (parseInt(parts[0]) === 0 && parseInt(parts[1]) > 0) {
+    result = "Ward";
+} else {
+    result = "Upashakha";
+}
+  return result;
+  
+     }
+ 
+     function upashakha_current(data, row, meta){
+
+        console.log(row);
+        const orgs = row[8].split("_");        
+
+        return parseInt(orgs[2])
+         //return parseInt(row[7]) + parseInt(increase_decrease[0]) -parseInt(increase_decrease[1]) ;
+  
+     }
+
+     
+     function upashakha_increase(data, row, meta){
+        const increase_decrease = row[9].split("_");        
+         return   parseInt(increase_decrease[0])  ;
+  
+     }
+
+
+     function upashakha_decrease(data, row, meta){
+        const increase_decrease = row[9].split("_");        
+         return   parseInt(increase_decrease[1])  ;
+  
+     }
+   
+
+
 
 
     var oTable;
@@ -53,15 +98,51 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},   null, null,  {"mRender":institution_type},   null,null, null,null, null, null,null,  {"bSortable": false} 
+                {"bSortable": false, "mRender": checkbox},   null, null,   {"mRender": 
+                    function(data, type, row, meta) {
+                
+                return org_status(data, row, meta);
+            }
+                },   null, null,null, null,
+                {"mRender": 
+                    function(data, type, row, meta) {
+                
+                return upashakha_current(data, row, meta);
+            }
+                }
+                
+                , 
+                {"mRender": 
+                    function(data, type, row, meta) {
+                
+                return upashakha_increase(data, row, meta);
+            }
+                }
+                
+                ,    {"mRender": 
+                    function(data, type, row, meta) {
+                
+                return upashakha_decrease(data, row, meta);
+            }
+                },
+                
+                 {
+                    
+                    "bSortable": false 
+                   
+
+
+
+                 } 
+
+
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
             {column_number: 2, filter_default_label: "[<?=lang('name');?>]", filter_type: "text", data: []},
-            {column_number: 4, filter_default_label: "[<?='Type';?>]", filter_type: "text", data: []},
-            {column_number: 5, filter_default_label: "[<?='Sub Type';?>]", filter_type: "text", data: []},
+            
             {column_number: 6, filter_default_label: "[<?='Branch';?>]", filter_type: "text", data: []},
-            {column_number: 9, filter_default_label: "[<?='Unit';?>]", filter_type: "text", data: []},
+            
    
             
         ], "footer");
@@ -144,7 +225,7 @@
                              <th><?= 'উপশাখা বর্তমান' ?></th>
                              <th><?= 'উপশাখা বৃদ্ধি' ?></th>
                              <th><?= 'উপশাখা ঘাটতি' ?></th>
-                             
+                             <th><?= 'উপশাখা ঘাটতি' ?></th>
                              
                              
 							 <th style="width:65px; max-width:65px; text-align:center;"></th>
@@ -153,7 +234,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td colspan="12" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                            <td colspan="11" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                         </tr>
                         </tbody>
 
@@ -162,7 +243,7 @@
                             <th style="min-width:30px; max-width: 30px; text-align: center;">
                                 <input class="checkbox checkft" type="checkbox" name="check"/>
                             </th>
-                            <th></th>
+                            
                             <th></th>
                             <th></th>
                             <th></th>
