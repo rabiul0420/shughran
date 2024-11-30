@@ -42,9 +42,9 @@ class Administrativedetail extends MY_Controller
         $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
             $this->session->set_flashdata('warning', lang('access_denied'));
-            admin_redirect('organization/' . $this->session->userdata('branch_id'));
+            admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-            admin_redirect('organization/' . $this->session->userdata('branch_id'));
+            admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
         }
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -153,9 +153,9 @@ function thana( $branch_id = NULL)
     $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -282,9 +282,9 @@ function upazila( $branch_id = NULL)
     $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -409,9 +409,9 @@ function pourosova( $branch_id = NULL)
     $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -545,9 +545,9 @@ function union( $branch_id = NULL)
     $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -678,9 +678,9 @@ function cityward( $branch_id = NULL)
     $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -812,9 +812,9 @@ function pouroward( $branch_id = NULL)
     $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -944,9 +944,9 @@ function unionward( $branch_id = NULL)
     $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
