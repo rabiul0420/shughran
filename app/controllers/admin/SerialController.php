@@ -21,6 +21,11 @@ class Serialcontroller extends MY_Controller
         $this->load->admin_model('organization_model');
     }
 
+    function index(){
+
+
+        echo 'How are you?';
+    }
     /* -----------sent serial ---------------- */
 
     function sentserial($branch_id = NULL)
