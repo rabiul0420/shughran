@@ -643,6 +643,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
+ 
 
     function institutionbutorg($branch_id = NULL)
     {
@@ -662,7 +663,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             admin_redirect('organization/institutionbutorg/' . $this->session->userdata('branch_id'));
         }
 
+        $report_type = $this->report_type();
 
+        //$this->sma->print_arrays( $report_type);
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
@@ -680,7 +683,6 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $meta = array('page_title' => 'যে সব প্রতিষ্ঠানে সংগঠন নেই', 'bc' => $bc);
         $this->page_construct('organization/institutionbutorg', $meta, $this->data, 'leftmenu/organization');
     }
-
 
 
 
@@ -906,6 +908,43 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
+
+    function getInstitutionButOrg($branch_id = NULL) //with with organization
+    {
+
+        $this->sma->checkPermissions('index', TRUE);
+
+        if ((!$this->Owner || !$this->Admin) && !$branch_id) {
+            $user = $this->site->getUser();
+            $branch_id = $user->branch_id;
+        }
+
+ 
+
+
+        $this->load->library('datatables');
+
+       
+
+
+        if ($branch_id) {
+
+            $this->datatables->select( "sma_institutionlist_without_org.id as id , sma_institutionlist_without_org.`code` as ins_code, institution_name, institution_type, institution_type_child, branch_id, supporter_org_number , t2.code", FALSE)
+            ->from('institutionlist_without_org');
+        $this->datatables->join('branches t2', 't2.id=institutionlist_without_org.branch_id', 'left')       
+        ->where('t2.id', $branch_id);
+        } else {
+ 
+            $this->datatables->select( "sma_institutionlist_without_org.id as id , sma_institutionlist_without_org.`code`  as ins_code, institution_name, institution_type, institution_type_child, branch_id, supporter_org_number , t2.code", FALSE)
+            ->from('sma_institutionlist_without_org');
+        $this->datatables->join('branches t2', 't2.id=institutionlist_without_org.branch_id', 'left');
+               
+        }
+ 
+
+
+        echo $this->datatables->generate();
+    }
 
 
 
