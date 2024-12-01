@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class SerialController extends MY_Controller
+class Serialcontroller extends MY_Controller
 {
 
     function __construct()
@@ -41,7 +41,7 @@ class SerialController extends MY_Controller
             );
 
 
-            exit();
+         
 
             $dept_id = $this->input->post('dept_id'); // get department id
             // insert data and collect result 
