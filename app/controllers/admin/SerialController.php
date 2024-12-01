@@ -36,10 +36,13 @@ class SerialController extends MY_Controller
                     'branch_id' => $this->input->post('branch_id'),
                     'dept_id' => $this->input->post('dept_id'),
                     'report_type' => $this->input->post('report_type'),
-                    'report_year' => date(Y),
+                    'report_year' => date('Y'),
                     'user_id'=>$this->session->userdata('user_id')
                 );
 
+
+
+              
                 $dept_id = $this->input->post('dept_id'); // get department id
                 // insert data and collect result 
                 $result = $this->site->insertData('serial_reports', $data);
