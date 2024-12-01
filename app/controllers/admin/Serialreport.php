@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Serialcontroller extends MY_Controller
+class Serialreport extends MY_Controller
 {
 
     function __construct()
