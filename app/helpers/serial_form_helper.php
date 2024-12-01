@@ -9,6 +9,10 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
         'is_reportok' => null,
     ];
 
+    $checked =  null;
+    $reportok =  null;
+    $checked =  $serial_info->is_checked;
+    $reportok =  $serial_info->is_reportok;
     ?>
 
     <div class="col-md-12" <?php if($is_owner || $is_admin || $is_departmentuser){ echo "style='display:none;'";} ?> >
@@ -25,7 +29,8 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                         <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
                         <td rowspan="2" style="width: 100px;">
                             <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id || (int) $is_departmentuser === 1): ?>
-                                সিরিয়াল দেওয়া হয়েছে।
+                                সিরিয়াল দেওয়া হয়েছে। <br>
+                            <small><?= $serial_info->created_at ? $serial_info->created_at : ""; ?> </small>
                             <?php else: ?>
                                 <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">সিরিয়াল দিন</button>
                             <?php endif; ?>
@@ -35,11 +40,12 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                     <td style="width: 50px;">রিপোর্ট ওকে?</td>
                 </tr>
                 <tr>
-                    <td scope="row"><?php echo $serial_info->is_checked; ?></td>
-                    <td><?php echo $serial_info->is_reportok; ?></td>
+                    <td scope="row"><?= $serial_info->is_checked; ?></td>
+                    <td><?= $serial_info->is_reportok; ?></td>
                 </tr>
                 <tr>
-                    <td style="width: 100px;">বিভাগীয় রিভিউ</td>
+                    <td style="width: 100px;">বিভাগীয় রিভিউ 
+                        <?= $serial_info->updated_at ? '( সর্বশেষ আপডেট '. $serial_info->updated_at.')'  : ""; ?> </td>
                     <td colspan="4" style="width: 500px; text-align: left;">
                         <?php echo $serial_info->dept_review; ?>
                     </td>
@@ -60,7 +66,8 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
         <!-- Hidden Inputs -->
         <input type="hidden" value="<?php echo $branch_id; ?>" name="branch_id" />
         <input type="hidden" value="<?php echo $department_id; ?>" name="dept_id" />
-
+        <input type="hidden" value="<?= date('Y-m-d H:i:s'); ?>" name="updated_at" />
+        
         <!-- Check Field -->
         <div class="col-md-3 col-sm-3">
             <div class="form-group">
@@ -71,7 +78,8 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
         <div class="col-md-3 col-sm-3">
             <div class="form-group">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="is_checked" id="is_checked" value="YES" required="required">
+                        <input class="form-check-input" type="checkbox" name="is_checked" id="is_checked" value="YES" required="required"<?= (isset($serial_info->is_checked) && $serial_info->is_checked == 'YES') ? 'checked' : ''; ?>>
+
                             <label class="form-check-label" for="is_checked">YES</label>
                         </div>
                     </div>

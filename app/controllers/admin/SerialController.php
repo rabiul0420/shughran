@@ -164,7 +164,8 @@ class SerialController extends MY_Controller
             $data = [
                 'is_checked'   => $this->input->post('is_checked'),
                 'is_reportok' => $this->input->post('is_reportok'),
-                'dept_review'  => $this->input->post('dept_review')
+                'dept_review'  => $this->input->post('dept_review'),
+                'updated_at'  => $this->input->post('updated_at'),
             ];
             
             $where = array(
