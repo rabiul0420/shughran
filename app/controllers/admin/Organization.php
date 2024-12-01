@@ -936,7 +936,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         } else {
  
             $this->datatables->select( "sma_institutionlist_without_org.id as id , sma_institutionlist_without_org.`code`  as ins_code, institution_name, institution_type, institution_type_child, branch_id, supporter_org_number , t2.code", FALSE)
-            ->from('sma_institutionlist_without_org');
+            ->from('institutionlist_without_org');
         $this->datatables->join('branches t2', 't2.id=institutionlist_without_org.branch_id', 'left');
                
         }
