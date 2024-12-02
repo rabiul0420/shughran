@@ -19,44 +19,12 @@
 <script>
     var oTable;
     $(document).ready(function () {
-        oTable = $('#PRData').dataTable({
-            "aaSorting": [[2, "asc"], [3, "asc"]],
+        oTable = $('#INSData').dataTable({
+            "aaSorting": [[0, "asc"]],
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
-            "iDisplayLength": <?= $Settings->rows_per_page ?>,
-            'bProcessing': true, 'bServerSide': true,
-            'sAjaxSource': '<?= admin_url('organization/getItitutionOrganizationIncreasedList'.($branch_id ? '/'.$branch_id : '').( $this->input->get('type') ? '?type='.$this->input->get('type') : '' ).( $this->input->get('year') ? '&year='.$this->input->get('year') : '' )  ) ?>',
             
-            
-            'fnServerData': function (sSource, aoData, fnCallback) {
-                aoData.push({
-                    "name": "<?= $this->security->get_csrf_token_name() ?>",
-                    "value": "<?= $this->security->get_csrf_hash() ?>"
-                });
-                $.ajax({'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback});
-            },
-            'fnRowCallback': function (nRow, aData, iDisplayIndex) {
-                var oSettings = oTable.fnSettings();
-                nRow.id = aData[0];
-				$(nRow).attr("status",'1');
-				 
-               // nRow.className = "manpower_link";
-                //if(aData[7] > aData[9]){ nRow.className = "product_link warning"; } else { nRow.className = "product_link"; }
-                return nRow;
-            },
-            "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},  null,  null, null, null,  null ,   {"bSortable": false}
-            ]
-        }).fnSetFilteringDelay().dtFilter([
-
-            {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
-            {column_number: 2, filter_default_label: "[<?=lang('name');?>]", filter_type: "text", data: []},
-            {column_number: 3, filter_default_label: "[<?='Type';?>]", filter_type: "text", data: []},
-            {column_number: 4, filter_default_label: "[<?='Sub Type';?>]", filter_type: "text", data: []},
-            {column_number: 5, filter_default_label: "[<?='Branch';?>]", filter_type: "text", data: []},
-   
-            
-            
-        ], "footer");
+           
+        });
 
     });
 </script>
@@ -182,13 +150,11 @@ else {
                 
 
                 <div class="table-responsive">
-                    <table id="PRData" class="table table-bordered table-condensed table-hover table-striped">
+                    <table id="INSData" class="table table-bordered table-condensed table-hover table-striped">
                         <thead>
                         <tr class="primary">
-                            <th style="min-width:30px; max-width: 30px; text-align: center;">
-                                <input class="checkbox checkth" type="checkbox" name="check"/>
-                            </th>
-                            <th><?= 'প্রতিষ্ঠানের কোড ' ?></th>
+                            
+                            <th><?= 'প্রতিষ্ঠানের কোড' ?></th>
                              <th><?= 'প্রতিষ্ঠানের নাম ' ?></th>
                              
                             
@@ -198,29 +164,41 @@ else {
 							
 							<th><?= 'শাখা কোড ' ?></th>
                            
-                            <th></th>
+                            
 						        </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td colspan="7" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                        
+                            <?php 
+                            if(count($institution_org_increase) > 0){
+
+                                foreach($institution_org_increase as $row) {
+                            ?>
+                            <tr>
+                            <td><?=$row['ins_code']?></td>
+                            <td><?=$row['institution_name']?></td>
+                            <td><?=$row['category']?></td>
+                            <td><?=$row['sub_category']?></td>
+                            <td><?=$row['code']?></td>
+                            </tr>
+                            <?php  
+                                }
+                        
+                        
+                        } 
+                            else {
+                            ?>
+                            <tr> 
+                            <td colspan="5" class="dataTables_empty"><?= lang('no_data'); ?></td>
+                            </tr>
+                            <?php  }
+                                ?>
+
+
                         </tr>
                         </tbody>
 
-                        <tfoot class="dtFilter">
-                        <tr class="active">
-                            <th style="min-width:30px; max-width: 30px; text-align: center;">
-                                <input class="checkbox checkft" type="checkbox" name="check"/>
-                            </th>
-                             <th></th>
-                             <th></th>
-                            <th></th>
-                            <th></th>
-							 <th></th>
-                             
-                             <th></th>
-                                    </tr>
-                        </tfoot>
+                        
                     </table>
                 </div>
             </div>

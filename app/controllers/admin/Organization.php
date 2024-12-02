@@ -2339,6 +2339,49 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         }
 
 
+
+        $report_type = $this->report_type();
+        $start = $report_type['start'];
+        $end = $report_type['end'];
+
+        $prev = $report_type['last_year'];
+
+
+       // $this->sma->print_arrays($start, $end );
+
+
+
+      $this->data['institution_org_increase'] =  $this->site->query_binding("SELECT c.*, t1.institution_type AS category, t2.institution_type AS sub_category, t3.code FROM (
+SELECT DISTINCT a.institution_type, a.institution_type_child, a.institution_id, a.branch_id, a.institution_name, a.ins_code
+FROM (
+  SELECT sma_institutionlist.code AS ins_code,  institution_type, institution_type_child, institution_id, sma_institutionlist.branch_id, sma_institutionlist.institution_name
+  FROM `sma_institutionlist`
+  LEFT JOIN sma_thana ON sma_thana.institution_id = sma_institutionlist.id
+  LEFT JOIN sma_thana_log ON sma_thana_log.thana_id = sma_thana.id
+  WHERE sma_thana_log.in_out = 1 
+    AND sma_thana_log.`date` BETWEEN ? AND ?
+) a
+LEFT JOIN (
+  SELECT institution_id
+  FROM `sma_institutionlist`
+  LEFT JOIN sma_thana ON sma_thana.institution_id = sma_institutionlist.id
+  LEFT JOIN sma_thana_log ON sma_thana_log.thana_id = sma_thana.id
+  WHERE sma_thana_log.in_out = 1 
+    AND sma_thana_log.`date` < ?
+) b ON a.institution_id = b.institution_id
+WHERE b.institution_id IS NULL) c
+LEFT JOIN sma_institution t1 ON t1.id = c.institution_type
+LEFT JOIN sma_institution t2 ON t2.id = c.institution_type_child
+LEFT JOIN sma_branches t3 ON t3.id = c.branch_id", [$start,$end, $start] );
+
+
+
+
+
+      //$this->sma->print_arrays($this->data['institution_org_increase']);
+
+
+
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'সংগঠন বৃদ্ধি তালিকা'));
         $meta = array('page_title' => ' সংগঠন বৃদ্ধি তালিকা', 'bc' => $bc);
         $this->page_construct('organization/institution_org_increase', $meta, $this->data, 'leftmenu/organization');
