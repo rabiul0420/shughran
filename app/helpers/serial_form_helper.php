@@ -23,7 +23,7 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                     <td style="width: 350px;" rowspan="2">
                         এই বিভাগের রিপোর্ট পূরণ করা শেষ হলে বিভাগকে রিপোর্ট চেক করার জন্য সিরিয়াল দিন
                     </td>
-                    <?php echo form_open_multipart(base_url("index.php/admin/serialcontroller/sentserial/" . $branch_id), ['onsubmit' => 'return confirmSerialSubmit()']); ?>
+                    <?php echo form_open_multipart(base_url("index.php/admin/serialreport/sentserial/" . $branch_id), ['onsubmit' => 'return confirmSerialSubmit()']); ?>
                         <input type="hidden" name="branch_id" value="<?php echo $branch_id; ?>" />
                         <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
                         <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
@@ -61,11 +61,12 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
     </script>
 
     <?php if ($is_owner || $is_admin || $is_departmentuser): ?>
-        <?php echo form_open_multipart(base_url("index.php/admin/serialcontroller/updateserial/" . $branch_id)); ?>
+        <?php echo form_open_multipart(base_url("index.php/admin/serialreport/updateserial/" . $branch_id)); ?>
 
         <!-- Hidden Inputs -->
         <input type="hidden" value="<?php echo $branch_id; ?>" name="branch_id" />
         <input type="hidden" value="<?php echo $department_id; ?>" name="dept_id" />
+        <input type="hidden" value="<?php echo $report_info['type']; ?>" name="report_type" />
         <input type="hidden" value="<?= date('Y-m-d H:i:s'); ?>" name="updated_at" />
         
         <!-- Check Field -->
