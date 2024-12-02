@@ -2,7 +2,7 @@
 function render_dept_report_serial_form($branch_id, $report_info,$department_id, $serial_info, $is_owner, $is_admin,$is_departmentuser) {
   
     // print_r($is_departmentuser);
-    print_r($serial_info->dept_review);
+    // print_r($serial_info->dept_review);
     // print_r($department_id);
     // echo $report_info['type'];
   

@@ -26,7 +26,7 @@ class Serialreport extends MY_Controller
 
         echo 'How are you?';
     }
-    /* -----------sent serial ---------------- */
+    /* -----------Sent Serial ---------------- */
 
     function sentserial($branch_id = NULL)
     {
@@ -45,12 +45,12 @@ class Serialreport extends MY_Controller
                 'user_id' => $this->session->userdata('user_id')
             );
 
-
-         
-
             $dept_id = $this->input->post('dept_id'); // get department id
+            
             // insert data and collect result 
             $result = $this->site->insertData('serial_reports', $data);
+            // Insert data for serial_reports_logs 
+            $this->site->insertData('serial_reports_logs', $data);
 
             $this->session->set_flashdata('message', 'সিরিয়াল দেওয়া হয়েছে।');
 
@@ -169,11 +169,13 @@ class Serialreport extends MY_Controller
         $this->form_validation->set_rules('dept_review', 'Department Review', 'trim');
 
         if ($this->form_validation->run() == TRUE) {
+           
             // Prepare data for updating the record
             $data = [
                 'is_checked' => $this->input->post('is_checked'),
                 'is_reportok' => $this->input->post('is_reportok'),
-                'dept_review' => $this->input->post('dept_review')
+                'dept_review' => $this->input->post('dept_review'),
+                'updated_at' => $this->input->post('updated_at'),
             ];
 
             $where = array(
@@ -183,9 +185,24 @@ class Serialreport extends MY_Controller
 
             $dept_id = $this->input->post('dept_id');
 
-
             // Call the update function in the model and pass the data and branch_id
             $up_result = $this->site->updateData('serial_reports', $data, $where);
+            
+
+            // insert all data for serial_reports_logs
+            $logs_data = array(
+                'branch_id' => $this->input->post('branch_id'),
+                'user_id'   => $this->session->userdata('user_id'),
+                'dept_id'   => $this->input->post('dept_id'),
+                'report_type' => $this->input->post('report_type'),
+                'report_year' => date('Y'),
+                'is_checked'  => $this->input->post('is_checked'),
+                'is_reportok' => $this->input->post('is_reportok'),
+                'dept_review' => $this->input->post('dept_review')
+            );
+            // insert all data for serial_reports_logs
+            $this->site->insertData('serial_reports_logs', $logs_data);
+            
             $this->session->set_flashdata('message', 'Message updated successfully');
             if ($up_result) {
 
@@ -278,15 +295,11 @@ class Serialreport extends MY_Controller
                     admin_redirect("departmentsreport/others-page-one/" . $branch_id);
                 }
 
-
             } else {
                 // Error message and redirect
                 $this->session->set_flashdata('error', 'Failed to update record');
                 admin_redirect("departmentsreport/" . $branch_id);
             }
-
-
-
 
         } else {
             // Error message and redirect

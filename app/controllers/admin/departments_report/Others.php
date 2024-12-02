@@ -12,21 +12,22 @@ class Others extends MY_Controller
         }
 
         $this->departmentuser = false;
-
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 45) {
+        // the department actual id to 45 but it will be check by Office department which id 4 
+        // Changed only for checking purpose.
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 4) {
             admin_redirect('welcome');
         }
         $this->sma->checkPermissions('index', TRUE, 'departmentsreport');
 
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 45) {  //Others
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 4) {  //Others id 45 but This department will checked by Office department which id 4
             $this->departmentuser = true;
         }
 
         // Retrieve the report type using the report_type method
         $report_type = $this->report_type();
           	
-        // Set the department id to 45
-        $this->data['department_id'] = 45;
+        // the department actual id to 45  
+         $this->data['department_id'] = 45;
 
         // Check user roles to determine the branch ID source
         if ($this->Owner || $this->Admin || $this->departmentuser) {

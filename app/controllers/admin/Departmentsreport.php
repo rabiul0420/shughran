@@ -79,7 +79,7 @@ function index(){
             $string =  $string . ' AND branch_id = '.$branch_id ;
 
             // $string =  $string . ' order by created_at desc';
-            $string =  $string . ' order by created_at asc';
+            // $string =  $string . ' order by created_at asc';
 
             $this->data['serial_records'] = $this->site->query($string );
 
