@@ -181,7 +181,25 @@
                                     </td>
                                 </tr> 
 								 
-								 
+                                <tr>
+                                    <td><?= lang("Administrative Detail"); ?></td>
+                                    <td class="text-center">
+                                        <input type="checkbox" value="1" class="checkbox" name="administrativedetail-index" <?php echo $p->{'administrativedetail-index'} ? "checked" : ''; ?>>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox" value="1" class="checkbox" name="administrativedetail-add" <?php echo $p->{'administrativedetail-add'} ? "checked" : ''; ?>>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox" value="1" class="checkbox" name="administrativedetail-edit" <?php echo $p->{'administrativedetail-edit'} ? "checked" : ''; ?>>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox" value="1" class="checkbox" name="administrativedetail-delete" <?php echo $p->{'administrativedetail-delete'} ? "checked" : ''; ?>>
+                                    </td>
+                                    <td>
+                                         
+                                       
+                                    </td>
+                                </tr> 
 								 
 								 
 								 <tr>

@@ -379,7 +379,7 @@
                                         </a></li>
                                         <li><a href="<?= admin_url('organization/institutionlist'); ?>" class="line-height-lg">প্রতিষ্ঠান তালিকা</a></li>
                                         <li class="tmp_hidden"><a href="<?= admin_url('organization/institutionwithorg'); ?>" class="line-height-lg">যে সব প্রতিষ্ঠানে সংগঠন আছে </a></li>
-                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrationbutorg'); ?>" class="line-height-lg">যে সব এলাকায় সংগঠন নেই </a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/institutionbutorg'); ?>" class="line-height-lg">যে সব প্রতিষ্ঠানে সংগঠন নেই </a></li>
 
                                       
                                 

@@ -345,7 +345,8 @@ class Datatables
     private function get_display_result()
     {
         $rt = $this->ci->db->get($this->table);
-     // echo $this->ci->db->last_query();
+      //echo $this->ci->db->last_query();
+    //   exit();
 		return $rt;
     }
 
@@ -443,7 +444,7 @@ class Datatables
                  
                 
                
-                if(in_array($this->table , array('categories','departments','thana','manpower','thana_log','thana_ideal_log', 'institution_organization','institutionlist','confirmreport','users','manpower_transfer_assoworker','manpower_transfer','administration_without_org','associate',  'postpone' ,'associatelog','memberlog','membercandidatelog','institution_without_org'))) 
+                if(in_array($this->table , array('institutionlist_with_org', 'sma_institutionlist_without_org', 'institutionlist_without_org','categories','departments','thana','manpower','thana_log','thana_ideal_log', 'institution_organization','institutionlist','confirmreport','users','manpower_transfer_assoworker','manpower_transfer','administration_without_org','associate',  'postpone' ,'associatelog','memberlog','membercandidatelog','institution_without_org'))) 
                     $this->ci->db->select($this->table.'.id');
                 else 
                     $this->ci->db->select('id');

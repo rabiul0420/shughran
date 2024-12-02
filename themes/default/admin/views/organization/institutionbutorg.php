@@ -17,6 +17,62 @@
 }
 </style>
 <script>
+    function institution_type(int_type){
+  
+
+ return int_type == 'branch' ? 'শাখা' : (   int_type == 'thana' ? 'থানা' : (   int_type == 'ward' ? 'ওয়ার্ড' : (  int_type == 'unit' ? 'উপশাখা' :  '' ) )    )   ;
+
+    }
+
+
+    function org_status(data, row, meta){
+  //console.log(row[9]);
+         
+         const parts = row[8].split("_");
+
+         let result;
+
+
+      //   console.log(parts);
+if (parseInt(parts[0]) > 0) {
+    result = "Thana";
+} else if (parseInt(parts[0]) === 0 && parseInt(parts[1]) > 0) {
+    result = "Ward";
+} else {
+    result = "Upashakha";
+}
+  return result;
+  
+     }
+ 
+     function upashakha_current(data, row, meta){
+
+        console.log(row);
+        const orgs = row[8].split("_");        
+
+        return parseInt(orgs[2])
+         //return parseInt(row[7]) + parseInt(increase_decrease[0]) -parseInt(increase_decrease[1]) ;
+  
+     }
+
+     
+     function upashakha_increase(data, row, meta){
+        const increase_decrease = row[9].split("_");        
+         return   parseInt(increase_decrease[0])  ;
+  
+     }
+
+
+     function upashakha_decrease(data, row, meta){
+        const increase_decrease = row[9].split("_");        
+         return   parseInt(increase_decrease[1])  ;
+  
+     }
+   
+
+
+
+
     var oTable;
     $(document).ready(function () {
         oTable = $('#PRData').dataTable({
@@ -24,7 +80,7 @@
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
             'bProcessing': true, 'bServerSide': true,
-            'sAjaxSource': '<?= admin_url('organization/getInstitution'.($branch_id ? '/'.$branch_id : '')) ?>',
+            'sAjaxSource': '<?= admin_url('organization/getInstitutionButOrg'.($branch_id ? '/'.$branch_id : '')) ?>',
             'fnServerData': function (sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -42,14 +98,18 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},   null, null, null,  null, null,null,  {"bSortable": false}
+                {"bSortable": false, "mRender": checkbox},   null, null,     null, null,null, null 
+                
+                 
+
+
             ]
         }).fnSetFilteringDelay().dtFilter([
             {column_number: 1, filter_default_label: "[<?=lang('code');?>]", filter_type: "text", data: []},
             {column_number: 2, filter_default_label: "[<?=lang('name');?>]", filter_type: "text", data: []},
-            {column_number: 3, filter_default_label: "[<?='Type';?>]", filter_type: "text", data: []},
-            {column_number: 4, filter_default_label: "[<?='Sub Type';?>]", filter_type: "text", data: []},
-            {column_number: 5, filter_default_label: "[<?='Branch';?>]", filter_type: "text", data: []},
+            
+            {column_number: 6, filter_default_label: "[<?='Branch';?>]", filter_type: "text", data: []},
+            
    
             
         ], "footer");
@@ -81,7 +141,7 @@
 						 
 			
                             <li>
-                            <a href="<?= admin_url('organization/institutionwithoutorgexport'.($branch_id ? '/'.$branch_id : '')) ?>" id="excel_export" data-action="export_excel">
+                            <a href="<?= admin_url('organization/institutionbutorgexport'.($branch_id ? '/'.$branch_id : '')) ?>" id="excel_export" data-action="export_excel">
                                 <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>
                             </a>
                         </li>
@@ -120,22 +180,25 @@
 
                             <th><?= 'প্রতিষ্ঠানের কোড ' ?></th>
                             <th><?= 'প্রতিষ্ঠানের নাম ' ?></th>
-                             
+                          
                             
                              <th><?= "ধরণ" ?></th>
                              <th><?= "উপ ধরণ" ?></th>
                              
                              
                              <th><?= 'শাখা কোড ' ?></th>
-                             <th><?= 'Comment' ?></th>
- 
+                             
+                            
+                             <th><?= 'সমর্থক সংগঠন সংখ্যা' ?></th>
+                             
+                             
 							 
-							 <th style="width:65px; max-width:65px; text-align:center;"><?= 'Action' ?></th>
+							 
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td colspan="8" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                            <td colspan="7" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                         </tr>
                         </tbody>
 
@@ -144,13 +207,17 @@
                             <th style="min-width:30px; max-width: 30px; text-align: center;">
                                 <input class="checkbox checkft" type="checkbox" name="check"/>
                             </th>
+                            
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
-							 <th></th>
+                           
                              <th></th>
-                               <th style="width:65px; max-width:65px; text-align:center;"><?= lang("actions") ?></th>
+                             <th></th>
+                             <th></th>
+
+                             
+                                
                         </tr>
                         </tfoot>
                     </table>

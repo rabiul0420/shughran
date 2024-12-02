@@ -39,12 +39,12 @@ class Administrativedetail extends MY_Controller
 
 
        
-        $this->sma->checkPermissions();
+        $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
             $this->session->set_flashdata('warning', lang('access_denied'));
-            admin_redirect('organization/' . $this->session->userdata('branch_id'));
+            admin_redirect('administrativedetail/district/' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-            admin_redirect('organization/' . $this->session->userdata('branch_id'));
+            admin_redirect('administrativedetail/district/' . $this->session->userdata('branch_id'));
         }
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -150,12 +150,12 @@ function thana( $branch_id = NULL)
 
 
    
-    $this->sma->checkPermissions();
+    $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/thana/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/thana/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -181,7 +181,7 @@ function thana( $branch_id = NULL)
     if ($branch_id) {
 
 
-        $this->data['thana_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, b.*  FROM `sma_district` LEFT JOIN  
+        $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, b.*  FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
@@ -279,12 +279,12 @@ function upazila( $branch_id = NULL)
 
 
    
-    $this->sma->checkPermissions();
+    $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/upazila/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/upazila/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -310,7 +310,7 @@ function upazila( $branch_id = NULL)
     if ($branch_id) {
 
 
-        $this->data['thana_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, b.*  FROM `sma_district` LEFT JOIN  
+        $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, b.*  FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
@@ -406,12 +406,12 @@ function pourosova( $branch_id = NULL)
 
 
    
-    $this->sma->checkPermissions();
+    $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/pourosova/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/pourosova/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -437,7 +437,7 @@ function pourosova( $branch_id = NULL)
     if ($branch_id) {
 
 
-        $this->data['thana_info'] = $this->site->query("SELECT sma_district.name pourosova_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
+        $this->data['district_info'] = $this->site->query("SELECT sma_district.name pourosova_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
  b.ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
@@ -542,12 +542,12 @@ function union( $branch_id = NULL)
 
 
    
-    $this->sma->checkPermissions();
+    $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/union/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/union/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -573,7 +573,7 @@ function union( $branch_id = NULL)
     if ($branch_id) {
 
 
-        $this->data['thana_info'] = $this->site->query("SELECT sma_district.name union_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
+        $this->data['district_info'] = $this->site->query("SELECT sma_district.name union_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
  b.ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
@@ -675,12 +675,12 @@ function cityward( $branch_id = NULL)
 
 
    
-    $this->sma->checkPermissions();
+    $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/cityward/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/cityward/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -706,7 +706,7 @@ function cityward( $branch_id = NULL)
     if ($branch_id) {
 
 
-        $this->data['thana_info'] = $this->site->query("SELECT sma_district.name ward_name, v3_district_upazila( sma_district.parent_top_level) district_name,
+        $this->data['district_info'] = $this->site->query("SELECT sma_district.name ward_name, v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) thana_name, v3_district_upazila( sma_district.parent_third_level) union_name,
   b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
@@ -809,12 +809,12 @@ function pouroward( $branch_id = NULL)
 
 
    
-    $this->sma->checkPermissions();
+    $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/pouroward/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/pouroward/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -840,7 +840,7 @@ function pouroward( $branch_id = NULL)
     if ($branch_id) {
 
 
-        $this->data['thana_info'] = $this->site->query("SELECT sma_district.name ward_name, v3_district_upazila( sma_district.parent_top_level) district_name,
+        $this->data['district_info'] = $this->site->query("SELECT sma_district.name ward_name, v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) thana_name, v3_district_upazila( sma_district.parent_third_level) pourosova_name,
   b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
@@ -941,12 +941,12 @@ function unionward( $branch_id = NULL)
 
 
    
-    $this->sma->checkPermissions();
+    $this->sma->checkPermissions('index', TRUE);
     if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
         $this->session->set_flashdata('warning', lang('access_denied'));
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/unionward/' . $this->session->userdata('branch_id'));
     } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-        admin_redirect('organization/' . $this->session->userdata('branch_id'));
+        admin_redirect('administrativedetail/unionward/' . $this->session->userdata('branch_id'));
     }
 
     $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
@@ -972,7 +972,7 @@ function unionward( $branch_id = NULL)
     if ($branch_id) {
 
 
-        $this->data['thana_info'] = $this->site->query("SELECT sma_district.name ward_name, v3_district_upazila( sma_district.parent_top_level) district_name,
+        $this->data['district_info'] = $this->site->query("SELECT sma_district.name ward_name, v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) thana_name, v3_district_upazila( sma_district.parent_third_level) union_name,
   b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		

@@ -596,6 +596,14 @@ class system_settings extends MY_Controller
                 'training-add' => $this->input->post('training-add'),
                 'training-delete' => $this->input->post('training-delete'),
 
+                
+                'administrativedetail-index' => $this->input->post('administrativedetail-index'),
+                'administrativedetail-edit' => $this->input->post('administrativedetail-edit'),
+                'administrativedetail-add' => $this->input->post('administrativedetail-add'),
+                'administrativedetail-delete' => $this->input->post('administrativedetail-delete'),
+
+
+
                 'confirmreport-index' => $this->input->post('confirmreport-index'),
                 'guest-index' => $this->input->post('guest-index'),
                 'bm-index' => $this->input->post('bm-index'),
