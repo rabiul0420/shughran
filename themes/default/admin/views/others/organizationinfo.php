@@ -6,7 +6,7 @@
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সাংগঠনিক বিবরণঃ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'সংগঠন একনজরে:' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
 
 
 
@@ -119,7 +119,7 @@
                     <table class="table table-bordered" id="testTable2" data-branch="<?php echo isset($branch_code) ? $branch_code . '_organizationinfo_' : 'central_organizationinfo' ?>">
                         <tbody>
                             <tr>
-                                <td colspan="2" rowspan="2">সাংগঠনিক বিবরণ</td>
+                                <td colspan="2" rowspan="2">সংগঠনিক বিবরণ</td>
 
                                 <td rowspan="2">সংখ্যা</td>
                                 <td colspan="2" rowspan="2">মোট বৃদ্ধি</td>

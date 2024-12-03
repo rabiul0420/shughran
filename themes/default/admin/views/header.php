@@ -368,6 +368,59 @@
                                 </li>
 
 
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    সাংগঠনিক বিবরণ <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                         
+                                       
+                                        
+                                        
+
+
+                                       
+
+                                        <li class="tmp_hidden"><a href="<?= admin_url('others/organizationinfo'); ?>" class="line-height-lg">সংগঠন একনজরে</a></li>
+
+                                        <li class="tmp_hidden"><hr class="divider" /></li>
+
+
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/thanalist'); ?>" class="line-height-lg">থানা তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/increaselist_thana') ?>" class="line-height-lg">থানা বৃদ্ধি তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/decreaselist_thana') ?>" class="line-height-lg">থানা ঘাটতি তালিকা</a></li>
+
+                                        <li class="tmp_hidden"><hr class="divider" /></li>
+
+
+
+
+
+                                        
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/ideal_thana'); ?>" class="line-height-lg">আদর্শ থানা তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/increaselist_ideal_thana'); ?>" class="line-height-lg">আদর্শ থানা বৃদ্ধি তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/decreaselist_ideal_thana'); ?>" class="line-height-lg">আদর্শ থানা ঘাটতি তালিকা</a></li>
+
+                                        <li class="tmp_hidden"><hr class="divider" /></li>
+
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/wardlist'); ?>" class="line-height-lg">ওয়ার্ড তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/increaselist_ward'); ?>" class="line-height-lg">ওয়ার্ড বৃদ্ধি তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/decreaselist_ward'); ?>" class="line-height-lg">ওয়ার্ড ঘাটতি তালিকা</a></li>
+
+                                        <li class="tmp_hidden"><hr class="divider" /></li>
+
+
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/uposhakhalist'); ?>" class="line-height-lg"> উপশাখা তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/increaselist_uposhakha'); ?>" class="line-height-lg"> উপশাখা বৃদ্ধি তালিকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/decreaselist_uposhakha'); ?>" class="line-height-lg"> উপশাখা ঘাটতি তালিকা</a></li>
+
+                       
+
+
+                                        
+                                    </ul>
+                                </li>
  
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -377,7 +430,16 @@
                                         <li><a href="<?= admin_url('organization/institutional'); ?>" class="line-height-lg">প্রাতিষ্ঠানিক সংগঠন একনজরে </a></li>
                                         <li><a href="<?= admin_url('organization'); ?>" class="line-height-lg">প্রাতিষ্ঠানিক শিক্ষার্থী একনজরে
                                         </a></li>
+
+                                        <li class="tmp_hidden"><hr class="divider" /></li>
+                                        
+
                                         <li><a href="<?= admin_url('organization/institutionlist'); ?>" class="line-height-lg">প্রতিষ্ঠান তালিকা</a></li>
+                                        <li><a href="<?= admin_url('organization/institution_increase'); ?>" class="line-height-lg"> শিক্ষাপ্রতিষ্ঠান বৃদ্ধি তালিকা</a></li>
+                                        <li><a href="<?= admin_url('organization/institution_decrease'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠান ঘাটতি  তালিকা</a></li>
+                                     
+                                        <li class="tmp_hidden"><hr class="divider" /></li>
+
                                         <li class="tmp_hidden"><a href="<?= admin_url('organization/institutionwithorg'); ?>" class="line-height-lg">যে সব প্রতিষ্ঠানে সংগঠন আছে </a></li>
                                         <li class="tmp_hidden"><a href="<?= admin_url('organization/institutionbutorg'); ?>" class="line-height-lg">যে সব প্রতিষ্ঠানে সংগঠন নেই </a></li>
 
@@ -390,48 +452,21 @@
 
 
 
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        সংগঠন <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="<?= admin_url('organization'); ?>" class="line-height-lg">একনজরে </a></li>
-                                       
-
-                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/institutionbutorg'); ?>" class="line-height-lg"> <?= "যে সব প্রতিষ্ঠানে সংগঠন নেই "; ?></a></li>
-                                       
-                                        <li class="tmp_hidden"><hr class="divider" /></li>
-                                        
-                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administration'); ?>" class="line-height-lg">প্রশাসনিক বিবরণ</a></li>
-                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrative_area_list'); ?>" class="line-height-lg">প্রশাসনিক এলাকা</a></li>
-                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrative_area'); ?>" class="line-height-lg">প্রশাসনিক এলাকা একনজরে </a></li>
-
-                                        <li class="tmp_hidden"><hr class="divider" /></li>
-
-
-                                       
-
-                                        <li class="tmp_hidden"><a href="<?= admin_url('others/organizationinfo'); ?>" class="line-height-lg">সাংগঠনিক বিবরণ</a></li>
-
-
-                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/thanalist'); ?>" class="line-height-lg">থানা তালিকা</a></li>
-                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/ideal_thana'); ?>" class="line-height-lg">আদর্শ থানা তালিকা</a></li>
-
-                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/wardlist'); ?>" class="line-height-lg">ওয়ার্ড তালিকা</a></li>
-
-                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/uposhakhalist'); ?>" class="line-height-lg"> উপশাখা তালিকা</a></li>
-
-                       
-
-
-                                        
-                                    </ul>
-                                </li>
+                              
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     প্রশাসনিক বিবরণ<span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
+
+                                    <li class="tmp_hidden"><a href="<?= admin_url('others/administration'); ?>" class="line-height-lg">প্রশাসনিক বিবরণ</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrative_area_list'); ?>" class="line-height-lg">প্রশাসনিক এলাকা</a></li>
+                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrative_area'); ?>" class="line-height-lg">প্রশাসনিক এলাকা একনজরে </a></li>
+                                        <li class="tmp_hidden">  <a href="<?= admin_url('others/administrationbutorg'); ?>" class="line-height-lg">যে সব এলাকায় সংগঠন নেই</a></li>
+                                        <li class="tmp_hidden"><hr class="divider" /></li>
+                                        
+
+
                                         <li><a href="<?= admin_url('administrativedetail/district'); ?>" class="line-height-lg">জেলা </a></li>
                                         <li><a href="<?= admin_url('administrativedetail/thana'); ?>" class="line-height-lg">সিটি থানা </a></li>
                                         <li><a href="<?= admin_url('administrativedetail/upazila'); ?>" class="line-height-lg">উপজেলা </a></li>

@@ -28,7 +28,7 @@
 
 
 
-
+                        <?php if($this->uri->segment(2) == 'organization') {?>
 
 
                                 <li id="" class="<?php echo ($this->uri->segment(2) == 'organization' &&  ($this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)))) ? 'active' : '' ?>">
@@ -36,13 +36,7 @@
                                         <i class="fa fa-cogs"></i><span class="text"> <?= "একনজরে "; ?></span>
                                     </a>
                                 </li>
-
-
-
-
-
-
-
+ 
 
                                 <li class="mm_worker_decrease">
                                     <a class="dropmenu" href="#">
@@ -97,6 +91,15 @@
                                     </ul>
                                 </li>
 
+
+                              
+
+
+                                <?php } ?>
+
+ 
+
+                                <?php if($this->uri->segment(2) == 'organization' ||  ( $this->uri->segment(2) == 'others' && $this->uri->segment(3) == 'organizationinfo'    ) ) {?>
 
                                 <li class="mm_worker_decrease">
                                     <a class="dropmenu" href="#">
@@ -209,15 +212,20 @@
                                 </li>
 
 
+                                <?php } ?>
 
 
 
-
-
+                                <?php if($this->uri->segment(2) != 'others' ||  $this->uri->segment(3) !='organizationinfo') {?>
+                               
                                 <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'administration')) ? 'active' : '' ?>"><a href="<?= admin_url('others/administration'); ?>"><i class="fa fa-cogs"></i>প্রশাসনিক বিবরণ</a></li>
-
+                                <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'administrative_area_list')) ? 'active' : '' ?>"><a href="<?= admin_url('others/administrative_area_list'); ?>"><i class="fa fa-cogs"></i>প্রশাসনিক এলাকা</a></li>
+                                <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'administrative_area')) ? 'active' : '' ?>"><a href="<?= admin_url('others/administrative_area'); ?>"><i class="fa fa-cogs"></i>প্রশাসনিক এলাকা একনজরে</a></li>
                                 <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'administrationbutorg')) ? 'active' : '' ?>"><a href="<?= admin_url('others/administrationbutorg'); ?>"><i class="fa fa-cogs"></i>যে সব এলাকায় সংগঠন নেই</a></li>
-                                <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'organizationinfo')) ? 'active' : '' ?>"><a href="<?= admin_url('others/organizationinfo'); ?>"><i class="fa fa-cogs"></i>সাংগঠনিক বিবরণ</a></li>
+                                <?php } ?>
+
+
+                                <li class="<?=$this->uri->segment(3) != 'organizationinfo'?'hidden':''?> <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'organizationinfo')) ? 'active' : '' ?>"><a href="<?= admin_url('others/organizationinfo'); ?>"><i class="fa fa-cogs"></i>সাংগঠন একনজরে</a></li>
 
 
 
