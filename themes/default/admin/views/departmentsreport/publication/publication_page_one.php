@@ -378,6 +378,58 @@ $(document).ready(function(){
                                 <?php echo $d_u_notebook_bitoron = $publication_kendro_hote_prokashona['d_u_notebook_bitoron'] ?>
                                 </td> 
                             </tr>
+    
+    <tr> 
+        <td class="tg-pwj7" rowspan='4'> দাওয়াতি  প্যাকেজ  </td>
+        <td class="tg-pwj7" colspan=''>  উপকরণ </td>
+        <td class="tg-pwj7" colspan=''>  সংখ্যা </td>
+        <td class="tg-pwj7" colspan=''>  বিক্রি </td>
+        <td class="tg-pwj7" colspan=''>  বিতরণ </td>
+    </tr>
+    <tr>                                                     
+        <td class="tg-y698 type_1">
+        অনার্স ১ম বর্ষ দাওয়াতি  প্যাকেজ 
+            </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_hons_1st_borso_num = $publication_kendro_hote_prokashona['d_p_hons_1st_borso_num'] ?>
+        </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_hons_1st_borso_bikri = $publication_kendro_hote_prokashona['d_p_hons_1st_borso_bikri'] ?>
+        </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_hons_1st_borso_bitoron = $publication_kendro_hote_prokashona['d_p_hons_1st_borso_bitoron'] ?>
+        </td> 
+    </tr>
+    <tr>                                                     
+        <td class="tg-y698 type_1">
+        SSC সাধারণ দাওয়াতি  প্যাকেজ 
+            </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_ssc_general_num = $publication_kendro_hote_prokashona['d_p_ssc_general_num'] ?>
+        </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_ssc_general_bikri = $publication_kendro_hote_prokashona['d_p_ssc_general_bikri'] ?>
+        </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_ssc_general_bitoron = $publication_kendro_hote_prokashona['d_p_ssc_general_bitoron'] ?>
+        </td> 
+    </tr>
+
+    <tr>                                                     
+        <td class="tg-y698 type_1">
+        SSC A<sup>+</sup> দাওয়াতি  প্যাকেজ  
+            </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_ssc_a_plus_num = $publication_kendro_hote_prokashona['d_p_ssc_a_plus_num'] ?>
+        </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_ssc_a_plus_bikri = $publication_kendro_hote_prokashona['d_p_ssc_a_plus_bikri'] ?>
+        </td>
+            <td class="tg-0pky  type_10">
+        <?php echo $d_p_ssc_a_plus_bitoron = $publication_kendro_hote_prokashona['d_p_ssc_a_plus_bitoron'] ?>
+        </td> 
+    </tr>
+
                             <tr> 
                                 <td class="tg-pwj7" rowspan='15'>সাংগঠনিক উপকরণ</td>
                                 <td class="tg-pwj7" colspan=''>  উপকরণ </td>
@@ -581,6 +633,7 @@ $(document).ready(function(){
                                 <?php echo $s_u_mem_can_dairy_bitoron = $publication_kendro_hote_prokashona['s_u_mem_can_dairy_bitoron'] ?>
                                 </td> 
                             </tr>
+
                             <tr> 
                                 <td class="tg-pwj7" rowspan='3'>ইসলামী সাহিত্য</td>
                                 <td class="tg-pwj7" colspan=''>  উপকরণ </td>
@@ -616,6 +669,8 @@ $(document).ready(function(){
                                 <?php echo $is_sa_other_boi_bitoron = $publication_kendro_hote_prokashona['is_sa_other_boi_bitoron'] ?>
                                 </td> 
                             </tr>
+
+
                             <tr> 
                                 <td class="tg-pwj7" rowspan='7'>কুরআন ও হাদিস সেট</td>
                                 <td class="tg-pwj7" colspan=''>  উপকরণ </td>
@@ -893,7 +948,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>                                                     
                                 <td class="tg-y698 type_1">
-                                পকেট ডায়েরি
+                                পকেট ডায়েরি/ ইয়ার প্লানার 
                                  </td>
                                     <td class="tg-0pky  type_10">
                                 <?php echo $nobo_proka_pocket_dairy_num = $publication_kendro_hote_prokashona['nobo_proka_pocket_dairy_num'] ?>

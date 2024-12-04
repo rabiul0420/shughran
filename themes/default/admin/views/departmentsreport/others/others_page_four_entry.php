@@ -85,7 +85,8 @@ $(document).ready(function(){
                 <p class="introtext">
                 <div class="table-responsive">
                     <div class="tg-wrap">
-                    <table class="tg table table-header-rotated" id="testTable1">
+                        <!-- এক নজরে সপ্তাহ, পক্ষ ও দশক পালনের রিপোর্ট Hide this table  -->
+                        <table class="tg table table-header-rotated" id="testTable1" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="3"><b>এক নজরে সপ্তাহ, পক্ষ ও দশক পালনের রিপোর্ট</b></td>
                                 <td class="tg-pwj7" colspan="">
@@ -242,7 +243,8 @@ $(document).ready(function(){
                             </tr>
                         
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable2">
+                       <!-- আউটপুট পরিকল্পনা গ্রহণ সংক্রান্ত Hide the table -->
+                       <table class="tg table table-header-rotated" id="testTable2" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="3"><b>আউটপুট পরিকল্পনা গ্রহণ সংক্রান্ত</b></td>
                                 <td class="tg-pwj7" colspan="2">
