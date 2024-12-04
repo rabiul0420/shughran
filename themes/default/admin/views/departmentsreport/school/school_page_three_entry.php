@@ -651,7 +651,8 @@ $(document).ready(function(){
                             </tr>
                         </table>
 
-                        <table class="tg table table-header-rotated" id="testTable4">
+                        <!-- Hide this table বৈঠক -->
+                        <table class="tg table table-header-rotated" id="testTable4" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="2"><b>বৈঠক</b></td>
                                 <td class="tg-pwj7" colspan="1">
@@ -744,7 +745,8 @@ $(document).ready(function(){
 
                         </table>
 
-                        <table class="tg table table-header-rotated" id="testTable5">
+                        <!-- Hide this table কর্মশালা -->
+                        <table class="tg table table-header-rotated" id="testTable5" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="3"><b>কর্মশালা</b></td>
                                 <td class="tg-pwj7" colspan="1">
