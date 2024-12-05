@@ -332,9 +332,9 @@ $(document).ready(function(){
                             </tr>
 
                         </table>
-
-
-                        <table class="tg table table-header-rotated" id="testTable2">
+                       
+                        <!-- Hide this table যোগাযোগ -->
+                        <table class="tg table table-header-rotated" id="testTable2" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="4"><b>যোগাযোগ</b></td>
                                 <td class="tg-pwj7" colspan="1">
@@ -463,8 +463,10 @@ $(document).ready(function(){
                             </tr>
 
                         </table>
-
-                        <table class="tg table table-header-rotated" id="testTable3">
+                     
+                        <!-- Hide this table সফর -->
+                        <table class="tg table table-header-rotated" id="testTable3" style="display:none;">
+                        
                             <tr>
                                 <td class="tg-pwj7" colspan="1"><b>সফর</b></td>
                                 <td class="tg-pwj7" colspan="1">

@@ -512,6 +512,95 @@ $pk = (isset($publication_kendro_hote_prokashona['id'])) ? $publication_kendro_h
                                     </a>
                                 </td>
                                                </tr>
+
+
+                            <tr>
+                                <td class="tg-pwj7" rowspan='4'>দাওয়াতি  প্যাকেজ</td>
+                                <td class="tg-pwj7" colspan=''>  উপকরণ </td>
+                                <td class="tg-pwj7" colspan=''>  সংখ্যা </td>
+                                <td class="tg-pwj7" colspan=''>  বিক্রি </td>
+                                <td class="tg-pwj7" colspan=''>  বিতরণ </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1">
+                                অনার্স ১ম বর্ষ দাওয়াতি  প্যাকেজ
+                                </td>
+                                   <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_hons_1st_borso_num"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_hons_1st_borso_num'])) ? $publication_kendro_hote_prokashona['d_p_hons_1st_borso_num'] : '' ?>
+                                    </a>
+                                </td>
+                                 <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_hons_1st_borso_bikri"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_hons_1st_borso_bikri'])) ? $publication_kendro_hote_prokashona['d_p_hons_1st_borso_bikri'] : '' ?>
+                                    </a>
+                                </td>
+                                 <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_hons_1st_borso_bitoron"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_hons_1st_borso_bitoron'])) ? $publication_kendro_hote_prokashona['d_p_hons_1st_borso_bitoron'] : '' ?>
+                                    </a>
+                                </td>
+                                               </tr>
+                            <tr>
+                                <td class="tg-y698 type_1">
+                                SSC সাধারণ দাওয়াতি  প্যাকেজ 
+                                </td>
+                                   <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_ssc_general_num"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_ssc_general_num'])) ? $publication_kendro_hote_prokashona['d_p_ssc_general_num'] : '' ?>
+                                    </a>
+                                </td>
+                                 <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_ssc_general_bikri"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_ssc_general_bikri'])) ? $publication_kendro_hote_prokashona['d_p_ssc_general_bikri'] : '' ?>
+                                    </a>
+                                </td>
+                                 <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_ssc_general_bitoron"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_ssc_general_bitoron'])) ? $publication_kendro_hote_prokashona['d_p_ssc_general_bitoron'] : '' ?>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-y698 type_1">
+                                SSC A<sup>+</sup> দাওয়াতি  প্যাকেজ 
+                                </td>
+                                   <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_ssc_a_plus_num"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_ssc_a_plus_num'])) ? $publication_kendro_hote_prokashona['d_p_ssc_a_plus_num'] : '' ?>
+                                    </a>
+                                </td>
+                                 <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_ssc_a_plus_bikri"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_ssc_a_plus_bikri'])) ? $publication_kendro_hote_prokashona['d_p_ssc_a_plus_bikri'] : '' ?>
+                                    </a>
+                                </td>
+                                 <td class="tg-0pky">
+                                    <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"
+                                        data-table="publication_kendro_hote_prokashona" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
+                                        data-name="d_p_ssc_a_plus_bitoron"
+                                        data-title="Enter"><?php echo (isset($publication_kendro_hote_prokashona['d_p_ssc_a_plus_bitoron'])) ? $publication_kendro_hote_prokashona['d_p_ssc_a_plus_bitoron'] : '' ?>
+                                    </a>
+                                </td>
+                            </tr>
+
+
                             <tr>
                                 <td class="tg-pwj7" rowspan='15'>সাংগঠনিক উপকরণ</td>
                                 <td class="tg-pwj7" colspan=''>  উপকরণ </td>
@@ -1436,7 +1525,7 @@ $pk = (isset($publication_kendro_hote_prokashona['id'])) ? $publication_kendro_h
                                                </tr>
                             <tr>
                                 <td class="tg-y698 type_1">
-                                পকেট ডায়েরি
+                                পকেট ডায়েরি/ ইয়ার প্লানার 
                                 </td>
                                    <td class="tg-0pky">
                                     <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number"

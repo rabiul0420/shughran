@@ -243,7 +243,7 @@ $(document).ready(function(){
                     </tr>  
                     <tr>
                        <td class="tg-pwj7">
-                       নিবন্ধ (পেপার)
+                       গবেষণা প্রবন্ধ <!-- নিবন্ধ (পেপার)  rename to গবেষণা প্রবন্ধ   -->
                        </td>
                        <td class="tg-0pky  type_5"> 
                             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -301,7 +301,7 @@ $(document).ready(function(){
 
                     <tr>
                        <td class="tg-pwj7">
-                       প্রবন্ধ রিভিউ
+                       আর্টিকেল রিভিউ <!-- প্রবন্ধ রিভিউ rename to আর্টিকেল রিভিউ   -->
                        </td>
                        <td class="tg-0pky  type_5"> 
                             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -321,7 +321,7 @@ $(document).ready(function(){
                     </tr> 
                     <tr>
                        <td class="tg-pwj7">
-                       প্রেজেন্টেশন
+                       কলাম সংবাদপত্র  <!-- প্রেজেন্টেশন  rename to কলাম সংবাদপত্র    -->
                        </td>
                        <td class="tg-0pky  type_5"> 
                             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -361,7 +361,7 @@ $(document).ready(function(){
                     </tr> 
                     <tr>
                        <td class="tg-pwj7">
-                       স্ক্রিপ্টিং রাইটিং 
+                       কনফারেন্স  পেপার <!-- স্ক্রিপ্টিং রাইটিং  rename to কনফারেন্স  পেপার   --> 
                        </td>
                        <td class="tg-0pky  type_5"> 
                             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -417,8 +417,28 @@ $(document).ready(function(){
                             </a>
                         </td>
                   
-                    </tr> 
+                    </tr>                     
+                    <tr>
+                       <td class="tg-pwj7">
+                       পোস্টার প্রেজেন্টেশন 
+                       </td>
+                       <td class="tg-0pky  type_5"> 
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="gobeshona_lekhalekhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="poster_pre_lekha" 
+                                data-title="Enter"><?php echo $poster_pre_lekha=(isset( $gobeshona_lekhalekhi['poster_pre_lekha']))? $gobeshona_lekhalekhi['poster_pre_lekha']:0; ?>
+                            </a>
+                        </td>
+                        <td class="tg-0pky  type_5"> 
+                            <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
+                                data-table="gobeshona_lekhalekhi" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
+                                data-name="poster_pre_prokash" 
+                                data-title="Enter"><?php echo $poster_pre_prokash=(isset( $gobeshona_lekhalekhi['poster_pre_prokash']))? $gobeshona_lekhalekhi['poster_pre_prokash']:0; ?>
+                            </a>
+                        </td>                  
+                    </tr>                     
                 </table>
+                
                 <table class="tg table table-header-rotated" id="testTable2">
                     <tr>
                         <td class="tg-pwj7" colspan="4"><b>গবেষণারত ভাইদের আপডেট তালিকা</b></td>

@@ -275,6 +275,8 @@ class Research extends MY_Controller
             $this->db->select_sum('bangla_prokash');
             $this->db->select_sum('english_lekha');
             $this->db->select_sum('english_prokash');
+            $this->db->select_sum('poster_pre_lekha');
+            $this->db->select_sum('poster_pre_prokash');
             if ($branch_id)
                 $this->db->where('branch_id', $branch_id);
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');

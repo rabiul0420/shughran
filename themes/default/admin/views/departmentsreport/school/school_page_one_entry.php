@@ -98,7 +98,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                     <div class="tg-wrap">
                     <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
-                                <td class="tg-pwj7" colspan="4"><b>জনশক্তি</b></td>
+                                <td class="tg-pwj7" colspan="4"><b>নিয়োজিত জনশক্তি</b></td>
                                 <td class="tg-pwj7" colspan="1">
                                     <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'School_জনশক্তি_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -205,7 +205,8 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                             </tr>
 
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable2">
+                        <!-- Hide this table দাওয়াত -->
+                        <table class="tg table table-header-rotated" id="testTable2" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="4"><b>দাওয়াত</b></td>
                                 <td class="tg-pwj7" colspan="1">
@@ -378,7 +379,8 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
 
                         </table>
 
-                        <table class="tg table table-header-rotated" id="testTable3">
+                        <!-- Hide this table সংগঠন -->
+                        <table class="tg table table-header-rotated" id="testTable3" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="4"><b>সংগঠন</b></td>
                                 <td class="tg-pwj7" colspan="1">

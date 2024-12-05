@@ -243,7 +243,7 @@ $(document).ready(function(){
                     </tr>  
                     <tr>
                        <td class="tg-pwj7">
-                       নিবন্ধ (পেপার)
+                       গবেষণা প্রবন্ধ <!-- নিবন্ধ (পেপার)  rename to গবেষণা প্রবন্ধ   -->
                        </td>
                        <td class="tg-0pky  type_2">
                        <?php echo $nibondhon_lekha = $gobeshona_lekhalekhi['nibondhon_lekha'] ?>
@@ -265,7 +265,7 @@ $(document).ready(function(){
                     </tr>  
                     <tr>
                        <td class="tg-pwj7">
-                       বুক রিভিউ
+                       আর্টিকেল রিভিউ <!-- প্রবন্ধ রিভিউ rename to আর্টিকেল রিভিউ   -->
                        </td>
                          <td class="tg-0pky  type_2">
                        <?php echo $boi_review_lekha = $gobeshona_lekhalekhi['boi_review_lekha'] ?>
@@ -288,7 +288,7 @@ $(document).ready(function(){
                     </tr> 
                     <tr>
                        <td class="tg-pwj7">
-                       প্রেজেন্টেশন
+                       কলাম সংবাদপত্র  <!-- প্রেজেন্টেশন  rename to কলাম সংবাদপত্র    -->
                        </td>
                          <td class="tg-0pky  type_2">
                        <?php echo $presentation_lekha = $gobeshona_lekhalekhi['presentation_lekha'] ?>
@@ -310,7 +310,7 @@ $(document).ready(function(){
                     </tr> 
                     <tr>
                        <td class="tg-pwj7">
-                       স্ক্রিপ্টিং রাইটিং 
+                       কনফারেন্স  পেপার <!-- স্ক্রিপ্টিং রাইটিং  rename to কনফারেন্স  পেপার   --> 
                        </td>
                          <td class="tg-0pky  type_2">
                        <?php echo $script_lekha = $gobeshona_lekhalekhi['script_lekha'] ?>
@@ -341,7 +341,20 @@ $(document).ready(function(){
                        <?php echo $english_prokash = $gobeshona_lekhalekhi['english_prokash'] ?>
                        </td>
                     </tr> 
+
+                    <tr>
+                       <td class="tg-pwj7">
+                       পোস্টার প্রেজেন্টেশন
+                       </td>
+                         <td class="tg-0pky  type_2">
+                       <?php echo $poster_pre_lekha = $gobeshona_lekhalekhi['poster_pre_lekha'] ?>
+                       </td>
+                         <td class="tg-0pky  type_2">
+                       <?php echo $poster_pre_prokash = $gobeshona_lekhalekhi['poster_pre_prokash'] ?>
+                       </td>
+                    </tr> 
                 </table>
+
                 <table class="tg table table-header-rotated" id="testTable2">
                     <tr>
                         <td class="tg-pwj7" colspan="5"><b>গবেষণারত ভাইদের আপডেট তালিকা</b></td>

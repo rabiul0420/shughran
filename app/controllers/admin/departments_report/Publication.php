@@ -133,6 +133,15 @@ class Publication extends MY_Controller
         $this->db->select_sum('d_u_notebook_num');
         $this->db->select_sum('d_u_notebook_bikri');
         $this->db->select_sum('d_u_notebook_bitoron');
+        $this->db->select_sum('d_p_hons_1st_borso_num');
+        $this->db->select_sum('d_p_hons_1st_borso_bikri');
+        $this->db->select_sum('d_p_hons_1st_borso_bitoron');
+        $this->db->select_sum('d_p_ssc_general_num');
+        $this->db->select_sum('d_p_ssc_general_bikri');
+        $this->db->select_sum('d_p_ssc_general_bitoron');
+        $this->db->select_sum('d_p_ssc_a_plus_num');
+        $this->db->select_sum('d_p_ssc_a_plus_bikri');
+        $this->db->select_sum('d_p_ssc_a_plus_bitoron');
         $this->db->select_sum('s_u_shomorthok_form_num');
         $this->db->select_sum('s_u_shomorthok_form_bikri');
         $this->db->select_sum('s_u_shomorthok_form_bitoron');

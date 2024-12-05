@@ -151,7 +151,8 @@ $(document).ready(function(){
 }
 </style>
                     <div class="tg-wrap">
-                    <table class="tg table table-header-rotated" id="testTable4">
+                    <!--Hide this table  বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম -->
+                    <table class="tg table table-header-rotated" id="testTable4" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="3"><b>বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম</b></td>
                                 <td class="tg-pwj7" colspan="1">
@@ -217,7 +218,8 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable1">
+                        <!-- Hide this table কেন্দ্র হতে বিবিধ/অন্যান্য প্রকাশনা সামগ্রী সংগ্রহ -->
+                        <table class="tg table table-header-rotated" id="testTable1" style="display:none;">
                             <tr>                           
                                 <td class="tg-pwj7" colspan='5'><b>কেন্দ্র হতে বিবিধ/অন্যান্য প্রকাশনা সামগ্রী সংগ্রহ</b></td>
                                 <td class="tg-pwj7" colspan="1">

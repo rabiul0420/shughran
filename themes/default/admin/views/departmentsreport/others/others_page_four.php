@@ -113,7 +113,8 @@ $(document).ready(function(){
                         cursor: pointer;
                     }
                 </style>
-                <table class="tg table table-header-rotated" id="testTable1">
+                <!-- এক নজরে সপ্তাহ, পক্ষ ও দশক পালনের রিপোর্ট Hide this table  -->
+                <table class="tg table table-header-rotated" id="testTable1" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="3"><b>এক নজরে সপ্তাহ, পক্ষ ও দশক পালনের রিপোর্ট</b></td>
                                 <td class="tg-pwj7" colspan="">
@@ -219,10 +220,10 @@ $(document).ready(function(){
                                     <?php echo ($row_other_shopta_doshok_pokkho_palon - $other_shopta_doshok_pokkho_palon['onno_dhormo_dawat_w_hoyeche']) ?>
                                 </td>
 
-                            </tr>
-                        
+                            </tr>                        
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable2">
+                        <!-- আউটপুট পরিকল্পনা গ্রহণ সংক্রান্ত Hide the table -->
+                        <table class="tg table table-header-rotated" id="testTable2" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="2"><b>আউটপুট পরিকল্পনা গ্রহণ সংক্রান্ত</b></td>
                                 <td class="tg-pwj7" colspan="2">

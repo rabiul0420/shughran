@@ -215,7 +215,8 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                            
                             </tr>
                         </table>
-                        <table class="tg table table-header-rotated" id="testTable1">
+                        <!-- উপশাখা মজবুতিকরণ সংক্রান্ত Hide this table  -->
+                        <table class="tg table table-header-rotated" id="testTable1" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan="3"><b>উপশাখা মজবুতিকরণ সংক্রান্ত</b>
                                 </td>

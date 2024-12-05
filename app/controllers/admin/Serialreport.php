@@ -200,9 +200,10 @@ class Serialreport extends MY_Controller
                 'is_reportok' => $this->input->post('is_reportok'),
                 'dept_review' => $this->input->post('dept_review')
             );
-            // insert all data for serial_reports_logs
-            $this->site->insertData('serial_reports_logs', $logs_data);
-            
+            if ($up_result) {
+                // insert all data for serial_reports_logs
+                $this->site->insertData('serial_reports_logs', $logs_data);
+            }
             $this->session->set_flashdata('message', 'Message updated successfully');
             if ($up_result) {
 

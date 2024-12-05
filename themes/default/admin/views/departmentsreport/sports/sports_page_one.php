@@ -790,7 +790,8 @@ $(document).ready(function(){
                    </tr>
 
                 </table>
-                <table class="tg table table-header-rotated" id="testTable3">
+                <!-- Hide this table জনশক্তির ব্যক্তিগত দক্ষতা -->
+                <table class="tg table table-header-rotated" id="testTable3" style="display:none;">
                             <tr>
                                 <td class="tg-pwj7" colspan='5'><b> জনশক্তির ব্যক্তিগত দক্ষতা  </b> </td>
                                 <td class="tg-pwj7" colspan="">
