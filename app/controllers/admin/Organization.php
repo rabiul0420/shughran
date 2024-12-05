@@ -1035,7 +1035,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
         $this->sma->checkPermissions('index', TRUE);
-
+  
 
 
         if ($this->input->get('id')) {
