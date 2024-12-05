@@ -45,7 +45,7 @@ $group_id = $this->session->userdata('group_id');
 
                         <th <?= $group_id == 8 ? "style='display:none'" : "width='20%'"; ?> >বিভাগ </th>
                        
-                        <th <?= $group_id == 8 ? "width='15%'" : "width='5%'"; ?> >সেরিয়াল দেওয়ার সময়</th>
+                        <th <?= $group_id == 8 ? "width='15%'" : "width='5%'"; ?> >সিরিয়াল দেওয়ার সময়</th>
                         
                         
                         <th width="8%">সিরিয়াল দেয়া হয়েছে?</th>
@@ -84,7 +84,7 @@ $group_id = $this->session->userdata('group_id');
 <script>
     // Initialize DataTable
     new DataTable('#example1', {
-        order: [[2, 'desc']], // Sort by `created_at` column in ascending order
+        order: [[2, 'desc']], // Sort by `created_at` column 
         pageLength: 50,
     });
 </script>
