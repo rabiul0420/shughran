@@ -738,7 +738,7 @@ if (!empty($variants)) {
                     success: function (response) {
                         var options = "<option selected disabled><?= lang('select') . ' ' . lang('sub_category'); ?></option>";
                         $.each(response, function (index, institutionlist) {
-                            options += "<option value='" + institutionlist.id + "'>" + institutionlist.ins_name + "</option>";
+                            options += "<option value='" + institutionlist.id + "'>" + institutionlist.institution_name + "</option>";
                         });
                         $('#institutionlist').empty().append(options);
                     },
