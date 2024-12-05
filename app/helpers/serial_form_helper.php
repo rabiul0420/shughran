@@ -28,12 +28,31 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                         <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
                         <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
                         <td rowspan="2" style="width: 100px;">
+
                             <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id || (int) $is_departmentuser === 1): ?>
-                                সিরিয়াল দেওয়া হয়েছে। <br>
-                            <small><?= $serial_info->created_at ? $serial_info->created_at : ""; ?> </small>
+                                    <small>
+                                    সিরিয়াল দেওয়া হয়েছে। <br>
+                                    <?= $serial_info->created_at ? $serial_info->created_at : "";?>
+                                      </small> <br>
+                                <?php if ($serial_info->is_reportok !== 'OK' && $serial_info->is_checked === 'YES' ): ?>
+                                        <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0"> আবার সিরিয়াল দিন</button>
+                                    
+                                    <?php endif; ?>
+                                
                             <?php else: ?>
                                 <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">সিরিয়াল দিন</button>
                             <?php endif; ?>
+
+
+
+                            <!-- <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id || (int) $is_departmentuser === 1): ?>
+                                <?= $serial_info->serial_number ? $serial_info->serial_number : "0"; ?>  সিরিয়াল দেওয়া হয়েছে। <br>
+                            <small><?= $serial_info->created_at ? $serial_info->created_at : ""; ?> </small>
+                            <?php else: ?>
+                                <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">সিরিয়াল দিন</button>
+                            <?php endif; ?> -->
+
+
                         </td>
                     <?php echo form_close(); ?>
                     <td style="width: 50px;">চেক</td>
