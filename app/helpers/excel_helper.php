@@ -7,8 +7,8 @@ if(! function_exists('create_excel')) {
         header('Cache-Control: max-age=0');
 
          
-        //$objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
-       // $objWriter->save('php://output');
+         $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+         $objWriter->save('php://output');
         exit;
     }
 }
