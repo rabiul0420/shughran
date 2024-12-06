@@ -2472,7 +2472,7 @@ class Associate extends MY_Controller
 
 
                
-                $this->sma->print_arrays( $data);
+             //   $this->sma->print_arrays( $data);
 
                create_excel($this->excel, $filename);
             }
