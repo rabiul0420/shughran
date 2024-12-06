@@ -42,13 +42,34 @@ class Serialreport extends MY_Controller
                 'dept_id' => $this->input->post('dept_id'),
                 'report_type' => $this->input->post('report_type'),
                 'report_year' => date('Y'),
-                'user_id' => $this->session->userdata('user_id')
+                'user_id' => $this->session->userdata('user_id'),
+                'branch_comment' => $this->input->post('branch_comment'),
             );
 
             $dept_id = $this->input->post('dept_id'); // get department id
             
-            // insert data and collect result 
-            $result = $this->site->insertData('serial_reports', $data);
+            // Get the serial number from form input
+            $serial_number = $this->input->post('serial_number');
+
+            if ($serial_number > 1) {
+                // Prepare data for updating the second serial record
+                $data_second_serial = [
+                    'serial_number' => $this->input->post('serial_number'), // Get serial number
+                    'branch_comment' => $this->input->post('branch_comment'), // Get serial number
+                    'is_checked' => 'NO' 
+                ];
+                // Set conditions for the update query
+                $where = [
+                    'branch_id' => $this->input->post('branch_id'), // Match branch ID
+                    'dept_id' => $this->input->post('dept_id'), // Match department ID
+                ];
+                // Update the record in the database
+                $result = $this->site->updateData('serial_reports', $data_second_serial, $where);
+            } else {
+                // Insert new data into the database and get the result for first time
+                $result = $this->site->insertData('serial_reports', $data);
+            }
+
             // Insert data for serial_reports_logs 
             $this->site->insertData('serial_reports_logs', $data);
 
