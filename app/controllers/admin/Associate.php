@@ -2472,9 +2472,9 @@ class Associate extends MY_Controller
 
 
                
+                $this->sma->print_arrays( $data);
 
-
-                create_excel($this->excel, $filename);
+               // create_excel($this->excel, $filename);
             }
             $this->session->set_flashdata('error', lang('nothing_found'));
             redirect($_SERVER["HTTP_REFERER"]);
