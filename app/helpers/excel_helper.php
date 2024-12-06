@@ -32,7 +32,7 @@ function create_excel($excel, $filename)
 
         try {
             $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
-           // $objWriter->save('php://output');
+            $objWriter->save('php://output');
         } catch (Exception $e) {
             // Log or display errors for debugging
             echo 'Error creating Excel file: ' . $e->getMessage();
