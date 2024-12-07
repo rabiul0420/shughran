@@ -40,12 +40,12 @@
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_id"); ?>
                         <?php
 
-                        echo 'DM' . $uposhakha->org_thana_id . 'DM';
-                        $dt[''] = lang('select') . ' ' . lang('থানা');
+                        
+                        $dt_org[''] = lang('select') . ' ' . lang('থানা');
                         foreach ($thanas as $thana_item)
-                            $dt[$thana_item->id] = $thana_item->thana_name;
+                            $dt_org[$thana_item->id] = $thana_item->thana_name;
 
-                        echo form_dropdown('thana_id', $dt, array($uposhakha->org_thana_id), 'id="thana_id"  class="form-control select" style="width:100%;" required="required" ');
+                        echo form_dropdown('thana_id', $dt_org, array($uposhakha->org_thana_id), 'id="thana_id"  class="form-control select" style="width:100%;" required="required" ');
                         ?>
                     </div>
 
@@ -55,7 +55,7 @@
 
                         <?php
 
-                        echo 'DM' . $uposhakha->org_ward_id . 'DM';
+                        
                         $dtward[''] = lang('select') . ' ' . lang('সাংগঠনিক ওয়ার্ড');
 
                         if ($wards)
