@@ -11,7 +11,14 @@
 <script>
 
     function thana_type(type){
+        let typelist = {
+            'Residential': 'আবাসিক',
+            'Institutional': 'প্রাতিষ্ঠানিক',
+            'Departmental': 'বিভাগীয়',
+            
+        };
 
+        return typelist[type] ? typelist[type] : '';
         return '';
     }
 
