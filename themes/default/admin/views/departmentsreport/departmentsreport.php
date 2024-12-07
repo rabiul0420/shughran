@@ -75,9 +75,9 @@ $group_id = $this->session->userdata('group_id');
                             $i = 0; 
                             foreach ($departments as $dept) { 
                                 $i++;
-                                $record = serial_info($row->id, $dept->id, $serial_records); ?>
+                                $record = serial_info($row->code, $dept->id, $serial_records); ?>
                                 <tr>
-                                    <td><?= $group_id == 8 ? $row->id : $i ; ?></td>
+                                    <td><?= $group_id == 8 ? $row->code : $i ; ?></td>
                                     
                                     <td width="20%" <?php if($group_id == 8 ) { echo "style='display:none'";} ?>> <?= $dept->name ?> </td>
                                    

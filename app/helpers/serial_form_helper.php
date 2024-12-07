@@ -44,23 +44,10 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
 </style>
     <div class="col-md-12" <?php if($is_owner || $is_admin || $is_departmentuser){ echo "style='display:none;margin-bottom:40px;'";} ?> >
 
-
         <?php echo form_open_multipart(base_url("index.php/admin/serialreport/sentserial/" . $branch_id), ['onsubmit' => 'return confirmSerialSubmit()']); ?>
-                    <input type="hidden" name="branch_id" value="<?php echo $branch_id; ?>" />
-                    <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
-                    <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
-                
-                <div class="comment"  >
-                    
-                    <label for="branch_comment">মন্তব্য</label>   
-                    <div class="form-group">   
-
-                        <textarea class="form-control" id="branch_comment" name="branch_comment" rows="1" placeholder="Enter your message here...">
-                            <?php echo $serial_info->branch_comment; ?>
-                        </textarea>
-                    </div> 
-                </div>
-       
+            <input type="hidden" name="branch_id" value="<?php echo $branch_id; ?>" />
+            <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
+            <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
 
         <table class="table table-bordered">
             <tbody>
@@ -68,8 +55,7 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                     <td style="width: 350px;vertical-align:middle;" rowspan="2">
                         এই বিভাগের রিপোর্ট পূরণ করা শেষ হলে বিভাগকে রিপোর্ট চেক করার জন্য সিরিয়াল দিন
                     </td>
-                      
-                        
+                                              
                         <td rowspan="2" style="width: 100px;vertical-align:middle;" >
 
                             <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id || (int) $is_departmentuser === 1): ?>
@@ -90,14 +76,11 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                                                 <!-- Button to submit the form and allow the user to Serial again -->
                                                 <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">আবার সিরিয়াল দিন</button>                                    
                                             <?php endif ?>
-                                    
-                                         <?php else: ?>
-                                            
-                                         <?php endif ?>
+                                       <?php endif ?>
                                 
                             <?php else: ?>
                                 <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">সিরিয়াল দিন</button>                           
-                            <?php endif; ?>
+                            <?php endif ?>
 
                         </td>
                     <td style="width: 50px;">চেক</td>
@@ -109,14 +92,14 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                             <button class="btn-green" disabled><?= 'YES'; ?></button>
                             <?php else: ?>
                             <button class="btn-red" disabled><?= 'NO'; ?></button>
-                        <?php endif; ?>
+                        <?php endif ?>
                     </td>
                     <td>
                         <?php if ($serial_info->is_reportok === 'OK'): ?>
                             <button class="btn-green" disabled><?= 'OK'; ?></button>
                             <?php else: ?>
                             <button class="btn-red" disabled><?= 'NOT OK'; ?></button>
-                        <?php endif; ?>
+                        <?php endif ?>
                     </td>
                 </tr>
                 <tr>
@@ -126,24 +109,40 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                         <?php echo $serial_info->dept_review; ?>
                     </td>
                 </tr>
-              
             </tbody>
-           
+            
         </table>
+    <?php echo form_close(); ?>
 
+        
+    <?php echo form_open_multipart(base_url("index.php/admin/serialreport/sentserial/" . $branch_id), ['onsubmit' => 'return confirmCommentSubmit()']); ?>
+                <input type="hidden" name="branch_id" value="<?php echo $branch_id; ?>" />
+                <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
+                <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
+            
+            <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id && $serial_info->is_reportok !== 'OK'): ?>
+                <table class="table">
+                 <div class="comment" >                    
+                    <label for="branch_comment">মন্তব্য (যদি থাকে)</label>   
+                        <div class="form-group"> 
+                            <textarea class="form-control" id="branch_comment" name="branch_comment" rows="1" required="required"  placeholder="Enter your message here...">
+                                <?php echo $serial_info->branch_comment; ?>
+                            </textarea>
+                        </div>   
+                        <div class="form-group">   
+                            <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">Submit</button> 
+                        </div> 
+                    </div>
+                </table>
+        <?php endif ?>
         <?php echo form_close(); ?>
     </div>
-
-
-
-
-
-
-
-
     <script>
         function confirmSerialSubmit() {
             return confirm("আপনি কি নিশ্চিত যে এই বিভাগের রিপোর্টটি পূরণ সম্পন্ন হয়েছে?");
+        }
+        function confirmCommentSubmit() {
+            return confirm("আপনি কি মন্তব্য করতে চান?");
         }
     </script>
 

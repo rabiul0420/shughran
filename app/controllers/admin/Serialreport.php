@@ -43,20 +43,34 @@ class Serialreport extends MY_Controller
                 'report_type' => $this->input->post('report_type'),
                 'report_year' => date('Y'),
                 'user_id' => $this->session->userdata('user_id'),
-                'branch_comment' => $this->input->post('branch_comment'),
             );
 
-            $dept_id = $this->input->post('dept_id'); // get department id
-            
-            // Get the serial number from form input
-            $serial_number = $this->input->post('serial_number');
+            $dept_id = $this->input->post('dept_id');             
+            $serial_number = $this->input->post('serial_number');  
+            $branch_comment = $this->input->post('branch_comment');
 
             if ($serial_number > 1) {
                 // Prepare data for updating the second serial record
-                $data_second_serial = [
-                    'serial_number' => $this->input->post('serial_number'), // Get serial number
-                    'branch_comment' => $this->input->post('branch_comment'), // Get serial number
+                $data_again_serial = [
+                    'serial_number' => $this->input->post('serial_number'), 
                     'is_checked' => 'NO' 
+                ];
+                // Set conditions for the update query
+                $where = [
+                    'branch_id' => $this->input->post('branch_id'), 
+                    'dept_id' => $this->input->post('dept_id'),
+                ];
+                // Update the record in the database
+                $result = $this->site->updateData('serial_reports', $data_again_serial, $where);                
+                // Insert data for serial_reports_logs 
+                $this->site->insertData('serial_reports_logs', $data_again_serial);
+                $this->session->set_flashdata('message', 'আবার সিরিয়াল দেওয়া হয়েছে।');
+           
+            }elseif (!empty($branch_comment)) {
+                
+                // Prepare data for updating the branch comment
+                $data_comment = [
+                    'branch_comment' => $this->input->post('branch_comment'), // Get serial number
                 ];
                 // Set conditions for the update query
                 $where = [
@@ -64,16 +78,23 @@ class Serialreport extends MY_Controller
                     'dept_id' => $this->input->post('dept_id'), // Match department ID
                 ];
                 // Update the record in the database
-                $result = $this->site->updateData('serial_reports', $data_second_serial, $where);
+                $result = $this->site->updateData('serial_reports', $data_comment, $where);
+                
+                // update data for serial_reports_logs
+                $result = $this->site->updateData('serial_reports_logs', $data_comment, $where);
+                $this->session->set_flashdata('message', 'ধন্যবাদ, মন্তব্য করা হয়েছে।');
+
             } else {
                 // Insert new data into the database and get the result for first time
                 $result = $this->site->insertData('serial_reports', $data);
+    
+                // Insert data for serial_reports_logs 
+                $this->site->insertData('serial_reports_logs', $data);
+                $this->session->set_flashdata('message', 'সিরিয়াল দেওয়া হয়েছে।');
             }
 
-            // Insert data for serial_reports_logs 
-            $this->site->insertData('serial_reports_logs', $data);
 
-            $this->session->set_flashdata('message', 'সিরিয়াল দেওয়া হয়েছে।');
+          
 
             if ($result && $dept_id == 5) {
                 // literature department code = 5 
@@ -219,7 +240,8 @@ class Serialreport extends MY_Controller
                 'report_year' => date('Y'),
                 'is_checked'  => $this->input->post('is_checked'),
                 'is_reportok' => $this->input->post('is_reportok'),
-                'dept_review' => $this->input->post('dept_review')
+                'dept_review' => $this->input->post('dept_review'),                
+                'updated_at' => $this->input->post('updated_at'),
             );
             if ($up_result) {
                 // insert all data for serial_reports_logs
