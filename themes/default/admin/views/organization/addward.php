@@ -75,11 +75,11 @@ if (!empty($variants)) {
                     <div class="form-group">
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_id"); ?>
                         <?php
-                        $dt[''] = lang('select') . ' ' . lang('থানা');
+                        $org_thana[''] = lang('select') . ' ' . lang('থানা');
                         foreach ($thanas as $thana)
-                            $dt[$thana->id] = $thana->thana_name;
+                            $org_thana[$thana->id] = $thana->thana_name;
 
-                        echo form_dropdown('thana_id', $dt, '', 'id="thana_id"  class="form-control select" style="width:100%;" required="required" ');
+                        echo form_dropdown('thana_id', $org_thana, '', 'id="thana_id"  class="form-control select" style="width:100%;" required="required" ');
                         ?>
                     </div>
 

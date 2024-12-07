@@ -42,7 +42,7 @@
                         <?= lang("সাংগঠনিক থানা শাখার নাম", "thana_id"); ?>
                         <?php
 
-                        echo 'DM' . $thana->org_thana_id . 'DM';
+                       
                         $dt[''] = lang('select') . ' ' . lang('থানা');
                         foreach ($thanas as $thana_item)
                             $dt[$thana_item->id] = $thana_item->thana_name;
@@ -136,7 +136,7 @@
 
                         <?php
                         $dt2[''] = 'Select';
-                        foreach ($second_level as $second)
+                       if($second_level) foreach ($second_level as $second)
                             $dt2[$second->id] = $second->name;
 
                         echo form_dropdown('upazila', $dt2, $thana->upazila, ' id="upazila" class="form-control select" style="width:100%;" ');
@@ -151,6 +151,8 @@
 
                         <?php
                         $dt3[''] = 'Select';
+                        
+                        if($third_level) 
                         foreach ($third_level as $third)
                             $dt3[$third->id] = $third->name;
 
@@ -167,6 +169,8 @@
 
                         <?php
                         $dt4[''] = 'Select';
+
+                        if($fourth_level) 
                         foreach ($fourth_level as $fourth)
                             $dt4[$fourth->id] = $fourth->name;
 
