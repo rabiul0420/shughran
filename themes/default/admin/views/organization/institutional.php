@@ -209,7 +209,7 @@
                                         <?php
                                             $institution_row = institution_row($institution->id, $institution_number);
 
-                                            var_dump($institution_row );
+                                            // var_dump($institution_row );
                                             if ($report_info['last_half'] != 1)
                                                 echo $institution_row == null ? 0 : $institution_row['prev_institution'];
                                             ?>
