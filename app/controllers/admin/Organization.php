@@ -212,6 +212,9 @@ class Organization extends MY_Controller
 
         $prev = $report_type['last_year'];
 
+        //echo $start.'>>>>'.$end;
+        
+
 
         $this->data['org_summary_sma'] = $this->getorg_summary_prev('annual', $prev, $branch_id);
 
@@ -246,46 +249,38 @@ class Organization extends MY_Controller
            
            ) a GROUP BY institution_type_child ,prev_institution");
         } else {
-            $this->data['institution_number'] = $this->site->query_binding("SELECT 
-institution_type_child,  
-v3_prev_institution(institution_type_child, 2023,-1) prev_institution, 
-SUM(increase_institution) increase,  
-SUM(decrease_institution) decrease, 
-SUM(thana_org) thana_org, 
-SUM(ward_org) ward_org,
-SUM(unit_org) unit_org 
+            $this->data['institution_number'] = $this->site->query("SELECT 
+    institution_type_child,  v3_prev_institution(institution_type_child, ".$prev.",-1) prev_institution,
+    SUM(increase_institution) AS total_increase_institution, 
+    SUM(decrease_institution) AS total_decrease_institution, 
+    SUM(thana_org) AS total_thana_org, 
+    SUM(ward_org) AS total_ward_org, 
+    SUM(unit_org) AS total_unit_org
 FROM   ( 
 
-	SELECT     
-            institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org
-           FROM `sma_institutionlist`
-           WHERE `date` BETWEEN ? AND ?  
-           GROUP BY institution_type_child 
-           
-           UNION ALL 
-           
-           SELECT     
-            institution_type_child,  0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org
-           FROM `sma_institutionlist`
-           WHERE `close_date` BETWEEN ? AND ?  
-           GROUP BY institution_type_child 
-           
-           UNION ALL 
-           
-           SELECT   institution_type_child, 0 increase_institution,0 decrease_institution,
-		SUM( CASE WHEN org_thana_count > 0 THEN 1 ELSE 0 END) thana_org,
-		SUM( CASE WHEN org_ward_count > 0 THEN 1 ELSE 0 END) ward_org,
-		SUM( CASE WHEN org_unit_count > 0 THEN 1 ELSE 0 END) unit_org
-          FROM `sma_institutionlist` WHERE    is_active = 1 GROUP BY institution_type_child 
-      
-        UNION ALL 
-      SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org FROM `sma_institution`  WHERE  `type` = 1  
-      
-      
-      
-      
-           
-           ) a GROUP BY institution_type_child ,prev_institution", [$start,$end,$start,$end]);
+SELECT institution_type_child, 
+COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org 
+FROM `sma_institutionlist` WHERE `date` BETWEEN  '".$start."' AND  '".$end."' GROUP BY institution_type_child 
+
+UNION ALL 
+
+SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org 
+FROM `sma_institutionlist` WHERE `close_date` BETWEEN  '".$start."' AND  '".$end."' GROUP BY institution_type_child 
+
+UNION ALL 
+
+SELECT   institution_type_child, 0 increase_institution,0 decrease_institution, SUM( CASE WHEN org_thana_count > 0 THEN 1 ELSE 0 END) thana_org, 
+SUM( CASE WHEN org_ward_count > 0 THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_unit_count > 0 THEN 1 ELSE 0 END) unit_org FROM `sma_institutionlist` 
+WHERE is_active = 1 GROUP BY institution_type_child 
+
+UNION ALL 
+
+SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org 
+FROM `sma_institution` WHERE `type` = 1 
+
+
+) AS combined_data
+GROUP BY institution_type_child");
 
         }
 
@@ -295,7 +290,7 @@ FROM   (
 
         $this->data['institutions'] = $this->organization_model->getAllInstitution();
 
-        /// $this->sma->print_arrays($this->data['org_summary']);
+        // $this->sma->print_arrays($this->data['institution_number']);
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Organization'));
         $meta = array('page_title' => 'Organization', 'bc' => $bc);
         // if ($branch_id) {

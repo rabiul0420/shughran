@@ -18,22 +18,22 @@
 
             if ($report_info['is_current'] || $report_info['year'] == date('Y')) {
                 if ($report_info['type'] == 'annual') {
-                    echo anchor('admin/organization' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষাণ্মাসিক ' . $report_info['year']);
-                    echo "&nbsp;|&nbsp;" . anchor('admin/organization' . ($branch_id ? '/' . $branch_id : ''), 'জুন-নভেম্বর\'' . $report_info['year']);
+                    echo anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : '') . ('?type=half_yearly&year=' . $report_info['year']), 'ষাণ্মাসিক ' . $report_info['year']);
+                    echo "&nbsp;|&nbsp;" . anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : ''), 'জুন-নভেম্বর\'' . $report_info['year']);
                     echo "&nbsp;|&nbsp;";
-                    echo anchor('admin/organization' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
+                    echo anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
                 } else {
-                    echo anchor('admin/organization' . ($branch_id ? '/' . $branch_id : ''), 'ষাণ্মাসিক ' . $report_info['year']);
-                    echo "&nbsp;|&nbsp;" . anchor('admin/organization' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
+                    echo anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : ''), 'ষাণ্মাসিক ' . $report_info['year']);
+                    echo "&nbsp;|&nbsp;" . anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
 
                 }
             } else {
 
                 if ($report_info['type'] == 'annual') {
-                    echo anchor('admin/organization' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
+                    echo anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['year'], 'বার্ষিক ' . $report_info['year']);
                 } else {
 
-                    echo anchor('admin/organization' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষাণ্মাসিক ' . $report_info['year']);
+                    echo anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষাণ্মাসিক ' . $report_info['year']);
 
                 }
 
@@ -209,7 +209,7 @@
                                         <?php
                                             $institution_row = institution_row($institution->id, $institution_number);
 
-                                            //var_dump($institution_row );
+                                            var_dump($institution_row );
                                             if ($report_info['last_half'] != 1)
                                                 echo $institution_row == null ? 0 : $institution_row['prev_institution'];
                                             ?>
@@ -220,10 +220,10 @@
 
                                         </td>
                                         <td class="type_3">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['increase']; ?>
+                                        <?php echo $institution_row == null ? 0 : $institution_row['total_increase_institution']; ?>
                                         </td>
                                         <td class="type_4">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['decrease']; ?>
+                                        <?php echo $institution_row == null ? 0 : $institution_row['total_decrease_institution']; ?>
 
                                         </td>
                                         <td class="type_5">
@@ -240,13 +240,13 @@
                                         <td class="type_10">&nbsp;</td>
                                         
                                         <td class="type_11">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['thana_org']; ?>
+                                        <?php echo $institution_row == null ? 0 : $institution_row['total_thana_org']; ?>
                                         </td>
                                         <td class="type_12">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['ward_org']; ?>
+                                        <?php echo $institution_row == null ? 0 : $institution_row['total_ward_org']; ?>
                                         </td>
                                         <td class="type_13">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['unit_org']; ?>
+                                        <?php echo $institution_row == null ? 0 : $institution_row['total_unit_org']; ?>
                                         </td>
                                         <td class="type_">&nbsp;</td>
                                         <td class="type_">&nbsp;</td>
