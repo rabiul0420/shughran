@@ -567,7 +567,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number"
                                     data-table="it_cseit_jonosokti" data-pk="<?php echo $pk1 ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
                                     data-name="m_besorkari" data-title="Enter">
-                                    <?php echo $m_besorkari= (isset($it_cseit_jonosokti['m_besorkari'])) ? $it_cseit_jonosokti['m_sorkari'] : 0; ?>
+                                    <?php echo $m_besorkari= (isset($it_cseit_jonosokti['m_besorkari'])) ? $it_cseit_jonosokti['m_besorkari'] : 0; ?>
                                     </a>
                                 </td>
                                 <td class="tg-0pky  type_1">
