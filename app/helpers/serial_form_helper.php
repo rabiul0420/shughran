@@ -4,63 +4,103 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
     $serial_info = is_object($serial_info) ? $serial_info : (object) [
         'branch_id' => null,
         'dept_id' => null,
+        'serial_number' => null,
+        'branch_comment' => null,
         'dept_review' => null,
         'is_checked' => null,
         'is_reportok' => null,
     ];
 
-    $checked =  null;
-    $reportok =  null;
-    $checked =  $serial_info->is_checked;
-    $reportok =  $serial_info->is_reportok;
     ?>
 
-    <div class="col-md-12" <?php if($is_owner || $is_admin || $is_departmentuser){ echo "style='display:none;'";} ?> >
+<style>
+.redactor_editor {
+    min-height: 10px !important;
+}
+/* Green button  */
+.btn-green {
+    background-color: #28a745; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 3px 5px; /* Add padding */
+    font-size: 10px; /* Text size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: not-allowed; /* Show not-allowed cursor */
+    opacity: 1; /* Fully opaque */
+}
+/* red button */
+.btn-red {
+    background-color: #d9534f; /* red background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 3px 5px; /* Add padding */
+    font-size: 10px; /* Text size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: not-allowed; /* Show not-allowed cursor */
+    opacity: 1; /* Fully opaque */
+}
+
+
+</style>
+    <div class="col-md-12" <?php if($is_owner || $is_admin || $is_departmentuser){ echo "style='display:none;margin-bottom:40px;'";} ?> >
+
+        <?php echo form_open_multipart(base_url("index.php/admin/serialreport/sentserial/" . $branch_id), ['onsubmit' => 'return confirmSerialSubmit()']); ?>
+            <input type="hidden" name="branch_id" value="<?php echo $branch_id; ?>" />
+            <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
+            <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
 
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <td style="width: 350px;" rowspan="2">
+                    <td style="width: 350px;vertical-align:middle;" rowspan="2">
                         এই বিভাগের রিপোর্ট পূরণ করা শেষ হলে বিভাগকে রিপোর্ট চেক করার জন্য সিরিয়াল দিন
                     </td>
-                    <?php echo form_open_multipart(base_url("index.php/admin/serialreport/sentserial/" . $branch_id), ['onsubmit' => 'return confirmSerialSubmit()']); ?>
-                        <input type="hidden" name="branch_id" value="<?php echo $branch_id; ?>" />
-                        <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
-                        <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
-                        <td rowspan="2" style="width: 100px;">
+                                              
+                        <td rowspan="2" style="width: 100px;vertical-align:middle;" >
 
                             <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id || (int) $is_departmentuser === 1): ?>
-                                    <small>
-                                    সিরিয়াল দেওয়া হয়েছে। <br>
-                                    <?= $serial_info->created_at ? $serial_info->created_at : "";?>
-                                      </small> <br>
-                                <?php if ($serial_info->is_reportok !== 'OK' && $serial_info->is_checked === 'YES' ): ?>
-                                        <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0"> আবার সিরিয়াল দিন</button>
-                                    
-                                    <?php endif; ?>
+                               
+                                    <?php if ($serial_info->is_reportok !== 'OK'): ?>
+
+                                            <?php if ($serial_info->is_checked === 'NO'): ?>                                     
+                                                <small>
+                                                    সিরিয়াল দেওয়া হয়েছে। <br>
+                                                    <?= $serial_info->created_at ? $serial_info->created_at : "";?> <br>
+                                                </small>
+                                                
+                                            <?php elseif ($serial_info->is_checked === 'YES'): ?>
+                                                <!-- Input field for serial number -->
+                                                <!-- The value of the input is set to the next serial number by adding 1 to the current serial number retrieved from $serial_info -->
+                                                <input type="hidden" name="serial_number" value="<?= $serial_info->serial_number+1; ?>" />
+
+                                                <!-- Button to submit the form and allow the user to Serial again -->
+                                                <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">আবার সিরিয়াল দিন</button>                                    
+                                            <?php endif ?>
+                                       <?php endif ?>
                                 
                             <?php else: ?>
-                                <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">সিরিয়াল দিন</button>
-                            <?php endif; ?>
-
-
-
-                            <!-- <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id || (int) $is_departmentuser === 1): ?>
-                                <?= $serial_info->serial_number ? $serial_info->serial_number : "0"; ?>  সিরিয়াল দেওয়া হয়েছে। <br>
-                            <small><?= $serial_info->created_at ? $serial_info->created_at : ""; ?> </small>
-                            <?php else: ?>
-                                <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">সিরিয়াল দিন</button>
-                            <?php endif; ?> -->
-
+                                <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">সিরিয়াল দিন</button>                           
+                            <?php endif ?>
 
                         </td>
-                    <?php echo form_close(); ?>
                     <td style="width: 50px;">চেক</td>
                     <td style="width: 50px;">রিপোর্ট ওকে?</td>
                 </tr>
                 <tr>
-                    <td scope="row"><?= $serial_info->is_checked; ?></td>
-                    <td><?= $serial_info->is_reportok; ?></td>
+                    <td>
+                        <?php if ($serial_info->is_checked === 'YES'): ?>
+                            <button class="btn-green" disabled><?= 'YES'; ?></button>
+                            <?php else: ?>
+                            <button class="btn-red" disabled><?= 'NO'; ?></button>
+                        <?php endif ?>
+                    </td>
+                    <td>
+                        <?php if ($serial_info->is_reportok === 'OK'): ?>
+                            <button class="btn-green" disabled><?= 'OK'; ?></button>
+                            <?php else: ?>
+                            <button class="btn-red" disabled><?= 'NOT OK'; ?></button>
+                        <?php endif ?>
+                    </td>
                 </tr>
                 <tr>
                     <td style="width: 100px;">বিভাগীয় রিভিউ 
@@ -70,12 +110,39 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                     </td>
                 </tr>
             </tbody>
+            
         </table>
-    </div>
+    <?php echo form_close(); ?>
 
+        
+    <?php echo form_open_multipart(base_url("index.php/admin/serialreport/sentserial/" . $branch_id), ['onsubmit' => 'return confirmCommentSubmit()']); ?>
+                <input type="hidden" name="branch_id" value="<?php echo $branch_id; ?>" />
+                <input type="hidden" name="dept_id" value="<?php echo $department_id; ?>" />
+                <input type="hidden" name="report_type" value="<?php echo $report_info['type']; ?>" />
+            
+            <?php if ((int) $serial_info->branch_id === (int) $branch_id && (int) $serial_info->dept_id === (int) $department_id && $serial_info->is_reportok !== 'OK'): ?>
+                <table class="table">
+                 <div class="comment" >                    
+                    <label for="branch_comment">মন্তব্য (যদি থাকে)</label>   
+                        <div class="form-group"> 
+                            <textarea class="form-control" id="branch_comment" name="branch_comment" rows="1" required="required"  placeholder="Enter your message here...">
+                                <?php echo $serial_info->branch_comment; ?>
+                            </textarea>
+                        </div>   
+                        <div class="form-group">   
+                            <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">Submit</button> 
+                        </div> 
+                    </div>
+                </table>
+        <?php endif ?>
+        <?php echo form_close(); ?>
+    </div>
     <script>
         function confirmSerialSubmit() {
             return confirm("আপনি কি নিশ্চিত যে এই বিভাগের রিপোর্টটি পূরণ সম্পন্ন হয়েছে?");
+        }
+        function confirmCommentSubmit() {
+            return confirm("আপনি কি মন্তব্য করতে চান?");
         }
     </script>
 
@@ -140,11 +207,6 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
         </div>
 
         <?php echo form_close(); ?>
-        <style>
-            .redactor_editor {
-                min-height: 10px !important;
-            }
-        </style>
     <?php endif; ?>
 
 <?php } ?>
