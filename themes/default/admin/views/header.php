@@ -424,17 +424,17 @@
  
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    প্রাতিষ্ঠানিক বিবরণ <span class="caret"></span>
+                                    শিক্ষাপ্রতিষ্ঠান বিবরণ <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?= admin_url('organization/institutional'); ?>" class="line-height-lg">প্রাতিষ্ঠানিক সংগঠন একনজরে </a></li>
-                                        <li><a href="<?= admin_url('organization'); ?>" class="line-height-lg">প্রাতিষ্ঠানিক শিক্ষার্থী একনজরে
+                                        <li><a href="<?= admin_url('organization/institutional'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠান সংগঠন একনজরে </a></li>
+                                        <li><a href="<?= admin_url('organization'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠান শিক্ষার্থী একনজরে
                                         </a></li>
 
                                         <li class="tmp_hidden"><hr class="divider" /></li>
                                         
 
-                                        <li><a href="<?= admin_url('organization/institutionlist'); ?>" class="line-height-lg">প্রতিষ্ঠান তালিকা</a></li>
+                                        <li><a href="<?= admin_url('organization/institutionlist'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠান তালিকা</a></li>
                                         <li><a href="<?= admin_url('organization/institution_increase'); ?>" class="line-height-lg"> শিক্ষাপ্রতিষ্ঠান বৃদ্ধি তালিকা</a></li>
                                         <li><a href="<?= admin_url('organization/institution_decrease'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠান ঘাটতি  তালিকা</a></li>
                                      
