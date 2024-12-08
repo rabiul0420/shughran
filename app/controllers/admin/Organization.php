@@ -178,7 +178,7 @@ class Organization extends MY_Controller
     function institutional($branch_id = NULL)
     {
 
-        $this->sma->checkPermissions();
+        $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
             $this->session->set_flashdata('warning', lang('access_denied'));
             admin_redirect('organization/' . $this->session->userdata('branch_id'));
