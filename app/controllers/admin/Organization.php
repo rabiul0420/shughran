@@ -255,27 +255,39 @@ class Organization extends MY_Controller
     SUM(decrease_institution) AS total_decrease_institution, 
     SUM(thana_org) AS total_thana_org, 
     SUM(ward_org) AS total_ward_org, 
-    SUM(unit_org) AS total_unit_org
+    SUM(unit_org) AS total_unit_org,
+    SUM(unit_org) AS current_org_count,
+    SUM(unit_org) AS org_absent_count
 FROM   ( 
 
 SELECT institution_type_child, 
-COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org 
+COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count
 FROM `sma_institutionlist` WHERE `date` BETWEEN  '".$start."' AND  '".$end."' GROUP BY institution_type_child 
 
 UNION ALL 
 
-SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org 
+SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org, 0 current_org_count, 0 org_absent_count
 FROM `sma_institutionlist` WHERE `close_date` BETWEEN  '".$start."' AND  '".$end."' GROUP BY institution_type_child 
 
 UNION ALL 
 
 SELECT   institution_type_child, 0 increase_institution,0 decrease_institution, SUM( CASE WHEN org_thana_count > 0 THEN 1 ELSE 0 END) thana_org, 
-SUM( CASE WHEN org_ward_count > 0 THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_unit_count > 0 THEN 1 ELSE 0 END) unit_org FROM `sma_institutionlist` 
+SUM( CASE WHEN org_ward_count > 0 THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_unit_count > 0 THEN 1 ELSE 0 END) unit_org,0 current_org_count,0 org_absent_count FROM `sma_institutionlist` 
 WHERE is_active = 1 GROUP BY institution_type_child 
 
 UNION ALL 
 
-SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org 
+
+
+SELECT institution_type_child, 0, 0, 0 , 0, 0, COUNT(institution_type_child) current_org_count,0 org_absent_count FROM `sma_institutionlist_with_org`  GROUP BY institution_type_child
+UNION ALL 
+
+ 
+ SELECT institution_type_child, 0, 0, 0 , 0, 0, 0 current_org_count, COUNT(institution_type_child) org_absent_count FROM `sma_institutionlist_without_org`  GROUP BY institution_type_child
+
+UNION ALL 
+
+SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0,0
 FROM `sma_institution` WHERE `type` = 1 
 
 

@@ -230,11 +230,14 @@
                                       
                                         </td>
                                         <td class="type_6">
+                                        <?php echo $institution_row == null ? 0 : $institution_row['current_org_count']; ?>
                                          </td>
                                         <td class="type_7">
+                                        <?php echo $institution_row == null ? 0 : $institution_row['org_absent_count']; ?>
+                                        
                                          </td>
                                         <td class="type_8">
-                                        
+                                       
                                         </td>
                                         <td class="type_9">&nbsp;</td>
                                         <td class="type_10">&nbsp;</td>
