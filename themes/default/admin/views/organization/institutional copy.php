@@ -58,12 +58,12 @@
 
                     <?php
 
-                    echo ' <li>' . anchor('admin/institutional' . ($branch_id ? '/' . $branch_id : ''), 'বর্তমান ') . ' </li>';
+                    echo ' <li>' . anchor('admin/organization' . ($branch_id ? '/' . $branch_id : ''), 'বর্তমান ') . ' </li>';
 
                     for ($i = date('Y') - 1; $i >= 2019; $i--) {
-                        echo ' <li>' . anchor('admin/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
+                        echo ' <li>' . anchor('admin/organization' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
 
-                        echo ' <li>' . anchor('admin/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
+                        echo ' <li>' . anchor('admin/organization' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
 
 
                     }
@@ -138,6 +138,7 @@
 
 
 
+                
 
 
 
@@ -147,35 +148,36 @@
 
 
 
-                <table class="table table-bordered"
-                    data-branch="<?php echo isset($branch_code) ? $branch_code . '_organization_' : 'central_organization'; ?>">
+
+                <table class="table table-bordered">
+
                     <thead>
                         <tr>
                             <th class="text-center">সংগঠন</th>
                             <th colspan="4">প্রতিষ্ঠান</th>
                             <th colspan="5">সংগঠন</th>
-                            <th colspan="4">কোন মানের সংগঠন</th>
-                            <th colspan="4">উপশাখা</th>
+                            <th colspan="9">কোন মানের সংগঠন</th>
                             <th colspan="4">
                                 <p>সমর্থক সংগঠন</p>
                                 <p>(সংগঠন নেই এমন প্রতিষ্ঠানের কয়টিতে ন্যূনতম একটি সমর্থক সংগঠন আছে?)</p>
                             </th>
                         </tr>
                         <tr>
-                            <th>&nbsp;</th>
+                            <th></th>
                             <th>পূর্ব সংখ্যা</th>
                             <th>সংখ্যা</th>
                             <th>বৃৃদ্ধি</th>
                             <th>ঘাটতি</th>
                             <th>পূর্ব সংখ্যা</th>
                             <th>বর্তমান সংখ্যা</th>
-                            <th>নেই</th>
+                            <th>নেই	</th>
                             <th>বৃৃদ্ধি</th>
                             <th>ঘাটতি</th>
                             <th>শাখা</th>
-                            <th>থানা</th>
-                            <th>ওয়ার্ড</th>
-                            <th>উপশাখা</th>
+                            <th>থানা পূর্ব</th>
+                            <th>থানা বর্তমান</th>
+                            <th>ওয়ার্ড পূর্ব</th>
+                            <th>ওয়ার্ড বর্তমান</th>
                             <th>উপশাখা পূর্ব</th>
                             <th>উপশাখা বর্তমান</th>
                             <th>উপশাখা বৃদ্ধি</th>
@@ -190,95 +192,77 @@
 
                         <?php foreach ($institutiontype as $institution_type) { ?>
 
-                            <tr style="background-color: aqua;">
-                                <td><?php echo $institution_type->institution_type; ?></td>
 
-                                <?php for ($i = 1; $i <= 21; $i++) {
+                            <tr style="background: aqua;">
+                                <td><?php echo $institution_type->institution_type; ?> </td>
+                                <?php for ($i = 1; $i <= 22; $i++) {
                                     echo '<td class="type_"' . $i . '>  </td>';
 
                                 } ?>
+
 
                             </tr>
 
                             <?php foreach ($institutions as $institution)
                                 if ($institution->type_id == $institution_type->id) { ?>
-
                                     <tr>
                                         <td><?php echo $institution->institution_type ?></td>
+
+
                                         <td class="type_1">
-                                        <?php
+                                            <?php
                                             $institution_row = institution_row($institution->id, $institution_number);
 
                                             //var_dump($institution_row );
                                             if ($report_info['last_half'] != 1)
                                                 echo $institution_row == null ? 0 : $institution_row['prev_institution'];
                                             ?>
+
                                         </td>
                                         <td class="type_2">
-                                        <?php if ($report_info['last_half'] != 1)
+                                            <?php if ($report_info['last_half'] != 1)
                                                 echo $institution_row == null ? 0 : $institution_row['prev_institution'] + $institution_row['increase'] - $institution_row['decrease']; ?>
 
                                         </td>
                                         <td class="type_3">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['increase']; ?>
-                                        </td>
-                                        <td class="type_4">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['decrease']; ?>
+                                            <?php echo $institution_row == null ? 0 : $institution_row['increase']; ?>
 
                                         </td>
-                                        <td class="type_5">
-                                      
+                                        <td class="type_4">
+                                            <?php echo $institution_row == null ? 0 : $institution_row['decrease']; ?>
+
                                         </td>
-                                        <td class="type_6">
-                                         </td>
-                                        <td class="type_7">
-                                         </td>
-                                        <td class="type_8">
-                                        
-                                        </td>
-                                        <td class="type_9">&nbsp;</td>
-                                        <td class="type_10">&nbsp;</td>
-                                        
-                                        <td class="type_11">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['thana_org']; ?>
-                                        </td>
-                                        <td class="type_12">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['ward_org']; ?>
-                                        </td>
-                                        <td class="type_13">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['unit_org']; ?>
-                                        </td>
-                                        <td class="type_">&nbsp;</td>
-                                        <td class="type_">&nbsp;</td>
-                                        <td class="type_">&nbsp;</td>
-                                        <td class="type_">&nbsp;</td>
-                                        <td class="type_">&nbsp;</td>
-                                        <td class="type_">&nbsp;</td>
-                                        <td class="type_">&nbsp;</td>
-                                        <td class="type_">&nbsp;</td>
-                                        
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td class="type_"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 <?php } ?>
                         <?php } ?>
 
-
-
-
-
                         <tr>
                             <td>Total</td>
-                            <?php for ($i = 1; $i <= 21; $i++) { ?>
+                            <?php for ($i = 1; $i <= 22; $i++) { ?>
                                 <td class="total_<?php echo $i; ?>"><?php echo $i; ?></td>
                             <?php } ?>
-                        </tr>
-
                     </tbody>
                 </table>
 
-
-
-
-
+ 
 
             </div>
         </div>

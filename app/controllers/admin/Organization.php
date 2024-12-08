@@ -246,24 +246,46 @@ class Organization extends MY_Controller
            
            ) a GROUP BY institution_type_child ,prev_institution");
         } else {
-            $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  v3_prev_institution(institution_type_child, " . $prev . ", -1) prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
-            institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution
+            $this->data['institution_number'] = $this->site->query_binding("SELECT 
+institution_type_child,  
+v3_prev_institution(institution_type_child, 2023,-1) prev_institution, 
+SUM(increase_institution) increase,  
+SUM(decrease_institution) decrease, 
+SUM(thana_org) thana_org, 
+SUM(ward_org) ward_org,
+SUM(unit_org) unit_org 
+FROM   ( 
+
+	SELECT     
+            institution_type_child,  COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org
            FROM `sma_institutionlist`
-           WHERE `date` BETWEEN '" . $start . "' AND '" . $end . "' 
+           WHERE `date` BETWEEN ? AND ?  
            GROUP BY institution_type_child 
            
            UNION ALL 
            
            SELECT     
-            institution_type_child,  0 increase_institution, COUNT(`id`) decrease_institution
+            institution_type_child,  0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org
            FROM `sma_institutionlist`
-           WHERE `close_date` BETWEEN '" . $start . "' AND '" . $end . "' 
+           WHERE `close_date` BETWEEN ? AND ?  
            GROUP BY institution_type_child 
            
            UNION ALL 
-    
-    SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution FROM `sma_institution` WHERE  `type` = 1 GROUP BY id 
-           ) a GROUP BY institution_type_child ,prev_institution");
+           
+           SELECT   institution_type_child, 0 increase_institution,0 decrease_institution,
+		SUM( CASE WHEN org_thana_count > 0 THEN 1 ELSE 0 END) thana_org,
+		SUM( CASE WHEN org_ward_count > 0 THEN 1 ELSE 0 END) ward_org,
+		SUM( CASE WHEN org_unit_count > 0 THEN 1 ELSE 0 END) unit_org
+          FROM `sma_institutionlist` WHERE    is_active = 1 GROUP BY institution_type_child 
+      
+        UNION ALL 
+      SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org FROM `sma_institution`  WHERE  `type` = 1  
+      
+      
+      
+      
+           
+           ) a GROUP BY institution_type_child ,prev_institution", [$start,$end,$start,$end]);
 
         }
 
@@ -4808,7 +4830,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 'org_type' => $this->input->post('org_type'),   //all time.
                 'prosasonik_details' => $this->input->post('prosasonik_details'),
                 'is_attached' => $this->input->post('is_attached'),
-                'institution_id' => $this->input->post('institution_id'),
+                'institution_id' => $this->input->post('institution_id')?$this->input->post('institution_id'):null,
                 'district' => $this->input->post('district'),
                 'upazila' => $this->input->post('upazila'),
                 'union' => $this->input->post('union'),
