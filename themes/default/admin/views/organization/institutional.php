@@ -58,12 +58,12 @@
 
                     <?php
 
-                    echo ' <li>' . anchor('admin/institutional' . ($branch_id ? '/' . $branch_id : ''), 'বর্তমান ') . ' </li>';
+                    echo ' <li>' . anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : ''), 'বর্তমান ') . ' </li>';
 
                     for ($i = date('Y') - 1; $i >= 2019; $i--) {
-                        echo ' <li>' . anchor('admin/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
+                        echo ' <li>' . anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
 
-                        echo ' <li>' . anchor('admin/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
+                        echo ' <li>' . anchor('admin/organization/institutional' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
 
 
                     }
@@ -93,12 +93,12 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip"
                                 data-placement="left" title="<?= lang("all_branches") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('organization') ?>"><i class="fa fa-building-o"></i>
+                            <li><a href="<?= admin_url('organization/institutional') ?>"><i class="fa fa-building-o"></i>
                                     <?= 'সকল শাখা' ?></a></li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('organization/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('organization/institutional/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -209,14 +209,15 @@
                                         <?php
                                             $institution_row = institution_row($institution->id, $institution_number);
 
-                                            // var_dump($institution_row );
+                                            //  var_dump($institution_row );
+                                            //  exit();
                                             if ($report_info['last_half'] != 1)
                                                 echo $institution_row == null ? 0 : $institution_row['prev_institution'];
                                             ?>
                                         </td>
                                         <td class="type_2">
                                         <?php if ($report_info['last_half'] != 1)
-                                                echo $institution_row == null ? 0 : $institution_row['prev_institution'] + $institution_row['increase'] - $institution_row['decrease']; ?>
+                                                echo $institution_row == null ? 0 : $institution_row['prev_institution'] + $institution_row['total_increase_institution'] - $institution_row['total_decrease_institution']; ?>
 
                                         </td>
                                         <td class="type_3">
@@ -227,7 +228,7 @@
 
                                         </td>
                                         <td class="type_5">
-                                      
+                                        <?php echo $institution_row == null ? 0 : $institution_row['prev_organization']; ?>
                                         </td>
                                         <td class="type_6">
                                         <?php echo $institution_row == null ? 0 : $institution_row['current_org_count']; ?>
@@ -252,7 +253,7 @@
                                         <?php echo $institution_row == null ? 0 : $institution_row['total_unit_org']; ?>
                                         </td>
                                         <td class="type_">&nbsp;</td>
-                                        <td class="type_">&nbsp;</td>
+                                        <td class="type_"> <?php echo $institution_row == null ? 0 : $institution_row['org_unit_count']; ?></td>
                                         <td class="type_">&nbsp;</td>
                                         <td class="type_">&nbsp;</td>
                                         <td class="type_">&nbsp;</td>
