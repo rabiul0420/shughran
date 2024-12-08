@@ -401,7 +401,7 @@ $category_display =($thana->org_type == 'Departmental' &&  $thana->is_attached !
                 $('.institution_section').hide();
             }
         });
-
+ 
 
         $('#organization_subtype').change(function() {
 
