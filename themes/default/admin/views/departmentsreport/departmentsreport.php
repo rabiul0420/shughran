@@ -82,7 +82,7 @@ $group_id = $this->session->userdata('group_id');
                                     <td width="20%" <?php if($group_id == 8 ) { echo "style='display:none'";} ?>> <?= $dept->name ?> </td>
                                    
                                     <td data-order="<?= isset($record['created_at']) ? strtotime($record['created_at']) : 0 ?>">
-                                        <?= isset($record['updated_at']) ? $record['updated_at'] : '' ?>
+                                        <?= isset($record['created_at']) ? $record['created_at'] : '' ?>
                                     </td>
                                     <td style="text-align:center;">
                                         <?= isset($record['is_checked']) ? '<span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>' : '<span class="label label-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>' ?>

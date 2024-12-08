@@ -53,7 +53,8 @@ class Serialreport extends MY_Controller
                 // Prepare data for updating the second serial record
                 $data_again_serial = [
                     'serial_number' => $this->input->post('serial_number'), 
-                    'is_checked' => 'NO' 
+                    'is_checked' => 'NO',
+                    'created_at' => $this->input->post('created_at'),  // created_at time update by second serial submit
                 ];
                 // Set conditions for the update query
                 $where = [
