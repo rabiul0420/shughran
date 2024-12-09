@@ -107,7 +107,7 @@
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $row['district_name'] ?></td>
-                                <td><?= $row['thana_name'] ?></td>
+                                <td><?= $row['upazila_name'] ?></td>
                                 <td><?= $row['union_name'] ?></td>
 
                                 <td><?= $row['org_thana'] ?></td>
@@ -118,7 +118,7 @@
                                 <td><?= ($row['org_thana'] > 0 ? 'থানা' : ($row['org_ward'] > 0 ? 'ওয়ার্ড' : ($row['org_unit'] > 0 ? 'উপশাখা' : ''))); ?>
                                 </td>
                                 <td><?= $row['supporter_organization'] ?></td>
-                                <td><?= $row['union_number'] ?></td>
+                                <td><?= $row['ward_number'] ?></td>
                                 
 
                                 <td></td>

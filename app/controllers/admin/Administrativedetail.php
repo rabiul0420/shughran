@@ -1070,6 +1070,7 @@ v3_district_upazila( sma_district.parent_second_level) thana_name, v3_district_u
     function fuad()
     {
 
+        exit();
 
         $result = $this->site->query(" SELECT DISTINCT parent_second_level FROM sma_district WHERE `level` = 4 AND parent_top_level IS NULL AND parent_second_level IS NOT NULL");
 
@@ -1081,7 +1082,8 @@ v3_district_upazila( sma_district.parent_second_level) thana_name, v3_district_u
             $this->db->where('level', 4);
             $this->db->where('parent_top_level', null, false); // Use 'false' to prevent automatic escaping
             // Update the table
-            $this->db->update('district',['parent_top_level' => $result->parent_top_level]);          
+            $this->db->update('district',['parent_top_level' => $result->parent_top_level]);
+          
             echo $result->parent_top_level . '>>' . $row['parent_second_level'] . '<br/>';
         }
 
