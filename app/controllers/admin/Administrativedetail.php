@@ -1077,16 +1077,11 @@ v3_district_upazila( sma_district.parent_second_level) thana_name, v3_district_u
         foreach ($result as $row) {
 
             $result = $this->site->getByID('district', 'id', $row['parent_second_level']);
-
-
             $this->db->where('parent_second_level', $row['parent_second_level']);
             $this->db->where('level', 4);
             $this->db->where('parent_top_level', null, false); // Use 'false' to prevent automatic escaping
             // Update the table
-            $this->db->update('district',['parent_top_level' => $result->parent_top_level]);
-
-          
-
+            $this->db->update('district',['parent_top_level' => $result->parent_top_level]);          
             echo $result->parent_top_level . '>>' . $row['parent_second_level'] . '<br/>';
         }
 
