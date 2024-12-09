@@ -577,7 +577,7 @@ v3_district_upazila( sma_district.parent_second_level) upazila_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
  b.ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
-		(  
+		(   
 		
 		    SELECT       org_thana,
                     org_ward,
@@ -619,7 +619,7 @@ SELECT DISTINCT pourashava_union_id FROM   sma_administrative_area WHERE   branc
 
             $this->data['district_info'] = $this->site->query("SELECT sma_district.name union_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
- b.ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
+ b.ward_number, b.org_thana, b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
 		(  
 		
