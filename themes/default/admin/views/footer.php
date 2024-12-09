@@ -12,7 +12,7 @@
 
     <p style="text-align:center;">&copy; <?= date('Y') . " " . $Settings->site_name; ?> (<a href="<?= base_url('documentation.pdf'); ?>" target="_blank">v<?= $Settings->version; ?></a>
         ) <?php if ($_SERVER["REMOTE_ADDR"] == '127.0.0.1') {
-                echo ' - Page rendered in <strong>{elapsed_time}</strong> seconds';
+                echo ' -ff Page rendered in <strong>{elapsed_time}</strong> seconds';
             } ?></p>
 </footer>
 <?= '</div>'; ?>
@@ -182,10 +182,10 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                     prepend: "not selected",
                     inputclass: 'form-control',
                     source: [{
-                        value: 'Yes',
+                        value: '1',
                         text: 'Yes'
                     }, {
-                        value: 'No',
+                        value: '0',
                         text: 'No'
                     }],
 

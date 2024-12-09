@@ -658,7 +658,7 @@ $(document).ready(function(){
                           <td class="tg-pwj7" rowspan=''> ক্যাটাগরির নাম</td>
                           <td class="tg-pwj7" rowspan=''> প্রতি ক্যাটাগরির টিমে কত জন রয়েছে?</td>
                           <td class="tg-pwj7" colspan=''>টিম মিটিং কতটি</td>
-                          <td class="tg-pwj7" colspan=''> টিম মিটিং কতটি</td>
+                          <td class="tg-pwj7" colspan=''> নতুন কাজ সম্পন্ন হয়েছে কতটি</td>
                           <td class="tg-pwj7" colspan=''>এ বছরের উল্লেখযোগ্য বাস্তবায়িত কাজসমূহ লিখুন</td>
                       </tr>
                       <tr>

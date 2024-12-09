@@ -72,7 +72,7 @@ function render_dept_report_serial_form($branch_id, $report_info, $department_id
                                                 <!-- Input field for serial number -->
                                                 <!-- The value of the input is set to the next serial number by adding 1 to the current serial number retrieved from $serial_info -->
                                                 <input type="hidden" name="serial_number" value="<?= $serial_info->serial_number+1; ?>" />
-
+                                                <input type="hidden" value="<?= date('Y-m-d H:i:s'); ?>" name="created_at" />
                                                 <!-- Button to submit the form and allow the user to Serial again -->
                                                 <button type="submit" class="btn btn-primary btn-sm mx-2 my-2 my-md-0">আবার সিরিয়াল দিন</button>                                    
                                             <?php endif ?>
