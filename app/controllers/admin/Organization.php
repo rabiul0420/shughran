@@ -4098,7 +4098,7 @@ LEFT JOIN sma_thana_log ON sma_thana_log.thana_id = sma_thana.id
 
 
 
-    function org_calculate_in_institution($institution_id)
+    function org_calculate_in_institution($institution_id, $new_id = null)
     {
  
         
@@ -4130,6 +4130,11 @@ FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id])
             array('id' => $institution_id)
         );
 
+
+
+        if($new_id !=null && ($institution_id != $new_id)){
+            $this->org_calculate_in_institution($new_id);
+        }
  
     }
 
@@ -5122,6 +5127,13 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             if (1 || $this->Owner || $this->Admin) {
                 $this->site->updateData('thana_log', $thana_log, array('thana_id' => $id, 'in_out' => 1));
             }
+
+            
+
+            if (isset($thana_details->institution_id) && !empty($thana_details->institution_id) && $thana_details->institution_id != '' && $thana_details->institution_id != 0)
+            $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
+
+
 
             $this->session->set_flashdata('message', 'Updated successfully');
             admin_redirect("organization/thanalist");

@@ -124,6 +124,8 @@
 
                         <?php
                         $dt2[''] = 'Select';
+
+                        if($second_level)
                         foreach ($second_level as $second)
                             $dt2[$second->id] = $second->name;
 
@@ -138,6 +140,8 @@
 
                         <?php
                         $dt3[''] = 'Select';
+
+                        if($third_level)
                         foreach ($third_level as $third)
                             $dt3[$third->id] = $third->name;
 
@@ -153,6 +157,7 @@
 
                         <?php
                         $dt4[''] = 'Select';
+                        if($fourth_level)
                         foreach ($fourth_level as $fourth)
                             $dt4[$fourth->id] = $fourth->name;
 
