@@ -125,6 +125,7 @@ function index(){
 
 
 
+       $string ="SELECT * FROM sma_serial_reports where report_year = 2024 AND report_type = 'annual' AND branch_id = 84 order by created_at asc";
 
 
 

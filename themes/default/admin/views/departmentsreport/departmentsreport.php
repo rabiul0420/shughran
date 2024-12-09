@@ -56,7 +56,8 @@ $group_id = $this->session->userdata('group_id');
                 <table id="example1" class="display table-bordered" style="width:100%">
                 <thead style="background-color:#428BCA;color:white;text-align: center;">
                     <tr>
-                        <th width="5%"><?= $group_id == 8 ? "শাখা" : "ক্রম"; ?></th>
+                        <th width="5%"><?= "ক্রম"; ?></th>
+                        <th width="5%"><?= "শাখা" ; ?></th>
 
                         <th <?= $group_id == 8 ? "style='display:none'" : "width='20%'"; ?> >বিভাগ </th>
                        
@@ -72,12 +73,16 @@ $group_id = $this->session->userdata('group_id');
                 </thead>
                     <tbody>
                         <?php if ($branch_list) foreach ($branch_list as $row) {
-                            $i = 0; 
-                            foreach ($departments as $dept) { 
-                                $i++;
-                                $record = serial_info($row->code, $dept->id, $serial_records); ?>
+                            
+                            foreach ($departments as $key=>$dept) { 
+                                
+                                $record = serial_info($row->id, $dept->id, $serial_records); ?>
+                                
+                                
                                 <tr>
-                                    <td><?= $group_id == 8 ? $row->code : $i ; ?></td>
+                                    <td><?= $group_id == 8 ? $row->code : $key+1 ; ?></td>
+
+                                    <td><?=  $row->code ; ?></td>
                                     
                                     <td width="20%" <?php if($group_id == 8 ) { echo "style='display:none'";} ?>> <?= $dept->name ?> </td>
                                    
@@ -106,7 +111,12 @@ $group_id = $this->session->userdata('group_id');
 <script>
     // Initialize DataTable
     new DataTable('#example1', {
+        <?php if($group_id==8) {?>
         order: [[2, 'desc']], // Sort by `created_at` column 
+        <?php } else  {?>
+            order: [[0, 'asc']], // Sort by `created_at` column 
+            <?php } ?>
+       
         pageLength: 50,
     });
 </script>

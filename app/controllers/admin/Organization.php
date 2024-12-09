@@ -213,13 +213,13 @@ class Organization extends MY_Controller
         $prev = $report_type['last_year'];
 
         //echo $start.'>>>>'.$end;
-        
+
 
 
         $this->data['org_summary_sma'] = $this->getorg_summary_prev('annual', $prev, $branch_id);
 
- 
-       // $this->sma->print_arrays( $this->data['org_summary_sma']);
+
+        // $this->sma->print_arrays( $this->data['org_summary_sma']);
 
 
         $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
@@ -243,18 +243,18 @@ FROM   (
  SELECT institution_type_id institution_type_child, 0 increase_institution,0 decrease_institution,0 thana_org,0 ward_org,0 unit_org,0 current_org_count,0 org_absent_count,
  
  SUM(institution) prev_institution, SUM(orgnization)  prev_organization,0 org_unit_count FROM `sma_organization_record_calculated` 
-	    WHERE  calculated_year = ".$prev."  AND branch_id = $branch_id GROUP BY institution_type_id 
+	    WHERE  calculated_year = " . $prev . "  AND branch_id = $branch_id GROUP BY institution_type_id 
 
 UNION ALL 
  
 SELECT institution_type_child, 
 COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count
-FROM `sma_institutionlist` WHERE   branch_id = $branch_id AND  `date` BETWEEN  '".$start."' AND  '".$end."' GROUP BY institution_type_child 
+FROM `sma_institutionlist` WHERE   branch_id = $branch_id AND  `date` BETWEEN  '" . $start . "' AND  '" . $end . "' GROUP BY institution_type_child 
 
 UNION ALL 
 
 SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org, 0 current_org_count, 0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count
-FROM `sma_institutionlist` WHERE branch_id = $branch_id AND `close_date` BETWEEN  '".$start."' AND  '".$end."' GROUP BY institution_type_child 
+FROM `sma_institutionlist` WHERE branch_id = $branch_id AND `close_date` BETWEEN  '" . $start . "' AND  '" . $end . "' GROUP BY institution_type_child 
 
 UNION ALL 
 
@@ -300,18 +300,18 @@ FROM   (
  SELECT institution_type_id institution_type_child, 0 increase_institution,0 decrease_institution,0 thana_org,0 ward_org,0 unit_org,0 current_org_count,0 org_absent_count,
  
  SUM(institution) prev_institution, SUM(orgnization)  prev_organization,0 org_unit_count FROM `sma_organization_record_calculated` 
-	    WHERE  calculated_year = ".$prev."  GROUP BY institution_type_id 
+	    WHERE  calculated_year = " . $prev . "  GROUP BY institution_type_id 
 
 UNION ALL 
  
 SELECT institution_type_child, 
 COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count
-FROM `sma_institutionlist` WHERE `date` BETWEEN  '".$start."' AND  '".$end."' GROUP BY institution_type_child 
+FROM `sma_institutionlist` WHERE `date` BETWEEN  '" . $start . "' AND  '" . $end . "' GROUP BY institution_type_child 
 
 UNION ALL 
 
 SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org, 0 current_org_count, 0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count
-FROM `sma_institutionlist` WHERE `close_date` BETWEEN  '".$start."' AND  '".$end."' GROUP BY institution_type_child 
+FROM `sma_institutionlist` WHERE `close_date` BETWEEN  '" . $start . "' AND  '" . $end . "' GROUP BY institution_type_child 
 
 UNION ALL 
 
@@ -3996,7 +3996,7 @@ LEFT JOIN sma_thana_log ON sma_thana_log.thana_id = sma_thana.id
                 );
                 $thana_id = $this->site->insertData('thana_log', $thana_log, 'id');
 
-                
+
                 if (isset($data['institution_id']) && !empty($data['institution_id']) && $data['institution_id'] != '' && $data['institution_id'] != 0)
                     $this->org_calculate_in_institution($data['institution_id']);
 
@@ -4100,24 +4100,24 @@ LEFT JOIN sma_thana_log ON sma_thana_log.thana_id = sma_thana.id
 
     function org_calculate_in_institution($institution_id, $new_id = null)
     {
- 
-        
-       $q = $this->site->query_binding('SELECT 
+
+
+        $q = $this->site->query_binding('SELECT 
 COALESCE(SUM(CASE WHEN `level` = 1 THEN 1 ELSE 0 END ),0) thana_org_count,
 COALESCE(SUM(CASE WHEN `level` = 2 THEN 1 ELSE 0 END ),0) ward_org_count,
 COALESCE(SUM(CASE WHEN `level` = 3 THEN 1 ELSE 0 END ),0) unit_org_count
 FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id]);
 
 
-// $this->sma->print_arrays($q[0]);
+        // $this->sma->print_arrays($q[0]);
 // exit();
- 
+
         $total_org_thana = $q[0]['thana_org_count'];
         $total_org_ward = $q[0]['ward_org_count'];
         $total_org_unit = $q[0]['unit_org_count'];
-        $org_status = $total_org_thana >  0 ? 'Thana' : (   $total_org_ward > 0 ? 'Ward' : (  $total_org_unit > 0 ? 'Unit' : ''  ) ) ;
+        $org_status = $total_org_thana > 0 ? 'Thana' : ($total_org_ward > 0 ? 'Ward' : ($total_org_unit > 0 ? 'Unit' : ''));
 
- 
+
         $this->site->updateData(
             'institutionlist',
             array(
@@ -4132,10 +4132,10 @@ FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id])
 
 
 
-        if($new_id !=null && ($institution_id != $new_id)){
+        if ($new_id != null && ($institution_id != $new_id)) {
             $this->org_calculate_in_institution($new_id);
         }
- 
+
     }
 
     public function get_sub_categoryList($institution_parent_id = null)
@@ -4535,7 +4535,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
 
             if (isset($thana_info->institution_id) && !empty($thana_info->institution_id) && $thana_info->institution_id != '' && $thana_info->institution_id != 0)
-            $this->org_calculate_in_institution($thana_info->institution_id);
+                $this->org_calculate_in_institution($thana_info->institution_id);
 
 
             if ($thana_info->level == 1) {
@@ -4767,7 +4767,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 $this->site->insertData('thana_log', $thana_log);
 
 
-                if (isset($thana_info->institution_id) && !empty($thana_info->institution_id) && $thana_info->institution_id != '' && $thana_info->institution_id != 0)
+            if (isset($thana_info->institution_id) && !empty($thana_info->institution_id) && $thana_info->institution_id != '' && $thana_info->institution_id != 0)
                 $this->org_calculate_in_institution($thana_info->institution_id);
 
             //  is_pending => 2
@@ -4888,7 +4888,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 'org_type' => $this->input->post('org_type'),   //all time.
                 'prosasonik_details' => $this->input->post('prosasonik_details'),
                 'is_attached' => $this->input->post('is_attached'),
-                'institution_id' => $this->input->post('institution_id')?$this->input->post('institution_id'):null,
+                'institution_id' => $this->input->post('institution_id') ? $this->input->post('institution_id') : null,
                 'district' => $this->input->post('district'),
                 'upazila' => $this->input->post('upazila'),
                 'union' => $this->input->post('union'),
@@ -5128,10 +5128,10 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 $this->site->updateData('thana_log', $thana_log, array('thana_id' => $id, 'in_out' => 1));
             }
 
-            
+
 
             if (isset($thana_details->institution_id) && !empty($thana_details->institution_id) && $thana_details->institution_id != '' && $thana_details->institution_id != 0)
-            $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
+                $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
 
 
 
@@ -8230,4 +8230,48 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
         $this->session->set_flashdata('error', lang('nothing_found'));
         redirect($_SERVER["HTTP_REFERER"]);
     }
+
+
+
+
+    function worker_entry($branch_id = NULL)
+    {
+
+
+        $this->sma->checkPermissions('index', TRUE);
+
+        $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+
+
+
+        $report_type = $this->report_type();
+
+       //  $this->sma->print_arrays( $report_type);
+        $year = $report_type['year'];
+        $type = $report_type['type'];
+
+        if ($this->Admin || $this->Owner) {
+
+            $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+
+        } else {
+
+            $branch = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+
+
+        }
+
+        $this->data['records'] = $this->site->query("SELECT *from sma_organization_record where branch_id = ".$branch_id." and report_type = '".$type."' AND report_year = ".$year);
+
+
+        $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
+
+        $this->data['institutions'] = $this->organization_model->getAllInstitution();
+
+        $this->data['modal_js'] = $this->site->modal_js();
+
+
+        $this->load->view($this->theme . 'organization/worker_entry', $this->data);
+    }
+
 }
