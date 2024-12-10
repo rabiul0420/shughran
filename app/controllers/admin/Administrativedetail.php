@@ -70,7 +70,13 @@ class Administrativedetail extends MY_Controller
         if ($branch_id) {
 
 
-            $this->data['district_info'] = $this->site->query("SELECT sma_district.name district_name , b.*  FROM `sma_district` LEFT JOIN  
+            $this->data['district_info'] = $this->site->query("SELECT sma_district.name district_name ,
+             b.org_thana,
+                    b.org_ward,
+                    b.org_unit,
+                    b.branch_number,
+                    b.supporter_organization,b.district,
+                    v3_count_zone(b.district, 2, 2,1) upazilla, v3_count_zone(b.district, 1, 2,1) thana  FROM `sma_district` LEFT JOIN  
 		
 		(SELECT 
                     
@@ -79,8 +85,7 @@ class Administrativedetail extends MY_Controller
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,
-                    v3_count_zone(district, 2, 2,1) upazilla, v3_count_zone(district, 1, 2,1) thana
+                    supporter_organization,district 
                     FROM (
 
                     SELECT 
@@ -103,7 +108,13 @@ SELECT DISTINCT district_id FROM   sma_administrative_area WHERE   branch_id = $
 
         } else {
 
-            $this->data['district_info'] = $this->site->query("SELECT sma_district.name district_name , b.*  FROM `sma_district` LEFT JOIN  
+            $this->data['district_info'] = $this->site->query("SELECT sma_district.name district_name ,
+             b.org_thana,
+                    b.org_ward,
+                    b.org_unit,
+                    b.branch_number,
+                    b.supporter_organization,b.district,
+                    v3_count_zone(b.district, 2, 2,1) upazilla, v3_count_zone(b.district, 1, 2,1) thana  FROM `sma_district` LEFT JOIN  
 		
 		(SELECT 
                     
@@ -112,8 +123,7 @@ SELECT DISTINCT district_id FROM   sma_administrative_area WHERE   branch_id = $
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,
-                    v3_count_zone(district, 2, 2,1) upazilla, v3_count_zone(district, 1, 2,1) thana
+                    supporter_organization,district 
                     FROM (
 
                     SELECT 
@@ -181,14 +191,20 @@ SELECT DISTINCT district_id FROM   sma_administrative_area WHERE   branch_id = $
         if ($branch_id) {
 
 
-            $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, b.*  FROM `sma_district` LEFT JOIN  
+            $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, 
+            
+            b.org_thana,
+                    b.org_ward,
+                    b.org_unit,
+                    b.branch_number,
+                    b.supporter_organization,b.district,b.upazila,
+                      v3_count_zone(b.upazila, 1, 4,2) ward_number  FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,upazila,
-                      v3_count_zone(upazila, 1, 4,2) ward_number
+                    supporter_organization,district,upazila 
                     FROM (
                     
                     SELECT 
@@ -220,14 +236,20 @@ SELECT DISTINCT thana_upazila_id FROM   sma_administrative_area WHERE   branch_i
 
         } else {
 
-            $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, b.*  FROM `sma_district` LEFT JOIN  
+            $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, 
+            b.org_thana,
+                    b.org_ward,
+                    b.org_unit,
+                    b.branch_number,
+                    b.supporter_organization,b.district,b.upazila,
+                      v3_count_zone(b.upazila, 1, 4,2) ward_number  FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,upazila,
-                      v3_count_zone(upazila, 1, 4,2) ward_number
+                    supporter_organization,district,upazila 
+                      
                     FROM (
                     
                     SELECT 
@@ -310,15 +332,21 @@ SELECT DISTINCT thana_upazila_id FROM   sma_administrative_area WHERE   branch_i
         if ($branch_id) {
 
 
-            $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, b.*  FROM `sma_district` LEFT JOIN  
+            $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, 
+             b.org_thana,
+                    b.org_ward,
+                    b.org_unit,
+                    b.branch_number,
+                    b.supporter_organization,b.district,b.upazila,
+                     v3_count_zone(b.upazila, 1, 3,2) paurosova_number,
+                      v3_count_zone(b.upazila, 2, 3,2) union_number
+               FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,upazila,
-                     v3_count_zone(upazila, 1, 3,2) paurosova_number,
-                      v3_count_zone(upazila, 2, 3,2) union_number
+                    supporter_organization,district,upazila 
                     FROM (
                     
                     SELECT 
@@ -349,15 +377,18 @@ SELECT DISTINCT thana_upazila_id FROM   sma_administrative_area WHERE   branch_i
 
         } else {
 
-            $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,v3_district_upazila( sma_district.parent_top_level) district_name, b.*  FROM `sma_district` LEFT JOIN  
+            $this->data['district_info'] = $this->site->query("SELECT sma_district.name thana_name ,
+            v3_district_upazila( sma_district.parent_top_level) district_name, 
+            b.org_thana,b.org_ward,b.org_unit,b.branch_number,b.supporter_organization,b.district,
+            b.upazila,
+                      v3_count_zone(b.upazila, 1, 3,2) paurosova_number,
+                      v3_count_zone(b.upazila, 2, 3,2) union_number  FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,upazila,
-                      v3_count_zone(upazila, 1, 3,2) paurosova_number,
-                      v3_count_zone(upazila, 2, 3,2) union_number
+                    supporter_organization,district,upazila
                     FROM (
                     
                     SELECT 
@@ -439,7 +470,7 @@ SELECT DISTINCT thana_upazila_id FROM   sma_administrative_area WHERE   branch_i
 
             $this->data['district_info'] = $this->site->query("SELECT sma_district.name pourosova_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
- b.ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
+ v3_count_zone(b.`union`, 1, 4,3) ward_number ,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
 		(  
 		
@@ -447,9 +478,9 @@ v3_district_upazila( sma_district.parent_second_level) upazila_name,
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,upazila,`union` pourosova, 
+                    supporter_organization,district,upazila,`union` pourosova 
                   --  `v3_count_zone`(in_parent_id  INT, in_zone_type  INT, in_zone_level  INT, in_parent_level INT)
-                    v3_count_zone(`union`, 1, 4,3) ward_number
+                   --, v3_count_zone(`union`, 1, 4,3) ward_number
                     FROM (
                     
                     SELECT 
@@ -482,7 +513,7 @@ SELECT DISTINCT pourashava_union_id FROM   sma_administrative_area WHERE   branc
 
             $this->data['district_info'] = $this->site->query("SELECT sma_district.name pourosova_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
- b.ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
+ v3_count_zone(b.`union`, 1, 4,3) ward_number ,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
 		(  
 		
@@ -490,9 +521,9 @@ v3_district_upazila( sma_district.parent_second_level) upazila_name,
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,upazila,`union` pourosova, 
+                    supporter_organization,district,upazila,`union` pourosova 
                   --  `v3_count_zone`(in_parent_id  INT, in_zone_type  INT, in_zone_level  INT, in_parent_level INT)
-                    v3_count_zone(`union`, 1, 4,3) ward_number
+                  --  , v3_count_zone(`union`, 1, 4,3) ward_number
                     FROM (
                     
                     SELECT 
@@ -575,7 +606,7 @@ v3_district_upazila( sma_district.parent_second_level) upazila_name,
 
             $this->data['district_info'] = $this->site->query("SELECT sma_district.name union_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
- b.ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
+ v3_count_zone(b.union,1,4,3) ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
 		(   
 		
@@ -583,9 +614,9 @@ v3_district_upazila( sma_district.parent_second_level) upazila_name,
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,upazila,`union`, 
+                    supporter_organization,district,upazila,`union` 
                   --  `v3_count_zone`(in_parent_id  INT, in_zone_type  INT, in_zone_level  INT, in_parent_level INT)
-                    v3_count_zone(`union`, 1, 4,3) ward_number
+                   -- , v3_count_zone(`union`, 1, 4,3) ward_number
                     FROM (
                     
                     SELECT 
@@ -619,7 +650,7 @@ SELECT DISTINCT pourashava_union_id FROM   sma_administrative_area WHERE   branc
 
             $this->data['district_info'] = $this->site->query("SELECT sma_district.name union_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
- b.ward_number, b.org_thana, b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
+ v3_count_zone(b.`union`, 1, 4,3) ward_number, b.org_thana, b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
 		(  
 		
@@ -627,9 +658,9 @@ v3_district_upazila( sma_district.parent_second_level) upazila_name,
                     org_ward,
                     org_unit,
                     branch_number,
-                    supporter_organization,district,upazila,`union`, 
+                    supporter_organization,district,upazila,`union` 
                   --  `v3_count_zone`(in_parent_id  INT, in_zone_type  INT, in_zone_level  INT, in_parent_level INT)
-                    v3_count_zone(`union`, 1, 4,3) ward_number
+                   -- ,v3_count_zone(`union`, 1, 4,3) ward_number
                     FROM (
                     
                     SELECT 
