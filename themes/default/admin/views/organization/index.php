@@ -112,9 +112,11 @@
             <div class="col-lg-12">
                 <p class="introtext"><?php // lang('list_results'); ?></p>
 
-                <?php    if(  $branch_id) {?>
-                <a class="tip pull-right btn btn-danger" title='' href='<?=admin_url('organization/worker_entry/'.$branch_id)?>' data-toggle='modal' data-target='#myModal'><i class="fa fa-plus"></i> কর্মী যুক্ত করুন</a>
-                <?php  }?>
+                <?php if ($branch_id) { ?>
+                    <a class="tip pull-right btn btn-danger" title=''
+                        href='<?= admin_url('organization/worker_entry/' . $branch_id) ?>' data-toggle='modal'
+                        data-target='#myModal'><i class="fa fa-plus"></i> কর্মী যুক্ত করুন</a>
+                <?php } ?>
                 <style>
                     @font-face {
                         font-family: 'SolaimanLipi';
@@ -197,6 +199,15 @@
 
                             <?php foreach ($institutions as $institution)
                                 if ($institution->type_id == $institution_type->id) { ?>
+
+                                    <?php
+                                    $institutioninfo = institution_row($institution->id, $institution_info);
+                                    //$organizationinfo = institution_row($institution->id, $organization_info);
+                                    // $supporterorgbutorginfo = institution_row($institution->id, $supporter_org_but_org_info);
+                        
+                                    //var_dump($institution_row );
+                        
+                                    ?>
                                     <tr>
                                         <td colspan="1"><?php echo $institution->institution_type ?></td>
 
@@ -232,12 +243,12 @@
                                             ?>
                                         </td>
                                         <td class="type_6">
-                                        <?php echo $institutioninfo == null ? 0 : $institutioninfo['worker']; ?>
+                                            <?php echo $institutioninfo == null ? 0 : $institutioninfo['worker']; ?>
 
                                         </td>
                                         <td class="type_7"><?php
                                         $prev_a = sum_org($org_summary_sma, 'associate', $institution->id);
-                                       // echo $prev_a;
+                                        // echo $prev_a;
                                         ?></td>
                                         <td class="type_8">
 
@@ -249,7 +260,7 @@
                                         </td>
                                         <td class="type_9"><?php
                                         $prev_m = sum_org($org_summary_sma, 'member', $institution->id);
-                                       // echo $prev_m;
+                                        // echo $prev_m;
                                         ?></td>
                                         <td class="type_10">
 
@@ -260,7 +271,7 @@
                                         </td>
                                         <td class="type_11">
                                             <?php
-                                          //  echo $prev_m + $prev_a + $prev_w;
+                                            //  echo $prev_m + $prev_a + $prev_w;
                                             ?>
                                         </td>
                                         <td class="type_12">
@@ -269,14 +280,7 @@
                                             ?>
                                         </td>
 
-                                        <?php
-                                        $institutioninfo = institution_row($institution->id, $institution_info);
-                                        //$organizationinfo = institution_row($institution->id, $organization_info);
-                                        // $supporterorgbutorginfo = institution_row($institution->id, $supporter_org_but_org_info);
-                            
-                                        //var_dump($institution_row );
-                            
-                                        ?>
+
 
 
 
@@ -290,13 +294,13 @@
                                             <?php echo $institutioninfo == null ? 0 : $institutioninfo['total_female_student']; ?>
                                         </td>
                                         <td class="type_16">
-                                        <?php echo $institutioninfo == null ? 0 : $institutioninfo['female_student_supporter']; ?>
+                                            <?php echo $institutioninfo == null ? 0 : $institutioninfo['female_student_supporter']; ?>
                                         </td>
                                         <td class="type_17">
-                                        <?php echo $institutioninfo == null ? 0 : $institutioninfo['non_muslim_student']; ?>
+                                            <?php echo $institutioninfo == null ? 0 : $institutioninfo['non_muslim_student']; ?>
                                         </td>
                                         <td class="type_18">
-                                        <?php echo $institutioninfo == null ? 0 : $institutioninfo['total_student_number']; ?>
+                                            <?php echo $institutioninfo == null ? 0 : $institutioninfo['total_student_number']; ?>
                                         </td>
 
                                     </tr>
@@ -315,13 +319,13 @@
 
 
                         <tr>
-                        <td>Total</td>
-                        <?php for($i=1;$i<=18;$i++) {?>
-                        <td class="total_<?php echo $i;?>"><?php echo $i;?></td>
-                        <?php }?>
+                            <td>Total</td>
+                            <?php for ($i = 1; $i <= 18; $i++) { ?>
+                                <td class="total_<?php echo $i; ?>"><?php echo $i; ?></td>
+                            <?php } ?>
                         </tr>
-                        
-                         
+
+
                     </tbody>
                 </table>
 
