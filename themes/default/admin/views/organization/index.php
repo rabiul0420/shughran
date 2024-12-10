@@ -8,7 +8,7 @@
 <div class="box ">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'প্রাতিষ্ঠানিক শিক্ষার্থী একনজরে ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'শিক্ষাপ্রতিষ্ঠান শিক্ষার্থী একনজরে ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
