@@ -105,8 +105,8 @@
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $row['district_name'] ?></td>
                                 <td><?= $row['thana_name'] ?></td>
-                                <td><?= $row['thana_name'] ?></td>
-                                <td><?= $row['thana_name'] ?></td>
+                                <td><?= $row['union_name'] ?></td>
+                                <td><?= $row['ward_name'] ?></td>
 
 
                                 <td><?= $row['org_thana'] ?></td>

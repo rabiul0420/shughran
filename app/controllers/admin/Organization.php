@@ -235,8 +235,8 @@ class Organization extends MY_Controller
     SUM(thana_org) AS total_thana_org, 
     SUM(ward_org) AS total_ward_org, 
     SUM(unit_org) AS total_unit_org,
-    SUM(unit_org) AS current_org_count,
-    SUM(unit_org) AS org_absent_count,
+    SUM(current_org_count) AS current_org_count,
+    SUM(org_absent_count) AS org_absent_count,
     SUM(org_unit_count) org_unit_count
 FROM   ( 
 
