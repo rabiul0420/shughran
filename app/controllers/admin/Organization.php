@@ -4155,8 +4155,8 @@ COALESCE(SUM(CASE WHEN `level` = 3 THEN 1 ELSE 0 END ),0) unit_org_count
 FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id]);
 
 
-        // $this->sma->print_arrays($q[0]);
-// exit();
+          $this->sma->print_arrays($q);
+         exit();
 
         $total_org_thana = $q[0]['thana_org_count'];
         $total_org_ward = $q[0]['ward_org_count'];
@@ -4171,6 +4171,7 @@ FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id])
                 'org_thana_count' => $total_org_thana,
                 'org_ward_count' => $total_org_ward,
                 'org_unit_count' => $total_org_unit,
+                'thana_count' => $total_org_thana+$total_org_ward+$total_org_unit
 
             ),
             array('id' => $institution_id)
