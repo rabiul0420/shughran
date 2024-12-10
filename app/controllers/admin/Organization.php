@@ -198,7 +198,7 @@ class Organization extends MY_Controller
             $this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
         }
 
-
+ 
 
         // $this->data['institutions'] = $this->organization_model->getAllInstitution();
 
