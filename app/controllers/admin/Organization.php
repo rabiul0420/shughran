@@ -438,7 +438,16 @@ GROUP BY institution_type_child");
 
 
 
-            $this->data['institution_info'] = $this->site->query("SELECT     
+           $this->data['institution_info'] = $this->site->query("SELECT institution_type_child ,
+SUM(a.total_student_number) total_student_number,
+SUM(a.supporter) supporter,
+SUM(a.other_org_worker) other_org_worker,
+SUM(a.total_female_student) total_female_student,
+SUM(a.female_student_supporter) female_student_supporter,
+SUM(a.non_muslim_student) non_muslim_student,
+SUM(a.worker) worker
+ FROM (
+SELECT     
            institution_type_child , 
           SUM( total_student_number ) total_student_number, 
           SUM( supporter) supporter,           
@@ -446,13 +455,27 @@ GROUP BY institution_type_child");
           SUM(total_female_student) total_female_student,           
           SUM(female_student_supporter) female_student_supporter,           
           SUM(non_muslim_student) non_muslim_student,           
-          SUM(total_student_number) total_student_number 
-          FROM `sma_institutionlist` WHERE   branch_id = " . $branch_id . " AND is_active = 1 
-          GROUP BY institution_type_child");
+          0 worker
+          FROM `sma_institutionlist` WHERE branch_id = " . $branch_id . " AND    is_active = 1 
+          GROUP BY institution_type_child
+          
+          
+ UNION ALL
+ 
+ SELECT  
+ institution_type_id, 
+ 0 total_student_number,
+ 0 supporter,
+ 0 other_org_worker,
+ 0 total_female_student,
+ 0 female_student_supporter,
+ 0 non_muslim_student,
+ SUM(worker) worker  FROM sma_organization_record WHERE branch_id = " . $branch_id . " AND  `date` BETWEEN '" . $start . "' AND '" . $end . "'   GROUP BY institution_type_id
+ ) a GROUP BY a.institution_type_child");
 
 
 
-
+ 
         } else {
 
             $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  v3_prev_institution(institution_type_child, " . $prev . ", -1) prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
@@ -475,7 +498,16 @@ GROUP BY institution_type_child");
                ) a GROUP BY institution_type_child ,prev_institution");
 
 
-            $this->data['institution_info'] = $this->site->query("SELECT     
+            $this->data['institution_info'] = $this->site->query("SELECT institution_type_child ,
+SUM(a.total_student_number) total_student_number,
+SUM(a.supporter) supporter,
+SUM(a.other_org_worker) other_org_worker,
+SUM(a.total_female_student) total_female_student,
+SUM(a.female_student_supporter) female_student_supporter,
+SUM(a.non_muslim_student) non_muslim_student,
+SUM(a.worker) worker
+ FROM (
+SELECT     
            institution_type_child , 
           SUM( total_student_number ) total_student_number, 
           SUM( supporter) supporter,           
@@ -483,9 +515,23 @@ GROUP BY institution_type_child");
           SUM(total_female_student) total_female_student,           
           SUM(female_student_supporter) female_student_supporter,           
           SUM(non_muslim_student) non_muslim_student,           
-          SUM(total_student_number) total_student_number 
+          0 worker
           FROM `sma_institutionlist` WHERE   is_active = 1 
-          GROUP BY institution_type_child");
+          GROUP BY institution_type_child
+          
+          
+ UNION ALL
+ 
+ SELECT  
+ institution_type_id, 
+ 0 total_student_number,
+ 0 supporter,
+ 0 other_org_worker,
+ 0 total_female_student,
+ 0 female_student_supporter,
+ 0 non_muslim_student,
+ SUM(worker) worker  FROM sma_organization_record WHERE  `date` BETWEEN '" . $start . "' AND '" . $end . "'   GROUP BY institution_type_id
+ ) a GROUP BY a.institution_type_child");
 
 
 
@@ -535,7 +581,7 @@ GROUP BY institution_type_child");
 
 
 
-        /// $this->sma->print_arrays($this->data['org_summary']);
+       //  $this->sma->print_arrays($this->data['institution_info']);
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Organization'));
         $meta = array('page_title' => 'Organization', 'bc' => $bc);
         // if ($branch_id) {
@@ -8240,13 +8286,13 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
         $this->sma->checkPermissions('index', TRUE);
 
-        $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+        //$branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
 
 
         $report_type = $this->report_type();
 
-       //  $this->sma->print_arrays( $report_type);
+        //  $this->sma->print_arrays( $report_type);
         $year = $report_type['year'];
         $type = $report_type['type'];
 
@@ -8261,16 +8307,48 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
         }
 
-        $this->data['records'] = $this->site->query("SELECT *from sma_organization_record where branch_id = ".$branch_id." and report_type = '".$type."' AND report_year = ".$year);
+        $this->data['institutions'] = $this->organization_model->getAllInstitution();
+        $this->data['records'] = $this->site->query("SELECT id,worker,institution_type_id from sma_organization_record where branch_id = " . $branch_id . " and report_type = '" . $type . "' AND report_year = " . $year . " ");
 
 
+        if (count($this->data['records']) == 0) {
+           
+            $batch_arr = [];
+            foreach ($this->data['institutions'] as $institution) {
+                $insData = array(
+                    'institution_type_id' => $institution->id,
+                    'user_id' => $this->session->userdata('user_id'),
+                    'report_year' => date('Y'),
+                    'branch_id' => $branch_id,
+                    'report_type' => $report_type['type'],
+                    'worker' =>'0',
+                    'date' => date('Y-m-d')
+                );
+
+                $batch_arr[] = $insData;
+
+            }
+
+            if (count($batch_arr) > 0) {
+               
+                $this->db->insert_batch('organization_record', $batch_arr);
+            }
+
+            echo count($batch_arr);
+            $this->data['records'] = $this->site->query("SELECT id,worker,institution_type_id from sma_organization_record where branch_id = " . $branch_id . " and report_type = '" . $type . "' AND report_year = " . $year . " ");
+
+        } 
+
+
+
+        $this->data['branch'] = $branch;
         $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
 
-        $this->data['institutions'] = $this->organization_model->getAllInstitution();
+       
 
         $this->data['modal_js'] = $this->site->modal_js();
 
-
+        // $this->sma->print_arrays( $this->data['institutions']);
         $this->load->view($this->theme . 'organization/worker_entry', $this->data);
     }
 

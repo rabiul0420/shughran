@@ -53,17 +53,25 @@
                                 </tr>
 
                                 <?php foreach ($institutions as $institution)
-                                    if ($institution->type_id == $institution_type->id) { ?>
+                                    if ($institution->type_id == $institution_type->id) {
+                                        $record = find_record($records, $institution->id);
+                                        //echo $institution->id;
+                                       // var_dump($record);
+                                        
+
+
+                                        ?>
                                         <tr>
                                             <td class="align-left text-left" style="text-align: left;" colspan="1">
                                                 <?php echo $institution->institution_type ?></td>
                                             <td>
                                                 <a href="#" class="editable editable-click" data-type="number"
                                                     data-table="organization_record"
-                                                    data-pk="<?php //echo $detailinfo['organization_record']->id; ?>"
-                                                    data-url="<?php echo admin_url('departmentsreposssssrt/detailupdate'); ?>"
+                                                    data-child_type_id="<?php echo isset($record['institution_type_id'])? $record['institution_type_id'] : null; ?>"                                                    
+                                                    data-pk="<?php echo isset($record['id'])? $record['id'] : null; ?>"
+                                                    data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>"
                                                     data-name="worker"
-                                                    data-title="Enter">OKAY<?php //echo $detailinfo['dawatelementinfo']->hadith_sale; ?></a>
+                                                    data-title="Enter"><?php echo $record['worker']; ?></a>
                                             </td>
 
                                         </tr>
@@ -130,6 +138,7 @@
                     params.id = $(this).editable().data('id');
                     params.idname = $(this).editable().data('idname');
                     params.branch_id = <?php echo isset($branch->id) ? $branch->id : "''"; ?>;
+                    params.child_type_id =  $(this).editable().data('child_type_id');
                     params.token = $("meta[name=token]").attr("content");
                     return params;
                 },

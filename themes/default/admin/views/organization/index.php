@@ -112,8 +112,9 @@
             <div class="col-lg-12">
                 <p class="introtext"><?php // lang('list_results'); ?></p>
 
-                <a class="tip pull-right btn btn-danger" title='' href='<?=admin_url('organization/worker_entry/'.$branch->id)?>' data-toggle='modal' data-target='#myModal'><i class="fa fa-plus"></i> কর্মী যুক্ত করুন</a>
-
+                <?php    if(  $branch_id) {?>
+                <a class="tip pull-right btn btn-danger" title='' href='<?=admin_url('organization/worker_entry/'.$branch_id)?>' data-toggle='modal' data-target='#myModal'><i class="fa fa-plus"></i> কর্মী যুক্ত করুন</a>
+                <?php  }?>
                 <style>
                     @font-face {
                         font-family: 'SolaimanLipi';
@@ -231,10 +232,7 @@
                                             ?>
                                         </td>
                                         <td class="type_6">
-                                            <?php $worker = sum_org($org_summary, 'worker', $institution->id);
-                                            //echo $worker;
-                                            echo 'Pending';
-                                            ?>
+                                        <?php echo $institutioninfo == null ? 0 : $institutioninfo['worker']; ?>
 
                                         </td>
                                         <td class="type_7"><?php

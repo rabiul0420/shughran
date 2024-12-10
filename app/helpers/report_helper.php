@@ -347,3 +347,23 @@ if(! function_exists('serial_info')) {
 	}
 
  
+
+
+	if(! function_exists('find_record')) {
+		function find_record($arr,  $type_id) {
+	
+	 
+	
+			foreach($arr as $row) {
+	
+					 if($row['institution_type_id'] == $type_id)
+						return $row;
+	 
+	
+	
+			}
+			 
+			return false; // Return null if no match found
+		}
+		}
+	
