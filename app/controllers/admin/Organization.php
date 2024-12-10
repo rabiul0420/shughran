@@ -438,7 +438,7 @@ GROUP BY institution_type_child");
 
 
 
-           $this->data['institution_info'] = $this->site->query("SELECT institution_type_child ,
+            $this->data['institution_info'] = $this->site->query("SELECT institution_type_child ,
 SUM(a.total_student_number) total_student_number,
 SUM(a.supporter) supporter,
 SUM(a.other_org_worker) other_org_worker,
@@ -475,7 +475,7 @@ SELECT
 
 
 
- 
+
         } else {
 
             $this->data['institution_number'] = $this->site->query("SELECT institution_type_child,  v3_prev_institution(institution_type_child, " . $prev . ", -1) prev_institution, SUM(increase_institution) increase,  SUM(decrease_institution) decrease FROM   ( SELECT     
@@ -581,7 +581,7 @@ SELECT
 
 
 
-       //  $this->sma->print_arrays($this->data['institution_info']);
+        //  $this->sma->print_arrays($this->data['institution_info']);
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Organization'));
         $meta = array('page_title' => 'Organization', 'bc' => $bc);
         // if ($branch_id) {
@@ -4155,8 +4155,8 @@ COALESCE(SUM(CASE WHEN `level` = 3 THEN 1 ELSE 0 END ),0) unit_org_count
 FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id]);
 
 
-          $this->sma->print_arrays($q);
-         exit();
+        $this->sma->print_arrays($q);
+        exit();
 
         $total_org_thana = $q[0]['thana_org_count'];
         $total_org_ward = $q[0]['ward_org_count'];
@@ -4171,7 +4171,7 @@ FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id])
                 'org_thana_count' => $total_org_thana,
                 'org_ward_count' => $total_org_ward,
                 'org_unit_count' => $total_org_unit,
-                'thana_count' => $total_org_thana+$total_org_ward+$total_org_unit
+                'thana_count' => $total_org_thana + $total_org_ward + $total_org_unit
 
             ),
             array('id' => $institution_id)
@@ -5175,12 +5175,12 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 $this->site->updateData('thana_log', $thana_log, array('thana_id' => $id, 'in_out' => 1));
             }
 
-
+            var_dump($thana_details->institution_id);
 
             if (isset($thana_details->institution_id) && $thana_details->institution_id > 0)
                 $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
 
-
+exit();
 
             $this->session->set_flashdata('message', 'Updated successfully');
             admin_redirect("organization/thanalist");
@@ -8313,7 +8313,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
 
         if (count($this->data['records']) == 0) {
-           
+
             $batch_arr = [];
             foreach ($this->data['institutions'] as $institution) {
                 $insData = array(
@@ -8322,7 +8322,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                     'report_year' => date('Y'),
                     'branch_id' => $branch_id,
                     'report_type' => $report_type['type'],
-                    'worker' =>'0',
+                    'worker' => '0',
                     'date' => date('Y-m-d')
                 );
 
@@ -8331,21 +8331,21 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             }
 
             if (count($batch_arr) > 0) {
-               
+
                 $this->db->insert_batch('organization_record', $batch_arr);
             }
 
             echo count($batch_arr);
             $this->data['records'] = $this->site->query("SELECT id,worker,institution_type_id from sma_organization_record where branch_id = " . $branch_id . " and report_type = '" . $type . "' AND report_year = " . $year . " ");
 
-        } 
+        }
 
 
 
         $this->data['branch'] = $branch;
         $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
 
-       
+
 
         $this->data['modal_js'] = $this->site->modal_js();
 
