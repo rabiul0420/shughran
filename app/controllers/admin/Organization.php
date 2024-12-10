@@ -4155,8 +4155,7 @@ COALESCE(SUM(CASE WHEN `level` = 3 THEN 1 ELSE 0 END ),0) unit_org_count
 FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id]);
 
 
-        $this->sma->print_arrays($q);
-        exit();
+        
 
         $total_org_thana = $q[0]['thana_org_count'];
         $total_org_ward = $q[0]['ward_org_count'];
@@ -5175,12 +5174,12 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 $this->site->updateData('thana_log', $thana_log, array('thana_id' => $id, 'in_out' => 1));
             }
 
-            var_dump($thana_details->institution_id);
+             
 
             if (isset($thana_details->institution_id) && $thana_details->institution_id > 0)
                 $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
 
-exit();
+ 
 
             $this->session->set_flashdata('message', 'Updated successfully');
             admin_redirect("organization/thanalist");
@@ -5260,7 +5259,7 @@ exit();
         $thana_details = $this->site->getByID('thana', 'id', $id);
 
 
-
+    
 
 
         $this->form_validation->set_rules('thana_name', 'name', 'required');
@@ -5452,6 +5451,11 @@ exit();
             if ($this->Owner || $this->Admin) {
                 $this->site->updateData('thana_log', $datalog, array('thana_id' => $id, 'in_out' => 1));
             }
+
+
+         if (isset($thana_details->institution_id) && $thana_details->institution_id > 0)
+            $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
+    
 
             $this->session->set_flashdata('message', 'Updated successfully');
 
@@ -5721,6 +5725,10 @@ exit();
             if ($this->Owner || $this->Admin) {
                 $this->site->updateData('thana_log', $datalog, array('thana_id' => $id, 'in_out' => 1));
             }
+
+            if (isset($uposhakha_details->institution_id) && $uposhakha_details->institution_id > 0)
+                $this->org_calculate_in_institution($uposhakha_details->institution_id, $data['institution_id']);
+
 
             $this->session->set_flashdata('message', 'Updated successfully');
 
