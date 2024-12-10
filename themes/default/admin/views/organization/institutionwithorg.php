@@ -44,10 +44,14 @@
 
 
     function org_status(data, row, meta) {
+
+       
          
         const parts = row[8] ? row[8].split("_") : 0;
+        //console.log( parts.length);
+        
 
-        if (parts.length !=2) {
+        if (parts.length !=3) {
             return '';
         }
 
