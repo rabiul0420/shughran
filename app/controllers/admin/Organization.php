@@ -5177,7 +5177,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
 
 
-            if (isset($thana_details->institution_id) && !empty($thana_details->institution_id) && $thana_details->institution_id != '' && $thana_details->institution_id != 0)
+            if (isset($thana_details->institution_id) && $thana_details->institution_id > 0)
                 $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
 
 
