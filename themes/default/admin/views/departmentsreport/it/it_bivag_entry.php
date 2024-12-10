@@ -658,7 +658,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number"
                                     data-table="it_cseit_jonosokti" data-pk="<?php echo $pk1 ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
                                     data-name="a_besorkari" data-title="Enter">
-                                    <?php echo $a_besorkari= (isset($it_cseit_jonosokti['a_besorkari'])) ? $it_cseit_jonosokti['a_sorkari'] : 0; ?>
+                                    <?php echo $a_besorkari= (isset($it_cseit_jonosokti['a_besorkari'])) ? $it_cseit_jonosokti['a_besorkari'] : 0; ?>
                                     </a>
                                 </td>
                                 <td class="tg-0pky  type_1">
@@ -748,7 +748,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number"
                                     data-table="it_cseit_jonosokti" data-pk="<?php echo $pk1 ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>"
                                     data-name="w_besorkari" data-title="Enter">
-                                    <?php echo $w_besorkari= (isset($it_cseit_jonosokti['w_besorkari'])) ? $it_cseit_jonosokti['w_sorkari'] : 0; ?>
+                                    <?php echo $w_besorkari= (isset($it_cseit_jonosokti['w_besorkari'])) ? $it_cseit_jonosokti['w_besorkari'] : 0; ?>
                                     </a>
                                 </td>
                                 <td class="tg-0pky  type_1">

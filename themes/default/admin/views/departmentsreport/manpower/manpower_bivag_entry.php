@@ -1156,13 +1156,14 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
 
                         <table class="tg table table-header-rotated" id="আউটপুট-০১">
                             <tr>
-                                <td class="tg-pwj7" colspan='17'><b>প্রফেশনাল আউটপুট-০১ (জনসেবা) </b></td>
-                                <td class="tg-pwj7" colspan="4">
+                                <td class="tg-pwj7" colspan='21'><b>প্রফেশনাল আউটপুট-০১ (জনসেবা) </b></td>
+                                <td class="tg-pwj7" colspan="5">
                                     <a href="#" id='table_1' onclick="doit('xlsx','আউটপুট-০১','<?php echo 'Education_প্রফেশনাল আউটপুট-০১ (জনসেবা)_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan='2'>মান</td>
+                                <td class="tg-pwj7" colspan="5">৪৩ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৪ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৫ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৬ তম জনসেবা তথ্য </td>
@@ -1171,6 +1172,22 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                             </tr>
 
                             <tr>
+                                <td class="tg-pwj7 ">
+                                    <div><span>টার্গেট</span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>আবেদন </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>প্রিলি উত্তীর্ণ</span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>লিখিত উত্তীর্ণ </span></div>
+                                </td>
+                                <td class="tg-pwj7 ">
+                                    <div><span>ভাইবা উত্তীর্ণ </span></div>
+                                </td>
+
                                 <td class="tg-pwj7 ">
                                     <div><span>টার্গেট</span></div>
                                 </td>
@@ -1245,10 +1262,35 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
 
                             <tr>
                                 <td class="tg-y698 type_1"> সদস্য </td>
+                               
+                                <td class="tg-0pky  type_1">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_t5_tar" data-title="Enter"><?php echo $m_t5_tar = (isset($education_pro_output_1['m_t5_tar'])) ? $education_pro_output_1['m_t5_tar'] : 0 ?>
+                                    </a>
+                                </td>
+                                
+                                <td class="tg-0pky  type_2">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_t5_a" data-title="Enter"><?php echo $m_t5_a = (isset($education_pro_output_1['m_t5_a'])) ? $education_pro_output_1['m_t5_a'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_t5_pri" data-title="Enter"><?php echo $m_t5_pri = (isset($education_pro_output_1['m_t5_pri'])) ? $education_pro_output_1['m_t5_pri'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_t5_li" data-title="Enter"><?php echo $m_t5_li = (isset($education_pro_output_1['m_t5_li'])) ? $education_pro_output_1['m_t5_li'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_t5_vi" data-title="Enter"><?php echo $m_t5_vi = (isset($education_pro_output_1['m_t5_vi'])) ? $education_pro_output_1['m_t5_vi'] : 0 ?>
+                                    </a>
+                                </td>
+
+
                                 <td class="tg-0pky  type_1">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_t4_tar" data-title="Enter"><?php echo $m_t4_tar = (isset($education_pro_output_1['m_t4_tar'])) ? $education_pro_output_1['m_t4_tar'] : 0 ?>
                                     </a>
                                 </td>
+                                
                                 <td class="tg-0pky  type_2">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="m_t4_a" data-title="Enter"><?php echo $m_t4_a = (isset($education_pro_output_1['m_t4_a'])) ? $education_pro_output_1['m_t4_a'] : 0 ?>
                                     </a>
@@ -1336,6 +1378,28 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
 
                             <tr>
                                 <td class="tg-y698">সাথী </td>
+
+                                <td class="tg-0pky  type_1">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="a_t5_tar" data-title="Enter"><?php echo $a_t5_tar = (isset($education_pro_output_1['a_t5_tar'])) ? $education_pro_output_1['a_t5_tar'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="a_t5_a" data-title="Enter"><?php echo $a_t5_a = (isset($education_pro_output_1['a_t5_a'])) ? $education_pro_output_1['a_t5_a'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="a_t5_pri" data-title="Enter"><?php echo $a_t5_pri = (isset($education_pro_output_1['a_t5_pri'])) ? $education_pro_output_1['a_t5_pri'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="a_t5_li" data-title="Enter"><?php echo $a_t5_li = (isset($education_pro_output_1['a_t5_li'])) ? $education_pro_output_1['a_t5_li'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="a_t5_vi" data-title="Enter"><?php echo $a_t5_vi = (isset($education_pro_output_1['a_t5_vi'])) ? $education_pro_output_1['a_t5_vi'] : 0 ?>
+                                    </a>
+                                </td>
+
                                 <td class="tg-0pky  type_1">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="a_t4_tar" data-title="Enter"><?php echo $a_t4_tar = (isset($education_pro_output_1['a_t4_tar'])) ? $education_pro_output_1['a_t4_tar'] : 0 ?>
                                     </a>
@@ -1425,6 +1489,27 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                             <tr>
                                 <td class="tg-y698">কর্মী </td>
                                 <td class="tg-0pky  type_1">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="w_t5_tar" data-title="Enter"><?php echo $w_t5_tar = (isset($education_pro_output_1['w_t5_tar'])) ? $education_pro_output_1['w_t5_tar'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="w_t5_a" data-title="Enter"><?php echo $w_t5_a = (isset($education_pro_output_1['w_t5_a'])) ? $education_pro_output_1['w_t5_a'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="w_t5_pri" data-title="Enter"><?php echo $w_t5_pri = (isset($education_pro_output_1['w_t5_pri'])) ? $education_pro_output_1['w_t5_pri'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="w_t5_li" data-title="Enter"><?php echo $w_t5_li = (isset($education_pro_output_1['w_t5_li'])) ? $education_pro_output_1['w_t5_li'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="w_t5_vi" data-title="Enter"><?php echo $w_t5_vi = (isset($education_pro_output_1['w_t5_vi'])) ? $education_pro_output_1['w_t5_vi'] : 0 ?>
+                                    </a>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="w_t4_tar" data-title="Enter"><?php echo $w_t4_tar = (isset($education_pro_output_1['w_t4_tar'])) ? $education_pro_output_1['w_t4_tar'] : 0 ?>
                                     </a>
                                 </td>
@@ -1512,6 +1597,28 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
 
                             <tr>
                                 <td class="tg-y698">সমর্থক </td>
+
+                                <td class="tg-0pky  type_1">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="s_t5_tar" data-title="Enter"><?php echo $s_t5_tar = (isset($education_pro_output_1['s_t5_tar'])) ? $education_pro_output_1['s_t5_tar'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="s_t5_a" data-title="Enter"><?php echo $s_t5_a = (isset($education_pro_output_1['s_t5_a'])) ? $education_pro_output_1['s_t5_a'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="s_t5_pri" data-title="Enter"><?php echo $s_t5_pri = (isset($education_pro_output_1['s_t5_pri'])) ? $education_pro_output_1['s_t5_pri'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="s_t5_li" data-title="Enter"><?php echo $s_t5_li = (isset($education_pro_output_1['s_t5_li'])) ? $education_pro_output_1['s_t5_li'] : 0 ?>
+                                    </a>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="s_t5_vi" data-title="Enter"><?php echo $s_t5_vi = (isset($education_pro_output_1['s_t5_vi'])) ? $education_pro_output_1['s_t5_vi'] : 0 ?>
+                                    </a>
+                                </td>
+
                                 <td class="tg-0pky  type_1">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="education_pro_output_1" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="s_t4_tar" data-title="Enter"><?php echo $s_t4_tar = (isset($education_pro_output_1['s_t4_tar'])) ? $education_pro_output_1['s_t4_tar'] : 0 ?>
                                     </a>
@@ -1600,6 +1707,23 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
 
                             <tr>
                                 <td class="tg-0pky"> মোট</td>
+
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_tar + $a_t5_tar + $w_t5_tar + $s_t5_tar) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_a + $a_t5_a + $w_t5_a + $s_t5_a) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_pri + $a_t5_pri + $w_t5_pri + $s_t5_pri) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_li + $a_t5_li + $w_t5_li + $s_t5_li) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_vi + $a_t5_vi + $w_t5_vi + $s_t5_vi) ?>
+                                </td>
+
 
                                 <td class="tg-0pky">
                                     <?php echo ($m_t4_tar + $a_t4_tar + $w_t4_tar + $s_t4_tar) ?>

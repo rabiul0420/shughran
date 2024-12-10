@@ -923,6 +923,7 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan='2'>মান</td>
+                                <td class="tg-pwj7" colspan="5">৪৩ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৪ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৫ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৬ তম জনসেবা তথ্য </td>
@@ -951,6 +952,11 @@ $(document).ready(function(){
                                 <td class="tg-pwj7 "><div><span>প্রিলি উত্তীর্ণ</span></div></td>
                                 <td class="tg-pwj7 "><div><span>লিখিত উত্তীর্ণ </span></div></td>
                                 <td class="tg-pwj7 "><div><span>ভাইবা উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>টার্গেট</span></div></td>
+                                <td class="tg-pwj7 "><div><span>আবেদন </span></div></td>
+                                <td class="tg-pwj7 "><div><span>প্রিলি উত্তীর্ণ</span></div></td>
+                                <td class="tg-pwj7 "><div><span>লিখিত উত্তীর্ণ </span></div></td>
+                                <td class="tg-pwj7 "><div><span>ভাইবা উত্তীর্ণ </span></div></td>
 
                             </tr>
 
@@ -959,6 +965,22 @@ $(document).ready(function(){
 
                             <tr>
                                 <td class="tg-y698 type_1"> সদস্য	</td>
+                                <td class="tg-0pky  type_1">
+                                    <?php echo $m_t5_tar = $education_pro_output_1['m_t5_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $m_t5_a = $education_pro_output_1['m_t5_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $m_t5_pri = $education_pro_output_1['m_t5_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $m_t5_li = $education_pro_output_1['m_t5_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $m_t5_vi = $education_pro_output_1['m_t5_vi'] ?>
+                                </td>
+
                                 <td class="tg-0pky  type_1">
                                     <?php echo $m_t4_tar = $education_pro_output_1['m_t4_tar'] ?>
                                 </td>
@@ -1030,6 +1052,22 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">সাথী </td>
                                 <td class="tg-0pky  type_1">
+                                    <?php echo $a_t5_tar = $education_pro_output_1['a_t5_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $a_t5_a = $education_pro_output_1['a_t5_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $a_t5_pri = $education_pro_output_1['a_t5_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $a_t5_li = $education_pro_output_1['a_t5_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $a_t5_vi = $education_pro_output_1['a_t5_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
                                     <?php echo $a_t4_tar = $education_pro_output_1['a_t4_tar'] ?>
                                 </td>
                                 <td class="tg-0pky  type_2">
@@ -1100,6 +1138,22 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">কর্মী </td>
                                 <td class="tg-0pky  type_1">
+                                    <?php echo $w_t5_tar = $education_pro_output_1['w_t5_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $w_t5_a = $education_pro_output_1['w_t5_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $w_t5_pri = $education_pro_output_1['w_t5_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $w_t5_li = $education_pro_output_1['w_t5_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $w_t5_vi = $education_pro_output_1['w_t5_vi'] ?>
+                                </td>
+
+                                <td class="tg-0pky  type_1">
                                     <?php echo $w_t4_tar = $education_pro_output_1['w_t4_tar'] ?>
                                 </td>
                                 <td class="tg-0pky  type_2">
@@ -1169,6 +1223,23 @@ $(document).ready(function(){
                             <tr>
                                 <td class="tg-y698">সমর্থক </td>
                                 <td class="tg-0pky  type_1">
+                                    <?php echo $s_t5_tar = $education_pro_output_1['s_t5_tar'] ?>
+                                </td>
+                                <td class="tg-0pky  type_2">
+                                    <?php echo $s_t5_a = $education_pro_output_1['s_t5_a'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $s_t5_pri = $education_pro_output_1['s_t5_pri'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $s_t5_li = $education_pro_output_1['s_t5_li'] ?>
+                                </td>
+                                <td class="tg-0pky  type_3">
+                                    <?php echo $s_t5_vi = $education_pro_output_1['s_t5_vi'] ?>
+                                </td>
+
+
+                                <td class="tg-0pky  type_1">
                                     <?php echo $s_t4_tar = $education_pro_output_1['s_t4_tar'] ?>
                                 </td>
                                 <td class="tg-0pky  type_2">
@@ -1237,6 +1308,22 @@ $(document).ready(function(){
 
                             <tr>
                                 <td class="tg-0pky"> মোট</td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_tar + $a_t5_tar + $w_t5_tar + $s_t5_tar) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_a + $a_t5_a + $w_t5_a + $s_t5_a) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_pri + $a_t5_pri + $w_t5_pri + $s_t5_pri) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_li + $a_t5_li + $w_t5_li + $s_t5_li) ?>
+                                </td>
+                                <td class="tg-0pky">
+                                    <?php echo ($m_t5_vi + $a_t5_vi + $w_t5_vi + $s_t5_vi) ?>
+                                </td>
+
                                 <td class="tg-0pky">
                                     <?php echo ($m_t4_tar + $a_t4_tar + $w_t4_tar + $s_t4_tar) ?>
                                 </td>

@@ -328,6 +328,12 @@ class Manpower extends MY_Controller
             $this->db->select_sum('m_t4_li');
             $this->db->select_sum('m_t4_vi');
 
+            $this->db->select_sum('m_t5_tar');
+            $this->db->select_sum('m_t5_a');
+            $this->db->select_sum('m_t5_pri');
+            $this->db->select_sum('m_t5_li');
+            $this->db->select_sum('m_t5_vi');
+
             $this->db->select_sum('a_t1_tar');
             $this->db->select_sum('a_t1_a');
             $this->db->select_sum('a_t1_pri');
@@ -348,6 +354,12 @@ class Manpower extends MY_Controller
             $this->db->select_sum('a_t4_pri');
             $this->db->select_sum('a_t4_li');
             $this->db->select_sum('a_t4_vi');
+
+            $this->db->select_sum('a_t5_tar');
+            $this->db->select_sum('a_t5_a');
+            $this->db->select_sum('a_t5_pri');
+            $this->db->select_sum('a_t5_li');
+            $this->db->select_sum('a_t5_vi');
 
             $this->db->select_sum('w_t1_tar');
             $this->db->select_sum('w_t1_a');
@@ -370,6 +382,12 @@ class Manpower extends MY_Controller
             $this->db->select_sum('w_t4_li');
             $this->db->select_sum('w_t4_vi');
 
+            $this->db->select_sum('w_t5_tar');
+            $this->db->select_sum('w_t5_a');
+            $this->db->select_sum('w_t5_pri');
+            $this->db->select_sum('w_t5_li');
+            $this->db->select_sum('w_t5_vi');
+
             $this->db->select_sum('s_t1_tar');
             $this->db->select_sum('s_t1_a');
             $this->db->select_sum('s_t1_pri');
@@ -390,6 +408,12 @@ class Manpower extends MY_Controller
             $this->db->select_sum('s_t4_pri');
             $this->db->select_sum('s_t4_li');
             $this->db->select_sum('s_t4_vi');
+
+            $this->db->select_sum('s_t5_tar');
+            $this->db->select_sum('s_t5_a');
+            $this->db->select_sum('s_t5_pri');
+            $this->db->select_sum('s_t5_li');
+            $this->db->select_sum('s_t5_vi');
 
             if ($branch_id)
             $this->db->where('branch_id', $branch_id);
