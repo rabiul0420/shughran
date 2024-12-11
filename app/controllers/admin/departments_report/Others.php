@@ -14,12 +14,12 @@ class Others extends MY_Controller
         $this->departmentuser = false;
         // the department actual id to 45 but it will be check by Office department which id 4 
         // Changed only for checking purpose.
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 4) {
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') != 45) {
             admin_redirect('welcome');
         }
         $this->sma->checkPermissions('index', TRUE, 'departmentsreport');
 
-        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 4) {  //Others id 45 but This department will checked by Office department which id 4
+        if ($this->session->userdata('group_id') == 8 && $this->session->userdata('department_id') == 45) {  //Others id 45 but This department will checked by Office department which id 4
             $this->departmentuser = true;
         }
 
