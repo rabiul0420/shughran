@@ -75,14 +75,14 @@ $group_id = $this->session->userdata('group_id');
                             <td></td>
                             <td <?= $group_id == 8 ? "style='display:none'" : ""; ?>></td>
                             <td></td>
-                            <td>
+                            <td style="text-align:center;">
                                 <?php   
                                 if($serial_records){
                                     echo $yes =  count($serial_records);
                                 }else{echo '0';} 
                                 ?>
                             </td>
-                            <td> 
+                            <td style="text-align:center;"> 
                                 <?php
                                 $yesCount = count(array_filter($serial_records, function ($record_check) {
                                     return isset($record_check['is_checked']) && $record_check['is_checked'] === 'YES';
@@ -92,7 +92,7 @@ $group_id = $this->session->userdata('group_id');
                                 ?>
                             </td>
                            
-                            <td> 
+                            <td style="text-align:center;"> 
                                 <?php
                                 $okCount = count(array_filter($serial_records, function ($record_ok) {
                                     return isset($record_ok['is_reportok']) && $record_ok['is_reportok'] === 'OK';
