@@ -243,7 +243,7 @@ FROM   (
  SELECT institution_type_id institution_type_child, 0 increase_institution,0 decrease_institution,0 thana_org,0 ward_org,0 unit_org,0 current_org_count,0 org_absent_count,
  
  SUM(institution) prev_institution, SUM(orgnization)  prev_organization,0 org_unit_count FROM `sma_organization_record_calculated` 
-	    WHERE  calculated_year = " . $prev . "  AND branch_id = $branch_id GROUP BY institution_type_id 
+	    WHERE  calculated_year = " . $prev . "  AND branch_id = $branch_id GROUP BY institution_type_id 1
 
 UNION ALL 
  
@@ -258,11 +258,12 @@ FROM `sma_institutionlist` WHERE branch_id = $branch_id AND `close_date` BETWEEN
 
 UNION ALL 
 
-SELECT   institution_type_child, 0 increase_institution,0 decrease_institution, SUM( CASE WHEN org_thana_count > 0 THEN 1 ELSE 0 END) thana_org, 
-SUM( CASE WHEN org_ward_count > 0 THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_unit_count > 0 THEN 1 ELSE 0 END) unit_org,0 current_org_count,0 org_absent_count,
-0 prev_institution, 0 prev_organization, COUNT(org_unit_count) org_unit_count
+ 
+SELECT   institution_type_child, 0 increase_institution,0 decrease_institution, SUM( CASE WHEN org_status = 'Thana' THEN 1 ELSE 0 END) thana_org, 
+SUM( CASE WHEN org_status = 'Ward' THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_status = 'Unit' THEN 1 ELSE 0 END) unit_org,0 current_org_count,0 org_absent_count,
+0 prev_institution, 0 prev_organization, SUM(org_unit_count) org_unit_count
  FROM `sma_institutionlist` 
-WHERE branch_id = $branch_id AND is_active = 1 GROUP BY institution_type_child 
+WHERE branch_id = $branch_id  AND is_active = 1 GROUP BY institution_type_child 
 
 UNION ALL 
 
@@ -315,9 +316,9 @@ FROM `sma_institutionlist` WHERE `close_date` BETWEEN  '" . $start . "' AND  '" 
 
 UNION ALL 
 
-SELECT   institution_type_child, 0 increase_institution,0 decrease_institution, SUM( CASE WHEN org_thana_count > 0 THEN 1 ELSE 0 END) thana_org, 
-SUM( CASE WHEN org_ward_count > 0 THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_unit_count > 0 THEN 1 ELSE 0 END) unit_org,0 current_org_count,0 org_absent_count,
-0 prev_institution, 0 prev_organization, COUNT(org_unit_count) org_unit_count
+SELECT   institution_type_child, 0 increase_institution,0 decrease_institution, SUM( CASE WHEN org_status = 'Thana' THEN 1 ELSE 0 END) thana_org, 
+SUM( CASE WHEN org_status = 'Ward' THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_status = 'Unit' THEN 1 ELSE 0 END) unit_org,0 current_org_count,0 org_absent_count,
+0 prev_institution, 0 prev_organization, SUM(org_unit_count) org_unit_count
  FROM `sma_institutionlist` 
 WHERE is_active = 1 GROUP BY institution_type_child 
 

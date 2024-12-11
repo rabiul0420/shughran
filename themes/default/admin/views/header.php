@@ -427,8 +427,8 @@
                                     শিক্ষাপ্রতিষ্ঠান বিবরণ <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?= admin_url('organization/institutional'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠান সংগঠন একনজরে </a></li>
-                                        <li><a href="<?= admin_url('organization'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠান শিক্ষার্থী একনজরে
+                                        <li><a href="<?= admin_url('organization/institutional'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠানে সংগঠন একনজরে </a></li>
+                                        <li><a href="<?= admin_url('organization'); ?>" class="line-height-lg">শিক্ষাপ্রতিষ্ঠানে শিক্ষার্থী একনজরে
                                         </a></li>
 
                                         <li class="tmp_hidden"><hr class="divider" /></li>
