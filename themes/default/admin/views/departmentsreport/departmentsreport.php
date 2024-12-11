@@ -70,6 +70,43 @@ $group_id = $this->session->userdata('group_id');
                         <th width="20%"> শাখার মন্তব্য</th>
                         <th <?= $group_id == 8 ? "width='40%'" : "width='25%'"; ?>  >বিভাগীয় রিভিউ</th>
                     </tr>
+                    </thead>
+                    <thead>
+                    <tr>
+                            <td></td>
+                            <td <?= $group_id == 8 ? "style='display:none'" : ""; ?>></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <?php   
+                                if($serial_records){
+                                    echo $yes =  count($serial_records);
+                                }else{echo '0';} 
+                                ?>
+                            </td>
+                            <td style="text-align:center;"> 
+                                <?php
+                                $yesCount = count(array_filter($serial_records, function ($record_check) {
+                                    return isset($record_check['is_checked']) && $record_check['is_checked'] === 'YES';
+                                }));
+
+                                echo $yesCount;
+                                ?>
+                            </td>
+                           
+                            <td style="text-align:center;"> 
+                                <?php
+                                $okCount = count(array_filter($serial_records, function ($record_ok) {
+                                    return isset($record_ok['is_reportok']) && $record_ok['is_reportok'] === 'OK';
+                                }));
+
+                                echo $okCount;
+                                ?>
+                            </td>
+                           
+                            <td></td>
+                            <td></td>
+                            
+                        </tr>
                 </thead>
                     <tbody>
                         <?php if ($branch_list) foreach ($branch_list as $row) {
@@ -101,6 +138,7 @@ $group_id = $this->session->userdata('group_id');
                                     <td><?= isset($record['dept_review']) ? $record['dept_review'] : '' ?></td>
                                 </tr>
                         <?php } } ?>
+                        
                     </tbody>
                 </table>
             </div>
@@ -118,5 +156,7 @@ $group_id = $this->session->userdata('group_id');
             <?php } ?>
        
         pageLength: 50,
-    });
+        
+});
+
 </script>
