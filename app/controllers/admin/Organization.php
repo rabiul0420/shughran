@@ -958,7 +958,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->select("sma_institutionlist_with_org.id as id , sma_institutionlist_with_org.code as code,  sma_institutionlist_with_org.institution_name, 0 as org_type,t1.institution_type as plname,
              t2.institution_type as rcname,  
              {$this->db->dbprefix('branches')}.name as branch_name,   
-              v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,  v3_current_orgstatus( sma_institutionlist_with_org.id) as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
+              v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,   org_status as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
              0 as empty_decrease
               ", FALSE)
                 ->from('institutionlist_with_org');
@@ -976,7 +976,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->select("sma_institutionlist_with_org.id as id , sma_institutionlist_with_org.code as code,  sma_institutionlist_with_org.institution_name, 0 as org_type,t1.institution_type as plname,
                  t2.institution_type as rcname,  
                  {$this->db->dbprefix('branches')}.name as branch_name,   
-                  v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,  v3_current_orgstatus( sma_institutionlist_with_org.id) as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
+                  v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,  org_status as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
                  0 as empty_decrease
                   ", FALSE)
                 ->from('institutionlist_with_org');
@@ -4144,9 +4144,12 @@ LEFT JOIN sma_thana_log ON sma_thana_log.thana_id = sma_thana.id
 
 
 
-    function org_calculate_in_institution($institution_id, $new_id = null)
+    function org_calculate_in_institution($institution_id=null, $new_id = null)
     {
 
+
+        if($institution_id) {
+         //   echo 'DMMD';
 
         $q = $this->site->query_binding('SELECT 
 COALESCE(SUM(CASE WHEN `level` = 1 THEN 1 ELSE 0 END ),0) thana_org_count,
@@ -4176,11 +4179,16 @@ FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id])
             array('id' => $institution_id)
         );
 
+    }
 
 
-        if ($new_id != null && ($institution_id != $new_id)) {
+        if ($new_id != null && ($institution_id != $new_id || $institution_id==null)) {
+
+           // echo 'OKAY';
             $this->org_calculate_in_institution($new_id);
         }
+
+        // exit();
 
     }
 
@@ -4580,7 +4588,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
         if ($this->form_validation->run() == true && $this->site->updateData('thana', $thana_data, array('id' => $thana_id)) && $this->site->insertData('thana_log', $thana_log)) {
 
 
-            if (isset($thana_info->institution_id) && !empty($thana_info->institution_id) && $thana_info->institution_id != '' && $thana_info->institution_id != 0)
+            if (isset($thana_info->institution_id)  && $thana_info->institution_id > 0)
                 $this->org_calculate_in_institution($thana_info->institution_id);
 
 
@@ -4813,7 +4821,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 $this->site->insertData('thana_log', $thana_log);
 
 
-            if (isset($thana_info->institution_id) && !empty($thana_info->institution_id) && $thana_info->institution_id != '' && $thana_info->institution_id != 0)
+            if (isset($thana_info->institution_id) && $thana_info->institution_id > 0)
                 $this->org_calculate_in_institution($thana_info->institution_id);
 
             //  is_pending => 2
@@ -4885,7 +4893,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             //  is_pending => 3
             //  ideal table is_pending => 3 if ideal_status = 1
 
-            if (isset($thana_info->institution_id) && !empty($thana_info->institution_id) && $thana_info->institution_id != '' && $thana_info->institution_id != 0)
+            if (isset($thana_info->institution_id) && $thana_info->institution_id > 0)
                 $this->org_calculate_in_institution($thana_info->institution_id);
 
 
@@ -5178,6 +5186,8 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
             if (isset($thana_details->institution_id) && $thana_details->institution_id > 0)
                 $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
+            else if($thana_details->institution_id == null || empty($thana_details->institution_id))
+                $this->org_calculate_in_institution(null, $data['institution_id']);
 
  
 
@@ -5453,8 +5463,12 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             }
 
 
-         if (isset($thana_details->institution_id) && $thana_details->institution_id > 0)
+         
+        if (isset($thana_details->institution_id) && $thana_details->institution_id > 0)
             $this->org_calculate_in_institution($thana_details->institution_id, $data['institution_id']);
+        else if($thana_details->institution_id == null || empty($thana_details->institution_id))
+            $this->org_calculate_in_institution(null, $data['institution_id']);
+
     
 
             $this->session->set_flashdata('message', 'Updated successfully');
@@ -5726,8 +5740,14 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 $this->site->updateData('thana_log', $datalog, array('thana_id' => $id, 'in_out' => 1));
             }
 
-            if (isset($uposhakha_details->institution_id) && $uposhakha_details->institution_id > 0)
+             
+           if (isset($uposhakha_details->institution_id) && $uposhakha_details->institution_id > 0)
                 $this->org_calculate_in_institution($uposhakha_details->institution_id, $data['institution_id']);
+            else if($uposhakha_details->institution_id == null || empty($uposhakha_details->institution_id))
+                $this->org_calculate_in_institution(null, $data['institution_id']);
+
+              
+
 
 
             $this->session->set_flashdata('message', 'Updated successfully');
