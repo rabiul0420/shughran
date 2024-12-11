@@ -83,7 +83,6 @@ function index(){
 
             $this->data['serial_records'] = $this->site->query($string );
 
-
             if($branch_id)
             $this->data['branch_list'] =  $this->site->getAllBranches($branch_id);
 

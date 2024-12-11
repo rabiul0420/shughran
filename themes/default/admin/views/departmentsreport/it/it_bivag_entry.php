@@ -1282,7 +1282,14 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                               data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
                               data-name="it_presentyn" 
                               data-title="Enter">
-                              <?php echo $it_presentyn=(isset( $it_ictcenter_prosikkhok['it_presentyn']))? $it_ictcenter_prosikkhok['it_presentyn']:'' ?>
+                              <?php 
+                                echo $it_presentyn = (isset($it_ictcenter_prosikkhok['it_presentyn']) && $it_ictcenter_prosikkhok['it_presentyn'] == 1) ? 'YES' : '';
+                                ?>
+
+                              <?php 
+                                echo $it_presentyn = (isset($it_ictcenter_prosikkhok['it_presentyn']) && $it_ictcenter_prosikkhok['it_presentyn'] == 0) ? 'NO' : '';
+                                ?>
+
                               </a>
                           </td>
                       
