@@ -48,17 +48,9 @@
     }
 
     function upashakha_current(data, row, meta) {
-
-
-
-        console.log(row);
-        const orgs = row[8] ? row[8].split("_") : 0;
-
-        if (orgs.length != 3) {
-            return '';
-        } else
-
-            return parseInt(orgs[2])
+console.log(row[10]);
+return  row[10];
+ 
         //return parseInt(row[7]) + parseInt(increase_decrease[0]) -parseInt(increase_decrease[1]) ;
 
     }

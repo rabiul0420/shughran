@@ -6,18 +6,22 @@
 <?= '</div></div></div></td></tr></table></div></div>'; ?>
 <div class="clearfix"></div>
 <footer>
-    <a href="#" id="toTop" class="blue" style="position: fixed; bottom: 30px; right: 30px; font-size: 30px; display: none;">
+    <a href="#" id="toTop" class="blue"
+        style="position: fixed; bottom: 30px; right: 30px; font-size: 30px; display: none;">
         <i class="fa fa-chevron-circle-up"></i>
     </a>
 
-    <p style="text-align:center;">&copy; <?= date('Y') . " " . $Settings->site_name; ?> (<a href="<?= base_url('documentation.pdf'); ?>" target="_blank">v<?= $Settings->version; ?></a>
+    <p style="text-align:center;">&copy; <?= date('Y') . " " . $Settings->site_name; ?> (<a
+            href="<?= base_url('documentation.pdf'); ?>" target="_blank">v<?= $Settings->version; ?></a>
         ) <?php if ($_SERVER["REMOTE_ADDR"] == '127.0.0.1') {
-                echo ' -ff Page rendered in <strong>{elapsed_time}</strong> seconds';
-            } ?></p>
+            echo ' -ff Page rendered in <strong>{elapsed_time}</strong> seconds';
+        } ?></p>
 </footer>
 <?= '</div>'; ?>
-<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true"></div>
-<div class="modal fade in" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true"></div>
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    data-backdrop="true"></div>
+<div class="modal fade in" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+</div>
 <div id="modal-loading" style="display: none;">
     <div class="blackbg"></div>
     <div class="loader"></div>
@@ -95,7 +99,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
         "oLanguage": <?= $dt_lang ?>
     });
     $.fn.datetimepicker.dates['sma'] = <?= $dp_lang ?>;
-    $(window).load(function() {
+    $(window).load(function () {
         $('.mm_<?= $m ?>').addClass('active');
         $('.mm_<?= $m ?>').find("ul").first().slideToggle();
         $('#<?= $m ?>_<?= $v ?>').addClass('active');
@@ -109,12 +113,12 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
 <script type="text/javascript" charset="UTF-8">
-    $(function() {
+    $(function () {
         $("li.dropdown").hover(
-            function() {
+            function () {
                 $(this).addClass('open')
             },
-            function() {
+            function () {
                 $(this).removeClass('open')
             });
     });
@@ -124,9 +128,9 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
             'X-CSRF-Token': $('meta[name="token"]').attr('content')
         }
     });
-    (function() {
+    (function () {
         var original = $.fn.editableutils.setCursorPosition;
-        $.fn.editableutils.setCursorPosition = function() {
+        $.fn.editableutils.setCursorPosition = function () {
             try {
                 original.apply(this, Array.prototype.slice.call(arguments));
             } catch (e) {
@@ -137,15 +141,15 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
 
-    $(document).ready(function() {
-        <?php if (($this->input->get('type') != 'annual'  && $this->input->get('type') != 'half_yearly') &&  (($this->Owner || $this->Admin) ||  $this->session->userdata('group_id') == 8 || ($entry_permission != false))) { ?>
+    $(document).ready(function () {
+        <?php if (($this->input->get('type') != 'annual' && $this->input->get('type') != 'half_yearly') && (($this->Owner || $this->Admin) || $this->session->userdata('group_id') == 8 || ($entry_permission != false))) { ?>
 
 
 
             $('.editable').editable({
                 mode: 'inline',
                 showbuttons: false,
-                params: function(params) {
+                params: function (params) {
                     // add additional params from data-attributes of trigger element
                     params.table = $(this).editable().data('table');
                     params.id = $(this).editable().data('id');
@@ -154,7 +158,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                     params.token = $("meta[name=token]").attr("content");
                     return params;
                 },
-                success: function(response, config) {
+                success: function (response, config) {
 
 
                     console.log(config);
@@ -168,7 +172,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                         location.reload();
                     }
                 },
-                error: function(response) {
+                error: function (response) {
                     console.log(response);
                 }
             });
@@ -178,38 +182,38 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
             $('.yes_no').editable({
-                    mode: 'inline',
-                    prepend: "not selected",
-                    inputclass: 'form-control',
-                    source: [{
-                        value: '1',
-                        text: 'Yes'
-                    }, {
-                        value: '0',
-                        text: 'No'
-                    }],
+                mode: 'inline',
+                prepend: "not selected",
+                inputclass: 'form-control',
+                source: [{
+                    value: '1',
+                    text: 'Yes'
+                }, {
+                    value: '0',
+                    text: 'No'
+                }],
 
-                    params: function(params) {
-                        // add additional params from data-attributes of trigger element
-                        params.table = $(this).editable().data('table');
-                        params.id = $(this).editable().data('id');
-                        params.idname = $(this).editable().data('idname');
-                        params.branch_id = <?php echo isset($branch->id) ? $branch->id : "''"; ?>;
-                        params.token = $("meta[name=token]").attr("content");
-                        return params;
-                    },
-                    success: function(response) {
-                        console.log('test', response);
-                        var data = $.parseJSON(response);
-                        if (data.flag == 3)
-                            location.reload();
-                        else if (data.flag == 1)
-                            alert(data.msg);
-                    },
-                    error: function(response) {
-                        console.log(response);
-                    }
+                params: function (params) {
+                    // add additional params from data-attributes of trigger element
+                    params.table = $(this).editable().data('table');
+                    params.id = $(this).editable().data('id');
+                    params.idname = $(this).editable().data('idname');
+                    params.branch_id = <?php echo isset($branch->id) ? $branch->id : "''"; ?>;
+                    params.token = $("meta[name=token]").attr("content");
+                    return params;
+                },
+                success: function (response) {
+                    console.log('test', response);
+                    var data = $.parseJSON(response);
+                    if (data.flag == 3)
+                        location.reload();
+                    else if (data.flag == 1)
+                        alert(data.msg);
+                },
+                error: function (response) {
+                    console.log(response);
                 }
+            }
 
 
 
@@ -221,38 +225,38 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
             $('.yes_no_2').editable({
-                    mode: 'inline',
-                    prepend: "not selected",
-                    inputclass: 'form-control',
-                    source: [{
-                        value: '1',
-                        text: 'Yes'
-                    }, {
-                        value: '0',
-                        text: 'No'
-                    }],
+                mode: 'inline',
+                prepend: "not selected",
+                inputclass: 'form-control',
+                source: [{
+                    value: '1',
+                    text: 'Yes'
+                }, {
+                    value: '0',
+                    text: 'No'
+                }],
 
-                    params: function(params) {
-                        // add additional params from data-attributes of trigger element
-                        params.table = $(this).editable().data('table');
-                        params.id = $(this).editable().data('id');
-                        params.idname = $(this).editable().data('idname');
-                        params.branch_id = <?php echo isset($branch->id) ? $branch->id : "''"; ?>;
-                        params.token = $("meta[name=token]").attr("content");
-                        return params;
-                    },
-                    success: function(response) {
-                        console.log('test', response);
-                        var data = $.parseJSON(response);
-                        if (data.flag == 3)
-                            location.reload();
-                        else if (data.flag == 1)
-                            alert(data.msg);
-                    },
-                    error: function(response) {
-                        console.log(response);
-                    }
+                params: function (params) {
+                    // add additional params from data-attributes of trigger element
+                    params.table = $(this).editable().data('table');
+                    params.id = $(this).editable().data('id');
+                    params.idname = $(this).editable().data('idname');
+                    params.branch_id = <?php echo isset($branch->id) ? $branch->id : "''"; ?>;
+                    params.token = $("meta[name=token]").attr("content");
+                    return params;
+                },
+                success: function (response) {
+                    console.log('test', response);
+                    var data = $.parseJSON(response);
+                    if (data.flag == 3)
+                        location.reload();
+                    else if (data.flag == 1)
+                        alert(data.msg);
+                },
+                error: function (response) {
+                    console.log(response);
                 }
+            }
 
 
 
@@ -266,53 +270,53 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
             $('.ticket_status').editable({
-                    mode: 'popup',
-                    prepend: "not selected",
-                    inputclass: 'form-control',
-                    source: [{
-                            value: 'New',
-                            text: 'New'
-                        }, {
-                            value: 'Received',
-                            text: 'Received'
-                        }, {
-                            value: 'In process',
-                            text: 'In process'
-                        }, {
-                            value: 'Done',
-                            text: 'Done'
-                        }, {
-                            value: 'Cancelled',
-                            text: 'Cancelled'
-                        }, {
-                            value: 'Closed',
-                            text: 'Closed'
-                        }
-
-
-                    ],
-
-                    params: function(params) {
-                        // add additional params from data-attributes of trigger element
-                        params.table = $(this).editable().data('table');
-                        params.id = $(this).editable().data('id');
-                        params.idname = $(this).editable().data('idname');
-                        params.branch_id = <?php echo isset($branch->id) ? $branch->id : "''"; ?>;
-                        params.token = $("meta[name=token]").attr("content");
-                        return params;
-                    },
-                    success: function(response) {
-                        console.log('test', response);
-                        var data = $.parseJSON(response);
-                        if (data.flag == 3)
-                            location.reload();
-                        else if (data.flag == 1)
-                            alert(data.msg);
-                    },
-                    error: function(response) {
-                        console.log(response);
-                    }
+                mode: 'popup',
+                prepend: "not selected",
+                inputclass: 'form-control',
+                source: [{
+                    value: 'New',
+                    text: 'New'
+                }, {
+                    value: 'Received',
+                    text: 'Received'
+                }, {
+                    value: 'In process',
+                    text: 'In process'
+                }, {
+                    value: 'Done',
+                    text: 'Done'
+                }, {
+                    value: 'Cancelled',
+                    text: 'Cancelled'
+                }, {
+                    value: 'Closed',
+                    text: 'Closed'
                 }
+
+
+                ],
+
+                params: function (params) {
+                    // add additional params from data-attributes of trigger element
+                    params.table = $(this).editable().data('table');
+                    params.id = $(this).editable().data('id');
+                    params.idname = $(this).editable().data('idname');
+                    params.branch_id = <?php echo isset($branch->id) ? $branch->id : "''"; ?>;
+                    params.token = $("meta[name=token]").attr("content");
+                    return params;
+                },
+                success: function (response) {
+                    console.log('test', response);
+                    var data = $.parseJSON(response);
+                    if (data.flag == 3)
+                        location.reload();
+                    else if (data.flag == 1)
+                        alert(data.msg);
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            }
 
 
 
@@ -328,16 +332,16 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
         <?php } else if ($this->input->get('type') != 'annual' && $this->input->get('type') != 'half_yearly') { ?>
 
-            $('.editable').click(function(e) {
-                e.preventDefault();
+                $('.editable').click(function (e) {
+                    e.preventDefault();
 
-            });
+                });
 
         <?php } else { ?>
 
-            $('.editable').click(function(e) {
-                return false;
-            });
+                $('.editable').click(function (e) {
+                    return false;
+                });
 
 
         <?php } ?>
@@ -345,7 +349,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
         function sumcols(class_name, target_name) {
 
             var totalPrice = 0;
-            $("." + class_name).each(function() {
+            $("." + class_name).each(function () {
                 if (class_name == 'type_2') {
 
                 }
@@ -361,6 +365,30 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
         for (i = 1; i < 35; i++) {
             sumcols('type_' + i, 'total_' + i);
         }
+
+
+
+        function sumcols_org(class_name, target_name) {
+
+            var totalPrice = 0;
+            $("." + class_name).each(function () {
+                 
+                if (!isNaN(parseInt($(this).text())))
+                    totalPrice += parseInt($(this).text());
+            });
+
+            $("." + target_name).html(totalPrice);
+            
+        }
+
+
+
+        for (i = 1; i < 35; i++) {
+            sumcols_org('typeorg_' + i, 'totalorg_' + i);
+        }
+
+
+
         Finalamount = parseInt($('.income').text()) - parseInt($('.total_2').text());
         $(".Finalamount").html(Math.abs(Finalamount));
         $("#Finalamount_label").html(Finalamount > 0 ? 'উদ্বৃত্ত' : 'ঘাটতি ');
@@ -368,7 +396,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
         $("#Finalamount_label").closest('td').next('td').addClass(Finalamount > 0 ? '' : 'text-danger');
 
 
-        $(".fa-barcode").click(function(e) {
+        $(".fa-barcode").click(function (e) {
             window.open('data:application/vnd.ms-excel,' + $("#testTable").html());
             e.preventDefault();
         });
@@ -379,7 +407,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
     <?php if ($this->uri->segment(2) != 'departmentsreport') { ?>
 
-        $('form').submit(function() {
+        $('form').submit(function () {
             $(this).find(':input[type=submit]').prop('disabled', true);
             $("#saving").removeClass('hidden');
         });
@@ -416,19 +444,19 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
             width: 100,
             height: 30,
             filename: ofile,
-            data: function() {
+            data: function () {
                 return doit(fmt, ofile, true);
             },
             transparent: false,
             append: false,
             dataType: 'base64',
-            onComplete: function() {
+            onComplete: function () {
                 alert('Your File Has Been Saved!');
             },
-            onCancel: function() {
+            onCancel: function () {
                 alert('You have cancelled the saving of this file.');
             },
-            onError: function() {
+            onError: function () {
                 alert('You must put something in the File Contents or there will be nothing to save!');
             }
         });
@@ -444,9 +472,9 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
     $(".box-header a[href='" + path + "']").addClass("btn btn-primary disabled");
 
 
-    $(function() {
+    $(function () {
         // bind change event to select
-        $('#nav_branch_id').on('change', function() {
+        $('#nav_branch_id').on('change', function () {
             var url = $(this).val(); // get selected value
             if (url) { // require a URL
                 window.location = url; // redirect
@@ -457,7 +485,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
 
-    $(document).on('click', '.ticket_reply_submit', function(e) {
+    $(document).on('click', '.ticket_reply_submit', function (e) {
 
         e.preventDefault(); // avoid to execute the actual submit of the form.
 
@@ -471,7 +499,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                 type: "POST",
                 url: url,
                 data: form.serialize(), // serializes the form's elements.
-                success: function(data) {
+                success: function (data) {
                     if (data.error == 1) {
                         alert(data.msg);
                     } else {
@@ -526,15 +554,15 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
         }
         ref.delete_node(sel);
     };
-    $(document).ready(function() {
+    $(document).ready(function () {
 
 
         var to = false;
-        $('#demo_q').keyup(function() {
+        $('#demo_q').keyup(function () {
             if (to) {
                 clearTimeout(to);
             }
-            to = setTimeout(function() {
+            to = setTimeout(function () {
                 var v = $('#demo_q').val();
                 $('#jstree_demo').jstree(true).search(v);
             }, 250);
@@ -550,7 +578,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                         "stripes": true
                     },
                     'data': {
-                        'url': function(node) {
+                        'url': function (node) {
                             return node.id === '#' ? '<?= admin_url('system_settings/getZones'); ?>' : '<?= admin_url('system_settings/getZones'); ?>';
                         },
 
@@ -564,7 +592,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
                         // "dataType": "json",
-                        'data': function(node) {
+                        'data': function (node) {
                             return {
                                 'id': node.id
                             };
@@ -617,7 +645,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
 
-        $('#jstree_demo').bind("rename_node.jstree", function(e, data) {
+        $('#jstree_demo').bind("rename_node.jstree", function (e, data) {
 
             console.log(data);
             $.ajax({
@@ -629,7 +657,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                     "title": data.text,
                     "<?= $this->security->get_csrf_token_name() ?>": "<?= $this->security->get_csrf_hash() ?>"
                 },
-                success: function(r) {
+                success: function (r) {
                     console.log(r);
                     if (1) { //!r.error
                         $('#jstree_demo').jstree(true).refresh()

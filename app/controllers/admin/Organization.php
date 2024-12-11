@@ -237,23 +237,24 @@ class Organization extends MY_Controller
     SUM(unit_org) AS total_unit_org,
     SUM(current_org_count) AS current_org_count,
     SUM(org_absent_count) AS org_absent_count,
-    SUM(org_unit_count) org_unit_count
+    SUM(org_unit_count) org_unit_count,
+    SUM(prev_unit) prev_unit
 FROM   ( 
 
  SELECT institution_type_id institution_type_child, 0 increase_institution,0 decrease_institution,0 thana_org,0 ward_org,0 unit_org,0 current_org_count,0 org_absent_count,
  
- SUM(institution) prev_institution, SUM(orgnization)  prev_organization,0 org_unit_count FROM `sma_organization_record_calculated` 
-	    WHERE  calculated_year = " . $prev . "  AND branch_id = $branch_id GROUP BY institution_type_id 1
+ SUM(institution) prev_institution, SUM(orgnization)  prev_organization,0 org_unit_count , unit prev_unit FROM `sma_organization_record_calculated` 
+	    WHERE  calculated_year = " . $prev . "  AND branch_id = $branch_id GROUP BY institution_type_id 
 
 UNION ALL 
  
 SELECT institution_type_child, 
-COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count
+COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count, 0 prev_unit
 FROM `sma_institutionlist` WHERE   branch_id = $branch_id AND  `date` BETWEEN  '" . $start . "' AND  '" . $end . "' GROUP BY institution_type_child 
 
 UNION ALL 
 
-SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org, 0 current_org_count, 0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count
+SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org, 0 current_org_count, 0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count, 0 prev_unit
 FROM `sma_institutionlist` WHERE branch_id = $branch_id AND `close_date` BETWEEN  '" . $start . "' AND  '" . $end . "' GROUP BY institution_type_child 
 
 UNION ALL 
@@ -261,7 +262,7 @@ UNION ALL
  
 SELECT   institution_type_child, 0 increase_institution,0 decrease_institution, SUM( CASE WHEN org_status = 'Thana' THEN 1 ELSE 0 END) thana_org, 
 SUM( CASE WHEN org_status = 'Ward' THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_status = 'Unit' THEN 1 ELSE 0 END) unit_org,0 current_org_count,0 org_absent_count,
-0 prev_institution, 0 prev_organization, SUM(org_unit_count) org_unit_count
+0 prev_institution, 0 prev_organization, SUM(org_unit_count) org_unit_count, 0 prev_unit
  FROM `sma_institutionlist` 
 WHERE branch_id = $branch_id  AND is_active = 1 GROUP BY institution_type_child 
 
@@ -269,17 +270,14 @@ UNION ALL
 
 
 
-SELECT institution_type_child, 0, 0, 0 , 0, 0, COUNT(institution_type_child) current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization , 0 org_unit_count
- FROM `sma_institutionlist_with_org` WHERE branch_id = $branch_id   GROUP BY institution_type_child
-UNION ALL 
 
  
  SELECT institution_type_child, 0, 0, 0 , 0, 0, 0 current_org_count, COUNT(institution_type_child) org_absent_count,0 prev_institution,
-  0 prev_organization , 0 org_unit_count FROM `sma_institutionlist_without_org` WHERE branch_id = $branch_id  GROUP BY institution_type_child
+  0 prev_organization , 0 org_unit_count, 0 prev_unit FROM `sma_institutionlist_without_org` WHERE branch_id = $branch_id  GROUP BY institution_type_child
 
 UNION ALL 
 
-SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization, 0 org_unit_count
+SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization, 0 org_unit_count, 0 prev_unit
  FROM `sma_institution` WHERE `type` = 1 
 
 
@@ -295,30 +293,31 @@ GROUP BY institution_type_child");
     SUM(unit_org) AS total_unit_org,
     SUM(current_org_count) AS current_org_count,
     SUM(org_absent_count) AS org_absent_count,
-    SUM(org_unit_count) org_unit_count
+    SUM(org_unit_count) org_unit_count,
+    SUM(prev_unit) prev_unit 
 FROM   ( 
 
  SELECT institution_type_id institution_type_child, 0 increase_institution,0 decrease_institution,0 thana_org,0 ward_org,0 unit_org,0 current_org_count,0 org_absent_count,
  
- SUM(institution) prev_institution, SUM(orgnization)  prev_organization,0 org_unit_count FROM `sma_organization_record_calculated` 
+ SUM(institution) prev_institution, SUM(orgnization)  prev_organization,0 org_unit_count, unit  prev_unit FROM `sma_organization_record_calculated` 
 	    WHERE  calculated_year = " . $prev . "  GROUP BY institution_type_id 
 
 UNION ALL 
  
 SELECT institution_type_child, 
-COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count
+COUNT(`id`) increase_institution, 0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count,  0 prev_unit
 FROM `sma_institutionlist` WHERE `date` BETWEEN  '" . $start . "' AND  '" . $end . "' GROUP BY institution_type_child 
 
 UNION ALL 
 
-SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org, 0 current_org_count, 0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count
+SELECT institution_type_child, 0 increase_institution, COUNT(`id`) decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org, 0 current_org_count, 0 org_absent_count,0 prev_institution, 0 prev_organization,0 org_unit_count,  0 prev_unit
 FROM `sma_institutionlist` WHERE `close_date` BETWEEN  '" . $start . "' AND  '" . $end . "' GROUP BY institution_type_child 
 
 UNION ALL 
 
 SELECT   institution_type_child, 0 increase_institution,0 decrease_institution, SUM( CASE WHEN org_status = 'Thana' THEN 1 ELSE 0 END) thana_org, 
 SUM( CASE WHEN org_status = 'Ward' THEN 1 ELSE 0 END) ward_org, SUM( CASE WHEN org_status = 'Unit' THEN 1 ELSE 0 END) unit_org,0 current_org_count,0 org_absent_count,
-0 prev_institution, 0 prev_organization, SUM(org_unit_count) org_unit_count
+0 prev_institution, 0 prev_organization, SUM(org_unit_count) org_unit_count,  0 prev_unit
  FROM `sma_institutionlist` 
 WHERE is_active = 1 GROUP BY institution_type_child 
 
@@ -326,15 +325,15 @@ UNION ALL
 
 
 
-SELECT institution_type_child, 0, 0, 0 , 0, 0, COUNT(institution_type_child) current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization , 0 org_unit_count FROM `sma_institutionlist_with_org`  GROUP BY institution_type_child
+SELECT institution_type_child, 0, 0, 0 , 0, 0, COUNT(institution_type_child) current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization , 0 org_unit_count,  0 prev_unit FROM `sma_institutionlist_with_org`  GROUP BY institution_type_child
 UNION ALL 
 
  
- SELECT institution_type_child, 0, 0, 0 , 0, 0, 0 current_org_count, COUNT(institution_type_child) org_absent_count,0 prev_institution, 0 prev_organization , 0 org_unit_count FROM `sma_institutionlist_without_org`  GROUP BY institution_type_child
+ SELECT institution_type_child, 0, 0, 0 , 0, 0, 0 current_org_count, COUNT(institution_type_child) org_absent_count,0 prev_institution, 0 prev_organization , 0 org_unit_count, 0 prev_unit FROM `sma_institutionlist_without_org`  GROUP BY institution_type_child
 
 UNION ALL 
 
-SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization, 0 org_unit_count
+SELECT `id` institution_type_child, 0 increase_institution,0 decrease_institution, 0 thana_org, 0 ward_org, 0 unit_org ,0 current_org_count,0 org_absent_count,0 prev_institution, 0 prev_organization, 0 org_unit_count,  0 prev_unit
  FROM `sma_institution` WHERE `type` = 1 
 
 
@@ -960,7 +959,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
              t2.institution_type as rcname,  
              {$this->db->dbprefix('branches')}.name as branch_name,   
               v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,   org_status as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
-             0 as empty_decrease
+             total_unit
               ", FALSE)
                 ->from('institutionlist_with_org');
             $this->datatables->join('institution t1', 'sma_institutionlist_with_org.institution_type=t1.id', 'left');
@@ -978,7 +977,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                  t2.institution_type as rcname,  
                  {$this->db->dbprefix('branches')}.name as branch_name,   
                   v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,  org_status as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
-                 0 as empty_decrease
+                 total_unit
                   ", FALSE)
                 ->from('institutionlist_with_org');
             $this->datatables->join('institution t1', 'sma_institutionlist_with_org.institution_type=t1.id', 'left');
