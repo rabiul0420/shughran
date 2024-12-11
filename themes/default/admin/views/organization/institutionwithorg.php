@@ -43,37 +43,8 @@
     }
 
 
-    function org_status(data, row, meta) {
-
-       
-         
-        const parts = row[8] ? row[8].split("_") : 0;
-        //console.log( parts.length);
-        
-
-        if (parts.length !=3) {
-            return '';
-        }
-
-        else {
-            //console.log(row[9]);
-
-
-
-            let result;
-
-
-            //   console.log(parts);
-            if (parseInt(parts[0]) > 0) {
-                result = "Thana";
-            } else if (parseInt(parts[0]) === 0 && parseInt(parts[1]) > 0) {
-                result = "Ward";
-            } else {
-                result = "Upashakha";
-            }
-            return result;
-        }
-
+    function org_status(data, row, meta) { 
+        return row[8];
     }
 
     function upashakha_current(data, row, meta) {
