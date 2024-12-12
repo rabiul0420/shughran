@@ -460,9 +460,7 @@
                                     <ul class="dropdown-menu">
 
                                     <li class="tmp_hidden"><a href="<?= admin_url('others/administration'); ?>" class="line-height-lg">প্রশাসনিক বিবরণ</a></li>
-                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrative_area_list'); ?>" class="line-height-lg">প্রশাসনিক এলাকা</a></li>
-                                        <li class="tmp_hidden"><a href="<?= admin_url('others/administrative_area'); ?>" class="line-height-lg">প্রশাসনিক এলাকা একনজরে </a></li>
-                                        <li class="tmp_hidden">  <a href="<?= admin_url('others/administrationbutorg'); ?>" class="line-height-lg">যে সব এলাকায় সংগঠন নেই</a></li>
+                                         <li class="tmp_hidden">  <a href="<?= admin_url('others/administrationbutorg'); ?>" class="line-height-lg">যে সব এলাকায় সংগঠন নেই</a></li>
                                         <li class="tmp_hidden"><hr class="divider" /></li>
                                         
 

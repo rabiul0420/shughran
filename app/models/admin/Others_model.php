@@ -55,6 +55,8 @@ class Others_model extends CI_Model
     
   public function getAllAdministration()
     {
+
+        $this->db->order_by('priority ASC');
         $q = $this->db->get('administration');
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {

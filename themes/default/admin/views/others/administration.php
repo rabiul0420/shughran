@@ -180,6 +180,11 @@ $administrative_prev = administrative_details_prev($prev,'administration',$admin
  
 $org_prev   = administrative_details_prev($prev,'organization',$administration->id);
  
+$org_prev   = org_info($org_info,$administration->id);
+ 
+
+
+
 if($report_info['prev_record'])
  echo $administrative_prev;
 

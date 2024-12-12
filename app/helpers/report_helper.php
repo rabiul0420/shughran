@@ -73,6 +73,27 @@ if(! function_exists('administrative_details_prev')) {
 
 
 
+if(! function_exists('org_info')) {
+    function org_info($data,  $field_value) {
+         $sum = 0;
+		 if(is_array($data)){
+
+			
+			 foreach($data as $row)if($row['administration_id']==$field_value){
+			 
+			 return isset($row[$field]) ? $row[$field] : 0 ; 
+				 
+			 }
+			 
+		 }
+		 
+        return $sum;
+    }
+}
+
+
+
+
 
 
 if(! function_exists('sum_institution')) {

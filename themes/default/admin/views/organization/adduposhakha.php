@@ -410,11 +410,13 @@ if (!empty($variants)) {
         });
 
 
+ 
 
 
+        $('input[name="is_attached"]').on('ifChecked', function (e) {
 
 
-        $('input[type="radio"]').on('ifChecked', function (e) {
+           
             e.preventDefault();
             var status_val = $(this).val();
             if (status_val == 1) {

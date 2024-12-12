@@ -220,7 +220,7 @@
                                
                                 <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'administration')) ? 'active' : '' ?>"><a href="<?= admin_url('others/administration'); ?>"><i class="fa fa-cogs"></i>প্রশাসনিক বিবরণ</a></li>
                                 <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'administrative_area_list')) ? 'active' : '' ?>"><a href="<?= admin_url('others/administrative_area_list'); ?>"><i class="fa fa-cogs"></i>প্রশাসনিক এলাকা</a></li>
-                                <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'administrative_area')) ? 'active' : '' ?>"><a href="<?= admin_url('others/administrative_area'); ?>"><i class="fa fa-cogs"></i>প্রশাসনিক এলাকা একনজরে</a></li>
+                                 
                                 <li class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' &&  ($this->uri->segment(3) == 'administrationbutorg')) ? 'active' : '' ?>"><a href="<?= admin_url('others/administrationbutorg'); ?>"><i class="fa fa-cogs"></i>যে সব এলাকায় সংগঠন নেই</a></li>
                                 <?php } ?>
 

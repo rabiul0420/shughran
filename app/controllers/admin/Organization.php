@@ -4049,7 +4049,7 @@ LEFT JOIN sma_thana_log ON sma_thana_log.thana_id = sma_thana.id
                 $thana_id = $this->site->insertData('thana_log', $thana_log, 'id');
 
 
-                if (isset($data['institution_id']) && !empty($data['institution_id']) && $data['institution_id'] != '' && $data['institution_id'] != 0)
+                if (isset($data['institution_id']) &&   $data['institution_id'] > 0)
                     $this->org_calculate_in_institution($data['institution_id']);
 
             }

@@ -207,32 +207,34 @@ class Others extends MY_Controller
 
 			$row = 8;
 
-			foreach ($programs as $key => $program) if ($key < floor(count($programs) / 2)) {
+			foreach ($programs as $key => $program)
+				if ($key < floor(count($programs) / 2)) {
 
-				$row_info = record_row($program_summary, 'program_id', $program->id);
-				$number = $row_info['number'];
-				$total_presence = $row_info['total_presence'];
-				$this->excel->getActiveSheet()->SetCellValue('A' . $row, $program->program_type);
-				$this->excel->getActiveSheet()->SetCellValue('B' . $row, $row_info['number']);
-				$this->excel->getActiveSheet()->SetCellValue('C' . $row, $row_info['total_presence']);
-				$this->excel->getActiveSheet()->SetCellValue('D' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
+					$row_info = record_row($program_summary, 'program_id', $program->id);
+					$number = $row_info['number'];
+					$total_presence = $row_info['total_presence'];
+					$this->excel->getActiveSheet()->SetCellValue('A' . $row, $program->program_type);
+					$this->excel->getActiveSheet()->SetCellValue('B' . $row, $row_info['number']);
+					$this->excel->getActiveSheet()->SetCellValue('C' . $row, $row_info['total_presence']);
+					$this->excel->getActiveSheet()->SetCellValue('D' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
 
-				$row++;
-			}
+					$row++;
+				}
 
 
 			$row = 8;
-			foreach ($programs as $key => $program) if ($key >= floor(count($programs) / 2)) {
-				$row_info = record_row($program_summary, 'program_id', $program->id);
-				$number = $row_info['number'];
-				$total_presence = $row_info['total_presence'];
-				$this->excel->getActiveSheet()->SetCellValue('F' . $row, $program->program_type);
-				$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
-				$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
-				$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
+			foreach ($programs as $key => $program)
+				if ($key >= floor(count($programs) / 2)) {
+					$row_info = record_row($program_summary, 'program_id', $program->id);
+					$number = $row_info['number'];
+					$total_presence = $row_info['total_presence'];
+					$this->excel->getActiveSheet()->SetCellValue('F' . $row, $program->program_type);
+					$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
+					$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
+					$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
 
-				$row++;
-			}
+					$row++;
+				}
 
 
 			$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
@@ -351,32 +353,34 @@ class Others extends MY_Controller
 
 			$row = 8;
 
-			foreach ($programs as $key => $program) if ($key < floor(count($programs) / 2)) {
+			foreach ($programs as $key => $program)
+				if ($key < floor(count($programs) / 2)) {
 
-				$row_info = record_row($program_summary, 'program_id', $program->id);
-				$number = $row_info['number'];
-				$total_presence = $row_info['total_presence'];
-				$this->excel->getActiveSheet()->SetCellValue('A' . $row, $program->program_type);
-				$this->excel->getActiveSheet()->SetCellValue('B' . $row, $row_info['number']);
-				$this->excel->getActiveSheet()->SetCellValue('C' . $row, $row_info['total_presence']);
-				$this->excel->getActiveSheet()->SetCellValue('D' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
+					$row_info = record_row($program_summary, 'program_id', $program->id);
+					$number = $row_info['number'];
+					$total_presence = $row_info['total_presence'];
+					$this->excel->getActiveSheet()->SetCellValue('A' . $row, $program->program_type);
+					$this->excel->getActiveSheet()->SetCellValue('B' . $row, $row_info['number']);
+					$this->excel->getActiveSheet()->SetCellValue('C' . $row, $row_info['total_presence']);
+					$this->excel->getActiveSheet()->SetCellValue('D' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
 
-				$row++;
-			}
+					$row++;
+				}
 
 
 			$row = 8;
-			foreach ($programs as $key => $program) if ($key >= floor(count($programs) / 2)) {
-				$row_info = record_row($program_summary, 'program_id', $program->id);
-				$number = $row_info['number'];
-				$total_presence = $row_info['total_presence'];
-				$this->excel->getActiveSheet()->SetCellValue('F' . $row, $program->program_type);
-				$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
-				$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
-				$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
+			foreach ($programs as $key => $program)
+				if ($key >= floor(count($programs) / 2)) {
+					$row_info = record_row($program_summary, 'program_id', $program->id);
+					$number = $row_info['number'];
+					$total_presence = $row_info['total_presence'];
+					$this->excel->getActiveSheet()->SetCellValue('F' . $row, $program->program_type);
+					$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
+					$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
+					$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
 
-				$row++;
-			}
+					$row++;
+				}
 
 
 			$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
@@ -407,16 +411,14 @@ class Others extends MY_Controller
 		if ($branch_id) {
 
 			if (($reportinfo['last_half'] || $report_type == 'half_yearly'))
-				$result =  $this->site->query_binding("SELECT * from sma_program_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
-
+				$result = $this->site->query_binding("SELECT * from sma_program_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 			else if ($report_type == 'annual')
-				$result =  $this->site->query_binding("SELECT `program_id`, SUM(`number`) AS number ,SUM(`total_presence`) AS total_presence, sum(id) id  from sma_program_record WHERE  branch_id = ? AND date BETWEEN ? AND ? GROUP BY program_id", array($branch_id, $start_date, $end_date));
+				$result = $this->site->query_binding("SELECT `program_id`, SUM(`number`) AS number ,SUM(`total_presence`) AS total_presence, sum(id) id  from sma_program_record WHERE  branch_id = ? AND date BETWEEN ? AND ? GROUP BY program_id", array($branch_id, $start_date, $end_date));
 		} else {
 			if (($reportinfo['last_half'] || $report_type == 'half_yearly'))
-				$result =  $this->site->query_binding("SELECT * from sma_program_record WHERE  date BETWEEN ? AND ? ", array($start_date, $end_date));
-
+				$result = $this->site->query_binding("SELECT * from sma_program_record WHERE  date BETWEEN ? AND ? ", array($start_date, $end_date));
 			else if ($report_type == 'annual')
-				$result =  $this->site->query_binding("SELECT `program_id`, SUM(`number`) AS number ,SUM(`total_presence`) AS total_presence, sum(id) id  from sma_program_record WHERE date BETWEEN ? AND ? GROUP BY program_id", array($start_date, $end_date));
+				$result = $this->site->query_binding("SELECT `program_id`, SUM(`number`) AS number ,SUM(`total_presence`) AS total_presence, sum(id) id  from sma_program_record WHERE date BETWEEN ? AND ? GROUP BY program_id", array($start_date, $end_date));
 		}
 
 		return $result;
@@ -428,10 +430,9 @@ class Others extends MY_Controller
 	{
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT * from sma_organization_record_calculated WHERE `report_type` = ? AND branch_id = ? AND  calculated_year = ? ", array($report_type, $branch_id, $year));
-
+			$result = $this->site->query_binding("SELECT * from sma_organization_record_calculated WHERE `report_type` = ? AND branch_id = ? AND  calculated_year = ? ", array($report_type, $branch_id, $year));
 		else
-			$result =  $this->site->query_binding("SELECT * from sma_organization_record_calculated WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $year));
+			$result = $this->site->query_binding("SELECT * from sma_organization_record_calculated WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $year));
 
 
 
@@ -453,9 +454,9 @@ class Others extends MY_Controller
 		$report_year = $report_type_get['year'];
 
 
-		if ($report_type_get['is_current'] != false  && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
+		if ($report_type_get['is_current'] != false && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
 
-			$type =   ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
+			$type = ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
 			///half_yearly starts
 			$program_recordinfo = $this->site->getOneRecord('program_record', '*', array('report_type' => $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
@@ -520,7 +521,7 @@ class Others extends MY_Controller
 		$this->data['manpower'] = $pr_details;
 		if ($status == 1) {
 			$this->data['member'] = $this->manpower_model->getMemberByID($id);
-			$this->data['status'] =  'Member';
+			$this->data['status'] = 'Member';
 		}
 		$this->load->view($this->theme . 'manpower/modal_view', $this->data);
 	}
@@ -725,34 +726,36 @@ class Others extends MY_Controller
 
 			$row = 8;
 
-			foreach ($centraltrainings as $training) if ($training->type == 1) {
+			foreach ($centraltrainings as $training)
+				if ($training->type == 1) {
 
-				$row_info = record_row($centraltraining_summary, 'centraltraining_id', $training->id);
+					$row_info = record_row($centraltraining_summary, 'centraltraining_id', $training->id);
 
-				$number = $row_info['number'];
-				$total_presence = $row_info['total_presence'];
+					$number = $row_info['number'];
+					$total_presence = $row_info['total_presence'];
 
-				$this->excel->getActiveSheet()->SetCellValue('A' . $row, $training->training_name);
-				$this->excel->getActiveSheet()->SetCellValue('B' . $row, $row_info['number']);
-				$this->excel->getActiveSheet()->SetCellValue('C' . $row, $row_info['total_presence']);
-				$this->excel->getActiveSheet()->SetCellValue('D' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
+					$this->excel->getActiveSheet()->SetCellValue('A' . $row, $training->training_name);
+					$this->excel->getActiveSheet()->SetCellValue('B' . $row, $row_info['number']);
+					$this->excel->getActiveSheet()->SetCellValue('C' . $row, $row_info['total_presence']);
+					$this->excel->getActiveSheet()->SetCellValue('D' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
 
-				$row++;
-			}
+					$row++;
+				}
 
 			$row = 8;
-			foreach ($centraltrainings as $training) if ($training->type == 2) {
-				$row_info = record_row($centraltraining_summary, 'centraltraining_id', $training->id);
+			foreach ($centraltrainings as $training)
+				if ($training->type == 2) {
+					$row_info = record_row($centraltraining_summary, 'centraltraining_id', $training->id);
 
-				$number = $row_info['number'];
-				$total_presence = $row_info['total_presence'];
-				$this->excel->getActiveSheet()->SetCellValue('F' . $row, $training->training_name);
-				$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
-				$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
-				$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
+					$number = $row_info['number'];
+					$total_presence = $row_info['total_presence'];
+					$this->excel->getActiveSheet()->SetCellValue('F' . $row, $training->training_name);
+					$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
+					$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
+					$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
 
-				$row++;
-			}
+					$row++;
+				}
 
 
 
@@ -764,17 +767,18 @@ class Others extends MY_Controller
 
 			$row++;
 
-			foreach ($centraltrainings as $training) if ($training->type == 3) {
-				$row_info = record_row($centraltraining_summary, 'centraltraining_id', $training->id);
+			foreach ($centraltrainings as $training)
+				if ($training->type == 3) {
+					$row_info = record_row($centraltraining_summary, 'centraltraining_id', $training->id);
 
-				$number = $row_info['number'];
-				$total_presence = $row_info['total_presence'];
-				$this->excel->getActiveSheet()->SetCellValue('F' . $row, $training->training_name);
-				$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
-				$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
-				$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
-				$row++;
-			}
+					$number = $row_info['number'];
+					$total_presence = $row_info['total_presence'];
+					$this->excel->getActiveSheet()->SetCellValue('F' . $row, $training->training_name);
+					$this->excel->getActiveSheet()->SetCellValue('G' . $row, $row_info['number']);
+					$this->excel->getActiveSheet()->SetCellValue('H' . $row, $row_info['total_presence']);
+					$this->excel->getActiveSheet()->SetCellValue('I' . $row, ($number > 0) ? round($total_presence / $number, 2) : 0);
+					$row++;
+				}
 
 
 			$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
@@ -803,9 +807,9 @@ class Others extends MY_Controller
 
 
 
-		if ($report_type_get['is_current'] != false  && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
+		if ($report_type_get['is_current'] != false && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
 
-			$type =   ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
+			$type = ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
 			///half_yearly starts
 			$centraltraining_recordinfo = $this->site->getOneRecord('centraltraining_record', '*', array('report_type' => $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
@@ -844,16 +848,15 @@ class Others extends MY_Controller
 
 		if ($branch_id) {
 			if ($report_type == 'half_yearly' || $last_half)
-				$result =  $this->site->query_binding("SELECT * from sma_centraltraining_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+				$result = $this->site->query_binding("SELECT * from sma_centraltraining_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 			else if ($report_type == 'annual')
-				$result =  $this->site->query_binding("SELECT `centraltraining_id`, SUM(`number`) number, SUM(`total_presence`) total_presence , SUM(id) id from sma_centraltraining_record WHERE  branch_id = ? AND date BETWEEN ? AND ? GROUP BY centraltraining_id", array($branch_id, $start_date, $end_date));
+				$result = $this->site->query_binding("SELECT `centraltraining_id`, SUM(`number`) number, SUM(`total_presence`) total_presence , SUM(id) id from sma_centraltraining_record WHERE  branch_id = ? AND date BETWEEN ? AND ? GROUP BY centraltraining_id", array($branch_id, $start_date, $end_date));
 		} else {
 
 			if ($report_type == 'half_yearly' || $last_half)
-				$result =  $this->site->query_binding("SELECT * from sma_centraltraining_record WHERE   date BETWEEN ? AND ? ", array($start_date, $end_date));
-
+				$result = $this->site->query_binding("SELECT * from sma_centraltraining_record WHERE   date BETWEEN ? AND ? ", array($start_date, $end_date));
 			else if ($report_type == 'annual')
-				$result =  $this->site->query_binding("SELECT `centraltraining_id`, SUM(`number`) number, SUM(`total_presence`) total_presence , SUM(id) id from sma_centraltraining_record WHERE   date BETWEEN ? AND ? GROUP BY centraltraining_id", array($start_date, $end_date));
+				$result = $this->site->query_binding("SELECT `centraltraining_id`, SUM(`number`) number, SUM(`total_presence`) total_presence , SUM(id) id from sma_centraltraining_record WHERE   date BETWEEN ? AND ? GROUP BY centraltraining_id", array($start_date, $end_date));
 		}
 
 
@@ -931,7 +934,7 @@ class Others extends MY_Controller
 		$this->data['current_ideal_thana'] = $this->current_ideal_thana($branch_id);
 		//$this->sma->print_arrays($this->data['current_ideal_thana']);
 		$this->data['organizationinfo_summary'] = $this->getorganizationinfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
- 		$this->data['organizationinfo_summary_prev'] = $this->getorganizationinfo_summary_prev('annual', $report_type_get['last_year'], $branch_id);
+		$this->data['organizationinfo_summary_prev'] = $this->getorganizationinfo_summary_prev('annual', $report_type_get['last_year'], $branch_id);
 
 		//$this->data['unit_increase_decrease'] = $this->unit_increase_decrease($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 		$this->data['org_thana_ward_unit'] = $this->org_thana_ward_unit($report_start, $report_end, $branch_id);
@@ -941,13 +944,13 @@ class Others extends MY_Controller
 		$meta = array('page_title' => 'organization info', 'bc' => $bc);
 
 
-		if ($branch_id)  
+		if ($branch_id)
 			$this->page_construct('others/organizationinfo_entry', $meta, $this->data, 'leftmenu/organization');
 		else
 			$this->page_construct('others/organizationinfo', $meta, $this->data, 'leftmenu/organization');
-	
-	
-	
+
+
+
 	}
 
 
@@ -957,9 +960,9 @@ class Others extends MY_Controller
 
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT count(id) current_thana from sma_thana WHERE  ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND branch_id = ?  ", array($branch_id));
+			$result = $this->site->query_binding("SELECT count(id) current_thana from sma_thana WHERE  ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND branch_id = ?  ", array($branch_id));
 		else
-			$result =  $this->site->query("SELECT count(id) current_thana from sma_thana WHERE ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
+			$result = $this->site->query("SELECT count(id) current_thana from sma_thana WHERE ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
 
 
 
@@ -974,9 +977,9 @@ class Others extends MY_Controller
 
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND  branch_id = ?  ", array($branch_id));
+			$result = $this->site->query_binding("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND  branch_id = ?  ", array($branch_id));
 		else
-			$result =  $this->site->query("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
+			$result = $this->site->query("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
 
 
 
@@ -991,10 +994,9 @@ class Others extends MY_Controller
 
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT SUM(unit_increase) unit_increase , SUM(unit_decrease) unit_decrease from sma_organization_record WHERE   branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
-
+			$result = $this->site->query_binding("SELECT SUM(unit_increase) unit_increase , SUM(unit_decrease) unit_decrease from sma_organization_record WHERE   branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 		else
-			$result =  $this->site->query_binding("SELECT  SUM(unit_increase) unit_increase , SUM(unit_decrease) unit_decrease  from sma_organization_record WHERE   date BETWEEN ? AND ? ", array($start_date, $end_date));
+			$result = $this->site->query_binding("SELECT  SUM(unit_increase) unit_increase , SUM(unit_decrease) unit_decrease  from sma_organization_record WHERE   date BETWEEN ? AND ? ", array($start_date, $end_date));
 
 
 
@@ -1008,10 +1010,9 @@ class Others extends MY_Controller
 
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT SUM(unit_increase) unit_increase , SUM(unit_decrease) unit_decrease from sma_institution_unit WHERE   branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
-
+			$result = $this->site->query_binding("SELECT SUM(unit_increase) unit_increase , SUM(unit_decrease) unit_decrease from sma_institution_unit WHERE   branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 		else
-			$result =  $this->site->query_binding("SELECT  SUM(unit_increase) unit_increase , SUM(unit_decrease) unit_decrease  from sma_institution_unit WHERE   date BETWEEN ? AND ? ", array($start_date, $end_date));
+			$result = $this->site->query_binding("SELECT  SUM(unit_increase) unit_increase , SUM(unit_decrease) unit_decrease  from sma_institution_unit WHERE   date BETWEEN ? AND ? ", array($start_date, $end_date));
 
 
 
@@ -1022,32 +1023,30 @@ class Others extends MY_Controller
 
 	function org_thana_ward_unit($start_date, $end_date, $branch_id = NULL)
 	{
-	//	select  count(id),  org_type,in_out,`level` from `sma_thana` where is_pending = 2 group by org_type, in_out, `level`
- 
+		//	select  count(id),  org_type,in_out,`level` from `sma_thana` where is_pending = 2 group by org_type, in_out, `level`
+
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
+			$result = $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
 			FROM sma_thana_log LEFT JOIN sma_thana ON sma_thana.id = sma_thana_log.thana_id
 			 WHERE  sma_thana.branch_id = ? AND sma_thana_log.`date` BETWEEN ? AND ?  GROUP BY org_type, sma_thana_log.in_out, sma_thana_log.`level`", array($branch_id, $start_date, $end_date));
-			
 		else
-			$result =  $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
+			$result = $this->site->query_binding("SELECT COUNT(sma_thana_log.id) org_count , org_type,sma_thana_log.in_out,sma_thana_log.`level`  
 			FROM sma_thana_log LEFT JOIN sma_thana ON sma_thana.id = sma_thana_log.thana_id
 			 WHERE sma_thana_log.`date` BETWEEN ? AND ?  GROUP BY org_type, sma_thana_log.in_out, sma_thana_log.`level`", array($start_date, $end_date));
- 
+
 		return $result;
 	}
 
-	
+
 
 
 	function getorganizationinfo_summary_prev($report_type, $year, $branch_id = NULL)
 	{
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT * from sma_organizationinfo_record_calculated WHERE `report_type` = ? AND branch_id = ? AND  calculated_year = ? ", array($report_type, $branch_id, $year));
-
+			$result = $this->site->query_binding("SELECT * from sma_organizationinfo_record_calculated WHERE `report_type` = ? AND branch_id = ? AND  calculated_year = ? ", array($report_type, $branch_id, $year));
 		else
-			$result =  $this->site->query_binding("SELECT * from sma_organizationinfo_record_calculated WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $year));
+			$result = $this->site->query_binding("SELECT * from sma_organizationinfo_record_calculated WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $year));
 
 
 
@@ -1065,17 +1064,18 @@ class Others extends MY_Controller
 		$report_type = $report_type_get['type'];
 		$report_year = $report_type_get['year'];
 
-		if ($report_type_get['is_current'] != false  && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
+		if ($report_type_get['is_current'] != false && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
 
-			$type =   ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
+			$type = ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
 
 
 			$organizationinfo_recordinfo = $this->site->getOneRecord('organizationinfo_record', '*', array('report_type' => $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
 			if (!$organizationinfo_recordinfo) {
 
-				foreach ($organizationinfos as $organizationinfo) if($organizationinfo->id> 4) 
-					$this->site->insertData('organizationinfo_record', array('organizationinfo_id' => $organizationinfo->id, 'branch_id' => $branch_id, 'report_type' => $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+				foreach ($organizationinfos as $organizationinfo)
+					if ($organizationinfo->id > 4)
+						$this->site->insertData('organizationinfo_record', array('organizationinfo_id' => $organizationinfo->id, 'branch_id' => $branch_id, 'report_type' => $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
 			}
 		}
 
@@ -1108,15 +1108,15 @@ class Others extends MY_Controller
 
 		if ($branch_id) {
 			if (($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly')
-				$result =  $this->site->query_binding("SELECT * from sma_organizationinfo_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+				$result = $this->site->query_binding("SELECT * from sma_organizationinfo_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 			else if ($report_type == 'annual')
-				$result =  $this->site->query_binding("SELECT  `organizationinfo_id`,SUM(`institutional_increase`)  institutional_increase, SUM(`institutional_decrease`) institutional_decrease, SUM(`residential_increase`) residential_increase , SUM(`residential_decrease`) residential_decrease, SUM(id) id from sma_organizationinfo_record WHERE   branch_id = ? AND date BETWEEN ? AND ? GROUP BY organizationinfo_id", array($branch_id, $start_date, $end_date));
+				$result = $this->site->query_binding("SELECT  `organizationinfo_id`,SUM(`institutional_increase`)  institutional_increase, SUM(`institutional_decrease`) institutional_decrease, SUM(`residential_increase`) residential_increase , SUM(`residential_decrease`) residential_decrease, SUM(id) id from sma_organizationinfo_record WHERE   branch_id = ? AND date BETWEEN ? AND ? GROUP BY organizationinfo_id", array($branch_id, $start_date, $end_date));
 		} else {
 
 			if (($report_type == 'annual' && $reportinfo['last_half']) || $report_type == 'half_yearly')
-				$result =  $this->site->query_binding("SELECT * from sma_organizationinfo_record WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
+				$result = $this->site->query_binding("SELECT * from sma_organizationinfo_record WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
 			else if ($report_type == 'annual')
-				$result =  $this->site->query_binding("SELECT  `organizationinfo_id`,SUM(`institutional_increase`)  institutional_increase, SUM(`institutional_decrease`) institutional_decrease, SUM(`residential_increase`) residential_increase , SUM(`residential_decrease`) residential_decrease, SUM(id) id from sma_organizationinfo_record WHERE   date BETWEEN ? AND ? GROUP BY organizationinfo_id", array($start_date, $end_date));
+				$result = $this->site->query_binding("SELECT  `organizationinfo_id`,SUM(`institutional_increase`)  institutional_increase, SUM(`institutional_decrease`) institutional_decrease, SUM(`residential_increase`) residential_increase , SUM(`residential_decrease`) residential_decrease, SUM(id) id from sma_organizationinfo_record WHERE   date BETWEEN ? AND ? GROUP BY organizationinfo_id", array($start_date, $end_date));
 		}
 
 
@@ -1131,7 +1131,7 @@ class Others extends MY_Controller
 
 		if ($branch_id) {
 
-			$result =  $this->site->query_binding("select 
+			$result = $this->site->query_binding("select 
  			SUM(  case  WHEN sma_thana_log.in_out = 1 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_increase, 
 			SUM(  CASE  WHEN sma_thana_log.in_out = 1 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_increase,
 			
@@ -1143,7 +1143,7 @@ class Others extends MY_Controller
 			where is_pending = 2 AND sma_thana_log.branch_id = ? AND sma_thana_log.date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 		} else {
 
-			$result =  $this->site->query_binding("select 
+			$result = $this->site->query_binding("select 
 				SUM(  case  WHEN sma_thana_log.in_out = 1 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_increase, 
 			   SUM(  CASE  WHEN sma_thana_log.in_out = 1 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_increase,
 			   
@@ -1167,7 +1167,7 @@ class Others extends MY_Controller
 
 		if ($branch_id) {
 
-			$result =  $this->site->query_binding("select 
+			$result = $this->site->query_binding("select 
 			SUM( case WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_increase, 
 			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_increase, 
 			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Departmental' THEN 1 ELSE 0 END ) departmental_increase,
@@ -1180,7 +1180,7 @@ class Others extends MY_Controller
 			 AND sma_thana_ideal_log.branch_id = ? AND   sma_thana_ideal_log.date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
 		} else {
 
-			$result =  $this->site->query_binding("select 
+			$result = $this->site->query_binding("select 
 			SUM( case WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Residential' THEN 1 ELSE 0 END ) residential_increase, 
 			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Institutional' THEN 1 ELSE 0 END ) institutional_increase,
 			SUM( CASE WHEN sma_thana_ideal_log.in_out = 1 AND sma_thana.org_type = 'Departmental' THEN 1 ELSE 0 END ) departmental_increase, 
@@ -1261,10 +1261,27 @@ class Others extends MY_Controller
 
 
 		$this->data['prev'] = $this->administrative_details_prev('annual', $report_type_get['last_year'], $branch_id);
+		
+		$org_info  = $this->administrative_org_info($branch_id);
+
+	 
+
+
+		
+		$transposed = [];
+		foreach ($org_info as $row) {
+			foreach ($row as $key => $value) {
+				$transposed[$key][] = $value;
+			}
+		}
+	 
+
+		$this->data['org_info']  = $transposed;
 
 
 
-		//$this->sma->print_arrays($this->data['prev']);
+
+		  $this->sma->print_arrays($org_info,$this->data['org_info']);
 
 		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Administration'));
 		$meta = array('page_title' => 'Administration', 'bc' => $bc);
@@ -1280,55 +1297,6 @@ class Others extends MY_Controller
 
 
 
-	function administrative_area($branch_id = NULL)
-	{
-
-		$this->sma->checkPermissions('index', TRUE);
-		if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
-
-			$this->session->set_flashdata('warning', lang('access_denied'));
-			admin_redirect('others/administrative_area/' . $this->session->userdata('branch_id'));
-		} else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-			admin_redirect('others/administrative_area/' . $this->session->userdata('branch_id'));
-		}
-
-
-
-
-
-		$report_type_get = $this->report_type();
-
-		if ($report_type_get == false)
-			admin_redirect();
-
-		$this->data['report_info'] = $report_type_get;
-
-
-
-		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
-		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
-			$this->data['branches'] = $this->site->getAllBranches();
-			$this->data['branch_id'] = $branch_id;
-			$this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
-		} else {
-			$this->data['branches'] = NULL;
-			$this->data['branch_id'] = $this->session->userdata('branch_id');
-			$this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
-		}
-
-
-
-
-
-		//$this->sma->print_arrays($this->data['prev']);
-
-		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'প্রশাসনিক এলাকা একনজরে'));
-		$meta = array('page_title' => 'প্রশাসনিক এলাকা একনজরে', 'bc' => $bc);
-
-
-
-		$this->page_construct('others/administrative_area', $meta, $this->data, 'leftmenu/organization');
-	}
 
 
 
@@ -1499,7 +1467,7 @@ class Others extends MY_Controller
 			if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
 
 				$this->data['branch_id'] = NULL;
-				$this->data['branch'] =   NULL;
+				$this->data['branch'] = NULL;
 			} else {
 
 				$this->data['branch_id'] = $this->session->userdata('branch_id');
@@ -1529,17 +1497,212 @@ class Others extends MY_Controller
 	{
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT SUM(organization)  as organization,  SUM(administration)  as administration,  administration_id from sma_administration_record_calculated WHERE  branch_id = ? AND  calculated_year = ? group by  administration_id", array($branch_id, $year)); //`report_type` = ? AND $report_type,
-
+			$result = $this->site->query_binding("SELECT SUM(organization)  as organization,  SUM(administration)  as administration,  administration_id from sma_administration_record_calculated WHERE  branch_id = ? AND  calculated_year = ? group by  administration_id", array($branch_id, $year)); //`report_type` = ? AND $report_type,
 		else
-			$result =  $this->site->query_binding("SELECT SUM(organization)  as organization,  SUM(administration)  as administration, administration_id  from sma_administration_record_calculated WHERE  calculated_year = ?  group by administration_id", array($year));   //`report_type` = ? AND $report_type,
+			$result = $this->site->query_binding("SELECT SUM(organization)  as organization,  SUM(administration)  as administration, administration_id  from sma_administration_record_calculated WHERE  calculated_year = ?  group by administration_id", array($year));   //`report_type` = ? AND $report_type,
 
 
 		return $result;
 	}
 
 
+	function administrative_org_info($branch_id = NULL)
+	{
+		if ($branch_id)
+			$result = $this->site->query("");
+		else
+			$result = $this->site->query("SELECT 
+ `level`,
+  
+SUM(upazila_COUNT)  count_1 ,
+SUM(thana_count)  count_7,
+SUM(pourosova_count) count_2,
+SUM(union_count) count_3 ,
+SUM(cityward_count) count_4,
+SUM(pouroward_count) count_5,
+SUM(unionward_count)  count_6
+  FROM (
 
+
+SELECT 
+    `level`, 0 upazila_COUNT,
+      
+    COUNT(*) AS thana_count, 0 pourosova_count, 0 union_count, 0 cityward_count,  0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        upazila,
+        MIN(`level`) AS `level`
+    FROM (SELECT 
+DISTINCT
+upazila,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.upazila
+
+ WHERE    sma_district.`level` = 2 AND sma_district.zone_type = 1)a
+    GROUP BY upazila
+) AS subquery
+GROUP BY LEVEL
+  
+
+UNION ALL 
+ 
+
+SELECT 
+    `level`,
+     
+    COUNT(*) AS upazila_COUNT, 0 thana_count, 0 pourosova_count, 0 union_count, 0 cityward_count,  0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        upazila,
+        MIN(`level`) AS `level`
+    FROM (SELECT 
+DISTINCT
+upazila,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.upazila
+
+ WHERE    sma_district.`level` = 2 AND sma_district.zone_type = 2)a
+    GROUP BY upazila
+) AS subquery
+GROUP BY LEVEL
+ 
+ 
+
+UNION ALL 
+ 
+
+SELECT 
+    `level`,
+  
+    0 upazila_COUNT, 0 thana_count,  COUNT(*) AS pourosova_count, 0 union_count, 0 cityward_count,  0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        `union`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`union`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.union
+
+ WHERE    sma_district.`level` = 3 AND sma_district.zone_type = 1)a
+    GROUP BY `union`
+) AS subquery
+GROUP BY LEVEL
+ 
+
+UNION ALL 
+ 
+
+SELECT 
+    `level`,
+   
+    0 upazila_COUNT, 0 thana_count,  0 pourosova_count, COUNT(*)  union_count, 0 cityward_count,  0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        `union`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`union`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.union
+
+ WHERE    sma_district.`level` = 3 AND sma_district.zone_type = 2)a
+    GROUP BY `union`
+) AS subquery
+GROUP BY LEVEL
+ 
+
+
+UNION ALL 
+
+
+
+SELECT 
+    `level`,
+    
+    0 upazila_COUNT, 0 thana_count,  0 pourosova_count, 0  union_count, COUNT(*) cityward_count, 0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        `ward`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`ward`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.ward
+
+ WHERE    sma_district.`level` = 4 AND sma_district.zone_type = 1)a
+    GROUP BY `ward`
+) AS subquery
+GROUP BY LEVEL
+
+
+UNION ALL 
+
+SELECT 
+    `level`,
+   
+    0 upazila_COUNT, 0 thana_count,  0 pourosova_count, 0  union_count, 0 cityward_count, COUNT(*) pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        `ward`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`ward`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.ward
+
+ WHERE    sma_district.`level` = 4 AND sma_district.zone_type = 3)a
+    GROUP BY `ward`
+) AS subquery
+GROUP BY LEVEL
+
+
+UNION ALL 
+
+SELECT 
+    `level`,
+    0 upazila_COUNT, 0 thana_count,  0 pourosova_count, 0  union_count, 0 cityward_count,  0 pouroward_count, COUNT(*) unionward_count
+FROM (
+    SELECT 
+        `ward`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`ward`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.ward
+
+ WHERE    sma_district.`level` = 4 AND sma_district.zone_type = 2)a
+    GROUP BY `ward`
+) AS subquery
+GROUP BY LEVEL
+) c  GROUP BY `level`");
+
+		return $result;
+	}
 
 
 	function getadministration_summary($branch_id = NULL, $reportinfo = null)
@@ -1558,38 +1721,35 @@ class Others extends MY_Controller
 
 
 			if ($report_type == 'half_yearly' || $last_half)
-				$result =  $this->site->query_binding("SELECT * from sma_administration_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
-
-
+				$result = $this->site->query_binding("SELECT * from sma_administration_record WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
 			else if ($report_type == 'annual') {
 
-				$result =  $this->site->query_binding("SELECT  administration_id,  SUM(`administrative_increase`) administrative_increase,  SUM(`administrative_decrease`) administrative_decrease, SUM(`organization_increase`) organization_increase,SUM(`organization_decrease`) organization_decrease, SUM(id) id from sma_administration_record WHERE  branch_id = ? AND date BETWEEN ? AND ? GROUP BY administration_id", array($branch_id, $report_start, $report_end));
+				$result = $this->site->query_binding("SELECT  administration_id,  SUM(`administrative_increase`) administrative_increase,  SUM(`administrative_decrease`) administrative_decrease, SUM(`organization_increase`) organization_increase,SUM(`organization_decrease`) organization_decrease, SUM(id) id from sma_administration_record WHERE  branch_id = ? AND date BETWEEN ? AND ? GROUP BY administration_id", array($branch_id, $report_start, $report_end));
 
 
 				//last half
-				$result2 =  $this->site->query_binding("SELECT  administration_id, SUM(`branch`) branch,   SUM(`thana`) thana,SUM(`ward`) ward,SUM(`unit`) unit,SUM(`supporter_org`) supporter_org from sma_administration_record WHERE  branch_id = ? AND date BETWEEN ? AND ? GROUP BY administration_id", array($branch_id, $reportinfo['info']->startdate_annual, $reportinfo['info']->enddate_annual));
+				$result2 = $this->site->query_binding("SELECT  administration_id, SUM(`branch`) branch,   SUM(`thana`) thana,SUM(`ward`) ward,SUM(`unit`) unit,SUM(`supporter_org`) supporter_org from sma_administration_record WHERE  branch_id = ? AND date BETWEEN ? AND ? GROUP BY administration_id", array($branch_id, $reportinfo['info']->startdate_annual, $reportinfo['info']->enddate_annual));
 
 				$merged = array_replace_recursive($result, $result2);
 
-				$result  = $merged;
+				$result = $merged;
 			}
 		} else {
 
 
 			if ($report_type == 'half_yearly' || $last_half)
-				$result =  $this->site->query_binding("SELECT * from sma_administration_record WHERE   date BETWEEN ? AND ? ", array($report_start, $report_end));
-
+				$result = $this->site->query_binding("SELECT * from sma_administration_record WHERE   date BETWEEN ? AND ? ", array($report_start, $report_end));
 			else if ($report_type == 'annual') {
 
-				$result =  $this->site->query_binding("SELECT  administration_id,  SUM(`administrative_increase`) administrative_increase,  SUM(`administrative_decrease`) administrative_decrease, SUM(`organization_increase`) organization_increase,SUM(`organization_decrease`) organization_decrease, SUM(id) id from sma_administration_record WHERE date BETWEEN ? AND ? GROUP BY administration_id", array($report_start, $report_end));
+				$result = $this->site->query_binding("SELECT  administration_id,  SUM(`administrative_increase`) administrative_increase,  SUM(`administrative_decrease`) administrative_decrease, SUM(`organization_increase`) organization_increase,SUM(`organization_decrease`) organization_decrease, SUM(id) id from sma_administration_record WHERE date BETWEEN ? AND ? GROUP BY administration_id", array($report_start, $report_end));
 
 
 				//last half
-				$result2 =  $this->site->query_binding("SELECT  administration_id, SUM(`branch`) branch,   SUM(`thana`) thana,SUM(`ward`) ward,SUM(`unit`) unit,SUM(`supporter_org`) supporter_org from sma_administration_record WHERE  date BETWEEN ? AND ? GROUP BY administration_id", array($reportinfo['info']->startdate_annual, $reportinfo['info']->enddate_annual));
+				$result2 = $this->site->query_binding("SELECT  administration_id, SUM(`branch`) branch,   SUM(`thana`) thana,SUM(`ward`) ward,SUM(`unit`) unit,SUM(`supporter_org`) supporter_org from sma_administration_record WHERE  date BETWEEN ? AND ? GROUP BY administration_id", array($reportinfo['info']->startdate_annual, $reportinfo['info']->enddate_annual));
 
 				$merged = array_replace_recursive($result, $result2);
 
-				$result  = $merged;
+				$result = $merged;
 			}
 		}
 
@@ -1603,10 +1763,9 @@ class Others extends MY_Controller
 	{
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT * from sma_administration_record_calculated WHERE `report_type` = ? AND branch_id = ? AND  calculated_year = ? ", array($report_type, $branch_id, $year));
-
+			$result = $this->site->query_binding("SELECT * from sma_administration_record_calculated WHERE `report_type` = ? AND branch_id = ? AND  calculated_year = ? ", array($report_type, $branch_id, $year));
 		else
-			$result =  $this->site->query_binding("SELECT * from sma_administration_record_calculated WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $year));
+			$result = $this->site->query_binding("SELECT * from sma_administration_record_calculated WHERE `report_type` = ? AND calculated_year = ? ", array($report_type, $year));
 
 
 
@@ -1619,10 +1778,9 @@ class Others extends MY_Controller
 	{
 
 		if ($branch_id)
-			$result =  $this->site->query_binding("SELECT COUNT(id) as total, administration_id from sma_administration_without_org WHERE   branch_id = ?  GROUP BY administration_id ", array($branch_id));
-
+			$result = $this->site->query_binding("SELECT COUNT(id) as total, administration_id from sma_administration_without_org WHERE   branch_id = ?  GROUP BY administration_id ", array($branch_id));
 		else
-			$result =  $this->site->query("SELECT COUNT(id) as total, administration_id from sma_administration_without_org GROUP BY administration_id");
+			$result = $this->site->query("SELECT COUNT(id) as total, administration_id from sma_administration_without_org GROUP BY administration_id");
 
 
 
@@ -1652,8 +1810,8 @@ class Others extends MY_Controller
 
 
 
-		if ($report_type_get['is_current'] != false  && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
-			$type =   ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
+		if ($report_type_get['is_current'] != false && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
+			$type = ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
 
 			$administration_recordinfo = $this->site->getOneRecord('administration_record', '*', array('report_type' => $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
@@ -1674,7 +1832,7 @@ class Others extends MY_Controller
 
 		if ($this->input->get('type') && ($this->input->get('type') == 'annual')) {
 			/*$administration_recordinfo = $this->site->query_binding('SELECT administration_id,SUM(organization_increase) organization_increase, SUM(organization_decrease) organization_decrease, SUM(thana) thana, SUM(ward) ward, SUM(unit) unit, SUM(supporter_org) supporter_org,  SUM(prev) prev, SUM(org_number) org_number,SUM(id) id FROM sma_administration_record GROUP BY administration_id',array($branch_id,$end,$start));	
-	*/
+			 */
 			// it seems no need this part
 		} else {
 			// $administration_recordinfo = $this->site->getOneRecord('administration_record','*',array('branch_id'=>$branch_id,'date <= '=>$report_end,'date >= '=>$report_start),'id desc',1,0);
@@ -2062,10 +2220,9 @@ class Others extends MY_Controller
 
 
 		if (!($this->Owner || $this->Admin))
-			$where =  array('id' => $id, 'branch_id' => $this->session->userdata('branch_id'));
-
+			$where = array('id' => $id, 'branch_id' => $this->session->userdata('branch_id'));
 		else if ($this->Owner || $this->Admin)
-			$where =  array('id' => $id);
+			$where = array('id' => $id);
 
 
 
@@ -2090,10 +2247,9 @@ class Others extends MY_Controller
 
 
 		if (!($this->Owner || $this->Admin))
-			$where =  array('id' => $id, 'branch_id' => $this->session->userdata('branch_id'));
-
+			$where = array('id' => $id, 'branch_id' => $this->session->userdata('branch_id'));
 		else if ($this->Owner || $this->Admin)
-			$where =  array('id' => $id);
+			$where = array('id' => $id);
 
 
 
@@ -2130,9 +2286,7 @@ class Others extends MY_Controller
 			$branch_id = $this->input->post('branch_id');
 			$where = array('id' => $id);
 
-		}
-
-		else {
+		} else {
 			$branch_id = $this->session->userdata('branch_id');
 			$where = array('id' => $id, 'branch_id' => $branch_id);
 
@@ -2158,14 +2312,14 @@ class Others extends MY_Controller
 				'ward_id' => $this->input->post('ward')
 			);
 
-			
+
 		} elseif ($this->input->post('edit_administrative_area')) {
 			$this->session->set_flashdata('error', validation_errors());
 			admin_redirect('others/administrative_area_list' . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
 		}
 
 		if ($this->form_validation->run() == true && $this->site->updateData('administrative_area', $data, $where)) {
-			 
+
 			$this->session->set_flashdata('message', 'Updated successfully');
 			admin_redirect("others/administrative_area_list" . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
 		} else {
