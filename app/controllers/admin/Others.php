@@ -1265,23 +1265,14 @@ class Others extends MY_Controller
 		$org_info  = $this->administrative_org_info($branch_id);
 
 	 
+ 
 
-
-		
-		$transposed = [];
-		foreach ($org_info as $row) {
-			foreach ($row as $key => $value) {
-				$transposed[$key][] = $value;
-			}
-		}
-	 
-
-		$this->data['org_info']  = $transposed;
+		$this->data['org_info']  = $org_info;
 
 
 
 
-		  $this->sma->print_arrays($org_info,$this->data['org_info']);
+		//  $this->sma->print_arrays($org_info,$this->data['org_info']);
 
 		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Administration'));
 		$meta = array('page_title' => 'Administration', 'bc' => $bc);
@@ -1509,7 +1500,195 @@ class Others extends MY_Controller
 	function administrative_org_info($branch_id = NULL)
 	{
 		if ($branch_id)
-			$result = $this->site->query("");
+			$result = $this->site->query("SELECT 
+ `level`,
+  
+SUM(upazila_COUNT)  count_1 ,
+SUM(thana_count)  count_7,
+SUM(pourosova_count) count_2,
+SUM(union_count) count_3 ,
+SUM(cityward_count) count_4,
+SUM(pouroward_count) count_5,
+SUM(unionward_count)  count_6
+  FROM (
+
+
+SELECT 
+    `level`, 0 upazila_COUNT,
+      
+    COUNT(*) AS thana_count, 0 pourosova_count, 0 union_count, 0 cityward_count,  0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        upazila,
+        MIN(`level`) AS `level`
+    FROM (SELECT 
+DISTINCT
+upazila,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.upazila
+
+ WHERE  sma_thana.branch_id = $branch_id AND  sma_district.`level` = 2 AND sma_district.zone_type = 1)a
+    GROUP BY upazila
+) AS subquery
+GROUP BY LEVEL
+  
+
+UNION ALL 
+ 
+
+SELECT 
+    `level`,
+     
+    COUNT(*) AS upazila_COUNT, 0 thana_count, 0 pourosova_count, 0 union_count, 0 cityward_count,  0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        upazila,
+        MIN(`level`) AS `level`
+    FROM (SELECT 
+DISTINCT
+upazila,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.upazila
+
+ WHERE    sma_thana.branch_id = $branch_id AND sma_district.`level` = 2 AND sma_district.zone_type = 2)a
+    GROUP BY upazila
+) AS subquery
+GROUP BY LEVEL
+ 
+ 
+
+UNION ALL 
+ 
+
+SELECT 
+    `level`,
+  
+    0 upazila_COUNT, 0 thana_count,  COUNT(*) AS pourosova_count, 0 union_count, 0 cityward_count,  0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        `union`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`union`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.union
+
+ WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 3 AND sma_district.zone_type = 1)a
+    GROUP BY `union`
+) AS subquery
+GROUP BY LEVEL
+ 
+
+UNION ALL 
+ 
+
+SELECT 
+    `level`,
+   
+    0 upazila_COUNT, 0 thana_count,  0 pourosova_count, COUNT(*)  union_count, 0 cityward_count,  0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        `union`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`union`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.union
+
+ WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 3 AND sma_district.zone_type = 2)a
+    GROUP BY `union`
+) AS subquery
+GROUP BY LEVEL
+ 
+
+
+UNION ALL 
+
+
+
+SELECT 
+    `level`,
+    
+    0 upazila_COUNT, 0 thana_count,  0 pourosova_count, 0  union_count, COUNT(*) cityward_count, 0 pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        `ward`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`ward`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.ward
+
+ WHERE  sma_thana.branch_id = $branch_id AND   sma_district.`level` = 4 AND sma_district.zone_type = 1)a
+    GROUP BY `ward`
+) AS subquery
+GROUP BY LEVEL
+
+
+UNION ALL 
+
+SELECT 
+    `level`,
+   
+    0 upazila_COUNT, 0 thana_count,  0 pourosova_count, 0  union_count, 0 cityward_count, COUNT(*) pouroward_count, 0 unionward_count
+FROM (
+    SELECT 
+        `ward`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`ward`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.ward
+
+ WHERE  sma_thana.branch_id = $branch_id AND   sma_district.`level` = 4 AND sma_district.zone_type = 3)a
+    GROUP BY `ward`
+) AS subquery
+GROUP BY LEVEL
+
+
+UNION ALL 
+
+SELECT 
+    `level`,
+    0 upazila_COUNT, 0 thana_count,  0 pourosova_count, 0  union_count, 0 cityward_count,  0 pouroward_count, COUNT(*) unionward_count
+FROM (
+    SELECT 
+        `ward`,
+        MIN(`level`) AS `level`
+    FROM (
+    SELECT 
+DISTINCT
+`ward`,
+
+sma_thana.`level`  
+FROM `sma_thana`
+INNER JOIN sma_district ON sma_district.id = sma_thana.ward
+
+ WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 4 AND sma_district.zone_type = 2)a
+    GROUP BY `ward`
+) AS subquery
+GROUP BY LEVEL
+) c  GROUP BY `level`");
 		else
 			$result = $this->site->query("SELECT 
  `level`,

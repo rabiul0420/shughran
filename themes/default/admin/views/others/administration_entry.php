@@ -242,18 +242,22 @@ echo $org_prev+$increase - $decrease;
  
 </td>
 <td  colspan="2">
-<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="thana" data-title="Enter"><?php echo $row_info['thana'];?></a>
- 
+<?php 
+echo org_info($org_info, 1, $administration->id);
+?>
 </td>
 
 
 <td  colspan="2">
-<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="ward" data-title="Enter"><?php echo $row_info['ward'];?></a>
- 
+<?php 
+echo org_info($org_info, 2, $administration->id);
+?>
 </td>
 <td  colspan="3">
-<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="unit" data-title="Enter"><?php echo $row_info['unit'];?></a>
-</td>
+<?php 
+echo org_info($org_info, 3, $administration->id);
+?>
+ </td>
 <td  colspan="2">
 <a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="supporter_org" data-title="Enter"><?php echo $row_info['supporter_org'];?></a>
 

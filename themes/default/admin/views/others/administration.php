@@ -180,9 +180,7 @@ $administrative_prev = administrative_details_prev($prev,'administration',$admin
  
 $org_prev   = administrative_details_prev($prev,'organization',$administration->id);
  
-$org_prev   = org_info($org_info,$administration->id);
  
-
 
 
 if($report_info['prev_record'])
@@ -216,19 +214,19 @@ echo sum_record($administration_summary,'branch',$administration->id,'administra
 
 <td  colspan="2">
 <?php 
-echo sum_record($administration_summary,'thana',$administration->id,'administration_id');
+echo org_info($org_info, 1, $administration->id);
 ?>
 </td>
 
 
 <td  colspan="2">
 <?php 
-echo sum_record($administration_summary,'ward',$administration->id,'administration_id');
+echo org_info($org_info, 2, $administration->id);
 ?>
 </td>
 <td  colspan="3">
 <?php 
-echo sum_record($administration_summary,'unit',$administration->id,'administration_id');
+echo org_info($org_info, 3, $administration->id);
 ?>
 </td>
 <td  colspan="2">

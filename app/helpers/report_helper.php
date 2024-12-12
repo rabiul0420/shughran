@@ -74,20 +74,24 @@ if(! function_exists('administrative_details_prev')) {
 
 
 if(! function_exists('org_info')) {
-    function org_info($data,  $field_value) {
-         $sum = 0;
+    function org_info($data,  $org_level, $id) {
+        
 		 if(is_array($data)){
 
-			
-			 foreach($data as $row)if($row['administration_id']==$field_value){
+
+			 foreach($data as $row) if($row['level']==$org_level ) {
+				 
+				 
 			 
-			 return isset($row[$field]) ? $row[$field] : 0 ; 
+				return	$row['count_'. $id] ? $row['count_'. $id] : 0;
+				
+			 
 				 
 			 }
 			 
 		 }
 		 
-        return $sum;
+        return 0;
     }
 }
 
