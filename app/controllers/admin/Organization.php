@@ -6754,9 +6754,9 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
             $this->session->set_flashdata('warning', lang('access_denied'));
-            admin_redirect('organization/increaselist_thana?branch_id=' . $this->session->userdata('branch_id'));
+            admin_redirect('organization/increaselist_ward?branch_id=' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-            admin_redirect('organization/increaselist_thana?branch_id=' . $this->session->userdata('branch_id'));
+            admin_redirect('organization/increaselist_ward?branch_id=' . $this->session->userdata('branch_id'));
         }
 
 
@@ -6851,9 +6851,9 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
         $this->sma->checkPermissions('index', TRUE);
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
             $this->session->set_flashdata('warning', lang('access_denied'));
-            admin_redirect('organization/decreaselist_thana?branch_id=' . $this->session->userdata('branch_id'));
+            admin_redirect('organization/decreaselist_ward?branch_id=' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-            admin_redirect('organization/decreaselist_thana?branch_id=' . $this->session->userdata('branch_id'));
+            admin_redirect('organization/decreaselist_ward?branch_id=' . $this->session->userdata('branch_id'));
         }
 
 
