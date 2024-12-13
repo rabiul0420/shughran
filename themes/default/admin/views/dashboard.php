@@ -79,7 +79,7 @@ function row_status($x)
         if ($confirmreport !== false) { ?>
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>আপনার শাখার ষাণ্মাসিক রিপোর্ট ২০২৪ ধন্যবাদের সাথে গৃহীত হলো। জাজাকুমুল্লাহু খাইরান।
+                <strong>আপনার শাখার বার্ষিক রিপোর্ট ২০২৪ ধন্যবাদের সাথে গৃহীত হলো। জাজাকুমুল্লাহু খাইরান।
 <br/>
 কেন্দ্রীয় দপ্তর বিভাগ
 </strong>
