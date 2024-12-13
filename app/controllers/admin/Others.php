@@ -1591,7 +1591,7 @@ sma_thana.`level`
 FROM `sma_thana`
 INNER JOIN sma_district ON sma_district.id = sma_thana.union
 
- WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 3 AND sma_district.zone_type = 
+ WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 3 AND sma_district.zone_type = 1
  AND  `union` IN (
  SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
  )
