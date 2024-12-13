@@ -1529,7 +1529,12 @@ sma_thana.`level`
 FROM `sma_thana`
 INNER JOIN sma_district ON sma_district.id = sma_thana.upazila
 
- WHERE  sma_thana.branch_id = $branch_id AND  sma_district.`level` = 2 AND sma_district.zone_type = 1)a
+ WHERE  sma_thana.branch_id = $branch_id AND  sma_district.`level` = 2 AND sma_district.zone_type = 1
+ AND  upazila IN (
+ SELECT DISTINCT `thana_upazila_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ )
+ 
+ )a
     GROUP BY upazila
 ) AS subquery
 GROUP BY LEVEL
@@ -1554,7 +1559,12 @@ sma_thana.`level`
 FROM `sma_thana`
 INNER JOIN sma_district ON sma_district.id = sma_thana.upazila
 
- WHERE    sma_thana.branch_id = $branch_id AND sma_district.`level` = 2 AND sma_district.zone_type = 2)a
+ WHERE    sma_thana.branch_id = $branch_id AND sma_district.`level` = 2 AND sma_district.zone_type = 2
+ AND  upazila IN (
+ SELECT DISTINCT `thana_upazila_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ )
+ 
+ )a
     GROUP BY upazila
 ) AS subquery
 GROUP BY LEVEL
@@ -1581,7 +1591,12 @@ sma_thana.`level`
 FROM `sma_thana`
 INNER JOIN sma_district ON sma_district.id = sma_thana.union
 
- WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 3 AND sma_district.zone_type = 1)a
+ WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 3 AND sma_district.zone_type = 
+ AND  `union` IN (
+ SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ )
+ 
+ )a
     GROUP BY `union`
 ) AS subquery
 GROUP BY LEVEL
@@ -1607,7 +1622,11 @@ sma_thana.`level`
 FROM `sma_thana`
 INNER JOIN sma_district ON sma_district.id = sma_thana.union
 
- WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 3 AND sma_district.zone_type = 2)a
+ WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 3 AND sma_district.zone_type = 2
+ AND  `union` IN (
+ SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ )
+ )a
     GROUP BY `union`
 ) AS subquery
 GROUP BY LEVEL
@@ -1635,7 +1654,11 @@ sma_thana.`level`
 FROM `sma_thana`
 INNER JOIN sma_district ON sma_district.id = sma_thana.ward
 
- WHERE  sma_thana.branch_id = $branch_id AND   sma_district.`level` = 4 AND sma_district.zone_type = 1)a
+ WHERE  sma_thana.branch_id = $branch_id AND   sma_district.`level` = 4 AND sma_district.zone_type = 1
+ AND  `ward` IN (
+ SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ )
+ )a
     GROUP BY `ward`
 ) AS subquery
 GROUP BY LEVEL
@@ -1660,7 +1683,11 @@ sma_thana.`level`
 FROM `sma_thana`
 INNER JOIN sma_district ON sma_district.id = sma_thana.ward
 
- WHERE  sma_thana.branch_id = $branch_id AND   sma_district.`level` = 4 AND sma_district.zone_type = 3)a
+ WHERE  sma_thana.branch_id = $branch_id AND   sma_district.`level` = 4 AND sma_district.zone_type = 3
+  AND  `ward` IN (
+ SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ )
+ )a
     GROUP BY `ward`
 ) AS subquery
 GROUP BY LEVEL
@@ -1684,7 +1711,11 @@ sma_thana.`level`
 FROM `sma_thana`
 INNER JOIN sma_district ON sma_district.id = sma_thana.ward
 
- WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 4 AND sma_district.zone_type = 2)a
+ WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 4 AND sma_district.zone_type = 2
+  AND  `ward` IN (
+ SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ )
+ )a
     GROUP BY `ward`
 ) AS subquery
 GROUP BY LEVEL
