@@ -242,7 +242,7 @@ echo $org_prev+$increase - $decrease;
  
 </td>
 <td  colspan="2">
-থানা
+ 
 <?php 
 echo org_info($org_info, 1, $administration->id);
 ?>
@@ -250,13 +250,13 @@ echo org_info($org_info, 1, $administration->id);
 
 
 <td  colspan="2">
-ওয়ার্ড
+ 
 <?php 
 echo org_info($org_info, 2, $administration->id);
 ?>
 </td>
 <td  colspan="3">
-উপশাখা
+ 
 <?php 
 echo org_info($org_info, 3, $administration->id);
 ?>
