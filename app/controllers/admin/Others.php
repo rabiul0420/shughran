@@ -1261,13 +1261,13 @@ class Others extends MY_Controller
 
 
 		$this->data['prev'] = $this->administrative_details_prev('annual', $report_type_get['last_year'], $branch_id);
-		
-		$org_info  = $this->administrative_org_info($branch_id);
 
-	 
- 
+		$org_info = $this->administrative_org_info($branch_id);
 
-		$this->data['org_info']  = $org_info;
+
+
+
+		$this->data['org_info'] = $org_info;
 
 
 
@@ -1656,7 +1656,7 @@ INNER JOIN sma_district ON sma_district.id = sma_thana.ward
 
  WHERE  sma_thana.branch_id = $branch_id AND   sma_district.`level` = 4 AND sma_district.zone_type = 1
  AND  `ward` IN (
- SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ SELECT DISTINCT `ward_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
  )
  )a
     GROUP BY `ward`
@@ -1685,7 +1685,7 @@ INNER JOIN sma_district ON sma_district.id = sma_thana.ward
 
  WHERE  sma_thana.branch_id = $branch_id AND   sma_district.`level` = 4 AND sma_district.zone_type = 3
   AND  `ward` IN (
- SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ SELECT DISTINCT `ward_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
  )
  )a
     GROUP BY `ward`
@@ -1713,7 +1713,7 @@ INNER JOIN sma_district ON sma_district.id = sma_thana.ward
 
  WHERE   sma_thana.branch_id = $branch_id AND  sma_district.`level` = 4 AND sma_district.zone_type = 2
   AND  `ward` IN (
- SELECT DISTINCT `pourashava_union_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
+ SELECT DISTINCT `ward_id` FROM `sma_administrative_area` WHERE `branch_id` = $branch_id
  )
  )a
     GROUP BY `ward`
