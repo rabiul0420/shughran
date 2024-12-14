@@ -1272,7 +1272,7 @@ class Others extends MY_Controller
 
 
 
-		$this->sma->print_arrays($org_info);
+		//$this->sma->print_arrays($org_info);
 
 		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Administration'));
 		$meta = array('page_title' => 'Administration', 'bc' => $bc);
