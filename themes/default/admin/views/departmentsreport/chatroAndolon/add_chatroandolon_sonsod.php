@@ -58,19 +58,29 @@
                         <div class="form-group">
                             <label for="sonsod_rulling_party">ছাত্রসংসদ কার্যকর থাকলে কোন সংগঠনের নিয়ন্ত্রণে আছে?</label>
                             <select
-                                class="form-control"
-                                id="sonsod_rulling_party"
-                                name='sonsod_rulling_party' >   
-                                <?php if($this->input->get('type') == 'edit') { ?> 
-                                <option><?php echo $chatroandolon_sonsod['sonsod_rulling_party']; ?></option>
-                                <?php }  ?>
-                                <option>ছাত্রশিবির</option>
-                                <option>ছাত্রলীগ</option>
-                                <option>ছাত্রদল</option>
-                                <option>বাম সংগঠন</option>
-                                <option>অন্যান্য</option>
-                               
-                            </select>   
+                                    class="form-control"
+                                    id="sonsod_rulling_party"
+                                    name="sonsod_rulling_party">
+                                <?php 
+                                // Check if this is an edit scenario and a value exists
+                                if ($this->input->get('type') == 'edit' && isset($chatroandolon_sonsod['sonsod_rulling_party'])) { 
+                                    $selected_value = $chatroandolon_sonsod['sonsod_rulling_party']; 
+                                } else {
+                                    $selected_value = ''; // Default to empty if not editing
+                                }
+                                ?>
+                                
+                                <!-- Dynamically populate the selected value at the top -->
+                                <option selected><?php echo $selected_value ? $selected_value : 'Select'; ?></option>
+                                
+                                <!-- Static options -->
+                                <option value="ছাত্রশিবির" <?php echo $selected_value == 'ছাত্রশিবির' ? 'hidden' : ''; ?>>ছাত্রশিবির</option>
+                                <option value="ছাত্রলীগ" <?php echo $selected_value == 'ছাত্রলীগ' ? 'hidden' : ''; ?>>ছাত্রলীগ</option>
+                                <option value="ছাত্রদল" <?php echo $selected_value == 'ছাত্রদল' ? 'hidden' : ''; ?>>ছাত্রদল</option>
+                                <option value="বাম সংগঠন" <?php echo $selected_value == 'বাম সংগঠন' ? 'hidden' : ''; ?>>বাম সংগঠন</option>
+                                <option value="অন্যান্য" <?php echo $selected_value == 'অন্যান্য' ? 'hidden' : ''; ?>>অন্যান্য</option>
+                            </select>
+ 
                         </div>
                         <div class="form-group">
                             <label for="next_sonsod_panel">পরবর্তী নির্বাচনে আমাদের প্যানেল ঘোষণার প্রস্তুতি আছে কিনা?  </label>
