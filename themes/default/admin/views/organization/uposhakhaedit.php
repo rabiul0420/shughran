@@ -112,13 +112,13 @@
                         <?= lang('শিক্ষাপ্রতিষ্ঠানের সাথে সংযুক্ত', 'is_attached'); ?>
 
                         <div class="radio">
-                            <input type="radio" class="checkbox" name="is_attached" value="1"
+                            <input type="radio" class="checkbox is_attached" name="is_attached" value="1"
                                 <?= $uposhakha->is_attached == 1 ? 'checked' : '' ?> />
                             <label class="padding05"><?= 'হ্যাঁ' ?></label>
                         </div>
 
                         <div class="radio">
-                            <input type="radio" class="checkbox" name="is_attached" value="2"
+                            <input type="radio" class="checkbox is_attached" name="is_attached" value="2"
                                 <?= $uposhakha->is_attached == 2 ? 'checked' : '' ?>>
                             <label class="padding05"><?= 'না ' ?></label>
 
@@ -130,8 +130,9 @@
                     <?php
 
                   // echo $uposhakha->prosasonik_details.'DM'.($uposhakha->org_type).'DM';
-                    $zone_display = ($uposhakha->org_type == 'Departmental') || ($uposhakha->org_type == 'Residential' && $uposhakha->is_attached != 1 && in_array($uposhakha->prosasonik_details, [2, 3, 4])) || ($uposhakha->org_type == 'Institutional' && in_array($uposhakha->prosasonik_details, [5, 6, 7])) ? 1 : 0;
+                    $zone_display = ($uposhakha->org_type == 'Departmental') || ($uposhakha->org_type == 'Residential' && $uposhakha->prosasonik_details == 3)  || ($uposhakha->org_type == 'Residential' && $uposhakha->is_attached != 1 && in_array($uposhakha->prosasonik_details, [2,  4])) || ($uposhakha->org_type == 'Institutional' && in_array($uposhakha->prosasonik_details, [5, 6, 7])) ? 1 : 0;
 
+                    
                     ?>
 
 
@@ -203,7 +204,7 @@
 
                     <?php
 
-                    $category_display = ($uposhakha->org_type == 'Departmental' && $uposhakha->is_attached != 1) || ($uposhakha->org_type == 'Institutional' && $uposhakha->prosasonik_details == 6 && $uposhakha->is_attached != 1) || ($uposhakha->org_type == 'Residential' && $uposhakha->prosasonik_details == 3) || ($uposhakha->org_type == 'Residential' && $uposhakha->is_attached != 1 && in_array($uposhakha->prosasonik_details, [1, 2, 3, 4])) ? 1 : 0;
+                    $category_display = ($uposhakha->org_type == 'Departmental' && $uposhakha->is_attached != 1) || ($uposhakha->org_type == 'Institutional' && $uposhakha->prosasonik_details == 6 && $uposhakha->is_attached != 1) || ($uposhakha->org_type == 'Residential' && $uposhakha->is_attached != 1 && in_array($uposhakha->prosasonik_details, [1, 2, 4])) ? 1 : 0;
 
                     ?>
 
@@ -262,6 +263,21 @@
                     <hr>
 
 
+
+                    <div class="form-group">
+                        <?= lang('সেট-আপ আছে কি না?', 'is_setup'); ?>
+
+                        <div class="radio">
+                            <input type="radio" class="checkbox" name="is_setup" value="1" <?= $uposhakha->is_setup == 1 ? 'checked' : '' ?> />
+                            <label class="padding05"><?= 'হ্যাঁ' ?></label>
+                        </div>
+
+                        <div class="radio">
+                            <input type="radio" class="checkbox" name="is_setup" value="2" <?= $uposhakha->is_setup == 2 ? 'checked' : '' ?>>
+                            <label class="padding05"><?= 'না ' ?></label>
+
+                        </div>
+                    </div>
 
 
 
@@ -446,7 +462,7 @@
         });
 
 
-        $('input[type="radio"]').on('ifChecked', function (e) {
+        $('.is_attached').on('ifChecked', function (e) { //input[type="radio"]
             e.preventDefault();
             var status_val = $(this).val();
             if (status_val == 1) {
@@ -576,13 +592,15 @@
 
         $('#district').change(function () {
             var district_id = $(this).val();
+             var branch_id = $('#branch_id').val();
 
             if (district_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/getUpazilas'); ?>",
+                    url: "<?php echo admin_url('organization/getUpazilasOwn'); ?>",
                     method: "GET",
                     data: {
-                        district_id: district_id
+                        district_id: district_id,
+                        branch_id: branch_id
                     },
                     dataType: 'json',
                     success: function (response) {
@@ -604,12 +622,14 @@
 
         $('#upazila').change(function () {
             var upazila_id = $(this).val();
+             var branch_id = $('#branch_id').val();
             if (upazila_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/get_unions'); ?>",
+                    url: "<?php echo admin_url('organization/get_unions_own'); ?>",
                     method: "GET",
                     data: {
-                        upazila_id: upazila_id
+                        upazila_id: upazila_id,
+                        branch_id: branch_id
                     },
                     dataType: 'json',
                     success: function (response) {
@@ -633,12 +653,14 @@
 
         $('#union').change(function () {
             var union_id = $(this).val();
+            var branch_id = $('#branch_id').val();
             if (union_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/get_wards'); ?>",
+                    url: "<?php echo admin_url('organization/get_wards_own'); ?>",
                     method: "GET",
                     data: {
-                        union_id: union_id
+                        union_id: union_id,
+                        branch_id: branch_id
                     },
                     dataType: 'json',
                     success: function (response) {

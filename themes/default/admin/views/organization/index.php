@@ -157,19 +157,19 @@
                             <th>বৃৃদ্ধি</th>
                             <th>ঘাটতি</th>
                             <th>
-                                <!-- পূর্ব সংখ্যা -->
+                                পূর্ব সংখ্যা
                             </th>
                             <th>বর্তমান</th>
                             <th>
-                                <!-- পূর্ব সংখ্যা -->
+                                পূর্ব সংখ্যা
                             </th>
                             <th>বর্তমান</th>
                             <th>
-                                <!-- পূর্ব সংখ্যা -->
+                                পূর্ব সংখ্যা
                             </th>
                             <th>বর্তমান</th>
                             <th>
-                                <!-- পূর্ব সংখ্যা -->
+                                পূর্ব সংখ্যা
                             </th>
                             <th>বর্তমান</th>
                             <th>সমর্থক</th>
@@ -239,7 +239,7 @@
                                         <td class="type_5">
                                             <?php
                                             $prev_w = sum_org($org_summary_sma, 'worker', $institution->id);
-                                            //echo $prev_w;
+                                            echo $prev_w;
                                             ?>
                                         </td>
                                         <td class="type_6">
@@ -248,7 +248,7 @@
                                         </td>
                                         <td class="type_7"><?php
                                         $prev_a = sum_org($org_summary_sma, 'associate', $institution->id);
-                                        // echo $prev_a;
+                                          echo $prev_a;
                                         ?></td>
                                         <td class="type_8">
 
@@ -260,7 +260,7 @@
                                         </td>
                                         <td class="type_9"><?php
                                         $prev_m = sum_org($org_summary_sma, 'member', $institution->id);
-                                        // echo $prev_m;
+                                        echo $prev_m;
                                         ?></td>
                                         <td class="type_10">
 
@@ -271,7 +271,7 @@
                                         </td>
                                         <td class="type_11">
                                             <?php
-                                            //  echo $prev_m + $prev_a + $prev_w;
+                                             echo $prev_m + $prev_a + $prev_w;
                                             ?>
                                         </td>
                                         <td class="type_12">

@@ -164,17 +164,71 @@
                                     $decrease2 = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Residential', 'in_out' => 2, 'level' => $level], 'org_count');
                                     $increase3 = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Departmental', 'in_out' => 1, 'level' => $level], 'org_count');
                                     $decrease3 = getValueByMultipleKeys($org_thana_ward_unit, ['org_type' => 'Departmental', 'in_out' => 2, 'level' => $level], 'org_count');
+                                    
+                                    
+                                    
+                                    
+                                    //from current record
+                                    $current1 = org_thana_current($org_thana_current,'Institutional',$organizationinfo->level);
+                                    
+
+                                    //from calculation
+                                    //if ($report_info['prev_record'])  
+                                    // 
+                                     $calculated1 = ($prev + $increase - $decrease); 
+
+
+                                      //from current record
+                                     $current2 =  org_thana_current($org_thana_current,'Residential',$organizationinfo->level) ;
+                                                                        
+                                     //from calculation
+                                    // if ($report_info['prev_record'])                                      
+                                    $calculated2 =  ($prev2 + $increase2 - $decrease2); 
+
+                                     
+
+                                    //from current record
+                                     $current3 = org_thana_current($org_thana_current,'Departmental',$organizationinfo->level);
+                                    
+                                      //from calculation
+                                   // if ($report_info['prev_record'])  
+                                    $calculated3 =  ($prev3 + $increase3 - $decrease3); 
+
+
+
                                     ?>
                                     <td>
                                         <?php
-                                        echo  $prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 + $prev3 + $increase3 - $decrease3;
+                                        //calculated
+                                       // echo  $prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 + $prev3 + $increase3 - $decrease3;
+                                        echo $current1+$current2+$current3;
                                         ?>
                                     </td>
 
                                     <td colspan="2"><?php echo $increase  + $increase2 + $increase3; ?></td>
                                     <td><?php echo $decrease  + $decrease2; ?></td>
                                     <td><?php if ($report_info['prev_record'])   echo $prev; ?></td>
-                                    <td><?php if ($report_info['prev_record'])   echo $prev + $increase - $decrease; ?></td>
+                                    <td>
+                                        
+                                    
+                                    
+                                      <?php
+                                     
+ 
+                                    $color = $current1 - $calculated1 != 0 ? 'red' : 'blank';
+
+                                    echo '<span style="color:'.$color.'">'.$current1.'</span>';
+                                    
+                                    
+                                    
+                                    
+                                    ?>
+                                
+                                
+                                
+                                
+                                
+                                </td>
 
 
 
@@ -183,13 +237,40 @@
 
 
                                     <td><?php if ($report_info['prev_record'])   echo $prev2; ?></td>
-                                    <td colspan="2"><?php if ($report_info['prev_record'])  echo $prev2 + $increase2 - $decrease2; ?></td>
+                                    <td colspan="2">
+                                        
+                                    
+                                    <?php
+                                    
+
+
+                                    $color = $current2 - $calculated2 != 0 ? 'red' : 'blank';
+
+                                    echo '<span style="color:'.$color.'">'.$current2.'</span>';
+                                    
+                                    ?>
+                                
+                                
+                                
+                                </td>
                                     <td><?php echo $increase2; ?></td>
                                     <td><?php echo $decrease2; ?></td>
 
 
                                     <td><?php if ($report_info['prev_record'])   echo $prev3; ?></td>
-                                    <td colspan="2"><?php if ($report_info['prev_record'])  echo $prev3 + $increase3 - $decrease3; ?></td>
+                                    <td colspan="2">
+                                        
+                                        
+                                        <?php
+
+                                  
+                                    
+                                    $color = $current3 - $calculated3 != 0 ? 'red' : 'blank';
+
+                                    echo '<span style="color:'.$color.'">'.$current3.'</span>';
+                                    
+                                    
+                                    ?></td>
                                     <td><?php echo $increase3; ?></td>
                                     <td><?php echo $decrease3; ?></td>
 
@@ -223,13 +304,38 @@
                                         $prev3 =  sum_record($organizationinfo_summary_prev, 'departmental', $organizationinfo->id, 'organizationinfo_id');
 
 
+                                    //from current record
+                                    $current1 = current_ideal_thana($current_ideal_thana,'Institutional');
+                                    //from calculation                                   
+                                    $calculated1 = ($prev + $increase - $decrease); 
+
+
+                                     
+                                    //from current record
+                                    $current2 = current_ideal_thana($current_ideal_thana,'Residential');
+                                    //from calculation                                   
+                                    $calculated2 = ($prev2 + $increase2 - $decrease2); 
+
+                                    //from current record
+                                    $current3 = current_ideal_thana($current_ideal_thana,'Departmental');
+                                    //from calculation                                   
+                                    $calculated3 = ($prev3 + $increase3 - $decrease3); 
+
+
+                                        //
+
                                         if ($report_info['prev_record']) {
                                             $is_equal = '';
 
                                             $is_equal = ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2 != $current_ideal_thana) ? 'red' : '';
 
-                                            echo '<span style="color:' . $is_equal . '">' . ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2) . '</span>';
+                                            //calculated
+                                           // echo '<span style="color:' . $is_equal . '">' . ($prev + $increase - $decrease + $prev2 + $increase2 - $decrease2) . '</span>';
                                         }
+
+
+                                        //current 
+                                        echo $current1 + $current2 + $current3;
                                         ?>
                                     </td>
 
@@ -238,7 +344,20 @@
                                     <td colspan="2"><?php echo $increase  + $increase2  + $increase3; ?></td>
                                     <td><?php echo $decrease  + $decrease2 + $decrease3; ?></td>
                                     <td><?php if ($report_info['prev_record'])   echo $prev; ?></td>
-                                    <td><?php if ($report_info['prev_record'])   echo $prev + $increase - $decrease; ?></td>
+                                    <td>
+                                        
+                                    <?php 
+                                    //calculated
+                                   // if ($report_info['prev_record'])   echo $prev + $increase - $decrease; 
+                                    
+                                   //current
+                                    $color = $current1 - $calculated1 != 0 ? 'red' : 'blank';
+                                    echo '<span style="color:'.$color.'">'.$current1.'</span>';
+
+                                    ?>
+                                
+                                
+                                </td>
 
 
 
@@ -247,12 +366,30 @@
 
 
                                     <td><?php if ($report_info['prev_record'])   echo $prev2; ?></td>
-                                    <td colspan="2"><?php if ($report_info['prev_record'])  echo $prev2 + $increase2 - $decrease2; ?></td>
+                                    <td colspan="2">
+                                        <?php
+                                        //calculated
+                                        //if ($report_info['prev_record'])  echo $prev2 + $increase2 - $decrease2; 
+
+                                        //current
+                                         $color = $current2 - $calculated2 != 0 ? 'red' : 'blank';
+                                        echo '<span style="color:'.$color.'">'.$current2.'</span>';
+                                        ?>
+                                    </td>
                                     <td><?php echo $increase2; ?></td>
                                     <td><?php echo $decrease2; ?></td>
 
                                     <td><?php if ($report_info['prev_record'])   echo $prev3; ?></td>
-                                    <td colspan="2"><?php if ($report_info['prev_record'])  echo $prev3 + $increase3 - $decrease3; ?></td>
+                                    <td colspan="2">
+                                        <?php
+                                        //calculated
+                                       // if ($report_info['prev_record'])  echo $prev3 + $increase3 - $decrease3; 
+
+                                       //current
+                                         $color = $current3 - $calculated3 != 0 ? 'red' : 'blank';
+                                         echo '<span style="color:'.$color.'">'.$current3.'</span>';
+                                        ?>
+                                    </td>
                                     <td><?php echo $increase3; ?></td>
                                     <td><?php echo $decrease3; ?></td>
 

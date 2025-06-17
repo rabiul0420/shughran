@@ -173,10 +173,20 @@ font: 18px SolaimanLipi, sans-serif;
 
  $row_info = record_row($administration_summary,'administration_id',$administration->id);
  
+
  
- $administrative_increase =   $row_info['administrative_increase'] ;
- $administrative_decrease =   $row_info['administrative_decrease'] ;
-  
+ $increase = sum_record($administration_summary,'organization_increase',$administration->id,'administration_id');
+//$prev =     sum_record($administration_summary,'prev',$administration->id,'administration_id'); 
+$decrease = sum_record($administration_summary,'organization_decrease',$administration->id,'administration_id');
+
+$administrative_increase =     sum_record($administration_summary,'administrative_increase',$administration->id,'administration_id'); 
+$administrative_decrease =     sum_record($administration_summary,'administrative_decrease',$administration->id,'administration_id'); 
+$administrative_prev = administrative_details_prev($prev,'administration',$administration->id); 
+ 
+$org_prev   = administrative_details_prev($prev,'organization',$administration->id);
+ 
+ 
+
 
  $administrative_prev = administrative_details_prev($prev,'administration',$administration->id); 
  
@@ -196,22 +206,10 @@ echo $administrative_prev;
 
 </td>
 
- <td >
- <?php
- if($report_info['prev_record'])
- echo $administrative_prev + $administrative_increase  -  $administrative_decrease ;
- ?>
-</td>
+<td><?php if($report_info['prev_record'])  echo $current_administrative_area[0][$administration->administration_type_eng]??0;?></td>
  
-<td>
-
-<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="administrative_increase" data-title="Enter"><?php echo $row_info['administrative_increase'];?></a>
-</td>
-
-<td>
-
-<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="administrative_decrease" data-title="Enter"><?php echo $row_info['administrative_decrease'];?></a>
-</td>
+<td><?php  echo $administrative_increase;?></td>
+<td><?php  echo $administrative_decrease;?></td>
 
 
 
@@ -224,22 +222,22 @@ echo $org_prev;
 
  <td> <?php
  if($report_info['prev_record'])
-echo $org_prev+$increase - $decrease;
+ echo  $administrative_area_info[0][$administration->administration_type_eng]??0;
 ?>
  
  </td>
 
+<td><?php echo $increase;?></td>
+<td><?php echo $decrease;?></td>
 
-<td>
-<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="organization_increase" data-title="Enter"><?php echo $increase;?></a>
-</td>
-<td><a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="organization_decrease" data-title="Enter"><?php echo $decrease;?></a></td>
-<td ><?php echo no_org_total($nor_org,'administration_id',$administration->id);?></td>
+
+ <td ><?=$no_administrative_area_info[0][$administration->administration_type_eng]??0?></td>
 
 
 <td  colspan="2">
-<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="branch" data-title="Enter"><?php echo $row_info['branch'];?></a>
- 
+ <?php 
+echo org_info($org_info, 0, $administration->id);
+?>
 </td>
 <td  colspan="2">
  

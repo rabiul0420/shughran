@@ -561,13 +561,16 @@ if (!empty($variants)) {
 
         $('#district').change(function () {
             var district_id = $(this).val();
+            var branch_id = $('#branch_id').val();
+            
 
             if (district_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/getUpazilas'); ?>",
+                    url: "<?php echo admin_url('organization/getUpazilasOwn'); ?>",
                     method: "GET",
                     data: {
-                        district_id: district_id
+                        district_id: district_id,
+                        branch_id: branch_id
                     },
                     dataType: 'json',
                     success: function (response) {
@@ -589,12 +592,14 @@ if (!empty($variants)) {
 
         $('#upazila').change(function () {
             var upazila_id = $(this).val();
+             var branch_id = $('#branch_id').val();
             if (upazila_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/get_unions'); ?>",
+                    url: "<?php echo admin_url('organization/get_unions_own'); ?>",
                     method: "GET",
                     data: {
-                        upazila_id: upazila_id
+                        upazila_id: upazila_id,
+                        branch_id: branch_id
                     },
                     dataType: 'json',
                     success: function (response) {
@@ -618,12 +623,14 @@ if (!empty($variants)) {
 
         $('#union').change(function () {
             var union_id = $(this).val();
+             var branch_id = $('#branch_id').val();
             if (union_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/get_wards'); ?>",
+                    url: "<?php echo admin_url('organization/get_wards_own'); ?>",
                     method: "GET",
                     data: {
-                        union_id: union_id
+                        union_id: union_id,
+                        branch_id: branch_id
                     },
                     dataType: 'json',
                     success: function (response) {

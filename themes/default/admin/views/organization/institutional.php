@@ -3,7 +3,7 @@
 
 <style>
 
- 
+
 
 </style>
 
@@ -134,7 +134,7 @@
                 <p>&nbsp;</p>
 
 
- 
+
 
 
 
@@ -204,61 +204,72 @@
                                     <tr>
                                         <td><?php echo $institution->institution_type ?></td>
                                         <td class="typeorg_1">
-                                        <?php
+                                            <?php
                                             $institution_row = institution_row($institution->id, $institution_number);
 
-                                            //  var_dump($institution_row );
-                                            //  exit();
+                                            $org_decrease_count = org_decrease_increase_count($institution->id, $org_decrease);
+                                            $org_increase_count = org_decrease_increase_count($institution->id, $org_increase);
+
+ 
+                                          //  if($institution->id==84)
+                                            // var_dump($org_decrease );
+                                            // exit();
                                             if ($report_info['last_half'] != 1)
                                                 echo $institution_row == null ? 0 : $institution_row['prev_institution'];
                                             ?>
                                         </td>
                                         <td class="typeorg_2">
-                                        <?php if ($report_info['last_half'] != 1)
+                                            <?php if ($report_info['last_half'] != 1)
                                                 echo $institution_row == null ? 0 : $institution_row['prev_institution'] + $institution_row['total_increase_institution'] - $institution_row['total_decrease_institution']; ?>
 
                                         </td>
                                         <td class="typeorg_3">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['total_increase_institution']; ?>
+                                            <?php echo $institution_row == null ? 0 : $institution_row['total_increase_institution']; ?>
                                         </td>
                                         <td class="typeorg_4">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['total_decrease_institution']; ?>
+                                            <?php echo $institution_row == null ? 0 : $institution_row['total_decrease_institution']; ?>
 
                                         </td>
                                         <td class="typeorg_5">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['prev_organization']; ?>
+                                            <?php echo $institution_row == null ? 0 : $institution_row['prev_organization']; ?>
                                         </td>
                                         <td class="typeorg_6">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['total_thana_org'] +  $institution_row['total_ward_org']+ $institution_row['total_unit_org']; ?>
-                                         </td>
-                                        <td class="typeorg_7">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['org_absent_count']; ?>
-                                        
-                                         </td>
-                                        <td class="typeorg_8">
-                                       
+                                            <?php echo $institution_row == null ? 0 : $institution_row['total_thana_org'] + $institution_row['total_ward_org'] + $institution_row['total_unit_org']; ?>
                                         </td>
-                                        <td class="typeorg_9">&nbsp;</td>
-                                        <td class="typeorg_10">&nbsp;</td>
-                                        
+                                        <td class="typeorg_7">
+                                            <?php echo $institution_row == null ? 0 : $institution_row['org_absent_count']; ?>
+
+                                        </td>
+                                        <td class="typeorg_8">
+                                        <?=$org_increase_count?>
+                                        </td>
+                                        <td class="typeorg_9">
+                                             <?=$org_decrease_count?>
+                                        </td>
+                                        <td class="typeorg_10">
+                                            <?php echo $institution_row == null ? 0 : $institution_row['total_branch_org']; ?>
+                                        </td>
+
                                         <td class="typeorg_11">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['total_thana_org']; ?>
+                                            <?php echo $institution_row == null ? 0 : $institution_row['total_thana_org']; ?>
                                         </td>
                                         <td class="typeorg_12">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['total_ward_org']; ?>
+                                            <?php echo $institution_row == null ? 0 : $institution_row['total_ward_org']; ?>
                                         </td>
                                         <td class="typeorg_13">
-                                        <?php echo $institution_row == null ? 0 : $institution_row['total_unit_org']; ?>
+                                            <?php echo $institution_row == null ? 0 : $institution_row['total_unit_org']; ?>
                                         </td>
-                                        <td class="typeorg_14"> <?php echo $institution_row == null ? 0 : $institution_row['prev_unit']; ?></td>
-                                        <td class="typeorg_15"> <?php echo $institution_row == null ? 0 : $institution_row['org_unit_count']; ?></td>
+                                        <td class="typeorg_14">
+                                            <?php echo $institution_row == null ? 0 : $institution_row['prev_unit']; ?></td>
+                                        <td class="typeorg_15">
+                                            <?php echo $institution_row == null ? 0 : $institution_row['org_unit_count']; ?></td>
                                         <td class="typeorg_16">&nbsp;</td>
                                         <td class="typeorg_17">&nbsp;</td>
                                         <td class="typeorg_18">&nbsp;</td>
                                         <td class="typeorg_19">&nbsp;</td>
                                         <td class="typeorg_20">&nbsp;</td>
                                         <td class="typeorg_21">&nbsp;</td>
-                                        
+
                                     </tr>
                                 <?php } ?>
                         <?php } ?>

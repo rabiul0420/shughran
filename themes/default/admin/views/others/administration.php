@@ -189,7 +189,7 @@ if($report_info['prev_record'])
 
 ?>
 </td>
-<td><?php if($report_info['prev_record'])  echo $administrative_prev + $administrative_increase - $administrative_decrease;?></td>
+<td><?php if($report_info['prev_record'])  echo $current_administrative_area[0][$administration->administration_type_eng]??0;?></td>
 <td><?php  echo $administrative_increase;?></td>
 <td><?php  echo $administrative_decrease;?></td>
 
@@ -200,20 +200,21 @@ echo $org_prev;
 ?></td>
 <td><?php 
 if($report_info['prev_record'])
-echo $org_prev+$increase-$decrease;
+echo  $administrative_area_info[0][$administration->administration_type_eng]??0;
 ?></td>
 <td><?php echo $increase;?></td>
 <td><?php echo $decrease;?></td>
-<td ><?php echo no_org_total($nor_org,'administration_id',$administration->id);?></td>
+<td ><?=$no_administrative_area_info[0][$administration->administration_type_eng]??0?></td>
 
 <td  colspan="2">
+    
 <?php 
-echo sum_record($administration_summary,'branch',$administration->id,'administration_id');
+echo org_info($org_info, 0, $administration->id);
 ?>
 </td>
 
 <td  colspan="2">
-<?php 
+<?php  
 echo org_info($org_info, 1, $administration->id);
 ?>
 </td>

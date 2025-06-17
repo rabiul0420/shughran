@@ -136,9 +136,12 @@
 
                         <?php
                         $dt2[''] = 'Select';
+
+
                        if($second_level) foreach ($second_level as $second)
                             $dt2[$second->id] = $second->name;
 
+                       //     var_dump($dt2);
                         echo form_dropdown('upazila', $dt2, $thana->upazila, ' id="upazila" class="form-control select" style="width:100%;" ');
 
                         ?>
@@ -184,7 +187,7 @@
 
                     <?php
 
-                    $category_display = ($thana->org_type == 'Departmental' && $thana->is_attached != 1) || ($thana->org_type == 'Institutional' && $thana->prosasonik_details == 6 && $thana->is_attached != 1) || ($thana->org_type == 'Residential' && $thana->prosasonik_details == 3) || ($thana->org_type == 'Residential' && $thana->is_attached != 1 && in_array($thana->prosasonik_details, [1, 2, 3, 4])) ? 1 : 0;
+                    $category_display = ($thana->org_type == 'Departmental' && $thana->is_attached != 1) || ($thana->org_type == 'Institutional' && $thana->prosasonik_details == 6 && $thana->is_attached != 1) || ($thana->org_type == 'Residential' && $thana->is_attached != 1 && in_array($thana->prosasonik_details, [1, 2, 4])) ? 1 : 0;
 
                     ?>
 
@@ -521,13 +524,16 @@
 
         $('#district').change(function () {
             var district_id = $(this).val();
+            var branch_id = $('#branch_id').val();
 
             if (district_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/getUpazilas'); ?>",
+                    url: "<?php echo admin_url('organization/getUpazilasOwn'); ?>",
                     method: "GET",
                     data: {
-                        district_id: district_id
+                        district_id: district_id,
+                        branch_id: branch_id
+
                     },
                     dataType: 'json',
                     success: function (response) {
@@ -549,12 +555,14 @@
 
         $('#upazila').change(function () {
             var upazila_id = $(this).val();
+            var branch_id = $('#branch_id').val();
             if (upazila_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/get_unions'); ?>",
+                    url: "<?php echo admin_url('organization/get_unions_own'); ?>",
                     method: "GET",
                     data: {
-                        upazila_id: upazila_id
+                        upazila_id: upazila_id,
+                        branch_id: branch_id
                     },
                     dataType: 'json',
                     success: function (response) {
@@ -578,12 +586,14 @@
 
         $('#union').change(function () {
             var union_id = $(this).val();
+             var branch_id = $('#branch_id').val();
             if (union_id) {
                 $.ajax({
-                    url: "<?php echo admin_url('organization/get_wards'); ?>",
+                    url: "<?php echo admin_url('organization/get_wards_own'); ?>",
                     method: "GET",
                     data: {
-                        union_id: union_id
+                        union_id: union_id,
+                        branch_id: branch_id
                     },
                     dataType: 'json',
                     success: function (response) {

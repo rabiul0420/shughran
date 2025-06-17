@@ -70,13 +70,11 @@ class Site extends CI_Model
         $half_start = strtotime($entrytimeinfo->startdate_half);
         $half_end = strtotime($entrytimeinfo->enddate_half);
 
-        $type =  ($current_date  > $half_start && $current_date < $half_end) ? 'half_yearly' : 'annual';
+        $type = ($current_date > $half_start && $current_date < $half_end) ? 'half_yearly' : 'annual';
         if ($type == 'half_yearly')
             $info = array('type' => 'half_yearly', 'start' => $entrytimeinfo->startdate_half, 'end' => $entrytimeinfo->enddate_half);
-
-
         else
-            $info =  array('type' => 'annual', 'start' => $entrytimeinfo->startdate_annual, 'end' => $entrytimeinfo->enddate_annual);
+            $info = array('type' => 'annual', 'start' => $entrytimeinfo->startdate_annual, 'end' => $entrytimeinfo->enddate_annual);
 
 
 
@@ -200,18 +198,18 @@ class Site extends CI_Model
         return FALSE;
     }
 
-    public function getAllBranches($id =null)
+    public function getAllBranches($id = null)
     {
 
- 
+
 
         if ($id != null)
-        $this->db->where('id', $id);
-   
+            $this->db->where('id', $id);
 
-    $q = $this->db->get("branches");
 
- 
+        $q = $this->db->get("branches");
+
+
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -229,7 +227,7 @@ class Site extends CI_Model
 
 
         if ($level)
-            $q = $this->db->get_where('thana', array('parent_id' => $thana_id,'level'=>$level));
+            $q = $this->db->get_where('thana', array('parent_id' => $thana_id, 'level' => $level));
         else
             $q = $this->db->get_where('thana', array('parent_id' => $thana_id));
 
@@ -757,12 +755,11 @@ class Site extends CI_Model
 
         if ($limit != null && $limit != '')
             $this->db->limit($limit, $offset);
-
         else
             $this->db->limit(1, 0);
 
         $query = $this->db->get();
-        return  isset($query->row()->$item) ? $query->row()->$item : NULL;
+        return isset($query->row()->$item) ? $query->row()->$item : NULL;
     }
 
 
@@ -846,12 +843,14 @@ class Site extends CI_Model
     }
 
     ///direct query select with binding option
-    function query_binding($query, $param)
+    function query_binding($query, $param, $array = 1)
     {
 
 
-        $r =  $this->db->query($query, $param)->result_array();
-
+        if ($array == 1)
+            $r = $this->db->query($query, $param)->result_array();
+        else
+            $r = $this->db->query($query, $param)->result();
         //    if (strpos($query, 'UPDATE sma_manpower_record') !== false) {
         //     echo $this->db->last_query();
         // }
@@ -864,7 +863,7 @@ class Site extends CI_Model
     function query($query)
     {
 
-        return   $this->db->query($query)->result_array();
+        return $this->db->query($query)->result_array();
     }
 
 
@@ -937,6 +936,53 @@ class Site extends CI_Model
         }
         return FALSE;
     }
+
+
+
+
+
+    public function getDistrictOwn($level = 1, $parent_id = 0, $branch_id = null)
+    {
+
+
+        if ($branch_id) {
+
+            if ($level == 1)
+                $sql = "SELECT * FROM sma_district where id in ( SELECT DISTINCT district_id FROM `sma_administrative_area` WHERE branch_id = ? )";
+            else if ($level == 2)
+                $sql = "SELECT * FROM sma_district where id in ( SELECT DISTINCT thana_upazila_id FROM `sma_administrative_area` WHERE branch_id = ? )";
+            else if ($level == 3)
+                $sql = "SELECT * FROM sma_district where id in ( SELECT DISTINCT pourashava_union_id FROM `sma_administrative_area` WHERE branch_id = ? )";
+            else   //4
+                $sql = "SELECT * FROM sma_district where id in ( SELECT DISTINCT ward_id FROM `sma_administrative_area` WHERE branch_id = ? )";
+
+            $q = $this->db->query($sql, [$branch_id]);
+
+
+        } else {
+
+            //$this->db->order_by('priority', 'Desc');
+            $this->db->where('level', $level);
+            $this->db->where('parent_id', $parent_id);
+            $q = $this->db->get('district');
+
+        }
+
+
+
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+
+
+
+    }
+
+
 
     public function getUpozilla($parent_id = null)
     {
@@ -1027,7 +1073,7 @@ class Site extends CI_Model
         $half_start = strtotime($entrytimeinfo->startdate_half);
         $half_end = strtotime($entrytimeinfo->enddate_half);
 
-        $type =  ($current_date  >= $half_start && $current_date <= $half_end) ? 'half_yearly' : 'annual';
+        $type = ($current_date >= $half_start && $current_date <= $half_end) ? 'half_yearly' : 'annual';
 
         $year = $entrytimeinfo->year;
 

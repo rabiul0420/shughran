@@ -927,12 +927,20 @@ class Others extends MY_Controller
 
 		// $this->sma->print_arrays($report_type_get);
 
+
+		$this->data['org_thana_current'] = $this->current_thana_org_type($branch_id);
+
+
+ //$this->sma->print_arrays($this->data['org_thana_current']);
+
 		//$this->data['thanainfo_summary'] = $this->getthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 		$this->data['idealthanainfo_summary'] = $this->getidealthanainfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
 		//$this->data['current_thana'] = $this->current_thana($branch_id);
 		$this->data['current_ideal_thana'] = $this->current_ideal_thana($branch_id);
 		//$this->sma->print_arrays($this->data['current_ideal_thana']);
+
+
 		$this->data['organizationinfo_summary'] = $this->getorganizationinfo_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 		$this->data['organizationinfo_summary_prev'] = $this->getorganizationinfo_summary_prev('annual', $report_type_get['last_year'], $branch_id);
 
@@ -952,6 +960,27 @@ class Others extends MY_Controller
 
 
 	}
+
+
+
+
+
+	
+
+
+	function current_thana_org_type($branch_id = null)
+	{
+
+
+		if ($branch_id)
+			$result = $this->site->query_binding("SELECT count(id) total_org_number, `level`,  org_type  from sma_thana WHERE is_current = 1  AND  ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND branch_id = ? group by `level`,   org_type ", array($branch_id));
+		else
+			$result = $this->site->query("SELECT count(id) total_org_number, `level`,   org_type  from sma_thana WHERE is_current = 1  AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) group by `level`,   org_type");
+ 
+
+		return $result;
+	}
+
 
 
 
@@ -977,13 +1006,13 @@ class Others extends MY_Controller
 
 
 		if ($branch_id)
-			$result = $this->site->query_binding("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND  branch_id = ?  ", array($branch_id));
+			$result = $this->site->query_binding("SELECT count(id) current_ideal_thana, org_type  from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) AND  branch_id = ?  GROUP BY  org_type ", array($branch_id));
 		else
-			$result = $this->site->query("SELECT count(id) current_ideal_thana from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) ");
+			$result = $this->site->query("SELECT count(id) current_ideal_thana, org_type  from sma_thana WHERE is_ideal_thana = 1 AND ((is_pending = 1 AND in_out = 2) OR ( is_pending = 2 AND in_out = 1)) GROUP BY   org_type");
 
 
 
-		return isset($result[0]['current_ideal_thana']) ? $result[0]['current_ideal_thana'] : 0;
+		return $result;
 	}
 
 
@@ -1237,12 +1266,7 @@ class Others extends MY_Controller
 		$this->data['administrations'] = $this->others_model->getAllAdministration();
 
 
-		if ($branch_id) {
-			$this->data['detailinfo'] = $this->getEntryAdministrationInfo($report_type_get, $this->data['administrations'], $branch_id);
-		} else
-			$this->data['detailinfo'] = '';
-
-
+	 
 
 
 
@@ -1252,10 +1276,14 @@ class Others extends MY_Controller
 		$report_year = $report_type_get['year'];
 
 		$this->data['administration_summary'] = $this->getadministration_summary($branch_id, $report_type_get);
+		
+		$this->data['administrative_area_info'] = $this->administrative_area_info($branch_id);
+		$this->data['no_administrative_area_info'] = $this->no_administrative_area_info($branch_id);
+		$this->data['current_administrative_area'] = $this->current_administrative_area($branch_id);
 
-		$this->data['nor_org'] = $this->get_no_org($branch_id);
+	
 
-		//$this->sma->print_arrays($this->data['administration_summary']);
+		//  $this->sma->print_arrays($this->data['administrative_area_info']);
 
 
 
@@ -1405,6 +1433,29 @@ class Others extends MY_Controller
 
 
 
+	public function area_exists($ward_id)
+{
+    $district_id         = $this->input->post('district');
+    $thana_upazila_id    = $this->input->post('upazila');
+    $pourashava_union_id = $this->input->post('union');
+    $branch_id = $this->input->post('branch_id');
+
+    $this->db->where('district_id', $district_id);
+    $this->db->where('thana_upazila_id', $thana_upazila_id);
+    $this->db->where('pourashava_union_id', $pourashava_union_id);
+    $this->db->where('branch_id', $branch_id);
+    $this->db->where('ward_id', $ward_id);
+    $query = $this->db->get('administrative_area');
+
+    if ($query->num_rows() > 0) {
+        $this->form_validation->set_message('area_exists', 'This area combination already exists.');
+        return FALSE;
+    }
+    return TRUE;
+}
+
+
+
 
 	function add_administrative_area()
 	{
@@ -1418,7 +1469,7 @@ class Others extends MY_Controller
 		$this->form_validation->set_rules('district', 'district', 'required');
 		$this->form_validation->set_rules('upazila', 'upazila/thana', 'required');
 		$this->form_validation->set_rules('union', 'union/pouroshova', 'required');
-		$this->form_validation->set_rules('ward', 'ward', 'required');
+		$this->form_validation->set_rules('ward', 'ward', 'required|callback_area_exists');
 		$this->form_validation->set_rules('branch_id', 'branch', 'required');
 
 
@@ -1435,14 +1486,24 @@ class Others extends MY_Controller
 				'thana_upazila_id' => $this->input->post('upazila'),
 				'pourashava_union_id' => $this->input->post('union'),
 				'ward_id' => $this->input->post('ward'),
-				'user_id' => $this->session->userdata('user_id'),
+				'date' => date('Y-m-d'),
+				'user_id' => $this->session->userdata('user_id')
 
 			);
 
+			$union_Pourashava_type = $this->site->getcolumn('district', 'zone_type', ['id' => $this->input->post('union')]);
+			$thana_upozilla_type = $this->site->getcolumn('district', 'zone_type', ['id' => $this->input->post('upazila')]);
+			$ward_type = $this->site->getcolumn('district', 'zone_type', ['id' => $this->input->post('ward')]);
+
+			$data['union_Pourashava_type'] = $union_Pourashava_type;
+			$data['thana_upozilla_type'] = $thana_upozilla_type;
+			$data['ward_type'] = $ward_type;
+			//function getcolumn($table, $item = "*", $where1 = null, $order = null, $limit = null, $offset = null)
+
+			//union_Pourashava_type   thana_upozilla_type
+			//
 
 			//$this->sma->print_arrays($data);
-
-
 			$this->site->insertData('administrative_area', $data, 'id');
 
 
@@ -1915,6 +1976,323 @@ GROUP BY LEVEL
 	}
 
 
+	function administrative_area_info($branch_id = NULL)
+	{
+
+		 
+
+		if ($branch_id) {
+
+ 
+				$result = $this->site->query_binding("SELECT SUM(thana) AS thana, SUM(upazila) AS upazila, SUM(pourashava) AS pourashava , SUM(`union`) AS `union`, SUM(ward_city) AS ward_city, SUM(ward_union) AS ward_union, SUM(ward_pouroshova) AS ward_pouroshova
+
+from (
+SELECT COUNT(DISTINCT upazila) AS thana, 0 AS upazila, 0 AS pourashava , 0 AS `union`, 0 AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.upazila
+ WHERE sma_district.level = 2 AND zone_type =1 AND upazila IS NOT NULL and branch_id  = ?
+ UNION ALL
+ SELECT  0 AS thana, COUNT(DISTINCT upazila)  AS upazila, 0 AS pourashava , 0 AS `union`, 0 AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.upazila
+ WHERE sma_district.level = 2 AND zone_type =2 AND upazila IS NOT NULL and branch_id  = ?
+ 
+ UNION ALL
+
+ SELECT 0 AS thana, 0 AS upazila, COUNT(DISTINCT upazila) AS pourashava , 0 AS `union`, 0 AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova  FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.union
+ WHERE sma_district.level = 3 AND zone_type =1 AND upazila IS NOT NULL and branch_id  = ?
+ UNION ALL
+ SELECT 0 AS thana, 0 AS upazila, 0 AS pourashava , COUNT(DISTINCT `union`) AS `union`, 0 AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova
+ FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.union
+ WHERE sma_district.level = 3 AND zone_type =2 AND upazila IS NOT NULL and branch_id  = ?
+  UNION ALL
+ 
+  SELECT 0 AS thana, 0 AS upazila, 0 AS pourashava , 0 AS `union`, COUNT(DISTINCT ward) AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova  FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.ward
+ WHERE sma_district.level = 4 AND zone_type =1 AND ward IS NOT NULL and branch_id  = ?
+ UNION ALL
+   SELECT 0 AS thana, 0 AS upazila, 0 AS pourashava , 0 AS `union`, 0 AS ward_city, COUNT(DISTINCT ward) AS ward_union, 0 AS ward_pouroshova  FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.ward
+ WHERE sma_district.level = 4 AND zone_type =2 AND ward IS NOT NULL and branch_id  = ?
+ UNION ALL
+  SELECT 0 AS thana, 0 AS upazila, 0 AS pourashava , 0 AS `union`, 0 AS ward_city, 0 AS ward_union, COUNT(DISTINCT ward) AS ward_pouroshova  FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.ward
+ WHERE sma_district.level = 4 AND zone_type =3 AND ward IS NOT NULL and branch_id  = ?
+ )a", array($branch_id, $branch_id, $branch_id, $branch_id, $branch_id, $branch_id, $branch_id));
+			 
+		} else {
+
+
+			$result = $this->site->query("SELECT SUM(thana) AS thana, SUM(upazila) AS upazila, SUM(pourashava) AS pourashava , SUM(`union`) AS `union`, SUM(ward_city) AS ward_city, SUM(ward_union) AS ward_union, SUM(ward_pouroshova) AS ward_pouroshova
+
+from (
+SELECT COUNT(DISTINCT upazila) AS thana, 0 AS upazila, 0 AS pourashava , 0 AS `union`, 0 AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.upazila
+ WHERE sma_district.level = 2 AND zone_type =1 AND upazila IS NOT NULL
+ UNION ALL
+ SELECT  0 AS thana, COUNT(DISTINCT upazila)  AS upazila, 0 AS pourashava , 0 AS `union`, 0 AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.upazila
+ WHERE sma_district.level = 2 AND zone_type =2 AND upazila IS NOT NULL
+ 
+ UNION ALL
+
+ SELECT 0 AS thana, 0 AS upazila, COUNT(DISTINCT upazila) AS pourashava , 0 AS `union`, 0 AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova  FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.union
+ WHERE sma_district.level = 3 AND zone_type =1 AND upazila IS NOT NULL
+ UNION ALL
+ SELECT 0 AS thana, 0 AS upazila, 0 AS pourashava , COUNT(DISTINCT `union`) AS `union`, 0 AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova
+ FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.union
+ WHERE sma_district.level = 3 AND zone_type =2 AND upazila IS NOT NULL
+  UNION ALL
+ 
+  SELECT 0 AS thana, 0 AS upazila, 0 AS pourashava , 0 AS `union`, COUNT(DISTINCT ward) AS ward_city, 0 AS ward_union, 0 AS ward_pouroshova  FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.ward
+ WHERE sma_district.level = 4 AND zone_type =1 AND ward IS NOT NULL
+ UNION ALL
+   SELECT 0 AS thana, 0 AS upazila, 0 AS pourashava , 0 AS `union`, 0 AS ward_city, COUNT(DISTINCT ward) AS ward_union, 0 AS ward_pouroshova  FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.ward
+ WHERE sma_district.level = 4 AND zone_type =2 AND ward IS NOT NULL
+ UNION ALL
+  SELECT 0 AS thana, 0 AS upazila, 0 AS pourashava , 0 AS `union`, 0 AS ward_city, 0 AS ward_union, COUNT(DISTINCT ward) AS ward_pouroshova  FROM sma_thana 
+LEFT JOIN sma_district ON sma_district.id = sma_thana.ward
+ WHERE sma_district.level = 4 AND zone_type =3 AND ward IS NOT NULL
+ )a
+ ");
+			 
+	
+		}
+
+		//$this->sma->print_arrays($result);
+		return $result;
+	}
+
+
+	function current_administrative_area($branch_id = NULL)
+	{
+
+		if ($branch_id) {
+
+ 
+				$result = $this->site->query_binding("SELECT
+    COUNT(DISTINCT CASE WHEN thana_upozilla_type = 1 THEN thana_upazila_id END) AS thana,
+    COUNT(DISTINCT CASE WHEN thana_upozilla_type = 2 THEN thana_upazila_id END) AS upazila,
+    
+    COUNT(DISTINCT CASE WHEN union_Pourashava_type = 1 THEN pourashava_union_id END) AS pourashava,
+    COUNT(DISTINCT CASE WHEN union_Pourashava_type = 2 THEN pourashava_union_id END) AS `union`,
+    
+    COUNT(DISTINCT CASE WHEN ward_type = 1 THEN ward_id END) AS ward_city,
+    COUNT(DISTINCT CASE WHEN ward_type = 2 THEN ward_id END) AS ward_union,
+    COUNT(DISTINCT CASE WHEN ward_type = 3 THEN ward_id END) AS ward_pouroshova
+FROM sma_administrative_area where branch_id = ?;
+", array($branch_id));
+			 
+		} else {
+
+
+			$result = $this->site->query("SELECT
+    COUNT(DISTINCT CASE WHEN thana_upozilla_type = 1 THEN thana_upazila_id END) AS thana,
+    COUNT(DISTINCT CASE WHEN thana_upozilla_type = 2 THEN thana_upazila_id END) AS upazila,
+    
+    COUNT(DISTINCT CASE WHEN union_Pourashava_type = 1 THEN pourashava_union_id END) AS pourashava,
+    COUNT(DISTINCT CASE WHEN union_Pourashava_type = 2 THEN pourashava_union_id END) AS `union`,
+    
+    COUNT(DISTINCT CASE WHEN ward_type = 1 THEN ward_id END) AS ward_city,
+    COUNT(DISTINCT CASE WHEN ward_type = 2 THEN ward_id END) AS ward_union,
+    COUNT(DISTINCT CASE WHEN ward_type = 3 THEN ward_id END) AS ward_pouroshova
+FROM sma_administrative_area;
+");
+			 
+	
+		}
+
+		//$this->sma->print_arrays($result);
+		return $result;
+	}
+
+
+	function no_administrative_area_info($branch_id = NULL)
+	{
+
+		if ($branch_id) {
+
+ 
+				$result = $this->site->query_binding("SELECT SUM(ward_union) AS ward_union, SUM(ward_pouroshova) AS ward_pouroshova , SUM(ward_city) AS ward_city ,
+
+SUM(pourashava) AS pourashava, SUM(`union`) AS `union`, SUM(thana) AS thana, SUM(upazila) AS upazila
+
+
+FROM (
+
+
+SELECT COUNT(*) ward_union, 0 AS ward_pouroshova, 0 AS ward_city,0 AS pourashava, 0 AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.branch_id = ? AND a.ward_type = 2
+AND NOT EXISTS (
+    SELECT 1 FROM sma_thana t WHERE t.ward = a.ward_id
+)
+
+UNION ALL
+
+SELECT 0 ward_union, COUNT(*) ward_pouroshova, 0 AS ward_city,0 AS pourashava, 0 AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.branch_id = ? AND  a.ward_type = 3
+AND NOT EXISTS (
+    SELECT 1 FROM sma_thana t WHERE t.ward = a.ward_id
+)
+
+UNION ALL
+
+SELECT 0 ward_union, 0 AS ward_pouroshova, COUNT(*) ward_city,0 AS pourashava, 0 AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.branch_id = ? AND  a.ward_type = 1
+AND NOT EXISTS (
+    SELECT 1 FROM sma_thana t WHERE t.ward = a.ward_id
+)
+
+UNION ALL
+
+SELECT 0 ward_union, 0 AS ward_pouroshova, 0 AS ward_city, COUNT(DISTINCT a.pourashava_union_id ) AS pourashava, 0 AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.branch_id = ? AND  a.union_Pourashava_type = 1
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.union = a.pourashava_union_id
+)
+
+
+UNION ALL 
+
+SELECT 0 ward_union, 0 AS ward_pouroshova, 0 AS ward_city, 0 AS `pourashava`, COUNT(DISTINCT a.pourashava_union_id ) AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.branch_id = ? AND  a.union_Pourashava_type = 2
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.union = a.pourashava_union_id
+)
+
+UNION ALL 
+
+SELECT 0 ward_union, 0 AS ward_pouroshova, 0 AS ward_city, 0 AS `pourashava`, 0 AS `union`,COUNT(DISTINCT a.thana_upazila_id ) AS thana, 0 AS `upazila`
+FROM sma_administrative_area a
+WHERE a.branch_id = ? AND  a.thana_upozilla_type = 1
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.upazila = a.thana_upazila_id
+)
+
+
+UNION ALL 
+
+SELECT  0 ward_union, 0 AS ward_pouroshova, 0 AS ward_city, 0 AS `pourashava`, 0 AS `union`, 0 AS `thana`, COUNT(DISTINCT a.thana_upazila_id ) AS `upazila`
+FROM sma_administrative_area a
+WHERE a.branch_id = ? AND  a.thana_upozilla_type = 2
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.upazila = a.thana_upazila_id
+)
+
+) a
+", array($branch_id, $branch_id, $branch_id, $branch_id, $branch_id, $branch_id, $branch_id));
+			 
+		} else {
+
+
+			$result = $this->site->query("
+			SELECT SUM(ward_union) AS ward_union, SUM(ward_pouroshova) AS ward_pouroshova , SUM(ward_city) AS ward_city ,
+
+SUM(pourashava) AS pourashava, SUM(`union`) AS `union`, SUM(thana) AS thana, SUM(upazila) AS upazila
+
+
+FROM (
+
+
+SELECT COUNT(*) ward_union, 0 AS ward_pouroshova, 0 AS ward_city,0 AS pourashava, 0 AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.ward_type = 2
+AND NOT EXISTS (
+    SELECT 1 FROM sma_thana t WHERE t.ward = a.ward_id
+)
+
+UNION ALL
+
+SELECT 0 ward_union, COUNT(*) ward_pouroshova, 0 AS ward_city,0 AS pourashava, 0 AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.ward_type = 3
+AND NOT EXISTS (
+    SELECT 1 FROM sma_thana t WHERE t.ward = a.ward_id
+)
+
+UNION ALL
+
+SELECT 0 ward_union, 0 AS ward_pouroshova, COUNT(*) ward_city,0 AS pourashava, 0 AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.ward_type = 1
+AND NOT EXISTS (
+    SELECT 1 FROM sma_thana t WHERE t.ward = a.ward_id
+)
+
+UNION ALL
+
+SELECT 0 ward_union, 0 AS ward_pouroshova, 0 AS ward_city, COUNT(DISTINCT a.pourashava_union_id ) AS pourashava, 0 AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.union_Pourashava_type = 1
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.union = a.pourashava_union_id
+)
+
+
+UNION ALL 
+
+SELECT 0 ward_union, 0 AS ward_pouroshova, 0 AS ward_city, 0 AS `pourashava`, COUNT(DISTINCT a.pourashava_union_id ) AS `union`, 0 AS thana, 0 AS upazila
+FROM sma_administrative_area a
+WHERE a.union_Pourashava_type = 2
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.union = a.pourashava_union_id
+)
+
+UNION ALL 
+
+SELECT 0 ward_union, 0 AS ward_pouroshova, 0 AS ward_city, 0 AS `pourashava`, 0 AS `union`,COUNT(DISTINCT a.thana_upazila_id ) AS thana, 0 AS `upazila`
+FROM sma_administrative_area a
+WHERE a.thana_upozilla_type = 1
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.upazila = a.thana_upazila_id
+)
+
+
+UNION ALL 
+
+SELECT  0 ward_union, 0 AS ward_pouroshova, 0 AS ward_city, 0 AS `pourashava`, 0 AS `union`, 0 AS `thana`, COUNT(DISTINCT a.thana_upazila_id ) AS `upazila`
+FROM sma_administrative_area a
+WHERE a.thana_upozilla_type = 2
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.upazila = a.thana_upazila_id
+)
+
+) a
+");
+			 
+	
+		}
+
+		//$this->sma->print_arrays($result);
+		return $result;
+	}
+
+	
 	function getadministration_summary($branch_id = NULL, $reportinfo = null)
 	{
 
@@ -1968,7 +2346,7 @@ GROUP BY LEVEL
 	}
 
 
-
+	
 	function getadministration_summary_prev($report_type, $year, $branch_id = NULL)
 	{
 
@@ -1998,14 +2376,7 @@ GROUP BY LEVEL
 	}
 
 
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -2031,13 +2402,7 @@ GROUP BY LEVEL
 					$this->site->insertData('administration_record', array('administration_id' => $administration->id, 'branch_id' => $branch_id, 'report_type' => $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
 			}
 		}
-
-
-
-
-
-
-
+ 
 
 
 		if ($this->input->get('type') && ($this->input->get('type') == 'annual')) {
@@ -2047,9 +2412,7 @@ GROUP BY LEVEL
 		} else {
 			// $administration_recordinfo = $this->site->getOneRecord('administration_record','*',array('branch_id'=>$branch_id,'date <= '=>$report_end,'date >= '=>$report_start),'id desc',1,0);
 		}
-
-
-
+ 
 
 		return array(
 			'administration_recordinfo' => $administration_recordinfo
@@ -2080,6 +2443,34 @@ GROUP BY LEVEL
 
 
 
+		if ($this->input->get('type')) {
+
+			//   2 => Upazilla 
+			//   3 => Thana 
+			//   4 => Union
+			//   5 => Pouroshova 
+			//   6 => Ward(Union)
+			//   7 => Ward(Pouroshova) 
+
+
+			if ($this->input->get('type') == 2)
+				$this->data['district_info'] = $this->thana_upazilla(2,$branch_id);//upazilla
+			else if ($this->input->get('type') == 3)
+				$this->data['district_info'] = $this->thana_upazilla(1,$branch_id); //thana
+			else if ($this->input->get('type') == 4)
+				$this->data['district_info'] = $this->pouroshova_or_union(2,$branch_id); //union
+			else if ($this->input->get('type') == 5)
+				$this->data['district_info'] = $this->pouroshova_or_union(1,$branch_id); ////pouroshova
+			else if ($this->input->get('type') == 6)
+				$this->data['district_info'] = $this->ward_pouroshova_or_union(2,$branch_id); //union
+			else if ($this->input->get('type') == 7)
+				$this->data['district_info'] = $this->ward_pouroshova_or_union(3, $branch_id); //pouroshova
+
+
+		}
+
+
+ 
 
 		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
 		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
@@ -2093,15 +2484,181 @@ GROUP BY LEVEL
 		}
 
 
+		//$this->sma->print_arrays($this->data['branch'] );
 		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Area without org'));
 		$meta = array('page_title' => 'Area without org', 'bc' => $bc);
 		$this->page_construct('others/administrationbutorg', $meta, $this->data, 'leftmenu/organization');
 	}
 
+	
+	function thana_upazilla($type,$branch_id=null  )
+	{
+		
+	 
+        
+        if ($branch_id) {
+
+
+            $district_info = $this->site->query("SELECT v3_district_upazila(b.thana_upazila_id) thana_upazila_name , v3_district_upazila(b.district_id) district_name, '' pourashava_union_name,
+'' ward_name, sma_branches.code, 0 AS total_org_thana_by_thana_or_upazila  FROM (
+SELECT DISTINCT a.thana_upazila_id, a.district_id, a.branch_id
+FROM sma_administrative_area a
+WHERE a.thana_upozilla_type = $type AND a.branch_id = $branch_id
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.upazila = a.thana_upazila_id AND t.level = 3
+))b LEFT JOIN sma_branches  ON sma_branches.id = b.branch_id");
 
 
 
+        } else {
 
+            $district_info = $this->site->query("SELECT v3_district_upazila(b.thana_upazila_id) thana_upazila_name , v3_district_upazila(b.district_id) district_name, '' pourashava_union_name,
+'' ward_name, sma_branches.code, 0 AS total_org_thana_by_thana_or_upazila  FROM (
+SELECT DISTINCT a.thana_upazila_id, a.district_id, a.branch_id
+FROM sma_administrative_area a
+WHERE a.thana_upozilla_type = $type
+AND NOT EXISTS (
+    SELECT 1 
+    FROM sma_thana t 
+    WHERE t.upazila = a.thana_upazila_id
+))b LEFT JOIN sma_branches  ON sma_branches.id = b.branch_id");
+        }
+
+
+
+		return  $district_info;
+
+
+	}
+
+	
+	function pouroshova_or_union($type,$branch_id=null  )
+	{
+		
+	 
+        
+        if ($branch_id) {
+
+
+            $district_info = $this->site->query("SELECT v3_district_upazila(b.district_id) district_name,
+v3_district_upazila(b.thana_upazila_id) thana_upazila_name,
+v3_district_upazila(b.pourashava_union_id) pourashava_union_name,
+'' ward_name,
+total_thana_by_union_Pourashava,
+b.branch_id, c.code
+ FROM 
+(SELECT 
+    a.branch_id,    
+    (
+        SELECT COUNT(*) 
+        FROM sma_thana t 
+        WHERE t.union = a.pourashava_union_id AND a.branch_id = $branch_id AND t.level = 3
+    ) AS total_thana_by_union_Pourashava,
+    a.district_id,
+    a.thana_upazila_id,
+    a.pourashava_union_id
+FROM sma_administrative_area a
+WHERE a.union_Pourashava_type = 1)b LEFT JOIN sma_branches c ON c.id = b.branch_id WHERE total_thana_by_union_Pourashava=0;");
+
+
+
+        } else {
+
+            $district_info = $this->site->query("SELECT v3_district_upazila(b.district_id) district_name,
+v3_district_upazila(b.thana_upazila_id) thana_upazila_name,
+v3_district_upazila(b.pourashava_union_id) pourashava_union_name,
+'' ward_name,
+total_thana_by_union_Pourashava,
+b.branch_id, c.code
+ FROM 
+(SELECT 
+    a.branch_id,    
+    (
+        SELECT COUNT(*) 
+        FROM sma_thana t 
+        WHERE t.union = a.pourashava_union_id AND t.level = 3
+    ) AS total_thana_by_union_Pourashava,
+    a.district_id,
+    a.thana_upazila_id,
+    a.pourashava_union_id
+FROM sma_administrative_area a
+WHERE a.union_Pourashava_type = $type)b LEFT JOIN sma_branches c ON c.id = b.branch_id WHERE total_thana_by_union_Pourashava=0;");
+        }
+
+
+
+		return  $district_info;
+
+
+	}
+
+	
+	function ward_pouroshova_or_union($type,$branch_id=null  )
+	{
+		
+	 
+        
+        if ($branch_id) {
+
+
+            $district_info = $this->site->query("select v3_district_upazila(b.district_id) district_name,
+v3_district_upazila(b.thana_upazila_id) thana_upazila_name,
+v3_district_upazila(b.pourashava_union_id) pourashava_union_name,
+v3_district_upazila(b.ward_id) ward_name,
+total_thana_by_ward,
+b.branch_id, c.code
+ from 
+(SELECT 
+    a.branch_id,    
+    (
+        SELECT COUNT(*) 
+        FROM sma_thana t 
+        WHERE t.ward = a.ward_id AND t.level = 3
+    ) AS total_thana_by_ward,
+    a.district_id,
+    a.thana_upazila_id,
+    a.pourashava_union_id,
+    a.ward_id
+FROM sma_administrative_area a
+WHERE a.ward_type = $type AND a.branch_id = $branch_id)b left join sma_branches c on c.id = b.branch_id where total_thana_by_ward=0;");
+
+
+
+        } else {
+
+            $district_info = $this->site->query("select v3_district_upazila(b.district_id) district_name,
+v3_district_upazila(b.thana_upazila_id) thana_upazila_name,
+v3_district_upazila(b.pourashava_union_id) pourashava_union_name,
+v3_district_upazila(b.ward_id) ward_name,
+total_thana_by_ward,
+b.branch_id, c.code
+ from 
+(SELECT 
+    a.branch_id,    
+    (
+        SELECT COUNT(*) 
+        FROM sma_thana t 
+        WHERE t.ward = a.ward_id AND t.level = 3
+    ) AS total_thana_by_ward,
+    a.district_id,
+    a.thana_upazila_id,
+    a.pourashava_union_id,
+    a.ward_id
+FROM sma_administrative_area a
+WHERE a.ward_type = $type)b left join sma_branches c on c.id = b.branch_id where total_thana_by_ward=0;");
+        }
+
+
+
+		return  $district_info;
+
+
+	}
+
+
+ 
 
 
 
@@ -2522,6 +3079,14 @@ GROUP BY LEVEL
 				'ward_id' => $this->input->post('ward')
 			);
 
+
+			$union_Pourashava_type = $this->site->getcolumn('district', 'zone_type', ['id' => $this->input->post('union')]);
+			$thana_upozilla_type = $this->site->getcolumn('district', 'zone_type', ['id' => $this->input->post('upazila')]);
+			$ward_type = $this->site->getcolumn('district', 'zone_type', ['id' => $this->input->post('ward')]);
+
+			$data['union_Pourashava_type'] = $union_Pourashava_type;
+			$data['thana_upozilla_type'] = $thana_upozilla_type;
+			$data['ward_type'] = $ward_type;
 
 		} elseif ($this->input->post('edit_administrative_area')) {
 			$this->session->set_flashdata('error', validation_errors());

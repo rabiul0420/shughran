@@ -329,6 +329,26 @@ if(! function_exists('institution_row')) {
 
 
 
+if(! function_exists('org_decrease_increase_count')) {
+
+	function org_decrease_increase_count($type_id,$arr){
+		
+		
+		foreach($arr as $row){
+		// echo 'Rokon';
+			if($row['institution_type_child']==$type_id) {
+ 
+				     	  
+				return  isset($row['count'])? $row['count'] : 0;
+			}
+		}
+		
+		return 0;
+	}
+
+}
+
+
 if(! function_exists('getValueByMultipleKeys')) {
 function getValueByMultipleKeys($array, $conditions, $targetKey) {
     foreach ($array as $item) {
@@ -391,4 +411,47 @@ if(! function_exists('serial_info')) {
 			return false; // Return null if no match found
 		}
 		}
+
+
+
+
+
+
+if(! function_exists('org_thana_current')) {
+		function org_thana_current($org_thana_current,  $org_type, $level) {
 	
+	 
+	
+			foreach($org_thana_current as $row) {
+	
+					 if($row['level'] == $level && $row['org_type'] == $org_type)
+						return $row['total_org_number'];
+	 
+	
+	
+			}
+			 
+			return false; // Return null if no match found
+		}
+		}
+
+
+
+		if(! function_exists('current_ideal_thana')) {
+		function current_ideal_thana($org_ideal_current,  $org_type) {
+	
+	 
+	
+			foreach($org_ideal_current as $row) {
+	
+					 if( $row['org_type'] == $org_type)
+						return $row['current_ideal_thana'];
+	 
+	
+	
+			}
+			 
+			return false; // Return null if no match found
+		}
+		}
+ 

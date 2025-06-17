@@ -76,7 +76,7 @@ class Administrativedetail extends MY_Controller
                     b.org_unit,
                     b.branch_number,
                     b.supporter_organization,b.district,
-                    v3_count_zone(b.district, 2, 2,1) upazilla, v3_count_zone(b.district, 1, 2,1) thana  FROM `sma_district` LEFT JOIN  
+                    v3_count_area_thana_upozilla(b.district, 2, $branch_id) upazilla, v3_count_area_thana_upozilla(b.district, 1, $branch_id) thana  FROM `sma_district` LEFT JOIN  
 		
 		(SELECT 
                     
@@ -114,7 +114,7 @@ SELECT DISTINCT district_id FROM   sma_administrative_area WHERE   branch_id = $
                     b.org_unit,
                     b.branch_number,
                     b.supporter_organization,b.district,
-                    v3_count_zone(b.district, 2, 2,1) upazilla, v3_count_zone(b.district, 1, 2,1) thana  FROM `sma_district` LEFT JOIN  
+                    v3_count_area_thana_upozilla(b.district, 2,-1) upazilla, v3_count_area_thana_upozilla(b.district, 1, -1) thana   FROM `sma_district` LEFT JOIN  
 		
 		(SELECT 
                     
@@ -198,7 +198,7 @@ SELECT DISTINCT district_id FROM   sma_administrative_area WHERE   branch_id = $
                     b.org_unit,
                     b.branch_number,
                     b.supporter_organization,b.district,b.upazila,
-                      v3_count_zone(b.upazila, 1, 4,2) ward_number  FROM `sma_district` LEFT JOIN  
+                      v3_count_area_ward(b.upazila, 1,2, $branch_id ) ward_number  FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
@@ -242,7 +242,7 @@ SELECT DISTINCT thana_upazila_id FROM   sma_administrative_area WHERE   branch_i
                     b.org_unit,
                     b.branch_number,
                     b.supporter_organization,b.district,b.upazila,
-                      v3_count_zone(b.upazila, 1, 4,2) ward_number  FROM `sma_district` LEFT JOIN  
+                        v3_count_area_ward(b.upazila, 1, 2,-1 ) ward_number  FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
@@ -338,8 +338,8 @@ SELECT DISTINCT thana_upazila_id FROM   sma_administrative_area WHERE   branch_i
                     b.org_unit,
                     b.branch_number,
                     b.supporter_organization,b.district,b.upazila,
-                     v3_count_zone(b.upazila, 1, 3,2) paurosova_number,
-                      v3_count_zone(b.upazila, 2, 3,2) union_number
+                      v3_count_area_paurosova_union(b.upazila, 1, 2,$branch_id) paurosova_number,
+                      v3_count_area_paurosova_union(b.upazila, 2, 2,$branch_id) union_number
                FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
@@ -381,8 +381,8 @@ SELECT DISTINCT thana_upazila_id FROM   sma_administrative_area WHERE   branch_i
             v3_district_upazila( sma_district.parent_top_level) district_name, 
             b.org_thana,b.org_ward,b.org_unit,b.branch_number,b.supporter_organization,b.district,
             b.upazila,
-                      v3_count_zone(b.upazila, 1, 3,2) paurosova_number,
-                      v3_count_zone(b.upazila, 2, 3,2) union_number  FROM `sma_district` LEFT JOIN  
+                      v3_count_area_paurosova_union(b.upazila, 1, 2,-1) paurosova_number,
+                      v3_count_area_paurosova_union(b.upazila, 2, 2,-1) union_number  FROM `sma_district` LEFT JOIN  
 		
 		(  SELECT          org_thana,
                     org_ward,
@@ -606,7 +606,7 @@ v3_district_upazila( sma_district.parent_second_level) upazila_name,
 
             $this->data['district_info'] = $this->site->query("SELECT sma_district.name union_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
- v3_count_zone(sma_district.id,1,4,3) ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
+ `v3_count_area_ward`(sma_district.id, 2,3,$branch_id) ward_number,b.org_thana,b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
 		(   
 		
@@ -650,7 +650,7 @@ SELECT DISTINCT pourashava_union_id FROM   sma_administrative_area WHERE   branc
 
             $this->data['district_info'] = $this->site->query("SELECT sma_district.name union_name ,v3_district_upazila( sma_district.parent_top_level) district_name,
 v3_district_upazila( sma_district.parent_second_level) upazila_name,
- v3_count_zone(sma_district.id, 1, 4,3) ward_number, b.org_thana, b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
+ `v3_count_area_ward`(sma_district.id, 2,3,-1) ward_number, b.org_thana, b.org_ward,b.org_unit, b.supporter_organization, b.branch_number  FROM `sma_district` LEFT JOIN  
 		
 		(  
 		
