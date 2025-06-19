@@ -21,6 +21,11 @@
     return '<div class="text-center">'+ (x == '1' ? '<span class="label label-success">আছে</span>' : '<span class="label label-danger">নাই</span>' ) +'</div>';
 }
 
+ function organization_count(x) {
+    return '<div class="text-center">'+ (x > 0 ? '<span class="label label-success">আছে</span>' : '<span class="label label-danger">নাই</span>' ) +'</div>';
+}
+
+
 
 
     var oTable;
@@ -48,7 +53,7 @@
                 return nRow;
             },
             "aoColumns": [
-                {"bSortable": false, "mRender": checkbox},  null,  null, {"bSortable": false ,"bSearchable": false}, {"bSortable": false ,"bSearchable": false},  {"bSortable": false ,"bSearchable": false}, null,    {"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},  {  "mRender": organization_info}, {"bSortable": false}
+                {"bSortable": false, "mRender": checkbox},  null,  null, {"bSortable": false ,"bSearchable": false}, {"bSortable": false ,"bSearchable": false},  {"bSortable": false ,"bSearchable": false}, null,    {"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},{"bSearchable": false},  {  "mRender": organization_info}, {  "mRender": organization_count}, {"bSortable": false}
             ]
         }).fnSetFilteringDelay().dtFilter([
             
@@ -145,6 +150,7 @@
                             <th><?= 'অমুসলিম ছাত্রছাত্রী' ?></th>
                             <th><?= 'মোট ছাত্রছাত্রী সংখ্যা' ?></th>
                             
+                            <th><?= 'OLD সংগঠন' ?></th>
                             <th><?= 'সংগঠন' ?></th>
 							 <th style="width:65px; max-width:65px; text-align:center;"><?= 'Action' ?></th>
                         </tr>
@@ -169,6 +175,7 @@
                              <th></th>
                              <th></th>
                              
+                             <th></th>
                              <th></th>
                              <th></th>
                              <th></th>

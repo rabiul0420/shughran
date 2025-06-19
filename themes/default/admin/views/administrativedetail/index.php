@@ -81,7 +81,7 @@
                             <th rowspan="2">ক্রমিক</th>
                             <th rowspan="2">জেলা</th>
                             <th colspan="6">সাংগঠনিক বিবরণ</th>
-                            <th rowspan="2">সমর্থক সংগঠন সংখ্যা</th>
+                            <!-- <th rowspan="2">সমর্থক সংগঠন সংখ্যা</th> -->
                             <th rowspan="2">উপজেলা</th>
                             <th rowspan="2">থানা</th>
                             <th rowspan="2">মন্তব্য</th>
@@ -107,7 +107,7 @@
                                 <td><?=$row['org_unit']>0?'আছে':'নেই'?></td>
                                  
                                 <td><?= $row['branch_number']>0 ? 'শাখা': ($row['org_thana']>0 ? 'থানা' : ($row['org_ward']> 0 ? 'ওয়ার্ড' : ($row['org_unit']>0 ? 'উপশাখা' : '' )));?></td>
-                                <td><?= $row['supporter_organization'] ?></td>
+                                <!-- <td><?= $row['supporter_organization'] ?></td> -->
                                 <td><?= $row['upazilla'] ?></td>
                                 <td><?= $row['thana'] ?></td>
                                 <td></td>

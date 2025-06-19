@@ -2554,13 +2554,13 @@ b.branch_id, c.code
     (
         SELECT COUNT(*) 
         FROM sma_thana t 
-        WHERE t.union = a.pourashava_union_id AND a.branch_id = $branch_id AND t.level = 3
+        WHERE t.union = a.pourashava_union_id  AND t.level = 3
     ) AS total_thana_by_union_Pourashava,
     a.district_id,
     a.thana_upazila_id,
     a.pourashava_union_id
 FROM sma_administrative_area a
-WHERE a.union_Pourashava_type = 1)b LEFT JOIN sma_branches c ON c.id = b.branch_id WHERE total_thana_by_union_Pourashava=0;");
+WHERE a.union_Pourashava_type = 1 AND a.branch_id = $branch_id)b LEFT JOIN sma_branches c ON c.id = b.branch_id WHERE total_thana_by_union_Pourashava=0;");
 
 
 

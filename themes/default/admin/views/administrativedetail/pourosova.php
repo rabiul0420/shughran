@@ -86,7 +86,7 @@
                             <th rowspan="2">পৌরসভার নাম   </th>
 
                             <th colspan="5">সাংগঠনিক বিবরণ</th>
-                            <th rowspan="2">সমর্থক সংগঠন সংখ্যা</th>
+                            <!-- <th rowspan="2">সমর্থক সংগঠন সংখ্যা</th> -->
 
                             <th rowspan="2">পৌরসভার ওয়ার্ড সংখ্যা  </th>
                            
@@ -117,7 +117,7 @@
 
                                 <td><?= ($row['org_thana'] > 0 ? 'থানা' : ($row['org_ward'] > 0 ? 'ওয়ার্ড' : ($row['org_unit'] > 0 ? 'উপশাখা' : ''))); ?>
                                 </td>
-                                <td><?= $row['supporter_organization'] ?></td>
+                                <!-- <td><?= $row['supporter_organization'] ?></td> -->
                                 <td><?= $row['ward_number'] ?></td>
                                 
 

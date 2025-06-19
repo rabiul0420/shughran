@@ -85,7 +85,7 @@
                             <th rowspan="2">উপজেলার নাম </th>
 
                             <th colspan="5">সাংগঠনিক বিবরণ</th>
-                            <th rowspan="2">সমর্থক সংগঠন সংখ্যা</th>
+                            <!-- <th rowspan="2">সমর্থক সংগঠন সংখ্যা</th> -->
 
                             <th rowspan="2">প্রশাসনিক
                                 ইউনিয়ন সংখ্যা
@@ -120,7 +120,7 @@
 
                                 <td><?= ($row['org_thana'] > 0 ? 'থানা' : ($row['org_ward'] > 0 ? 'ওয়ার্ড' : ($row['org_unit'] > 0 ? 'উপশাখা' : ''))); ?>
                                 </td>
-                                <td><?= $row['supporter_organization'] ?></td>
+                                <!-- <td><?= $row['supporter_organization'] ?></td> -->
                                 <td><?= $row['union_number'] ?></td>
                                 <td><?= $row['paurosova_number'] ?></td>
 

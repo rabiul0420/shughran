@@ -86,7 +86,7 @@
                             <th rowspan="2">ইউনিয়ন </th>
                             <th rowspan="2">ওয়ার্ড নম্বর</th> 
                             <th colspan="5">সাংগঠনিক বিবরণ</th>
-                            <th rowspan="2">সমর্থক সংগঠন সংখ্যা</th>                           
+                            <!-- <th rowspan="2">সমর্থক সংগঠন সংখ্যা</th>                            -->
 
                             <th rowspan="2">মন্তব্য</th>
                         </tr>
@@ -116,7 +116,7 @@
 
                                 <td><?= ($row['org_thana'] > 0 ? 'থানা' : ($row['org_ward'] > 0 ? 'ওয়ার্ড' : ($row['org_unit'] > 0 ? 'উপশাখা' : ''))); ?>
                                 </td>
-                                <td><?= $row['supporter_organization'] ?></td>
+                                <!-- <td><?= $row['supporter_organization'] ?></td> -->
                                 
 
                                 <td></td>
