@@ -505,7 +505,7 @@ group by sub_category", array( $start_date, $end_date));
         
         if ($branch_id)
             return $this->site->query_binding("select count(sma_thana_log.id) unit_count, sub_category from sma_thana_log left join sma_thana on sma_thana_log.thana_id = sma_thana.id
-where sma_thana.branch_id = ? sma_thana_log.level = 3 AND sma_thana_log.in_out = 2 AND sma_thana_log.date between ? AND ?
+where sma_thana.branch_id = ? AND sma_thana_log.level = 3 AND sma_thana_log.in_out = 2 AND sma_thana_log.date between ? AND ?
 group by sub_category", array($branch_id, $start_date, $end_date));
         else
             return $this->site->query_binding("select count(sma_thana_log.id) unit_count, sub_category from sma_thana_log left join sma_thana on sma_thana_log.thana_id = sma_thana.id
