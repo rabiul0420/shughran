@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends MY_Controller
 {
@@ -16,208 +16,216 @@ class Auth extends MY_Controller
 
 
 
- function gen_pass()
+    function gen_pass()
     {
 
-		
-    // exit();
+
+        // exit();
 
 
-$array = array(
-    array('user'=> '1', 'pass'=>'*X3r2tB#'),
-    array('user'=> '2', 'pass'=>'*A0d4rS#'),
-    array('user'=> '3', 'pass'=>'*G2x7mK#'),
-    array('user'=> '4', 'pass'=>'*N2e1vM#'),
-    array('user'=> '5', 'pass'=>'*W9g5uJ#'),
-    array('user'=> '6', 'pass'=>'*X8m8eU#'),
-    array('user'=> '7', 'pass'=>'*J0u5zA#'),
-    array('user'=> '8', 'pass'=>'*U1b3mJ#'),
-    array('user'=> '9', 'pass'=>'*T5z0qC#'),
-    array('user'=> '10', 'pass'=>'*A1n7kH#'),
-    array('user'=> '11', 'pass'=>'*B7m2rD#'),
-    array('user'=> '12', 'pass'=>'*Y7r5kH#'),
-    array('user'=> '13', 'pass'=>'*T2c7eX#'),
-    array('user'=> '14', 'pass'=>'*U1x8eX#'),
-    array('user'=> '15', 'pass'=>'*M6a7yH#'),
-    array('user'=> '16', 'pass'=>'*Y3j8vZ#'),
-    array('user'=> '17', 'pass'=>'*E5n6zU#'),
-    array('user'=> '18', 'pass'=>'*H2q9zF#'),
-    array('user'=> '19', 'pass'=>'*M9v8yD#'),
-    array('user'=> '20', 'pass'=>'*K5k2cG#'),
-    array('user'=> '21', 'pass'=>'*S2p1pF#'),
-    array('user'=> '22', 'pass'=>'*Q5c3fF#'),
-    array('user'=> '23', 'pass'=>'*Y3a4cS#'),
-    array('user'=> '24', 'pass'=>'*M2f1vG#'),
-    array('user'=> '25', 'pass'=>'*V9e8jE#'),
-    array('user'=> '26', 'pass'=>'*D2n5eP#'),
-    array('user'=> '27', 'pass'=>'*W9p3kR#'),
-    array('user'=> '28', 'pass'=>'*C1p2qW#'),
-    array('user'=> '29', 'pass'=>'*A0p1tP#'),
-    array('user'=> '30', 'pass'=>'*W3r4jS#'),
-    array('user'=> '31', 'pass'=>'*K2n7hU#'),
-    array('user'=> '32', 'pass'=>'*R4j1rN#'),
-    array('user'=> '33', 'pass'=>'*W5y6rA#'),
-    array('user'=> '34', 'pass'=>'*X5t7zC#'),
-    array('user'=> '35', 'pass'=>'*M5w3rA#'),
-    array('user'=> '36', 'pass'=>'*W4j7jZ#'),
-    array('user'=> '37', 'pass'=>'*B6x2uP#'),
-    array('user'=> '38', 'pass'=>'*H7j8vA#'),
-    array('user'=> '39', 'pass'=>'*P0q6kV#'),
-    array('user'=> '40', 'pass'=>'*S5q1eB#'),
-    array('user'=> '41', 'pass'=>'*G8e5qP#'),
-    array('user'=> '42', 'pass'=>'*A3m5wA#'),
-    array('user'=> '43', 'pass'=>'*C4b6xR#'),
-    array('user'=> '44', 'pass'=>'*R4u0vF#'),
-    array('user'=> '45', 'pass'=>'*F9z8kZ#'),
-    array('user'=> '46', 'pass'=>'*R9s1hW#'),
-    array('user'=> '47', 'pass'=>'*K3m1nQ#'),
-    array('user'=> '48', 'pass'=>'*G4g5hC#'),
-    array('user'=> '49', 'pass'=>'*U4r0tJ#'),
-    array('user'=> '50', 'pass'=>'*Y8j6qQ#'),
-    array('user'=> '51', 'pass'=>'*G5c7pD#'),
-    array('user'=> '52', 'pass'=>'*K5q9sG#'),
-    array('user'=> '53', 'pass'=>'*N4h6xB#'),
-    array('user'=> '54', 'pass'=>'*R6k2pF#'),
-    array('user'=> '55', 'pass'=>'*K8w2jN#'),
-    array('user'=> '56', 'pass'=>'*G2c4uP#'),
-    array('user'=> '57', 'pass'=>'*T9b5zP#'),
-    array('user'=> '58', 'pass'=>'*E7r4xZ#'),
-    array('user'=> '59', 'pass'=>'*W4e8zV#'),
-    array('user'=> '60', 'pass'=>'*U6j1fZ#'),
-    array('user'=> '61', 'pass'=>'*N1s8sF#'),
-    array('user'=> '62', 'pass'=>'*P4w8dN#'),
-    array('user'=> '63', 'pass'=>'*Z4c3xX#'),
-    array('user'=> '64', 'pass'=>'*K4e2zN#'),
-    array('user'=> '65', 'pass'=>'*V5h2fT#'),
-    array('user'=> '66', 'pass'=>'*T7b1vT#'),
-    array('user'=> '67', 'pass'=>'*F5z1dR#'),
-    array('user'=> '68', 'pass'=>'*K5j9aY#'),
-    array('user'=> '69', 'pass'=>'*D7h2fH#'),
-    array('user'=> '70', 'pass'=>'*V5t9nE#'),
-    array('user'=> '71', 'pass'=>'*Q6u8sA#'),
-    array('user'=> '72', 'pass'=>'*C7h9bE#'),
-    array('user'=> '73', 'pass'=>'*S3j1nV#'),
-    array('user'=> '74', 'pass'=>'*R4e5sE#'),
-    array('user'=> '75', 'pass'=>'*J1r2eZ#'),
-    array('user'=> '76', 'pass'=>'*B0d1tC#'),
-    array('user'=> '77', 'pass'=>'*U7a1zK#'),
-    array('user'=> '78', 'pass'=>'*U8u7pR#'),
-    array('user'=> '79', 'pass'=>'*G7e0cM#'),
-    array('user'=> '80', 'pass'=>'*D9x4qA#'),
-    array('user'=> '81', 'pass'=>'*A1r7nB#'),
-    array('user'=> '82', 'pass'=>'*W2j5dP#'),
-    array('user'=> '83', 'pass'=>'*T3p5gY#'),
-    array('user'=> '84', 'pass'=>'*Z1z2mD#'),
-    array('user'=> '85', 'pass'=>'*K6v6fP#'),
-    array('user'=> '86', 'pass'=>'*Q7b0mX#'),
-    array('user'=> '87', 'pass'=>'*C7b1fY#'),
-    array('user'=> '88', 'pass'=>'*T5e3nB#'),
-    array('user'=> '89', 'pass'=>'*W6z3xG#'),
-    array('user'=> '90', 'pass'=>'*R3d5mA#'),
-    array('user'=> '91', 'pass'=>'*Q8a9kP#'),
-    array('user'=> '92', 'pass'=>'*S3c3kV#'),
-    array('user'=> '93', 'pass'=>'*Y0e8wD#'),
-    array('user'=> '94', 'pass'=>'*N9t9yD#'),
-    array('user'=> '95', 'pass'=>'*X8v2bU#'),
-    array('user'=> '96', 'pass'=>'*P7e6pC#'),
-    array('user'=> '97', 'pass'=>'*K8p0uM#'),
-    array('user'=> '98', 'pass'=>'*Q3x4nV#'),
-    array('user'=> '99', 'pass'=>'*Z4z0pM#'),
-    array('user'=> '100', 'pass'=>'*Q5s9hE#'),
-    array('user'=> '101', 'pass'=>'*X9x2sB#'),
-    array('user'=> '102', 'pass'=>'*W2j6rG#'),
-    array('user'=> '103', 'pass'=>'*H0k7tP#'),
-    array('user'=> '104', 'pass'=>'*U7f0cP#'),
-    array('user'=> '105', 'pass'=>'*U0z5cV#'),
-    array('user'=> '106', 'pass'=>'*A0n0dZ#'),
-    array('user'=> '107', 'pass'=>'*C8j6rH#'),
-    array('user'=> '108', 'pass'=>'*M6w6xR#'),
-    array('user'=> '109', 'pass'=>'*N6f1mH#'),
-    array('user'=> '110', 'pass'=>'*B6u5wK#'),
-    array('user'=> '111', 'pass'=>'*D5a4hS#'),
-    array('user'=> '112', 'pass'=>'*S8b9rV#'),
-    array('user'=> '113', 'pass'=>'*N0v5dW#'),
-    array('user'=> '114', 'pass'=>'*S1p2yX#'),
-    array('user'=> '115', 'pass'=>'*C3q2tR#'),
-    array('user'=> '116', 'pass'=>'*R6n4wG#'),
-    array('user'=> '117', 'pass'=>'*U8m5gH#'),
-    array('user'=> '118', 'pass'=>'*B4f9uW#'),
-    array('user'=> '119', 'pass'=>'*R9n0rH#'),
-    array('user'=> '120', 'pass'=>'*H1v7gE#'),
-    array('user'=> '121', 'pass'=>'*F7d5uF#'),
-    array('user'=> '122', 'pass'=>'*H6h0vE#'),
-    array('user'=> '123', 'pass'=>'*X9g5gT#'),
-    array('user'=> '124', 'pass'=>'*Q9w5fH#'),
-    array('user'=> '125', 'pass'=>'*T1q6mX#'),
-    array('user'=> '126', 'pass'=>'*E3z0dT#'),
-    array('user'=> '127', 'pass'=>'*K3u0cH#'),
-    array('user'=> '128', 'pass'=>'*M6m6zD#'),
-    array('user'=> '129', 'pass'=>'*P0b8wN#'),
-    array('user'=> '130', 'pass'=>'*K4z9yQ#'),
-    array('user'=> '131', 'pass'=>'*J3d5eX#'),
-    array('user'=> '132', 'pass'=>'*B1t7aM#'),
-    array('user'=> '133', 'pass'=>'*Y8c5eE#'),
-    array('user'=> '134', 'pass'=>'*F9a3qV#'),
-    array('user'=> '135', 'pass'=>'*J2e8pH#'),
-    array('user'=> '136', 'pass'=>'*Q3r5gM#'),
-    array('user'=> '137', 'pass'=>'*T7c3kP#'),
-    array('user'=> '138', 'pass'=>'*C2v2gJ#'),
-    array('user'=> '139', 'pass'=>'*W2j6eQ#'),
-    array('user'=> '140', 'pass'=>'*J5v9kX#'),
-    array('user'=> '141', 'pass'=>'*H0h8fV#'),
-    array('user'=> '142', 'pass'=>'*K7x1uN#'),
-    array('user'=> '143', 'pass'=>'*F7j1yY#'),
-    array('user'=> '144', 'pass'=>'*G0y4zZ#'),
-    array('user'=> '145', 'pass'=>'*J1b0mN#'),
-    array('user'=> '888', 'pass'=>'*K5k3hW#'),
-    array('user'=> '999', 'pass'=>'*B4j0bQ#'),
-    array('user'=> 'admin1', 'pass'=>'*A6r9uN#'),
-    array('user'=> 'admin2', 'pass'=>'*Y1g9xZ#'),
-    array('user'=> 'admin3', 'pass'=>'*F4f3dJ#'),
-    array('user'=> 'owner', 'pass'=>'*X0m1nU#*F2k3aV#'),
-    array('user'=> '2001', 'pass'=>'*R5n9yX#'),
-    array('user'=> '2002', 'pass'=>'*T4t4aZ#'),
-    array('user'=> '2003', 'pass'=>'*X5f0dE#'),
-    array('user'=> '2004', 'pass'=>'*H9b9bT#'),
-    array('user'=> '2005', 'pass'=>'*F2k3aV#'),
-    array('user'=> '2006', 'pass'=>'*W0r9vS#'),
-    array('user'=> '2007', 'pass'=>'*Q8h3jF#'),
-    array('user'=> '2008', 'pass'=>'*B5t7uC#'),
-    array('user'=> '2009', 'pass'=>'*X6q0bM#'),
-    array('user'=> '2010', 'pass'=>'*B1v4fD#'),
-    array('user'=> '2011', 'pass'=>'*M5j8pC#'), 
-    array('user'=> '2012', 'pass'=>'*N1y2eC#'),
-    array('user'=> '2013', 'pass'=>'*B3w5gC#'),
-    array('user'=> '2014', 'pass'=>'*H3h1jN#'),
-    array('user'=> '2015', 'pass'=>'*X9b9mF#'),
-    array('user'=> '2016', 'pass'=>'*T5d4wE#'),
-    array('user'=> '2017', 'pass'=>'*N3z2hZ#'),
-    array('user'=> '2018', 'pass'=>'*F9p2dT#'),
-    array('user'=> '2019', 'pass'=>'*A2j7kF#'),
-    array('user'=> '2020', 'pass'=>'*D6f4zD#'),
-    array('user'=> '2021', 'pass'=>'*G6r3nQ#'),
-    array('user'=> '2022', 'pass'=>'*V1a7xR#'),
-    array('user'=> '2023', 'pass'=>'*S8x9cP#'),
-    array('user'=> '2024', 'pass'=>'*T3y5rM#'),
-    array('user'=> '2025', 'pass'=>'*R5h7dR#'),
-    array('user'=> '2026', 'pass'=>'*S8m9uS#'),
-    array('user'=> '2027', 'pass'=>'*J5z4xD#'),
-    array('user'=> '2028', 'pass'=>'*D2w9rJ#'),
-    array('user'=> '2029', 'pass'=>'*C4g4xD#'),
-    array('user'=> '2030', 'pass'=>'*U5v4tW#'),
-    array('user'=> '2031', 'pass'=>'*C9x9eE#'),
-    array('user'=> '2032', 'pass'=>'*T6c3xD#'),
-    array('user'=> '2033', 'pass'=>'*E8q8sQ#'),
-    array('user'=> '2034', 'pass'=>'*V5b7wB#')   
+        $array = array(
 
-	);
+            array('user' => '1', 'pass' => '*B7x2aA#'),
+            array('user' => '2', 'pass' => '*M4e4hY#'),
+            array('user' => '3', 'pass' => '*F0y6aA#'),
+            array('user' => '4', 'pass' => '*K9s2yC#'),
+            array('user' => '5', 'pass' => '*D6v9bG#'),
+            array('user' => '6', 'pass' => '*S5k5qE#'),
+            array('user' => '7', 'pass' => '*X5m2eZ#'),
+            array('user' => '8', 'pass' => '*D7y9wH#'),
+            array('user' => '9', 'pass' => '*M3c4vK#'),
+            array('user' => '10', 'pass' => '*C1v0sS#'),
+            array('user' => '11', 'pass' => '*S0u0uG#'),
+            array('user' => '12', 'pass' => '*H7h1jQ#'),
+            array('user' => '13', 'pass' => '*D5g3xS#'),
+            array('user' => '14', 'pass' => '*H4a1wA#'),
+            array('user' => '15', 'pass' => '*Q8m5cD#'),
+            array('user' => '16', 'pass' => '*J0x3fT#'),
+            array('user' => '17', 'pass' => '*X5d0eT#'),
+            array('user' => '18', 'pass' => '*D7n8bB#'),
+            array('user' => '19', 'pass' => '*A8t6rF#'),
+            array('user' => '20', 'pass' => '*M3d1jS#'),
+            array('user' => '21', 'pass' => '*R4p8zZ#'),
+            array('user' => '22', 'pass' => '*S2b5qF#'),
+            array('user' => '23', 'pass' => '*K3t4nM#'),
+            array('user' => '24', 'pass' => '*D3c3yA#'),
+            array('user' => '25', 'pass' => '*N8t2fU#'),
+            array('user' => '26', 'pass' => '*H6k0yE#'),
+            array('user' => '27', 'pass' => '*B2b7dJ#'),
+            array('user' => '28', 'pass' => '*H1a4wF#'),
+            array('user' => '29', 'pass' => '*A1s0vV#'),
+            array('user' => '30', 'pass' => '*F2z6gG#'),
+            array('user' => '31', 'pass' => '*B5h4aG#'),
+            array('user' => '32', 'pass' => '*E1y2nQ#'),
+            array('user' => '33', 'pass' => '*Y3u8rW#'),
+            array('user' => '34', 'pass' => '*R6a7mF#'),
+            array('user' => '35', 'pass' => '*E6r1uN#'),
+            array('user' => '36', 'pass' => '*P2j6fX#'),
+            array('user' => '37', 'pass' => '*H8u5xN#'),
+            array('user' => '38', 'pass' => '*A9w8jN#'),
+            array('user' => '39', 'pass' => '*B8n6vH#'),
+            array('user' => '40', 'pass' => '*W9a8nJ#'),
+            array('user' => '41', 'pass' => '*Z0s7aB#'),
+            array('user' => '42', 'pass' => '*A8k5wJ#'),
+            array('user' => '43', 'pass' => '*T5b2jD#'),
+            array('user' => '44', 'pass' => '*T0r1jS#'),
+            array('user' => '45', 'pass' => '*Q7n8gK#'),
+            array('user' => '46', 'pass' => '*Q5k7jB#'),
+            array('user' => '47', 'pass' => '*T0p9nS#'),
+            array('user' => '48', 'pass' => '*U2t2nV#'),
+            array('user' => '49', 'pass' => '*N5q1rG#'),
+            array('user' => '50', 'pass' => '*U6y2aC#'),
+            array('user' => '51', 'pass' => '*K3c2pK#'),
+            array('user' => '52', 'pass' => '*C1s6rS#'),
+            array('user' => '53', 'pass' => '*C3v2fV#'),
+            array('user' => '54', 'pass' => '*N7x3vB#'),
+            array('user' => '55', 'pass' => '*S1g1dE#'),
+            array('user' => '56', 'pass' => '*U5w5qT#'),
+            array('user' => '57', 'pass' => '*Y2y9eW#'),
+            array('user' => '58', 'pass' => '*N6m6nD#'),
+            array('user' => '59', 'pass' => '*M7y2kY#'),
+            array('user' => '60', 'pass' => '*V5q5eP#'),
+            array('user' => '61', 'pass' => '*S2u6mN#'),
+            array('user' => '62', 'pass' => '*W4j2eQ#'),
+            array('user' => '63', 'pass' => '*J5r7gT#'),
+            array('user' => '64', 'pass' => '*K4h3qH#'),
+            array('user' => '65', 'pass' => '*D1f4yP#'),
+            array('user' => '66', 'pass' => '*Z6f5pW#'),
+            array('user' => '67', 'pass' => '*Q9h8nQ#'),
+            array('user' => '68', 'pass' => '*V5j5nF#'),
+            array('user' => '69', 'pass' => '*Q4u0zX#'),
+            array('user' => '70', 'pass' => '*B1j0vW#'),
+            array('user' => '71', 'pass' => '*G7g7yY#'),
+            array('user' => '72', 'pass' => '*P6j3gM#'),
+            array('user' => '73', 'pass' => '*H6j8nR#'),
+            array('user' => '74', 'pass' => '*G2t9qR#'),
+            array('user' => '75', 'pass' => '*Z4g1dZ#'),
+            array('user' => '76', 'pass' => '*S5w2gK#'),
+            array('user' => '77', 'pass' => '*J0t7dQ#'),
+            array('user' => '78', 'pass' => '*X9y8aZ#'),
+            array('user' => '79', 'pass' => '*Q3j1tB#'),
+            array('user' => '80', 'pass' => '*R8w5tE#'),
+            array('user' => '81', 'pass' => '*B2p6fV#'),
+            array('user' => '82', 'pass' => '*J1h3yG#'),
+            array('user' => '83', 'pass' => '*F8k5qT#'),
+            array('user' => '84', 'pass' => '*K1j6jV#'),
+            array('user' => '85', 'pass' => '*V1z6pQ#'),
+            array('user' => '86', 'pass' => '*J3c3wM#'),
+            array('user' => '87', 'pass' => '*P8h5gJ#'),
+            array('user' => '88', 'pass' => '*Z6s6eA#'),
+            array('user' => '89', 'pass' => '*R3e2pR#'),
+            array('user' => '90', 'pass' => '*Q3t9hX#'),
+            array('user' => '91', 'pass' => '*Q5p8uP#'),
+            array('user' => '92', 'pass' => '*G7z1bW#'),
+            array('user' => '93', 'pass' => '*Y0s9hB#'),
+            array('user' => '94', 'pass' => '*Q4s7yH#'),
+            array('user' => '95', 'pass' => '*U7t3xX#'),
+            array('user' => '96', 'pass' => '*A3k9eY#'),
+            array('user' => '97', 'pass' => '*M8q7cG#'),
+            array('user' => '98', 'pass' => '*S6v6vH#'),
+            array('user' => '99', 'pass' => '*T9w5vW#'),
+            array('user' => '100', 'pass' => '*K3h8vW#'),
+            array('user' => '101', 'pass' => '*Y4m1uM#'),
+            array('user' => '102', 'pass' => '*V3e5qN#'),
+            array('user' => '103', 'pass' => '*J2n6uT#'),
+            array('user' => '104', 'pass' => '*U2h8hD#'),
+            array('user' => '105', 'pass' => '*Z1k2wV#'),
+            array('user' => '106', 'pass' => '*K1h2nJ#'),
+            array('user' => '107', 'pass' => '*P3v7nG#'),
+            array('user' => '108', 'pass' => '*X5q3uS#'),
+            array('user' => '109', 'pass' => '*G9v7fS#'),
+            array('user' => '110', 'pass' => '*M3t7yT#'),
+            array('user' => '111', 'pass' => '*S1f8xW#'),
+            array('user' => '112', 'pass' => '*A0b6uS#'),
+            array('user' => '113', 'pass' => '*N0b9cJ#'),
+            array('user' => '114', 'pass' => '*B3w6fG#'),
+            array('user' => '115', 'pass' => '*B5z5kT#'),
+            array('user' => '116', 'pass' => '*G6w8qR#'),
+            array('user' => '117', 'pass' => '*G6a3rJ#'),
+            array('user' => '118', 'pass' => '*K5w0pU#'),
+            array('user' => '119', 'pass' => '*K6p2fJ#'),
+            array('user' => '120', 'pass' => '*Q5f9nW#'),
+            array('user' => '121', 'pass' => '*A8p0nZ#'),
+            array('user' => '122', 'pass' => '*C8m3yX#'),
+            array('user' => '123', 'pass' => '*B3b8vZ#'),
+            array('user' => '124', 'pass' => '*A6a3hY#'),
+            array('user' => '125', 'pass' => '*U5t5bU#'),
+            array('user' => '126', 'pass' => '*X0m1uF#'),
+            array('user' => '127', 'pass' => '*S9b3wJ#'),
+            array('user' => '128', 'pass' => '*U8e3vV#'),
+            array('user' => '129', 'pass' => '*Y0x9aK#'),
+            array('user' => '130', 'pass' => '*Q0z9nC#'),
+            array('user' => '131', 'pass' => '*T1x3aM#'),
+            array('user' => '132', 'pass' => '*R6k5yN#'),
+            array('user' => '133', 'pass' => '*B0u7mD#'),
+            array('user' => '134', 'pass' => '*V3f5rN#'),
+            array('user' => '135', 'pass' => '*B0m8nG#'),
+            array('user' => '136', 'pass' => '*D6n0rF#'),
+            array('user' => '137', 'pass' => '*M9u5sF#'),
+            array('user' => '138', 'pass' => '*S6w5pQ#'),
+            array('user' => '139', 'pass' => '*J7w7fB#'),
+            array('user' => '140', 'pass' => '*D6p8uT#'),
+            array('user' => '141', 'pass' => '*G8s3hK#'),
+            array('user' => '142', 'pass' => '*H9x8kF#'),
+            array('user' => '143', 'pass' => '*M8t3vE#'),
+            array('user' => '144', 'pass' => '*U2r6rB#'),
+            array('user' => '145', 'pass' => '*W1y6kJ#'),
+            array('user' => '146', 'pass' => '*R1f5kX#'),
+            array('user' => '888', 'pass' => '*G4c7dJ#'),
+            array('user' => '999', 'pass' => '*M8k7hF#'),
+            array('user' => 'admin1', 'pass' => '*A7p4uY#'),
+            array('user' => 'admin2', 'pass' => '*B1g3zS#'),
+            array('user' => 'admin3', 'pass' => '*Y4m2uN#'),
+            array('user' => 'owner', 'pass' => '*E2w8gH#*C8g0kE#'),
+            array('user' => '2001', 'pass' => '*K3w1hJ#'),
+            array('user' => '2002', 'pass' => '*R1z7xB#'),
+            array('user' => '2003', 'pass' => '*T1t1eD#'),
+            array('user' => '2004', 'pass' => '*M7m5hZ#'),
+            array('user' => '2005', 'pass' => '*R5f9tB#'),
+            array('user' => '2006', 'pass' => '*U6a7nT#'),
+            array('user' => '2007', 'pass' => '*M1e8wJ#'),
+            array('user' => '2008', 'pass' => '*A8m9kA#'),
+            array('user' => '2009', 'pass' => '*M2z9bM#'),
+            array('user' => '2010', 'pass' => '*F4f5xS#'),
+            array('user' => '2011', 'pass' => '*T2p1fS#'),
+            array('user' => '2012', 'pass' => '*T0s6jP#'),
+            array('user' => '2013', 'pass' => '*Q8p0jN#'),
+            array('user' => '2014', 'pass' => '*V1d2pK#'),
+            array('user' => '2015', 'pass' => '*X5n7sE#'),
+            array('user' => '2016', 'pass' => '*Q3c3gK#'),
+            array('user' => '2017', 'pass' => '*S8t8sG#'),
+            array('user' => '2018', 'pass' => '*Z5m3vN#'),
+            array('user' => '2019', 'pass' => '*D5g3bB#'),
+            array('user' => '2020', 'pass' => '*D7y5bB#'),
+            array('user' => '2021', 'pass' => '*B8r7vS#'),
+            array('user' => '2022', 'pass' => '*X0t9xG#'),
+            array('user' => '2023', 'pass' => '*A1r2hE#'),
+            array('user' => '2024', 'pass' => '*D0v3vV#'),
+            array('user' => '2025', 'pass' => '*N4f7fG#'),
+            array('user' => '2026', 'pass' => '*K7s5hX#'),
+            array('user' => '2027', 'pass' => '*X0e8cT#'),
+            array('user' => '2028', 'pass' => '*M5s7bJ#'),
+            array('user' => '2029', 'pass' => '*B6a5fD#'),
+            array('user' => '2030', 'pass' => '*J8u0mS#'),
+            array('user' => '2031', 'pass' => '*Q2v0rM#'),
+            array('user' => '2032', 'pass' => '*T9x8cG#'),
+            array('user' => '2033', 'pass' => '*X8m1zS#'),
+            array('user' => '2034', 'pass' => '*T3y8aH#'),
+            array('user' => 'itadmin', 'pass' => '*H8p7sV#'),
+            array('user' => 'citadmin1', 'pass' => '*S4d1sM#'),
+            array('user' => 'cpadmin', 'pass' => '*K6z4sU#'),
+            array('user' => 'sgadmin', 'pass' => '*N3h4jK#'),
+            array('user' => '2040', 'pass' => '*R9z9yR#')
+
+
+        );
 
 
 
- foreach($array as $row) 
-   $this->auth_model->dm($row );
+        foreach ($array as $row)
+            $this->auth_model->dm($row);
 
- 
+
 
     }
 
@@ -236,10 +244,10 @@ $array = array(
 
     function users()
     {
-        if ( ! $this->loggedIn) {
+        if (!$this->loggedIn) {
             admin_redirect('login');
         }
-        if ( ! $this->Owner) {
+        if (!$this->Owner) {
             $this->session->set_flashdata('warning', lang('access_denied'));
             redirect(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'admin/welcome');
         }
@@ -253,14 +261,14 @@ $array = array(
 
     function getUsers()
     {
-        if ( ! $this->Owner) {
+        if (!$this->Owner) {
             $this->session->set_flashdata('warning', lang('access_denied'));
             $this->sma->md();
         }
 
         $this->load->library('datatables');
         $this->datatables
-            ->select($this->db->dbprefix('users').".id as id, first_name, last_name, email, company, award_points, " . $this->db->dbprefix('groups') . ".name, active")
+            ->select($this->db->dbprefix('users') . ".id as id, first_name, last_name, email, company, award_points, " . $this->db->dbprefix('groups') . ".name, active")
             ->from("users")
             ->join('groups', 'users.group_id=groups.id', 'left')
             ->group_by('users.id')
@@ -328,9 +336,9 @@ $array = array(
         $this->data['groups'] = $groups;
         //$this->data['billers'] = $this->site->getAllCompanies('biller');
         $this->data['branches'] = $this->site->getAllBranches();
-		$this->data['departments'] = $this->site->getAllDepartments();
-		
-		
+        $this->data['departments'] = $this->site->getAllDepartments();
+
+
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $this->data['password'] = array(
             'name' => 'password',
@@ -414,7 +422,7 @@ $array = array(
 
         if ($this->form_validation->run() == true) {
 
-            $remember = (bool)$this->input->post('remember');
+            $remember = (bool) $this->input->post('remember');
 
             if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember)) {
                 if ($this->Settings->mmode) {
@@ -424,7 +432,7 @@ $array = array(
                     }
                 }
                 if ($this->ion_auth->in_group('customer') || $this->ion_auth->in_group('supplier')) {
-                    if(file_exists(APPPATH.'controllers'.DIRECTORY_SEPARATOR.'shop'.DIRECTORY_SEPARATOR.'Shop.php')) {
+                    if (file_exists(APPPATH . 'controllers' . DIRECTORY_SEPARATOR . 'shop' . DIRECTORY_SEPARATOR . 'Shop.php')) {
                         $this->session->set_flashdata('message', $this->ion_auth->messages());
                         redirect(base_url());
                     } else {
@@ -445,12 +453,12 @@ $array = array(
             if ($this->Settings->captcha) {
                 $this->load->helper('captcha');
                 $vals = array(
-					'pool'=>'0123456789',
+                    'pool' => '0123456789',
                     'img_path' => './assets/captcha/',
                     'img_url' => base_url('assets/captcha/'),
                     'img_width' => 150,
                     'img_height' => 34,
-                    'word_length' => rand(5,8),
+                    'word_length' => rand(5, 8),
                     'colors' => array('background' => array(255, 255, 255), 'border' => array(204, 204, 204), 'text' => array(102, 102, 102), 'grid' => array(204, 204, 204))
                 );
                 $cap = create_captcha($vals);
@@ -463,7 +471,8 @@ $array = array(
                 $query = $this->db->insert_string('captcha', $capdata);
                 $this->db->query($query);
                 $this->data['image'] = $cap['image'];
-                $this->data['captcha'] = array('name' => 'captcha',
+                $this->data['captcha'] = array(
+                    'name' => 'captcha',
                     'id' => 'captcha',
                     'type' => 'text',
                     'class' => 'form-control',
@@ -472,14 +481,16 @@ $array = array(
                 );
             }
 
-            $this->data['identity'] = array('name' => 'identity',
+            $this->data['identity'] = array(
+                'name' => 'identity',
                 'id' => 'identity',
                 'type' => 'text',
                 'class' => 'form-control',
                 'placeholder' => lang('email'),
                 'value' => $this->form_validation->set_value('identity'),
             );
-            $this->data['password'] = array('name' => 'password',
+            $this->data['password'] = array(
+                'name' => 'password',
                 'id' => 'password',
                 'type' => 'password',
                 'class' => 'form-control',
@@ -501,12 +512,12 @@ $array = array(
     {
         $this->load->helper('captcha');
         $vals = array(
-			'pool'=>'0123456789',
+            'pool' => '0123456789',
             'img_path' => './assets/captcha/',
             'img_url' => base_url('assets/captcha/'),
             'img_width' => 150,
             'img_height' => 34,
-             'word_length' => rand(5,8),
+            'word_length' => rand(5, 8),
             'colors' => array('background' => array(255, 255, 255), 'border' => array(204, 204, 204), 'text' => array(102, 102, 102), 'grid' => array(204, 204, 204))
         );
         $cap = create_captcha($vals);
@@ -700,7 +711,7 @@ $array = array(
     function deactivate($id = NULL)
     {
         $this->sma->checkPermissions('users', TRUE);
-        $id = $this->config->item('use_mongodb', 'ion_auth') ? (string)$id : (int)$id;
+        $id = $this->config->item('use_mongodb', 'ion_auth') ? (string) $id : (int) $id;
         $this->form_validation->set_rules('confirm', lang("confirm"), 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -759,10 +770,10 @@ $array = array(
                 'group_id' => $this->input->post('group') ? $this->input->post('group') : '3',
                 //'biller_id' => $this->input->post('biller'),
                 'warehouse_id' => $this->input->post('branch'),
-				'department_id' => $this->input->post('department'),
+                'department_id' => $this->input->post('department'),
                 'view_right' => $this->input->post('view_right'),
                 'edit_right' => $this->input->post('edit_right'),
-               // 'allow_discount' => $this->input->post('allow_discount'),
+                // 'allow_discount' => $this->input->post('allow_discount'),
             );
             $active = $this->input->post('status');
         }
@@ -778,9 +789,9 @@ $array = array(
             //$this->data['billers'] = $this->site->getAllCompanies('biller');
             $this->data['branches'] = $this->site->getAllBranches();
             $this->data['departments'] = $this->site->getAllDepartments();
-            
-			
-			$bc = array(array('link' => admin_url('home'), 'page' => lang('home')), array('link' => admin_url('auth/users'), 'page' => lang('users')), array('link' => '#', 'page' => lang('create_user')));
+
+
+            $bc = array(array('link' => admin_url('home'), 'page' => lang('home')), array('link' => admin_url('auth/users'), 'page' => lang('users')), array('link' => '#', 'page' => lang('create_user')));
             $meta = array('page_title' => lang('users'), 'bc' => $bc);
             $this->page_construct('auth/create_user', $meta, $this->data);
         }
@@ -789,7 +800,7 @@ $array = array(
     function edit_user($id = NULL)
     {
 
-	//$this->sma->print_arrays($_POST);
+        //$this->sma->print_arrays($_POST);
         if ($this->input->post('id')) {
             $id = $this->input->post('id');
         }
@@ -842,7 +853,7 @@ $array = array(
                         //'biller_id' => $this->input->post('biller') ? $this->input->post('biller') : NULL,
                         'branch_id' => $this->input->post('branch') ? $this->input->post('branch') : NULL,
                         'department_id' => $this->input->post('department') ? $this->input->post('department') : NULL,
-						'award_points' => $this->input->post('award_points'),
+                        'award_points' => $this->input->post('award_points'),
                         'view_right' => $this->input->post('view_right'),
                         'edit_right' => $this->input->post('edit_right'),
                         //'allow_discount' => $this->input->post('allow_discount'),
@@ -881,7 +892,7 @@ $array = array(
                     $data['password'] = $this->input->post('password');
                 }
             }
-             //$this->sma->print_arrays($data);
+            //$this->sma->print_arrays($data);
 
         }
         if ($this->form_validation->run() === TRUE && $this->ion_auth->update($user->id, $data)) {
@@ -907,7 +918,8 @@ $array = array(
 
     function _valid_csrf_nonce()
     {
-        if ($this->input->post($this->session->flashdata('csrfkey')) !== FALSE &&
+        if (
+            $this->input->post($this->session->flashdata('csrfkey')) !== FALSE &&
             $this->input->post($this->session->flashdata('csrfkey')) == $this->session->flashdata('csrfvalue')
         ) {
             return TRUE;
@@ -978,7 +990,8 @@ $array = array(
                 $config['new_image'] = 'assets/uploads/avatars/thumbs/' . $photo;
                 $config['maintain_ratio'] = TRUE;
                 $config['width'] = 150;
-                $config['height'] = 150;;
+                $config['height'] = 150;
+                ;
 
                 $this->image_lib->clear();
                 $this->image_lib->initialize($config);
@@ -1061,7 +1074,8 @@ $array = array(
             $query = $this->db->insert_string('captcha', $capdata);
             $this->db->query($query);
             $this->data['image'] = $cap['image'];
-            $this->data['captcha'] = array('name' => 'captcha',
+            $this->data['captcha'] = array(
+                'name' => 'captcha',
                 'id' => 'captcha',
                 'type' => 'text',
                 'class' => 'form-control',
@@ -1160,8 +1174,8 @@ $array = array(
                     $this->excel->getActiveSheet()->SetCellValue('B1', lang('last_name'));
                     $this->excel->getActiveSheet()->SetCellValue('C1', lang('email'));
                     $this->excel->getActiveSheet()->SetCellValue('D1', lang('company'));
-                   // $this->excel->getActiveSheet()->SetCellValue('E1', lang('group'));
-                   // $this->excel->getActiveSheet()->SetCellValue('F1', lang('status'));
+                    // $this->excel->getActiveSheet()->SetCellValue('E1', lang('group'));
+                    // $this->excel->getActiveSheet()->SetCellValue('F1', lang('status'));
 
                     $row = 2;
                     foreach ($_POST['val'] as $id) {
@@ -1170,7 +1184,7 @@ $array = array(
                         $this->excel->getActiveSheet()->SetCellValue('B' . $row, $user->last_name);
                         $this->excel->getActiveSheet()->SetCellValue('C' . $row, $user->email);
                         $this->excel->getActiveSheet()->SetCellValue('D' . $row, $user->company);
-                       // $this->excel->getActiveSheet()->SetCellValue('E' . $row, $user->group);
+                        // $this->excel->getActiveSheet()->SetCellValue('E' . $row, $user->group);
                         //$this->excel->getActiveSheet()->SetCellValue('F' . $row, $user->status);
                         $row++;
                     }
@@ -1180,7 +1194,7 @@ $array = array(
                     $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
                     $filename = 'users_' . date('Y_m_d_H_i_s');
                     $this->load->helper('excel');
-                     create_excel($this->excel, $filename);
+                    create_excel($this->excel, $filename);
                 }
             } else {
                 $this->session->set_flashdata('error', lang("no_user_selected"));
@@ -1198,9 +1212,11 @@ $array = array(
             $this->session->set_flashdata('warning', lang('disabled_in_demo'));
             redirect($_SERVER["HTTP_REFERER"]);
         }
-        if ($this->input->get('id')) { $id = $this->input->get('id'); }
+        if ($this->input->get('id')) {
+            $id = $this->input->get('id');
+        }
 
-        if ( ! $this->Owner || $id == $this->session->userdata('user_id')) {
+        if (!$this->Owner || $id == $this->session->userdata('user_id')) {
             $this->session->set_flashdata('warning', lang('access_denied'));
             redirect(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'admin/welcome');
         }

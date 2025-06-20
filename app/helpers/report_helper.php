@@ -455,3 +455,46 @@ if(! function_exists('org_thana_current')) {
 		}
 		}
  
+
+
+
+		
+if(! function_exists('org_unit_increase')) {
+
+	function org_unit_increase($type_id,$arr){
+		
+		
+		foreach($arr as $row){
+		// echo 'Rokon';
+			if($row['sub_category']==$type_id) {
+ 
+				     	  
+				return  isset($row['unit_count'])? $row['unit_count'] : 0;
+			}
+		}
+		
+		return 0;
+	}
+
+}
+
+
+		
+if(! function_exists('org_unit_decrease')) {
+
+	function org_unit_decrease($type_id,$arr){
+		
+		
+		foreach($arr as $row){
+		// echo 'Rokon';
+			if($row['sub_category']==$type_id) {
+ 
+				     	  
+				return  isset($row['unit_count'])? $row['unit_count'] : 0;
+			}
+		}
+		
+		return 0;
+	}
+
+}

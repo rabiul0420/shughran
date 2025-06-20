@@ -209,6 +209,11 @@
 
                                             $org_decrease_count = org_decrease_increase_count($institution->id, $org_decrease);
                                             $org_increase_count = org_decrease_increase_count($institution->id, $org_increase);
+                                            
+                                            
+                                            $org_unit_increase = org_unit_increase($institution->id, $org_unit_increase);
+                                            $org_unit_decrease = org_unit_decrease($institution->id, $org_unit_decrease);
+                                            
 
  
                                           //  if($institution->id==84)
@@ -241,10 +246,10 @@
 
                                         </td>
                                         <td class="typeorg_8">
-                                        <?=$org_increase_count?>
+                                        <?=$org_increase_count?>aaaa
                                         </td>
                                         <td class="typeorg_9">
-                                             <?=$org_decrease_count?>
+                                             <?=$org_decrease_count?>aaaabbb
                                         </td>
                                         <td class="typeorg_10">
                                             <?php echo $institution_row == null ? 0 : $institution_row['total_branch_org']; ?>
@@ -263,8 +268,8 @@
                                             <?php echo $institution_row == null ? 0 : $institution_row['prev_unit']; ?></td>
                                         <td class="typeorg_15">
                                             <?php echo $institution_row == null ? 0 : $institution_row['org_unit_count']; ?></td>
-                                        <td class="typeorg_16">&nbsp;</td>
-                                        <td class="typeorg_17">&nbsp;</td>
+                                        <td class="typeorg_16"><?=$org_unit_increase?></td>
+                                        <td class="typeorg_17"><?=$org_unit_decrease?></td>
                                         <td class="typeorg_18">&nbsp;</td>
                                         <td class="typeorg_19">&nbsp;</td>
                                         <td class="typeorg_20">&nbsp;</td>

@@ -382,7 +382,9 @@
 
                             <?php if (1 || $Owner || $Admin) { ?>
 
-                                <li class="dropdown tmp_hidden">
+                               
+                               
+                                <li class="dropdown hidden">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                         aria-haspopup="true" aria-expanded="false">
                                         দাওয়াত <span class="caret"></span>
