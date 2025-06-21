@@ -246,11 +246,13 @@
 
                                         </td>
                                         <td class="typeorg_8">
-                                        <?=$org_increase_count?>aaaa
+                                        <?=$org_increase_count?>
                                         </td>
-                                        <td class="typeorg_9">
-                                             <?=$org_decrease_count?>aaaabbb
-                                        </td>
+                                        
+                                        <td class="typeorg_9"> 
+                                             <?=$org_decrease_count?>
+                                        </td>lokman
+
                                         <td class="typeorg_10">
                                             <?php echo $institution_row == null ? 0 : $institution_row['total_branch_org']; ?>
                                         </td>
