@@ -363,6 +363,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
                 $("." + target_name).html(totalPrice);
         }
         for (i = 1; i < 35; i++) {
+            
             sumcols('type_' + i, 'total_' + i);
         }
 
@@ -384,6 +385,7 @@ $s2_file_date = $this->parser->parse_string($s2_lang_file, $s2_data, true);
 
 
         for (i = 1; i < 35; i++) {
+           
             sumcols_org('typeorg_' + i, 'totalorg_' + i);
         }
 

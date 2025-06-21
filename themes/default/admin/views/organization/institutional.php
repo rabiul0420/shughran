@@ -154,7 +154,7 @@
                             <th colspan="5">সংগঠন</th>
                             <th colspan="4">কোন মানের সংগঠন</th>
                             <th colspan="4">উপশাখা</th>
-                            <th colspan="4">
+                            <th colspan="4" class="hidden">
                                 <p>সমর্থক সংগঠন</p>
                                 <p>(সংগঠন নেই এমন প্রতিষ্ঠানের কয়টিতে ন্যূনতম একটি সমর্থক সংগঠন আছে?)</p>
                             </th>
@@ -178,10 +178,10 @@
                             <th>উপশাখা বর্তমান</th>
                             <th>উপশাখা বৃদ্ধি</th>
                             <th>উপশাখা ঘাটতি</th>
-                            <th>পূর্ব</th>
-                            <th>বর্তমান</th>
-                            <th>বৃৃদ্ধি</th>
-                            <th>ঘাটতি</th>
+                            <th class="hidden">পূর্ব</th>
+                            <th class="hidden">বর্তমান</th>
+                            <th class="hidden">বৃৃদ্ধি</th>
+                            <th class="hidden">ঘাটতি</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -191,7 +191,7 @@
                             <tr style="background-color: aqua;">
                                 <td><?php echo $institution_type->institution_type; ?></td>
 
-                                <?php for ($i = 1; $i <= 21; $i++) {
+                                <?php for ($i = 1; $i <= 17; $i++) {
                                     echo '<td class="typeorg_"' . $i . '>  </td>';
 
                                 } ?>
@@ -251,7 +251,7 @@
                                         
                                         <td class="typeorg_9"> 
                                              <?=$org_decrease_count?>
-                                        </td>lokman
+                                        </td>
 
                                         <td class="typeorg_10">
                                             <?php echo $institution_row == null ? 0 : $institution_row['total_branch_org']; ?>
@@ -272,10 +272,10 @@
                                             <?php echo $institution_row == null ? 0 : $institution_row['org_unit_count']; ?></td>
                                         <td class="typeorg_16"><?=$org_unit_increase?></td>
                                         <td class="typeorg_17"><?=$org_unit_decrease?></td>
-                                        <td class="typeorg_18">&nbsp;</td>
-                                        <td class="typeorg_19">&nbsp;</td>
-                                        <td class="typeorg_20">&nbsp;</td>
-                                        <td class="typeorg_21">&nbsp;</td>
+                                        <td class="typeorg_18 hidden">&nbsp;</td>
+                                        <td class="typeorg_19 hidden">&nbsp;</td>
+                                        <td class="typeorg_20 hidden">&nbsp;</td>
+                                        <td class="typeorg_21 hidden">&nbsp;</td>
 
                                     </tr>
                                 <?php } ?>
@@ -287,7 +287,7 @@
 
                         <tr>
                             <td>Total</td>
-                            <?php for ($i = 1; $i <= 21; $i++) { ?>
+                            <?php for ($i = 1; $i <= 17; $i++) { ?>
                                 <td class="totalorg_<?php echo $i; ?>"></td>
                             <?php } ?>
                         </tr>

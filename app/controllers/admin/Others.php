@@ -2560,7 +2560,7 @@ b.branch_id, c.code
     a.thana_upazila_id,
     a.pourashava_union_id
 FROM sma_administrative_area a
-WHERE a.union_Pourashava_type = 1 AND a.branch_id = $branch_id)b LEFT JOIN sma_branches c ON c.id = b.branch_id WHERE total_thana_by_union_Pourashava=0;");
+WHERE a.union_Pourashava_type = $type AND a.branch_id = $branch_id)b LEFT JOIN sma_branches c ON c.id = b.branch_id WHERE total_thana_by_union_Pourashava=0;");
 
 
 

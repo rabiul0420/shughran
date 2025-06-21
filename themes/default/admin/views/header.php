@@ -343,61 +343,62 @@
                             <li class="<?php echo (!$this->uri->segment(2)) ? 'active' : '' ?>"><a href="##">Home</a>
                             </li>
 
+                            <?php if ($Owner || $Admin) { ?>
 
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    জনশক্তি <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class=""><a href="<?= admin_url('manpower'); ?>">একনজরে </a></li>
-                                    <li class=""><a href="<?= admin_url('manpower/member'); ?>">সদস্য তালিকা </a></li>
-
-                                    <li class=""><a href="<?= admin_url('membercandidate'); ?>">সদস্যপ্রার্থী তালিকা
-                                        </a></li>
-                                    <li class=""><a href="<?= admin_url('associate'); ?>">সাথী তালিকা </a></li>
-
-                                    <li class=""><a
-                                            href="<?= admin_url('manpowertransfer/assocandidatearrivallist'); ?>">সাথীপ্রার্থী</a>
-                                    </li>
-
-                                    <li> <a href="<?= admin_url('manpowertransfer/workerarrivallist') ?>"> কর্মী </a>
-                                    </li>
-
-                                    <li class=""><a href="<?= admin_url('manpower/manpower_output'); ?>">সকল জনশক্তির
-                                            আউটপুট</a></li>
-
-                                    <li class=""><a href="<?= admin_url('dawat/increased_output'); ?>">বৃদ্ধিকৃতদের
-                                            আউটপুট</a></li>
-
-
-
-
-
-
-                                </ul>
-                            </li>
-
-
-                            <?php if (1 || $Owner || $Admin) { ?>
-
-                               
-                               
-                                <li class="dropdown hidden">
+                                <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                         aria-haspopup="true" aria-expanded="false">
-                                        দাওয়াত <span class="caret"></span>
+                                        জনশক্তি <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li class=""><a href="<?= admin_url('dawat'); ?>">একনজরে </a></li>
-                                        <li class=""><a href="<?= admin_url('dawat/element'); ?>">দাওয়াতী উপকরণ</a></li>
-                                        <li class=""><a href="<?= admin_url('dawat/mosque'); ?>">মসজিদ ভিত্তিক কাজ</a></li>
-                                        <li class=""><a href="<?= admin_url('dawat/extra'); ?>">অতিরিক্ত দাওয়াত</a></li>
-                                        <li class=""><a href="<?= admin_url('dawat/detail'); ?>">বিস্তারিত দাওয়াত </a></li>
+                                        <li class=""><a href="<?= admin_url('manpower'); ?>">একনজরে </a></li>
+                                        <li class=""><a href="<?= admin_url('manpower/member'); ?>">সদস্য তালিকা </a></li>
+
+                                        <li class=""><a href="<?= admin_url('membercandidate'); ?>">সদস্যপ্রার্থী তালিকা
+                                            </a></li>
+                                        <li class=""><a href="<?= admin_url('associate'); ?>">সাথী তালিকা </a></li>
+
+                                        <li class=""><a
+                                                href="<?= admin_url('manpowertransfer/assocandidatearrivallist'); ?>">সাথীপ্রার্থী</a>
+                                        </li>
+
+                                        <li> <a href="<?= admin_url('manpowertransfer/workerarrivallist') ?>"> কর্মী </a>
+                                        </li>
+
+                                        <li class=""><a href="<?= admin_url('manpower/manpower_output'); ?>">সকল জনশক্তির
+                                                আউটপুট</a></li>
+
+                                        <li class=""><a href="<?= admin_url('dawat/increased_output'); ?>">বৃদ্ধিকৃতদের
+                                                আউটপুট</a></li>
+
+
+
+
+
+
                                     </ul>
                                 </li>
 
+                            <?php } ?>
+
+                            <?php if (1 || $Owner || $Admin) { ?>
+
+
+                                <?php if ($Owner || $Admin) { ?>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            দাওয়াত <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li class=""><a href="<?= admin_url('dawat'); ?>">একনজরে </a></li>
+                                            <li class=""><a href="<?= admin_url('dawat/element'); ?>">দাওয়াতী উপকরণ</a></li>
+                                            <li class=""><a href="<?= admin_url('dawat/mosque'); ?>">মসজিদ ভিত্তিক কাজ</a></li>
+                                            <li class=""><a href="<?= admin_url('dawat/extra'); ?>">অতিরিক্ত দাওয়াত</a></li>
+                                            <li class=""><a href="<?= admin_url('dawat/detail'); ?>">বিস্তারিত দাওয়াত </a></li>
+                                        </ul>
+                                    </li>
+                                <?php } ?>
 
 
                                 <li class="dropdown">
@@ -423,13 +424,15 @@
 
                                         <li class="tmp_hidden"><a href="<?= admin_url('organization/branchlist'); ?>"
                                                 class="line-height-lg">শাখা তালিকা</a></li>
-                                        <li class="tmp_hidden"><a
-                                                href="<?= admin_url('organization/increaselist_branch') ?>"
-                                                class="line-height-lg">শাখা বৃদ্ধি তালিকা</a></li>
-                                        <li class="tmp_hidden"><a
-                                                href="<?= admin_url('organization/decreaselist_branch') ?>"
-                                                class="line-height-lg">শাখা ঘাটতি তালিকা</a></li>
 
+                                        <?php if ($Owner || $Admin) { ?>
+                                            <li class="tmp_hidden"><a
+                                                    href="<?= admin_url('organization/increaselist_branch') ?>"
+                                                    class="line-height-lg">শাখা বৃদ্ধি তালিকা</a></li>
+                                            <li class="tmp_hidden"><a
+                                                    href="<?= admin_url('organization/decreaselist_branch') ?>"
+                                                    class="line-height-lg">শাখা ঘাটতি তালিকা</a></li>
+                                        <?php } ?>
 
                                         <li class="tmp_hidden">
                                             <hr class="divider" />
@@ -531,7 +534,8 @@
                                         <li class="tmp_hidden"><a
                                                 href="<?= admin_url('organization/org_increase_in_institution'); ?>"
                                                 class="line-height-lg">শিক্ষাপ্রতিষ্ঠানে সংগঠন বৃদ্ধি </a></li>
-                                        <li class="tmp_hidden"><a href="<?= admin_url('organization/org_decrease_in_institution'); ?>"
+                                        <li class="tmp_hidden"><a
+                                                href="<?= admin_url('organization/org_decrease_in_institution'); ?>"
                                                 class="line-height-lg">শিক্ষাপ্রতিষ্ঠানে সংগঠন ঘাটতি</a></li>
 
 
@@ -558,7 +562,8 @@
                                         <li
                                             class="tmp_hidden <?php echo ($this->uri->segment(2) == 'others' && ($this->uri->segment(3) == 'administrative_area_list')) ? 'active' : '' ?>">
                                             <a href="<?= admin_url('others/administrative_area_list'); ?>">প্রশাসনিক
-                                                এলাকা</a></li>
+                                                এলাকা</a>
+                                        </li>
 
                                         <li class="tmp_hidden"> <a href="<?= admin_url('others/administrationbutorg'); ?>"
                                                 class="line-height-lg">যে সব এলাকায় সংগঠন নেই</a></li>
@@ -635,7 +640,8 @@
                                         <li
                                             class="hidden  <?php echo ($this->uri->segment(3) == 'school-karjokrom-bivag') ? 'active' : '' ?>">
                                             <a href="<?= admin_url('departmentsreport/school-karjokrom-bivag'); ?>">স্কুল
-                                                কার্যক্রম </a></li>
+                                                কার্যক্রম </a>
+                                        </li>
                                     </ul>
                                 </li>
 
@@ -648,7 +654,8 @@
 
                             <li
                                 class=" <?php echo ($this->uri->segment(2) == 'departmentsreport') && ($this->uri->segment(3) != 'school-karjokrom-bivag') ? 'active' : '' ?>">
-                                <a href="<?= admin_url('departmentsreport'); ?>">বিভাগীয় রিপোর্ট</a></li>
+                                <a href="<?= admin_url('departmentsreport'); ?>">বিভাগীয় রিপোর্ট</a>
+                            </li>
 
 
 

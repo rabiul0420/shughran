@@ -113,7 +113,7 @@ oTable3 = $('#PRData5').dataTable({
             <?php if($branch_id != null) {?>
               <li class="dropdown">
                     <a href="<?= admin_url('organization/addthana/'.$branch_id.'/0') ?>">
-                        <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' শাখা বৃদ্ধি করুন' ?></i>
+                        <i class="icon fa fa-plus" data-placement="left" title="<?= lang("actions") ?>"><?= ' শাখা যুক্ত করুন' ?></i>
                     </a>
                      
                 </li>
