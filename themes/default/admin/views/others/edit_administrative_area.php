@@ -91,7 +91,7 @@ if (!empty($variants)) {
 
                             <?php foreach ($thanas as $row) {
                                 if ($administrativearea->thana_upazila_id == $row->id)
-                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                                    echo '<option selected value="' . $row->id . '">' . $row->name . '</option>';
                                 else
                                     echo '<option value="' . $row->id . '">' . $row->name . '</option>';
                             } ?>
@@ -107,7 +107,7 @@ if (!empty($variants)) {
 
                             <?php foreach ($unions as $row) {
                                 if ($administrativearea->pourashava_union_id == $row->id)
-                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                                    echo '<option selected value="' . $row->id . '">' . $row->name . '</option>';
                                 else
                                     echo '<option value="' . $row->id . '">' . $row->name . '</option>';
                             } ?>
@@ -121,7 +121,7 @@ if (!empty($variants)) {
                             
                             <?php foreach ($wards as $row) {
                                 if ($administrativearea->ward_id == $row->id)
-                                    echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+                                    echo '<option selected value="' . $row->id . '">' . $row->name . '</option>';
                                 else
                                     echo '<option value="' . $row->id . '">' . $row->name . '</option>';
                             } ?>

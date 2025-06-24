@@ -1117,7 +1117,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->select("sma_institutionlist_with_org.id as id , sma_institutionlist_with_org.code as code,  sma_institutionlist_with_org.institution_name, 0 as org_type,t1.institution_type as plname,
              t2.institution_type as rcname,  
              {$this->db->dbprefix('branches')}.name as branch_name,   
-              v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,   org_status as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
+              v3_organization_info_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,   org_status as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
              total_unit
               ", FALSE)
                 ->from('institutionlist_with_org');
@@ -1135,7 +1135,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->select("sma_institutionlist_with_org.id as id , sma_institutionlist_with_org.code as code,  sma_institutionlist_with_org.institution_name, 0 as org_type,t1.institution_type as plname,
                  t2.institution_type as rcname,  
                  {$this->db->dbprefix('branches')}.name as branch_name,   
-                  v3_organization_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,  org_status as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
+                  v3_organization_info_prev( sma_institutionlist_with_org.id,'" . $prev . "',-1) as previous,  org_status as current_org,  v3_upashakha_decrease_increase( sma_institutionlist_with_org.id,'" . $start . "','" . $end . "') as  increase_decrease,
                  total_unit
                   ", FALSE)
                 ->from('institutionlist_with_org');
