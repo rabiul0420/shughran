@@ -2410,7 +2410,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-       $this->sma->print_arrays($data);
+       //$this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -2454,7 +2454,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             // branch_name increase decrease
             $row = 2;
 
-         
+         if(0)
             foreach ($data as $data_row) {
                 $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->code);
                 $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->institution_name);
