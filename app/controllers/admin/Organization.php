@@ -2410,7 +2410,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-     // $this->sma->print_arrays($data);
+       $this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
