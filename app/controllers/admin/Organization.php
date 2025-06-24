@@ -2410,7 +2410,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-       $this->sma->print_arrays($data);
+     // $this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -2454,6 +2454,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             // branch_name increase decrease
             $row = 2;
 
+         
             foreach ($data as $data_row) {
                 $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->code);
                 $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->institution_name);
@@ -2510,8 +2511,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
             $filename = 'institution_list_branch_' . ($branch_id ? $branch->name : 'all') . '_' . date("Y_m");
 
-            $this->load->helper('excel');
-            create_excel($this->excel, $filename);
+           // $this->load->helper('excel');
+           // create_excel($this->excel, $filename);
         }
         $this->session->set_flashdata('error', lang('nothing_found'));
         redirect($_SERVER["HTTP_REFERER"]);
