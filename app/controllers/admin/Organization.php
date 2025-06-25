@@ -489,7 +489,7 @@ WHERE
 
     function getorg_unit_increase($start_date, $end_date, $branch_id)
     {
- 
+
         if ($branch_id)
             return $this->site->query_binding("select count(sma_thana_log.id) unit_count, sub_category from sma_thana_log left join sma_thana on sma_thana_log.thana_id = sma_thana.id
 where sma_thana.branch_id = ? AND sma_thana_log.level = 3 AND sma_thana_log.in_out = 1 AND sma_thana_log.date between ? AND ?
@@ -497,12 +497,12 @@ group by sub_category", array($branch_id, $start_date, $end_date));
         else
             return $this->site->query_binding("select count(sma_thana_log.id) unit_count, sub_category from sma_thana_log left join sma_thana on sma_thana_log.thana_id = sma_thana.id
 where sma_thana_log.level = 3 AND sma_thana_log.in_out = 1 AND sma_thana_log.date between ? AND ?
-group by sub_category", array( $start_date, $end_date));
+group by sub_category", array($start_date, $end_date));
     }
 
     function getorg_unit_decrease($start_date, $end_date, $branch_id)
     {
-        
+
         if ($branch_id)
             return $this->site->query_binding("select count(sma_thana_log.id) unit_count, sub_category from sma_thana_log left join sma_thana on sma_thana_log.thana_id = sma_thana.id
 where sma_thana.branch_id = ? AND sma_thana_log.level = 3 AND sma_thana_log.in_out = 2 AND sma_thana_log.date between ? AND ?
@@ -510,7 +510,7 @@ group by sub_category", array($branch_id, $start_date, $end_date));
         else
             return $this->site->query_binding("select count(sma_thana_log.id) unit_count, sub_category from sma_thana_log left join sma_thana on sma_thana_log.thana_id = sma_thana.id
 where sma_thana_log.level = 3 AND sma_thana_log.in_out = 2 AND sma_thana_log.date between ? AND ?
-group by sub_category", array( $start_date, $end_date));
+group by sub_category", array($start_date, $end_date));
     }
 
 
@@ -2410,7 +2410,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-       //$this->sma->print_arrays($data);
+        //$this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
@@ -2454,7 +2454,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             // branch_name increase decrease
             $row = 2;
 
-         
+
             foreach ($data as $data_row) {
                 $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->code);
                 $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->institution_name);
@@ -4685,10 +4685,14 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
 
         $info = $this->site->getcolumn('thana', 'id', array('id' => $thana_id, 'is_pending' => 1, 'level' => 1), 'id DESC', 1, 0);
+        $ward_unit = $this->site->getcolumn('thana', 'id', array('org_thana_id' => $thana_id), 'id DESC', 1, 0);
 
 
         if ($info != NULL) {
             $this->form_validation->set_message('check_thana', 'Already in pending status');
+            return false;
+        } else if ($ward_unit != NULL) {
+            $this->form_validation->set_message('check_thana', 'Remove ward or unit at first');
             return false;
         } else {
 
