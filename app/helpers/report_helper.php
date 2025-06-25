@@ -498,3 +498,26 @@ if(! function_exists('org_unit_decrease')) {
 	}
 
 }
+
+
+
+		
+if(! function_exists('dawat_info')) {
+
+	function dawat_info($arr,$type_id){
+		
+		
+		foreach($arr as $row){
+		// echo 'Rokon';
+			if($row['institution_type_id']==$type_id) {
+ 
+				     	  
+				return  $row;
+			}
+		}
+		
+		return null;
+	}
+
+}
+
