@@ -584,15 +584,18 @@ if (!empty($variants)) {
 
 
         $('#district').change(function () {
+           
             var district_id = $(this).val();
             var branch_id = $('#branch_id').val();
+
+           
 
             if (district_id) {
                 $.ajax({
                     url: "<?php echo admin_url('organization/getUpazilasOwn'); ?>",
                     method: "GET",
                     data: {
-                        district_id: district_id
+                        district_id: district_id,
                         branch_id: branch_id
                     },
                     dataType: 'json',
