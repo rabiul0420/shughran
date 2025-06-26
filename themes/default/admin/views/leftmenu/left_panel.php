@@ -185,6 +185,11 @@
                                                     </a>
                                                 </li>
 
+                                                 <li id="system_settings_dawats">
+                                                    <a href="<?= admin_url('system_settings/dawats') ?>">
+                                                        <i class="fa fa-folder-open"></i><span class="text"> <?= lang('dawats'); ?></span>
+                                                    </a>
+                                                </li>
 
 
                                                 <li id="system_settings_zones">

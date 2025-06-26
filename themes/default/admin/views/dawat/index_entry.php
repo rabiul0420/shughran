@@ -139,7 +139,7 @@
                                 <td rowspan="2">ঘাটতি </td>
                             </tr>
                             <tr style="height: 36px;">
-                                <td>Total Increase</td>
+                                <td>মোট বৃদ্ধি</td>
                                 <?php foreach ($institutiontype as $row) { ?>
                                     <td><?= $row->institution_type ?></td>
                                 <?php } ?>
@@ -147,7 +147,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Supporter</td>
+                                <td>সমর্থক</td>
                                 <td><?php echo $lastyeardawat[0]['supporter']; ?></td>
                                 <td>
                                     <?php
@@ -204,7 +204,7 @@
                                  </td>
                             </tr>
                             <tr>
-                                <td>Friend</td>
+                                <td>বন্ধু</td>
                                 <td><?php echo $lastyeardawat[0]['friend']; ?></td>
                                 <td>
                                     <?php
@@ -261,7 +261,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Non Muslim Supporter</td>
+                                <td>অমুসলিম সমর্থক</td>
                                 <td><?php echo $lastyeardawat[0]['non_muslim_supporter']; ?></td>
                                 <td>
                                     <?php
@@ -318,7 +318,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Non Muslim Friend</td>
+                                <td>অমুসলিম বন্ধু</td>
                                 <td><?php echo $lastyeardawat[0]['non_muslim_friend']; ?></td>
 
                                 <td>
@@ -377,7 +377,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>WW</td>
+                                <td>শুভাকাঙ্ক্ষী</td>
                                 <td><?php echo $lastyeardawat[0]['wellwisher']; ?></td>
 
                                 <td>

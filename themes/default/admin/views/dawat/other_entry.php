@@ -6,12 +6,17 @@
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'দাওয়াত ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
-
-
+        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'দাওয়াত ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')';
+        $branch_code = $branch->code; ?>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+
+
 
 
 
@@ -28,7 +33,6 @@
                 } else {
                     echo anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : ''), 'ষাণ্মাসিক ' . $report_info['year']);
                     echo "&nbsp;|&nbsp;" . anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
-
                 }
             } else {
 
@@ -37,9 +41,7 @@
                 } else {
 
                     echo anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষাণ্মাসিক ' . $report_info['year']);
-
                 }
-
             }
 
 
@@ -67,8 +69,6 @@
                         echo ' <li>' . anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
 
                         echo ' <li>' . anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
-
-
                     }
                     ?>
 
@@ -85,11 +85,10 @@
                         <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>
                     </a>
 
-                    <a href="#" onclick="doit('xlsx','rowspan-colspan-table-1');  return false;"><i
+                    <a href="#" onclick="doit('xlsx','data-excel');  return false;"><i
                             class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
 
                 </li>
-
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip"
@@ -112,7 +111,8 @@
     <div class="box-content">
         <div class="row">
             <div class="col-lg-12">
-                <p class="introtext"><?php // lang('list_results'); ?></p>
+                <p class="introtext"><?php // lang('list_results'); 
+                ?></p>
 
 
 
@@ -129,7 +129,7 @@
                         data-branch="<?php echo isset($branch_code) ? $branch_code . '_dawat_' : 'central_dawat' ?>">
 
                         <thead>
-                             <tr style="height: 36px;">
+                            <tr style="height: 36px;">
                                 <td rowspan="2">দাওয়াত</td>
                                 <td rowspan="2">পূর্ব </td>
                                 <td rowspan="2">বর্তমান</td>
@@ -137,7 +137,6 @@
                                 <td rowspan="2">টার্গেট </td>
                                 <td rowspan="2">%</td>
                                 <td rowspan="2">ঘাটতি </td>
-                            </tr>
                             </tr>
                             <tr style="height: 36px;">
                                 <td>Total Increase</td>
@@ -148,7 +147,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>সমর্থক</td>
+                                <td>Supporter</td>
                                 <td><?php echo $lastyeardawat[0]['supporter']; ?></td>
                                 <td>
                                     <?php
@@ -158,7 +157,7 @@
                                         $dawat_info = dawat_info($dawat_summary, $row->id);
                                         $supporter_inc += $dawat_info['supporter'];
                                     }
-                                    echo $lastyeardawat[0]['supporter'] + $supporter_inc-$dawat_decrease_target[0]['supporter_decrease'];
+                                    echo $lastyeardawat[0]['supporter'] + $supporter_inc - $dawat_decrease_target[0]['supporter_decrease'];
                                     ?>
 
 
@@ -169,21 +168,45 @@
                                     <?= $supporter_inc ?>
 
                                 </td>
-                                <?php foreach ($institutiontype as $row) { ?>
+                                <?php foreach ($institutiontype as $row) {
+
+                                    $dawat_info = dawat_info($dawat_summary, $row->id);
+
+
+                                    ?>
 
 
                                     <td>
-                                        <?= $dawat_info['supporter'] ?>
+                                        <a href="#" class="editable editable-click" data-type="number"
+                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
+                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="friend"
+                                            data-title="Enter">
+                                            <?= $dawat_info['supporter'] ?>
+                                        </a>
                                     </td>
                                 <?php } ?>
-                                <td><?=$dawat_decrease_target[0]['supporter_target']?></td>
+                                <td>
+                                    <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="supporter_target" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['supporter_target'] ?>
+                                    </a>
+                                </td>
                                 <td></td>
-                                <td><?=$dawat_decrease_target[0]['supporter_decrease']?></td>
+                                <td>
+                                <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="supporter_decrease" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['supporter_decrease'] ?>
+                                    </a>    
+                                 </td>
                             </tr>
                             <tr>
-                                <td>বন্ধু</td>
+                                <td>Friend</td>
                                 <td><?php echo $lastyeardawat[0]['friend']; ?></td>
-                               <td>
+                                <td>
                                     <?php
                                     $friend_inc = 0;
                                     foreach ($institutiontype as $row) {
@@ -191,7 +214,7 @@
                                         $dawat_info = dawat_info($dawat_summary, $row->id);
                                         $friend_inc += $dawat_info['friend'];
                                     }
-                                    echo $lastyeardawat[0]['friend'] + $friend_inc-$dawat_decrease_target[0]['friend_decrease'];
+                                    echo $lastyeardawat[0]['friend'] + $friend_inc - $dawat_decrease_target[0]['friend_decrease'];
                                     ?>
 
 
@@ -211,15 +234,34 @@
 
 
                                     <td>
-                                        <?= $dawat_info['friend'] ?>
+                                        <a href="#" class="editable editable-click" data-type="number"
+                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
+                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="friend"
+                                            data-title="Enter">
+                                            <?= $dawat_info['friend'] ?>
+                                        </a>
                                     </td>
                                 <?php } ?>
-                                <td><?=$dawat_decrease_target[0]['friend_target']?></td>
+                                <td>
+                                <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="friend_target" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['friend_target'] ?>
+                                    </a>        
+                                 </td>
                                 <td></td>
-                                <td><?=$dawat_decrease_target[0]['friend_decrease']?></td>
+                                <td>
+                                 <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="friend_decrease" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['friend_decrease'] ?>
+                                    </a>       
+                                </td>
                             </tr>
                             <tr>
-                                <td>অমুসলিম সমর্থক</td>
+                                <td>Non Muslim Supporter</td>
                                 <td><?php echo $lastyeardawat[0]['non_muslim_supporter']; ?></td>
                                 <td>
                                     <?php
@@ -229,7 +271,7 @@
                                         $dawat_info = dawat_info($dawat_summary, $row->id);
                                         $non_muslim_supporter_inc += $dawat_info['non_muslim_supporter'];
                                     }
-                                    echo $lastyeardawat[0]['non_muslim_supporter'] + $non_muslim_supporter_inc-$dawat_decrease_target[0]['non_muslim_supporter_decrease'];
+                                    echo $lastyeardawat[0]['non_muslim_supporter'] + $non_muslim_supporter_inc - $dawat_decrease_target[0]['non_muslim_supporter_decrease'];
                                     ?>
 
 
@@ -249,18 +291,36 @@
 
 
                                     <td>
-                                        <?= $dawat_info['non_muslim_supporter'] ?>
-
+                                        <a href="#" class="editable editable-click" data-type="number"
+                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
+                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                            data-name="non_muslim_supporter" data-title="Enter">
+                                            <?= $dawat_info['non_muslim_supporter'] ?>
+                                        </a>
                                     </td>
                                 <?php } ?>
-                                <td><?=$dawat_decrease_target[0]['non_muslim_supporter_target']?></td>
+                                <td>
+                                      <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="non_muslim_supporter_target" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['non_muslim_supporter_target'] ?>
+                                    </a>  
+                                </td>
                                 <td></td>
-                                <td><?=$dawat_decrease_target[0]['non_muslim_supporter_decrease']?></td>
+                                <td>
+                                    <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="non_muslim_supporter_decrease" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['non_muslim_supporter_decrease'] ?>
+                                    </a>  
+                                </td>
                             </tr>
                             <tr>
-                                <td>অমুসলিম বন্ধু</td>
+                                <td>Non Muslim Friend</td>
                                 <td><?php echo $lastyeardawat[0]['non_muslim_friend']; ?></td>
-                                
+
                                 <td>
                                     <?php
                                     $non_muslim_friend_inc = 0;
@@ -269,7 +329,7 @@
                                         $dawat_info = dawat_info($dawat_summary, $row->id);
                                         $non_muslim_friend_inc += $dawat_info['non_muslim_friend'];
                                     }
-                                    echo $lastyeardawat[0]['non_muslim_friend'] + $non_muslim_friend_inc-$dawat_decrease_target[0]['non_muslim_friend_decrease'];
+                                    echo $lastyeardawat[0]['non_muslim_friend'] + $non_muslim_friend_inc - $dawat_decrease_target[0]['non_muslim_friend_decrease'];
                                     ?>
 
 
@@ -289,17 +349,38 @@
 
 
                                     <td>
-                                        <?= $dawat_info['non_muslim_friend'] ?>
+                                        <a href="#" class="editable editable-click" data-type="number"
+                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
+                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                            data-name="non_muslim_friend" data-title="Enter">
+                                            <?= $dawat_info['non_muslim_friend'] ?>
+                                        </a>
                                     </td>
                                 <?php } ?>
-                                <td><?=$dawat_decrease_target[0]['non_muslim_friend_target']?></td>
+                                <td>
+                                      <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="non_muslim_friend_target" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['non_muslim_friend_target'] ?>
+                                    </a>  
+                                </td>
                                 <td></td>
-                                <td><?=$dawat_decrease_target[0]['non_muslim_friend_decrease']?></td>
+                                <td>
+                                      <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="non_muslim_friend_decrease" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['non_muslim_friend_decrease'] ?>
+                                    </a>  
+                                
+                                </td>
                             </tr>
                             <tr>
-                                <td>শুভাকাঙ্ক্ষী</td>
+                                <td>WW</td>
                                 <td><?php echo $lastyeardawat[0]['wellwisher']; ?></td>
-                                 <td>
+
+                                <td>
                                     <?php
                                     $wellwisher_inc = 0;
                                     foreach ($institutiontype as $row) {
@@ -307,7 +388,7 @@
                                         $dawat_info = dawat_info($dawat_summary, $row->id);
                                         $wellwisher_inc += $dawat_info['wellwisher'];
                                     }
-                                    echo $lastyeardawat[0]['wellwisher'] + $wellwisher_inc-$dawat_decrease_target[0]['wellwisher_decrease'];
+                                    echo $lastyeardawat[0]['wellwisher'] + $wellwisher_inc - $dawat_decrease_target[0]['wellwisher_decrease'];
                                     ?>
 
 
@@ -327,12 +408,31 @@
 
 
                                     <td>
-                                        <?= $dawat_info['wellwisher'] ?>
+                                        <a href="#" class="editable editable-click" data-type="number"
+                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
+                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="wellwisher"
+                                            data-title="Enter">
+                                            <?= $dawat_info['wellwisher'] ?>
+                                        </a>
                                     </td>
                                 <?php } ?>
-                                <td><?=$dawat_decrease_target[0]['wellwisher_target']?></td>
+                                <td>
+                                     <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="wellwisher_target" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['wellwisher_target'] ?>
+                                    </a>  
+                                    </td>
                                 <td></td>
-                                <td><?=$dawat_decrease_target[0]['wellwisher_decrease']?></td>
+                                <td>
+                                     <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="wellwisher_decrease" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['wellwisher_decrease'] ?>
+                                    </a>  
+                                 </td>
                             </tr>
                         </tbody>
                     </table>

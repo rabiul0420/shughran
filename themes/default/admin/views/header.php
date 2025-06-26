@@ -179,6 +179,7 @@
                                     <i class="fa fa-cogs"></i>
                                 </a>
                             </li>
+                            
                         <?php } ?>
                         <li class="dropdown hidden-xs">
                             <a class="btn tip" title="<?= lang('calculator') ?>" data-placement="bottom" href="#"
@@ -343,7 +344,7 @@
                             <li class="<?php echo (!$this->uri->segment(2)) ? 'active' : '' ?>"><a href="##">Home</a>
                             </li>
 
-                            <?php if ($Owner || $Admin) { ?>
+                            <?php if (1 || $Owner || $Admin)    { ?>
 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -392,6 +393,9 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li class=""><a href="<?= admin_url('dawat'); ?>">একনজরে </a></li>
+                                            <li class=""><a href="<?= admin_url('dawat/other'); ?>">অন্যান্য দাওয়াত</a></li>
+
+
                                             <li class="hidden"><a href="<?= admin_url('dawat/element'); ?>">দাওয়াতী উপকরণ</a></li>
                                             <li class="hidden"><a href="<?= admin_url('dawat/mosque'); ?>">মসজিদ ভিত্তিক কাজ</a></li>
                                             <li class="hidden"><a href="<?= admin_url('dawat/extra'); ?>">অতিরিক্ত দাওয়াত</a></li>

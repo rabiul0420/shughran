@@ -459,6 +459,14 @@ class Settings_model extends CI_Model
         }
         return FALSE;
     }
+    public function getDawatByID($id)
+    {
+        $q = $this->db->get_where("dawat_category", array('id' => $id), 1);
+        if ($q->num_rows() > 0) {
+            return $q->row();
+        }
+        return FALSE;
+    }
 
     public function getDepartmentByCode($code)
     {
@@ -476,6 +484,15 @@ class Settings_model extends CI_Model
         }
         return false;
     }
+    public function addDawat($data)
+    {
+        if ($this->db->insert("dawat_category", $data)) {
+            return true;
+        }
+        return false;
+    }
+
+
 
     public function addDepartments($departments, $subdepartments)
     {
@@ -512,10 +529,25 @@ class Settings_model extends CI_Model
         }
         return false;
     }
+    public function updateDawat($id, $data = array())
+    {
+        if ($this->db->update("dawat_category", $data, array('id' => $id))) {
+            return true;
+        }
+        return false;
+    }
 
     public function deleteDepartment($id)
     {
         if ($this->db->delete("departments", array('id' => $id))) {
+            return true;
+        }
+        return FALSE;
+    }
+	
+    public function deleteDawat($id)
+    {
+        if ($this->db->delete("dawat_category", array('id' => $id))) {
             return true;
         }
         return FALSE;

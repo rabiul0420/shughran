@@ -905,13 +905,15 @@ class Site extends CI_Model
     }
 
 
-    public function getAll($table)
+    public function getAll($table, $year=null)
     {
 
 
         if ($table == 'responsibilities')
             $this->db->order_by('priority', 'Desc');
-
+        if($year)
+            $this->db->where('year',$year);
+        
         $q = $this->db->get($table);
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {

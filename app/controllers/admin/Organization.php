@@ -6624,6 +6624,12 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 ->where('branches.id', $branch_id);
             $this->datatables->where('thana.level', 1);
             $this->datatables->where('thana_log.in_out', 2);
+            $this->datatables->where('thana.is_pending', 2);
+             //$this->datatables->where('((is_pending = 1 AND in_out = 2) OR (is_pending = 2 AND in_out = 1))');
+
+
+
+
         } else {
             $this->datatables
                 ->select($this->db->dbprefix('thana_log') . ".id as id,  {$this->db->dbprefix('thana')}.thana_name as thana_name, thana_code,   {$this->db->dbprefix('branches')}.name as branch_name, org_type, {$this->db->dbprefix('thana_log')}.date,   v3_member_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code ) as member_number, v3_associate_thana_count( {$this->db->dbprefix('thana')}.branch_id, thana_code)  as associate_number,   worker_number, supporter_number,ward_number,unit_number", FALSE)
@@ -6633,6 +6639,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             $this->datatables->join('branches', 'branches.id=thana_log.branch_id', 'left');
             $this->datatables->where('thana.level', 1);
             $this->datatables->where('thana_log.in_out', 2);
+             $this->datatables->where('thana.is_pending', 2);
         }
 
 
