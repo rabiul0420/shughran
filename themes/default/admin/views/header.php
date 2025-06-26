@@ -396,7 +396,7 @@
                                             <li class=""><a href="<?= admin_url('dawat/other'); ?>">অন্যান্য দাওয়াত</a></li>
 
 
-                                            <li class="hidden"><a href="<?= admin_url('dawat/element'); ?>">দাওয়াতী উপকরণ</a></li>
+                                            <li class=""><a href="<?= admin_url('dawat/element'); ?>">দাওয়াতী উপকরণ</a></li>
                                             <li class="hidden"><a href="<?= admin_url('dawat/mosque'); ?>">মসজিদ ভিত্তিক কাজ</a></li>
                                             <li class="hidden"><a href="<?= admin_url('dawat/extra'); ?>">অতিরিক্ত দাওয়াত</a></li>
                                             <li class="hidden"><a href="<?= admin_url('dawat/detail'); ?>">বিস্তারিত দাওয়াত </a></li>
