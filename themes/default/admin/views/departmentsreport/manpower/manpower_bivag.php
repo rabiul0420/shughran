@@ -923,11 +923,11 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan='2'>মান</td>
-                                <td class="tg-pwj7" colspan="5">৪৩ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৪ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৫ তম জনসেবা তথ্য </td>
                                 <td class="tg-pwj7" colspan="5">৪৬ তম জনসেবা তথ্য </td>
-                                <td class="tg-pwj7" colspan="5"> ৪৭ তম জনসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">৪৭ তম জনসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5"> ৪৮ তম জনসেবা তথ্য </td>
 
                             </tr>
 
@@ -1400,8 +1400,8 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" rowspan="2">মান</td>
-                                <td class="tg-pwj7" colspan="5">১৭ তম মানবসেবা তথ্য </td>
-                                <td class="tg-pwj7" colspan="5">১৮ তম মানবসেবা তথ্য  </td>
+                                <td class="tg-pwj7" colspan="5">১৮ তম মানবসেবা তথ্য </td>
+                                <td class="tg-pwj7" colspan="5">১৯ তম মানবসেবা তথ্য  </td>
 
                             </tr>
 
@@ -2150,11 +2150,11 @@ $(document).ready(function(){
                                 <?php echo $office_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['office_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['office_course_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $office_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['office_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['office_deligat_shakha'] : 0 ?>
+                                <?php echo $office_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['office_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['office_deligate_shakha'] : 0 ?>
                                 
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $office_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['office_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['office_deligat_kendro'] : 0 ?>
+                                <?php echo $office_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['office_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['office_deligate_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
                                 <?php echo $office_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['office_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['office_terminate_shakha'] : 0 ?>
@@ -2181,10 +2181,10 @@ $(document).ready(function(){
                                 <?php echo $library_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['library_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['library_course_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $library_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['library_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['library_deligat_shakha'] : 0 ?>
+                                <?php echo $library_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['library_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['library_deligate_shakha'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $library_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['library_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['library_deligat_kendro'] : 0 ?>
+                                <?php echo $library_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['library_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['library_deligate_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
                                 <?php echo $library_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['library_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['library_terminate_shakha'] : 0 ?>
@@ -2213,10 +2213,10 @@ $(document).ready(function(){
                                 <?php echo $cv_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cv_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_course_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $cv_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cv_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_deligat_shakha'] : 0 ?>
+                                <?php echo $cv_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cv_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_deligate_shakha'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $cv_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cv_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_deligat_kendro'] : 0 ?>
+                                <?php echo $cv_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cv_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_deligate_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
                                 <?php echo $cv_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cv_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cv_terminate_shakha'] : 0 ?>
@@ -2244,10 +2244,10 @@ $(document).ready(function(){
                             <?php echo $computer_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['computer_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_course_kendro'] : 0 ?>
                             </td>
                             <td class="tg-0pky type_1">
-                            <?php echo $computer_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['computer_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_deligat_shakha'] : 0 ?>
+                            <?php echo $computer_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['computer_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_deligate_shakha'] : 0 ?>
                             </td>
                             <td class="tg-0pky type_1">
-                            <?php echo $computer_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['computer_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_deligat_kendro'] : 0 ?>
+                            <?php echo $computer_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['computer_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_deligate_kendro'] : 0 ?>
                             </td>
                             <td class="tg-0pky type_1">
                             <?php echo $computer_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['computer_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['computer_terminate_shakha'] : 0 ?>
@@ -2276,10 +2276,10 @@ $(document).ready(function(){
                                 <?php echo $graphics_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_course_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $graphics_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_deligat_shakha'] : 0 ?>
+                                <?php echo $graphics_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_deligate_shakha'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $graphics_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_deligat_kendro'] : 0 ?>
+                                <?php echo $graphics_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['graphics_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['graphics_deligate_kendro'] : 0 ?>
                                 
                                 </td>
                                 <td class="tg-0pky type_1">
@@ -2308,10 +2308,10 @@ $(document).ready(function(){
                                 <?php echo $english_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['english_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['english_course_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $english_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['english_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['english_deligat_shakha'] : 0 ?>
+                                <?php echo $english_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['english_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['english_deligate_shakha'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $english_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['english_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['english_deligat_kendro'] : 0 ?>
+                                <?php echo $english_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['english_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['english_deligate_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
                                 <?php echo $english_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['english_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['english_terminate_shakha'] : 0 ?>
@@ -2339,11 +2339,11 @@ $(document).ready(function(){
                                     <?php echo $car_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['car_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['car_course_kendro'] : 0 ?>
                                     </td>
                                     <td class="tg-0pky type_1">
-                                    <?php echo $car_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['car_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['car_deligat_shakha'] : 0 ?>
+                                    <?php echo $car_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['car_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['car_deligate_shakha'] : 0 ?>
                                     
                                     </td>
                                     <td class="tg-0pky type_1">
-                                    <?php echo $car_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['car_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['car_deligat_kendro'] : 0 ?>
+                                    <?php echo $car_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['car_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['car_deligate_kendro'] : 0 ?>
                                     
                                     </td>
                                     <td class="tg-0pky type_1">
@@ -2363,6 +2363,108 @@ $(document).ready(function(){
   
 
                             </tr>
+                              <tr>
+                                <td class="tg-y698 type_1"> ডিজিটাল মার্কেটিং	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $digitalMarketing_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['digitalMarketing_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['digitalMarketing_course_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $digitalMarketing_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['digitalMarketing_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['digitalMarketing_course_kendro'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $digitalMarketing_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['digitalMarketing_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['digitalMarketing_deligate_shakha'] : 0 ?>
+
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $digitalMarketing_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['digitalMarketing_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['digitalMarketing_deligate_kendro'] : 0 ?>
+
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $digitalMarketing_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['digitalMarketing_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['digitalMarketing_terminate_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $digitalMarketing_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['digitalMarketing_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['digitalMarketing_terminate_kendro'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $digitalMarketing_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['digitalMarketing_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['digitalMarketing_certificate_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $digitalMarketing_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['digitalMarketing_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['digitalMarketing_certificate_kendro'] : 0 ?>
+
+                                    </td>
+
+  
+
+                            </tr>
+                              <tr>
+                                <td class="tg-y698 type_1"> সাইবার সিকিউরিটি	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $cyberSecurity_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cyberSecurity_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cyberSecurity_course_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $cyberSecurity_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cyberSecurity_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cyberSecurity_course_kendro'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $cyberSecurity_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cyberSecurity_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cyberSecurity_deligate_shakha'] : 0 ?>
+
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $cyberSecurity_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cyberSecurity_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cyberSecurity_deligate_kendro'] : 0 ?>
+
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $cyberSecurity_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cyberSecurity_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cyberSecurity_terminate_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $cyberSecurity_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cyberSecurity_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cyberSecurity_terminate_kendro'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $cyberSecurity_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['cyberSecurity_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['cyberSecurity_certificate_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $cyberSecurity_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['cyberSecurity_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['cyberSecurity_certificate_kendro'] : 0 ?>
+
+                                    </td>
+
+  
+
+                            </tr>
+                              <tr>
+                                <td class="tg-y698 type_1"> ইংলিশ স্পোকেন কোর্স	</td>
+
+                                <td class="tg-0pky type_1">
+                                <?php echo $englishSpokenCourse_course_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_course_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_course_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $englishSpokenCourse_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_course_kendro'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $englishSpokenCourse_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_deligate_shakha'] : 0 ?>
+
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $englishSpokenCourse_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_deligate_kendro'] : 0 ?>
+
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $englishSpokenCourse_terminate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_terminate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_terminate_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $englishSpokenCourse_terminate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_terminate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_terminate_kendro'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $englishSpokenCourse_certificate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_certificate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_certificate_shakha'] : 0 ?>
+                                    </td>
+                                    <td class="tg-0pky type_1">
+                                    <?php echo $englishSpokenCourse_certificate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_certificate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['englishSpokenCourse_certificate_kendro'] : 0 ?>
+
+                                    </td>
+
+  
+
+                            </tr>
                             <tr>
                                 <td class="tg-y698 type_1"> অনান্য	</td>
 
@@ -2373,10 +2475,10 @@ $(document).ready(function(){
                                 <?php echo $other_course_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['other_course_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['other_course_kendro'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $other_deligat_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['other_deligat_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['other_deligat_shakha'] : 0 ?>
+                                <?php echo $other_deligate_shakha = (isset($manob_babostapona_dokkhota_prosikkhon['other_deligate_shakha'])) ? $manob_babostapona_dokkhota_prosikkhon['other_deligate_shakha'] : 0 ?>
                                 </td>
                                 <td class="tg-0pky type_1">
-                                <?php echo $other_deligat_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['other_deligat_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['other_deligat_kendro'] : 0 ?>
+                                <?php echo $other_deligate_kendro = (isset($manob_babostapona_dokkhota_prosikkhon['other_deligate_kendro'])) ? $manob_babostapona_dokkhota_prosikkhon['other_deligate_kendro'] : 0 ?>
                                     
                                 </td>
                                 <td class="tg-0pky type_1">
@@ -2399,14 +2501,14 @@ $(document).ready(function(){
                             </tr>
                             <tr>
                                 <td class="tg-y698 type_1">মোট </td>
-                                <td class="tg-0pky type_1"><?php echo $other_course_shakha+$car_course_shakha+$english_course_shakha+$graphics_course_shakha+$computer_course_shakha+$cv_course_shakha+$library_course_shakha+$office_course_shakha  ?></td>
-                                <td class="tg-0pky type_1"><?php echo $other_course_kendro+$car_course_kendro+$english_course_kendro+$graphics_course_kendro+$computer_course_kendro+$cv_course_kendro+$library_course_kendro+$office_course_kendro  ?></td>
-                                <td class="tg-0pky type_1"><?php echo $other_deligat_shakha+$car_deligat_shakha+$english_deligat_shakha+$graphics_deligat_shakha+$computer_deligat_shakha+$cv_deligat_shakha+$library_deligat_shakha+$office_deligat_shakha  ?></td>
-                                <td class="tg-0pky type_1"><?php echo $other_deligat_kendro+$car_deligat_kendro+$english_deligat_kendro+$graphics_deligat_kendro+$computer_deligat_kendro+$cv_deligat_kendro+$library_deligat_kendro+$office_deligat_kendro  ?></td>
-                                <td class="tg-0pky type_1"><?php echo $other_terminate_shakha+$car_terminate_shakha+$english_terminate_shakha+$graphics_terminate_shakha+$computer_terminate_shakha+$cv_terminate_shakha+$library_terminate_shakha+$office_terminate_shakha  ?></td>
-                                <td class="tg-0pky type_1"><?php echo $other_terminate_kendro+$car_terminate_kendro+$english_terminate_kendro+$graphics_terminate_kendro+$computer_terminate_kendro+$cv_terminate_kendro+$library_terminate_kendro+$office_terminate_kendro  ?></td>
-                                <td class="tg-0pky type_1"><?php echo $other_certificate_shakha+$car_certificate_shakha+$english_certificate_shakha+$graphics_certificate_shakha+$computer_certificate_shakha+$cv_certificate_shakha+$library_certificate_shakha+$office_certificate_shakha  ?></td>
-                                <td class="tg-0pky type_1"><?php echo $other_certificate_kendro+$car_certificate_kendro+$english_certificate_kendro+$graphics_certificate_kendro+$computer_certificate_kendro+$cv_certificate_kendro+$library_certificate_kendro+$office_certificate_kendro  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_course_shakha +$digitalMarketing_course_shakha+$cyberSecurity_course_shakha+$englishSpokenCourse_course_shakha+ $car_course_shakha + $english_course_shakha + $graphics_course_shakha + $computer_course_shakha + $cv_course_shakha + $library_course_shakha + $office_course_shakha  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_course_kendro + $digitalMarketing_course_kendro + $cyberSecurity_course_kendro + $englishSpokenCourse_course_kendro + $car_course_kendro + $english_course_kendro + $graphics_course_kendro + $computer_course_kendro + $cv_course_kendro + $library_course_kendro + $office_course_kendro  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_deligate_shakha + $digitalMarketing_deligate_shakha + $cyberSecurity_deligate_shakha + $englishSpokenCourse_deligate_shakha + $car_deligate_shakha + $english_deligate_shakha + $graphics_deligate_shakha + $computer_deligate_shakha + $cv_deligate_shakha + $library_deligate_shakha + $office_deligate_shakha  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_deligate_kendro + $digitalMarketing_deligate_kendro + $cyberSecurity_deligate_kendro + $englishSpokenCourse_deligate_kendro + $car_deligate_kendro + $english_deligate_kendro + $graphics_deligate_kendro + $computer_deligate_kendro + $cv_deligate_kendro + $library_deligate_kendro + $office_deligate_kendro  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_terminate_shakha + $digitalMarketing_terminate_shakha + $cyberSecurity_terminate_shakha + $englishSpokenCourse_terminate_shakha + $car_terminate_shakha + $english_terminate_shakha + $graphics_terminate_shakha + $computer_terminate_shakha + $cv_terminate_shakha + $library_terminate_shakha + $office_terminate_shakha  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_terminate_kendro + $digitalMarketing_terminate_kendro + $cyberSecurity_terminate_kendro + $englishSpokenCourse_terminate_kendro + $car_terminate_kendro + $english_terminate_kendro + $graphics_terminate_kendro + $computer_terminate_kendro + $cv_terminate_kendro + $library_terminate_kendro + $office_terminate_kendro  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_certificate_shakha + $digitalMarketing_certificate_shakha + $cyberSecurity_certificate_shakha + $englishSpokenCourse_certificate_shakha + $car_certificate_shakha + $english_certificate_shakha + $graphics_certificate_shakha + $computer_certificate_shakha + $cv_certificate_shakha + $library_certificate_shakha + $office_certificate_shakha  ?></td>
+                                <td class="tg-0pky type_1"><?php echo $other_certificate_kendro + $digitalMarketing_certificate_kendro + $cyberSecurity_certificate_kendro + $englishSpokenCourse_certificate_kendro + $car_certificate_kendro + $english_certificate_kendro + $graphics_certificate_kendro + $computer_certificate_kendro + $cv_certificate_kendro + $library_certificate_kendro + $office_certificate_kendro  ?></td>
 
                            
                             </tr>

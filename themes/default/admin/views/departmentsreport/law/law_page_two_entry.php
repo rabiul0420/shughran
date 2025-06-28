@@ -229,8 +229,8 @@ $(document).ready(function(){
                                  <!-- <td class="tg-pwj7" colspan="5"  style="text-align:center;">শুধু  <?php echo$report_info['year'] ; ?>  সালে গ্রেফতার  </td>
                                 <td class="tg-pwj7" colspan="5" style="text-align:center;"> <?php echo$report_info['year'] -1; ?>  পর্যন্ত গ্রেফতার  </td> -->
                                 
-                                <td class="tg-pwj7" colspan="5"  style="text-align:center;">শুধু ২০২৪ সালে গ্রেফতার </td>
-                                <td class="tg-pwj7" colspan="5" style="text-align:center;">২০২৩ পর্যন্ত গ্রেফতার </td>
+                                <td class="tg-pwj7" colspan="5"  style="text-align:center;">শুধু ২০২৫ সালে গ্রেফতার </td>
+                                <td class="tg-pwj7" colspan="5" style="text-align:center;">২০২৪ পর্যন্ত গ্রেফতার </td>
                                 <td class="tg-pwj7" colspan="5" style="text-align:center;">বর্তমান কারাগারে  </td>
                                 
                             </tr>
@@ -497,7 +497,7 @@ $(document).ready(function(){
                 </table>
                 <table class="tg table table-header-rotated" id="testTable4">
                 <tr>
-                    <td class="tg-pwj7" colspan='4'><b>নথি-সংক্রান্ত (শাখায় নিম্ন নথি সংরক্ষিত আছে কতটির) :</b></td>
+                    <td class="tg-pwj7" colspan='4'><b>শাখার সংরক্ষণে মামলার নথি-সংক্রান্ত পরিসংখ্যান :</b></td>
                     <td class="tg-pwj7" colspan="2">
                                     <a href="#" id='table_4' onclick="doit('xlsx','testTable4','<?php echo 'Law_নথি-সংক্রান্ত_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>

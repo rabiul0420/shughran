@@ -472,7 +472,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                              <tr>
-                                <td class="tg-pwj7" colspan="2" >পোর্টালের ইউটিউব চ্যানলে আছে কিনা?</td>
+                                <td class="tg-pwj7" colspan="2" >পোর্টাল ইউটিউব চ্যানলে আছে কিনা?(হ্যাঁ/না)</td>
                                 <td class="tg-pwj7" colspan="2">ভেরিফাইড কিনা?</td>
                                 <td class="tg-pwj7" rowspan='2' colspan="2">সাবস্ক্রাইবার সংখ্যা</td>
                             </tr>

@@ -283,8 +283,12 @@ $(document).ready(function(){
                                 <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['school_forum_gothito'] ?></td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="3">কতটি ফোরামের পূর্ণাঙ্গ কমিটি গঠিত হয়েছে?</td>
+                                <td class="tg-pwj7" colspan="3">শাখার মোট কতটি শিক্ষা প্রতিষ্ঠানে ফোরাম আছে?</td>
                                 <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['forum_purnago_comittee'] ?></td>
+                            </tr>
+                             <tr>
+                                <td class="tg-pwj7" colspan="3">মোট কতটি শিক্ষা প্রতিষ্ঠানে অ্যাম্বাসেডর দেয়া হয়েছে?</td>
+                                <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['mot_protinidhi'] ?></td>
                             </tr>
                             <tr>
                                 <td class="tg-pwj7" colspan="3">শাখার ফোরামসমূহে মোট সদস্য সংখ্যা কত?</td>
@@ -298,14 +302,8 @@ $(document).ready(function(){
                                 <td class="tg-pwj7" colspan="3">কতজন শিক্ষক যুক্ত হয়েছেন?</td>
                                 <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['teacher_num'] ?></td>
                             </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="3">স্থানীয় সংগঠনের প্রতিনিধি কতজন?</td>
-                                <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['sthanio_protinidhi'] ?></td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="3">মোট প্রতিনিধি</td>
-                                <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['mot_protinidhi'] ?></td>
-                            </tr>
+                            
+                            
                             <tr>
                                 <td class="tg-pwj7" colspan="3">প্রোগ্রাম হয়েছে কতটি?</td>
                                 <td class="tg-0pky" colspan=""><?php echo $science_pathok_forum_report['program'] ?></td>

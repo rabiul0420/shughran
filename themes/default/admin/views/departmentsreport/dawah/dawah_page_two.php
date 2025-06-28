@@ -244,7 +244,7 @@ $(document).ready(function(){
                             <tr>
 
                                 <td class="tg-pwj7  type_1">
-                                    দায়ীদের প্রশিক্ষণ কর্মশালা
+                                    দায়ী প্রশিক্ষণ কর্মশালা 
                                 </td>
                                 <td class="tg-0pky  type_2">
                                     <?php echo $dayi_workshop_num = $dawah_dayi_training['dayi_workshop_num']; ?>
@@ -260,7 +260,7 @@ $(document).ready(function(){
                             <tr>
 
                                 <td class="tg-pwj7  type_1">
-                                    দায়ীদের প্রশিক্ষণ কোর্স
+                                    দায়ী প্রশিক্ষণ কোর্স 
                                 </td>
                                 <td class="tg-0pky  type_2">
                                     <?php echo $dayi_course_num = $dawah_dayi_training['dayi_course_num']; ?>

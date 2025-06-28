@@ -101,7 +101,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                     
                     <table class="tg table table-header-rotated" id="testTable1">
                         <tr>
-                            <td class="tg-pwj7" colspan="10"><b>এ সেশনে পাঠাগার বৃদ্ধি ও ঘাটতি </b></td>
+                            <td class="tg-pwj7" colspan="10"><b>সংগঠনের স্তরভিত্তিক পাঠাগার সংক্রান্ত তথ্য </b></td>
                             
                             <td class="tg-pwj7" colspan="5">
                                 <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Library_এ সেশনে পাঠাগার বৃদ্ধি ও ঘাটতি_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
@@ -555,16 +555,16 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                         </tr>
 
                         <tr>
-                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
-                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
-                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
-                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
-                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
-                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
-                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
-                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
-                            <td class="tg-pwj7" >আছে কতটিতে?    </td>
-                            <td class="tg-pwj7  type_1">এ সেশনে বৃদ্ধি  আছে কতটিতে? </td>
+                            <td class="tg-pwj7" >রয়েছে কতটিতে?    </td>
+                            <td class="tg-pwj7  type_1"> বৃদ্ধি  </td>
+                            <td class="tg-pwj7" >রয়েছে কতটিতে?   </td>
+                            <td class="tg-pwj7  type_1"> বৃদ্ধি </td>
+                            <td class="tg-pwj7" >রয়েছে কতটিতে?   </td>
+                            <td class="tg-pwj7  type_1"> বৃদ্ধি </td>
+                            <td class="tg-pwj7" >রয়েছে কতটিতে?  </td>
+                            <td class="tg-pwj7  type_1"> বৃদ্ধি</td>
+                            <td class="tg-pwj7" >রয়েছে কতটিতে?  </td>
+                            <td class="tg-pwj7  type_1"> বৃদ্ধি </td>
                             
                         </tr>	
                         <?php
@@ -738,7 +738,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                                
                         </tr> 
                         <tr>
-                        <td class="tg-pwj7" >ওয়ার্ড </td>
+                        <td class="tg-pwj7" >ওয়ার্ড/ইউনিয়ন </td>
                         <td class="tg-0pky">
                             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
                                 data-table="pathagar_sthorvittik_pathagar" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate');?>" 
@@ -902,15 +902,17 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
  
 
                         </tr>
-                       <tr>
-                        <td style="border:none;text-align:left" colspan="12"> <b>বিশেষ দ্রষ্টব্য :</b> উপরিউক্ত ছকে সিলেবাসের সেট সংখ্যা লিখতে হবে, বই সংখ্যা নয়।</td>
+                      <tr>
+                          <td style="border:none;text-align:left" colspan="12"> <b>বিশেষ দ্রষ্টব্য :</b> উপরিউক্ত ছকে সিলেবাসের সেট সংখ্যা লিখতে হবে, বই সংখ্যা নয়। <br>
+                           থানা, ওয়ার্ড/ইউনিয়ন ও উপশাখার ক্ষেত্রে <b>কতটির পাঠাগারে সংশ্লিষ্ট সিলেবাসের বই</b> আছে, সে সংখ্যা লিখতে হবে; সেট সংখ্যা কিংবা বই সংখ্যা নয়।
+                          </td>
                        </tr>
                             
                         </table>
 
                         <table class="tg table table-header-rotated" id="testTable1">
                         <tr>
-                            <td class="tg-pwj7" colspan="6"><b>মসজিদভিত্তিক পাঠাগার </b></td>
+                            <td class="tg-pwj7" colspan="6"><b>বিভিন্ন ধরনের পাঠাগার সংক্রান্ত তথ্য </b></td>
                             
                             <td class="tg-pwj7" colspan="3">
                             <a href="#" id='table_3' onclick="doit('xlsx','testTable3','<?php echo 'Library_মসজিদভিত্তিক পাঠাগার_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
@@ -1155,7 +1157,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
 
                         </tr>
                         <tr>
-                            <td class="tg-pwj7" >সেলনু পাঠাগার</td>
+                            <td class="tg-pwj7" >সেলুন পাঠাগার</td>
                             
                             <td class="tg-0pky">
                                 <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" 

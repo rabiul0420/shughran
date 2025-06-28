@@ -976,7 +976,33 @@ class Manpower extends MY_Controller
         $this->db->select_sum('other_certificate_shakha');
         $this->db->select_sum('other_certificate_kendro');
 
-        
+
+         $this->db->select_sum('digitalMarketing_course_shakha');
+         $this->db->select_sum('digitalMarketing_course_kendro');
+         $this->db->select_sum('digitalMarketing_delegate_shakha');
+         $this->db->select_sum('digitalMarketing_delegate_kendro');
+         $this->db->select_sum('digitalMarketing_terminate_shakha');
+         $this->db->select_sum('digitalMarketing_terminate_kendro');
+         $this->db->select_sum('digitalMarketing_certificate_shakha');
+         $this->db->select_sum('digitalMarketing_certificate_kendro');
+
+         $this->db->select_sum('cyberSecurity_course_shakha');
+         $this->db->select_sum('cyberSecurity_course_kendro');
+         $this->db->select_sum('cyberSecurity_delegate_shakha');
+         $this->db->select_sum('cyberSecurity_delegate_kendro');
+         $this->db->select_sum('cyberSecurity_terminate_shakha');
+         $this->db->select_sum('cyberSecurity_terminate_kendro');
+         $this->db->select_sum('cyberSecurity_certificate_shakha');
+         $this->db->select_sum('cyberSecurity_certificate_kendro');
+
+          $this->db->select_sum('englishSpokenCourse_course_shakha');
+            $this->db->select_sum('englishSpokenCourse_course_kendro');
+            $this->db->select_sum('englishSpokenCourse_delegate_shakha');
+            $this->db->select_sum('englishSpokenCourse_delegate_kendro');
+            $this->db->select_sum('englishSpokenCourse_terminate_shakha');
+            $this->db->select_sum('englishSpokenCourse_terminate_kendro');  
+            $this->db->select_sum('englishSpokenCourse_certificate_shakha');
+            $this->db->select_sum('englishSpokenCourse_certificate_kendro');
 
         if ($branch_id)
         $this->db->where('branch_id', $branch_id);

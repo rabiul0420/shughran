@@ -612,39 +612,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                             </tr>
                         </table>
 
-                        <table class="tg table table-header-rotated" id="testTable5">
-                            <tr>
-                                <td class="tg-pwj7" colspan="">
-                                    <b>বিজ্ঞান ম্যাগাজিন সার্কুলেশন কমিটি</b>
-                                </td>
-                                <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='table_5' onclick="doit('xlsx','testTable5', '<?php echo 'Science_বিজ্ঞান ম্যাগাজিন সার্কুলেশন কমিটি_' . $branch_id . '.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7">বিবরণ</td>
-                                <td class="tg-pwj7" colspan="">মন্তব্য</td>
-                            </tr>
-                            <?php
-                            $pk = (isset($science_biggan_magazine_circulation['id'])) ? $science_biggan_magazine_circulation['id'] : '';
-                            ?>
-                            <tr>
-                                <td class="tg-pwj7">কেন্দ্র নির্দেশিত নীতিমালা অনুসারে বিজ্ঞান ম্যাগাজিন সার্কুলেশন সংক্রান্ত কমিটি গঠিত হয়েছে কিনা?</td>
-                                <td class="tg-pwj7" colspan="">
-                                    <a href="#" class="editable editable-click" id="biggan_comittee_gothon" data-idname="" data-type="select" data-table="science_biggan_magazine_circulation" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate2/' . $branch_id); ?>" data-name="biggan_comittee_gothon@science_biggan_magazine_circulation" data-title="কেন্দ্র নির্দেশিত নীতিমালা অনুসারে বিজ্ঞান ম্যাগাজিন সার্কুলেশন সংক্রান্ত কমিটি গঠিত হয়েছে কিনা?">
-                                    </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="tg-pwj7">কমিটির সদস্য সংখ্যা</td>
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="science_biggan_magazine_circulation" data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="comittee_member" data-title="Enter">
-                                        <?php echo $comittee_member =  (isset($science_biggan_magazine_circulation['comittee_member'])) ? $science_biggan_magazine_circulation['comittee_member'] : '' ?>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
+                       
 
                     </div>
                 </div>

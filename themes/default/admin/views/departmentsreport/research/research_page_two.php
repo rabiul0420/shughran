@@ -243,7 +243,8 @@ $(document).ready(function(){
                     </tr>  
                     <tr>
                        <td class="tg-pwj7">
-                       গবেষণা প্রবন্ধ <!-- নিবন্ধ (পেপার)  rename to গবেষণা প্রবন্ধ   -->
+                      <!--  গবেষণা প্রবন্ধ --> <!-- নিবন্ধ (পেপার)  rename to গবেষণা প্রবন্ধ   -->
+                       নিবন্ধ (পেপার)
                        </td>
                        <td class="tg-0pky  type_2">
                        <?php echo $nibondhon_lekha = $gobeshona_lekhalekhi['nibondhon_lekha'] ?>
@@ -265,7 +266,7 @@ $(document).ready(function(){
                     </tr>  
                     <tr>
                        <td class="tg-pwj7">
-                       আর্টিকেল রিভিউ <!-- প্রবন্ধ রিভিউ rename to আর্টিকেল রিভিউ   -->
+                       বুক রিভিউ <!-- প্রবন্ধ রিভিউ rename to বুক রিভিউ   -->
                        </td>
                          <td class="tg-0pky  type_2">
                        <?php echo $boi_review_lekha = $gobeshona_lekhalekhi['boi_review_lekha'] ?>

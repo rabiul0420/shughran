@@ -98,7 +98,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                     <div class="tg-wrap">
                     <table class="tg table table-header-rotated" id="testTable1">
                             <tr>
-                            <td class="tg-pwj7 " colspan='12'><div><b> টুনার্মেন্ট সংক্রন্ত </b></div></td>
+                            <td class="tg-pwj7 " colspan='12'><div><b> টুর্নামেন্ট-সংক্রান্ত  </b></div></td>
                             <td class="tg-pwj7" colspan="4">
                                 <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Sports_টুনার্মেন্ট সংক্রন্ত_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                             </td>
@@ -106,7 +106,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                             <tr>
                                 <td class="tg-pwj7" rowspan="2"> ধরন </td>
                              
-                                <td class="tg-pwj7" rowspan="2"> টুনার্মেন্ট সংখ্যা </td>
+                                <td class="tg-pwj7" rowspan="2"> টুর্নামেন্ট সংখ্যা </td>
                                 <td class="tg-pwj7 " colspan='2'><div><span> ফুটবল </span></div></td>
                                 <td class="tg-pwj7 " colspan='2'><div><span> ক্রিকেট </span></div></td>
                                 <td class="tg-pwj7 " colspan='2'><div><span> ব্যাডমিন্টন </span></div></td>

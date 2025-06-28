@@ -347,6 +347,11 @@ class Publication extends MY_Controller
         $this->db->select_sum('pro_hote_total_ay_com');
         $this->db->select_sum('pro_hote_total_bay_amount');
         $this->db->select_sum('pro_hote_total_bay_com');
+        $this->db->select_sum('publicationProfit_amount');
+        $this->db->select_sum('publicationProfit_com');
+        $this->db->select_sum('shakaLoss_amount');
+        $this->db->select_sum('shakaLoss_com');
+
 
         if ($branch_id)
         $this->db->where('branch_id', $branch_id);

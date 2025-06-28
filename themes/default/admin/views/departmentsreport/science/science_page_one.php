@@ -613,36 +613,7 @@ $(document).ready(function(){
                             </tr>
                         </table>
 
-                        <table class="tg table table-header-rotated" id="testTable5">
-                            <tr>
-                                <td class="tg-pwj7" colspan="2">                                
-                                    <b>বিজ্ঞান ম্যাগাজিন সার্কুলেশন কমিটি</b>
-                                </td>
-                                <td class="tg-pwj7" colspan="">
-                                    <a href="#" id='table_5' onclick="doit('xlsx','testTable5','<?php echo 'Science_বিজ্ঞান ম্যাগাজিন সার্কুলেশন কমিটি.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
-                                </td>
-                            </tr>
-                            
-
-                            <tr>
-                                <td class="tg-pwj7" colspan='2'>বিবরণ</td>
-                                <td class="tg-pwj7" colspan="">মন্তব্য</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" rowspan='2'>কেন্দ্র নির্দেশিত নীতিমালা অনুসারে বিজ্ঞান ম্যাগাজিন সার্কুলেশন সংক্রান্ত কমিটি গঠিত হয়েছে কিনা?</td>
-                                <td class="tg-pwj7" colspan="">হ্যাঁ</td>
-                                 <td class="tg-0pky" colspan=""><?php echo $science_biggan_magazine_circulation['biggan_comittee_gothon'] ?></td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan=''>না</td>
-                                 <td class="tg-0pky" colspan=""><?php echo $row_total_science_biggan_magazine_circulation - $science_biggan_magazine_circulation['biggan_comittee_gothon'] ?></td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan='2'>কমিটির সদস্য সংখ্যা</td>
-                                <td class="tg-0pky" colspan=""><?php echo $science_biggan_magazine_circulation['comittee_member'] ?></td>
-                            </tr>
-                        </table>
-
+                       
                     </div>
                 </div>
             </div>

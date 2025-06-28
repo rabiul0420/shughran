@@ -154,7 +154,7 @@ $(document).ready(function(){
                     <table class="tg table table-header-rotated" id="জনশক্তির দক্ষতা - ১">
                             <tr>
                             <td class="tg-pwj7" colspan="12"><b>জনশক্তির দক্ষতা - ১(সংরক্ষিত তালিকার আলোকে)<b></td>
-                                <td class="tg-pwj7" colspan="1">
+                                <td class="tg-pwj7" colspan="2">
                                     <a href="#" id='জনশক্তির দক্ষতা - ১' onclick="doit('xlsx','জনশক্তির দক্ষতা - ১','<?php echo 'IT_জনশক্তির দক্ষতা - ১(সংরক্ষিত তালিকার আলোকে)_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
                             </tr>
@@ -165,6 +165,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7 " rowspan="2"><div><span>হার্ডওয়্যার এক্সপার্ট</span></div></td>
                                 <td class="tg-pwj7 " colspan="5"><div><span>ডিজাইন প্রোডাকশন</span></div></td>
                                 <td class="tg-pwj7 " colspan="4"><div><span>ভিডিও প্রোডাকশন	</span></div></td>
+                               <td class="tg-pwj7" rowspan="2">ডেটা ম্যানেজমেন্ট ও অ্যানালিটিক্স</td>
                                 <td class="tg-pwj7" rowspan="2">ফটো ও ভিডিওগ্রাফি</td>
                                 
                             </tr>
@@ -235,6 +236,9 @@ $(document).ready(function(){
 
                                 </td>
                                 <td class="tg-0pky  type_1">
+                                <?php echo $m_datamanagementAnalysis =  (isset( $it_jonosokti_dokkhotota['m_datamanagementAnalysis']))? $it_jonosokti_dokkhotota['m_datamanagementAnalysis']:0; ?>
+                                </td>
+                                <td class="tg-0pky  type_1">
                                 <?php echo $m_photovideography =  (isset( $it_jonosokti_dokkhotota['m_photovideography']))? $it_jonosokti_dokkhotota['m_photovideography']:0; ?>
 
                                 </td>
@@ -292,6 +296,10 @@ $(document).ready(function(){
 
                                 </td>
                                 <td class="tg-0pky  type_1">
+                                <?php echo $a_datamanagementAnalysis = (isset($it_jonosokti_dokkhotota['a_datamanagementAnalysis'])) ? $it_jonosokti_dokkhotota['a_datamanagementAnalysis'] : 0; ?>
+
+                                </td>
+                                <td class="tg-0pky  type_1">
                                 <?php echo $a_photovideography = (isset($it_jonosokti_dokkhotota['a_photovideography'])) ? $it_jonosokti_dokkhotota['a_photovideography'] : 0; ?>
 
                                 </td>
@@ -345,6 +353,11 @@ $(document).ready(function(){
                                 <?php echo $w_mobilevideo = (isset($it_jonosokti_dokkhotota['w_mobilevideo'])) ? $it_jonosokti_dokkhotota['w_mobilevideo'] : 0; ?>
 
                                 </td>
+
+                                 <td class="tg-0pky  type_1">
+                                <?php echo $w_datamanagementAnalysis = (isset($it_jonosokti_dokkhotota['w_datamanagementAnalysis'])) ? $it_jonosokti_dokkhotota['w_datamanagementAnalysis'] : 0; ?>
+
+                                </td>
                                 <td class="tg-0pky  type_1">
                                 <?php echo $w_photovideography = (isset($it_jonosokti_dokkhotota['w_photovideography'])) ? $it_jonosokti_dokkhotota['w_photovideography'] : 0; ?>
 
@@ -389,6 +402,9 @@ $(document).ready(function(){
                                 <td class="tg-0pky  type_9">
                                 <?php echo ($m_mobilevideo+$a_mobilevideo+$w_mobilevideo)?>
                                 </td>
+                                 <td class="tg-0pky  type_9">
+                                <?php echo ($m_datamanagementAnalysis+$a_datamanagementAnalysis+$w_datamanagementAnalysis)?>
+                                </td>
                                 <td class="tg-0pky  type_9">
                                 <?php echo ($m_photovideography+$a_photovideography+$w_photovideography)?>
                                 </td>
@@ -401,7 +417,7 @@ $(document).ready(function(){
                         <table class="tg table table-header-rotated" id="CSE/IT তে অধ্যয়নরত জনশক্তি">
                         
                         <tr>
-                        <td class="tg-pwj7" colspan="10"><b>জনশক্তির দক্ষতা - ২(সংরক্ষিত তালিকার আলোকে)<b></td>
+                        <td class="tg-pwj7" colspan="11"><b>জনশক্তির দক্ষতা - ২(সংরক্ষিত তালিকার আলোকে)<b></td>
                         <td class="tg-pwj7" colspan="2"><b>CSE/IT তে অধ্যয়নরত জনশক্তি<b></td>   
                         <td class="tg-pwj7" colspan="1">
                                     <a href="#" id='CSE/IT তে অধ্যয়নরত জনশক্তি' onclick="doit('xlsx','CSE/IT তে অধ্যয়নরত জনশক্তি','<?php echo 'IT_CSE/IT তে অধ্যয়নরত জনশক্তি_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
@@ -414,6 +430,7 @@ $(document).ready(function(){
                                 <td class="tg-pwj7 " rowspan="2"><div><span>প্রোগ্রামিং</span></div></td>
                                 <td class="tg-pwj7 " rowspan="2"><div><span>ওয়েব ডেভেলপমেন্ট</span></div></td>
                                 <td class="tg-pwj7 " rowspan="2"><div><span>অ্যাপ ডেভেলপমেন্ট</span></div></td>
+                                <td class="tg-pwj7 " rowspan="2"><div><span>ডিভাইস সিকিউরিটি</span></div></td>
                                 <td class="tg-pwj7"  rowspan="2">ইথিক্যাল হ্যাকিং</td>
                                 <td class="tg-pwj7 " rowspan="2"><div><span>ডিজিটাল মার্কেটিং</span></div></td>
                                 <td class="tg-pwj7 " rowspan="2"><div><span> গেম ডেভেলপমেন্ট</span></div></td>
@@ -459,6 +476,11 @@ $(document).ready(function(){
                                 <?php echo $m_app= (isset($it_jonosokti_dokkhotota['m_app'])) ? $it_jonosokti_dokkhotota['m_app'] : 0; ?>
 
                                 </td>
+                                <td class="tg-0pky  type_1">
+                                <?php echo $m_deviceSecurity= (isset($it_jonosokti_dokkhotota['m_deviceSecurity'])) ? $it_jonosokti_dokkhotota['m_deviceSecurity'] : 0; ?>
+
+                                </td>
+
                                 <td class="tg-0pky  type_1">
                                 <?php echo $m_ethical= (isset($it_jonosokti_dokkhotota['m_ethical'])) ? $it_jonosokti_dokkhotota['m_ethical'] : 0; ?>
 
@@ -510,8 +532,13 @@ $(document).ready(function(){
                                 <?php echo $a_web= (isset($it_jonosokti_dokkhotota['a_web'])) ? $it_jonosokti_dokkhotota['a_web'] : 0; ?>
 
                                 </td>
-                                <td class="tg-0pky  type_1">
+                               
+                                 <td class="tg-0pky  type_1">
                                 <?php echo $a_app= (isset($it_jonosokti_dokkhotota['a_app'])) ? $it_jonosokti_dokkhotota['a_app'] : 0; ?>
+
+                                </td>
+                                 <td class="tg-0pky  type_1">
+                                <?php echo $a_deviceSecurity= (isset($it_jonosokti_dokkhotota['a_deviceSecurity'])) ? $it_jonosokti_dokkhotota['a_deviceSecurity'] : 0; ?>
 
                                 </td>
                                 <td class="tg-0pky  type_1">
@@ -569,6 +596,10 @@ $(document).ready(function(){
 
                                 </td>
                                 <td class="tg-0pky  type_1">
+                                <?php echo $w_deviceSecurity= (isset($it_jonosokti_dokkhotota['w_deviceSecurity'])) ? $it_jonosokti_dokkhotota['w_deviceSecurity'] : 0; ?>
+
+                                </td>
+                                <td class="tg-0pky  type_1">
                                 <?php echo $w_ethical= (isset($it_jonosokti_dokkhotota['w_ethical'])) ? $it_jonosokti_dokkhotota['w_ethical'] : 0; ?>
 
                                 </td>
@@ -615,6 +646,9 @@ $(document).ready(function(){
                                 </td>
                                 <td class="tg-0pky">
                                 <?php echo ($m_app+$a_app+$w_app)?>
+                                </td>
+                                <td class="tg-0pky">
+                                <?php echo ($m_deviceSecurity+$a_deviceSecurity+$w_deviceSecurity)?>
                                 </td>
                                 <td class="tg-0pky">
                                 <?php echo ($m_ethical+$a_ethical+$w_ethical)?>
@@ -801,7 +835,7 @@ $(document).ready(function(){
 
                         </tr>
                         <tr>
-                        <td class="tg-y698">অনলাইন সিকিউরিটি</td>
+                        <td class="tg-y698">সাইবার সিকিউরিটি</td>
                         <td class="tg-0pky type_1">
                         <?php echo $onse_ps = (isset($it_category_team_output['onse_ps'])) ? $it_category_team_output['onse_ps'] : ''; ?>
                         </td>
@@ -835,13 +869,134 @@ $(document).ready(function(){
                         </td>
    
                         </tr>
+                         <tr>
+                        <td class="tg-y698">ডিভাইস সিকিউরিটি</td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $deviceSecurity_ps = (isset($it_category_team_output['deviceSecurity_ps'])) ? $it_category_team_output['deviceSecurity_ps'] : ''; ?>
+                        </td>
+
+                        <td class="tg-0pky type_1">
+                        <?php echo $deviceSecurity_ms = (isset($it_category_team_output['deviceSecurity_ms'])) ? $it_category_team_output['deviceSecurity_ms'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $deviceSecurity_cs = (isset($it_category_team_output['deviceSecurity_cs'])) ? $it_category_team_output['deviceSecurity_cs'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $deviceSecurity_mont = (isset($it_category_team_output['deviceSecurity_mont'])) ? $it_category_team_output['deviceSecurity_mont'] : ''; ?>
+                        </td>
+   
+                        </tr>
+                         
+                         <tr>
+                        <td class="tg-y698">ইউআই/ইউএক্স ডিজাইন</td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $uiuxDesign_ps = (isset($it_category_team_output['uiuxDesign_ps'])) ? $it_category_team_output['uiuxDesign_ps'] : ''; ?>
+                        </td>
+
+                        <td class="tg-0pky type_1">
+                        <?php echo $uiuxDesign_ms = (isset($it_category_team_output['uiuxDesign_ms'])) ? $it_category_team_output['uiuxDesign_ms'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $uiuxDesign_cs = (isset($it_category_team_output['uiuxDesign_cs'])) ? $it_category_team_output['uiuxDesign_cs'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $uiuxDesign_mont = (isset($it_category_team_output['uiuxDesign_mont'])) ? $it_category_team_output['uiuxDesign_mont'] : ''; ?>
+                        </td>
+   
+                        </tr>
+                         <tr>
+                        <td class="tg-y698">অ্যানিমেশন</td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $animation_ps = (isset($it_category_team_output['animation_ps'])) ? $it_category_team_output['animation_ps'] : ''; ?>
+                        </td>
+
+                        <td class="tg-0pky type_1">
+                        <?php echo $animation_ms = (isset($it_category_team_output['animation_ms'])) ? $it_category_team_output['animation_ms'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $animation_cs = (isset($it_category_team_output['animation_cs'])) ? $it_category_team_output['animation_cs'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $animation_mont = (isset($it_category_team_output['animation_mont'])) ? $it_category_team_output['animation_mont'] : ''; ?>
+                        </td>
+   
+                        </tr>
+                         <tr>
+                        <td class="tg-y698">আর্টিফিশিয়াল ইন্টেলিজেন্স</td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $artifacialIntelligence_ps = (isset($it_category_team_output['artifacialIntelligence_ps'])) ? $it_category_team_output['artifacialIntelligence_ps'] : ''; ?>
+                        </td>
+
+                        <td class="tg-0pky type_1">
+                        <?php echo $artifacialIntelligence_ms = (isset($it_category_team_output['artifacialIntelligence_ms'])) ? $it_category_team_output['artifacialIntelligence_ms'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $artifacialIntelligence_cs = (isset($it_category_team_output['artifacialIntelligence_cs'])) ? $it_category_team_output['artifacialIntelligence_cs'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $artifacialIntelligence_mont = (isset($it_category_team_output['artifacialIntelligence_mont'])) ? $it_category_team_output['artifacialIntelligence_mont'] : ''; ?>
+                        </td>
+   
+                        </tr>
+                         <tr>
+                        <td class="tg-y698">ডিজিটাল মার্কেটিং</td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $digitalMarketing_ps = (isset($it_category_team_output['digitalMarketing_ps'])) ? $it_category_team_output['digitalMarketing_ps'] : ''; ?>
+                        </td>
+
+                        <td class="tg-0pky type_1">
+                        <?php echo $digitalMarketing_ms = (isset($it_category_team_output['digitalMarketing_ms'])) ? $it_category_team_output['digitalMarketing_ms'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $digitalMarketing_cs = (isset($it_category_team_output['digitalMarketing_cs'])) ? $it_category_team_output['digitalMarketing_cs'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $digitalMarketing_mont = (isset($it_category_team_output['digitalMarketing_mont'])) ? $it_category_team_output['digitalMarketing_mont'] : ''; ?>
+                        </td>
+   
+                        </tr>
+                         <tr>
+                        <td class="tg-y698">ডেটা ম্যানেজমেন্ট ও অ্যানালিটিক্স</td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $dataManagementAnalysis_ps = (isset($it_category_team_output['dataManagementAnalysis_ps'])) ? $it_category_team_output['dataManagementAnalysis_ps'] : ''; ?>
+                        </td>
+
+                        <td class="tg-0pky type_1">
+                        <?php echo $dataManagementAnalysis_ms = (isset($it_category_team_output['dataManagementAnalysis_ms'])) ? $it_category_team_output['dataManagementAnalysis_ms'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $dataManagementAnalysis_cs = (isset($it_category_team_output['dataManagementAnalysis_cs'])) ? $it_category_team_output['dataManagementAnalysis_cs'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $dataManagementAnalysis_mont = (isset($it_category_team_output['dataManagementAnalysis_mont'])) ? $it_category_team_output['dataManagementAnalysis_mont'] : ''; ?>
+                        </td>
+   
+                        </tr>
+                         <tr>
+                        <td class="tg-y698">গেম ডেভেলপমেন্ট</td>
+                        <td class="tg-0pky type_1">
+                        <?php echo $gameDevelopment_ps = (isset($it_category_team_output['gameDevelopment_ps'])) ? $it_category_team_output['gameDevelopment_ps'] : ''; ?>
+                        </td>
+
+                        <td class="tg-0pky type_1">
+                        <?php echo $gameDevelopment_ms = (isset($it_category_team_output['gameDevelopment_ms'])) ? $it_category_team_output['gameDevelopment_ms'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                            <?php echo $gameDevelopment_cs = (isset($it_category_team_output['gameDevelopment_cs'])) ? $it_category_team_output['gameDevelopment_cs'] : ''; ?>
+                        </td>
+                        <td class="tg-0pky type_1">
+                            <?php echo $gameDevelopment_mont = (isset($it_category_team_output['gameDevelopment_mont'])) ? $it_category_team_output['gameDevelopment_mont'] : ''; ?>
+                        </td>
+   
+                        </tr>
+
 
                   </table><table class="tg table table-header-rotated" id="আইসিটি সেন্টার এবং প্রশিক্ষক এবং শাখার তথ্যপ্রযুক্তি রিসোর্স">
                       <tr>
                       <td class="tg-pwj7" colspan="4"><b>আইসিটি সেন্টার </b></td>
                           <td class="tg-pwj7" colspan="2"><b> প্রশিক্ষক</b></td>
 
-                          <td class="tg-pwj7" colspan="6"><b> শাখার তথ্যপ্রযুক্তি রিসোর্স</b></td>
+                          <td class="tg-pwj7" colspan="7"><b> শাখার তথ্যপ্রযুক্তি রিসোর্স</b></td>
                           <td class="tg-pwj7" colspan="1">
                               <a href="#" id='আইসিটি সেন্টার এবং প্রশিক্ষক এবং শাখার তথ্যপ্রযুক্তি রিসোর্স' onclick="doit('xlsx','আইসিটি সেন্টার এবং প্রশিক্ষক এবং শাখার তথ্যপ্রযুক্তি রিসোর্স','<?php echo 'IT_আইসিটি সেন্টার এবং প্রশিক্ষক এবং শাখার তথ্যপ্রযুক্তি রিসোর্স_'.$branch_id.'.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                           </td>
@@ -868,6 +1023,7 @@ $(document).ready(function(){
                           <td class="tg-pwj7" colspan=''>অনলাইন স্টোরেজ</td>
                           <td class="tg-pwj7" colspan=''>প্রজেক্টর</td>
                           <td class="tg-pwj7" colspan=''>ক্যামেরা</td>
+                          <td class="tg-pwj7" colspan=''>পাওয়ারব্যাংক</td>
                       </tr>
                       <tr>
                          <td class="tg-0pky type_1">
@@ -910,6 +1066,9 @@ $(document).ready(function(){
                           </td>
                           <td class="tg-0pky type_1">
                           <?php echo $camera=(isset( $it_shakhar_totto_resource['camera']))? $it_shakhar_totto_resource['camera']:'' ?>
+                          </td>
+                          <td class="tg-0pky type_1">
+                          <?php echo $powerbank=(isset( $it_shakhar_totto_resource['powerbank']))? $it_shakhar_totto_resource['powerbank']:'' ?>
                           </td>
 
                           
@@ -1154,7 +1313,7 @@ $(document).ready(function(){
                    </tr>
 
                    <tr>
-                   <td class="tg-y698 type_1">গুগল ফর্ম 	</td>
+                   <td class="tg-y698 type_1"><!-- গুগল ফর্ম  -->অনলাইন ফর্ম	</td>
                     <td class="tg-0pky  type_9">
                     <?php echo $googleform_s = (isset($it_proshikkhon['googleform_s'])) ? $it_proshikkhon['googleform_s'] : 0; $total_s = $total_s + $googleform_s; ?>
                     </td>
@@ -1203,6 +1362,55 @@ $(document).ready(function(){
 
 
                    </tr>
+                    <tr>
+                   <td class="tg-y698 type_1"> টাস্ক ম্যানেজমেন্ট টুলস</td>
+                    <td class="tg-0pky  type_9">
+                    <?php echo $taskManagementTool_s = (isset($it_proshikkhon['taskManagementTool_s'])) ? $it_proshikkhon['taskManagementTool_s'] : 0; $total_s = $total_s + $taskManagementTool_s; ?>
+                    </td>
+                    <td class="tg-0pky  type_9">
+                    <?php echo $taskManagementTool_upthi = (isset($it_proshikkhon['taskManagementTool_upthi'])) ? $it_proshikkhon['taskManagementTool_upthi'] : 0; $total_upthi = $total_upthi + $taskManagementTool_upthi; ?>
+                    </td>
+                    <td class="tg-0pky  type_1">
+                        <?php echo ($taskManagementTool_s != 0) ? ($taskManagementTool_upthi / $taskManagementTool_s) : 0 ?>
+                    </td>
+                    <td class="tg-y698 type_1">টাইপিং স্কিল	</td>
+                        <td class="tg-0pky  type_9">
+                        <?php echo $typingSkill_s = (isset($it_proshikkhon['typingSkill_s'])) ? $it_proshikkhon['typingSkill_s'] : 0; $total_s = $total_s + $typingSkill_s; ?>
+                        </td>
+                        <td class="tg-0pky  type_9">
+                        <?php echo $typingSkill_upthi = (isset($it_proshikkhon['typingSkill_upthi'])) ? $it_proshikkhon['typingSkill_upthi'] : 0; $total_upthi = $total_upthi + $typingSkill_upthi; ?>
+                        </td>
+                        <td class="tg-0pky  type_1">
+                            <?php echo ($typingSkill_s != 0) ? ($typingSkill_upthi / $typingSkill_s) : 0 ?>
+                        </td>
+
+
+                   </tr>
+                    <tr>
+                   <td class="tg-y698 type_1"> এআই ও এর ব্যবহার</td>
+                    <td class="tg-0pky  type_9">
+                    <?php echo $AiUse_s = (isset($it_proshikkhon['AiUse_s'])) ? $it_proshikkhon['AiUse_s'] : 0; $total_s = $total_s + $AiUse_s; ?>
+                    </td>
+                    <td class="tg-0pky  type_9">
+                    <?php echo $AiUse_upthi = (isset($it_proshikkhon['AiUse_upthi'])) ? $it_proshikkhon['AiUse_upthi'] : 0; $total_upthi = $total_upthi + $AiUse_upthi; ?>
+                    </td>
+                    <td class="tg-0pky  type_1">
+                        <?php echo ($AiUse_s != 0) ? ($AiUse_upthi / $AiUse_s) : 0 ?>
+                    </td>
+                    <td class="tg-y698 type_1">টেক ক্যারিয়ার	</td>
+                        <td class="tg-0pky  type_9">
+                        <?php echo $techCareer_s = (isset($it_proshikkhon['techCareer_s'])) ? $it_proshikkhon['techCareer_s'] : 0; $total_s = $total_s + $techCareer_s; ?>
+                        </td>
+                        <td class="tg-0pky  type_9">
+                        <?php echo $techCareer_upthi = (isset($it_proshikkhon['techCareer_upthi'])) ? $it_proshikkhon['techCareer_upthi'] : 0; $total_upthi = $total_upthi + $techCareer_upthi; ?>
+                        </td>
+                        <td class="tg-0pky  type_1">
+                            <?php echo ($techCareer_s != 0) ? ($techCareer_upthi / $techCareer_s) : 0 ?>
+                        </td>
+
+
+                   </tr>
+                  
                  
                 
                    <tr>
@@ -1292,13 +1500,30 @@ $(document).ready(function(){
                             <?php echo $web_s = (isset($it_kajer_biboron['web_s'])) ? $it_kajer_biboron['web_s'] : '0'; ?>
                             </td>
                        </tr>
+                      
+
                        <tr>
-                       <td class="tg-y698" colspan="3"> গুগল ফরম</td>
-                       <td class="tg-0pky type_1" colspan="1">
-                       <?php echo $google_s = (isset($it_kajer_biboron['google_s'])) ? $it_kajer_biboron['google_s'] : '0'; ?>
+                       <td class="tg-y698"><!-- গুগল ফরম --> অনলাইন ফরম	</td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $google_s = (isset($it_kajer_biboron['google_s'])) ? $it_kajer_biboron['google_s'] : '0'; ?>
+                            </td>
+
+                            <td class="tg-y698">  সার্ভিসিং			</td>
+                            <td class="tg-0pky type_1">
+                            <?php echo $servicing_s = (isset($it_kajer_biboron['servicing_s'])) ? $it_kajer_biboron['servicing_s'] : '0'; ?>
                             </td>
                        </tr>
-                        
+                       <tr>
+                           <td class="tg-y698">টেক ম্যাটেরিয়ালস	</td>
+                           <td class="tg-0pky type_1">
+                               <?php echo $techMaterial_s = (isset($it_kajer_biboron['techMaterial_s'])) ? $it_kajer_biboron['techMaterial_s'] : '0'; ?>
+                           </td>
+
+                           <td class="tg-y698"> সিকিউরিটি		</td>
+                           <td class="tg-0pky type_1">
+                               <?php echo $security_s = (isset($it_kajer_biboron['security_s'])) ? $it_kajer_biboron['security_s'] : '0'; ?>
+                           </td>
+                       </tr>
 
                   </table>
                   <table class="tg table table-header-rotated" id="testTable10">

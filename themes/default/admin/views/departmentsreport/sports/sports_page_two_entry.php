@@ -102,7 +102,7 @@ $(document).ready(function(){
                                                 <td class="tg-pwj7" colspan="">রেজিস্টার্ড কতটি  </td>
                                                 <td class="tg-pwj7" colspan="">কমিটি আছে কতটিতে</td>
                                                 <td class="tg-pwj7" colspan="">নিয়োজিক জনশক্তি</td>
-                                                <td class="tg-pwj7" colspan="">খেলোয়ার সংখ্যা</td>
+                                                <td class="tg-pwj7" colspan="">খেলোয়াড় সংখ্যা</td>
                                                 <td class="tg-pwj7" colspan="">প্রোগ্রাম সংখ্যা</td>
                                                 <td class="tg-pwj7" colspan="">অংশগ্রহণকারী </td>
                                             </tr>

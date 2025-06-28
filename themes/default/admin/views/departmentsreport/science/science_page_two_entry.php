@@ -155,7 +155,7 @@ $(document).ready(function(){
                                 $pk = (isset($science_pathok_forum_report['id']))?$science_pathok_forum_report['id']:'';
                             ?>
                             <tr>
-                                <td class="tg-pwj7" colspan="3">কতটি স্কুলে ফোরাম গঠিত হয়েছে?</td>
+                                <td class="tg-pwj7" colspan="3">কতটি শিক্ষা প্রতিষ্ঠানে ফোরাম গঠিত হয়েছে?</td>
                                 <td>
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="science_pathok_forum_report" 
                                         data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="school_forum_gothito" data-title="Enter">
@@ -164,7 +164,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="3">কতটি ফোরামের পূর্ণাঙ্গ কমিটি গঠিত হয়েছে?</td>
+                                <td class="tg-pwj7" colspan="3">শাখার মোট কতটি শিক্ষা প্রতিষ্ঠানে ফোরাম আছে?</td>
                                 <td>
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="science_pathok_forum_report" 
                                         data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="forum_purnago_comittee" data-title="Enter">
@@ -173,14 +173,24 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tg-pwj7" colspan="3">কমিটির সদস্য সংখ্যা কত?</td>
+                                <td class="tg-pwj7" colspan="3">মোট কতটি শিক্ষা প্রতিষ্ঠানে অ্যাম্বাসেডর দেয়া হয়েছে?</td>
                                 <td>
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="science_pathok_forum_report" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="committee_mem_num" data-title="Enter">
+                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="forum_purnago_comittee" data-title="Enter">
+                                        <?php echo $mot_protinidhi =  (isset($science_pathok_forum_report['mot_protinidhi'])) ? $science_pathok_forum_report['mot_protinidhi'] : '' ?>
+                                    </a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td class="tg-pwj7" colspan="3">শাখার ফোরামসমূহে মোট সদস্য সংখ্যা কত?</td>
+                                <td>
+                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="science_pathok_forum_report" 
+                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="forum_purnago_comittee" data-title="Enter">
                                         <?php echo $committee_mem_num =  (isset($science_pathok_forum_report['committee_mem_num'])) ? $science_pathok_forum_report['committee_mem_num'] : '' ?>
                                     </a>
                                 </td>
                             </tr>
+                           
                             <tr>
                                 <td class="tg-pwj7" colspan="3">কতজন রেজিস্ট্রেশন করেছে?</td>
                                 <td>
@@ -199,24 +209,7 @@ $(document).ready(function(){
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="3">স্থানীয় সংগঠনের প্রতিনিধি কতজন?</td>
-                                <td>
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="science_pathok_forum_report" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="sthanio_protinidhi" data-title="Enter">
-                                        <?php echo $sthanio_protinidhi =  (isset($science_pathok_forum_report['sthanio_protinidhi'])) ? $science_pathok_forum_report['sthanio_protinidhi'] : '' ?>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tg-pwj7" colspan="3">মোট প্রতিনিধি</td>
-                                <td>
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="science_pathok_forum_report" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="mot_protinidhi" data-title="Enter">
-                                        <?php echo $mot_protinidhi =  (isset($science_pathok_forum_report['mot_protinidhi'])) ? $science_pathok_forum_report['mot_protinidhi'] : '' ?>
-                                    </a>
-                                </td>
-                            </tr>
+                            
                             <tr>
                                 <td class="tg-pwj7" colspan="3">প্রোগ্রাম হয়েছে কতটি?</td>
                                 <td>

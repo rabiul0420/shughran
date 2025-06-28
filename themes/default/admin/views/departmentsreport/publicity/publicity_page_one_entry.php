@@ -701,7 +701,7 @@ render_dept_report_serial_form($branch_id, $report_info, $department_id, $serial
                                 </td>
                             </tr> 
                              <tr>
-                                <td class="tg-pwj7" colspan="পোর্টালের ইউটিউব চ্যানলে আছে কিনা?</td>
+                                <td class="tg-pwj7" colspan="">পোর্টাল ইউটিউব চ্যানলে আছে কিনা?(হ্যাঁ/না)</td>
                                 <td class="tg-pwj7" colspan="">ভেরিফাইড কিনা?</td>
                                 <td class="tg-pwj7" rowspan='' colspan="2">সাবস্ক্রাইবার সংখ্যা</td>
                             </tr>

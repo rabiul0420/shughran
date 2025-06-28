@@ -120,7 +120,7 @@ $(document).ready(function(){
                             <tr>
 
                                 <td class="tg-pwj7  type_1">
-                                    দায়ীদের প্রশিক্ষণ কর্মশালা
+                                    দায়ী প্রশিক্ষণ কর্মশালা 
                                 </td>
                                 <td class="tg-0pky  type_2">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="dawah_dayi_training" 
@@ -141,7 +141,7 @@ $(document).ready(function(){
                             <tr>
 
                                 <td class="tg-pwj7  type_1">
-                                    দায়ীদের প্রশিক্ষণ কোর্স
+                                   দায়ী প্রশিক্ষণ কোর্স 
                                 </td>
                                 <td class="tg-0pky  type_2">
                                     <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="dawah_dayi_training" 

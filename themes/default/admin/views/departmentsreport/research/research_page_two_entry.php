@@ -243,7 +243,8 @@ $(document).ready(function(){
                     </tr>  
                     <tr>
                        <td class="tg-pwj7">
-                       গবেষণা প্রবন্ধ <!-- নিবন্ধ (পেপার)  rename to গবেষণা প্রবন্ধ   -->
+                       <!-- গবেষণা প্রবন্ধ --> <!-- নিবন্ধ (পেপার)  rename to গবেষণা প্রবন্ধ   -->
+                       নিবন্ধ (পেপার)
                        </td>
                        <td class="tg-0pky  type_5"> 
                             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 
@@ -301,7 +302,8 @@ $(document).ready(function(){
 
                     <tr>
                        <td class="tg-pwj7">
-                       আর্টিকেল রিভিউ <!-- প্রবন্ধ রিভিউ rename to আর্টিকেল রিভিউ   -->
+                       প্রবন্ধ রিভিউ <!-- প্রবন্ধ রিভিউ rename to আর্টিকেল রিভিউ   -->
+                       
                        </td>
                        <td class="tg-0pky  type_5"> 
                             <a href="#"  class="editable editable-click"  data-id="" data-idname=""   data-type="number" 

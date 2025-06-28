@@ -467,27 +467,7 @@ $(document).ready(function(){
                                 $pk = (isset($school_reception['id']))?$school_reception['id']:'';
                             ?>
                            
-                            <tr>
-
-                                <td class="tg-y698 type_1"> JSC</td>
-
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_reception" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="jsc_num" data-title="Enter">
-                                        <?php echo $jsc_num =  (isset($school_reception['jsc_num'])) ? $school_reception['jsc_num'] :0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky">
-                                    <a href="#" class="editable editable-click" data-id="" data-idname="" data-type="number" data-table="school_reception" 
-                                        data-pk="<?php echo $pk ?>" data-url="<?php echo admin_url('departmentsreport/detailupdate'); ?>" data-name="jsc_pre" data-title="Enter">
-                                        <?php echo $jsc_pre =  (isset($school_reception['jsc_pre'])) ? $school_reception['jsc_pre'] :0 ?>
-                                    </a>
-                                </td>
-                                <td class="tg-0pky">
-                                    <?php echo ($jsc_pre!=0 && $jsc_num!=0 )?$jsc_pre / $jsc_num:0 ?>
-                                </td>
-
-                            </tr>
+                            
                             <tr>
 
                                 <td class="tg-y698 type_1"> SSC</td>

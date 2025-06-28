@@ -152,7 +152,7 @@ $(document).ready(function(){
 </style>
                     <div class="tg-wrap">
                     <!--Hide this table  বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম -->
-                    <table class="tg table table-header-rotated" id="testTable4" style="display:none;">
+                    <table class="tg table table-header-rotated" id="testTable4" >
                             <tr>
                                 <td class="tg-pwj7" colspan="3"><b>বিভাগীয় প্রশিক্ষণমূলক প্রোগ্রাম</b></td>
                                 <td class="tg-pwj7" colspan="1">
@@ -219,9 +219,9 @@ $(document).ready(function(){
                             </tr>
                         </table>
                         <!-- Hide this table কেন্দ্র হতে বিবিধ/অন্যান্য প্রকাশনা সামগ্রী সংগ্রহ -->
-                        <table class="tg table table-header-rotated" id="testTable1" style="display:none;">
+                        <table class="tg table table-header-rotated" id="testTable1" >
                             <tr>                           
-                                <td class="tg-pwj7" colspan='5'><b>কেন্দ্র হতে বিবিধ/অন্যান্য প্রকাশনা সামগ্রী সংগ্রহ</b></td>
+                                <td class="tg-pwj7" colspan='5'><b>বিবিধ/অন্যান্য </b></td>
                                 <td class="tg-pwj7" colspan="1">
                                     <a href="#" id='table_1' onclick="doit('xlsx','testTable1','<?php echo 'Publication_কেন্দ্র হতে বিবিধ/অন্যান্য প্রকাশনা সামগ্রী সংগ্রহ.xlsx' ?>');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> 	</a>
                                 </td>
@@ -307,6 +307,24 @@ $(document).ready(function(){
                                 </td>
                                  <td class="tg-0pky  type_10">
                                 <?php echo $pro_hote_total_bay_amount = $publication_ay_bey['pro_hote_total_bay_amount'] ?>
+                                </td>
+                               
+                            </tr>
+                             <tr>                                                     
+                                <td class="tg-y698 type_1">
+                                প্রকাশনা সামগ্রী হতে লাভ (উদ্বৃত্ত)
+                                </td>
+                                 <td class="tg-0pky  type_10">
+                                <?php echo $publicationProfit_amount = $publication_ay_bey['publicationProfit_amount'] - $publication_ay_bey['publicationProfit_amount'] ?>
+                                </td>
+                               
+                            </tr>
+                             <tr>                                                     
+                                <td class="tg-y698 type_1">
+                                 শাখা হতে ভর্তুকি (ঘাটতি) 
+                                </td>
+                                 <td class="tg-0pky  type_10">
+                                <?php echo $shakaLoss_amount = $publication_ay_bey['shakaLoss_amount'] - $publication_ay_bey['shakaLoss_amount'] ?>
                                 </td>
                                
                             </tr>
