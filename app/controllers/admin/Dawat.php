@@ -180,10 +180,7 @@ class Dawat extends MY_Controller
             }
         }
 
-
-        return array(
-            'extra_dawatinfo' => $extra_dawatinfo
-        );
+ 
     }
 
 
@@ -200,9 +197,9 @@ class Dawat extends MY_Controller
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
             $this->session->set_flashdata('warning', lang('access_denied'));
-            admin_redirect('dawat/' . $this->session->userdata('branch_id'));
+            admin_redirect('dawat/other/' . $this->session->userdata('branch_id'));
         } else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
-            admin_redirect('dawat/' . $this->session->userdata('branch_id'));
+            admin_redirect('dawat/other/' . $this->session->userdata('branch_id'));
         }
 
 
@@ -243,23 +240,19 @@ class Dawat extends MY_Controller
        
         //$this->sma->print_arrays($this->data['lastyeardawat']);
 
-        $this->data['institutiontype'] = $this->organization_model->getAllInstitution(2);
-        $this->data['dawat_category'] = $this->site->getAll('dawat_category', $report_year);
+
 
         if ($branch_id)
-            $this->getEntryDawatSummary($this->data['institutiontype'], $report_type_get, $branch_id);
+            $this->getEntryGroupDawahActivity($report_type_get, $branch_id);
 
 
 
 
-        $this->data['dawat_summary'] = $this->getdawatsummary($report_type_get, $branch_id);
-        $this->data['dawat_decrease_target'] = $this->getdawat_decrease_target($report_type_get, $branch_id);
+        $this->data['dawah_activity'] = $this->getDawahActivity($report_type_get, $branch_id);
+        
+        //$this->sma->print_arrays($this->data['dawah_activity']);
 
-
-        // $this->sma->print_arrays($this->data['lastyeardawat']);
-
-
-        //$this->data['m'] = 'manpowersummary';
+ 
 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Dawat'));
         $meta = array('page_title' => lang('dawat'), 'bc' => $bc);
@@ -2029,7 +2022,7 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
             $result = $this->site->query_binding("SELECT 
              SUM(supporter_target)  supporter_target, SUM(friend_target)  friend_target, SUM(non_muslim_supporter_target)  non_muslim_supporter_target, SUM(non_muslim_friend_target)  non_muslim_friend_target, SUM(wellwisher_target)  wellwisher_target,
              SUM(supporter_decrease)  supporter_decrease, SUM(friend_decrease)  friend_decrease, SUM(non_muslim_supporter_decrease)  non_muslim_supporter_decrease, SUM(non_muslim_friend_decrease)  non_muslim_friend_decrease, SUM(wellwisher_decrease)  wellwisher_decrease
-             FROM `sma_dawat_decrease_target` WHERE date BETWEEN ? AND ? ", array($report_start, $report_end));
+             , SUM(wellwisher_increase)  wellwisher_increase FROM `sma_dawat_decrease_target` WHERE date BETWEEN ? AND ? ", array($report_start, $report_end));
 
 
 
@@ -2038,6 +2031,74 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
 
+
+    
+
+    function getEntryGroupDawahActivity( $report_type_get, $branch_id = NULL)
+    {
+
+        $report_start = $report_type_get['start'];
+        $report_end = $report_type_get['end'];
+        $report_type = $report_type_get['type'];
+        $report_year = $report_type_get['year'];
+
+
+        if ($report_type_get['is_current'] != false) {
+
+
+
+            if ($report_type == 'half_yearly') {
+ 
+                $groupDawahActivity = $this->site->getOneRecord('group_dawah_activity', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                if (!$groupDawahActivity) {
+                    $this->site->insertData('group_dawah_activity', array( 'branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+
+                }
+
+
+
+            } else {
+ 
+
+                 $groupDawahActivity = $this->site->getOneRecord('group_dawah_activity', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                if (!$groupDawahActivity) {
+                    $this->site->insertData('group_dawah_activity', array( 'branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+
+                }
+
+
+            }
+        }
+
+ 
+    }
+
+ function getDawahActivity($report_type_get, $branch_id = NULL)
+    {
+
+
+        $report_start = $report_type_get['start'];
+        $report_end = $report_type_get['end'];
+        $report_type = $report_type_get['type'];
+        $report_year = $report_type_get['year'];
+
+
+        if ($branch_id)
+            $result = $this->site->query_binding("SELECT * FROM `sma_group_dawah_activity` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
+        else
+            $result = $this->site->query_binding("SELECT 
+             SUM(group_number)  group_number, SUM(group_increase)  group_increase, SUM(dawah_times)  dawah_times, SUM(supporter_increase)  supporter_increase, SUM(friend_increase)  friend_increase ,
+             SUM(number_groups_sent)  number_groups_sent, SUM(community_based_program_number)  community_based_program_number, SUM(community_based_program_avg_presence)  community_based_program_avg_presence,  
+SUM(supporter_org_increase)  supporter_org_increase, SUM(total_mosque)  total_mosque,  SUM(mosque_activity_prev)  mosque_activity_prev,  
+SUM(mosque_activity_current)  mosque_activity_current, SUM(mosque_activity_increase)  mosque_activity_increase,  SUM(mosque_activity_program)  mosque_activity_program  
+  FROM `sma_group_dawah_activity` WHERE date BETWEEN ? AND ? ", array($report_start, $report_end));
+
+
+
+        return $result;
+    }
 
 
 

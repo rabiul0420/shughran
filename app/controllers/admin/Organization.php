@@ -1721,8 +1721,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
 
 
 
-
-
+ 
 
 
 
@@ -2368,14 +2367,16 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
         $branch = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
 
 
-        if ($branch_id) {
+
+
+
+
+
+
+ if ($branch_id) {
 
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, v3_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "'," . $branch_id . ") prev, current_supporter_organization, v3_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, v3_latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, v3_org_current_session( {$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date,current_unit,  thana_code,
-                v3_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "'," . $branch_id . ") prev_unit,
-                v3_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, " . $branch_id . ") increase, 
-                v3_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2, " . $branch_id . ") decrease
-         ", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name,  thana_code, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, thana_count", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -2385,10 +2386,7 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_active', 1);
         } else {
             $this->db
-                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code,  institution_name, t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, v3_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',-1) prev, current_supporter_organization, v3_latest_organization_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "', '" . $end . "',1) increase, v3_latest_organization_status({$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2) decrease, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,   is_organization, org_type, v3_org_current_session({$this->db->dbprefix('institutionlist')}.id, '" . $start . "' , '" . $end . "' ) in_current_session , notes, date,current_unit,  thana_code,
-                v3_organization_prev( {$this->db->dbprefix('institutionlist')}.id,'" . $prev . "',-1) prev_unit,
-                v3_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',1, -1) increase, 
-                v3_latest_unit_status( {$this->db->dbprefix('institutionlist')}.id,'" . $start . "','" . $end . "',2,-1) decrease ", FALSE)
+                ->select($this->db->dbprefix('institutionlist') . ".id as id,  {$this->db->dbprefix('institutionlist')}.code as code, institution_name,  t1.institution_type as plname, t2.institution_type as rcname,   {$this->db->dbprefix('branches')}.name as branch_name, thana_code, `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`,`non_muslim_student`,`total_student_number`,is_organization, thana_count", FALSE)
                 ->from('institutionlist');
             $this->db->join('institution t1', 'institutionlist.institution_type=t1.id', 'left');
             $this->db->join('institution t2', 'institutionlist.institution_type_child=t2.id', 'left');
@@ -2397,6 +2395,13 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
                 ->where('institutionlist.is_active', 1);
         }
 
+
+
+
+
+
+
+ 
 
 
 
@@ -2410,86 +2415,50 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $data = NULL;
         }
 
-        //$this->sma->print_arrays($data);
+       // $this->sma->print_arrays($data);
 
 
         if (!empty($data)) {
-
+  
             $this->load->library('excel');
             $this->excel->setActiveSheetIndex(0);
-            $this->excel->getActiveSheet()->setTitle('প্রতিষ্ঠান তালিকা');
+            $this->excel->getActiveSheet()->setTitle('প্রতিষ্ঠান তালিকা');	
+
+
             $this->excel->getActiveSheet()->SetCellValue('A1', 'প্রতিষ্ঠানের কোড');
             $this->excel->getActiveSheet()->SetCellValue('B1', 'প্রতিষ্ঠানের নাম');
             $this->excel->getActiveSheet()->SetCellValue('C1', 'ধরণ');
             $this->excel->getActiveSheet()->SetCellValue('D1', 'উপ ধরণ');
-            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড ');
+            $this->excel->getActiveSheet()->SetCellValue('E1', 'শাখা কোড');
+            $this->excel->getActiveSheet()->SetCellValue('F1', 'থানা কোড');
+            $this->excel->getActiveSheet()->SetCellValue('G1', 'সমর্থক');
+            $this->excel->getActiveSheet()->SetCellValue('H1', 'অন্যান্য ছাত্র সংগঠনের কর্মী');
+            $this->excel->getActiveSheet()->SetCellValue('I1', 'মোট ছাত্রী সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('J1', 'ছাত্রী সমর্থক');
+            $this->excel->getActiveSheet()->SetCellValue('K1', 'অমুসলিম ছাত্রছাত্রী');
+            $this->excel->getActiveSheet()->SetCellValue('L1', 'মোট ছাত্রছাত্রী সংখ্যা');
+            $this->excel->getActiveSheet()->SetCellValue('M1', 'OLD সংগঠন');
+            $this->excel->getActiveSheet()->SetCellValue('N1', 'সংগঠন');
 
-            $this->excel->getActiveSheet()->SetCellValue('F1', 'থানা কোড ');
-
-            $this->excel->getActiveSheet()->SetCellValue('G1', 'সমর্থক সংগঠন পূর্ব');
-            $this->excel->getActiveSheet()->SetCellValue('H1', 'সমর্থক সংগঠন বর্তমান');
-            $this->excel->getActiveSheet()->SetCellValue('I1', 'সমর্থক সংগঠন বৃদ্ধি');
-            $this->excel->getActiveSheet()->SetCellValue('J1', 'সমর্থক সংগঠন ঘাটতি');
-
-            $this->excel->getActiveSheet()->SetCellValue('K1', 'সমর্থক');
-            $this->excel->getActiveSheet()->SetCellValue('L1', 'অন্যান্য ছাত্র সংগঠনের কর্মী');
-            $this->excel->getActiveSheet()->SetCellValue('M1', 'মোট ছাত্রী সংখ্যা');
-            $this->excel->getActiveSheet()->SetCellValue('N1', 'ছাত্রী সমর্থক');
-            $this->excel->getActiveSheet()->SetCellValue('O1', 'অমুসলিম ছাত্রছাত্রী');
-            $this->excel->getActiveSheet()->SetCellValue('P1', 'মোট ছাত্রছাত্রী সংখ্যা');
-            $this->excel->getActiveSheet()->SetCellValue('Q1', 'সংগঠন (আছে/নেই)');
-            $this->excel->getActiveSheet()->SetCellValue('R1', 'সংগঠনের ধরণ ');
-            $this->excel->getActiveSheet()->SetCellValue('S1', 'বর্তমান সেশনে সংগঠন সংখ্যা');
-            $this->excel->getActiveSheet()->SetCellValue('T1', 'মন্তব্য');
-            $this->excel->getActiveSheet()->SetCellValue('U1', 'বর্তমান সেশনে যুক্ত কিনা ?');
-
-            $this->excel->getActiveSheet()->SetCellValue('V1', 'উপশাখা পূর্ব সংখ্যা');
-            $this->excel->getActiveSheet()->SetCellValue('W1', 'উপশাখা সংখ্যা');
-            $this->excel->getActiveSheet()->SetCellValue('X1', 'উপশাখা বৃৃদ্ধি');
-            $this->excel->getActiveSheet()->SetCellValue('Y1', 'উপশাখা ঘাটতি');
-
-            //  `supporter`,`other_org_worker`,`total_female_student`,`female_student_supporter`
-            // ,`non_muslim_student`,`total_student_number`,   is_organization
-            // prev, current_supporter_organization
-            // branch_name increase decrease
             $row = 2;
-
+          
 
             foreach ($data as $data_row) {
-                $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->code);
+                $this->excel->getActiveSheet()->SetCellValue('A' . $row, $data_row->code);           
                 $this->excel->getActiveSheet()->SetCellValue('B' . $row, $data_row->institution_name);
                 $this->excel->getActiveSheet()->SetCellValue('C' . $row, $data_row->plname);
                 $this->excel->getActiveSheet()->SetCellValue('D' . $row, $data_row->rcname);
                 $this->excel->getActiveSheet()->SetCellValue('E' . $row, $data_row->branch_name);
                 $this->excel->getActiveSheet()->SetCellValue('F' . $row, $data_row->thana_code);
-                $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->prev);
-                $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->current_supporter_organization);
-                $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->increase);
-                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->decrease);
-                $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->supporter);
-                $this->excel->getActiveSheet()->SetCellValue('L' . $row, $data_row->other_org_worker);
-                $this->excel->getActiveSheet()->SetCellValue('M' . $row, $data_row->total_female_student);
-                $this->excel->getActiveSheet()->SetCellValue('N' . $row, $data_row->female_student_supporter);
-                $this->excel->getActiveSheet()->SetCellValue('O' . $row, $data_row->non_muslim_student);
-                $this->excel->getActiveSheet()->SetCellValue('P' . $row, $data_row->total_student_number);
-                $this->excel->getActiveSheet()->SetCellValue('Q' . $row, $data_row->is_organization == 1 ? "আছে" : 'নেই');
+                $this->excel->getActiveSheet()->SetCellValue('G' . $row, $data_row->supporter);
+                $this->excel->getActiveSheet()->SetCellValue('H' . $row, $data_row->other_org_worker);
+                $this->excel->getActiveSheet()->SetCellValue('I' . $row, $data_row->total_female_student);
+                $this->excel->getActiveSheet()->SetCellValue('J' . $row, $data_row->female_student_supporter);
+                $this->excel->getActiveSheet()->SetCellValue('K' . $row, $data_row->non_muslim_student);
+                $this->excel->getActiveSheet()->SetCellValue('L' . $row, $data_row->total_student_number);
+                $this->excel->getActiveSheet()->SetCellValue('M' . $row, $data_row->is_organization == 1 ? "আছে" : 'নেই');
+                $this->excel->getActiveSheet()->SetCellValue('N' . $row, $data_row->thana_count);
 
-                // $this->excel->getActiveSheet()->SetCellValue('R' . $row, $data_row->org_type);
-
-                // $res = ( $rule1 ? true : $rule2 ? true : false )
-
-                $this->excel->getActiveSheet()->SetCellValue('R' . $row, ($data_row->org_type == 'unit' ? 'উপশাখা' : ($data_row->org_type == 'ward' ? 'ওয়ার্ড' : ($data_row->org_type == 'thana' ? 'থানা' : ($data_row->org_type == 'branch' ? 'শাখা' : 'নেই')))));
-
-                $this->excel->getActiveSheet()->SetCellValue('S' . $row, $data_row->in_current_session == 1 ? 'Increase' : ($data_row->in_current_session == 2 ? 'Decrease' : ''));
-                //$this->excel->getActiveSheet()->SetCellValue('R' . $row, $data_row->in_current_session);
-                $this->excel->getActiveSheet()->SetCellValue('T' . $row, $data_row->notes);
-                $this->excel->getActiveSheet()->SetCellValue('U' . $row, strtotime($data_row->date) > strtotime($start) && strtotime($data_row->date) < strtotime($end) ? 'Current' : 'not in current');
-                //$this->excel->getActiveSheet()->SetCellValue('T' . $row, $data_row->date); 
-
-                $this->excel->getActiveSheet()->SetCellValue('V' . $row, $data_row->current_unit);
-                $this->excel->getActiveSheet()->SetCellValue('W' . $row, $data_row->prev_unit);
-                $this->excel->getActiveSheet()->SetCellValue('X' . $row, $data_row->increase);
-                $this->excel->getActiveSheet()->SetCellValue('Y' . $row, $data_row->decrease);
                 $row++;
             }
             //  $this->excel->getActiveSheet()->getStyle("C" . $row . ":G" . $row)->getBorders()
@@ -2500,14 +2469,8 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(50);
             $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
             $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
-
-
-            $this->excel->getActiveSheet()->getColumnDimension('U')->setWidth(30);
-            $this->excel->getActiveSheet()->getColumnDimension('V')->setWidth(30);
-            $this->excel->getActiveSheet()->getColumnDimension('W')->setWidth(30);
-            $this->excel->getActiveSheet()->getColumnDimension('X')->setWidth(30);
             $this->excel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
-            $this->excel->getActiveSheet()->getStyle('C2:P' . $row)->getAlignment()->setWrapText(true);
+            $this->excel->getActiveSheet()->getStyle('C2:N' . $row)->getAlignment()->setWrapText(true);
 
             $filename = 'institution_list_branch_' . ($branch_id ? $branch->name : 'all') . '_' . date("Y_m");
 

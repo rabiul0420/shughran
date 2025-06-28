@@ -179,7 +179,7 @@
                                     <td>
                                         <a href="#" class="editable editable-click" data-type="number"
                                             data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
-                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="friend"
+                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="supporter"
                                             data-title="Enter">
                                             <?= $dawat_info['supporter'] ?>
                                         </a>
@@ -382,12 +382,8 @@
 
                                 <td>
                                     <?php
-                                    $wellwisher_inc = 0;
-                                    foreach ($institutiontype as $row) {
-
-                                        $dawat_info = dawat_info($dawat_summary, $row->id);
-                                        $wellwisher_inc += $dawat_info['wellwisher'];
-                                    }
+                                    $wellwisher_inc = $dawat_decrease_target[0]['wellwisher_increase'];
+                                    
                                     echo $lastyeardawat[0]['wellwisher'] + $wellwisher_inc - $dawat_decrease_target[0]['wellwisher_decrease'];
                                     ?>
 
@@ -396,26 +392,22 @@
 
                                 </td>
                                 <td>
-                                    <?= $wellwisher_inc ?>
-
+                                   <a href="#" class="editable editable-click" data-type="number"
+                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
+                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                        data-name="wellwisher_increase" data-title="Enter">
+                                        <?= $dawat_decrease_target[0]['wellwisher_increase'] ?>
+                                    </a>  
                                 </td>
                                 <?php foreach ($institutiontype as $row) {
-
-                                    $dawat_info = dawat_info($dawat_summary, $row->id);
-
-
-                                    ?>
-
-
+                                        ?>
                                     <td>
-                                        <a href="#" class="editable editable-click" data-type="number"
-                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
-                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="wellwisher"
-                                            data-title="Enter">
-                                            <?= $dawat_info['wellwisher'] ?>
-                                        </a>
+                                        
                                     </td>
                                 <?php } ?>
+
+
+
                                 <td>
                                      <a href="#" class="editable editable-click" data-type="number"
                                         data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"

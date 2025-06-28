@@ -6,17 +6,12 @@
 
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-barcode"></i><?= 'দাওয়াত ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')';
-        $branch_code = $branch->code; ?>
+        <h2 class="blue"><i
+                class="fa-fw fa fa-barcode"></i><?= 'দাওয়াত ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+
+
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
-
-
-
-
 
 
 
@@ -33,6 +28,7 @@
                 } else {
                     echo anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : ''), 'ষাণ্মাসিক ' . $report_info['year']);
                     echo "&nbsp;|&nbsp;" . anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $report_info['last_year'], 'বার্ষিক ' . $report_info['last_year']);
+
                 }
             } else {
 
@@ -41,7 +37,9 @@
                 } else {
 
                     echo anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $report_info['year'], 'ষাণ্মাসিক ' . $report_info['year']);
+
                 }
+
             }
 
 
@@ -69,6 +67,8 @@
                         echo ' <li>' . anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : '') . '?type=annual&year=' . $i, 'বার্ষিক ' . $i) . ' </li>';
 
                         echo ' <li>' . anchor('admin/dawat' . ($branch_id ? '/' . $branch_id : '') . '?type=half_yearly&year=' . $i, 'ষাণ্মাসিক ' . $i) . ' </li>';
+
+
                     }
                     ?>
 
@@ -85,21 +85,22 @@
                         <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>
                     </a>
 
-                    <a href="#" onclick="doit('xlsx','data-excel');  return false;"><i
+                    <a href="#" onclick="doit('xlsx','rowspan-colspan-table-1');  return false;"><i
                             class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?> </a>
 
                 </li>
+
                 <?php if (!empty($branches)) { ?>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip"
                                 data-placement="left" title="<?= lang("all_branches") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('dawat') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a>
+                            <li><a href="<?= admin_url('dawat/other') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a>
                             </li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('dawat/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('dawat/other/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -111,344 +112,271 @@
     <div class="box-content">
         <div class="row">
             <div class="col-lg-12">
-                <p class="introtext"><?php // lang('list_results'); 
-                ?></p>
-
-
-
-
-                <div class="table-responsive">
-
-
-
-
-
-
-
-                    <table class="table table-bordered" id="data-excel"
-                        data-branch="<?php echo isset($branch_code) ? $branch_code . '_dawat_' : 'central_dawat' ?>">
-
-                        <thead>
-                            <tr style="height: 36px;">
-                                <td rowspan="2">দাওয়াত</td>
-                                <td rowspan="2">পূর্ব </td>
-                                <td rowspan="2">বর্তমান</td>
-                                <td colspan="<?= count($institutiontype) + 1 ?>">Increase</td>
-                                <td rowspan="2">টার্গেট </td>
-                                <td rowspan="2">%</td>
-                                <td rowspan="2">ঘাটতি </td>
-                            </tr>
-                            <tr style="height: 36px;">
-                                <td>Total Increase</td>
-                                <?php foreach ($institutiontype as $row) { ?>
-                                    <td><?= $row->institution_type ?></td>
-                                <?php } ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Supporter</td>
-                                <td><?php echo $lastyeardawat[0]['supporter']; ?></td>
-                                <td>
-                                    <?php
-                                    $supporter_inc = 0;
-                                    foreach ($institutiontype as $row) {
-
-                                        $dawat_info = dawat_info($dawat_summary, $row->id);
-                                        $supporter_inc += $dawat_info['supporter'];
-                                    }
-                                    echo $lastyeardawat[0]['supporter'] + $supporter_inc - $dawat_decrease_target[0]['supporter_decrease'];
-                                    ?>
-
-
-
-
-                                </td>
-                                <td>
-                                    <?= $supporter_inc ?>
-
-                                </td>
-                                <?php foreach ($institutiontype as $row) {
-
-                                    $dawat_info = dawat_info($dawat_summary, $row->id);
-
-
-                                    ?>
-
-
-                                    <td>
-                                        <a href="#" class="editable editable-click" data-type="number"
-                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
-                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="friend"
-                                            data-title="Enter">
-                                            <?= $dawat_info['supporter'] ?>
-                                        </a>
-                                    </td>
-                                <?php } ?>
-                                <td>
-                                    <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="supporter_target" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['supporter_target'] ?>
-                                    </a>
-                                </td>
-                                <td></td>
-                                <td>
-                                <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="supporter_decrease" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['supporter_decrease'] ?>
-                                    </a>    
-                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Friend</td>
-                                <td><?php echo $lastyeardawat[0]['friend']; ?></td>
-                                <td>
-                                    <?php
-                                    $friend_inc = 0;
-                                    foreach ($institutiontype as $row) {
-
-                                        $dawat_info = dawat_info($dawat_summary, $row->id);
-                                        $friend_inc += $dawat_info['friend'];
-                                    }
-                                    echo $lastyeardawat[0]['friend'] + $friend_inc - $dawat_decrease_target[0]['friend_decrease'];
-                                    ?>
-
-
-
-
-                                </td>
-                                <td>
-                                    <?= $friend_inc ?>
-
-                                </td>
-                                <?php foreach ($institutiontype as $row) {
-
-                                    $dawat_info = dawat_info($dawat_summary, $row->id);
-
-
-                                    ?>
-
-
-                                    <td>
-                                        <a href="#" class="editable editable-click" data-type="number"
-                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
-                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="friend"
-                                            data-title="Enter">
-                                            <?= $dawat_info['friend'] ?>
-                                        </a>
-                                    </td>
-                                <?php } ?>
-                                <td>
-                                <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="friend_target" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['friend_target'] ?>
-                                    </a>        
-                                 </td>
-                                <td></td>
-                                <td>
-                                 <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="friend_decrease" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['friend_decrease'] ?>
-                                    </a>       
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Non Muslim Supporter</td>
-                                <td><?php echo $lastyeardawat[0]['non_muslim_supporter']; ?></td>
-                                <td>
-                                    <?php
-                                    $non_muslim_supporter_inc = 0;
-                                    foreach ($institutiontype as $row) {
-
-                                        $dawat_info = dawat_info($dawat_summary, $row->id);
-                                        $non_muslim_supporter_inc += $dawat_info['non_muslim_supporter'];
-                                    }
-                                    echo $lastyeardawat[0]['non_muslim_supporter'] + $non_muslim_supporter_inc - $dawat_decrease_target[0]['non_muslim_supporter_decrease'];
-                                    ?>
-
-
-
-
-                                </td>
-                                <td>
-                                    <?= $non_muslim_supporter_inc ?>
-
-                                </td>
-                                <?php foreach ($institutiontype as $row) {
-
-                                    $dawat_info = dawat_info($dawat_summary, $row->id);
-
-
-                                    ?>
-
-
-                                    <td>
-                                        <a href="#" class="editable editable-click" data-type="number"
-                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
-                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                            data-name="non_muslim_supporter" data-title="Enter">
-                                            <?= $dawat_info['non_muslim_supporter'] ?>
-                                        </a>
-                                    </td>
-                                <?php } ?>
-                                <td>
-                                      <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="non_muslim_supporter_target" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['non_muslim_supporter_target'] ?>
-                                    </a>  
-                                </td>
-                                <td></td>
-                                <td>
-                                    <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="non_muslim_supporter_decrease" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['non_muslim_supporter_decrease'] ?>
-                                    </a>  
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Non Muslim Friend</td>
-                                <td><?php echo $lastyeardawat[0]['non_muslim_friend']; ?></td>
-
-                                <td>
-                                    <?php
-                                    $non_muslim_friend_inc = 0;
-                                    foreach ($institutiontype as $row) {
-
-                                        $dawat_info = dawat_info($dawat_summary, $row->id);
-                                        $non_muslim_friend_inc += $dawat_info['non_muslim_friend'];
-                                    }
-                                    echo $lastyeardawat[0]['non_muslim_friend'] + $non_muslim_friend_inc - $dawat_decrease_target[0]['non_muslim_friend_decrease'];
-                                    ?>
-
-
-
-
-                                </td>
-                                <td>
-                                    <?= $non_muslim_friend_inc ?>
-
-                                </td>
-                                <?php foreach ($institutiontype as $row) {
-
-                                    $dawat_info = dawat_info($dawat_summary, $row->id);
-
-
-                                    ?>
-
-
-                                    <td>
-                                        <a href="#" class="editable editable-click" data-type="number"
-                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
-                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                            data-name="non_muslim_friend" data-title="Enter">
-                                            <?= $dawat_info['non_muslim_friend'] ?>
-                                        </a>
-                                    </td>
-                                <?php } ?>
-                                <td>
-                                      <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="non_muslim_friend_target" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['non_muslim_friend_target'] ?>
-                                    </a>  
-                                </td>
-                                <td></td>
-                                <td>
-                                      <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="non_muslim_friend_decrease" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['non_muslim_friend_decrease'] ?>
-                                    </a>  
-                                
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>WW</td>
-                                <td><?php echo $lastyeardawat[0]['wellwisher']; ?></td>
-
-                                <td>
-                                    <?php
-                                    $wellwisher_inc = 0;
-                                    foreach ($institutiontype as $row) {
-
-                                        $dawat_info = dawat_info($dawat_summary, $row->id);
-                                        $wellwisher_inc += $dawat_info['wellwisher'];
-                                    }
-                                    echo $lastyeardawat[0]['wellwisher'] + $wellwisher_inc - $dawat_decrease_target[0]['wellwisher_decrease'];
-                                    ?>
-
-
-
-
-                                </td>
-                                <td>
-                                    <?= $wellwisher_inc ?>
-
-                                </td>
-                                <?php foreach ($institutiontype as $row) {
-
-                                    $dawat_info = dawat_info($dawat_summary, $row->id);
-
-
-                                    ?>
-
-
-                                    <td>
-                                        <a href="#" class="editable editable-click" data-type="number"
-                                            data-table="dawat_summary" data-pk="<?= $dawat_info['id'] ?>"
-                                            data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="wellwisher"
-                                            data-title="Enter">
-                                            <?= $dawat_info['wellwisher'] ?>
-                                        </a>
-                                    </td>
-                                <?php } ?>
-                                <td>
-                                     <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="wellwisher_target" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['wellwisher_target'] ?>
-                                    </a>  
-                                    </td>
-                                <td></td>
-                                <td>
-                                     <a href="#" class="editable editable-click" data-type="number"
-                                        data-table="dawat_decrease_target" data-pk="<?= $dawat_decrease_target[0]['id'] ?>"
-                                        data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
-                                        data-name="wellwisher_decrease" data-title="Enter">
-                                        <?= $dawat_decrease_target[0]['wellwisher_decrease'] ?>
-                                    </a>  
-                                 </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-
-
-
-
-
-
-
-
+                <p class="introtext"><?php // lang('list_results'); ?></p>
+
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered" id="data-excel">
+
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5">
+                                            <p>গ্রুপ দাওয়াতি কাজ</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p>দাওয়াতি গ্রুপ&nbsp;</p>
+                                        </td>
+                                        <td rowspan="2">
+                                            <p>কত বার বের হয়েছে?</p>
+                                        </td>
+                                        <td rowspan="2">বন্ধ বৃদ্ধি</td>
+                                        <td rowspan="2">সমর্থক বৃদ্ধি</td>
+                                    </tr>
+                                    <tr>
+                                        <td>সংখ্যা</td>
+                                        <td>
+                                            <p>বৃদ্ধি</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="group_number" data-title="Enter">
+                                                <?= $dawah_activity[0]['group_number'] ?>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="group_increase" data-title="Enter">
+                                                <?= $dawah_activity[0]['group_increase'] ?>
+                                            </a>
+
+                                        </td>
+                                        <td>
+                                            <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="dawah_times" data-title="Enter">
+                                                <?= $dawah_activity[0]['dawah_times'] ?>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="supporter_increase" data-title="Enter">
+                                                <?= $dawah_activity[0]['supporter_increase'] ?>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="friend_increase" data-title="Enter">
+                                                <?= $dawah_activity[0]['friend_increase'] ?>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <table class="table table-bordered">
+
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">দাওয়াতি গ্রুপ প্রেরণ</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">গ্রুপ প্রেরণ সংখ্যা</td>
+                                    <td colspan="2">সমাজভিত্তিক/অন্যান্য গ্রোপ্রেম</td>
+                                    <td rowspan="2">সমর্থক সংগঠন বৃদ্ধি</td>
+                                </tr>
+                                <tr>
+                                    <td>সংখ্যা</td>
+                                    <td>গড় উপ.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="number_groups_sent" data-title="Enter">
+                                                <?= $dawah_activity[0]['number_groups_sent'] ?>
+                                            </a></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="community_based_program_number" data-title="Enter">
+                                                <?= $dawah_activity[0]['community_based_program_number'] ?>
+                                            </a></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="community_based_program_avg_presence" data-title="Enter">
+                                                <?= $dawah_activity[0]['community_based_program_avg_presence'] ?>
+                                            </a></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="supporter_org_increase" data-title="Enter">
+                                                <?= $dawah_activity[0]['supporter_org_increase'] ?>
+                                            </a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                        <table class="table table-bordered">
+
+                            <tbody>
+                                <tr>
+                                    <td colspan="5">মসজিদভিত্তিক কাজ</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">মোট মসজিদ সংখ্যা</td>
+                                    <td colspan="4">কাজের অবস্থা</td>
+                                </tr>
+                                <tr>
+                                    <td>পূর্ব</td>
+                                    <td>বর্তমান</td>
+                                    <td>বৃদ্ধি</td>
+                                    <td>প্রোগ্রাম সংখ্যা</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="total_mosque" data-title="Enter">
+                                                <?= $dawah_activity[0]['total_mosque'] ?>
+                                            </a></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="mosque_activity_prev" data-title="Enter">
+                                                <?= $dawah_activity[0]['mosque_activity_prev'] ?>
+                                            </a></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="mosque_activity_current" data-title="Enter">
+                                                <?= $dawah_activity[0]['mosque_activity_current'] ?>
+                                            </a></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="mosque_activity_increase" data-title="Enter">
+                                                <?= $dawah_activity[0]['mosque_activity_increase'] ?>
+                                            </a></td>
+                                    <td><a href="#" class="editable editable-click" data-type="number"
+                                                data-table="group_dawah_activity"
+                                                data-pk="<?= $dawah_activity[0]['id'] ?>"
+                                                data-url="<?php echo admin_url('dawat/detailupdate'); ?>"
+                                                data-name="mosque_activity_program" data-title="Enter">
+                                                <?= $dawah_activity[0]['mosque_activity_program'] ?>
+                                            </a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>&nbsp;</p>
+
+                    </div>
 
 
                 </div>
+
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="2">দাওয়াতি সপ্তাহ, দশক ও পক্ষ</td>
+                                        <td rowspan="2">দাওয়াতি গ্রুপ সংখ্যা</td>
+                                        <td rowspan="2">অংশগ্রহণকারী জনশক্তি সংখ্যা</td>
+                                        <td rowspan="2">সমর্থক&nbsp; বৃদ্ধি</td>
+                                        <td rowspan="2">বন্ধু বৃদ্ধি</td>
+                                        <td rowspan="2">অনুসলিম সমর্থক&nbsp; বৃদ্ধি</td>
+                                        <td rowspan="2">অনুসলিম বন্ধ বৃদ্ধি</td>
+                                        <td rowspan="2">শুভাকাঙ্খী বৃদ্ধি&nbsp;</td>
+                                        <td colspan="2">
+                                            <p>সাধারণ সভা/দাওয়াতি প্রোগ্রাম</p>
+                                        </td>
+                                        <td rowspan="2">
+                                            <p>পরিচিতি বিতরণ</p>
+                                        </td>
+                                        <td rowspan="2">
+                                            <p>কিশোর পত্রিকা বিতরণ</p>
+                                        </td>
+                                        <td rowspan="2">গ্রাহক বৃদ্ধি&nbsp;</td>
+                                        <td rowspan="2">
+                                            <p>সমর্থক&nbsp; সংগঠন বৃদ্ধি</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>সংখ্যা</p>
+                                        </td>
+                                        <td>
+                                            <p>গড় উপ.</p>
+                                        </td>
+                                    </tr>
+
+                                    <?php foreach ($dawat_category as $row) { ?>
+                                        <tr>
+                                            <td><?= $row->name ?></td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
     </div>

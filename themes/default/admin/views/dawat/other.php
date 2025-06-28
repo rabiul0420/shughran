@@ -95,12 +95,12 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon fa fa-building-o tip"
                                 data-placement="left" title="<?= lang("all_branches") ?>"></i></a>
                         <ul class="dropdown-menu pull-right tasks-menus" role="menu" aria-labelledby="dLabel">
-                            <li><a href="<?= admin_url('dawat') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a>
+                            <li><a href="<?= admin_url('dawat/other') ?>"><i class="fa fa-building-o"></i> <?= 'সকল শাখা' ?></a>
                             </li>
                             <li class="divider"></li>
                             <?php
                             foreach ($branches as $branch) {
-                                echo '<li><a href="' . admin_url('dawat/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
+                                echo '<li><a href="' . admin_url('dawat/other/' . $branch->id) . '"><i class="fa fa-building"></i>' . $branch->name . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -135,7 +135,7 @@
                                             <p>কত বার বের হয়েছে?</p>
                                         </td>
                                         <td rowspan="2">বন্ধ বৃদ্ধি</td>
-                                        <td rowspan="2">সমন্বয় বৃদ্ধি</td>
+                                        <td rowspan="2">সমর্থক বৃদ্ধি</td>
                                     </tr>
                                     <tr>
                                         <td>সংখ্যা</td>
@@ -144,11 +144,11 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
+                                        <td><?=$dawah_activity[0]['group_number']?></td>
+                                        <td><?=$dawah_activity[0]['group_increase']?></td>
+                                        <td><?=$dawah_activity[0]['dawah_times']?></td>
+                                        <td><?=$dawah_activity[0]['supporter_increase']?></td>
+                                        <td><?=$dawah_activity[0]['friend_increase']?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -172,10 +172,18 @@
                                     <td>গড় উপ.</td>
                                 </tr>
                                 <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
+                                    <td>
+                                        <?=$dawah_activity[0]['number_groups_sent']?>
+                                    </td>
+                                    <td>
+                                        <?=$dawah_activity[0]['community_based_program_number']?>
+                                    </td>
+                                    <td>
+                                        <?=$dawah_activity[0]['community_based_program_avg_presence']?>
+                                    </td>
+                                    <td>
+                                        <?=$dawah_activity[0]['supporter_org_increase']?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -200,11 +208,21 @@
                                     <td>প্রোগ্রাম সংখ্যা</td>
                                 </tr>
                                 <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
+                                    <td>
+                                        <?=$dawah_activity[0]['total_mosque']?>
+                                    </td>
+                                    <td>
+                                        <?=$dawah_activity[0]['mosque_activity_prev']?>
+                                    </td>
+                                    <td>
+                                        <?=$dawah_activity[0]['mosque_activity_current']?>
+                                    </td>
+                                    <td>
+                                        <?=$dawah_activity[0]['mosque_activity_increase']?>
+                                    </td>
+                                    <td>
+                                        <?=$dawah_activity[0]['mosque_activity_program']?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -229,7 +247,7 @@
                                         <td rowspan="2">দাওয়াতি গ্রুপ সংখ্যা</td>
                                         <td rowspan="2">অংশগ্রহণকারী জনশক্তি সংখ্যা</td>
                                         <td rowspan="2">সমর্থক&nbsp; বৃদ্ধি</td>
-                                        <td rowspan="2">বন্ধ বৃদ্ধি</td>
+                                        <td rowspan="2">বন্ধু বৃদ্ধি</td>
                                         <td rowspan="2">অনুসলিম সমর্থক&nbsp; বৃদ্ধি</td>
                                         <td rowspan="2">অনুসলিম বন্ধ বৃদ্ধি</td>
                                         <td rowspan="2">শুভাকাঙ্খী বৃদ্ধি&nbsp;</td>

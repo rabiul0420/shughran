@@ -301,12 +301,8 @@
                                 <td><?php echo $lastyeardawat[0]['wellwisher']; ?></td>
                                  <td>
                                     <?php
-                                    $wellwisher_inc = 0;
-                                    foreach ($institutiontype as $row) {
-
-                                        $dawat_info = dawat_info($dawat_summary, $row->id);
-                                        $wellwisher_inc += $dawat_info['wellwisher'];
-                                    }
+                                    $wellwisher_inc = $dawat_decrease_target[0]['wellwisher_increase'];
+                                     
                                     echo $lastyeardawat[0]['wellwisher'] + $wellwisher_inc-$dawat_decrease_target[0]['wellwisher_decrease'];
                                     ?>
 
@@ -319,17 +315,8 @@
 
                                 </td>
                                 <?php foreach ($institutiontype as $row) {
-
-                                    $dawat_info = dawat_info($dawat_summary, $row->id);
-
-
-                                    ?>
-
-
-                                    <td>
-                                        <?= $dawat_info['wellwisher'] ?>
-                                    </td>
-                                <?php } ?>
+                                    echo '<td></td>';
+                                         } ?>
                                 <td><?=$dawat_decrease_target[0]['wellwisher_target']?></td>
                                 <td></td>
                                 <td><?=$dawat_decrease_target[0]['wellwisher_decrease']?></td>
