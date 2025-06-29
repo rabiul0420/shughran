@@ -114,7 +114,7 @@
 
                         <tr>
                             <td colspan="2" rowspan="2">জনশক্তির আউটপুট</td>
-                            <td colspan="5" rowspan="2">মাধ্যমিক স্তরের মেধাবী শিক্ষার্থী</td>
+                            <td colspan="5" rowspan="2">সিংগেল ডিজিট</td>
                             <td colspan="7">সর্বশেষ পরীক্ষায় GPA-5 প্রাপ্ত </td>
                             <td colspan="2">ডিপার্টমেন্টে প্লেসধারী (১-৫)</td>
 
@@ -246,7 +246,7 @@
 
                             <tr>
                                 <td colspan="2" rowspan="2">জনশক্তির আউটপুট</td>
-                                <td colspan="5" rowspan="2">মাধ্যমিক স্তরের মেধাবী শিক্ষার্থী</td>
+                                <td colspan="5" rowspan="2">সিংগেল ডিজিট</td>
                                 <td colspan="7">সর্বশেষ পরীক্ষায় GPA-5 প্রাপ্ত </td>
                                 <td colspan="2">ডিপার্টমেন্টে প্লেসধারী (১-৫)</td>
 
