@@ -127,20 +127,6 @@ class Bm extends MY_Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	function getEntryInfo($report_type, $sources, $branch_id = NULL)
 	{
 
@@ -160,7 +146,7 @@ class Bm extends MY_Controller
 			$type =   ($cal_type == 'half_yearly') ? 'half_yearly' : 'annual';
 
 			$bm_recordinfo = $this->site->getOneRecord('bm_record', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $end, 'date > ' => $start, 'calculated_flag' => 2), 'id desc', 1, 0);
-
+ 
 
 
 
