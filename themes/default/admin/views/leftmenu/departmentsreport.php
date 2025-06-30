@@ -126,7 +126,7 @@
                         </li>
 						<li class="mm_chatro_andolon">
                             <a href="<?= admin_url('departmentsreport/chatro-andolon-bivag') ?>">
-                                <i class="fa fa-cog"></i><span class="text">ছাত্র আন্দোলন বিভাগ</span>
+                                <i class="fa fa-cog"></i><span class="text">ছাত্র অধিকার বিভাগ</span>
                             </a>
                         </li>
 						<li class="mm_dawah">
@@ -168,7 +168,7 @@
                         </li>
 							<li class="mm_social">
                             <a href="<?= admin_url('departmentsreport/social-welfare-bivag') ?>">
-                                <i class="fa fa-cog"></i><span class="text">পরিবেশ ও সমাজসেবা বিভাগ</span>
+                                <i class="fa fa-cog"></i><span class="text">সমাজসেবা হবে।</span>
                             </a>   
                         </li>
 						<li class="mm_debate">
