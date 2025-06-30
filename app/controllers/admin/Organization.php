@@ -1936,9 +1936,9 @@ WHERE date BETWEEN ? AND ?  GROUP BY `institution_type_id` ", array($start, $end
             );
 
 
-            if ($this->input->post('org_type')) {
-                $data['org_type'] = $this->input->post('org_type');
-            }
+            // if ($this->input->post('org_type')) {
+            //     $data['org_type'] = $this->input->post('org_type');
+            // }
         } elseif ($this->input->post('edit_institution')) {
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect('organization/institutionlist');

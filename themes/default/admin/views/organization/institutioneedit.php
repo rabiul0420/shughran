@@ -65,19 +65,17 @@
                     </div>
 
 
-                    <?php if ($institution->org_type) { ?>
+                    <?php   if (0 && $institution->org_type) { ?>
                         <div class="form-group">
                             <?php echo lang('কোন মানের সংগঠন', 'org_type'); ?>
                             <div class="controls">
 
                                 <?php
                                 $whp1[''] = lang('select');
-
                                 $whp1['branch'] = 'শাখা';
                                 $whp1['thana'] = 'থানা';
                                 $whp1['ward'] = 'ওয়ার্ড';
                                 $whp1['unit'] = 'উপশাখা';
-
                                 echo form_dropdown('org_type', $whp1, $institution->org_type, 'id="org_type" required="required" class="form-control skip" style="width:100%;" ');
                                 ?>
 
