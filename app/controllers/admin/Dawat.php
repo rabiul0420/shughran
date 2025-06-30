@@ -192,7 +192,7 @@ class Dawat extends MY_Controller
     function other($branch_id = NULL)
     {
 
-        $this->sma->checkPermissions();
+         $this->sma->checkPermissions('index', TRUE);
 
         if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
 
