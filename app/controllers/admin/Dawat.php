@@ -148,7 +148,7 @@ class Dawat extends MY_Controller
                 $dawat_decrease_target = $this->site->getOneRecord('dawat_decrease_target', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
                 if (!$dawat_decrease_target) {
-                    $this->site->insertData('dawat_decrease_target', array( 'branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                    $this->site->insertData('dawat_decrease_target', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
 
                 }
 
@@ -169,10 +169,10 @@ class Dawat extends MY_Controller
 
 
 
-                 $dawat_decrease_target = $this->site->getOneRecord('dawat_decrease_target', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+                $dawat_decrease_target = $this->site->getOneRecord('dawat_decrease_target', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
                 if (!$dawat_decrease_target) {
-                    $this->site->insertData('dawat_decrease_target', array( 'branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                    $this->site->insertData('dawat_decrease_target', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
 
                 }
 
@@ -180,7 +180,7 @@ class Dawat extends MY_Controller
             }
         }
 
- 
+
     }
 
 
@@ -237,9 +237,16 @@ class Dawat extends MY_Controller
 
         // $this->sma->print_arrays( $report_start, $report_end ,$report_type);
 
-       
+
         //$this->sma->print_arrays($this->data['lastyeardawat']);
 
+        $this->data['dawat_category'] = $this->site->getAll('dawat_category', date("Y"));
+
+
+
+
+
+        //$this->sma->print_arrays($this->data['dawah_activity']);
 
 
         if ($branch_id)
@@ -249,10 +256,17 @@ class Dawat extends MY_Controller
 
 
         $this->data['dawah_activity'] = $this->getDawahActivity($report_type_get, $branch_id);
-        
-        //$this->sma->print_arrays($this->data['dawah_activity']);
 
- 
+
+        if ($branch_id)
+            $this->getEntrytDawahProgram($this->data['dawat_category'], $report_type_get, $branch_id);
+
+
+
+
+        $this->data['dawah_group'] = $this->getDawahProgram($report_type_get, $branch_id);
+
+
 
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Dawat'));
         $meta = array('page_title' => lang('dawat'), 'bc' => $bc);
@@ -270,8 +284,8 @@ class Dawat extends MY_Controller
     }
 
 
- 
- 
+
+
 
 
 
@@ -298,23 +312,23 @@ FROM `sma_calculated_mapower` WHERE `report_type` = ? AND calculated_year = ? ",
 
 
 
- 
 
 
-  
-
- 
-
-  
 
 
- 
- 
 
 
-    
 
- 
+
+
+
+
+
+
+
+
+
+
 
 
     function detail($branch_id = NULL)
@@ -1979,6 +1993,67 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
     }
 
 
+    function getDawahProgram($report_type_get, $branch_id = NULL)
+    {
+
+
+        $report_start = $report_type_get['start'];
+        $report_end = $report_type_get['end'];
+        $report_type = $report_type_get['type'];
+        $report_year = $report_type_get['year'];
+
+
+        if ($branch_id) {
+            if ($report_type == 'annual' && $report_type_get['last_half']) {
+                $result = $this->site->query_binding("SELECT * FROM `sma_dawah_program` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
+
+            } else if ($report_type && $report_type == 'annual') {
+                $dawahprogram = $this->site->query_binding("SELECT SUM(group_dawah_number) group_dawah_number,            
+SUM(participant_manpower) participant_manpower,       
+SUM(supporter_increase) supporter_increase,     
+SUM(friend_increase) friend_increase,
+SUM(non_muslim_supporter_increase) non_muslim_supporter_increase,
+SUM(non_muslim_friend_increase) non_muslim_friend_increase,
+SUM(wellwisher_increase) wellwisher_increase,   
+SUM(general_program_number) general_program_number,   
+SUM(avg_presence) avg_presence,
+SUM(identity_distribution) identity_distribution,
+SUM(teen_magazine) teen_magazine,
+SUM(receiver_increase) receiver_increase,
+SUM(supporter_org_increase) supporter_org_increase,
+dawah_category_id FROM `sma_dawah_program` WHERE branch_id = ? AND date BETWEEN ? AND ? group by dawah_category_id", array($branch_id, $report_start, $report_end));
+
+                $result = (object) $dawahprogram[0];
+                $result->id = 999999999999;
+
+            } else if ($report_type && $report_type == 'half_yearly') {
+                $result = $this->site->query_binding("SELECT * FROM `sma_dawah_program` WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $report_start, $report_end));
+
+            }
+
+        } else
+            $result = $this->site->query_binding("SELECT SUM(group_dawah_number) group_dawah_number,            
+SUM(participant_manpower) participant_manpower,       
+SUM(supporter_increase) supporter_increase,     
+SUM(friend_increase) friend_increase,
+SUM(non_muslim_supporter_increase) non_muslim_supporter_increase,
+SUM(non_muslim_friend_increase) non_muslim_friend_increase,
+SUM(wellwisher_increase) wellwisher_increase,   
+SUM(general_program_number) general_program_number,   
+SUM(avg_presence) avg_presence,
+SUM(identity_distribution) identity_distribution,
+SUM(teen_magazine) teen_magazine,
+SUM(receiver_increase) receiver_increase,
+SUM(supporter_org_increase) supporter_org_increase,
+dawah_category_id FROM `sma_dawah_program` WHERE date BETWEEN ? AND ? group by dawah_category_id", array($report_start, $report_end));
+
+
+
+        return $result;
+    }
+
+
+
 
     function getdawatsummary($report_type_get, $branch_id = NULL)
     {
@@ -2032,9 +2107,9 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
 
-    
 
-    function getEntryGroupDawahActivity( $report_type_get, $branch_id = NULL)
+
+    function getEntryGroupDawahActivity($report_type_get, $branch_id = NULL)
     {
 
         $report_start = $report_type_get['start'];
@@ -2048,23 +2123,23 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
 
 
             if ($report_type == 'half_yearly') {
- 
+
                 $groupDawahActivity = $this->site->getOneRecord('group_dawah_activity', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
                 if (!$groupDawahActivity) {
-                    $this->site->insertData('group_dawah_activity', array( 'branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                    $this->site->insertData('group_dawah_activity', array('branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
 
                 }
 
 
 
             } else {
- 
 
-                 $groupDawahActivity = $this->site->getOneRecord('group_dawah_activity', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                $groupDawahActivity = $this->site->getOneRecord('group_dawah_activity', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
 
                 if (!$groupDawahActivity) {
-                    $this->site->insertData('group_dawah_activity', array( 'branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                    $this->site->insertData('group_dawah_activity', array('branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
 
                 }
 
@@ -2072,10 +2147,69 @@ FROM `sma_increase_output` where   date BETWEEN ? AND ? ", array($report_start, 
             }
         }
 
- 
+
     }
 
- function getDawahActivity($report_type_get, $branch_id = NULL)
+
+    function getEntrytDawahProgram($category, $report_type_get, $branch_id = NULL)
+    {
+
+
+
+        $report_start = $report_type_get['start'];
+        $report_end = $report_type_get['end'];
+        $report_type = $report_type_get['type'];
+        $report_year = $report_type_get['year'];
+
+
+        if ($report_type_get['is_current'] != false) {
+
+
+
+            if ($report_type == 'half_yearly') {
+
+
+
+                $dawatinfo = $this->site->getOneRecord('dawah_program', '*', array('report_type' => 'half_yearly', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+
+
+                if (!$dawatinfo) {
+
+
+                    foreach ($category as $row) {
+
+                        $this->site->insertData('dawah_program', array('dawah_category_id' => $row->id, 'branch_id' => $branch_id, 'report_type' => 'half_yearly', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+
+                    }
+
+                }
+
+
+
+
+            } else {
+
+
+
+                $dawatinfo = $this->site->getOneRecord('dawah_program', '*', array('report_type' => 'annual', 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+                if (!$dawatinfo) {
+
+                    foreach ($category as $row) {
+                        $this->site->insertData('dawah_program', array('institution_type_id' => $row->id, 'branch_id' => $branch_id, 'report_type' => 'annual', 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+                    }
+                }
+
+
+            }
+        }
+
+
+    }
+
+
+    function getDawahActivity($report_type_get, $branch_id = NULL)
     {
 
 

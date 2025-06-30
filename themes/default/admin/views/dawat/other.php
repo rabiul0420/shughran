@@ -274,22 +274,24 @@
                                         </td>
                                     </tr>
 
-                                    <?php foreach($dawat_category as $row) {?>
+                                    <?php foreach($dawat_category as $row) {
+                                        $info = dawah_program($row->id, $dawah_group);                                       
+                                        ?>
                                     <tr>
                                         <td><?=$row->name?></td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
+                                        <td><?=$info['group_dawah_number']?></td>
+                                        <td><?=$info['participant_manpower']?></td>
+                                        <td><?=$info['supporter_increase']?></td>
+                                        <td><?=$info['friend_increase']?></td>
+                                        <td><?=$info['non_muslim_supporter_increase']?></td>
+                                        <td><?=$info['non_muslim_friend_increase']?></td>
+                                        <td><?=$info['wellwisher_increase']?></td>
+                                        <td><?=$info['general_program_number']?></td>
+                                        <td><?=$info['avg_presence']?></td>
+                                        <td><?=$info['identity_distribution']?></td>
+                                        <td><?=$info['teen_magazine']?></td>
+                                        <td><?=$info['receiver_increase']?></td>
+                                        <td><?=$info['supporter_org_increase']?></td>
                                     </tr>
                                     <?php }?>
                                 </tbody>

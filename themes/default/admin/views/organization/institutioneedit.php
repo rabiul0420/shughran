@@ -92,8 +92,7 @@
 
                     <div class="form-group all">
                         <?= lang('থানা কোড', 'thana_code'); ?>
-
-
+ 
                         <?php $tc = array();
                         $tc[''] =  'থানা কোড';
                         for ($i = 1; $i <= 60; $i++) {

@@ -351,22 +351,26 @@
                                         </td>
                                     </tr>
 
-                                    <?php foreach ($dawat_category as $row) { ?>
+                                    <?php foreach ($dawat_category as $row) {
+                                        $info = dawah_program($row->id, $dawah_group);   
+                                        //var_dump($info);
+                                        // exit();
+                                         ?>
                                         <tr>
                                             <td><?= $row->name ?></td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="group_dawah_number" data-title="Enter"><?php echo $info['group_dawah_number']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="participant_manpower" data-title="Enter"><?php echo $info['participant_manpower']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="supporter_increase" data-title="Enter"><?php echo $info['supporter_increase']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="friend_increase" data-title="Enter"><?php echo $info['friend_increase']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="non_muslim_supporter_increase" data-title="Enter"><?php echo $info['non_muslim_supporter_increase']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="non_muslim_friend_increase" data-title="Enter"><?php echo $info['non_muslim_friend_increase']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="wellwisher_increase" data-title="Enter"><?php echo $info['wellwisher_increase']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="general_program_number" data-title="Enter"><?php echo $info['general_program_number']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="avg_presence" data-title="Enter"><?php echo $info['avg_presence']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="identity_distribution" data-title="Enter"><?php echo $info['identity_distribution']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="teen_magazine" data-title="Enter"><?php echo $info['teen_magazine']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="receiver_increase" data-title="Enter"><?php echo $info['receiver_increase']; ?></a></td>
+                                            <td><a href="#" class="editable editable-click" data-type="number" data-table="dawah_program" data-pk="<?php echo $info['id']; ?>" data-url="<?php echo admin_url('dawat/detailupdate'); ?>" data-name="supporter_org_increase" data-title="Enter"><?php echo $info['supporter_org_increase']; ?></a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

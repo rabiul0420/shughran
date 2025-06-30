@@ -521,3 +521,23 @@ if(! function_exists('dawat_info')) {
 
 }
 
+
+
+if(! function_exists('dawah_program')) {
+
+	function dawah_program($type_id,$arr){
+		
+		
+		foreach($arr as $row){
+		// echo 'Rokon';
+			if($row['dawah_category_id']==$type_id) {
+ 
+				     	  
+				return  $row;
+			}
+		}
+		
+		return null;
+	}
+
+}
