@@ -3149,4 +3149,159 @@ WHERE a.ward_type = $type)b left join sma_branches c on c.id = b.branch_id where
 			$this->page_construct('others/edit_administrative_area', $meta, $this->data, 'leftmenu/organization');
 		}
 	}
+
+
+
+
+
+
+
+	
+
+	function education_system_reform($branch_id = NULL)
+	{
+
+		$this->sma->checkPermissions('index', TRUE);
+
+
+
+		if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+			$this->session->set_flashdata('warning', lang('access_denied'));
+			admin_redirect('others/education_system_reform/' . $this->session->userdata('branch_id'));
+		} else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+			admin_redirect('others/education_system_reform/' . $this->session->userdata('branch_id'));
+		}
+
+
+		$report_type_get = $this->report_type();
+
+		if ($report_type_get == false)
+			admin_redirect();
+
+		$this->data['report_info'] = $report_type_get;
+
+
+		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+			$this->data['branches'] = $this->site->getAllBranches();
+			$this->data['branch_id'] = $branch_id;
+			$this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+		} else {
+			$this->data['branches'] = NULL;
+			$this->data['branch_id'] = $this->session->userdata('branch_id');
+			$this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+		}
+
+		$this->data['programs'] = $this->others_model->getAllProgram();
+
+
+		if ($branch_id) {
+			$this->data['detailinfo'] = $this->getEntryInfo($report_type_get, $this->data['programs'], $branch_id);
+		} else
+			$this->data['detailinfo'] = '';
+
+
+		$report_start = $report_type_get['start'];
+		$report_end = $report_type_get['end'];
+		$report_type = $report_type_get['type'];
+		$report_year = $report_type_get['year'];
+
+
+		$this->data['program_summary'] = $this->getprogram_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+
+
+		// $this->sma->print_arrays($this->data['org_summary']);
+
+
+
+		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Program'));
+		$meta = array('page_title' => 'Program', 'bc' => $bc);
+
+
+		if ($branch_id) {
+			$this->page_construct('others/education_system_reform_entry', $meta, $this->data, 'leftmenu/program');
+		} else
+			$this->page_construct('others/education_system_reform', $meta, $this->data, 'leftmenu/program');
+	}
+
+
+
+
+
+
+
+function education_assistance($branch_id = NULL)
+	{
+
+		$this->sma->checkPermissions('index', TRUE);
+
+
+
+		if ($branch_id != NULL && !($this->Owner || $this->Admin) && ($this->session->userdata('branch_id') != $branch_id)) {
+
+			$this->session->set_flashdata('warning', lang('access_denied'));
+			admin_redirect('others/education_assistance/' . $this->session->userdata('branch_id'));
+		} else if ($branch_id == NULL && !($this->Owner || $this->Admin)) {
+			admin_redirect('others/education_assistance/' . $this->session->userdata('branch_id'));
+		}
+
+
+		$report_type_get = $this->report_type();
+
+		if ($report_type_get == false)
+			admin_redirect();
+
+		$this->data['report_info'] = $report_type_get;
+
+
+		$this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+		if ($this->Owner || $this->Admin || !$this->session->userdata('branch_id')) {
+			$this->data['branches'] = $this->site->getAllBranches();
+			$this->data['branch_id'] = $branch_id;
+			$this->data['branch'] = $branch_id ? $this->site->getBranchByID($branch_id) : NULL;
+		} else {
+			$this->data['branches'] = NULL;
+			$this->data['branch_id'] = $this->session->userdata('branch_id');
+			$this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
+		}
+
+		$this->data['programs'] = $this->others_model->getAllProgram();
+
+
+		if ($branch_id) {
+			$this->data['detailinfo'] = $this->getEntryInfo($report_type_get, $this->data['programs'], $branch_id);
+		} else
+			$this->data['detailinfo'] = '';
+
+
+		$report_start = $report_type_get['start'];
+		$report_end = $report_type_get['end'];
+		$report_type = $report_type_get['type'];
+		$report_year = $report_type_get['year'];
+
+
+		$this->data['program_summary'] = $this->getprogram_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+
+
+		// $this->sma->print_arrays($this->data['org_summary']);
+
+
+
+		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Program'));
+		$meta = array('page_title' => 'Program', 'bc' => $bc);
+
+
+		if ($branch_id) {
+			$this->page_construct('others/education_assistance_entry', $meta, $this->data, 'leftmenu/program');
+		} else
+			$this->page_construct('others/education_assistance', $meta, $this->data, 'leftmenu/program');
+	}
+
+
+
+
+
+
+
 }

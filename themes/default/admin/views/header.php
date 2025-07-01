@@ -628,8 +628,8 @@
 
 
                                     
-                                        <li class=""><a href="#">শিক্ষাব্যবস্থা সংস্কার উপকরণ </a></li>
-                                        <li class=""><a href="#">শিক্ষা সহযোগিতা</a></li>
+                                        <li class=""><a href="<?= admin_url('others/education_system_reform'); ?>">শিক্ষাব্যবস্থা সংস্কার উপকরণ </a></li>
+                                        <li class=""><a href="<?= admin_url('others/education_assistance'); ?>">শিক্ষা সহযোগিতা</a></li>
                                         <li class=""><a href="<?= admin_url('bm'); ?>">বিএম </a></li>
 
                                         <li><a href="<?= admin_url('guest'); ?>" class="line-height-lg">সফর </a></li>
