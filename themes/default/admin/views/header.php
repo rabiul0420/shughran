@@ -396,7 +396,7 @@
                                             <li class=""><a href="<?= admin_url('dawat/other'); ?>">অন্যান্য দাওয়াত</a></li>
 
 
-                                            <li class=""><a href="<?= admin_url('dawat/element'); ?>">দাওয়াতী উপকরণ</a></li>
+                                            <li class="hidden"><a href="<?= admin_url('dawat/element'); ?>">দাওয়াতী উপকরণ</a></li>
                                             <li class="hidden"><a href="<?= admin_url('dawat/mosque'); ?>">মসজিদ ভিত্তিক কাজ</a></li>
                                             <li class="hidden"><a href="<?= admin_url('dawat/extra'); ?>">অতিরিক্ত দাওয়াত</a></li>
                                             <li class="hidden"><a href="<?= admin_url('dawat/detail'); ?>">বিস্তারিত দাওয়াত </a></li>
@@ -625,6 +625,11 @@
                                         অন্যান্য <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
+
+
+                                    
+                                        <li class=""><a href="#">শিক্ষাব্যবস্থা সংস্কার উপকরণ </a></li>
+                                        <li class=""><a href="#">শিক্ষা সহযোগিতা</a></li>
                                         <li class=""><a href="<?= admin_url('bm'); ?>">বিএম </a></li>
 
                                         <li><a href="<?= admin_url('guest'); ?>" class="line-height-lg">সফর </a></li>

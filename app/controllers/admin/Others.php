@@ -1266,6 +1266,11 @@ class Others extends MY_Controller
 		$this->data['administrations'] = $this->others_model->getAllAdministration();
 
 
+		
+		if ($branch_id) {
+			$this->data['detailinfo'] = $this->getEntryAdministrationInfo($report_type_get, $this->data['administrations'], $branch_id);
+		} else
+			$this->data['detailinfo'] = '';
 
 
 
