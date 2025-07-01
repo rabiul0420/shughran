@@ -37,12 +37,13 @@
                              </li>
 				 
 							
-							<!-- <li id="" class="<?php  echo ($this->uri->segment(2)=='dawat' && $this->uri->segment(3) == 'element')? 'active':'' ?>">
+							 <li id="" class="<?php  echo ($this->uri->segment(2)=='dawat' && $this->uri->segment(3) == 'element')? 'active':'' ?>">
                                             <a href="<?= admin_url('dawat/element') ?>">
                                                 <i class="fa fa-cogs"></i><span class="text"> <?= "দাওয়াতী উপকরণ "; ?></span>
                                             </a>
                              </li>
-							
+                             
+							<!--
                              
 							 <li id="" class="<?php  echo ($this->uri->segment(2)=='dawat' && $this->uri->segment(3) == 'mosque')? 'active':'' ?>">
                                             <a href="<?= admin_url('dawat/mosque') ?>">
