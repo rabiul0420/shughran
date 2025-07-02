@@ -5771,7 +5771,7 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
                 //'ward_number' => $this->input->post('ward_number'),
                 //'unit_number' => $this->input->post('unit_number'),
 
-
+                'unit_category' => $this->input->post('unit_category')
 
             );
 
