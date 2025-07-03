@@ -90,7 +90,15 @@
             "aoColumns": [{
                     "bSortable": false,
                     "mRender": checkbox
-                }, null, null,
+                },
+                
+                 null, 
+                
+                null,
+               {
+                    "bSortable": false
+                   
+                },
 
                 {
                     "mRender": ward_type
@@ -192,6 +200,8 @@
                                 </th>
                                 <th><?= 'শাখা' ?></th>
                                 <th><?= 'ওয়ার্ডের নাম' ?></th>
+                                <th><?= 'উপশাখা' ?></th>
+
                                 <th><?= 'সংগঠনের ধরন' ?></th>
                                 <th><?= 'সংগঠনের উপধরন' ?></th>
                                 <th><?= 'সাংগঠনিক থানা' ?></th>
@@ -213,7 +223,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="16" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                <td colspan="17" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                             </tr>
                         </tbody>
 
@@ -222,6 +232,7 @@
                                 <th style="min-width:30px; width: 30px; text-align: center;">
                                     <input class="checkbox checkft" type="checkbox" name="check" />
                                 </th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
