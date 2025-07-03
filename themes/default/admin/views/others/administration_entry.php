@@ -227,8 +227,19 @@ echo $org_prev;
  
  </td>
 
-<td><?php echo $increase;?></td>
-<td><?php echo $decrease;?></td>
+<td>
+    
+<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="organization_increase" data-title="Enter"><?php echo $increase;?></a>
+
+
+
+</td>
+<td>
+    
+<a href="#"  class="editable editable-click"   data-type="number" data-table="administration_record" data-pk="<?php echo $row_info['id'];?>" data-url="<?php echo admin_url('others/detailupdate');?>" data-name="organization_decrease" data-title="Enter"><?php echo $decrease;?></a>
+
+
+</td>
 
 
  <td ><?=$no_administrative_area_info[0][$administration->administration_type_eng]??0?></td>
