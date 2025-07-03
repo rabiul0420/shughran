@@ -95,10 +95,7 @@
                  null, 
                 
                 null,
-               {
-                    "bSortable": false
-                   
-                },
+               
 
                 {
                     "mRender": ward_type
@@ -111,8 +108,12 @@
                 null,
                 
 
-                null, null, null, null, null, null, null, null, null,
-
+                null, null, null, null, null, null, null, 
+{
+                    "bSortable": false
+                   
+                },
+                null, null,
 
                 {
                     "bSortable": false
@@ -200,7 +201,7 @@
                                 </th>
                                 <th><?= 'শাখা' ?></th>
                                 <th><?= 'ওয়ার্ডের নাম' ?></th>
-                                <th><?= 'উপশাখা' ?></th>
+                              
 
                                 <th><?= 'সংগঠনের ধরন' ?></th>
                                 <th><?= 'সংগঠনের উপধরন' ?></th>
@@ -212,6 +213,7 @@
                                 <th><?= 'বিভাগ' ?></th>
                                 <th><?= 'উপ বিভাগ' ?></th>
                                 <th><?= 'প্রতিষ্ঠান' ?></th>
+                                  <th><?= 'উপশাখা' ?></th>
                                 <th><?= 'কর্মী' ?></th>
                                 <th><?= 'সমর্থক' ?></th>
                                 <th><?= 'মন্তব্য' ?></th>
