@@ -150,66 +150,68 @@ font: 18px SolaimanLipi, sans-serif;
     </tr>
     <tr>
       <td>প্রশ্ন ব্যাংক</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['question_bank']?></td>
       <td>নিয়মিত </td>
-      <td></td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['regular']?></td>
+      <td><?=$education_assistance[0]['regular_general_std']?></td>
+      <td><?=$education_assistance[0]['regular_amount']?></td>
     </tr>
     <tr>
       <td>হ্যান্ডআউট সরবরাহ</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['hand_out']?></td>
       <td>উচ্চ শিক্ষা </td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['higher_education']?></td>
+      <td><?=$education_assistance[0]['higher_education_general_std']?></td>
+      <td><?=$education_assistance[0]['higher_education_amount']?></td>
     </tr>
     <tr>
       <td>ফ্রি কোচিং </td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['free_coaching']?></td>
       <td>কর্জে হাসানা </td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['qard_hasan']?></td>
+      <td><?=$education_assistance[0]['qard_hasan_general_std']?></td>
+      <td><?=$education_assistance[0]['qard_hasan_amount']?></td>
     </tr>
     <tr>
       <td>লেন্ডিং লাইব্রেরি</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['lending_library']?></td>
       <td>পরীক্ষার ফি</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['exam_fee']?></td>
+      <td><?=$education_assistance[0]['exam_fee_general_std']?></td>
+      <td><?=$education_assistance[0]['exam_fee_amount']?></td>
     </tr>
     <tr>
       <td>মডেল টেস্ট</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['model_test']?></td>
       <td>কোচিং ফি</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['coaching_fee']?></td>
+      <td><?=$education_assistance[0]['coaching_fee_general_std']?></td>
+      <td><?=$education_assistance[0]['coaching_fee_amount']?></td>
     </tr>
     <tr>
       <td>অনলাইন ক্লাস</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['online_class']?></td>
       <td>স্টাইপেন্ড</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['stipend']?></td>
+      <td><?=$education_assistance[0]['stipend_general_std']?></td>
+      <td><?=$education_assistance[0]['stipend_amount']?></td>
     </tr>
     <tr>
       <td>অন্যান্য</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['other']?></td>
       <td>অন্যান্য</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['other_financial_help']?></td>
+      <td><?=$education_assistance[0]['other_financial_help_general_std']?></td>
+      <td><?=$education_assistance[0]['other_financial_help_amount']?></td>
     </tr>
     <tr>
       <td>মোট</td>
-      <td>&nbsp;</td>
+      <td><?=$education_assistance[0]['question_bank']+$education_assistance[0]['hand_out']+$education_assistance[0]['free_coaching']+$education_assistance[0]['lending_library']+$education_assistance[0]['model_test']+$education_assistance[0]['online_class']+$education_assistance[0]['other']?></td>
       <td>মোট</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+       <td><?=$education_assistance[0]['regular']+$education_assistance[0]['higher_education']+$education_assistance[0]['qard_hasan']+$education_assistance[0]['exam_fee']+$education_assistance[0]['coaching_fee']+$education_assistance[0]['stipend']+$education_assistance[0]['other_financial_help']?></td>
+        <td><?=$education_assistance[0]['regular_general_std']+$education_assistance[0]['higher_education_general_std']+$education_assistance[0]['qard_hasan_general_std']+$education_assistance[0]['exam_fee_general_std']+$education_assistance[0]['coaching_fee_general_std']+$education_assistance[0]['stipend_general_std']+$education_assistance[0]['other_financial_help_general_std']?></td>
+       <td><?=$education_assistance[0]['regular_amount']+$education_assistance[0]['higher_education_amount']+$education_assistance[0]['qard_hasan_amount']+$education_assistance[0]['exam_fee_amount']+$education_assistance[0]['coaching_fee_amount']+$education_assistance[0]['stipend_amount']+$education_assistance[0]['other_financial_help_amount']?></td>
+      
       <td>&nbsp;</td>
     </tr>
   </tbody>

@@ -485,8 +485,114 @@ class Others extends MY_Controller
 
 
 
+	function geteducation_assistance($report_type, $start_date, $end_date, $branch_id = NULL, $reportinfo = null)
+	{
 
 
+
+
+		if ($branch_id) {
+
+			if (($reportinfo['last_half'] || $report_type == 'half_yearly'))
+				$result = $this->site->query_binding("SELECT * from sma_education_assistance WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+			else if ($report_type == 'annual')
+				$result = $this->site->query_binding("SELECT  SUM(question_bank) question_bank, 
+SUM(hand_out) hand_out, 
+SUM(free_coaching) free_coaching, 
+SUM(lending_library) lending_library, 
+SUM(model_test) model_test, 
+SUM(online_class) online_class, 
+SUM(other) other, 
+SUM(regular) regular, 
+SUM(higher_education) higher_education, 
+SUM(qard_hasan) qard_hasan,
+SUM(exam_fee) exam_fee, 
+SUM(coaching_fee) coaching_fee, 
+SUM(stipend) stipend, 
+SUM(other_financial_help) other_financial_help,
+SUM(regular_general_std) AS regular_general_std,
+SUM(regular_amount) AS regular_amount,
+SUM(higher_education_general_std) AS higher_education_general_std,
+SUM(higher_education_amount) AS higher_education_amount,
+SUM(qard_hasan_general_std) AS qard_hasan_general_std,
+SUM(qard_hasan_amount) AS qard_hasan_amount,
+SUM(exam_fee_general_std) AS exam_fee_general_std,
+SUM(exam_fee_amount) AS exam_fee_amount,
+SUM(coaching_fee_general_std) AS coaching_fee_general_std,
+SUM(coaching_fee_amount) AS coaching_fee_amount,
+SUM(stipend_general_std) AS stipend_general_std,
+SUM(stipend_amount) AS stipend_amount,
+SUM(other_financial_help_general_std) AS other_financial_help_general_std,
+SUM(other_financial_help_amount) AS other_financial_help_amount,
+ sum(id) id  from sma_education_assistance WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+		} else {
+			//if (($reportinfo['last_half'] || $report_type == 'half_yearly'))
+			//	$result = $this->site->query_binding("SELECT * from sma_education_assistance WHERE  date BETWEEN ? AND ? ", array($start_date, $end_date));
+			//else if ($report_type == 'annual')
+				$result = $this->site->query_binding("SELECT  SUM(question_bank) question_bank, 
+SUM(hand_out) hand_out, 
+SUM(free_coaching) free_coaching, 
+SUM(lending_library) lending_library, 
+SUM(model_test) model_test, 
+SUM(online_class) online_class, 
+SUM(other) other, 
+SUM(regular) regular, 
+SUM(higher_education) higher_education, 
+SUM(qard_hasan) qard_hasan,
+SUM(exam_fee) exam_fee, 
+SUM(coaching_fee) coaching_fee, 
+SUM(stipend) stipend, 
+SUM(other_financial_help) other_financial_help,
+SUM(regular_general_std) AS regular_general_std,
+SUM(regular_amount) AS regular_amount,
+SUM(higher_education_general_std) AS higher_education_general_std,
+SUM(higher_education_amount) AS higher_education_amount,
+SUM(qard_hasan_general_std) AS qard_hasan_general_std,
+SUM(qard_hasan_amount) AS qard_hasan_amount,
+SUM(exam_fee_general_std) AS exam_fee_general_std,
+SUM(exam_fee_amount) AS exam_fee_amount,
+SUM(coaching_fee_general_std) AS coaching_fee_general_std,
+SUM(coaching_fee_amount) AS coaching_fee_amount,
+SUM(stipend_general_std) AS stipend_general_std,
+SUM(stipend_amount) AS stipend_amount,
+SUM(other_financial_help_general_std) AS other_financial_help_general_std,
+SUM(other_financial_help_amount) AS other_financial_help_amount  from sma_education_assistance WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
+		}
+
+		return $result;
+	}
+
+
+	function getEntryEducationAssistance($report_type_get,  $branch_id = NULL)
+	{
+
+		$this->sma->checkPermissions('index', TRUE);
+
+
+		$report_start = $report_type_get['start'];
+		$report_end = $report_type_get['end'];
+		$report_type = $report_type_get['type'];
+		$report_year = $report_type_get['year'];
+
+
+		if ($report_type_get['is_current'] != false && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
+
+			$type = ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
+			///half_yearly starts
+			$program_recordinfo = $this->site->getOneRecord('education_assistance', '*', array('report_type' => $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+			if (!$program_recordinfo) {
+ 
+					$this->site->insertData('education_assistance', array( 'branch_id' => $branch_id, 'report_type' => $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+			}
+
+			///half_yearly ends
+
+
+		}
+
+ 
+	}
 
 
 
@@ -3266,14 +3372,11 @@ function education_assistance($branch_id = NULL)
 			$this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
 		}
 
-		$this->data['programs'] = $this->others_model->getAllProgram();
+		 
 
-
-		if ($branch_id) {
-			$this->data['detailinfo'] = $this->getEntryInfo($report_type_get, $this->data['programs'], $branch_id);
-		} else
-			$this->data['detailinfo'] = '';
-
+		if ($branch_id) 
+			$this->data['detailinfo'] = $this->getEntryEducationAssistance($report_type_get,   $branch_id);
+		 
 
 		$report_start = $report_type_get['start'];
 		$report_end = $report_type_get['end'];
@@ -3281,10 +3384,10 @@ function education_assistance($branch_id = NULL)
 		$report_year = $report_type_get['year'];
 
 
-		$this->data['program_summary'] = $this->getprogram_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+		$this->data['education_assistance'] = $this->geteducation_assistance($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
 
-		// $this->sma->print_arrays($this->data['org_summary']);
+		//  $this->sma->print_arrays($this->data['education_assistance']);
 
 
 

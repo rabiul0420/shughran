@@ -83,8 +83,7 @@ else {
                                 <i class="icon fa fa-file-excel-o"></i> <?= lang('export_to_excel') ?>	
                             </a>	
 								
-							<a href="#" onclick="doit('xlsx','testTable2');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_table1') ?> 	</a>	
-							<a href="#" onclick="doit('xlsx','testTable3');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_table2') ?> 	</a>	
+						 	<a href="#" onclick="doit('xlsx','testTable3');  return false;"><i class="icon fa fa-file-excel-o"></i> <?= lang('export_table2') ?> 	</a>	
 								
                         </li>	
 
@@ -133,7 +132,7 @@ font: 18px SolaimanLipi, sans-serif;
 
  
   
-<table class="table table-bordered" id="testTable3"   data-branch="<?php echo isset($branch_code) ? $branch_code.'_education_assistance_2_' : 'central_education_assistance_2'?>">
+ <table class="table table-bordered" id="testTable3"   data-branch="<?php echo isset($branch_code) ? $branch_code.'_education_assistance_2_' : 'central_education_assistance_2'?>">
  
   <tbody>
     <tr>
@@ -154,71 +153,245 @@ font: 18px SolaimanLipi, sans-serif;
     </tr>
     <tr>
       <td>প্রশ্ন ব্যাংক</td>
-      <td>&nbsp;</td>
+      <td>
+<?php 
+$row_info = $education_assistance[0];
+?>
+      <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="question_bank"
+                                                data-title="Enter"><?=$row_info['question_bank']?></a>
+
+         
+      </td>
       <td>নিয়মিত </td>
-      <td></td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="regular"
+                                                data-title="Enter"><?=$row_info['regular']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="regular_general_std"
+                                                data-title="Enter"><?=$row_info['regular_general_std']?></a>
+       </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="regular_amount"
+                                                data-title="Enter"><?=$row_info['regular_amount']?></a>
+       </td>
     </tr>
     <tr>
       <td>হ্যান্ডআউট সরবরাহ</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="hand_out"
+                                                data-title="Enter"><?=$row_info['hand_out']?></a>
+      </td>
       <td>উচ্চ শিক্ষা </td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="higher_education"
+                                                data-title="Enter"><?=$row_info['higher_education']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="higher_education_general_std"
+                                                data-title="Enter"><?=$row_info['higher_education_general_std']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="higher_education_amount"
+                                                data-title="Enter"><?=$row_info['higher_education_amount']?></a>
+      </td>
     </tr>
     <tr>
-      <td>ফ্রি কোচিং</td>
-      <td>&nbsp;</td>
+      <td>ফ্রি কোচিং </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="free_coaching"
+                                                data-title="Enter"><?=$row_info['free_coaching']?></a>
+      </td>
       <td>কর্জে হাসানা </td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="qard_hasan"
+                                                data-title="Enter"><?=$row_info['qard_hasan']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="qard_hasan_general_std"
+                                                data-title="Enter"><?=$row_info['qard_hasan_general_std']?></a>
+      </td>
+      <td>
+      <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="qard_hasan_amount"
+                                                data-title="Enter"><?=$row_info['qard_hasan_amount']?></a>  
+      </td>
     </tr>
     <tr>
       <td>লেন্ডিং লাইব্রেরি</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="lending_library"
+                                                data-title="Enter"><?=$row_info['lending_library']?></a>
+      </td>
       <td>পরীক্ষার ফি</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="exam_fee"
+                                                data-title="Enter"><?=$row_info['exam_fee']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="exam_fee_general_std"
+                                                data-title="Enter"><?=$row_info['exam_fee_general_std']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="exam_fee_amount"
+                                                data-title="Enter"><?=$row_info['exam_fee_amount']?></a>
+      </td>
     </tr>
     <tr>
       <td>মডেল টেস্ট</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="model_test"
+                                                data-title="Enter"><?=$row_info['model_test']?></a>
+      </td>
       <td>কোচিং ফি</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="coaching_fee"
+                                                data-title="Enter"><?=$row_info['coaching_fee']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="coaching_fee_general_std"
+                                                data-title="Enter"><?=$row_info['coaching_fee_general_std']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="coaching_fee_amount"
+                                                data-title="Enter"><?=$row_info['coaching_fee_amount']?></a>
+      </td>
     </tr>
     <tr>
       <td>অনলাইন ক্লাস</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="online_class"
+                                                data-title="Enter"><?=$row_info['online_class']?></a>
+      </td>
       <td>স্টাইপেন্ড</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="stipend"
+                                                data-title="Enter"><?=$row_info['stipend']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="stipend_general_std"
+                                                data-title="Enter"><?=$row_info['stipend_general_std']?></a>
+       </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="stipend_amount"
+                                                data-title="Enter"><?=$row_info['stipend_amount']?></a>
+      </td>
     </tr>
     <tr>
       <td>অন্যান্য</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="other"
+                                                data-title="Enter"><?=$row_info['other']?></a>
+       </td>
       <td>অন্যান্য</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="other_financial_help"
+                                                data-title="Enter"><?=$row_info['other_financial_help']?></a>
+       </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="other_financial_help_general_std"
+                                                data-title="Enter"><?=$row_info['other_financial_help_general_std']?></a>
+       </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_assistance" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="other_financial_help_amount"
+                                                data-title="Enter"><?=$row_info['other_financial_help_amount']?></a>
+      </td>
     </tr>
     <tr>
       <td>মোট</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['question_bank']+$row_info['hand_out']+$row_info['free_coaching']+$row_info['lending_library']+$row_info['model_test']+$row_info['online_class']+$row_info['other']?></td>
       <td>মোট</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+       <td><?=$row_info['regular']+$row_info['higher_education']+$row_info['qard_hasan']+$row_info['exam_fee']+$row_info['coaching_fee']+$row_info['stipend']+$row_info['other_financial_help']?></td>
+        <td><?=$row_info['regular_general_std']+$row_info['higher_education_general_std']+$row_info['qard_hasan_general_std']+$row_info['exam_fee_general_std']+$row_info['coaching_fee_general_std']+$row_info['stipend_general_std']+$row_info['other_financial_help_general_std']?></td>
+       <td><?=$row_info['regular_amount']+$row_info['higher_education_amount']+$row_info['qard_hasan_amount']+$row_info['exam_fee_amount']+$row_info['coaching_fee_amount']+$row_info['stipend_amount']+$row_info['other_financial_help_amount']?></td>
+      
       <td>&nbsp;</td>
     </tr>
   </tbody>
 </table>
-
  
  
 					
