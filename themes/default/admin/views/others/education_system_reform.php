@@ -7,7 +7,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'সভাসমূহ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'শিক্ষাব্যবস্থা সংস্কার উপকরণ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; ?>
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                 
                 <?php 
@@ -124,7 +124,7 @@ font: 18px SolaimanLipi, sans-serif;
                 <div class="table-responsive">
 				
 	
-				 
+				 <?php $row_info = $education_system_reform_summary[0];?>
 
 			<table class="table table-bordered"  id="testTable2"  data-branch="<?php echo isset($branch_code) ? $branch_code.'_education_system_reform_1_' : 'central_education_system_reform_1'?>">
  
@@ -153,52 +153,52 @@ font: 18px SolaimanLipi, sans-serif;
     </tr>
     <tr >
       <td>বুকলেট</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['booklet_center_person']?></td>
+      <td><?=$row_info['booklet_center_number']?></td>
+      <td><?=$row_info['booklet_branch_person']?></td>
+      <td><?=$row_info['booklet_branch_number']?></td>
     </tr>
     <tr >
       <td>ম্যানুয়াল</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['manual_center_person']?></td>
+      <td><?=$row_info['manual_center_number']?></td>
+      <td><?=$row_info['manual_branch_person']?></td>
+      <td><?=$row_info['manual_branch_number']?></td>
     </tr>
     <tr >
       <td>পোস্টার</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['poster_center_person']?></td>
+      <td><?=$row_info['poster_center_number']?></td>
+      <td><?=$row_info['poster_branch_person']?></td>
+      <td><?=$row_info['poster_branch_number']?></td>
     </tr>
     <tr >
       <td>লিফলেট</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['leaflet_center_person']?></td>
+      <td><?=$row_info['leaflet_center_number']?></td>
+      <td><?=$row_info['leaflet_branch_person']?></td>
+      <td><?=$row_info['leaflet_branch_number']?></td>
     </tr>
     <tr >
       <td>সামগ্রিক্য ম্যাগাজিন</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['magazine_center_person']?></td>
+      <td><?=$row_info['magazine_center_number']?></td>
+      <td><?=$row_info['magazine_branch_person']?></td>
+      <td><?=$row_info['magazine_branch_number']?></td>
     </tr>
     <tr >
       <td>প্রবন্ধ</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['article_center_person']?></td>
+      <td><?=$row_info['article_center_number']?></td>
+      <td><?=$row_info['article_branch_person']?></td>
+      <td><?=$row_info['article_branch_number']?></td>
     </tr>
     <tr >
       <td>সংকলন</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['collection_center_person']?></td>
+      <td><?=$row_info['collection_center_number']?></td>
+      <td><?=$row_info['collection_branch_person']?></td>
+      <td><?=$row_info['collection_branch_number']?></td>
     </tr>
   </tbody>
 </table>
@@ -239,43 +239,43 @@ font: 18px SolaimanLipi, sans-serif;
     </tr>
     <tr>
       <td>ডকুমেন্টারি</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['documentary_center']?></td>
+      <td><?=$row_info['documentary_branch']?></td>
       <td>প্রবন্ধ</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['article_center']?></td>
+      <td><?=$row_info['article_center']?></td>
     </tr>
     <tr>
       <td>কালচারাল কনটেন্ট</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['cultural_content_center']?></td>
+      <td><?=$row_info['cultural_content_branch']?></td>
       <td>নিবন্ধ</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['essay_center']?></td>
+      <td><?=$row_info['essay_branch']?></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>কলাম&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['column_center']?></td>
+      <td><?=$row_info['column_branch']?></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>ফিচার</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['feature_center']?></td>
+      <td><?=$row_info['feature_branch']?></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>বিবৃতি</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?=$row_info['statement_center']?></td>
+      <td><?=$row_info['statement_branch']?></td>
     </tr>
   </tbody>
 </table>

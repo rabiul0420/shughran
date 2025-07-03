@@ -563,6 +563,117 @@ SUM(other_financial_help_amount) AS other_financial_help_amount  from sma_educat
 	}
 
 
+function geteducation_system_reform($report_type, $start_date, $end_date, $branch_id = NULL, $reportinfo = null)
+	{
+
+
+
+
+		if ($branch_id) {
+
+			if (($reportinfo['last_half'] || $report_type == 'half_yearly'))
+				$result = $this->site->query_binding("SELECT * from sma_education_system_reform WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+			else if ($report_type == 'annual')
+				$result = $this->site->query_binding("SELECT SUM(booklet_center_person) AS booklet_center_person,
+  SUM(booklet_center_number) AS booklet_center_number,
+  SUM(booklet_branch_person) AS booklet_branch_person,
+  SUM(booklet_branch_number) AS booklet_branch_number,
+  SUM(manual_center_person) AS manual_center_person,
+  SUM(manual_center_number) AS manual_center_number,
+  SUM(manual_branch_person) AS manual_branch_person,
+  SUM(manual_branch_number) AS manual_branch_number,
+  SUM(poster_center_person) AS poster_center_person,
+  SUM(poster_center_number) AS poster_center_number,
+  SUM(poster_branch_person) AS poster_branch_person,
+  SUM(poster_branch_number) AS poster_branch_number,
+  SUM(leaflet_center_person) AS leaflet_center_person,
+  SUM(leaflet_center_number) AS leaflet_center_number,
+  SUM(leaflet_branch_person) AS leaflet_branch_person,
+  SUM(leaflet_branch_number) AS leaflet_branch_number,
+  SUM(magazine_center_person) AS magazine_center_person,
+  SUM(magazine_center_number) AS magazine_center_number,
+  SUM(magazine_branch_person) AS magazine_branch_person,
+  SUM(magazine_branch_number) AS magazine_branch_number,
+  SUM(article_center_person) AS article_center_person,
+  SUM(article_center_number) AS article_center_number,
+  SUM(article_branch_person) AS article_branch_person,
+  SUM(article_branch_number) AS article_branch_number,
+  SUM(collection_center_person) AS collection_center_person,
+  SUM(collection_center_number) AS collection_center_number,
+  SUM(collection_branch_person) AS collection_branch_person,
+  SUM(collection_branch_number) AS collection_branch_number,
+  SUM(documentary_center) AS documentary_center,
+  SUM(documentary_branch) AS documentary_branch,
+  SUM(cultural_content_center) AS cultural_content_center,
+  SUM(cultural_content_branch) AS cultural_content_branch,
+  SUM(article_center) AS article_center,
+  SUM(article_branch) AS article_branch,
+  SUM(essay_center) AS essay_center,
+  SUM(essay_branch) AS essay_branch,
+  SUM(column_center) AS column_center,
+  SUM(column_branch) AS column_branch,
+  SUM(feature_center) AS feature_center,
+  SUM(feature_branch) AS feature_branch,
+  SUM(statement_center) AS statement_center,
+  SUM(statement_branch) AS statement_branch  ,
+ sum(id) id  from sma_education_system_reform WHERE  branch_id = ? AND date BETWEEN ? AND ? ", array($branch_id, $start_date, $end_date));
+		} else {
+			//if (($reportinfo['last_half'] || $report_type == 'half_yearly'))
+			//	$result = $this->site->query_binding("SELECT * from sma_education_assistance WHERE  date BETWEEN ? AND ? ", array($start_date, $end_date));
+			//else if ($report_type == 'annual')
+				$result = $this->site->query_binding("SELECT  SUM(booklet_center_person) AS booklet_center_person,
+  SUM(booklet_center_number) AS booklet_center_number,
+  SUM(booklet_branch_person) AS booklet_branch_person,
+  SUM(booklet_branch_number) AS booklet_branch_number,
+  SUM(manual_center_person) AS manual_center_person,
+  SUM(manual_center_number) AS manual_center_number,
+  SUM(manual_branch_person) AS manual_branch_person,
+  SUM(manual_branch_number) AS manual_branch_number,
+  SUM(poster_center_person) AS poster_center_person,
+  SUM(poster_center_number) AS poster_center_number,
+  SUM(poster_branch_person) AS poster_branch_person,
+  SUM(poster_branch_number) AS poster_branch_number,
+  SUM(leaflet_center_person) AS leaflet_center_person,
+  SUM(leaflet_center_number) AS leaflet_center_number,
+  SUM(leaflet_branch_person) AS leaflet_branch_person,
+  SUM(leaflet_branch_number) AS leaflet_branch_number,
+  SUM(magazine_center_person) AS magazine_center_person,
+  SUM(magazine_center_number) AS magazine_center_number,
+  SUM(magazine_branch_person) AS magazine_branch_person,
+  SUM(magazine_branch_number) AS magazine_branch_number,
+  SUM(article_center_person) AS article_center_person,
+  SUM(article_center_number) AS article_center_number,
+  SUM(article_branch_person) AS article_branch_person,
+  SUM(article_branch_number) AS article_branch_number,
+  SUM(collection_center_person) AS collection_center_person,
+  SUM(collection_center_number) AS collection_center_number,
+  SUM(collection_branch_person) AS collection_branch_person,
+  SUM(collection_branch_number) AS collection_branch_number,
+  SUM(documentary_center) AS documentary_center,
+  SUM(documentary_branch) AS documentary_branch,
+  SUM(cultural_content_center) AS cultural_content_center,
+  SUM(cultural_content_branch) AS cultural_content_branch,
+  SUM(article_center) AS article_center,
+  SUM(article_branch) AS article_branch,
+  SUM(essay_center) AS essay_center,
+  SUM(essay_branch) AS essay_branch,
+  SUM(column_center) AS column_center,
+  SUM(column_branch) AS column_branch,
+  SUM(feature_center) AS feature_center,
+  SUM(feature_branch) AS feature_branch,
+  SUM(statement_center) AS statement_center,
+  SUM(statement_branch) AS statement_branch   from sma_education_system_reform WHERE date BETWEEN ? AND ? ", array($start_date, $end_date));
+		}
+
+		return $result;
+	}
+
+
+
+
+
+	
+
 	function getEntryEducationAssistance($report_type_get,  $branch_id = NULL)
 	{
 
@@ -595,7 +706,37 @@ SUM(other_financial_help_amount) AS other_financial_help_amount  from sma_educat
 	}
 
 
+function getEntryEducationSystemReform($report_type_get,  $branch_id = NULL)
+	{
 
+		$this->sma->checkPermissions('index', TRUE);
+
+
+		$report_start = $report_type_get['start'];
+		$report_end = $report_type_get['end'];
+		$report_type = $report_type_get['type'];
+		$report_year = $report_type_get['year'];
+
+
+		if ($report_type_get['is_current'] != false && ($report_type_get['last_half'] || $report_type == 'half_yearly')) {
+
+			$type = ($report_type == 'half_yearly') ? 'half_yearly' : 'annual';
+			///half_yearly starts
+			$program_recordinfo = $this->site->getOneRecord('education_system_reform', '*', array('report_type' => $type, 'branch_id' => $branch_id, 'date < ' => $report_end, 'date > ' => $report_start), 'id desc', 1, 0);
+
+			if (!$program_recordinfo) {
+ 
+					$this->site->insertData('education_system_reform', array( 'branch_id' => $branch_id, 'report_type' => $type, 'report_year' => $report_year, 'date' => date('Y-m-d'), 'user_id' => $this->session->userdata('user_id')));
+			}
+
+			///half_yearly ends
+
+
+		}
+
+ 
+ 
+	}
 
 
 
@@ -3299,13 +3440,10 @@ WHERE a.ward_type = $type)b left join sma_branches c on c.id = b.branch_id where
 			$this->data['branch'] = $this->session->userdata('branch_id') ? $this->site->getBranchByID($this->session->userdata('branch_id')) : NULL;
 		}
 
-		$this->data['programs'] = $this->others_model->getAllProgram();
-
-
-		if ($branch_id) {
-			$this->data['detailinfo'] = $this->getEntryInfo($report_type_get, $this->data['programs'], $branch_id);
-		} else
-			$this->data['detailinfo'] = '';
+	 
+		 if($branch_id)
+		  $this->getEntryEducationSystemReform($report_type_get,   $branch_id);
+	 
 
 
 		$report_start = $report_type_get['start'];
@@ -3314,15 +3452,15 @@ WHERE a.ward_type = $type)b left join sma_branches c on c.id = b.branch_id where
 		$report_year = $report_type_get['year'];
 
 
-		$this->data['program_summary'] = $this->getprogram_summary($report_type, $report_start, $report_end, $branch_id, $report_type_get);
+		$this->data['education_system_reform_summary'] = $this->geteducation_system_reform($report_type, $report_start, $report_end, $branch_id, $report_type_get);
 
 
-		// $this->sma->print_arrays($this->data['org_summary']);
+		
 
+ 		//$this->sma->print_arrays($this->data['education_system_reform_summary']);
 
-
-		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'Program'));
-		$meta = array('page_title' => 'Program', 'bc' => $bc);
+		$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => 'শিক্ষাব্যবস্থা সংস্কার উপকরণ '));
+		$meta = array('page_title' => 'শিক্ষাব্যবস্থা সংস্কার উপকরণ ', 'bc' => $bc);
 
 
 		if ($branch_id) {

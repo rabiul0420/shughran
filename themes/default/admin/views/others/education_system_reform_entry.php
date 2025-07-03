@@ -7,7 +7,7 @@
 <div class="box">
     <div class="box-header">
         <h2 class="blue"><i
-                class="fa-fw fa fa-barcode"></i><?= 'সভাসমূহ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; $branch_code = $branch->code; ?>
+                class="fa-fw fa fa-barcode"></i><?= 'শিক্ষাব্যবস্থা সংস্কার উপকরণ ' . ' (' . ($branch_id ? $branch->name : 'সকল শাখা') . ')'; $branch_code = $branch->code; ?>
               
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
      
@@ -125,9 +125,9 @@ font: 18px SolaimanLipi, sans-serif;
                 <div class="table-responsive">
 				
 	
-				 
+				  <?php $row_info = $education_system_reform_summary[0];?>
  
-	<table class="table table-bordered"  id="testTable2"  data-branch="<?php echo isset($branch_code) ? $branch_code.'_education_system_reform_1_' : 'central_education_system_reform_1'?>">
+	 <table class="table table-bordered"  id="testTable2"  data-branch="<?php echo isset($branch_code) ? $branch_code.'_education_system_reform_1_' : 'central_education_system_reform_1'?>">
  
   
   <tbody>
@@ -154,52 +154,220 @@ font: 18px SolaimanLipi, sans-serif;
     </tr>
     <tr >
       <td>বুকলেট</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="booklet_center_person"
+                                                data-title="Enter"><?=$row_info['booklet_center_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="booklet_center_number"
+                                                data-title="Enter"><?=$row_info['booklet_center_number']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="booklet_branch_person"
+                                                data-title="Enter"><?=$row_info['booklet_branch_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="booklet_branch_number"
+                                                data-title="Enter"><?=$row_info['booklet_branch_number']?></a>
+      </td>
     </tr>
     <tr >
       <td>ম্যানুয়াল</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="manual_center_person"
+                                                data-title="Enter"><?=$row_info['manual_center_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="manual_center_number"
+                                                data-title="Enter"><?=$row_info['manual_center_number']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="manual_branch_person"
+                                                data-title="Enter"><?=$row_info['manual_branch_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="manual_branch_number"
+                                                data-title="Enter"><?=$row_info['manual_branch_number']?></a>
+      </td>
     </tr>
     <tr >
       <td>পোস্টার</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="poster_center_person"
+                                                data-title="Enter"><?=$row_info['poster_center_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="poster_center_number"
+                                                data-title="Enter"><?=$row_info['poster_center_number']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="poster_branch_person"
+                                                data-title="Enter"><?=$row_info['poster_branch_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="poster_branch_number"
+                                                data-title="Enter"><?=$row_info['poster_branch_number']?></a>
+      </td>
     </tr>
     <tr >
       <td>লিফলেট</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="leaflet_center_person"
+                                                data-title="Enter"><?=$row_info['leaflet_center_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="leaflet_center_number"
+                                                data-title="Enter"><?=$row_info['leaflet_center_number']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="leaflet_branch_person"
+                                                data-title="Enter"><?=$row_info['leaflet_branch_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="leaflet_branch_number"
+                                                data-title="Enter"><?=$row_info['leaflet_branch_number']?></a>
+      </td>
     </tr>
     <tr >
       <td>সামগ্রিক্য ম্যাগাজিন</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="magazine_center_person"
+                                                data-title="Enter"><?=$row_info['magazine_center_person']?></a>
+      </td>
+      <td>
+       <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="magazine_center_number"
+                                                data-title="Enter"><?=$row_info['magazine_center_number']?></a> 
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="magazine_branch_person"
+                                                data-title="Enter"><?=$row_info['magazine_branch_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="magazine_branch_number"
+                                                data-title="Enter"><?=$row_info['magazine_branch_number']?></a>
+      </td>
     </tr>
     <tr >
       <td>প্রবন্ধ</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="article_center_person"
+                                                data-title="Enter"><?=$row_info['article_center_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="article_center_number"
+                                                data-title="Enter"><?=$row_info['article_center_number']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="article_branch_person"
+                                                data-title="Enter"><?=$row_info['article_branch_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="article_branch_number"
+                                                data-title="Enter"><?=$row_info['article_branch_number']?></a>
+      </td>
     </tr>
     <tr >
       <td>সংকলন</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="collection_center_person"
+                                                data-title="Enter"><?=$row_info['collection_center_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="collection_center_number"
+                                                data-title="Enter"><?=$row_info['collection_center_number']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="collection_branch_person"
+                                                data-title="Enter"><?=$row_info['collection_branch_person']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="collection_branch_number"
+                                                data-title="Enter"><?=$row_info['collection_branch_number']?></a>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -229,6 +397,7 @@ font: 18px SolaimanLipi, sans-serif;
  
  
 				 
+ 				 
  <table class="table table-bordered" id="testTable3"   data-branch="<?php echo isset($branch_code) ? $branch_code.'_education_system_reform_2_' : 'central_education_system_reform_2'?>">
  
   <tbody>
@@ -246,43 +415,127 @@ font: 18px SolaimanLipi, sans-serif;
     </tr>
     <tr>
       <td>ডকুমেন্টারি</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="documentary_center"
+                                                data-title="Enter"><?=$row_info['documentary_center']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="documentary_branch"
+                                                data-title="Enter"><?=$row_info['documentary_branch']?></a>
+      </td>
       <td>প্রবন্ধ</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="article_center"
+                                                data-title="Enter"><?=$row_info['article_center']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="article_center"
+                                                data-title="Enter"><?=$row_info['article_center']?></a>
+      </td>
     </tr>
     <tr>
       <td>কালচারাল কনটেন্ট</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="cultural_content_center"
+                                                data-title="Enter"><?=$row_info['cultural_content_center']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="cultural_content_branch"
+                                                data-title="Enter"><?=$row_info['cultural_content_branch']?></a>
+      </td>
       <td>নিবন্ধ</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="essay_center"
+                                                data-title="Enter"><?=$row_info['essay_center']?></a>
+      </td>
+      <td>
+      <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="essay_branch"
+                                                data-title="Enter"><?=$row_info['essay_branch']?></a>  
+      </td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>কলাম&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="column_center"
+                                                data-title="Enter"><?=$row_info['column_center']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="column_branch"
+                                                data-title="Enter"><?=$row_info['column_branch']?></a>
+      </td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>ফিচার</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="feature_center"
+                                                data-title="Enter"><?=$row_info['feature_center']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="feature_branch"
+                                                data-title="Enter"><?=$row_info['feature_branch']?></a>
+      </td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>বিবৃতি</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="statement_center"
+                                                data-title="Enter"><?=$row_info['statement_center']?></a>
+      </td>
+      <td>
+        <a href="#" class="editable editable-click" data-type="number"
+                                                data-table="education_system_reform" data-pk="<?php echo $row_info['id']; ?>"
+                                                data-url="<?php echo admin_url('organization/detailupdate'); ?>"
+                                                data-name="statement_branch"
+                                                data-title="Enter"><?=$row_info['statement_branch']?></a>
+      </td>
     </tr>
   </tbody>
 </table>
