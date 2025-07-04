@@ -168,7 +168,7 @@
                         </li>
 							<li class="mm_social">
                             <a href="<?= admin_url('departmentsreport/social-welfare-bivag') ?>">
-                                <i class="fa fa-cog"></i><span class="text">সমাজসেবা হবে।</span>
+                                <i class="fa fa-cog"></i><span class="text">সমাজ সেবা</span>
                             </a>   
                         </li>
 						<li class="mm_debate">

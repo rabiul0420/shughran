@@ -110,10 +110,7 @@
 
                 null, null, null, null, null, null, null, 
                 
-                 {
-                    "bSortable": false
-                   
-                },
+                 null,
                 null, null,
 
 
