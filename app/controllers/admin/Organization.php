@@ -4182,6 +4182,9 @@ LEFT JOIN sma_thana_log ON sma_thana_log.thana_id = sma_thana.id
                 if (isset($data['org_thana_id']) && !empty($data['org_thana_id']) && in_array($data['level'], [2, 3])) {
                     $this->org_calculate_ward_n_upashakha($data['org_thana_id']);
                 }
+
+                if (isset($data['org_ward_id']) && !empty($data['org_ward_id']) && $data['level']==3)
+                $this->org_calculate_upashakha_in_ward($data['org_ward_id']);   
                 //
 
 
@@ -4485,9 +4488,9 @@ FROM sma_thana WHERE institution_id  = ? AND is_current = 1', [$institution_id])
 
         if ($branch_id) {
 
-            $this->datatables->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name,    sma_thana.org_type, sma_thana.prosasonik_details,  th1.thana_name AS parent_thana_name,  d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.institution_name AS institute,  v3_total_org_unit_count_in_ward(sma_thana.id)  as unit_number,  sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_thana AS th1', 'th1.id = sma_thana.org_thana_id', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->where('thana.level', 2)->where('thana.is_current', 1)->where('thana.branch_id', $branch_id);
+            $this->datatables->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name,    sma_thana.org_type, sma_thana.prosasonik_details,  th1.thana_name AS parent_thana_name,  d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.institution_name AS institute, unit_number_in_ward  as unit_number,  sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_thana AS th1', 'th1.id = sma_thana.org_thana_id', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->where('thana.level', 2)->where('thana.is_current', 1)->where('thana.branch_id', $branch_id);
         } else {
-            $this->datatables->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name,    sma_thana.org_type, sma_thana.prosasonik_details,  th1.thana_name AS parent_thana_name,  d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.institution_name AS institute,  v3_total_org_unit_count_in_ward(sma_thana.id)  as unit_number,  sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_thana AS th1', 'th1.id = sma_thana.org_thana_id', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->where('thana.level', 2)->where('thana.is_current', 1);
+            $this->datatables->select($this->db->dbprefix('thana') . '.id AS id, t1.name AS branch_name, sma_thana.thana_name AS ward_name,    sma_thana.org_type, sma_thana.prosasonik_details,  th1.thana_name AS parent_thana_name,  d1.name AS district, d3.name AS upazila, d4.name AS `union`, d5.name AS ward, i1.institution_type AS category, i2.institution_type AS sub_category, i3.institution_name AS institute,  unit_number_in_ward as unit_number,  sma_thana.worker_number, sma_thana.supporter_number, sma_thana.note', FALSE)->from('thana')->join('sma_branches AS t1', 't1.id = sma_thana.branch_id', 'left')->join('sma_district AS d1', 'd1.id = sma_thana.district', 'left')->join('sma_district AS d3', 'd3.id = sma_thana.upazila', 'left')->join('sma_district AS d4', 'd4.id = sma_thana.union', 'left')->join('sma_district AS d5', 'd5.id = sma_thana.ward', 'left')->join('sma_thana AS th1', 'th1.id = sma_thana.org_thana_id', 'left')->join('sma_institution AS i1', 'i1.id = sma_thana.institution_parent_id', 'left')->join('sma_institution AS i2', 'i2.id = sma_thana.sub_category', 'left')->join('sma_institutionlist AS i3', 'i3.id = sma_thana.institution_id', 'left')->where('thana.level', 2)->where('thana.is_current', 1);
         }
         //$this->datatables->where(" (  {$this->db->dbprefix('thana')}.is_pending = 2 AND  {$this->db->dbprefix('thana')}.in_out = 1) ");
         $this->datatables->where('thana.is_current', 1);
@@ -5354,6 +5357,9 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             if (isset($data['org_thana_id']) && !empty($data['org_thana_id']) && in_array($data['level'], [2, 3]))
                 $this->org_calculate_ward_n_upashakha($data['org_thana_id']);
 
+             if (isset($data['org_ward_id']) && !empty($data['org_ward_id']) && $data['level']==3)
+                $this->org_calculate_upashakha_in_ward($data['org_ward_id']);      
+
             $this->session->set_flashdata('message', 'Updated successfully');
             admin_redirect("organization/thanalist");
         } else {
@@ -5640,6 +5646,10 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             if (isset($data['org_thana_id']) && !empty($data['org_thana_id']) && in_array($data['level'], [2, 3]))
                 $this->org_calculate_ward_n_upashakha($data['org_thana_id']);
 
+               
+            if (isset($data['org_ward_id']) && !empty($data['org_ward_id']) && $data['level']==3)
+                $this->org_calculate_upashakha_in_ward($data['org_ward_id']);       
+
             $this->session->set_flashdata('message', 'Updated successfully');
 
             admin_redirect('organization/wardlist' . ($this->session->userdata('branch_id') ? '/' . $this->session->userdata('branch_id') : ''));
@@ -5921,6 +5931,9 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             if (isset($data['org_thana_id']) && !empty($data['org_thana_id']) && in_array($data['level'], [2, 3]))
                 $this->org_calculate_ward_n_upashakha($data['org_thana_id']);
 
+            if (isset($data['org_ward_id']) && !empty($data['org_ward_id']) && $data['level']==3)
+                $this->org_calculate_upashakha_in_ward($data['org_ward_id']);    
+
 
             //'ward_number' => $this->input->post('ward_number'),
             //'unit_number' => $this->input->post('unit_number'),
@@ -6023,20 +6036,47 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
 
 
-
         $this->site->updateData(
             'thana',
             array(
                 'ward_number' => $ward_number,
-                'unit_number' => $unit_number
+                'unit_number' => $unit_number,
+                'ward_number_in_thana' => $ward_number,
+                'unit_number_in_thana' => $unit_number
             ),
             array('id' => $org_thana_id)
         );
 
+       
     }
 
 
 
+
+    function org_calculate_upashakha_in_ward($org_ward_id)
+    {
+
+        
+
+        $q_unit = $this->site->query_binding('SELECT COUNT(id)   total_unit_in_ward
+    FROM `sma_thana`
+    WHERE `level` = 3 AND  is_current = 1 AND org_ward_id  = ?', [$org_ward_id]);
+
+      
+        $unit_number = $q_unit[0]['total_unit_in_ward'];
+
+ 
+
+        $this->site->updateData(
+            'thana',
+            array(               
+                
+                'unit_number_in_ward' => $unit_number,
+            ),
+            array('id' => $org_ward_id)
+        );
+
+    }
 
 
 
@@ -7138,7 +7178,20 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             $id = $this->input->get('id');
         }
 
-        if (($this->Admin || $this->Owner) && $this->site->delete('thana', array('id' => $id))) {
+
+         $thana_details = $this->site->getByID('thana', 'id', $id);
+
+        if ( ($this->Admin || $this->Owner) && $this->site->delete('thana', array('id' => $id))) {
+
+           
+       if (isset($thana_details->org_thana_id) && !empty($thana_details->org_thana_id) && $thana_details->level==3)
+                $this->org_calculate_ward_n_upashakha($thana_details->org_thana_id);
+ 
+        if (isset($thana_details->org_ward_id) && !empty($thana_details->org_ward_id) && $thana_details->level==3)
+               $this->org_calculate_upashakha_in_ward($thana_details->org_ward_id);   
+
+ 
+
             if ($this->input->is_ajax_request()) {
                 $this->sma->send_json(array('error' => 0, 'msg' => lang("uposhakha_deleted")));
             }
@@ -7162,9 +7215,18 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             $id = $this->input->get('id');
         }
 
+         $thana_details = $this->site->getByID('thana', 'id', $id);
+
         if (($this->Admin || $this->Owner) && $this->site->delete('thana', array('id' => $id))) {
             $this->site->delete('thana', array('org_ward_id' => $id));
             $this->site->delete('thana_log', array('thana_id' => $id));
+
+
+            if (isset($thana_details->org_thana_id) && !empty($thana_details->org_thana_id) && $thana_details->level==2)
+                $this->org_calculate_ward_n_upashakha($thana_details->org_thana_id);
+
+              
+
 
 
             if ($this->input->is_ajax_request()) {
@@ -9178,6 +9240,12 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
 
             if (isset($data['org_thana_id']) && !empty($data['org_thana_id']) && in_array($data['level'], [2, 3]))
                 $this->org_calculate_ward_n_upashakha($data['org_thana_id']);
+
+            if (isset($data['org_ward_id']) && !empty($data['org_ward_id']) && $data['level']==3)
+                $this->org_calculate_upashakha_in_ward($data['org_ward_id']);
+
+
+
 
             $this->session->set_flashdata('message', 'Updated successfully');
             admin_redirect("organization/branchlist");
