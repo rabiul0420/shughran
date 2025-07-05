@@ -7198,6 +7198,13 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
             $this->session->set_flashdata('message', lang('uposhakha_deleted'));
             admin_redirect('organization/uposhakhalist');
         } else if ($this->site->delete('thana', array('id' => $id, 'branch_id' => $this->session->userdata('branch_id')))) {
+           
+            if (isset($thana_details->org_thana_id) && !empty($thana_details->org_thana_id) && $thana_details->level==3)
+                $this->org_calculate_ward_n_upashakha($thana_details->org_thana_id);
+ 
+        if (isset($thana_details->org_ward_id) && !empty($thana_details->org_ward_id) && $thana_details->level==3)
+               $this->org_calculate_upashakha_in_ward($thana_details->org_ward_id);   
+
             if ($this->input->is_ajax_request()) {
                 $this->sma->send_json(array('error' => 0, 'msg' => lang("uposhakha_deleted")));
             }
@@ -7237,6 +7244,12 @@ v3_associate_thana_count(`sma_thana`.branch_id, sma_thana.thana_code) associate,
         } else if ($this->site->delete('thana', array('id' => $id, 'branch_id' => $this->session->userdata('branch_id')))) {
 
             $this->site->delete('thana', array('org_ward_id' => $id, 'branch_id' => $this->session->userdata('branch_id')));
+            $this->site->delete('thana_log', array('thana_id' => $id));
+
+
+             if (isset($thana_details->org_thana_id) && !empty($thana_details->org_thana_id) && $thana_details->level==2)
+                $this->org_calculate_ward_n_upashakha($thana_details->org_thana_id);
+
 
 
             if ($this->input->is_ajax_request()) {
