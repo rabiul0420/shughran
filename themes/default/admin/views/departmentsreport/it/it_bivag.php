@@ -1399,13 +1399,13 @@ $(document).ready(function(){
                     </td>
                     <td class="tg-y698 type_1">টেক ক্যারিয়ার	</td>
                         <td class="tg-0pky  type_9">
-                        <?php echo $techCareer_s = (isset($it_proshikkhon['techCareer_s'])) ? $it_proshikkhon['techCareer_s'] : 0; $total_s = $total_s + $techCareer_s; ?>
+                        <?php echo $takeCarear_s = (isset($it_proshikkhon['takeCarear_s'])) ? $it_proshikkhon['takeCarear_s'] : 0; $total_s = $total_s + $takeCarear_s; ?>
                         </td>
                         <td class="tg-0pky  type_9">
-                        <?php echo $techCareer_upthi = (isset($it_proshikkhon['techCareer_upthi'])) ? $it_proshikkhon['techCareer_upthi'] : 0; $total_upthi = $total_upthi + $techCareer_upthi; ?>
+                        <?php echo $takeCarear_upthi = (isset($it_proshikkhon['takeCarear_upthi'])) ? $it_proshikkhon['takeCarear_upthi'] : 0; $total_upthi = $total_upthi + $takeCarear_upthi; ?>
                         </td>
                         <td class="tg-0pky  type_1">
-                            <?php echo ($techCareer_s != 0) ? ($techCareer_upthi / $techCareer_s) : 0 ?>
+                            <?php echo ($takeCarear_s != 0) ? ($takeCarear_upthi / $takeCarear_s) : 0 ?>
                         </td>
 
 
@@ -1413,21 +1413,18 @@ $(document).ready(function(){
                   
                  
                 
-                   <tr>
-         
-                       <td class="tg-y698 type_1" colspan="5"> মোট	</td>
-                       <td class="tg-0pky  type_1">
-                       <?php echo $total_s; ?>
-                       </td>
-                       <td class="tg-0pky  type_2">
-                       <?php echo $total_upthi; ?>
-                       </td>
-                       <td class="tg-0pky  type_1">
-                        <?php echo ($total_upthi!=0 && $total_s!=0)?round(($total_upthi/$total_s),2):0?>
-                       </td>
-                      
-                       
-                   </tr>
+                  <tr>
+                        <td class="tg-y698 type_1" colspan="5"> মোট </td>
+                        <td class="tg-0pky  type_1">
+                            <?php echo $total_s; ?>
+                        </td>
+                        <td class="tg-0pky  type_2">
+                            <?php echo $total_upthi; ?>
+                        </td>
+                        <td class="tg-0pky  type_1">
+                            <?php echo ($total_upthi!=0 && $total_s!=0)?round(($total_upthi/$total_s),2):0?>
+                        </td>
+                    </tr>
                  
                   
 

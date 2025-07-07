@@ -224,6 +224,22 @@ class It extends MY_Controller
             $this->db->select_sum('windows_s');
             $this->db->select_sum('windows_upthi');
 
+             $this->db->select_sum('typingSkill_s');
+            $this->db->select_sum('typingSkill_upthi');
+
+            $this->db->select_sum('taskManagementTool_s');
+            $this->db->select_sum('taskManagementTool_upthi');
+
+            $this->db->select_sum('windowsTroubleShooting_s');
+            $this->db->select_sum('windowsTroubleShooting_upthi');
+
+            $this->db->select_sum('AiUse_s');
+            $this->db->select_sum('AiUse_upthi');
+
+            $this->db->select_sum('takeCarear_s');
+            $this->db->select_sum('takeCarear_upthi');
+            
+
             if ($branch_id) {
                 $this->db->where('branch_id', $branch_id);
             }
@@ -301,6 +317,48 @@ class It extends MY_Controller
             $this->db->select_sum('rede_cs');
             $this->db->select_sum('rede_mont');
 
+            $this->db->select_sum('deviceSecurity_ps');
+            $this->db->select_sum('deviceSecurity_ms');
+            $this->db->select_sum('deviceSecurity_cs');
+            $this->db->select_sum('deviceSecurity_mont');
+
+            $this->db->select_sum('cyberSecurity_ps');
+            $this->db->select_sum('cyberSecurity_ms');
+            $this->db->select_sum('cyberSecurity_cs');
+            $this->db->select_sum('cyberSecurity_mont');
+
+            $this->db->select_sum('uiuxDesign_ps');
+            $this->db->select_sum('uiuxDesign_ms');
+            $this->db->select_sum('uiuxDesign_cs');
+            $this->db->select_sum('uiuxDesign_mont');
+
+            $this->db->select_sum('animation_ps');
+            $this->db->select_sum('animation_ms');
+            $this->db->select_sum('animation_cs');
+            $this->db->select_sum('animation_mont');
+
+            $this->db->select_sum('artifacialIntelligence_ps');
+            $this->db->select_sum('artifacialIntelligence_ms');
+            $this->db->select_sum('artifacialIntelligence_cs');
+            $this->db->select_sum('artifacialIntelligence_mont');
+
+            $this->db->select_sum('digitalMarketing_ps');
+            $this->db->select_sum('digitalMarketing_ms');
+            $this->db->select_sum('digitalMarketing_cs');
+            $this->db->select_sum('digitalMarketing_mont');
+
+            $this->db->select_sum('dataManagementAnalysis_ps');
+            $this->db->select_sum('dataManagementAnalysis_ms');
+            $this->db->select_sum('dataManagementAnalysis_cs');
+            $this->db->select_sum('dataManagementAnalysis_mont');
+
+            $this->db->select_sum('gameDevelopment_ps');
+            $this->db->select_sum('gameDevelopment_ms');
+            $this->db->select_sum('gameDevelopment_cs');
+            $this->db->select_sum('gameDevelopment_mont');
+
+
+
             if ($branch_id) {
                 $this->db->where('branch_id', $branch_id);
             }
@@ -327,6 +385,7 @@ class It extends MY_Controller
             $this->db->select_sum('onlinestorage');
             $this->db->select_sum('projector');
             $this->db->select_sum('camera');
+            $this->db->select_sum('powerbank');
 
             if ($branch_id) {
                 $this->db->where('branch_id', $branch_id);
@@ -678,11 +737,28 @@ class It extends MY_Controller
             $this->db->select_sum('windows_s');
             $this->db->select_sum('windows_upthi');
 
+           
+
+            
+
             if ($branch_id) {
                 $this->db->where('branch_id', $branch_id);
             }
             $this->db->where('date between "' . $report_type['start'] . '" and "' . $report_type['end'] . '"');
             $this->data['it_proshikkhon'] = $this->db->get('it_proshikkhon')->first_row('array');
+
+           // Debug output
+            echo "<pre>";
+            echo "Branch ID: " . ($branch_id ?: "Not set") . "\n";
+            echo "Start Date: " . $report_type['start'] . "\n";
+            echo "End Date: " . $report_type['end'] . "\n";
+            echo "SQL Query: " . $this->db->last_query() . "\n";
+            echo "it_proshikkhon Data:\n";
+            print_r($this->data['it_proshikkhon']);
+            echo "Total Sessions (calculated): $total_s\n";
+            echo "Total Attendance (calculated): $total_upthi\n";
+            echo "</pre>";
+            exit; // Stop execution to view output
 
             $this->db->select_sum('shikkha_central_s');
             $this->db->select_sum('shikkha_central_p');
